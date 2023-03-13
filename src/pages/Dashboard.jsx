@@ -23,10 +23,10 @@ const Dashboard = () => {
       options = allData["By item"].map(
         (product) => product["Product Category"]
       );
-      options = new Set(options);
+      options = Array.from(new Set(options));
     } else {
       options = allData["By shop"].map((product) => product["Address"]);
-      options = new Set(options);
+      options = Array.from(new Set(options));
     }
   }
 
@@ -40,6 +40,7 @@ const Dashboard = () => {
         <div className="dashboard-main__container">
           <DashboardSettings
             options={options}
+            option={option}
             setOption={setOption}
             type={type}
             setType={setType}

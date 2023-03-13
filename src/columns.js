@@ -37,10 +37,12 @@ export const COLUMNS_BY_SHOP = [
   {
     Header: "Date",
     accessor: "Date",
+    disableGlobalFilter: true,
   },
   {
     Header: "Amount",
     accessor: "Amount",
+    disableGlobalFilter: true,
   },
   {
     Header: "Ordered",

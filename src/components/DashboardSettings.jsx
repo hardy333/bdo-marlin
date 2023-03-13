@@ -3,13 +3,51 @@ import filter from "../assets/icons/filter.png";
 import filterList from "../assets/icons/list.png";
 import search from "../assets/icons/search.png";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "../styles/carousel.css";
+
 const DashboardSettings = ({
   type,
   setType,
+  option,
   setOption,
   searchValue,
   setSearchValue,
+  options,
 }) => {
+  let carouselItems;
+  let carousel;
+
+  if (options) {
+    carousel = (
+      <Swiper
+        className="mySwiper"
+        slidesPerView={5}
+        spaceBetween={10}
+        modules={[Pagination, Navigation]}
+      >
+        {options.map((currOption) => (
+          <SwiperSlide key={currOption} onClick={() => setOption(currOption)}>
+            <div
+              className={`carousel-item ${
+                option === currOption ? "active" : ""
+              }`}
+            >
+              {currOption}
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    );
+  }
+
   return (
     <header className="settings">
       <div className="settings__top">
@@ -33,13 +71,10 @@ const DashboardSettings = ({
         </div>
       </div>
       <div className="settings__bottom">
-        <div className="carousel">
-          <div className="carousel-item">Sweets</div>
-          {/* <div className="carousel-item">Bavarages</div> */}
-          <div className="carousel-item">frozen Goods</div>
-          <div className="carousel-item active">Snacks</div>
-          <div className="carousel-item">Bakes Goods</div>
-        </div>
+        {/* Carousel */}
+        <div className="">{carousel || ""}</div>
+
+        {/*  */}
         <div className="options-container">
           <div className="input-group">
             <input

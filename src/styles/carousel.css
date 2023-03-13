@@ -1,0 +1,19 @@
+
+.swiper {
+  width: 500px;
+  padding: 1rem;
+}
+
+.swiper-slide {
+  /* height: 100px; */
+  /* width: 200px !important; */
+  height: 100% !important;
+  margin: auto;
+
+}
+
+
+.swiper-slide .carousel-item{
+  height: 70px;
+  width: 100%;
+}
