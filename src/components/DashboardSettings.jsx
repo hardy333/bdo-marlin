@@ -3,7 +3,13 @@ import filter from "../assets/icons/filter.png";
 import filterList from "../assets/icons/list.png";
 import search from "../assets/icons/search.png";
 
-const DashboardSettings = ({ type, setType, setOption }) => {
+const DashboardSettings = ({
+  type,
+  setType,
+  setOption,
+  searchValue,
+  setSearchValue,
+}) => {
   return (
     <header className="settings">
       <div className="settings__top">
@@ -19,7 +25,11 @@ const DashboardSettings = ({ type, setType, setOption }) => {
           <button>
             <img src={search} alt="" />
           </button>
-          <input type="text" />
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
         </div>
       </div>
       <div className="settings__bottom">

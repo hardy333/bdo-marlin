@@ -13,10 +13,9 @@ const Dashboard = () => {
   // "By item" or "By shop"
   const [type, setType] = useState("By item");
   const [option, setOption] = useState("Snacks");
-
   const [count, setCount] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
 
-  console.log(allData);
   let options;
 
   if (allData) {
@@ -31,6 +30,7 @@ const Dashboard = () => {
     }
   }
 
+  console.log(searchValue);
   return (
     <div className="dashboard">
       <button onClick={() => setCount(count + 1)}>{count}</button>
@@ -43,9 +43,16 @@ const Dashboard = () => {
             setOption={setOption}
             type={type}
             setType={setType}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
           />
           {allData ? (
-            <Table type={type} option={option} tableData={allData[type]} />
+            <Table
+              searchValue={searchValue}
+              type={type}
+              option={option}
+              tableData={allData[type]}
+            />
           ) : (
             <Loader />
           )}

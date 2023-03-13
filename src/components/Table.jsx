@@ -1,15 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
 import { useTable, usePagination } from "react-table";
 import "../styles/table.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
+import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 
-const Table = ({ tableData, type, option }) => {
+const Table = ({ tableData, type, option, searchValue }) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
   );
+
   const data = useMemo(() => {
     console.log("In use memo");
 
@@ -33,6 +35,7 @@ const Table = ({ tableData, type, option }) => {
     canNextPage,
     pageOptions,
     state,
+    setGlobalFilter,
     gotoPage,
     pageCount,
     setPageSize,
@@ -43,10 +46,15 @@ const Table = ({ tableData, type, option }) => {
       data,
       initialState: { pageIndex: 0, pageSize: 7 },
     },
+    useGlobalFilter,
     usePagination
   );
 
-  const { pageIndex, pageSize } = state;
+  const { pageIndex, pageSize, globalFilter } = state;
+
+  useEffect(() => {
+    setGlobalFilter(searchValue);
+  }, [searchValue]);
 
   return (
     <>
