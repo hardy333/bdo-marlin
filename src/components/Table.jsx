@@ -5,6 +5,7 @@ import "../styles/table.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
+import TablePagination from "./TablePagination.jsx";
 
 const Table = ({ tableData, type, option, searchValue }) => {
   const columns = useMemo(
@@ -13,8 +14,6 @@ const Table = ({ tableData, type, option, searchValue }) => {
   );
 
   const data = useMemo(() => {
-    console.log("In use memo");
-
     return tableData.filter((product) => {
       if (type === "By item") {
         return product["Product Category"] === option;
@@ -38,7 +37,7 @@ const Table = ({ tableData, type, option, searchValue }) => {
     setGlobalFilter,
     gotoPage,
     pageCount,
-    setPageSize,
+
     prepareRow,
   } = useTable(
     {
@@ -107,36 +106,16 @@ const Table = ({ tableData, type, option, searchValue }) => {
           </tbody>
         </table>
       </div>
-      <div style={{ marginTop: "20px" }}>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>{" "}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          Previous
-        </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          Next
-        </button>{" "}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </span>
-        {/* <select
-            value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select> */}
-      </div>
+      <TablePagination
+        gotoPage={gotoPage}
+        pageIndex={pageIndex}
+        pageCount={pageCount}
+        canNextPage={canNextPage}
+        canPreviousPage={canPreviousPage}
+        pageOptions={pageOptions}
+        nextPage={nextPage}
+        previousPage={previousPage}
+      />
     </>
   );
 };

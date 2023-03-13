@@ -30,10 +30,9 @@ const Dashboard = () => {
     }
   }
 
-  console.log(searchValue);
   return (
     <div className="dashboard">
-      <button onClick={() => setCount(count + 1)}>{count}</button>
+      {/* <button onClick={() => setCount(count + 1)}>{count}</button> */}
       <DashboardAside />
       <DashboardNavbar />
       <main className="dashboard-main">

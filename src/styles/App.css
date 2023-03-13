@@ -69,8 +69,9 @@ img{
   flex-direction: column;
 
 }
+
 .dashboard-main__container{
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
