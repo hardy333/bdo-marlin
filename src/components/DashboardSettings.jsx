@@ -3,7 +3,7 @@ import filter from "../assets/icons/filter.png";
 import filterList from "../assets/icons/list.png";
 import search from "../assets/icons/search.png";
 
-const DashboardSettings = ({ type, setType }) => {
+const DashboardSettings = ({ type, setType, setOption }) => {
   return (
     <header className="settings">
       <div className="settings__top">
@@ -37,7 +37,10 @@ const DashboardSettings = ({ type, setType }) => {
               id="By item"
               name="type"
               checked={type === "By item"}
-              onChange={(e) => setType("By item")}
+              onChange={(e) => {
+                setType("By item");
+                setOption("Snacks");
+              }}
             />
             <label htmlFor="By item">By item</label>
           </div>
@@ -47,7 +50,10 @@ const DashboardSettings = ({ type, setType }) => {
               id="By shop"
               name="type"
               checked={type === "By shop"}
-              onChange={(e) => setType("By shop")}
+              onChange={(e) => {
+                setType("By shop");
+                setOption("N.Ramishvili 33");
+              }}
             />
             <label htmlFor="By shop">By shop</label>
           </div>

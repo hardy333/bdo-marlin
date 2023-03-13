@@ -12,8 +12,24 @@ const Dashboard = () => {
   const { data: allData } = useQuery("todos", fetch_XLSX_DATA);
   // "By item" or "By shop"
   const [type, setType] = useState("By item");
+  const [option, setOption] = useState("Snacks");
 
   const [count, setCount] = useState(0);
+
+  console.log(allData);
+  let options;
+
+  if (allData) {
+    if (type === "By item") {
+      options = allData["By item"].map(
+        (product) => product["Product Category"]
+      );
+      options = new Set(options);
+    } else {
+      options = allData["By shop"].map((product) => product["Address"]);
+      options = new Set(options);
+    }
+  }
 
   return (
     <div className="dashboard">
@@ -22,9 +38,14 @@ const Dashboard = () => {
       <DashboardNavbar />
       <main className="dashboard-main">
         <div className="dashboard-main__container">
-          <DashboardSettings type={type} setType={setType} />
+          <DashboardSettings
+            options={options}
+            setOption={setOption}
+            type={type}
+            setType={setType}
+          />
           {allData ? (
-            <Table type={type} tableData={allData[type]} />
+            <Table type={type} option={option} tableData={allData[type]} />
           ) : (
             <Loader />
           )}

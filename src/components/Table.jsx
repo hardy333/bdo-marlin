@@ -2,8 +2,10 @@ import React, { useMemo } from "react";
 import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
 import { useTable, usePagination } from "react-table";
 import "../styles/table.css";
+import cross from "../assets/icons/cross.png";
+import check from "../assets/icons/check.png";
 
-const Table = ({ tableData, type }) => {
+const Table = ({ tableData, type, option }) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
@@ -11,8 +13,14 @@ const Table = ({ tableData, type }) => {
   const data = useMemo(() => {
     console.log("In use memo");
 
-    return tableData;
-  }, [tableData]);
+    return tableData.filter((product) => {
+      if (type === "By item") {
+        return product["Product Category"] === option;
+      } else {
+        return product["Address"] === option;
+      }
+    });
+  }, [tableData, option]);
 
   const {
     getTableProps,
@@ -62,8 +70,25 @@ const Table = ({ tableData, type }) => {
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     let td = cell.render("Cell");
+
+                    // In service level
                     if (cell.column.Header === "Service Level") {
                       td = Math.round(Number(cell.value) * 100) + "%";
+                    }
+
+                    // Amount
+                    if (cell.column.Header === "Amount") {
+                      td = cell.value + " GEL";
+                    }
+
+                    // In time
+                    if (cell.column.Header === "In Time") {
+                      td =
+                        cell.value === "No" ? (
+                          <img src={cross} />
+                        ) : (
+                          <img src={check} />
+                        );
                     }
 
                     return <td {...cell.getCellProps()}>{td}</td>;

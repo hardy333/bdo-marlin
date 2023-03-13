@@ -110,6 +110,17 @@ tbody tr:first-child:before{
 }
 
 
+tr td img{
+  width: 1.8rem;
+}
+
+
+/* scrollbars  */
+/* scrollbars  */
+/* scrollbars  */
+/* scrollbars  */
+/* scrollbars  */
+
 
 .table-wrapper::-webkit-scrollbar-track
 {

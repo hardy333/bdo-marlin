@@ -16,7 +16,7 @@ export const COLUMNS_BY_ITEM = [
     accessor: "Delivered",
   },
   {
-    Header: "In time",
+    Header: "In Time",
     accessor: "In time",
   },
   {
