@@ -1,0 +1,154 @@
+
+/* ------------- *\
+ # Table
+\* ------------- */
+
+
+.table-wrapper{
+  overflow-x: auto;
+
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px 4px;
+  width: 100%;
+  font-weight: bold;
+
+  --border-radius: 10px;
+  --color-primary-2: #7949f4;
+
+}
+
+thead{
+  font-weight: 900;
+
+}
+
+tbody{
+  font-size: 1.4rem;
+  font-weight: 700;
+
+}
+
+table th{
+  width: 5rem;
+  text-align: left;
+  /* letter-spacing: 0.5px; */
+}
+
+table td, table th {
+  padding: 15px;
+  background-color: #fff;
+  /* box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.2); */
+  padding-left: 10px;
+  white-space: nowrap;
+
+}
+
+table th:first-child{
+  border-top-left-radius:  var(--border-radius);
+  border-bottom-left-radius:  var(--border-radius);
+  padding-left: 10px;
+}
+
+table td:first-child{
+  border-top-left-radius:  var(--border-radius);
+  border-bottom-left-radius:  var(--border-radius);
+  padding-left: 10px;
+
+}
+
+table th:last-child{
+  border-top-right-radius:  var(--border-radius);
+  border-bottom-right-radius:  var(--border-radius);
+  padding-right: 10px;
+}
+
+table td:last-child{
+  border-top-right-radius:  var(--border-radius);
+  border-bottom-right-radius:  var(--border-radius);
+  padding-right: 10px;
+
+}
+
+
+table tr{
+  position: relative;
+  z-index:1;
+  overflow: hidden;
+}
+
+
+table tr:first-child{
+}
+
+tbody tr:first-child td{
+  background-color: var(--color-primary-2);
+  color: white;
+}
+
+
+table tr::before{
+  content: "";
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  z-index: -1;
+  box-shadow: 2px 2px 5px  rgba(0, 0, 0, 0.2);
+
+
+}
+
+tbody tr:first-child:before{
+  /* background-color: var(--color-primary-2); */
+
+}
+
+
+
+.table-wrapper::-webkit-scrollbar-track
+{
+	/* -webkit-box-shadow: inset 0 0 6px rgba(55, 55, 55, 0.3); */
+	background-color: #e3e3e3;
+  border-radius: 5px;
+
+}
+
+.table-wrapper::-webkit-scrollbar
+{
+	width: 6px;
+  height: 5px;
+	background-color: #F5F5F5;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+	background-color: var(--color-primary-2);
+}
+
+::-webkit-scrollbar-track
+{
+	/* -webkit-box-shadow: inset 0 0 6px rgba(55, 55, 55, 0.3); */
+	background-color: #e3e3e3;
+  border-radius: 5px;
+
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+  height: 5px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+	background-color: var(--color-primary-2);
+}

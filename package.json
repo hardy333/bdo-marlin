@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "@tanstack/react-table": "^8.7.9",
+    "js-xlsx": "^0.8.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "react-table": "^7.8.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
