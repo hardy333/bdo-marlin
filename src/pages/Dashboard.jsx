@@ -11,8 +11,8 @@ import fetch_XLSX_DATA from "../utils/getData.js";
 const Dashboard = () => {
   const { data: allData } = useQuery("todos", fetch_XLSX_DATA);
   // "By item" or "By shop"
-  const [type, setType] = useState("By item");
-  const [option, setOption] = useState("Snacks");
+  const [type, setType] = useState("By shop");
+  const [option, setOption] = useState("N.Ramishvili 33");
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
 
@@ -54,7 +54,16 @@ const Dashboard = () => {
               tableData={allData[type]}
             />
           ) : (
-            <Loader />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingTop: "50px",
+              }}
+            >
+              <Loader />
+            </div>
           )}
         </div>
       </main>

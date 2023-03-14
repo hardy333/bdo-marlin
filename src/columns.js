@@ -1,3 +1,6 @@
+import ExcelDateToJSDate from "./utils/transformExcelDate";
+import { format } from "date-fns";
+
 export const COLUMNS_BY_ITEM = [
   {
     Header: "Number",
@@ -39,6 +42,9 @@ export const COLUMNS_BY_SHOP = [
     Header: "Date",
     accessor: "Date",
     disableGlobalFilter: true,
+    Cell: ({ value }) => {
+      return format(ExcelDateToJSDate(value), "M/dd/yyyy");
+    },
   },
   {
     Header: "Amount",

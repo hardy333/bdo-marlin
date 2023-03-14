@@ -1,12 +1,6 @@
 import * as XLSX from "xlsx";
 
 const fetch_XLSX_DATA = async () => {
-  // await new Promise((res, rej) => {
-  //   setTimeout(() => {
-  //     res();
-  //   }, 1000);
-  // });
-
   return await fetch("src/excel-data/Data.xlsx")
     .then((res) => {
       return res.arrayBuffer();

@@ -3,15 +3,10 @@ import filter from "../assets/icons/filter.png";
 import filterList from "../assets/icons/list.png";
 import search from "../assets/icons/search.png";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { Pagination, Navigation } from "swiper";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "../styles/carousel.css";
+import ItemSettings from "./ItemSettings";
+import ShopSettings from "./ShopSettings";
 
 const DashboardSettings = ({
   type,
@@ -22,29 +17,17 @@ const DashboardSettings = ({
   setSearchValue,
   options,
 }) => {
-  let carouselItems;
-  let carousel;
+  let subSettings = null;
 
-  if (options) {
-    carousel = (
-      <Swiper
-        className="mySwiper"
-        slidesPerView={5}
-        spaceBetween={10}
-        modules={[Pagination, Navigation]}
-      >
-        {options.map((currOption) => (
-          <SwiperSlide key={currOption} onClick={() => setOption(currOption)}>
-            <div
-              className={`carousel-item ${
-                option === currOption ? "active" : ""
-              }`}
-            >
-              {currOption}
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+  if (options && type === "By item") {
+    subSettings = (
+      <ItemSettings setOption={setOption} option={option} options={options} />
+    );
+  }
+
+  if (options && type === "By shop") {
+    subSettings = (
+      <ShopSettings option={option} setOption={setOption} options={options} />
     );
   }
 
@@ -71,8 +54,8 @@ const DashboardSettings = ({
         </div>
       </div>
       <div className="settings__bottom">
-        {/* Carousel */}
-        <div className="">{carousel || ""}</div>
+        {/* Carousel or select */}
+        <div className="">{subSettings}</div>
 
         {/*  */}
         <div className="options-container">

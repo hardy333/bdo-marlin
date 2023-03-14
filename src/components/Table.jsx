@@ -17,7 +17,9 @@ const Table = ({ tableData, type, option, searchValue }) => {
     return tableData.filter((product) => {
       if (type === "By item") {
         return product["Product Category"] === option;
-      } else {
+      }
+
+      if (type === "By shop") {
         return product["Address"] === option;
       }
     });

@@ -224,6 +224,7 @@ img{
   align-items: center;
   justify-content: space-between;
 
+
 }
 
 .settings__filters{
@@ -276,6 +277,9 @@ input:focus{
   display: flex;
   justify-content: space-between;
   padding-right: 3rem;
+
+  z-index: 999;
+  position: relative;
 }
 
 .carousel{
@@ -374,3 +378,17 @@ input[type="radio"] + label{
   cursor: pointer;
 }
 
+
+
+
+/* Shops setting */
+
+.shop-settings{
+  min-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+
+}
