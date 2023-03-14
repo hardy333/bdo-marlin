@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [option, setOption] = useState("N.Ramishvili 33");
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
+  const [isSorting, setIsSorting] = useState(false);
 
   let options;
 
@@ -45,6 +46,8 @@ const Dashboard = () => {
             setType={setType}
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            isSorting={isSorting}
+            setIsSorting={setIsSorting}
           />
           {allData ? (
             <Table
@@ -52,6 +55,7 @@ const Dashboard = () => {
               type={type}
               option={option}
               tableData={allData[type]}
+              isSorting={isSorting}
             />
           ) : (
             <div

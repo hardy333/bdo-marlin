@@ -280,6 +280,10 @@ input:focus{
 
   z-index: 999;
   position: relative;
+
+  align-items: center;
+  min-height: 90px;
+  
 }
 
 .carousel{

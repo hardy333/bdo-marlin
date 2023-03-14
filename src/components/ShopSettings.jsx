@@ -11,7 +11,10 @@ const ShopSettings = ({ options, option, setOption }) => {
   // console.log({ option });
   return (
     <div className="shop-settings">
+      <label htmlFor="shop">Shop</label>
       <Select
+        id="shop"
+        name="shop"
         value={{ value: option, label: option }}
         options={selectOptions}
         onChange={(value) => {

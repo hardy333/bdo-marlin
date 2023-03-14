@@ -16,6 +16,8 @@ const DashboardSettings = ({
   searchValue,
   setSearchValue,
   options,
+  isSorting,
+  setIsSorting,
 }) => {
   let subSettings = null;
 
@@ -38,13 +40,20 @@ const DashboardSettings = ({
 
         <div className="settings__filters">
           <button>
-            <img src={filter} alt="" />
+            <img src={filter} />
+          </button>
+          <button
+            style={{
+              background: isSorting ? "#1ed8b9" : "",
+              padding: "0.4rem",
+              borderRadius: "5px",
+            }}
+            onClick={() => setIsSorting(!isSorting)}
+          >
+            <img src={filterList} />
           </button>
           <button>
-            <img src={filterList} alt="" />
-          </button>
-          <button>
-            <img src={search} alt="" />
+            <img src={search} />
           </button>
           <input
             type="text"

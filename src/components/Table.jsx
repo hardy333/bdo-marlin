@@ -7,7 +7,7 @@ import check from "../assets/icons/check.png";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import TablePagination from "./TablePagination.jsx";
 
-const Table = ({ tableData, type, option, searchValue }) => {
+const Table = ({ tableData, type, option, searchValue, isSorting }) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
@@ -46,7 +46,7 @@ const Table = ({ tableData, type, option, searchValue }) => {
       columns,
       data,
       initialState: { pageIndex: 0, pageSize: 7 },
-      disableSortBy: false,
+      disableSortBy: !isSorting,
     },
     useGlobalFilter,
     useSortBy,
