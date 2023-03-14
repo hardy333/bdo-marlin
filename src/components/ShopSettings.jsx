@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-const ShopSettings = ({ options, option, setOption }) => {
+const ShopSettings = ({ options, option, setOption, avgSLA }) => {
   const selectOptions = options.map((option) => ({
     value: option,
     label: option,
@@ -21,8 +21,8 @@ const ShopSettings = ({ options, option, setOption }) => {
           setOption(value.value);
         }}
       />
-      <p>
-        Avarage SLA <span>{80}</span>{" "}
+      <p className="sla-container">
+        Avarage SLA: <span className="sla-num">{avgSLA} %</span>{" "}
       </p>
     </div>
   );

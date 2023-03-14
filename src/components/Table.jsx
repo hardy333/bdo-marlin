@@ -7,7 +7,14 @@ import check from "../assets/icons/check.png";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import TablePagination from "./TablePagination.jsx";
 
-const Table = ({ tableData, type, option, searchValue, isSorting }) => {
+const Table = ({
+  tableData,
+  type,
+  option,
+  searchValue,
+  isSorting,
+  setAvgSLA,
+}) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
@@ -39,8 +46,9 @@ const Table = ({ tableData, type, option, searchValue, isSorting }) => {
     setGlobalFilter,
     gotoPage,
     pageCount,
-
     prepareRow,
+    rows,
+    ...x
   } = useTable(
     {
       columns,
@@ -54,6 +62,19 @@ const Table = ({ tableData, type, option, searchValue, isSorting }) => {
   );
 
   const { pageIndex } = state;
+
+  useEffect(() => {
+    if (!rows || !rows.length) return;
+    const sum = rows.reduce(
+      (sum, row, i) => sum + Number(row.values["Service level"]),
+      0
+    );
+
+    if (rows.length) {
+      const avg = Math.round((sum * 100) / rows.length);
+      setAvgSLA(avg);
+    }
+  }, [rows]);
 
   useEffect(() => {
     setGlobalFilter(searchValue);

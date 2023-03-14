@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [isSorting, setIsSorting] = useState(false);
+  const [avgSLA, setAvgSLA] = useState(null);
 
   let options;
 
@@ -48,9 +49,11 @@ const Dashboard = () => {
             setSearchValue={setSearchValue}
             isSorting={isSorting}
             setIsSorting={setIsSorting}
+            avgSLA={avgSLA}
           />
           {allData ? (
             <Table
+              setAvgSLA={setAvgSLA}
               searchValue={searchValue}
               type={type}
               option={option}

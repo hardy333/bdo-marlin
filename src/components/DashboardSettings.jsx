@@ -18,6 +18,7 @@ const DashboardSettings = ({
   options,
   isSorting,
   setIsSorting,
+  avgSLA,
 }) => {
   let subSettings = null;
 
@@ -29,7 +30,12 @@ const DashboardSettings = ({
 
   if (options && type === "By shop") {
     subSettings = (
-      <ShopSettings option={option} setOption={setOption} options={options} />
+      <ShopSettings
+        avgSLA={avgSLA}
+        option={option}
+        setOption={setOption}
+        options={options}
+      />
     );
   }
 
