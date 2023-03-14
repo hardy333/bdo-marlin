@@ -1,5 +1,11 @@
 # bdo-x
-
+## Features
+1. Fetching and parsing excel data
+2. Parsing excel dates and converting to js "dd/mm/yy" format or any other formats
+3. condisional filtering of table data
+4. programatic filtering tabel data
+5. catching fetch data with react-query
+6. can handle more than 100k data units in table  
 
 
 #### Todo
