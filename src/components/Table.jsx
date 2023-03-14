@@ -7,6 +7,11 @@ import check from "../assets/icons/check.png";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import TablePagination from "./TablePagination.jsx";
 
+import arrow from "../assets/icons/arrow-sort.png";
+import smallArrow from "../assets/icons/left-arrow.png";
+
+import classNames from "classnames";
+
 const Table = ({
   tableData,
   type,
@@ -88,15 +93,56 @@ const Table = ({
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <th
+                    {...column.getHeaderProps()}
+                    onClick={(e) =>
+                      e.currentTarget.classList.toggle("open-popup")
+                    }
+                  >
+                    {[1].map(() => {
+                      // console.log(column);
+                      const x = column.getSortByToggleProps();
+                      // console.log(x);
+                      console.log(column.setSortBy);
+                      return null;
+                    })}
+                    <img
+                      src={arrow}
+                      width={13}
+                      className={classNames({
+                        hide: !isSorting || !column.canSort,
+                        sorted: column.isSorted,
+                        desc: column.isSortedDesc,
+                        sortImg: true,
+                      })}
+                    />
                     {column.render("Header")}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? " 🔽"
-                          : " 🔼"
-                        : ""}
-                    </span>
+
+                    <div
+                      className={classNames({
+                        hide: !isSorting || !column.canSort,
+                        sortPopup: true,
+                      })}
+                    >
+                      <div
+                        className={classNames({
+                          active: column.isSortedDesc && column.isSorted,
+                          "th-popup-col": true,
+                        })}
+                        onClick={() => column.toggleSortBy(true)}
+                      >
+                        Largest <img src={smallArrow} />{" "}
+                      </div>
+                      <div
+                        className={classNames({
+                          active: !column.isSortedDesc && column.isSorted,
+                          "th-popup-col": true,
+                        })}
+                        onClick={() => column.toggleSortBy(false)}
+                      >
+                        Smallest <img src={smallArrow} />{" "}
+                      </div>
+                    </div>
                   </th>
                 ))}
               </tr>
