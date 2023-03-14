@@ -71,7 +71,7 @@ img{
 }
 
 .dashboard-main__container{
-  max-width: 900px;
+  max-width: 930px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -91,7 +91,7 @@ img{
   display: flex;
   justify-content: end;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   padding-left: var(--padding-left);
   padding-right: 3rem;
 
@@ -162,7 +162,7 @@ img{
   position: absolute;
   left: 10px;
   top: 10px;
-  bottom: 20px;
+  bottom: 30px;
 
   display: flex;
   flex-direction: column;
@@ -266,6 +266,8 @@ input:focus{
   outline: 2px #1ed8b9 dashed;
 
 }
+
+
 
 
 /* ------------- *\
