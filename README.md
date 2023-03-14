@@ -20,5 +20,5 @@
 #### Future Plans
 - [ ] Rewrite app in typescript
 - [ ] add state management library for settings state
-- [ ] persist data localy or use react-router dom to link settings state to url 
+- [ ] persist data locally or use react-router dom to link settings state to url search params/ query params
 - [ ] Rewrite css in tailwind or styled-components
