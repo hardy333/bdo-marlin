@@ -6,6 +6,7 @@ export const COLUMNS_BY_ITEM = [
   {
     Header: "Item",
     accessor: "Item",
+    disableSortBy: true,
   },
   {
     Header: "Ordered",

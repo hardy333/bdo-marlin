@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
-import { useTable, usePagination } from "react-table";
+import { useTable, usePagination, useSortBy } from "react-table";
 import "../styles/table.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
@@ -44,12 +44,14 @@ const Table = ({ tableData, type, option, searchValue }) => {
       columns,
       data,
       initialState: { pageIndex: 0, pageSize: 7 },
+      disableSortBy: false,
     },
     useGlobalFilter,
+    useSortBy,
     usePagination
   );
 
-  const { pageIndex, pageSize, globalFilter } = state;
+  const { pageIndex } = state;
 
   useEffect(() => {
     setGlobalFilter(searchValue);
@@ -63,8 +65,15 @@ const Table = ({ tableData, type, option, searchValue }) => {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
+                    </span>
                   </th>
                 ))}
               </tr>
