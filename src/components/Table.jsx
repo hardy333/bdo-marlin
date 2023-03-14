@@ -98,12 +98,12 @@ const Table = ({
                     onClick={(e) =>
                       e.currentTarget.classList.toggle("open-popup")
                     }
+                    style={{ pointerEvents: !isSorting ? "none" : "" }}
                   >
                     {[1].map(() => {
                       // console.log(column);
                       const x = column.getSortByToggleProps();
                       // console.log(x);
-                      console.log(column.setSortBy);
                       return null;
                     })}
                     <img
