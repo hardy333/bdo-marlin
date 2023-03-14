@@ -6,11 +6,14 @@ const useOutsidePopupClick = () => {
   useEffect(() => {
     const closePopup = (e) => {
       setAllowpopup(false);
+
       if (
-        !e.target.classList.contains("th-popup-col") ||
-        !e.target.classList.contains("sortPopup")
+        e.target?.tagName === "TH" ||
+        e.target?.parentElement?.tagName === "TH"
       ) {
-        // document.querySelector(".open-popup")?.classList.remove("open-popup");
+        return;
+      } else {
+        document.querySelector(".open-popup")?.classList.remove("open-popup");
       }
     };
 

@@ -11,6 +11,7 @@ import arrow from "../assets/icons/arrow-sort.png";
 import smallArrow from "../assets/icons/left-arrow.png";
 
 import classNames from "classnames";
+import useOutsidePopupClick from "../hooks/useOutsidePopupClick.jsx";
 
 const Table = ({
   tableData,
@@ -85,6 +86,7 @@ const Table = ({
     setGlobalFilter(searchValue);
   }, [searchValue]);
 
+  useOutsidePopupClick();
   return (
     <>
       <div className="table-wrapper">
@@ -95,9 +97,13 @@ const Table = ({
                 {headerGroup.headers.map((column) => (
                   <th
                     {...column.getHeaderProps()}
-                    onClick={(e) =>
-                      e.currentTarget.classList.toggle("open-popup")
-                    }
+                    onClick={(e) => {
+                      document
+                        .querySelector(".open-popup")
+                        ?.classList.remove("open-popup");
+
+                      e.currentTarget.classList.toggle("open-popup");
+                    }}
                     style={{ pointerEvents: !isSorting ? "none" : "" }}
                   >
                     {[1].map(() => {
@@ -131,7 +137,17 @@ const Table = ({
                         })}
                         onClick={() => column.toggleSortBy(true)}
                       >
-                        Largest <img src={smallArrow} />{" "}
+                        {column.Header === "In Time" ? (
+                          <>
+                            In time
+                            <img className="img-in-time" src={check} />
+                          </>
+                        ) : (
+                          <>
+                            Largest
+                            <img src={smallArrow} />
+                          </>
+                        )}
                       </div>
                       <div
                         className={classNames({
@@ -140,7 +156,17 @@ const Table = ({
                         })}
                         onClick={() => column.toggleSortBy(false)}
                       >
-                        Smallest <img src={smallArrow} />{" "}
+                        {column.Header === "In Time" ? (
+                          <>
+                            Late
+                            <img className="img-in-time" src={cross} />
+                          </>
+                        ) : (
+                          <>
+                            Smallest
+                            <img src={smallArrow} />
+                          </>
+                        )}
                       </div>
                     </div>
                   </th>

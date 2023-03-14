@@ -79,8 +79,9 @@ th .sortImg.desc{
 
   display: none;
 
-
 }
+
+
 th.open-popup .sortPopup{
   display: block;
 
@@ -132,6 +133,10 @@ th.open-popup .sortPopup{
   width: 10px;
   opacity: 0.8;
   transform: rotate(90deg)
+}
+.sortPopup .th-popup-col img.img-in-time{
+  transform: rotate(0deg)
+
 }
 
 tbody{
