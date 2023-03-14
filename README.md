@@ -8,10 +8,10 @@
 
 
 #### Todo
-[x]. Adding arrows to settings carousel
-[] Styling select input
-[] Fix sorting bug in SLA column
-[] Makse left sidebar fixed to viewport
-[] Add mobile responsiveness
-[] Fix avg SLA when there are not rows in column ( for  example when filtering there could be 0 results)
-[] show message to users wehn there are not rows in table 
+- [x] Adding arrows to settings carousel
+- [ ] Styling select input
+- [ ] Fix sorting bug in SLA column
+- [ ] Makse left sidebar fixed to viewport
+- [ ] Add mobile responsiveness
+- [ ] Fix avg SLA when there are not rows in column ( for  example when filtering there could be 0 results)
+- [ ] show message to users wehn there are not rows in table 
