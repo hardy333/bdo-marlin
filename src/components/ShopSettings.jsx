@@ -7,8 +7,6 @@ const ShopSettings = ({ options, option, setOption, avgSLA }) => {
     label: option,
   }));
 
-  // console.log(selectOptions);
-  // console.log({ option });
   return (
     <div className="shop-settings">
       <label htmlFor="shop">Shop</label>

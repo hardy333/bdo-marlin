@@ -106,12 +106,6 @@ const Table = ({
                     }}
                     style={{ pointerEvents: !isSorting ? "none" : "" }}
                   >
-                    {[1].map(() => {
-                      // console.log(column);
-                      const x = column.getSortByToggleProps();
-                      // console.log(x);
-                      return null;
-                    })}
                     <img
                       src={arrow}
                       width={13}

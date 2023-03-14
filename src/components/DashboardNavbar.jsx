@@ -2,7 +2,6 @@ import React from "react";
 import gdm from "../assets/icons/gdm.png";
 import ring from "../assets/icons/ringing.png";
 import signOut from "../assets/icons/sign-out.png";
-// import user from "../assets/icons/user.svg";
 
 const DashboardNavbar = () => {
   return (

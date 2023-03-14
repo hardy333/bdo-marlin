@@ -34,7 +34,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      {/* <button onClick={() => setCount(count + 1)}>{count}</button> */}
       <DashboardAside />
       <DashboardNavbar />
       <main className="dashboard-main">

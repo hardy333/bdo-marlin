@@ -72,7 +72,6 @@ const DashboardSettings = ({
         {/* Carousel or select */}
         <div className="">{subSettings}</div>
 
-        {/*  */}
         <div className="options-container">
           <div className="input-group">
             <input
