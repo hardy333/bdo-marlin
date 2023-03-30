@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
 import { useTable, usePagination, useSortBy } from "react-table";
 import "../styles/table.css";
+import "../styles/tablePopup.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
@@ -59,7 +60,7 @@ const Table = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 7 },
+      initialState: { pageIndex: 0, pageSize: 10 },
       disableSortBy: !isSorting,
     },
     useGlobalFilter,

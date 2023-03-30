@@ -24,10 +24,7 @@
 body{
   min-height: 100vh;
   font-size: 1.6rem;
-
   font-family: 'Open Sans', sans-serif;
-
-  
 }
 
 ul{
@@ -71,7 +68,7 @@ img{
 }
 
 .dashboard-main__container{
-  max-width: 930px;
+  max-width: 1300px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -159,10 +156,10 @@ img{
   border-radius: 20px;
   
 
-  position: absolute;
+  position: fixed;
   left: 10px;
-  top: 10px;
-  bottom: 30px;
+  top: 20px;
+  bottom: 20px;
 
   display: flex;
   flex-direction: column;
