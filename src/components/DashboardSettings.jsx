@@ -42,7 +42,7 @@ const DashboardSettings = ({
   return (
     <header className="settings">
       <div className="settings__top">
-        <h1>SPAR Service Level Report</h1>
+        <h1>SPAR-ის სერვისის დონის ჩანაწერი</h1>
 
         <div className="settings__filters">
           <button>
@@ -81,10 +81,10 @@ const DashboardSettings = ({
               checked={type === "By item"}
               onChange={(e) => {
                 setType("By item");
-                setOption("Snacks");
+                setOption("სნეკები");
               }}
             />
-            <label htmlFor="By item">By item</label>
+            <label htmlFor="By item">პროდუქცია</label>
           </div>
           <div className="input-group">
             <input
@@ -94,10 +94,10 @@ const DashboardSettings = ({
               checked={type === "By shop"}
               onChange={(e) => {
                 setType("By shop");
-                setOption("N.Ramishvili 33");
+                setOption("ნ.რამიშვილი 33");
               }}
             />
-            <label htmlFor="By shop">By shop</label>
+            <label htmlFor="By shop">მაღაზია</label>
           </div>
         </div>
       </div>

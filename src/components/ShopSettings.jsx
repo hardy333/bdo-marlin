@@ -9,7 +9,7 @@ const ShopSettings = ({ options, option, setOption, avgSLA }) => {
 
   return (
     <div className="shop-settings">
-      <label htmlFor="shop">Shop</label>
+      <label htmlFor="shop">მაღაზია</label>
       <Select
         id="shop"
         name="shop"
@@ -20,7 +20,7 @@ const ShopSettings = ({ options, option, setOption, avgSLA }) => {
         }}
       />
       <p className="sla-container">
-        Avarage SLA: <span className="sla-num">{avgSLA} %</span>{" "}
+        საშუალო SLAs: <span className="sla-num">{avgSLA} %</span>{" "}
       </p>
     </div>
   );

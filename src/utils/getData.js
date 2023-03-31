@@ -1,7 +1,7 @@
 import * as XLSX from "xlsx";
 
 const fetch_XLSX_DATA = async () => {
-  return await fetch("./excel-data/Data.xlsx")
+  return await fetch("./excel-data/bdo-data-geo.xlsx")
     .then((res) => {
       return res.arrayBuffer();
     })

@@ -178,17 +178,17 @@ const Table = ({
                     let td = cell.render("Cell");
 
                     // In service level
-                    if (cell.column.Header === "Service Level") {
+                    if (cell.column.Header === "სერვისის დონე") {
                       td = Math.round(Number(cell.value) * 100) + "%";
                     }
 
                     // Amount
-                    if (cell.column.Header === "Amount") {
-                      td = cell.value + " GEL";
+                    if (cell.column.Header === "რაოდენობა") {
+                      td = cell.value + " ლარი";
                     }
 
                     // In time
-                    if (cell.column.Header === "In Time") {
+                    if (cell.column.Header === "დროულად") {
                       td =
                         cell.value === "No" ? (
                           <img src={cross} />

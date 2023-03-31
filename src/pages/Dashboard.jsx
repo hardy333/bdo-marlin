@@ -10,9 +10,11 @@ import fetch_XLSX_DATA from "../utils/getData.js";
 
 const Dashboard = () => {
   const { data: allData } = useQuery("todos", fetch_XLSX_DATA);
+  console.log(allData)
+  
   // "By item" or "By shop"
   const [type, setType] = useState("By item");
-  const [option, setOption] = useState("Snacks");
+  const [option, setOption] = useState("სნეკები");
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [isSorting, setIsSorting] = useState(false);

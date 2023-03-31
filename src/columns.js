@@ -3,43 +3,43 @@ import { format } from "date-fns";
 
 export const COLUMNS_BY_ITEM = [
   {
-    Header: "Number",
+    Header: "რიცხვი",
     accessor: "Number",
   },
   {
-    Header: "Item",
+    Header: "პროდუქტი",
     accessor: "Item",
     disableSortBy: true,
   },
   {
-    Header: "Ordered",
+    Header: "რაოდენობა",
     accessor: "Ordered",
   },
   {
-    Header: "Delivered",
+    Header: "მოტანილი",
     accessor: "Delivered",
   },
   {
-    Header: "In Time",
+    Header: "დროულად",
     accessor: "In time",
   },
   {
-    Header: "Service Level",
+    Header: "სერვისის დონე",
     accessor: "Service level",
   },
   {
-    Header: "Product Category",
+    Header: "პროდუქტის კატეგორია",
     accessor: "Product Category",
   },
 ];
 
 export const COLUMNS_BY_SHOP = [
   {
-    Header: "Number",
+    Header: "რიცხვი",
     accessor: "Number",
   },
   {
-    Header: "Date",
+    Header: "თარიღი",
     accessor: "Date",
     disableGlobalFilter: true,
     Cell: ({ value }) => {
@@ -47,28 +47,28 @@ export const COLUMNS_BY_SHOP = [
     },
   },
   {
-    Header: "Amount",
+    Header: "რაოდენობა",
     accessor: "Amount",
     disableGlobalFilter: true,
   },
   {
-    Header: "Ordered",
+    Header: "შეკვეთილი",
     accessor: "Ordered",
   },
   {
-    Header: "Delivered",
+    Header: "მოტანილი",
     accessor: "Delivered",
   },
   {
-    Header: "In Time",
+    Header: "დროულად",
     accessor: "In time",
   },
   {
-    Header: "Service Level",
+    Header: "სერვისის დონე",
     accessor: "Service level",
   },
   {
-    Header: "Address",
+    Header: "მისამართი",
     accessor: "Address",
   },
 ];
