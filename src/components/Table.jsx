@@ -47,7 +47,6 @@ const Table = ({
     [type]
   );
 
-  console.log({option})
 
   const data = useMemo(() => {
     return tableData.filter((product) => {
@@ -65,7 +64,6 @@ const Table = ({
 
   const a = useContext(TableSettingsContext)
   
-  console.log({data})
 
   const {
     getTableProps,

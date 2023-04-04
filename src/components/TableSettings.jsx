@@ -16,12 +16,12 @@ import useOutsidePopupClick from "../hooks/useOutsidePopupClick.jsx";
 import { TableSettingsContext } from "../context/TableSettingsContext.jsx";
 import { useContext } from "react";
 
-const initData = JSON.parse(window.localStorage.getItem("table-data") || [])
+// const initData = JSON.parse(window.localStorage.getItem("table-data") || [])
 
 
 
 const TableSettings = ({
-  tableData = initData["By item"],
+  tableData = [],
   type = "By item",
   option = "Snacks",
   searchValue = "",

@@ -22,8 +22,7 @@ const Dashboard = () => {
   let options;
 
   if (allData) {
-
-    window.localStorage.setItem("table-data", JSON.stringify(allData))
+    // window.localStorage.setItem("table-data", JSON.stringify(allData))
 
     if (type === "By item") {
       options = allData["By item"].map(
@@ -39,7 +38,6 @@ const Dashboard = () => {
     }
   }
 
-  console.log({showInputs})
   
   return (
     <div className="dashboard">

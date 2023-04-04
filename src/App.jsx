@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
 import TableSettingsContextProvider from "./context/TableSettingsContext";
-import TableSettings from "./components/TableSettings";
+// import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
 const queryClient = new QueryClient();
