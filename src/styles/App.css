@@ -61,6 +61,7 @@ img{
 /* Main */
 .dashboard-main{
   background-color: var(--bg-dashboard);
+  background-color: #f9f8fc;
   flex-grow: 1;
   padding: 3rem;
   padding-left: var(--padding-left);

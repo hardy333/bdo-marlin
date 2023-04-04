@@ -66,8 +66,11 @@ thead tr{
 }
 
 tr:first-child td{
-  background-color: var(--color-primary-2);
-  color: white;
+}
+
+tr:hover td{
+  background-color: #ebe8f5;
+
 }
 
 /* tr::before{
