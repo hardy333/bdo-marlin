@@ -26,6 +26,8 @@
   color:rgba(0, 0, 0, 0.666);
   
 }
+
+
 .pagination-wrapper button:hover{
   /* filter: brightness(150%); */
 }
@@ -46,5 +48,5 @@
 }
 
 .pagination-options-container{
-  margin-left: auto;
+  /* margin-left: auto; */
 }
