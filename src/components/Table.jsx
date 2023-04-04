@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
-import { useTable, usePagination, useSortBy } from "react-table";
+import { useTable, usePagination, useSortBy, useFilters } from "react-table";
 import "../styles/table.css";
 import "../styles/tablePopup.css";
 import cross from "../assets/icons/cross.png";
@@ -17,18 +17,16 @@ import { TableSettingsContext } from "../context/TableSettingsContext.jsx";
 import { useContext } from "react";
 
 // tooltip
-import 'react-tooltip/dist/react-tooltip.css'
-import { Tooltip } from 'react-tooltip'
-
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
 // modal
-import "../styles/table-settings-modal.css"
-import settingsImg from "../assets/icons/settings.png"
+import "../styles/table-settings-modal.css";
+import settingsImg from "../assets/icons/settings.png";
 
 // sound
-import popSound from "../assets/sounds/pop.mp3"
-const popAudio = new Audio(popSound)
-
+import popSound from "../assets/sounds/pop.mp3";
+const popAudio = new Audio(popSound);
 
 const Table = ({
   tableData,
@@ -37,21 +35,19 @@ const Table = ({
   searchValue,
   isSorting,
   setAvgSLA,
-  showInputs
+  showInputs,
 }) => {
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
-  const [showSettingsModal, setShowSettingsModal] = useState(false)
-  
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
   );
 
-
   const data = useMemo(() => {
     return tableData.filter((product) => {
-      if(option === "All") return true;
-      
+      if (option === "All") return true;
+
       if (type === "By item") {
         return product["Product Category"] === option;
       }
@@ -62,8 +58,7 @@ const Table = ({
     });
   }, [tableData, option]);
 
-  const a = useContext(TableSettingsContext)
-  
+  const a = useContext(TableSettingsContext);
 
   const {
     getTableProps,
@@ -77,6 +72,7 @@ const Table = ({
     pageOptions,
     state,
     setGlobalFilter,
+    setPageSize,
     gotoPage,
     pageCount,
     prepareRow,
@@ -86,16 +82,19 @@ const Table = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 20 },
+      initialState: { pageIndex: 0, pageSize: 10 },
       disableSortBy: !isSorting,
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
   );
 
 
-  const { pageIndex } = state;
+  
+  const { pageIndex, pageSize } = state;
+
 
   useEffect(() => {
     if (!rows || !rows.length) return;
@@ -144,18 +143,39 @@ const Table = ({
                         sortImg: true,
                       })}
                     />
-                    <a data-tooltip-id={column.render("Header")} data-tooltip-place="bottom" data-tooltip-content={column.render("Header")}>
+                    <a
+                      data-tooltip-id={column.render("Header")}
+                      data-tooltip-place="bottom"
+                      data-tooltip-content={column.render("Header")}
+                    >
                       {column.render("Header")}
                     </a>
                     <Tooltip id={column.render("Header")} />
                     <br />
-                    <span className={classNames({
-                      "table-input-wrapper": true,
-                      "table-input-wrapper-show": showInputs
-                    })}>
-
-                    <input type="text" className={classNames({
-                    })} placeholder="filter" style={{borderBottom: "1px solid rgba(0, 0, 0, 0.5)",borderRadius: 0,paddingLeft: 0, fontSize: "14px", boxShadow: "0 0 0 rgba(0, 0,0, 0.2)", maxWidth: "100%", }} />
+                    <span
+                      className={classNames({
+                        "table-input-wrapper": true,
+                        "table-input-wrapper-show": showInputs,
+                      })}
+                      style={{cursor: !column.canFilter && "default" }}
+                    >
+                      {column.canFilter && (
+                        <input
+                          type="text"
+                          value={column.filterValue || ""}
+                          onChange={(e) => column.setFilter(e.target.value)}
+                          className={classNames({})}
+                          placeholder="filter"
+                          style={{
+                            borderBottom: "1px solid rgba(0, 0, 0, 0.5)",
+                            borderRadius: 0,
+                            paddingLeft: 0,
+                            fontSize: "14px",
+                            boxShadow: "0 0 0 rgba(0, 0,0, 0.2)",
+                            maxWidth: "100%",
+                          }}
+                        />
+                      )}
                     </span>
 
                     <div
@@ -216,7 +236,6 @@ const Table = ({
                   {row.cells.map((cell) => {
                     let td = cell.render("Cell");
 
-
                     // In service level
                     if (cell.column.Header === "Service Level") {
                       td = Math.round(Number(cell.value) * 100) + "%";
@@ -236,26 +255,29 @@ const Table = ({
                           <img src={check} />
                         );
                     }
-                    const tootlitlabel = cell.value
+                    const tootlitlabel = cell.value;
 
                     let renderTdItem;
 
-                    if(cell.value.length > 15 ){
-                      renderTdItem = <>
-                        <a data-tooltip-id={tootlitlabel}  data-tooltip-content={tootlitlabel} 
-                          data-tooltip-variant="dark"
-                          data-tooltip-place="bottom">
-                          {td} 
-                        </a>
-                        <Tooltip id={tootlitlabel} />
-                      </>
-                    }else{
-                      renderTdItem = td
+                    if (cell.value.length > 15) {
+                      renderTdItem = (
+                        <>
+                          <a
+                            data-tooltip-id={tootlitlabel}
+                            data-tooltip-content={tootlitlabel}
+                            data-tooltip-variant="dark"
+                            data-tooltip-place="bottom"
+                          >
+                            {td}
+                          </a>
+                          <Tooltip id={tootlitlabel} />
+                        </>
+                      );
+                    } else {
+                      renderTdItem = td;
                     }
 
-                    return <td {...cell.getCellProps()}>
-                      {renderTdItem}
-                    </td>;
+                    return <td {...cell.getCellProps()}>{renderTdItem}</td>;
                   })}
                 </tr>
               );
@@ -263,23 +285,28 @@ const Table = ({
           </tbody>
         </table>
         {/* Settings button */}
-        <div className="table-settings-modal-btn" onClick={() => {
-          playPopSound()
-          setShowSettingsModal(!showSettingsModal)}
-          }>
-            <img src={settingsImg} alt="" />
+        <div
+          className="table-settings-modal-btn"
+          onClick={() => {
+            playPopSound();
+            setShowSettingsModal(!showSettingsModal);
+          }}
+        >
+          <img src={settingsImg} alt="" />
         </div>
         {/* Settings Modal */}
-        <div className={classNames({
-          "table-settings-modal": true,
-          "table-settings-modal--open": showSettingsModal
-        })}>
+        <div
+          className={classNames({
+            "table-settings-modal": true,
+            "table-settings-modal--open": showSettingsModal,
+          })}
+        >
           Hello
-
         </div>
-
       </div>
       <TablePagination
+        pageSize={pageSize}
+        setPageSize={setPageSize}
         gotoPage={gotoPage}
         pageIndex={pageIndex}
         pageCount={pageCount}
@@ -289,16 +316,13 @@ const Table = ({
         nextPage={nextPage}
         previousPage={previousPage}
       />
-
     </>
   );
 };
 
 export default Table;
 
-
-function playPopSound(){
-  popAudio.volume = 0.2
-  popAudio.play()
+function playPopSound() {
+  popAudio.volume = 0.2;
+  popAudio.play();
 }
-

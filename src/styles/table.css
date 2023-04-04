@@ -1,6 +1,6 @@
 .table-wrapper{
   overflow: auto;
-  max-height: 439px;
+  height: 400px;
 
 }
 
@@ -51,14 +51,15 @@ tr{
 
 tr:first-child {
 
-
 }
 
 thead tr:first-child::before{
+
 }
 
 thead th{
   pointer-events: all !important;
+
 }
 
 thead tr{
