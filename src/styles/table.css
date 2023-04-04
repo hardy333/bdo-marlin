@@ -1,4 +1,7 @@
 .table-wrapper{
+  overflow: auto;
+  max-height: 439px;
+
 }
 
 table {
@@ -7,7 +10,10 @@ table {
   font-weight: bold;
   --border-radius: 10px;
   --color-primary-2: #7949f4;
-  width: 100%;
+  /* width: 100%; */
+  /* width: 500px; */
+  /* margin-left: auto; */
+  margin-inline: auto;
 }
 
 thead{
@@ -16,35 +22,46 @@ thead{
 
 tbody{
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 th{
   width: 5rem;
   text-align: left;
-  position: relative;
   cursor: pointer;
-  z-index: 2;
 }
 
 td, th {
   padding: 5px 30px;
   background-color: #fff;
   white-space: nowrap;
-  position: relative;
-  width: calc(100% / 7);
-  z-index: 20;
+  /* width: calc(100% / 7); */
+  /* width: 100px; */
+  --size: 180px;
+  min-width: var(--size);
+  max-width: var(--size);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* 123 123 123 */
 
 tr{
-  position: relative;
   overflow: hidden;
 }
 
-tr:first-child th{
-  z-index: 50;
+tr:first-child {
 
+
+}
+
+thead tr:first-child::before{
+}
+
+thead th{
+  pointer-events: all !important;
+}
+
+thead tr{
 }
 
 tr:first-child td{
@@ -52,7 +69,7 @@ tr:first-child td{
   color: white;
 }
 
-tr::before{
+/* tr::before{
   content: "";
   position: absolute;
   width: 100%;
@@ -60,8 +77,8 @@ tr::before{
   top: 0;
   left: 0;
   box-shadow: 0px 2px 5px -3px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
-}
+  z-index: 1;
+} */
 
 
 /* Border radiuses */
@@ -93,3 +110,32 @@ tr td img{
   width: 1.8rem;
 }
 
+
+table input{
+  border-bottom-color: rgba(0, 0, 0, 0.4) !important;
+  
+}
+
+table input:focus{
+  outline: none;
+  border-bottom-color: rgba(0, 0, 0, 0.8) !important;
+
+
+}
+
+.table-input-wrapper{
+  padding: 1px;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.2s ease-in-out;
+
+}
+
+.table-input-wrapper-show{
+  height: 28px;
+  
+}

@@ -19,6 +19,7 @@ const DashboardSettings = ({
   isSorting,
   setIsSorting,
   avgSLA,
+  setShowInputs
 }) => {
   let subSettings = null;
 
@@ -58,7 +59,7 @@ const DashboardSettings = ({
           >
             <img src={filterList} />
           </button>
-          <button>
+          <button onClick={() => setShowInputs(curr => !curr)}>
             <img src={search} />
           </button>
           <input

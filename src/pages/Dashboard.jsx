@@ -12,26 +12,35 @@ const Dashboard = () => {
   const { data: allData } = useQuery("todos", fetch_XLSX_DATA);
   // "By item" or "By shop"
   const [type, setType] = useState("By item");
-  const [option, setOption] = useState("Snacks");
+  const [option, setOption] = useState("All");
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [isSorting, setIsSorting] = useState(false);
   const [avgSLA, setAvgSLA] = useState(null);
+  const [showInputs, setShowInputs] = useState(false)
 
   let options;
 
   if (allData) {
+
+    window.localStorage.setItem("table-data", JSON.stringify(allData))
+
     if (type === "By item") {
       options = allData["By item"].map(
         (product) => product["Product Category"]
       );
+
+      options.unshift("All")
       options = Array.from(new Set(options));
     } else {
       options = allData["By shop"].map((product) => product["Address"]);
+      options.unshift("All")
       options = Array.from(new Set(options));
     }
   }
 
+  console.log({showInputs})
+  
   return (
     <div className="dashboard">
       <DashboardAside />
@@ -49,6 +58,8 @@ const Dashboard = () => {
             isSorting={isSorting}
             setIsSorting={setIsSorting}
             avgSLA={avgSLA}
+            showInputs={showInputs}
+            setShowInputs={setShowInputs}
           />
           {allData ? (
             <Table
@@ -58,6 +69,7 @@ const Dashboard = () => {
               option={option}
               tableData={allData[type]}
               isSorting={isSorting}
+              showInputs={showInputs}
             />
           ) : (
             <div

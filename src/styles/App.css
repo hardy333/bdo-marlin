@@ -25,6 +25,16 @@ body{
   min-height: 100vh;
   font-size: 1.6rem;
   font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
+
+}
+
+#root{
+  margin: 0px;
+  max-height: 100vh;
+  padding: 0px;
+  /* background-color: red; */
+
 }
 
 ul{
@@ -38,14 +48,12 @@ img{
 
 /* Dashboard */
 .dashboard{
-  min-height: 100vh;
-
-
   display: flex;
   flex-direction: column;
-
   --padding-left: 10rem;
   position: relative;
+  height: 100vh;
+
 
 
 }
@@ -57,12 +65,9 @@ img{
   padding: 3rem;
   padding-left: var(--padding-left);
   
-  min-height: 440px;
-
-
+  padding-bottom: 0rem;
 
   display: flex;
-  
   flex-direction: column;
 
 }

@@ -15,6 +15,14 @@ const ItemsCarousel = ({ option, options, setOption }) => {
       spaceBetween={10}
       modules={[Pagination, Navigation]}
     >
+           {/* <SwiperSlide key={"all"} onClick={() => setOption("all")}>
+          <div
+            className={`carousel-item ${option === "all" ? "active" : ""}`}
+          >
+            All
+          </div>
+        </SwiperSlide> */}
+      
       {options.map((currOption) => (
         <SwiperSlide key={currOption} onClick={() => setOption(currOption)}>
           <div
