@@ -1,3 +1,6 @@
+[Live](https://dapper-vacherin-962190.netlify.app/)
+
+
 # bdo-x
 ## Features
 1. Fetching and parsing excel data
