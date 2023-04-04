@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/s" element={<Swip />} />
           <Route path="/table-test" element={<TableTest />} />
-          <Route path="/table-settings" element={<TableSettings />} />
+          {/* <Route path="/table-settings" element={<TableSettings />} /> */}
         </Routes>
       </QueryClientProvider>
     </TableSettingsContextProvider>
