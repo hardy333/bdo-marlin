@@ -16,7 +16,7 @@ const TablePagination = ({
   setPageSize,
   pageSize
 }) => {
-  const pageSizeOptions = [15,20,25,30,50,100].map((pageSize) => ({
+  const pageSizeOptions = [10, 15,20,25,30,50,100].map((pageSize) => ({
     value: pageSize,
     label: pageSize,
   }));
