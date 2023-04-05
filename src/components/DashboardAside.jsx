@@ -60,7 +60,7 @@ const DashboardAside = () => {
     <aside className="dashboard-aside" onClick={toggleBodyClass}>
       <div className="dashboard-aside-container">
 
-      <Link to="/" className="marlin-logo-container">
+      <Link to="/all-orders" className="marlin-logo-container">
         <img draggable="false" className="logo-img" src={logo} alt="" />
         <img draggable="false" className="marlin-text" src={marlinText} alt="" />
         {/* <span className="aside-label">Marlin</span> */}
@@ -99,10 +99,11 @@ const DashboardAside = () => {
           </a>
         </li>
         <li>
-          <a href="#">
+
+        <Link to="/all-orders">
             <img src={settings} alt="" />
             <span className="aside-label">სეთინგები</span>
-          </a>
+        </Link>
         </li>
         {/*  */}
         <li className="aside-terms">
