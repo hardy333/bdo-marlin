@@ -17,7 +17,7 @@ import contract from "../assets/navbar/contract.svg";
 import employees from "../assets/navbar/employees.svg";
 import invoices from "../assets/navbar/invoices.svg";
 import orders from "../assets/navbar/orders.svg";
-import settings from "../assets/navbar/settings.svg";
+import settings from "../assets/navbar/s.svg";
 import vendors from "../assets/navbar/vendors.svg";
 import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 
