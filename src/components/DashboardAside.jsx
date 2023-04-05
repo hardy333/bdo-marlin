@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import logo from "../assets/icons/Marlin Logo.png";
 // import catalog from "../assets/icons/menu-icons/catalog.png";
-import customer from "../assets/icons/menu-icons/customer.png";
-import invoice from "../assets/icons/menu-icons/invoice.png";
-import paper from "../assets/icons/menu-icons/paper.png";
+// import customer from "../assets/icons/menu-icons/customer.png";
+// import invoice from "../assets/icons/menu-icons/invoice.png";
+// import paper from "../assets/icons/menu-icons/paper.png";
 // import settings from "../assets/icons/menu-icons/settings.png";
-import shoppingbag from "../assets/icons/menu-icons/shopping-bag.png";
-import team from "../assets/icons/menu-icons/team-management.png";
-import terms from "../assets/icons/menu-icons/terms-and-conditions.png";
+// import shoppingbag from "../assets/icons/menu-icons/shopping-bag.png";
+// import team from "../assets/icons/menu-icons/team-management.png";
+// import terms from "../assets/icons/menu-icons/terms-and-conditions.png";
 
 // News Images
 import carPink from "../assets/navbar/car-pink.svg";
