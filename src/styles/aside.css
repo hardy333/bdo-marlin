@@ -1,0 +1,142 @@
+.dashboard-aside {
+  background-color: var(--bg-aside);
+  min-height: 450px;
+  width: var(--sidebar-width);
+
+  /* padding: 1rem; */
+  padding-bottom: 3rem;
+  border-radius: 20px;
+
+  position: fixed;
+  left: var(--sidebar-inline-margin);
+  top: 20px;
+  bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+
+  user-select: none;
+}
+
+.dashboard-aside  a{
+    text-decoration: none;
+}
+
+.dashboard-aside-container {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.dashboard-aside .logo {
+  width: 100%;
+  width: 45px;
+  height: 46.6px;
+}
+
+.marlin-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  display: block;
+  padding: 1rem;
+}
+
+.marlin-logo-container .aside-label{
+    font-size: 2rem;
+}
+
+.dashboard-aside__list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+
+  margin-top: 2rem;
+  flex-grow: 1;
+
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dashboard-aside__list li{
+    position: relative;
+    padding-inline: 2rem;
+
+
+}
+
+.dashboard-aside__list li:hover::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 4px;
+    background-color: #fff;
+    border-radius: 25px;
+}
+
+
+.dashboard-aside__list a {
+  display: flex;
+  text-decoration: none;
+  color: white;
+  gap: 1rem;
+  align-items: center;
+
+}
+
+.dashboard-aside__list img {
+  width: 2.5rem;
+  margin: auto;
+  display: block;
+  transition: all 0.3s;
+}
+
+.aside-label {
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 0;
+  transition: var(--sidebar-open-animation-duration) ease-in-out;
+  pointer-events: none;
+}
+
+.body-sidebar-open .aside-label {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dashboard-aside__list__vendor {
+  display: block;
+  transform: translate(0, 5px);
+}
+
+.dashboard-aside__list__vendor + span {
+  transform: translate(0, 5px);
+}
+
+.dashboard-aside__list a:hover img {
+  /* transform: scale(1.1); */
+  filter: brightness(90%);
+}
+
+.aside-terms {
+  margin-top: auto;
+}
+
+.aside-paper {
+}

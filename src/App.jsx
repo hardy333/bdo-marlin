@@ -5,6 +5,7 @@ import TableTest from "./components/TableTest";
 import Dashboard from "./pages/Dashboard";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
+import "./styles/aside.css";
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
