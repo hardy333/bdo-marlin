@@ -20,6 +20,8 @@ import orders from "../assets/navbar/orders.svg";
 import settings from "../assets/navbar/s.svg";
 import vendors from "../assets/navbar/vendors.svg";
 import togoText from "../assets/navbar/marlin-logo-with-text.svg";
+import marlinText from "../assets/navbar/marlin-text.svg";
+import { Link } from "react-router-dom";
 
 
 
@@ -58,10 +60,11 @@ const DashboardAside = () => {
     <aside className="dashboard-aside" onClick={toggleBodyClass}>
       <div className="dashboard-aside-container">
 
-      <a href="" className="marlin-logo-container">
-        <img className="logo" src={logo} alt="" />
+      <Link to="/" className="marlin-logo-container">
+        <img draggable="false" className="logo-img" src={logo} alt="" />
+        <img draggable="false" className="marlin-text" src={marlinText} alt="" />
         {/* <span className="aside-label">Marlin</span> */}
-      </a>
+      </Link>
       <ul className="dashboard-aside__list">
         <li>
           <a href="#">

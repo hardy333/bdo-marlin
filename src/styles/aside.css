@@ -1,6 +1,7 @@
 .dashboard-aside {
   background-color: var(--bg-aside);
   min-height: 450px;
+  max-height: 100vh;
   width: var(--sidebar-width);
 
   /* padding: 1rem; */
@@ -20,6 +21,8 @@
   overflow: hidden;
 
   user-select: none;
+
+  z-index: 1000;
 }
 
 .dashboard-aside  a{
@@ -34,23 +37,47 @@
   align-items: start;
 }
 
-.dashboard-aside .logo {
-  width: 100%;
-  width: 45px;
-  height: 46.6px;
-}
-
+/* LOGO */
+/* LOGO */
+/* LOGO */
+/* LOGO */
 .marlin-logo-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  display: block;
-  padding: 1rem;
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+    padding: 1rem;
+    width: 100%;
 }
 
-.marlin-logo-container .aside-label{
-    font-size: 2rem;
+.logo-img{
+    width: 100%;
+    width: 45px;
+    height: 46.6px;
+    display: block;
+    flex-shrink: 0;
+    user-select: none;
 }
+
+.marlin-text{
+    opacity: 0;
+    height: 22px;
+    align-self: flex-end;
+    margin-bottom: 5px;
+    transition: var(--sidebar-open-animation-duration) ease-in-out;
+    user-select: none;
+
+}
+
+.body-sidebar-open .marlin-text{
+    opacity: 1;
+}
+  
+
+
+
+
+/* Logo end */
+/* Logo end */
 
 .dashboard-aside__list {
   display: flex;
