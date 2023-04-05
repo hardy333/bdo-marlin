@@ -13,7 +13,7 @@ export const COLUMNS_BY_ITEM = [
     enableColumnFilter: false,
     enableColumnFilters: false,
     enableFilters: false,
-    disableFilters: true
+    // disableFilters: true
   },
   {
     Header: "Ordered",
@@ -46,7 +46,7 @@ export const COLUMNS_BY_SHOP = [
     Header: "Date",
     accessor: "Date",
     disableGlobalFilter: true,
-    disableFilters: true,
+    // disableFilters: true,
     Cell: ({ value }) => {
       return format(ExcelDateToJSDate(value), "M/dd/yyyy");
     },
@@ -55,7 +55,7 @@ export const COLUMNS_BY_SHOP = [
     Header: "Amount",
     accessor: "Amount",
     disableGlobalFilter: true,
-    disableFilters: true
+    // disableFilters: true
 
   },
   {

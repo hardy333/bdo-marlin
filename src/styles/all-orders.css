@@ -1,0 +1,147 @@
+.all-orders{
+
+}
+
+.all-orders .dashboard-main__container{
+    max-width: 1270px;
+    
+}
+
+
+
+.all-orders__header{
+
+}
+
+.all-orders__arrow-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    color: #211543;
+
+}
+
+.all-orders__arrow-container img{
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.all-orders__settings{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0px;
+    margin-bottom: 2rem;
+}
+
+/* Left */
+/* Left */
+
+.all-orders__gdm-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #211543;
+
+    cursor: pointer;
+
+}
+
+.all-orders__gdm-container img{
+    width: 30px;
+
+}
+
+
+/* Right  */
+/* Right  */
+
+.all-orders__settings__options{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+}
+
+.all-orders__settings{
+    
+
+}
+
+.all-orders__input-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.all-orders__input-img{
+    margin-bottom: -9px;
+    cursor: pointer;
+
+}
+
+.all-orders__input{
+    box-shadow: none;
+    border-radius: 0px;
+    border-bottom: 1px solid rgba(33, 21, 67, 0.13);
+    background-color: transparent;
+
+}
+
+.all-orders__input::placeholder{
+    color: #D0C7E8;
+}
+
+.all-orders__btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+
+
+}
+
+.all-orders__btn img{
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+
+.all-orders__btn img.flip{
+    transform: rotate(90deg);
+}
+
+
+.all-orders__btn img.transparent{
+    opacity: 0.4;
+}
+
+/* Table */
+/* Table */
+/* Table */
+
+.all-orders .table-wrapper{
+    height: 430px !important;
+}
+
+.all-orders table{
+    margin: 0px;
+    margin-right: 0px o !important;
+}
+
+
+/* Modals */
+
+.szh-menu, .szh-menu--state-open,  .szh-menu--dir-bottom{
+    z-index: 9999999999;
+}

@@ -7,6 +7,7 @@ import "./styles/App.css";
 import "./styles/scrollbars.css";
 import "./styles/aside.css";
 import TableSettingsContextProvider from "./context/TableSettingsContext";
+import AllOrders from "./pages/AllOrders";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/s" element={<Swip />} />
           <Route path="/table-test" element={<TableTest />} />
+          <Route path="/all-orders" element={<AllOrders />} />
           {/* <Route path="/table-settings" element={<TableSettings />} /> */}
         </Routes>
       </QueryClientProvider>

@@ -59,6 +59,8 @@ thead tr:first-child::before{
 
 thead th{
   pointer-events: all !important;
+  position: relative;
+  z-index: 999;
 
 }
 
@@ -116,8 +118,17 @@ tr td img{
 
 
 table input{
-  border-bottom-color: rgba(0, 0, 0, 0.4) !important;
+  border-bottom-color: rgba(33, 21, 67, 0.13) !important;
   
+}
+
+table input::placeholder{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #D0C7E8;
+
 }
 
 table input:focus{
@@ -142,4 +153,16 @@ table input:focus{
 .table-input-wrapper-show{
   height: 28px;
   
+}
+
+
+/* Dots */
+
+.th-dots{
+  position: absolute;
+  height: 15px;
+  top: 50%;
+  right: 2rem;
+  transform: translate(0, -50%);
+
 }

@@ -7,17 +7,20 @@ import arrow from "../assets/navbar/arrow.svg";
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
 
+
+
+
 const DashboardNavbar = () => {
   return (
-    <header className="dashboard-navbar">
+    <header className="dashboard-navbar" >
       <div className="gdm-container">
         <a href="#" >
          <img src={user} alt="" />
         </a>
-        <span>GDM</span>
+        <span style={{fontWeight:  700}}>Daily</span>
       </div>
 
-      <a href="#">
+      <a href="#" style={{marginRight: 10}}>
         <img src={ring} alt="" />
       </a>
       <a href="#">

@@ -5,6 +5,9 @@ import "../styles/table.css";
 import "../styles/tablePopup.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
+import dots from "../assets/all-orders/dots.svg"
+
+
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import TablePagination from "./TablePagination.jsx";
 
@@ -20,15 +23,8 @@ import { useContext } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 
-// modal
-import "../styles/table-settings-modal.css";
-import settingsImg from "../assets/icons/settings.png";
 
-// sound
-import popSound from "../assets/sounds/pop.mp3";
-const popAudio = new Audio(popSound);
-
-const Table = ({
+const OrdersTable = ({
   tableData,
   type = "By item",
   option = "All",
@@ -36,9 +32,8 @@ const Table = ({
   isSorting = false,
   setAvgSLA,
   showInputs = false,
+  paddingSizesIndex = 1
 }) => {
-  const [showSettingsModal, setShowSettingsModal] = useState(false);
-
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
     [type]
@@ -91,23 +86,9 @@ const Table = ({
     usePagination
   );
 
-
   
   const { pageIndex, pageSize } = state;
-
-
-  useEffect(() => {
-    if (!rows || !rows.length) return;
-    const sum = rows.reduce(
-      (sum, row, i) => sum + Number(row.values["Service level"]),
-      0
-    );
-
-    if (rows.length) {
-      const avg = Math.round((sum * 100) / rows.length);
-      setAvgSLA(avg);
-    }
-  }, [rows]);
+ 
 
   useEffect(() => {
     setGlobalFilter(searchValue);
@@ -123,6 +104,7 @@ const Table = ({
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
+                  style={{pointerEvents: !isSorting ? "none" : "",paddingInline: paddingSizesIndex * 15, paddingBlock: paddingSizesIndex * 2.5}} 
                     {...column.getHeaderProps()}
                     onClick={(e) => {
                       document
@@ -131,8 +113,9 @@ const Table = ({
 
                       e.currentTarget.classList.toggle("open-popup");
                     }}
-                    style={{ pointerEvents: !isSorting ? "none" : "" }}
                   >
+                    {/* Dots */}
+                    <img src={dots} className="th-dots" alt="" />
                     <img
                       src={arrow}
                       width={13}
@@ -165,9 +148,9 @@ const Table = ({
                           value={column.filterValue || ""}
                           onChange={(e) => column.setFilter(e.target.value)}
                           className={classNames({})}
-                          placeholder="Filter"
+                          placeholder="Filter By code"
                           style={{
-                            borderBottom: "1px solid rgba(33, 21, 67, 0.13);",
+                            borderBottom: "1px solid rgba(33, 21, 67, 0.13)",
                             borderRadius: 0,
                             paddingLeft: 0,
                             fontSize: "14px",
@@ -277,32 +260,13 @@ const Table = ({
                       renderTdItem = td;
                     }
 
-                    return <td {...cell.getCellProps()}>{renderTdItem}</td>;
+                    return <td style={{paddingInline: paddingSizesIndex * 15, paddingBlock: paddingSizesIndex * 2.5}} {...cell.getCellProps()}>{renderTdItem}</td>;
                   })}
                 </tr>
               );
             })}
           </tbody>
         </table>
-        {/* Settings button */}
-        <div
-          className="table-settings-modal-btn"
-          onClick={() => {
-            playPopSound();
-            setShowSettingsModal(!showSettingsModal);
-          }}
-        >
-          <img src={settingsImg} alt="" />
-        </div>
-        {/* Settings Modal */}
-        <div
-          className={classNames({
-            "table-settings-modal": true,
-            "table-settings-modal--open": showSettingsModal,
-          })}
-        >
-          Hello
-        </div>
       </div>
       <TablePagination
         pageSize={pageSize}
@@ -320,9 +284,5 @@ const Table = ({
   );
 };
 
-export default Table;
+export default OrdersTable;
 
-function playPopSound() {
-  popAudio.volume = 0.2;
-  popAudio.play();
-}

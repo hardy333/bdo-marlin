@@ -69,52 +69,52 @@ const DashboardAside = () => {
         <li>
           <a href="#">
             <img className="dashboard-aside__list__vendor" src={vendors} alt="" />
-            <span className="aside-label">vendors</span>
+            <span className="aside-label">მომწოდებლები</span>
           </a>
         </li>
         <li>
           <a href="#">
             <img src={orders} alt="" />
-            <span className="aside-label">Orders</span>
+            <span className="aside-label">შეკვეთები</span>
           </a>
         </li>
         <li>
           <a href="#">
             <img src={catalog} alt="" />
-            <span className="aside-label">Catalogue</span>
+            <span className="aside-label">კატალოგი</span>
           </a>
         </li>
         <li>
           <a href="#">
             <img src={employees} alt="" />
-            <span className="aside-label">Employees</span>
+            <span className="aside-label">თანამშრომლები</span>
 
           </a>
         </li>
         <li>
           <a href="#">
             <img src={invoices} alt="" />
-            <span className="aside-label">Invoices</span>
+            <span className="aside-label">ინვოისები</span>
 
           </a>
         </li>
         <li>
           <a href="#">
             <img src={settings} alt="" />
-            <span className="aside-label">Settings</span>
+            <span className="aside-label">სეთინგები</span>
           </a>
         </li>
         {/*  */}
         <li className="aside-terms">
           <a href="#">
             <img src={conditions} alt="" />
-            <span className="aside-label">Conditions</span>
+            <span className="aside-label">პირობები</span>
           </a>
         </li>
         <li className="aside-paper">
           <a href="#">
             <img src={contract} alt="" />
-            <span className="aside-label">Contract</span>
+            <span className="aside-label">კონტრაქტი</span>
           </a>
         </li>
       </ul>
