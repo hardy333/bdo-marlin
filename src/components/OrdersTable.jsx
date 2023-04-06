@@ -5,8 +5,7 @@ import "../styles/table.css";
 import "../styles/tablePopup.css";
 import cross from "../assets/icons/cross.png";
 import check from "../assets/icons/check.png";
-import dots from "../assets/all-orders/dots.svg"
-
+import dots from "../assets/all-orders/dots.svg";
 
 import { useGlobalFilter } from "react-table/dist/react-table.development.js";
 import TablePagination from "./TablePagination.jsx";
@@ -23,7 +22,6 @@ import { useContext } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
 
-
 const OrdersTable = ({
   tableData,
   type = "By item",
@@ -32,7 +30,9 @@ const OrdersTable = ({
   isSorting = false,
   setAvgSLA,
   showInputs = false,
-  paddingSizesIndex = 1
+  paddingSizesIndex = 1,
+  hiddenHeadersList = [],
+  arr
 }) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
@@ -55,6 +55,21 @@ const OrdersTable = ({
 
   const a = useContext(TableSettingsContext);
 
+
+  const colArr = [];
+
+
+  for (let key in hiddenHeadersList) {
+    if (hiddenHeadersList[key]) {
+      colArr.push(key);
+    }
+  }
+
+  // console.log("c", colArr);
+
+
+  
+  
   const {
     getTableProps,
     getTableBodyProps,
@@ -77,7 +92,11 @@ const OrdersTable = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0, pageSize: 10 },
+      initialState: {
+        pageIndex: 0,
+        pageSize: 10,
+        hiddenColumns: arr,
+      },
       disableSortBy: !isSorting,
     },
     useFilters,
@@ -86,15 +105,16 @@ const OrdersTable = ({
     usePagination
   );
 
-  
   const { pageIndex, pageSize } = state;
- 
 
   useEffect(() => {
     setGlobalFilter(searchValue);
   }, [searchValue]);
 
+  
   useOutsidePopupClick();
+
+  
   return (
     <>
       <div className="table-wrapper">
@@ -104,7 +124,11 @@ const OrdersTable = ({
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th
-                  style={{pointerEvents: !isSorting ? "none" : "",paddingInline: paddingSizesIndex * 15, paddingBlock: paddingSizesIndex * 2.5}} 
+                    style={{
+                      pointerEvents: !isSorting ? "none" : "",
+                      paddingInline: paddingSizesIndex * 15,
+                      paddingBlock: paddingSizesIndex * 2.5,
+                    }}
                     {...column.getHeaderProps()}
                     onClick={(e) => {
                       document
@@ -115,7 +139,9 @@ const OrdersTable = ({
                     }}
                   >
                     {/* Dots */}
+
                     <img src={dots} className="th-dots" alt="" />
+
                     <img
                       src={arrow}
                       width={13}
@@ -140,7 +166,7 @@ const OrdersTable = ({
                         "table-input-wrapper": true,
                         "table-input-wrapper-show": showInputs,
                       })}
-                      style={{cursor: !column.canFilter && "default" }}
+                      style={{ cursor: !column.canFilter && "default" }}
                     >
                       {column.canFilter && (
                         <input
@@ -260,7 +286,17 @@ const OrdersTable = ({
                       renderTdItem = td;
                     }
 
-                    return <td style={{paddingInline: paddingSizesIndex * 15, paddingBlock: paddingSizesIndex * 2.5}} {...cell.getCellProps()}>{renderTdItem}</td>;
+                    return (
+                      <td
+                        style={{
+                          paddingInline: paddingSizesIndex * 15,
+                          paddingBlock: paddingSizesIndex * 4,
+                        }}
+                        {...cell.getCellProps()}
+                      >
+                        {renderTdItem}
+                      </td>
+                    );
                   })}
                 </tr>
               );
@@ -285,4 +321,3 @@ const OrdersTable = ({
 };
 
 export default OrdersTable;
-

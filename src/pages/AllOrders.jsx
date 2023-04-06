@@ -26,6 +26,7 @@ import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
 import classNames from "classnames";
 import { Switch } from "@mui/material";
+import { COLUMNS_BY_ITEM } from "../columns";
 
 const paddingSizes = [1, 2, 3];
 
@@ -37,15 +38,28 @@ const AllOrders = () => {
   const [type, setType] = useState("By item");
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [paddingSizesIndex, setPaddingSizesIndex] = useState(2);
+  const [headerList, setHeaderList] = useState(
+    COLUMNS_BY_ITEM.map((column) => column.Header)
+  );
+  const [hiddenHeadersList, sethiddenHeadersList] = useState(() => {
+    const obj = {}
+    headerList.forEach((h) => {
+      obj[h] = false
+    })
 
-  console.log(paddingSizesIndex);
+    return obj
+  })
+
+  const [arr, setArr] = useState([])
+  
+  console.log("A:", hiddenHeadersList);
+  
 
   const ciclePaddingSizes = () => {
     let currIndex = paddingSizes.findIndex(
       (paddingSize) => paddingSize === paddingSizesIndex
     );
     let nextIndex = currIndex + 1;
-    console.log(currIndex);
 
     if (nextIndex > paddingSizes.length - 1) {
       setPaddingSizesIndex(paddingSizes[0]);
@@ -102,7 +116,7 @@ const AllOrders = () => {
                 {/* <button className="all-orders__btn ">
                 </button> */}
                 <Menu
-                    align="center"
+                  align="center"
                   menuButton={
                     <MenuButton className="all-orders__btn ">
                       <img
@@ -114,43 +128,40 @@ const AllOrders = () => {
                   }
                   transition
                 >
-                  <MenuItem>
-                    <Switch  defaultChecked />
-                    Cut
-                  </MenuItem>
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    shop
-                  </MenuItem>
-                  {/* 1 */}
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    Amount
-                  
-                  </MenuItem>
-                  {/* 2 */}
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    Scheduled
-                  
-                  </MenuItem>
-                  {/* 3 */}
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    Delivery Date
-                  
-                  </MenuItem>
-                  {/* 4 */}
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    Status
-                  
-                  </MenuItem>
-                  <MenuItem>
-                  <Switch  defaultChecked />
-                    Service Level
-                  
-                  </MenuItem>
+                  {headerList.map((header) => (
+                    <MenuItem key={header}
+                    value={header}
+                    onClick={(e) => {
+                      // Stop the `onItemClick` of root menu component from firing
+                      // e.stopPropagation = true;
+                      // Keep the menu open after this menu item is clicked
+                      e.keepOpen = true;
+
+
+                      if(hiddenHeadersList[e.value]){
+                        sethiddenHeadersList({...hiddenHeadersList, [e.value]: false})
+                      }else{
+                        sethiddenHeadersList({...hiddenHeadersList, [e.value]: true})
+                      }
+
+                      let newArr = []
+
+                      for(let [key, value] of Object.entries(hiddenHeadersList)){
+                        if(value){
+                          newArr.push(key)
+
+                        }
+                      }
+
+                      setArr(newArr)
+
+
+                    }}
+                    >
+                      <Switch defaultChecked />
+                      {header}
+                    </MenuItem>
+                  ))}
                 </Menu>
                 {/* padding */}
                 <button onClick={ciclePaddingSizes} className="all-orders__btn">
@@ -173,6 +184,8 @@ const AllOrders = () => {
               isSorting={isSorting}
               showInputs={showInputs}
               paddingSizesIndex={paddingSizesIndex}
+              hiddenHeadersList={hiddenHeadersList}
+              arr={arr}
             />
           ) : (
             <div

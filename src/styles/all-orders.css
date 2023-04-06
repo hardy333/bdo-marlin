@@ -131,7 +131,7 @@
 /* Table */
 
 .all-orders .table-wrapper{
-    height: 430px !important;
+    height: 470px !important;
 }
 
 .all-orders table{
@@ -141,7 +141,6 @@
 
 
 /* Modals */
-
 .szh-menu, .szh-menu--state-open,  .szh-menu--dir-bottom{
     z-index: 9999999999;
 }

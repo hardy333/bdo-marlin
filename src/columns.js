@@ -5,6 +5,7 @@ export const COLUMNS_BY_ITEM = [
   {
     Header: "Number",
     accessor: "Number",
+    show: false
   },
   {
     Header: "Item",

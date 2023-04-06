@@ -32,7 +32,7 @@ th{
 }
 
 td, th {
-  padding: 5px 30px;
+  padding: 8px 30px;
   background-color: #fff;
   white-space: nowrap;
   /* width: calc(100% / 7); */
