@@ -7,17 +7,17 @@ body{
   padding: 2rem;
   border: none;
 
-  --bg-dashboard: #f9f8fc;
+  --bg-table: #f9f8fc;
 }
 
 
 .ag-theme-alpine{
-  background-color: var(--bg-dashboard);
+  background-color: var(--bg-table);
   border: none !important;
 }
 
 .ag-root{
-  background-color: var(--bg-dashboard);
+  background-color: var(--bg-table);
   border: none;
   border: none !important;
 
@@ -60,7 +60,7 @@ body{
 }
 
 .ag-header-viewport{
-  background-color: var(--bg-dashboard);
+  background-color: var(--bg-table);
 
 }
 
@@ -85,7 +85,7 @@ body{
 
 
 .ag-body{
-  background-color: var(--bg-dashboard);
+  background-color: var(--bg-table);
 
 }
 

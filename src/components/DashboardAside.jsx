@@ -68,7 +68,7 @@ const DashboardAside = () => {
         </Link>
         <ul className="dashboard-aside__list">
           <li>
-            <Link to="ag-table">
+            <Link to="/ag-table">
               <img
                 className="dashboard-aside__list__vendor"
                 src={vendors}
