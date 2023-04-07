@@ -1,0 +1,134 @@
+body{
+  /* background-color: var(--bg-dashboard); */
+}
+
+
+.ag-grid-example{
+  padding: 2rem;
+  border: none;
+
+  --bg-dashboard: #f9f8fc;
+}
+
+
+.ag-theme-alpine{
+  background-color: var(--bg-dashboard);
+  border: none !important;
+}
+
+.ag-root{
+  background-color: var(--bg-dashboard);
+  border: none;
+  border: none !important;
+
+
+}
+.ag-paging-panel{
+  border-bottom-left-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+  background-color: #fff;
+}
+.ag-root-wrapper{
+  border: none;
+  background-color: transparent;
+}
+
+.ag-root-wrapper-body {
+  border: none;
+  border: none !important;
+
+}
+
+.ag-header{
+  border: none;
+}
+.ag-theme-alpine .ag-header{
+  margin-bottom: 2px;
+}
+
+.ag-center-cols-container{
+}
+
+.ag-header-container{
+  background-color: transparent !important;
+  border: 1rem !important;
+}
+
+
+.ag-header-cell{
+  background-color: #fff;
+}
+
+.ag-header-viewport{
+  background-color: var(--bg-dashboard);
+
+}
+
+.ag-header-cell:first-child{
+  /* border-radius: 1rem !important; */
+  /* background-color: red; */
+}
+
+.ag-header-cell[aria-colindex="7"]{
+
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+
+.ag-header-cell[aria-colindex="1"]{
+
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+
+
+.ag-body{
+  background-color: var(--bg-dashboard);
+
+}
+
+.ag-row{
+  border-radius: 1rem !important;
+  box-shadow: 0px 2px 5px -3px rgba(0, 0, 0, 0.5);
+
+}
+
+.ag-row-even{
+
+}
+
+.ag-row-odd{
+  background-color: #fff;
+
+  
+}
+
+.ag-cell{
+  /* background-color: lime; */
+  /* border: 1px solid black; */
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ag-cell:first-child{
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.ag-cell:last-child{
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.ag-icon-menu::before{
+  content: url(../assets/all-orders/dots.svg);
+  height: 40px;
+  cursor: pointer;
+
+  transform: scale(0.5) !important;
+
+}

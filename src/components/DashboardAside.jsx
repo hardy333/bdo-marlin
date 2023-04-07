@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import logo from "../assets/icons/Marlin Logo.png";
 // import catalog from "../assets/icons/menu-icons/catalog.png";
 // import customer from "../assets/icons/menu-icons/customer.png";
@@ -23,17 +23,15 @@ import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 import marlinText from "../assets/navbar/marlin-text.svg";
 import { Link } from "react-router-dom";
 
-
-
 const DashboardAside = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleBodyClass = () => {
-    if(document.body){
-      document.body.classList.toggle("body-sidebar-open")
+    if (document.body) {
+      document.body.classList.toggle("body-sidebar-open");
     }
-  }
-  
+  };
+
   // useEffect(() => {
 
   //   const asideSapns = document.querySelectorAll(".dashboard-aside__list a span")
@@ -43,82 +41,86 @@ const DashboardAside = () => {
   //       span.style.display = "none"
   //     }
   //   }
-    
+
   //   asideSapns.forEach(span => {
   //     span.addEventListener("transitionend", () => hideSpan(span))
   //   })
-    
-    
+
   //   return () => {
   //     asideSapns.forEach(span => {
   //       span.removeEventListener("transitionend", () => hideSpan(span))
   //     })
   //   }
   // }, [])
-  
+
   return (
     <aside className="dashboard-aside" onClick={toggleBodyClass}>
       <div className="dashboard-aside-container">
-
-      <Link to="/all-orders" className="marlin-logo-container">
-        <img draggable="false" className="logo-img" src={logo} alt="" />
-        <img draggable="false" className="marlin-text" src={marlinText} alt="" />
-        {/* <span className="aside-label">Marlin</span> */}
-      </Link>
-      <ul className="dashboard-aside__list">
-        <li>
-          <a href="#">
-            <img className="dashboard-aside__list__vendor" src={vendors} alt="" />
-            <span className="aside-label">მომწოდებლები</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src={orders} alt="" />
-            <span className="aside-label">შეკვეთები</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src={catalog} alt="" />
-            <span className="aside-label">კატალოგი</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src={employees} alt="" />
-            <span className="aside-label">თანამშრომლები</span>
-
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img src={invoices} alt="" />
-            <span className="aside-label">ინვოისები</span>
-
-          </a>
-        </li>
-        <li>
-
-        <Link to="/all-orders">
-            <img src={settings} alt="" />
-            <span className="aside-label">სეთინგები</span>
+        <Link to="/all-orders" className="marlin-logo-container">
+          <img draggable="false" className="logo-img" src={logo} alt="" />
+          <img
+            draggable="false"
+            className="marlin-text"
+            src={marlinText}
+            alt=""
+          />
+          {/* <span className="aside-label">Marlin</span> */}
         </Link>
-        </li>
-        {/*  */}
-        <li className="aside-terms">
-          <a href="#">
-            <img src={conditions} alt="" />
-            <span className="aside-label">პირობები</span>
-          </a>
-        </li>
-        <li className="aside-paper">
-          <a href="#">
-            <img src={contract} alt="" />
-            <span className="aside-label">კონტრაქტი</span>
-          </a>
-        </li>
-      </ul>
+        <ul className="dashboard-aside__list">
+          <li>
+            <Link to="ag-table">
+              <img
+                className="dashboard-aside__list__vendor"
+                src={vendors}
+                alt=""
+              />
+              <span className="aside-label">მომწოდებლები</span>
+            </Link>
+          </li>
+          <li>
+            <a href="#">
+              <img src={orders} alt="" />
+              <span className="aside-label">შეკვეთები</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src={catalog} alt="" />
+              <span className="aside-label">კატალოგი</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src={employees} alt="" />
+              <span className="aside-label">თანამშრომლები</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src={invoices} alt="" />
+              <span className="aside-label">ინვოისები</span>
+            </a>
+          </li>
+          <li>
+            <Link to="/all-orders">
+              <img src={settings} alt="" />
+              <span className="aside-label">სეთინგები</span>
+            </Link>
+          </li>
+          {/*  */}
+          <li className="aside-terms">
+            <a href="#">
+              <img src={conditions} alt="" />
+              <span className="aside-label">პირობები</span>
+            </a>
+          </li>
+          <li className="aside-paper">
+            <a href="#">
+              <img src={contract} alt="" />
+              <span className="aside-label">კონტრაქტი</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </aside>
   );

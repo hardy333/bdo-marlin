@@ -42,18 +42,17 @@ const AllOrders = () => {
     COLUMNS_BY_ITEM.map((column) => column.Header)
   );
   const [hiddenHeadersList, sethiddenHeadersList] = useState(() => {
-    const obj = {}
+    const obj = {};
     headerList.forEach((h) => {
-      obj[h] = false
-    })
+      obj[h] = false;
+    });
 
-    return obj
-  })
+    return obj;
+  });
 
-  const [arr, setArr] = useState([])
-  
+  const [arr, setArr] = useState([]);
+
   console.log("A:", hiddenHeadersList);
-  
 
   const ciclePaddingSizes = () => {
     let currIndex = paddingSizes.findIndex(
@@ -117,6 +116,7 @@ const AllOrders = () => {
                 </button> */}
                 <Menu
                   align="center"
+                  direction="top"
                   menuButton={
                     <MenuButton className="all-orders__btn ">
                       <img
@@ -129,34 +129,39 @@ const AllOrders = () => {
                   transition
                 >
                   {headerList.map((header) => (
-                    <MenuItem key={header}
-                    value={header}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
+                    <MenuItem
+                      key={header}
+                      value={header}
+                      onClick={(e) => {
+                        // Stop the `onItemClick` of root menu component from firing
+                        // e.stopPropagation = true;
+                        // Keep the menu open after this menu item is clicked
+                        e.keepOpen = true;
 
-
-                      if(hiddenHeadersList[e.value]){
-                        sethiddenHeadersList({...hiddenHeadersList, [e.value]: false})
-                      }else{
-                        sethiddenHeadersList({...hiddenHeadersList, [e.value]: true})
-                      }
-
-                      let newArr = []
-
-                      for(let [key, value] of Object.entries(hiddenHeadersList)){
-                        if(value){
-                          newArr.push(key)
-
+                        if (hiddenHeadersList[e.value]) {
+                          sethiddenHeadersList({
+                            ...hiddenHeadersList,
+                            [e.value]: false,
+                          });
+                        } else {
+                          sethiddenHeadersList({
+                            ...hiddenHeadersList,
+                            [e.value]: true,
+                          });
                         }
-                      }
 
-                      setArr(newArr)
+                        let newArr = [];
 
+                        for (let [key, value] of Object.entries(
+                          hiddenHeadersList
+                        )) {
+                          if (value) {
+                            newArr.push(key);
+                          }
+                        }
 
-                    }}
+                        setArr(newArr);
+                      }}
                     >
                       <Switch defaultChecked />
                       {header}

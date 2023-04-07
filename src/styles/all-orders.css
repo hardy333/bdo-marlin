@@ -143,4 +143,26 @@
 /* Modals */
 .szh-menu, .szh-menu--state-open,  .szh-menu--dir-bottom{
     z-index: 9999999999;
+    position: relative;
+}
+
+
+table .th-dots{
+    padding: 0 10px;
+    cursor: pointer;
+
+}
+
+table thead{
+    position: relative;
+    z-index: 1000;
+}
+
+table tbody{
+    position: relative;
+}
+
+table th{
+    z-index: 99999;
+    position: relative !important;
 }

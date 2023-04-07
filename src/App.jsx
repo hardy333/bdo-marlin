@@ -8,6 +8,9 @@ import "./styles/scrollbars.css";
 import "./styles/aside.css";
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AllOrders from "./pages/AllOrders";
+import Hello from "./pages/Hello";
+import AgTable from "./pages/AgTable";
+import Error from "./pages/Error";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -16,19 +19,21 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <>
-    <TableSettingsContextProvider>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/s" element={<Swip />} />
-          <Route path="/table-test" element={<TableTest />} />
-          <Route path="/all-orders" element={<AllOrders />} />
-          {/* <Route path="/table-settings" element={<TableSettings />} /> */}
-        </Routes>
-      </QueryClientProvider>
-    </TableSettingsContextProvider>
+      <TableSettingsContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/s" element={<Swip />} />
+            <Route path="/table-test" element={<TableTest />} />
+            <Route path="/all-orders" element={<AllOrders />} />
+            <Route path="/hello" element={<Hello />} />
+            <Route path="/ag-table" element={<AgTable />} />
+            <Route path="*" element={<Error />} />
+            {/* <Route path="/table-settings" element={<TableSettings />} /> */}
+          </Routes>
+        </QueryClientProvider>
+      </TableSettingsContextProvider>
     </>
-
   );
 }
 

@@ -21,6 +21,8 @@ import { useContext } from "react";
 // tooltip
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip } from "react-tooltip";
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import { Switch } from "@mui/material";
 
 const OrdersTable = ({
   tableData,
@@ -32,7 +34,7 @@ const OrdersTable = ({
   showInputs = false,
   paddingSizesIndex = 1,
   hiddenHeadersList = [],
-  arr
+  arr,
 }) => {
   const columns = useMemo(
     () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
@@ -55,9 +57,7 @@ const OrdersTable = ({
 
   const a = useContext(TableSettingsContext);
 
-
   const colArr = [];
-
 
   for (let key in hiddenHeadersList) {
     if (hiddenHeadersList[key]) {
@@ -67,9 +67,6 @@ const OrdersTable = ({
 
   // console.log("c", colArr);
 
-
-  
-  
   const {
     getTableProps,
     getTableBodyProps,
@@ -111,10 +108,8 @@ const OrdersTable = ({
     setGlobalFilter(searchValue);
   }, [searchValue]);
 
-  
   useOutsidePopupClick();
 
-  
   return (
     <>
       <div className="table-wrapper">
@@ -139,8 +134,29 @@ const OrdersTable = ({
                     }}
                   >
                     {/* Dots */}
-
-                    <img src={dots} className="th-dots" alt="" />
+                    <Menu
+                      align="center"
+                      direction="bottom"
+                      menuButton={
+                        <MenuButton className="">
+                          <img src={dots} className="th-dots" alt="" />
+                        </MenuButton>
+                      }
+                      transition
+                    >
+                      {[1, 2, 3].map((header) => (
+                        <MenuItem
+                          key={header}
+                          value={header}
+                          onClick={(e) => {
+                            e.keepOpen = true;
+                          }}
+                        >
+                          <Switch defaultChecked />
+                          {header}
+                        </MenuItem>
+                      ))}
+                    </Menu>
 
                     <img
                       src={arrow}
