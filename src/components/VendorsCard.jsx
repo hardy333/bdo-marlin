@@ -13,26 +13,26 @@ const VendorsCard = ({ variant = "orange" }) => {
         orange: variant === "orange",
       })}
     >
-      <div>
+      <div className="vendor-card-top">
         {variant === "orange" ? (
           <img src={carOrange} alt="" />
         ) : (
           <img src={carPurple} alt="" />
         )}
-        <div>
+        <div className="vendor-card-name">
           <h3>GDM</h3>
           <small>207614789</small>
         </div>
       </div>
-      <p>432 Products</p>
-      <div>
+      <p className="vendor-card-products">432 Products</p>
+      <div className="vendor-card-bottom">
         <button
           className="btn"
           style={{ display: variant === "orange" ? "block" : "none" }}
         >
           Send request
         </button>
-        <p>View Catalogue... </p>
+        <p>View Catalogue &#62; </p>
       </div>
     </article>
   );

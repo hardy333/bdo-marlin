@@ -100,8 +100,9 @@ img{
 
 /* Main */
 .dashboard-main{
-  background-color: var(--bg-dashboard);
-  background-color: #f9f8fc;
+  /* background-color: var(--bg-dashboard); */
+  /* background-color: #f9f8fc; */
+  background-color: #F3F7FF;
   flex-grow: 1;
   padding: 3rem;
   /* this is sidebars full space(width+leftPadding+rightPadding+dashboard items right padding) */

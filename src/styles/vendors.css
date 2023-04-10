@@ -6,6 +6,41 @@
 
 .vendors-header{
   padding: 0 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vendors-switch-container{
+  display: flex;
+  align-items: center;
+}
+
+.vendors-switch-container p{
+  font-weight: 700;
+font-size: 24px;
+line-height: 31px;
+
+color: #211543;
+}
+
+
+.vendors-btns-container{
+  margin-right: auto;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+
+}
+
+.vendors-btns-container button{
+  margin-right: 1rem;
+
+}
+
+.vendors-btns-container img{
+  height: 16px;
 }
 
 .vendors-card-container{
@@ -24,14 +59,70 @@
 }
 
 
+/* Card */
+/* Card */
+/* Card */
+
+
 .vendor-card{
   background-color: #fff;
   padding: 22px 18px;
   border-left: 5px solid transparent;
   border-radius: 5px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 
 
 }
+
+.vendor-card-top{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+
+}
+
+.vendor-card-name{
+  height: 50px;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.vendor-card-name h3{
+  
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 31px;
+
+  color: #6E0FF5;
+  line-height: 1;
+
+}
+
+.vendor-card-name small{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #1A1F3D;
+}
+
+.vendor-card-products{
+  font-weight: 400;
+  font-size: 33px;
+  line-height: 40px;
+
+  color: #1A1F3D;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+
+}
+
+
 
 .vendor-card.purple{
   border-left-color: #6E0FF5;;
@@ -39,4 +130,59 @@
 
 .vendor-card.orange{
   border-left-color: #F59957;
+}
+
+.vendor-card-bottom p{
+  text-align: right;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #1A1F3D;
+
+}
+
+.vendor-card.orange .vendor-card-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vendor-card .btn{
+  background: #F29757;
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: white;
+  cursor: pointer;
+
+}
+
+.vendor-card .btn:hover{
+  filter: brightness(90%);
+
+}
+
+
+@media (max-width: 1200px) {
+  .vendors-card-container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+}
+
+@media (max-width: 1000px) {
+  .vendors-card-container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+}
+
+
+@media (max-width: 650px) {
+  .vendors-card-container{
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
 }
