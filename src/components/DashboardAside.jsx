@@ -56,7 +56,7 @@ const DashboardAside = () => {
   return (
     <aside className="dashboard-aside" onClick={toggleBodyClass}>
       <div className="dashboard-aside-container">
-        <Link to="/all-orders" className="marlin-logo-container">
+        <Link to="/" className="marlin-logo-container">
           <img draggable="false" className="logo-img" src={logo} alt="" />
           <img
             draggable="false"

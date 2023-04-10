@@ -72,6 +72,7 @@ const Profile = () => {
                     placeholder="Enter your Email"
                   />
                 </div>
+                <button className="btn btn-success">Update and save</button>
               </form>
             </div>
           </div>

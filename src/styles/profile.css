@@ -131,3 +131,14 @@
 
 
 }
+
+.profile-form-container .btn{
+  width: 200px;
+  padding: 10px;
+
+  margin-left: calc(100px + 1.5rem);
+}
+
+.profile-form-container .btn:hover{
+  filter: brightness(90%);
+}
