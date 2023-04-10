@@ -103,7 +103,7 @@ img{
   flex-grow: 1;
   padding: 3rem;
   /* this is sidebars full space(width+leftPadding+rightPadding+dashboard items right padding) */
-  padding-bottom: 0rem;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   padding-left: calc(var(--sidebar-full-space) + var(--right-adge-padding));

@@ -6,11 +6,14 @@ import Dashboard from "./pages/Dashboard";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
 import "./styles/aside.css";
+import "./styles/components.css";
+
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AllOrders from "./pages/AllOrders";
 import Hello from "./pages/Hello";
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
+import Employees from "./pages/Employees";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -28,6 +31,7 @@ function App() {
             <Route path="/all-orders" element={<AllOrders />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
+            <Route path="/employees" element={<Employees />} />
             <Route path="*" element={<Error />} />
             {/* <Route path="/table-settings" element={<TableSettings />} /> */}
           </Routes>
