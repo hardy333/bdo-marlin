@@ -14,6 +14,11 @@ import Hello from "./pages/Hello";
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
 import Employees from "./pages/Employees";
+import Profile from "./pages/Profile";
+import Vendors from "./pages/Vendors";
+import Invoices1 from "./pages/Invoices1";
+import Invoices2 from "./pages/Invoices2";
+import Home from "./pages/Home";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -25,15 +30,19 @@ function App() {
       <TableSettingsContextProvider>
         <QueryClientProvider client={queryClient}>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/s" element={<Swip />} />
             <Route path="/table-test" element={<TableTest />} />
             <Route path="/all-orders" element={<AllOrders />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
             <Route path="/employees" element={<Employees />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/vendors" element={<Vendors />} />
+            <Route path="/invoices1" element={<Invoices1 />} />
+            <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="*" element={<Error />} />
-            {/* <Route path="/table-settings" element={<TableSettings />} /> */}
           </Routes>
         </QueryClientProvider>
       </TableSettingsContextProvider>

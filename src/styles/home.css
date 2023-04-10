@@ -1,0 +1,15 @@
+.home h1{
+  font: 2rem;
+  font-weight: bold;
+  font-size: 3rem;
+
+}
+
+.home-links{
+  display: flex;
+  flex-direction: column;
+}
+
+.home-links a{
+  color: var(--color-primary-2);
+}
