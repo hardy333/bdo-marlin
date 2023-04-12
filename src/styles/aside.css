@@ -15,15 +15,16 @@
 
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 
   transition: width 0.3s ease-in-out;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   user-select: none;
 
   z-index: 1000;
 }
+
 
 .dashboard-aside  a{
     text-decoration: none;
@@ -35,7 +36,7 @@
 
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 }
 
 /* LOGO */
@@ -44,7 +45,7 @@
 /* LOGO */
 .marlin-logo-container {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 0.5rem;
     padding: 1rem;
     width: 100%;
@@ -74,42 +75,43 @@
 }
   
 
-
-
-
 /* Logo end */
 /* Logo end */
 
 .dashboard-aside__list {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   gap: 2rem;
 
-  margin-top: 2rem;
+  margin-top: 3rem;
   flex-grow: 1;
 
-  max-width: 100%;
-  width: 100%;
-  overflow: hidden;
+  max-width: 100% !important;
+  pointer-events: none;
+
+
 }
 
 .dashboard-aside__list li{
-    position: relative;
-    padding-inline: 2rem;
+  position: relative;
+  padding-inline: 2rem;
+  pointer-events: all;
+
+
 
 
 }
 
 .dashboard-aside__list li:hover::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0px;
-    height: 100%;
-    width: 4px;
-    background-color: #fff;
-    border-radius: 25px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 100%;
+  width: 4px;
+  background-color: #fff;
+  border-radius: 25px;
 }
 
 
@@ -145,6 +147,8 @@
   opacity: 0;
   transition: var(--sidebar-open-animation-duration) ease-in-out;
   pointer-events: none;
+
+
 }
 
 .body-sidebar-open .aside-label {
@@ -171,4 +175,30 @@
 }
 
 .aside-paper {
+}
+
+
+/* Close/Open Btn */
+/* Close/Open Btn */
+
+.aside-btn{
+  position: absolute;
+  right: 0%;
+  top: 64px;
+  transform: translate(50%, 0) ;
+  cursor: pointer;
+
+}
+
+
+.aside-btn img {
+  transition:  var(--sidebar-open-animation-duration) ease-in-out;
+  transform: rotate(0deg);
+}
+
+
+.body-sidebar-open .aside-btn img {
+  transform: rotate(180deg);
+
+
 }

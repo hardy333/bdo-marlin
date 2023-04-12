@@ -19,6 +19,7 @@ import Vendors from "./pages/Vendors";
 import Invoices1 from "./pages/Invoices1";
 import Invoices2 from "./pages/Invoices2";
 import Home from "./pages/Home";
+import SampleAg from "./pages/sampleAg";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />
+            <Route path="/sample-ag" element={<SampleAg />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>

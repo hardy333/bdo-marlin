@@ -31,44 +31,34 @@ import "../styles/ag-grid.css";
 import fetch_XLSX_DATA from "../utils/getData";
 import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import CustomHeaderCell from "../components/CustomHeaderCell";
 
 const AgTable = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [isSorting, setIsSorting] = useState(false);
-  const [showInputs, setShowInputs] = useState(false);
-  const [type, setType] = useState("By item");
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [paddingSizesIndex, setPaddingSizesIndex] = useState(2);
-  const [headerList, setHeaderList] = useState(
-    COLUMNS_BY_ITEM.map((column) => column.Header)
-  );
-  const [hiddenHeadersList, sethiddenHeadersList] = useState(() => {
-    const obj = {};
-    headerList.forEach((h) => {
-      obj[h] = false;
-    });
-
-    return obj;
-  });
-
-  const [arr, setArr] = useState([]);
-
-  const ciclePaddingSizes = () => {
-    let currIndex = paddingSizes.findIndex(
-      (paddingSize) => paddingSize === paddingSizesIndex
-    );
-    let nextIndex = currIndex + 1;
-
-    if (nextIndex > paddingSizes.length - 1) {
-      setPaddingSizesIndex(paddingSizes[0]);
-    } else {
-      setPaddingSizesIndex(paddingSizes[nextIndex]);
-    }
-  };
-  //
-  //
-  //
-  //
+  const [headerList, setHeaderList] = useState([
+    {
+      name: "Number",
+      isShowing: true,
+    },
+    {
+      name: "Item",
+      isShowing: true,
+    },
+    {
+      name: "Ordered",
+      isShowing: true,
+    },
+    {
+      name: "Delivered",
+      isShowing: true,
+    },
+    {
+      name: "In time",
+      isShowing: true,
+    },
+  ]);
+  const [gridApi, setGridApi] = useState(null);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
 
   const [rowData, setRowData] = useState([
     { make: "Toyota", model: "Celica", price: 35000 },
@@ -81,6 +71,9 @@ const AgTable = () => {
       field: "Number",
       minWidth: 150,
       flex: 1,
+      // cellRendererFramework: (params) => {
+      //   return <div>Hello</div>;
+      // },
     },
     {
       field: "Item",
@@ -91,6 +84,7 @@ const AgTable = () => {
       field: "Ordered",
       minWidth: 150,
       flex: 1,
+      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
     },
     {
       field: "Delivered",
@@ -101,22 +95,32 @@ const AgTable = () => {
       field: "In time",
       minWidth: 150,
       flex: 1,
+      cellStyle: (params) => {
+        if (params.value === "Yes") {
+          return {
+            color: "#FFC23C",
+            fontWeight: 600,
+          };
+        } else {
+          return {
+            color: "#6E0FF5",
+            fontWeight: 600,
+          };
+        }
+      },
     },
     {
       field: "Service level",
       minWidth: 150,
       flex: 1,
+      hide: true,
     },
-    // {
-    //   field: "Product category",
-    // },
   ]);
+  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       const data = await fetch_XLSX_DATA();
-
-      console.log(data);
 
       setRowData(data["By item"]);
     }
@@ -127,7 +131,57 @@ const AgTable = () => {
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: true,
+    floatingFilter: showingFloatingFilter,
+    suppressMovable: true,
+    // floatingFilterComponent: (params) => {
+    //   console.log("floating filter: ", params);
+    //   return <input placeholder="Search in table" />;
+    // },
   }));
+
+  const components = useMemo(() => {
+    return {
+      agColumnHeader: CustomHeaderCell,
+    };
+  }, []);
+
+  // EVents
+  // EVents
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+  };
+
+  const onFilterTextChange = (e) => {
+    gridApi.setQuickFilter(e.target.value);
+  };
+
+  const toggleColumn = (name) => {
+    const newHeaderList = headerList.map((header) =>
+      header.name !== name
+        ? header
+        : { ...header, isShowing: !header.isShowing }
+    );
+    const currHeader = headerList.find((header) => header.name === name);
+    setHeaderList(newHeaderList);
+    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
+  };
+
+  const hideAllColumns = () => {
+    setHeaderList(
+      headerList.map((header) => ({ ...header, isShowing: false }))
+    );
+    headerList.forEach((header) => {
+      gridColumnApi.setColumnVisible(header.name, false);
+    });
+  };
+
+  const showAllColumns = () => {
+    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
+    headerList.forEach((header) => {
+      gridColumnApi.setColumnVisible(header.name, true);
+    });
+  };
 
   return (
     <DashboardLayout>
@@ -135,6 +189,7 @@ const AgTable = () => {
         <div className="all-orders__arrow-container">
           <img src={arrowLeft} alt="" />
           <span>All Orders</span>
+          <button onClick={toggleColumn}>Toggle column</button>
         </div>
         <div className="all-orders__settings">
           {/* Left */}
@@ -145,28 +200,25 @@ const AgTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             <div className="all-orders__input-wrapper">
-              <label htmlFor="all-orders-input">
+              <label htmlFor="global-filter">
                 <img src={search} className="all-orders__input-img" />
               </label>
               <input
-                id="all-orders-input"
+                id="global-filter"
                 placeholder="Search"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
+                onChange={onFilterTextChange}
                 type="text"
                 className="all-orders__input"
               />
             </div>
             {/* input filter */}
             <button
-              onClick={() => setShowInputs(!showInputs)}
+              onClick={() => setShowingFloatingFilter((c) => !c)}
               className="all-orders__btn"
             >
               <img src={filter} alt="" />
             </button>
             {/* popup */}
-            {/* <button className="all-orders__btn ">
-                </button> */}
             <Menu
               align="center"
               direction="top"
@@ -177,48 +229,47 @@ const AgTable = () => {
               }
               transition
             >
-              {headerList.map((header) => (
-                <MenuItem
-                  key={header}
-                  value={header}
-                  onClick={(e) => {
-                    // Stop the `onItemClick` of root menu component from firing
-                    // e.stopPropagation = true;
-                    // Keep the menu open after this menu item is clicked
-                    e.keepOpen = true;
-
-                    if (hiddenHeadersList[e.value]) {
-                      sethiddenHeadersList({
-                        ...hiddenHeadersList,
-                        [e.value]: false,
-                      });
-                    } else {
-                      sethiddenHeadersList({
-                        ...hiddenHeadersList,
-                        [e.value]: true,
-                      });
-                    }
-
-                    let newArr = [];
-
-                    for (let [key, value] of Object.entries(
-                      hiddenHeadersList
-                    )) {
-                      if (value) {
-                        newArr.push(key);
-                      }
-                    }
-
-                    setArr(newArr);
-                  }}
-                >
-                  <Switch defaultChecked />
-                  {header}
-                </MenuItem>
-              ))}
+              <div className="column-toggle-popup">
+                <header className="column-toggle-popup__header">
+                  <button
+                    className={classNames({
+                      btn: true,
+                      active: !headerList.every((header) => !header.isShowing),
+                    })}
+                    onClick={hideAllColumns}
+                  >
+                    Hide All
+                  </button>
+                  <button
+                    className={classNames({
+                      btn: true,
+                      active: headerList.some((header) => !header.isShowing),
+                    })}
+                    onClick={showAllColumns}
+                  >
+                    Show All
+                  </button>
+                </header>
+                {headerList.map((header) => (
+                  <MenuItem
+                    key={header.name}
+                    value={header.name}
+                    onClick={(e) => {
+                      // Stop the `onItemClick` of root menu component from firing
+                      // e.stopPropagation = true;
+                      // Keep the menu open after this menu item is clicked
+                      e.keepOpen = true;
+                      toggleColumn(header.name);
+                    }}
+                  >
+                    <Switch checked={header.isShowing} />
+                    {header.name}
+                  </MenuItem>
+                ))}
+              </div>
             </Menu>
             {/* padding */}
-            <button onClick={ciclePaddingSizes} className="all-orders__btn">
+            <button onClick={() => 2} className="all-orders__btn">
               <img src={burgerLines} alt="" className="transparent" />
             </button>
             {/* expand */}
@@ -233,16 +284,18 @@ const AgTable = () => {
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ height: 485, width: "100%" }}
+        style={{ height: 470, width: "100%" }}
       >
         <AgGridReact
-          rowStyle={{ maxHeight: "40px", height: "40px" }}
+          // rowStyle={{ maxHeight: "40px", height: "40px" }}
+          onGridReady={onGridReady}
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           pagination={true}
+          components={components}
           // paginationAutoPageSize={true}
-          paginationPageSize={13}
+          paginationPageSize={15}
         ></AgGridReact>
       </div>
     </DashboardLayout>

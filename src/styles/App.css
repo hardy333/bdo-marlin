@@ -145,7 +145,7 @@ img{
 /* Navbar */
 .dashboard-navbar{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   padding: 1.5rem 2rem;
   padding-left: var(--sidebar-full-space);
@@ -191,7 +191,7 @@ img{
 .gdm-link{
   background-color: var(--bg-aside);
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   --size: 4.55rem;
   width: var(--size);
   height: var(--size);

@@ -2,6 +2,7 @@ import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 const Home = () => {
   return (
@@ -18,6 +19,18 @@ const Home = () => {
           <Link to="/all-orders">all orders table </Link>
           <Link to="/ag-table">ag table</Link>
         </div>
+
+        {/* <Menu menuButton={<MenuButton>xx</MenuButton>} transition>
+          <div style={{ position: "relative", zIndex: 999999 }}>
+            <MenuItem>Cut</MenuItem>
+            <MenuItem>Copy</MenuItem>
+            <MenuItem>Paste</MenuItem>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, labore
+            animi? Cumque, reiciendis vitae. Aliquid officiis ad assumenda
+            consectetur, eos magni, consequuntur aperiam quibusdam voluptatem
+            optio incidunt minima! Ad, dolores?
+          </div>
+        </Menu> */}
       </section>
     </DashboardLayout>
   );

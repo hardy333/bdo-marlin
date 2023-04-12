@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/icons/Marlin Logo.png";
 // import catalog from "../assets/icons/menu-icons/catalog.png";
 // import customer from "../assets/icons/menu-icons/customer.png";
@@ -22,6 +22,7 @@ import vendors from "../assets/navbar/vendors.svg";
 import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 import marlinText from "../assets/navbar/marlin-text.svg";
 import { Link } from "react-router-dom";
+import asideBtn from "../assets/aside-btn.svg";
 
 const DashboardAside = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,8 @@ const DashboardAside = () => {
       document.body.classList.toggle("body-sidebar-open");
     }
   };
+
+  const linkListRef = useRef(null);
 
   // useEffect(() => {
 
@@ -53,8 +56,29 @@ const DashboardAside = () => {
   //   }
   // }, [])
 
+  useEffect(() => {
+    const linkLabels = linkListRef.current.querySelectorAll(".aside-label");
+
+    const handleTransitionEnd = () => {
+      // console.log(linkLabel, "Transition end ");
+    };
+
+    linkLabels.forEach((linkLabel) => {
+      linkLabel.addEventListener("transitionend", handleTransitionEnd);
+    });
+
+    return () => {
+      linkLabels.forEach((linkLabel) => {
+        linkLabel.removeEventListener("transitionend", handleTransitionEnd);
+      });
+    };
+  }, []);
+
   return (
-    <aside className="dashboard-aside" onClick={toggleBodyClass}>
+    <aside className="dashboard-aside">
+      <button onClick={toggleBodyClass} className="aside-btn">
+        <img src={asideBtn} alt="" />
+      </button>
       <div className="dashboard-aside-container">
         <Link to="/" className="marlin-logo-container">
           <img draggable="false" className="logo-img" src={logo} alt="" />
@@ -66,7 +90,7 @@ const DashboardAside = () => {
           />
           {/* <span className="aside-label">Marlin</span> */}
         </Link>
-        <ul className="dashboard-aside__list">
+        <ul ref={linkListRef} className="dashboard-aside__list">
           <li>
             <Link to="/ag-table">
               <img
