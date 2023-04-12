@@ -1,12 +1,15 @@
 import React from "react";
 import user from "../assets/employees/user.svg";
 import dots from "../assets/employees/dots.svg";
+import userCircle from "../assets/marlin-icons/purple-user.svg";
+
+console.log(userCircle);
 
 const EmployeeCard = () => {
   return (
     <article className="employee-card">
       <div className="employee-card__img-container">
-        <img src={user} className="employee-card__img" alt="" />
+        <img src={userCircle} className="employee-card__img" alt="" />
       </div>
       <img className="employee-card__dots" src={dots} alt="" />
 

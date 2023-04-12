@@ -3,6 +3,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/employees.css";
 import EmployeeCard from "../components/EmployeeCard";
 import searchSvg from "../assets/employees/search.svg";
+import searchSvg2 from "../assets/marlin-icons/search.svg";
 import plusSvg from "../assets/employees/plus.svg";
 
 const Employees = () => {
@@ -17,7 +18,7 @@ const Employees = () => {
           </button>
           <div className="input-wrapper">
             <input type="text" className="input" />
-            <img src={searchSvg} alt="" />
+            <img src={searchSvg2} alt="" />
           </div>
         </div>
       </header>
