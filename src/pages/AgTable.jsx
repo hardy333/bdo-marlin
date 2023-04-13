@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -133,17 +133,10 @@ const AgTable = () => {
     filter: true,
     floatingFilter: showingFloatingFilter,
     suppressMovable: true,
-    // floatingFilterComponent: (params) => {
-    //   console.log("floating filter: ", params);
-    //   return <input placeholder="Search in table" />;
-    // },
+    floatingFilterComponent: (params) => {
+      return <input style={{ width: "100%" }} placeholder="Search in table" />;
+    },
   }));
-
-  const components = useMemo(() => {
-    return {
-      agColumnHeader: CustomHeaderCell,
-    };
-  }, []);
 
   // EVents
   // EVents
@@ -183,13 +176,26 @@ const AgTable = () => {
     });
   };
 
+  const components = useMemo(() => {
+    return {
+      agColumnHeader: CustomHeaderCell,
+    };
+  }, []);
+
+  const sortByAthleteDesc = () => {
+    gridColumnApi.applyColumnState({
+      state: [{ colId: "Number", sort: "desc" }],
+      defaultState: { sort: null },
+    });
+  };
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container">
           <img src={arrowLeft} alt="" />
           <span>All Orders</span>
-          <button onClick={toggleColumn}>Toggle column</button>
+          <button onClick={sortByAthleteDesc}>Toggle column</button>
         </div>
         <div className="all-orders__settings">
           {/* Left */}
@@ -213,7 +219,12 @@ const AgTable = () => {
             </div>
             {/* input filter */}
             <button
-              onClick={() => setShowingFloatingFilter((c) => !c)}
+              onClick={() => {
+                setShowingFloatingFilter((c) => !c);
+                document
+                  .querySelector(".ag-header-row-column-filter")
+                  .classList.toggle("hide");
+              }}
               className="all-orders__btn"
             >
               <img src={filter} alt="" />
@@ -284,7 +295,7 @@ const AgTable = () => {
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ height: 470, width: "100%" }}
+        style={{ height: 480, width: "100%" }}
       >
         <AgGridReact
           // rowStyle={{ maxHeight: "40px", height: "40px" }}
@@ -294,6 +305,9 @@ const AgTable = () => {
           defaultColDef={defaultColDef}
           pagination={true}
           components={components}
+          // enableRangeSelection={true}
+          // copyHeadersToClipboard={true}
+          // rowSelection={"multiple"}
           // paginationAutoPageSize={true}
           paginationPageSize={15}
         ></AgGridReact>

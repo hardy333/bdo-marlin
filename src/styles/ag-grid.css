@@ -52,8 +52,18 @@ body{
   overflow: visible !important;
 }
 
-.ag-header  *{
-  /* overflow: visible !important; */
+.ag-header-viewport {
+  overflow: visible !important;
+
+}
+
+.ag-header-container{
+  overflow: visible !important;
+
+}
+
+.ag-header-row-column-filter.hide{
+  display: none;
 }
 
 /* 2 */
@@ -63,6 +73,7 @@ body{
 
 .ag-header-row{
   border: none !important;
+  overflow: visible !important;
 
 }
 
@@ -88,6 +99,14 @@ body{
 .ag-header-row-column-filter *{
   /* overflow: hidden !important; */
 
+}
+
+.ag-header-cell{
+  overflow: visible !important;
+}
+
+.ag-header-cell-comp-wrapper{
+  overflow: visible !important;
 }
 
 /* BODY */
@@ -116,10 +135,11 @@ body{
 /* Rows  */
 .ag-row{
   /* border-bottom: 1px solid rgba(33, 21, 67, 0.13); */
+  background-color: #fff;
+
 }
 
 .ag-row-odd{
-  background-color: #fff;
 
 }
 
@@ -127,10 +147,13 @@ body{
 
 }
 
+.ag-row-focus{
+
+}
+
 .ag-row-hover{
+  /* feri ar mushaobs ratomgac */
   background-color:  #F9F8FC !important;
-  
-  
 }
 
 /* Cells  */

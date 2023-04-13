@@ -19,9 +19,54 @@ const CustomHeaderCell = (props) => {
         }
         transition
       >
-        <MenuItem>Cut</MenuItem>
-        <MenuItem>Copy</MenuItem>
-        <MenuItem>Paste</MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.columnApi.applyColumnState({
+              // state: [{ colId: props.displayName, sort: "desc" }],
+              defaultState: { sort: null },
+            });
+          }}
+        >
+          <img src="" alt="" /> Clear Sort
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.columnApi.applyColumnState({
+              state: [{ colId: props.column.colId, sort: "desc" }],
+              defaultState: { sort: null },
+            });
+          }}
+        >
+          Sort by descending
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.columnApi.applyColumnState({
+              state: [{ colId: props.column.colId, sort: "asc" }],
+              defaultState: { sort: null },
+            });
+          }}
+        >
+          Sort by ascending
+        </MenuItem>
+        <MenuItem>Clear filter</MenuItem>
+        <MenuItem>Filter By Status</MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.columnApi.setColumnVisible(props.column.colId, false);
+          }}
+        >
+          Hide {props.displayName} column
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            props.columnApi.getColumns().forEach((column) => {
+              props.columnApi.setColumnVisible(column.colId, true);
+            });
+          }}
+        >
+          Show All Columns
+        </MenuItem>
       </Menu>
 
       {/* <button>
