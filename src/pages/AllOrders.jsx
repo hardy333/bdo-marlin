@@ -81,7 +81,7 @@ const AllOrders = () => {
           <header className="all-orders__header">
             <div className="all-orders__arrow-container">
               <img src={arrowLeft} alt="" />
-              <span>All Orders 123 123 123</span>
+              <span>All Orders 123 sssssssss 123</span>
             </div>
             <div className="all-orders__settings">
               {/* Left */}
@@ -171,7 +171,10 @@ const AllOrders = () => {
                 {/* expand */}
                 <button
                   onClick={() => setIsFullScreen(!isFullScreen)}
-                  className="all-orders__btn"
+                  className={classNames({
+                    "all-orders__btn": true,
+                    active: isFullScreen,
+                  })}
                 >
                   <img src={expand} alt="" />
                 </button>

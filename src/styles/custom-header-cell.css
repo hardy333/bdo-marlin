@@ -8,6 +8,14 @@
 
 }
 
+
+.custom-header-cell-container span{
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
 .custom-header-cell-container button{
   position: absolute;
 
@@ -33,7 +41,7 @@
 }
 
 .szh-menu-button--open{
-  background-color:  #ebe9ee89 !important;
+  background-color:  #ebe9ee89 ;
 
 }
 
@@ -101,5 +109,32 @@
 
 .szh-menu__item:hover{
   background-color: #F9F8FC;
+
+}
+
+
+/* Sorting arrow */
+
+
+.heading-sorting-arrow-img{
+  height: 1.5rem;
+  position: absolute;
+  top: 50%;
+  right: 5rem;
+  display: none;
+  transition: all 0.2s ease-in-out;
+  transform: translate(0, -50%) rotate(180deg);
+
+}
+
+.custom-header-cell-container.asc .heading-sorting-arrow-img{
+  display: block;
+
+}
+
+
+.custom-header-cell-container.desc .heading-sorting-arrow-img{
+  display: block;
+  transform: translate(0, -50%) rotate(0deg);
 
 }

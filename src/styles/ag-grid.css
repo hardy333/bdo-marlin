@@ -1,4 +1,5 @@
 body{
+  overflow: auto;
 }
 
 /* Wrappers */
@@ -9,6 +10,7 @@ body{
   border: none;
   --head-body-padding: 2.5rem;
   /* --head-body-padding: 0rem; */
+  position: relative;
 
 }
 
@@ -63,7 +65,12 @@ body{
 }
 
 .ag-header-row-column-filter.hide{
+  /* display: none; */
+}
+
+.ag-floating-filter.hide{
   display: none;
+
 }
 
 /* 2 */
@@ -153,8 +160,17 @@ body{
 
 .ag-row-hover{
   /* feri ar mushaobs ratomgac */
-  background-color:  #F9F8FC !important;
+  /* background-color:  #f8fcf8cd !important; */
+  filter: none;
 }
+
+.ag-row-hover .ag-cell{
+  background-color: #F9F8FC;
+}
+
+.ag-cell-focus{
+}
+
 
 /* Cells  */
 /* Cells  */
@@ -183,7 +199,7 @@ body{
   font-size: 12px;
   line-height: 15px;
   height: 20px;
-  
+  /* padding-right: 2rem; */
 }
 
 .ag-paging-page-summary-panel{
@@ -308,3 +324,47 @@ body{
 
 
 
+
+
+/* page-size-btn */
+/* page-size-btn */
+.page-size-menu .szh-menu{
+  max-width: 50px !important;
+}
+
+.page-size-menu .szh-menu--state-open{
+  max-width: 50px !important;
+}
+.page-size-menu .szh-menu--dir-top{
+  max-width: 50px !important;
+}
+
+.page-size-menu .szh-menu__item{
+  width: 200px !important;
+}
+
+
+.page-size-btn{
+  position: absolute;
+  right: 10rem;
+  bottom: 2px;
+  font-weight: 600;
+  color: #D0C7E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.page-size-btn span{
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-size-btn .btn{
+  padding: 0;
+  margin: 0;
+
+}

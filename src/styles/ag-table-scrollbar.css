@@ -8,7 +8,7 @@
 @media (max-width: 600px){
 
   .ag-body-horizontal-scroll-viewport{
-    display:  block !important;
+    /* display:  block !important; */
   
   }
 }

@@ -28,6 +28,10 @@
   --color-text-1: #2a1f4b;
   --color-text-2: #211543;
 
+
+  --icon-color-dark: #1A1F3D;
+  --icon-color-light: #D0C7E8;
+
 }
 
 body{
@@ -117,7 +121,7 @@ img{
   
 }
 
-.dashboard-main--fullscreen{
+body.dashboard-main-fullscreen .dashboard-main{
   position: fixed;
   top: 0;
   left: 0;
@@ -126,6 +130,11 @@ img{
   width: 100%;
   height: 100%;
   z-index: 999999;
+  padding-left: 3rem;
+}
+
+.dashboard-main--fullscreen{
+ 
 }
 
 .dashboard-main__container{

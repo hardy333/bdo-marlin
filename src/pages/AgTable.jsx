@@ -33,7 +33,7 @@ import classNames from "classnames";
 import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
 
-const paddingSizes = [1, 2, 3];
+const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
@@ -44,6 +44,7 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
 const AgTable = () => {
+  const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
@@ -117,6 +118,7 @@ const AgTable = () => {
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
+  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
   useEffect(() => {
     async function fetchData() {
       const data = await fetch_XLSX_DATA();
@@ -126,6 +128,14 @@ const AgTable = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (isFullScreen) {
+      document.body.classList.add("dashboard-main-fullscreen");
+    } else {
+      document.body.classList.remove("dashboard-main-fullscreen");
+    }
+  }, [isFullScreen]);
 
   const defaultColDef = useMemo(() => ({
     sortable: true,
@@ -150,6 +160,12 @@ const AgTable = () => {
   };
 
   const onFilterTextChange = (e) => {
+    if (e.target.value === "") {
+      setIsGlobalFilterEmpty(true);
+    } else {
+      setIsGlobalFilterEmpty(false);
+    }
+
     gridApi.setQuickFilter(e.target.value);
   };
 
@@ -222,16 +238,17 @@ const AgTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             <div className="all-orders__input-wrapper">
-              <label htmlFor="global-filter">
+              {/* <label htmlFor="global-filter">
                 <img src={search} className="all-orders__input-img" />
-              </label>
+              </label> */}
               <div className="global-filter-input-wrapper">
                 <input
                   id="global-filter"
-                  placeholder="Search"
                   onChange={onFilterTextChange}
                   type="text"
-                  className="all-orders__input global-filter-input"
+                  className={`all-orders__input global-filter-input ${
+                    isGlobalFilterEmpty ? "" : "input-filled"
+                  }`}
                 />
               </div>
             </div>
@@ -242,10 +259,39 @@ const AgTable = () => {
                 document
                   .querySelector(".ag-header-row-column-filter")
                   .classList.toggle("hide");
+
+                document
+                  .querySelectorAll(".ag-floating-filter")
+                  .forEach((elem) => {
+                    elem.classList.toggle("hide");
+                  });
               }}
-              className="all-orders__btn all-orders__btn-filter"
+              className={classNames({
+                "all-orders__btn-filter": true,
+                "all-orders__btn": true,
+                active: showingFloatingFilter,
+              })}
             >
-              <img src={filterSvg} alt="" />
+              {/* <img src={filterSvg} alt="" /> */}
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 47.28 33.65"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+              </svg>
             </button>
             {/* popup */}
             <Menu
@@ -253,7 +299,26 @@ const AgTable = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <img src={optionsLines} alt="" className="flip transparent" />
+                  {/* <img src={optionsLines} alt="" className="flip transparent" /> */}
+                  <svg
+                    id="Layer_3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 33.58 47.28"
+                  >
+                    <defs></defs>
+                    <path
+                      className="cls-1"
+                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                  </svg>
                 </MenuButton>
               }
               transition
@@ -299,24 +364,73 @@ const AgTable = () => {
             </Menu>
             {/* padding */}
             <button onClick={() => 2} className="all-orders__btn">
-              <img src={horizontalLines} alt="" className="transparent" />
+              {/* <img src={horizontalLines} alt="" className="transparent" /> */}
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 60 58.81"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m56.93,6.13H3.07c-1.69,0-3.07-1.37-3.07-3.07S1.37,0,3.07,0h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m56.93,23.69H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m56.93,41.25H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m56.93,58.81H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
+                />
+              </svg>
             </button>
             {/* expand */}
             <button
               onClick={() => setIsFullScreen(!isFullScreen)}
-              className="all-orders__btn"
+              className={classNames({
+                "all-orders__btn": true,
+                active: isFullScreen,
+              })}
             >
-              <img src={expandSvg} alt="" />
+              {/* <img src={expandSvg} alt="" /> */}
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 46.28 46.28"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m43.48,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55c0-1-.81-1.81-1.81-1.81h-7.55c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c4.09,0,7.41,3.32,7.41,7.41v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m2.8,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55C0,3.32,3.32,0,7.41,0h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54c-1,0-1.81.81-1.81,1.81v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m7.41,46.28c-4.09,0-7.41-3.32-7.41-7.41v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,1,.81,1.81,1.81,1.81h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m31.32,46.28c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c1,0,1.81-.81,1.81-1.81v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,4.09-3.32,7.41-7.41,7.41h-7.55Z"
+                />
+              </svg>
             </button>
           </div>
         </div>
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ height: 480, width: "100%" }}
+        style={{ height: 500, width: "100%" }}
       >
         <AgGridReact
-          // rowStyle={{ maxHeight: "40px", height: "40px" }}
+          // rowStyle={{ maxHeight: "40px", height: "30px" }}
           onGridReady={onGridReady}
           rowData={rowData}
           columnDefs={columnDefs}
@@ -327,8 +441,30 @@ const AgTable = () => {
           // copyHeadersToClipboard={true}
           // rowSelection={"multiple"}
           // paginationAutoPageSize={true}
-          paginationPageSize={15}
+          paginationPageSize={pageSize}
         ></AgGridReact>
+
+        <Menu
+          className="page-size-menu"
+          menuButton={
+            <MenuButton className="page-size-btn">
+              <span>Rows per page</span>
+              <span className="btn">{pageSize}</span>
+            </MenuButton>
+          }
+        >
+          {pageSizes.map((size) => {
+            return (
+              <MenuItem
+                onClick={() => {
+                  setPageSize(size);
+                }}
+              >
+                {size}
+              </MenuItem>
+            );
+          })}
+        </Menu>
       </div>
     </DashboardLayout>
   );
