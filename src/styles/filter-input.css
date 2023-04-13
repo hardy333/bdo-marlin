@@ -1,0 +1,28 @@
+.filter-input-wrapper{
+  background-color: red;
+  position: relative;
+}
+
+.filter-input{
+  padding-right: 2.5rem;
+  padding-left: 0;
+}
+
+.filter-input-img{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0px, -50%);
+  color: #D0C7E8;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0 5px;
+  border-radius: 100%;
+  font-size: 16px;
+  padding: 0 5px;
+
+}
+
+.filter-input-img:hover{
+  filter: brightness(90%);
+}

@@ -81,23 +81,19 @@ const AllOrders = () => {
           <header className="all-orders__header">
             <div className="all-orders__arrow-container">
               <img src={arrowLeft} alt="" />
-              <span>All Orders</span>
+              <span>All Orders 123 123 123</span>
             </div>
             <div className="all-orders__settings">
               {/* Left */}
               <div className="all-orders__gdm-container">
                 <img src={cardPink} alt="" />
-                <span>GDM</span>
+                <span>GDM123</span>
               </div>
               {/* Right */}
               <div className="all-orders__settings__options">
                 <div className="all-orders__input-wrapper">
-                  <label htmlFor="all-orders-input">
-                    <img src={search} className="all-orders__input-img" />
-                  </label>
                   <input
                     id="all-orders-input"
-                    placeholder="Search"
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     type="text"

@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
+import "../styles/ag-table-scrollbar.css";
+
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
@@ -11,6 +13,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 
 // css
 import "../styles/all-orders.css";
+import "../styles/global-filter-input.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -20,6 +23,12 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
+// Right Icons
+import expandSvg from "../assets/marlin-icons/expand.svg";
+import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
+import filterSvg from "../assets/marlin-icons/filter-lines.svg";
+import optionsLines from "../assets/marlin-icons/options-lines.svg";
+
 import classNames from "classnames";
 import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
@@ -32,6 +41,7 @@ import fetch_XLSX_DATA from "../utils/getData";
 import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
+import CustomInput from "../components/CustomInput";
 
 const AgTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -69,32 +79,22 @@ const AgTable = () => {
   const [columnDefs] = useState([
     {
       field: "Number",
-      minWidth: 150,
-      flex: 1,
       // cellRendererFramework: (params) => {
       //   return <div>Hello</div>;
       // },
     },
     {
       field: "Item",
-      minWidth: 150,
-      flex: 1,
     },
     {
       field: "Ordered",
-      minWidth: 150,
-      flex: 1,
       cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
     },
     {
       field: "Delivered",
-      minWidth: 150,
-      flex: 1,
     },
     {
       field: "In time",
-      minWidth: 150,
-      flex: 1,
       cellStyle: (params) => {
         if (params.value === "Yes") {
           return {
@@ -112,7 +112,6 @@ const AgTable = () => {
     {
       field: "Service level",
       minWidth: 150,
-      flex: 1,
       hide: true,
     },
   ]);
@@ -131,11 +130,16 @@ const AgTable = () => {
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: true,
+    flex: 1,
+    minWidth: 150,
     floatingFilter: showingFloatingFilter,
     suppressMovable: true,
-    floatingFilterComponent: (params) => {
-      return <input style={{ width: "100%" }} placeholder="Search in table" />;
-    },
+    // floatingFilterComponent: (params) => {
+    //   console.log(params.filterParams);
+
+    //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
+    // },
+    floatingFilterComponent: CustomInput,
   }));
 
   // EVents
@@ -193,13 +197,25 @@ const AgTable = () => {
     <DashboardLayout>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container">
-          <img src={arrowLeft} alt="" />
+          <img
+            src={arrowLeft}
+            alt=""
+            style={{
+              height: "17px",
+              marginRight: 10,
+              marginLeft: 10,
+              cursor: "pointer",
+            }}
+          />
           <span>All Orders</span>
-          <button onClick={sortByAthleteDesc}>Toggle column</button>
+          {/* <button onClick={sortByAthleteDesc}>Toggle column</button> */}
         </div>
         <div className="all-orders__settings">
           {/* Left */}
-          <div className="all-orders__gdm-container">
+          <div
+            className="all-orders__gdm-container"
+            style={{ paddingLeft: "0", marginLeft: 10 }}
+          >
             <img src={cardPink} alt="" />
             <span>GDM</span>
           </div>
@@ -209,13 +225,15 @@ const AgTable = () => {
               <label htmlFor="global-filter">
                 <img src={search} className="all-orders__input-img" />
               </label>
-              <input
-                id="global-filter"
-                placeholder="Search"
-                onChange={onFilterTextChange}
-                type="text"
-                className="all-orders__input"
-              />
+              <div className="global-filter-input-wrapper">
+                <input
+                  id="global-filter"
+                  placeholder="Search"
+                  onChange={onFilterTextChange}
+                  type="text"
+                  className="all-orders__input global-filter-input"
+                />
+              </div>
             </div>
             {/* input filter */}
             <button
@@ -225,9 +243,9 @@ const AgTable = () => {
                   .querySelector(".ag-header-row-column-filter")
                   .classList.toggle("hide");
               }}
-              className="all-orders__btn"
+              className="all-orders__btn all-orders__btn-filter"
             >
-              <img src={filter} alt="" />
+              <img src={filterSvg} alt="" />
             </button>
             {/* popup */}
             <Menu
@@ -235,7 +253,7 @@ const AgTable = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <img src={burgerLines} alt="" className="flip transparent" />
+                  <img src={optionsLines} alt="" className="flip transparent" />
                 </MenuButton>
               }
               transition
@@ -281,14 +299,14 @@ const AgTable = () => {
             </Menu>
             {/* padding */}
             <button onClick={() => 2} className="all-orders__btn">
-              <img src={burgerLines} alt="" className="transparent" />
+              <img src={horizontalLines} alt="" className="transparent" />
             </button>
             {/* expand */}
             <button
               onClick={() => setIsFullScreen(!isFullScreen)}
               className="all-orders__btn"
             >
-              <img src={expand} alt="" />
+              <img src={expandSvg} alt="" />
             </button>
           </div>
         </div>

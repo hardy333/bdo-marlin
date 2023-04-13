@@ -7,8 +7,6 @@
     
 }
 
-
-
 .all-orders__header{
 
 }
@@ -22,7 +20,6 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
-
     color: #211543;
 
 }
@@ -109,21 +106,23 @@
 
 
 
+
 }
 
 .all-orders__btn img{
     width: 24px;
     height: 24px;
     object-fit: cover;
+    object-fit: contain;
+    opacity: 1;
 }
 
-.all-orders__btn img.flip{
-    transform: rotate(90deg);
+.all-orders__btn:hover img{
 }
 
-
-.all-orders__btn img.transparent{
-    opacity: 0.4;
+.all-orders__btn-filter  img{
+    height: 27px;
+    width: 27px;
 }
 
 /* Table */

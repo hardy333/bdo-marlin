@@ -1,0 +1,10 @@
+body{
+  /* background-color: red; */
+}
+
+.global-filter-input{
+  background: url(../assets/marlin-icons/search.svg);
+  background-repeat: no-repeat;
+  background-size: auto 80%;
+  background-position: left center;
+}
