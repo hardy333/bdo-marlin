@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/register.css";
 import DashboardLayout from "../layout/DashboardLayout";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
@@ -60,9 +61,9 @@ const Register = () => {
             <button className="btn btn-blue">Register</button>
             <p className="register-form__login">
               Already have an account?{" "}
-              <a className="link" href="#">
+              <Link className="link" to="/login">
                 Log in
-              </a>
+              </Link>
             </p>
           </form>
         </div>

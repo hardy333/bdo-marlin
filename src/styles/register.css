@@ -82,6 +82,9 @@
   font-weight: 600;
 }
 
+.register-form__login a{
+  margin-left: 5px;
+}
 
 /* Checkbox */
 /* Checkbox */
