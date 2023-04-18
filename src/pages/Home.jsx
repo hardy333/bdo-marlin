@@ -10,6 +10,8 @@ const Home = () => {
       <section className="home">
         <h1>pages</h1>
         <div className="home-links">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
           <Link to="/invoices1">Invoces v1</Link>
           <Link to="/invoices2">Invoces v2</Link>
           <Link to="/profile">profile</Link>

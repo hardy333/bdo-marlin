@@ -24,6 +24,7 @@
   --color-primary-1: #1ed8b9;
   --color-primary-2: #7949f4;
   --color-primary-3: #f55364;
+  --color-primary-4: #6E0FF5;
 
   --color-text-1: #2a1f4b;
   --color-text-2: #211543;
@@ -270,7 +271,7 @@ input{
 
 input:focus{
   outline-offset: 2px;
-  outline: 2px #1ed8b9 dashed;
+  outline: 1px var(--color-primary-4) solid;
 
 }
 
