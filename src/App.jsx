@@ -21,6 +21,7 @@ import Invoices2 from "./pages/Invoices2";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Prices from "./pages/Prices";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -46,6 +47,7 @@ function App() {
             <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/prices" element={<Prices />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
