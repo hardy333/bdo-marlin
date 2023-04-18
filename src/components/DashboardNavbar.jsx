@@ -31,7 +31,7 @@ const DashboardNavbar = () => {
       />
       {isStartingPage ? (
         <>
-          <Link to="/login" className="btn btn-link btn-blue">
+          <Link to="/login" className="btn abc btn-link btn-blue">
             Login
           </Link>
           <Link to="/register" className="btn btn-outlined btn-blue">
