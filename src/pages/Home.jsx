@@ -13,6 +13,7 @@ const Home = () => {
           <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
           <Link to="/prices">Prices</Link>
+          <Link to="/main-dashboard">Main Dashboard</Link>
           <Link to="/invoices1">Invoces v1</Link>
           <Link to="/invoices2">Invoces v2</Link>
           <Link to="/profile">profile</Link>
