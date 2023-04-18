@@ -99,7 +99,7 @@ img{
   position: relative;
   height: 100vh;
   /* dashboard navbar and dashboar-main will use this padding */
-  --right-adge-padding: 3rem;
+  --right-adge-padding: 4rem;
 
 }
 

@@ -116,9 +116,10 @@ const AgTable = () => {
       // hide: true,
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
+  const [showingFloatingFilter, setShowingFloatingFilter] = useState(false);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
       const data = await fetch_XLSX_DATA();
@@ -137,20 +138,23 @@ const AgTable = () => {
     }
   }, [isFullScreen]);
 
-  const defaultColDef = useMemo(() => ({
-    sortable: true,
-    filter: true,
-    flex: 1,
-    minWidth: 150,
-    floatingFilter: showingFloatingFilter,
-    suppressMovable: true,
-    // floatingFilterComponent: (params) => {
-    //   console.log(params.filterParams);
+  const defaultColDef = useMemo(
+    () => ({
+      sortable: true,
+      filter: true,
+      flex: 1,
+      minWidth: 150,
+      floatingFilter: showingFloatingFilter,
+      suppressMovable: true,
+      // floatingFilterComponent: (params) => {
+      //   console.log(params.filterParams);
 
-    //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-    // },
-    floatingFilterComponent: CustomInput,
-  }));
+      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
+      // },
+      floatingFilterComponent: CustomInput,
+    }),
+    [showingFloatingFilter]
+  );
 
   // EVents
   // EVents
@@ -202,18 +206,18 @@ const AgTable = () => {
     };
   }, []);
 
-  const sortByAthleteDesc = () => {
-    gridColumnApi.applyColumnState({
-      state: [{ colId: "Number", sort: "desc" }],
-      defaultState: { sort: null },
-    });
-  };
+  // const sortByAthleteDesc = () => {
+  //   gridColumnApi.applyColumnState({
+  //     state: [{ colId: "Number", sort: "desc" }],
+  //     defaultState: { sort: null },
+  //   });
+  // };
 
   return (
     <DashboardLayout>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container">
-          <img
+          {/* <img
             src={arrowLeft}
             alt=""
             style={{
@@ -222,9 +226,7 @@ const AgTable = () => {
               marginLeft: 10,
               cursor: "pointer",
             }}
-          />
-          <span>All Orders</span>
-          {/* <button onClick={sortByAthleteDesc}>Toggle column</button> */}
+          /> */}
         </div>
         <div className="all-orders__settings">
           {/* Left */}
@@ -232,8 +234,8 @@ const AgTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <img src={cardPink} alt="" />
-            <span>GDM</span>
+            <span>All Orders</span>
+            <span style={{ color: "#6E0FF5" }}>GDM</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -259,7 +261,6 @@ const AgTable = () => {
                 document
                   .querySelector(".ag-header-row-column-filter")
                   .classList.toggle("hide");
-
                 document
                   .querySelectorAll(".ag-floating-filter")
                   .forEach((elem) => {
@@ -427,10 +428,10 @@ const AgTable = () => {
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ height: 500, width: "100%" }}
+        style={{ height: 600, width: "100%" }}
       >
         <AgGridReact
-          // rowStyle={{ maxHeight: "40px", height: "30px" }}
+          // rowStyle={{ maxHeight: "20px", height: "10px" }}
           onGridReady={onGridReady}
           rowData={rowData}
           columnDefs={columnDefs}
@@ -456,6 +457,7 @@ const AgTable = () => {
           {pageSizes.map((size) => {
             return (
               <MenuItem
+                key={size}
                 onClick={() => {
                   setPageSize(size);
                 }}

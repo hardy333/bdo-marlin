@@ -7,6 +7,7 @@ import arrow from "../assets/navbar/arrow.svg";
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
 import { Link, useLocation } from "react-router-dom";
+import arrowLeft from "../assets/all-orders/arrow-left.svg";
 
 const startingPages = ["/login", "/register"];
 
@@ -17,6 +18,17 @@ const DashboardNavbar = () => {
 
   return (
     <header className="dashboard-navbar">
+      <img
+        src={arrowLeft}
+        alt=""
+        style={{
+          height: "17px",
+          marginRight: 10,
+          marginLeft: "-10px",
+          cursor: "pointer",
+          marginRight: "auto",
+        }}
+      />
       {isStartingPage ? (
         <>
           <Link to="/login" className="btn btn-link btn-blue">
