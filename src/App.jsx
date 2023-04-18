@@ -23,6 +23,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Prices from "./pages/Prices";
 import MainDashboard from "./pages/MainDashboard";
+import ProfileForm from "./components/ProfileForm";
+import PasswordForm from "./components/PasswordForm";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -42,7 +44,10 @@ function App() {
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
             <Route path="/employees" element={<Employees />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />}>
+              <Route index element={<ProfileForm />} />
+              <Route path="change-password" element={<PasswordForm />} />
+            </Route>
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />

@@ -113,7 +113,7 @@ const AgTable = () => {
     {
       field: "Service level",
       minWidth: 150,
-      hide: true,
+      // hide: true,
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
