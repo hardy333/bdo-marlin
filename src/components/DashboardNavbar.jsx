@@ -6,7 +6,7 @@ import gdm from "../assets/icons/gdm.png";
 import arrow from "../assets/navbar/arrow.svg";
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const startingPages = ["/login", "/register"];
 
@@ -19,12 +19,12 @@ const DashboardNavbar = () => {
     <header className="dashboard-navbar">
       {isStartingPage ? (
         <>
-          <a href="#" className="btn btn-link btn-blue">
+          <Link to="/login" className="btn btn-link btn-blue">
             Login
-          </a>
-          <a href="#" className="btn btn-outlined btn-blue">
+          </Link>
+          <Link to="/register" className="btn btn-outlined btn-blue">
             Register
-          </a>
+          </Link>
         </>
       ) : (
         <>

@@ -367,15 +367,15 @@ input[type="radio"]:before{
   content:"";
   position: absolute;
   background-color: red;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 22px;
+  height: 22px;
 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 100%;
   background-color: white;
-  transition: all 0.2s ease-in-out;
+  /* transition: all 0.1s ease; */
 
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/login.css";
 import DashboardLayout from "../layout/DashboardLayout";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -12,15 +13,15 @@ const Login = () => {
           <form action="" className="login-form">
             <input className="input" type="email" placeholder="E-mail" />
             <input className="input" type="password" placeholder="Password" />
-            <small className="ml-auto">
+            <small className="ml-auto ">
               <a href="">Forgot password?</a>
             </small>
             <button className="btn btn-blue">Log in</button>
             <p className="login-form__login">
               Do not have an account?{" "}
-              <a className="link" href="#">
+              <Link className="link" to="/register">
                 Register
-              </a>
+              </Link>
             </p>
           </form>
         </div>
