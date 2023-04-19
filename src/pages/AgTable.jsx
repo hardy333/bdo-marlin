@@ -239,21 +239,9 @@ const AgTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <div className="all-orders__input-wrapper">
-              {/* <label htmlFor="global-filter">
-                <img src={search} className="all-orders__input-img" />
-              </label> */}
-              <div className="global-filter-input-wrapper">
-                <input
-                  id="global-filter"
-                  onChange={onFilterTextChange}
-                  type="text"
-                  className={`all-orders__input global-filter-input ${
-                    isGlobalFilterEmpty ? "" : "input-filled"
-                  }`}
-                />
-              </div>
-            </div>
+            <button>
+              <img src={search} alt="" />
+            </button>
             {/* input filter */}
             <button
               onClick={() => {
@@ -428,9 +416,10 @@ const AgTable = () => {
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ height: 600, width: "100%" }}
+        style={{ minHeight: 565, width: "100%" }}
       >
         <AgGridReact
+          gridOptions={{ rowHeight: 30 }}
           // rowStyle={{ maxHeight: "20px", height: "10px" }}
           onGridReady={onGridReady}
           rowData={rowData}

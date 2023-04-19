@@ -8,6 +8,7 @@ import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
 import { Link, useLocation } from "react-router-dom";
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
+import arrowLeftNew from "../assets/all-orders/arrow-left-new.svg";
 
 const startingPages = ["/login", "/register"];
 
@@ -19,12 +20,13 @@ const DashboardNavbar = () => {
   return (
     <header className="dashboard-navbar">
       <img
-        src={arrowLeft}
+        src={arrowLeftNew}
         alt=""
         style={{
-          height: "17px",
+          // height: "17px",
+          width: 25,
           marginRight: 10,
-          marginLeft: "-10px",
+          marginLeft: "0px",
           cursor: "pointer",
           marginRight: "auto",
         }}
