@@ -58,6 +58,18 @@
   letter-spacing: 0.5px;
   margin-top: 3rem;
   margin-bottom: 1.4rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+
+
+
+}
+
+
+.register .btn:hover{
+  background-color: transparent;
+  border: 1px solid var(--color-primary-4);
+  color: var(--color-primary-4);
 
 }
 

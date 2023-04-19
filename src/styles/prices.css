@@ -86,6 +86,8 @@ margin-bottom: 0.5rem;
   border-color:  #812EF9;
   width: 150px;
   max-width: 100%;
+  transition: all 0.2s ease;
+
 
 }
 

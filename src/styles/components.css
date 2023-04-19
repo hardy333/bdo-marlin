@@ -25,11 +25,14 @@
   background-color: transparent;
   color: black;
   border: 1px solid #211543;
+  /* border: 1px solid ; */
 
 }
 
 .btn-black{
   color: #211543;
+  border: 1px solid transparent;
+
 
   
 }
@@ -37,6 +40,8 @@
 .btn-success{
   color: var(--color-text-1);
   background-color: var(--color-primary-1);
+  border: 1px solid transparent;
+
   
 }
 
@@ -44,7 +49,9 @@
   color: var(--color-primary-4);
   border-color: var(--color-primary-4);
   font-weight: 700;
+
 }
+
 
 
 /* Inputs */

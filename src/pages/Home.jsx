@@ -23,6 +23,14 @@ const Home = () => {
           <Link to="/all-orders">all orders table </Link>
           <Link to="/ag-table">ag table</Link>
         </div>
+        {/* <ul>
+          <li>123</li>
+          <li>122</li>
+          <li>1122</li>
+          <li>9122</li>
+          <li>8122</li>
+          <li>7122</li>
+        </ul> */}
 
         {/* <Menu menuButton={<MenuButton>xx</MenuButton>} transition>
           <div style={{ position: "relative", zIndex: 999999 }}>

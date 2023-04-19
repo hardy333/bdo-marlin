@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -116,9 +122,16 @@ const AgTable = () => {
       // hide: true,
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(false);
+  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+  const filterButtonRef = useRef(null);
+  useEffect(() => {
+    console.log(filterButtonRef.current);
+    setTimeout(() => {
+      filterButtonRef.current.click();
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -244,16 +257,19 @@ const AgTable = () => {
             </button>
             {/* input filter */}
             <button
+              ref={filterButtonRef}
               onClick={() => {
                 setShowingFloatingFilter((c) => !c);
-                document
-                  .querySelector(".ag-header-row-column-filter")
-                  .classList.toggle("hide");
-                document
-                  .querySelectorAll(".ag-floating-filter")
-                  .forEach((elem) => {
-                    elem.classList.toggle("hide");
-                  });
+                setTimeout(() => {
+                  document
+                    .querySelector(".ag-header-row-column-filter")
+                    ?.classList.toggle("hide");
+                  document
+                    .querySelectorAll(".ag-floating-filter")
+                    .forEach((elem) => {
+                      elem.classList.toggle("hide");
+                    });
+                }, 0);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
@@ -450,6 +466,7 @@ const AgTable = () => {
                 onClick={() => {
                   setPageSize(size);
                 }}
+                style={{ background: pageSize === size ? "#f3f7ff" : "" }}
               >
                 {size}
               </MenuItem>

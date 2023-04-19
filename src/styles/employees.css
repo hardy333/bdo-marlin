@@ -2,6 +2,15 @@
   padding: 0 30px;
 }
 
+.employees-header .btn{
+  border: 1px solid #211543;
+}
+
+.employees-header .btn:hover{
+  /* background-color: #211543; */
+  /* color: #fff; */
+}
+
 .employees-header h1{
   font-weight: 700;
   font-size: 20px;
@@ -57,7 +66,7 @@
   height: var(--size); */
   /* padding: 11px 5px 7px 13px; */
   /* background-color: red; */
-
+  
 
 }
 
@@ -132,5 +141,13 @@ color: #211543;
   font-size: 14px;
   font-weight: 700;
   margin: auto;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+
+}
+
+.employee-card .btn:hover{
+  background-color: transparent;
+  border: 1px solid var(--color-primary-1);
 
 }

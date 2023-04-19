@@ -10,6 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
 import arrowLeftNew from "../assets/all-orders/arrow-left-new.svg";
 
+import "../styles/dashboard-navbar.css";
+
 const startingPages = ["/login", "/register"];
 
 const DashboardNavbar = () => {
