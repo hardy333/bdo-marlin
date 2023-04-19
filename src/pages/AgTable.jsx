@@ -234,7 +234,7 @@ const AgTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders</span>
+            <span>All Orders:</span>
             <span style={{ color: "#6E0FF5" }}>GDM</span>
           </div>
           {/* Right */}
@@ -416,10 +416,10 @@ const AgTable = () => {
       </header>
       <div
         className="ag-theme-alpine ag-grid-example"
-        style={{ minHeight: 565, width: "100%" }}
+        style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
-          gridOptions={{ rowHeight: 30 }}
+          gridOptions={{ rowHeight: 32 }}
           // rowStyle={{ maxHeight: "20px", height: "10px" }}
           onGridReady={onGridReady}
           rowData={rowData}

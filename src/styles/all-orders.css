@@ -77,12 +77,14 @@
 }
 
 .all-orders__settings__options > button{
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
 }
 
 .all-orders__settings__options button svg{
     width: 100% !important;
+    width: 18px;
+    height: 18px;
 }
 
 .all-orders__settings{
