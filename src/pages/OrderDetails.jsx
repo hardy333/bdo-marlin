@@ -50,6 +50,9 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
+import d from "../assets/MOCK_DATA-2.json";
+console.log(d);
+
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -86,41 +89,34 @@ const OrderDetails = () => {
 
   const [columnDefs] = useState([
     {
-      field: "Number",
-      // cellRendererFramework: (params) => {
-      //   return <div>Hello</div>;
-      // },
-    },
-    {
-      field: "Item",
-    },
-    {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
-    },
-    {
-      field: "Delivered",
-    },
-    {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
+      field: "barcode",
+      cellRenderer: (params) => {
+        const { value } = params;
+        const index = value.indexOf("-");
+        return value.slice(0, index);
       },
     },
     {
-      field: "Service level",
-      minWidth: 150,
-      // hide: true,
+      field: "Product",
+    },
+    {
+      field: "Quantity",
+    },
+    {
+      field: "Price",
+    },
+    {
+      field: "Amount",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "GEL";
+      },
+    },
+    {
+      field: "Reserved",
+    },
+    {
+      field: "Scheduled",
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -131,7 +127,6 @@ const OrderDetails = () => {
   useEffect(() => {
     const filterButtonTimeout = setTimeout(() => {
       filterButtonRef.current.click();
-      console.log("H 123");
     }, 1000);
 
     return () => {
@@ -141,9 +136,10 @@ const OrderDetails = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch_XLSX_DATA();
+      // const data = await fetch_XLSX_DATA();
+      d.splice(10, 2);
 
-      setRowData(data["By item"]);
+      setRowData(d);
     }
 
     fetchData();
@@ -162,7 +158,7 @@ const OrderDetails = () => {
       sortable: true,
       filter: true,
       flex: 1,
-      minWidth: 150,
+      minWidth: 100,
       floatingFilter: showingFloatingFilter,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {

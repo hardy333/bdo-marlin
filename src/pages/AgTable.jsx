@@ -130,7 +130,6 @@ const AgTable = () => {
   useEffect(() => {
     const filterButtonTimeout = setTimeout(() => {
       filterButtonRef.current.click();
-      console.log("H 123");
     }, 100);
 
     return () => {
