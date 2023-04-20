@@ -48,6 +48,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
+import ExpandingInput from "../components/ExpandingInput";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -243,15 +244,12 @@ const AgTable = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       rowHeightBtnRef.current.click();
-      console.log("12");
     }, 1000);
 
     return () => {
       clearTimeout(t);
     };
   }, []);
-
-  console.log(isBigRow);
 
   return (
     <DashboardLayout>
@@ -279,9 +277,8 @@ const AgTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <button>
-              <img src={search} alt="" />
-            </button>
+            {/* <img src={search} alt="" /> */}
+            <ExpandingInput />
             {/* input filter */}
             <button
               ref={filterButtonRef}
