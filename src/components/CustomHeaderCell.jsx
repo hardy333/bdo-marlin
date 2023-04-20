@@ -269,18 +269,6 @@ const CustomHeaderCell = (props) => {
           Show All Columns
         </MenuItem>
       </Menu>
-
-      {/* <button>
-        <img src={dotsSvg} alt="" />
-        <div className="table-header-modal">
-          <p>
-            Lorem <br />
-            ldkj <br />
-            dkjd <br />
-            jhf <br />
-          </p>
-        </div>
-      </button> */}
     </div>
   );
 };

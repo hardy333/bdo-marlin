@@ -73,6 +73,10 @@ const AgTable = () => {
       name: "In time",
       isShowing: true,
     },
+    {
+      name: "Service Level",
+      isShowing: true,
+    },
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -362,11 +366,23 @@ const AgTable = () => {
                       // e.stopPropagation = true;
                       // Keep the menu open after this menu item is clicked
                       e.keepOpen = true;
-                      toggleColumn(header.name);
                     }}
                   >
-                    <Switch checked={header.isShowing} />
-                    {header.name}
+                    <div class="switch">
+                      <input
+                        checked={header.isShowing}
+                        type="checkbox"
+                        id={header.name}
+                        className="switch__input"
+                        onChange={() => {
+                          toggleColumn(header.name);
+                        }}
+                      />
+                      <label htmlFor={header.name} class="switch__label">
+                        {header.name}
+                      </label>
+                    </div>
+                    {/* <Switch checked={header.isShowing} /> */}
                   </MenuItem>
                 ))}
               </div>

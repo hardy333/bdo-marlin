@@ -51,7 +51,6 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
 import d from "../assets/MOCK_DATA-2.json";
-console.log(d);
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);

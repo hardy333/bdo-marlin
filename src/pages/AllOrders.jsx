@@ -52,8 +52,6 @@ const AllOrders = () => {
 
   const [arr, setArr] = useState([]);
 
-  console.log("A:", hiddenHeadersList);
-
   const ciclePaddingSizes = () => {
     let currIndex = paddingSizes.findIndex(
       (paddingSize) => paddingSize === paddingSizesIndex
