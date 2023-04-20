@@ -9,6 +9,7 @@ import user from "../assets/navbar/user.svg";
 import { Link, useLocation } from "react-router-dom";
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
 import arrowLeftNew from "../assets/all-orders/arrow-left-new.svg";
+import arrowBack from "../assets/back-arrow.svg";
 
 import "../styles/dashboard-navbar.css";
 
@@ -22,7 +23,7 @@ const DashboardNavbar = () => {
   return (
     <header className="dashboard-navbar">
       <img
-        src={arrowLeftNew}
+        src={arrowBack}
         alt=""
         style={{
           // height: "17px",
