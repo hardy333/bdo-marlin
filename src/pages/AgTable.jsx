@@ -52,6 +52,8 @@ import CustomInput from "../components/CustomInput";
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isBigRow, setIsBigRow] = useState(true);
+
   const [headerList, setHeaderList] = useState([
     {
       name: "Number",
@@ -86,6 +88,8 @@ const AgTable = () => {
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxster", price: 72000 },
   ]);
+
+  const gridRef = useRef(null);
 
   const [columnDefs] = useState([
     {
@@ -234,6 +238,21 @@ const AgTable = () => {
   //   });
   // };
 
+  const rowHeightBtnRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      rowHeightBtnRef.current.click();
+      console.log("12");
+    }, 1000);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, []);
+
+  console.log(isBigRow);
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -368,7 +387,7 @@ const AgTable = () => {
                       e.keepOpen = true;
                     }}
                   >
-                    <div class="switch">
+                    <div className="switch">
                       <input
                         checked={header.isShowing}
                         type="checkbox"
@@ -378,7 +397,7 @@ const AgTable = () => {
                           toggleColumn(header.name);
                         }}
                       />
-                      <label htmlFor={header.name} class="switch__label">
+                      <label htmlFor={header.name} className="switch__label">
                         {header.name}
                       </label>
                     </div>
@@ -388,7 +407,14 @@ const AgTable = () => {
               </div>
             </Menu>
             {/* padding */}
-            <button onClick={() => 2} className="all-orders__btn">
+            <button
+              onClick={() => {
+                gridRef.current.api.resetRowHeights();
+                setIsBigRow((c) => !c);
+              }}
+              ref={rowHeightBtnRef}
+              className="all-orders__btn"
+            >
               {/* <img src={horizontalLines} alt="" className="transparent" /> */}
               <svg
                 id="Layer_3"
@@ -455,7 +481,12 @@ const AgTable = () => {
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
-          gridOptions={{ rowHeight: 32 }}
+          // gridOptions={{ rowHeight: 32 }}
+          ref={gridRef}
+          // animateRows={true}
+          getRowHeight={() => {
+            return isBigRow ? 32 : 25;
+          }}
           // rowStyle={{ maxHeight: "20px", height: "10px" }}
           onGridReady={onGridReady}
           rowData={rowData}
