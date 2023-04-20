@@ -26,7 +26,7 @@ const DashboardNavbar = () => {
         alt=""
         style={{
           // height: "17px",
-          width: 25,
+          // width: 25,
           marginRight: 10,
           marginLeft: "0px",
           cursor: "pointer",

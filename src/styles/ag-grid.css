@@ -330,17 +330,32 @@ body{
 
 
 
-
-
 /* page-size-btn */
 /* page-size-btn */
+.page-size-btn{
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 12px;
+
+}
+
+.page-size-btn .btn{
+  font-size: 14px;
+}
+
 .page-size-menu .szh-menu{
   max-width: 50px !important;
+}
+
+.page-size-menu .szh-menu__item{
+  max-width: 100%;
 }
 
 .page-size-menu .szh-menu--state-open{
   max-width: 50px !important;
 }
+
 .page-size-menu .szh-menu--dir-top{
   max-width: 50px !important;
 }
