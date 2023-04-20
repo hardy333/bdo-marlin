@@ -26,6 +26,7 @@ import MainDashboard from "./pages/MainDashboard";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
 import Test from "./pages/Test";
+import OrderDetails from "./pages/OrderDetails";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="/prices" element={<Prices />} />
             <Route path="/main-dashboard" element={<MainDashboard />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/order-details" element={<OrderDetails />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>

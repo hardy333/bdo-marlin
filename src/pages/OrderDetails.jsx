@@ -20,6 +20,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
+import "../styles/order-details.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -49,7 +50,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-const AgTable = () => {
+const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
@@ -131,7 +132,7 @@ const AgTable = () => {
     const filterButtonTimeout = setTimeout(() => {
       filterButtonRef.current.click();
       console.log("H 123");
-    }, 100);
+    }, 1000);
 
     return () => {
       clearTimeout(filterButtonTimeout);
@@ -234,26 +235,17 @@ const AgTable = () => {
   return (
     <DashboardLayout>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container">
-          {/* <img
-            src={arrowLeft}
-            alt=""
-            style={{
-              height: "17px",
-              marginRight: 10,
-              marginLeft: 10,
-              cursor: "pointer",
-            }}
-          /> */}
-        </div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="all-orders__gdm-container"
+            className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders:</span>
-            <span style={{ color: "#6E0FF5" }}>GDM</span>
+            <h4>order Details</h4>
+            <span>GDM</span>
+            <span>A.Tsereteli 65</span>
+            <span>10/02/2023</span>
+            <button className="btn btn-warning">Pending</button>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -483,4 +475,4 @@ const AgTable = () => {
   );
 };
 
-export default AgTable;
+export default OrderDetails;

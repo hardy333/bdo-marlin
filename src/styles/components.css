@@ -37,6 +37,12 @@
   
 }
 
+.btn-warning{
+
+  background-color: #FFC23C;
+  color: #211543;
+}
+
 .btn-success{
   color: var(--color-text-1);
   background-color: var(--color-primary-1);

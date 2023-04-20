@@ -15,6 +15,12 @@
 
 }
 
+.home-links-container{
+  display: flex;
+  gap: 2rem;
+
+}
+
 .home-links{
   display: flex;
   flex-direction: column;
@@ -22,4 +28,8 @@
 
 .home-links a{
   color: var(--color-primary-2);
+}
+
+.home-links h2{
+  font-weight: 3rem;
 }
