@@ -62,9 +62,11 @@
 }
 
 .login-form .btn:hover{
-  background-color: transparent;
+  /* background-color: transparent;
   border: 1px solid var(--color-primary-4);
-  color: var(--color-primary-4);
+  color: var(--color-primary-4); */
+
+  background-color: #360083;
 
 }
 
