@@ -58,23 +58,31 @@ const OrderDetails = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "Number",
+      name: "barcode",
       isShowing: true,
     },
     {
-      name: "Item",
+      name: "Product",
       isShowing: true,
     },
     {
-      name: "Ordered",
+      name: "Quantity",
       isShowing: true,
     },
     {
-      name: "Delivered",
+      name: "Price",
       isShowing: true,
     },
     {
-      name: "In time",
+      name: "Amount",
+      isShowing: true,
+    },
+    {
+      name: "Reserved",
+      isShowing: true,
+    },
+    {
+      name: "Scheduled",
       isShowing: true,
     },
   ]);
@@ -158,7 +166,7 @@ const OrderDetails = () => {
       sortable: true,
       filter: true,
       flex: 1,
-      minWidth: 100,
+      minWidth: 150,
       floatingFilter: showingFloatingFilter,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
