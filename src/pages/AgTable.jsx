@@ -278,7 +278,7 @@ const AgTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             {/* <img src={search} alt="" /> */}
-            <ExpandingInput />
+            <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
               ref={filterButtonRef}

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../styles/expanding-input.css";
 import classNames from "classnames";
 
-const ExpandingInput = () => {
+const ExpandingInput = ({ onFilterTextChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef();
   const inputRef = useRef();
@@ -30,7 +30,12 @@ const ExpandingInput = () => {
       })}
       ref={wrapperRef}
     >
-      <input ref={inputRef} className="expanding-input" type="text" />
+      <input
+        ref={inputRef}
+        className="expanding-input"
+        type="text"
+        onChange={onFilterTextChange}
+      />
       <svg
         onClick={() => {
           setIsOpen(true);
