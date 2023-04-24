@@ -12,7 +12,6 @@ const ExpandingInput = ({ onFilterTextChange }) => {
       if (inputRef.current.value.length > 0) return;
       if (wrapperRef.current.contains(e.target)) return;
       setIsOpen(false);
-      console.log("Hello");
     };
 
     window.addEventListener("click", handleClick);
@@ -56,17 +55,27 @@ const ExpandingInput = ({ onFilterTextChange }) => {
           d="m52.5,60c-.8,0-1.6-.31-2.21-.92l-7.89-7.89c-1.22-1.22-1.22-3.21,0-4.43s3.21-1.22,4.43,0l7.89,7.89c1.22,1.22,1.22,3.21,0,4.43-.61.61-1.41.92-2.21.92Z"
         />
       </svg>
+
       <svg
-        onClick={() => {
-          inputRef.current.value = "";
-        }}
         className="expanding-input-img-x"
         width="8"
         height="9"
-        viewBox="0 0 8 9"
+        onClick={() => {
+          inputRef.current.value = "";
+        }}
+        id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 35.15 35.15"
       >
-        <path d="M1.56818 0.272727L3.81818 3.90341H3.88636L6.13636 0.272727H7.38068L4.63636 4.63636L7.38068 9H6.13636L3.88636 5.4375H3.81818L1.56818 9H0.323864L3.13636 4.63636L0.323864 0.272727H1.56818Z" />
+        <defs></defs>
+        <path
+          class="cls-1"
+          d="m30.34,34.33L.83,4.81c-1.1-1.1-1.1-2.89,0-3.99s2.89-1.1,3.99,0l29.51,29.51c1.1,1.1,1.1,2.89,0,3.99s-2.89,1.1-3.99,0Z"
+        />
+        <path
+          class="cls-1"
+          d="m.83,34.33c-1.1-1.1-1.1-2.89,0-3.99L30.34.83c1.1-1.1,2.89-1.1,3.99,0s1.1,2.89,0,3.99L4.81,34.33c-1.1,1.1-2.89,1.1-3.99,0Z"
+        />
       </svg>
     </div>
   );

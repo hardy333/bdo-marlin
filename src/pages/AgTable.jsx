@@ -29,6 +29,8 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
+
+import reverseExpand from "../assets/revers-expand.svg";
 // Right Icons
 import expandSvg from "../assets/marlin-icons/expand.svg";
 import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
@@ -49,6 +51,13 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import ExpandingInput from "../components/ExpandingInput";
+import ReverseExpandSvg from "../components/ReverseExpandSvg";
+import ExpandSvg from "../components/ExpandSvg";
+import ColumnHideSvg from "../components/ColumnHideSvg";
+import FilterSvg from "../components/FilterSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
+import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
+import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -187,6 +196,7 @@ const AgTable = () => {
   const onGridReady = (params) => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
+    gridRef.current.api.resetRowHeights();
   };
 
   const onFilterTextChange = (e) => {
@@ -244,28 +254,29 @@ const AgTable = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       rowHeightBtnRef.current.click();
-    }, 1000);
+    }, 500);
 
     return () => {
       clearTimeout(t);
     };
   }, []);
 
+  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
+  const [rowHeightIndex, setRowHeightIndex] = useState(1);
+
+  const changeRowHeight = () => {
+    if (rowHeightIndex === 2) {
+      setRowHeightIndex(0);
+    } else {
+      setRowHeightIndex((c) => c + 1);
+    }
+  };
+
+  console.log(rowHeightIndex);
   return (
     <DashboardLayout>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container">
-          {/* <img
-            src={arrowLeft}
-            alt=""
-            style={{
-              height: "17px",
-              marginRight: 10,
-              marginLeft: 10,
-              cursor: "pointer",
-            }}
-          /> */}
-        </div>
+        <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -301,26 +312,7 @@ const AgTable = () => {
                 active: showingFloatingFilter,
               })}
             >
-              {/* <img src={filterSvg} alt="" /> */}
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
+              <FilterSvg />
             </button>
             {/* popup */}
             <Menu
@@ -328,26 +320,7 @@ const AgTable = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  {/* <img src={optionsLines} alt="" className="flip transparent" /> */}
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
+                  <ColumnHideSvg />
                 </MenuButton>
               }
               transition
@@ -403,72 +376,29 @@ const AgTable = () => {
                 ))}
               </div>
             </Menu>
-            {/* padding */}
+            {/* Row height */}
             <button
               onClick={() => {
                 gridRef.current.api.resetRowHeights();
-                setIsBigRow((c) => !c);
+                changeRowHeight();
+                console.log("CLicks");
               }}
               ref={rowHeightBtnRef}
               className="all-orders__btn"
             >
-              {/* <img src={horizontalLines} alt="" className="transparent" /> */}
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 60 58.81"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m56.93,6.13H3.07c-1.69,0-3.07-1.37-3.07-3.07S1.37,0,3.07,0h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,23.69H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,41.25H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,58.81H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-              </svg>
+              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
+              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
+              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
             </button>
             {/* expand */}
             <button
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
                 "all-orders__btn": true,
-                active: isFullScreen,
+                // active: isFullScreen,
               })}
             >
-              {/* <img src={expandSvg} alt="" /> */}
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 46.28 46.28"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m43.48,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55c0-1-.81-1.81-1.81-1.81h-7.55c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c4.09,0,7.41,3.32,7.41,7.41v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m2.8,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55C0,3.32,3.32,0,7.41,0h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54c-1,0-1.81.81-1.81,1.81v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m7.41,46.28c-4.09,0-7.41-3.32-7.41-7.41v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,1,.81,1.81,1.81,1.81h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m31.32,46.28c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c1,0,1.81-.81,1.81-1.81v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,4.09-3.32,7.41-7.41,7.41h-7.55Z"
-                />
-              </svg>
+              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
           </div>
         </div>
@@ -482,7 +412,14 @@ const AgTable = () => {
           ref={gridRef}
           // animateRows={true}
           getRowHeight={() => {
-            return isBigRow ? 32 : 25;
+            if (rowHeightIndex === 0) {
+              return 25;
+            } else if (rowHeightIndex === 1) {
+              console.log("In Medium");
+              return 32;
+            } else if (rowHeightIndex === 2) {
+              return 37;
+            }
           }}
           // rowStyle={{ maxHeight: "20px", height: "10px" }}
           onGridReady={onGridReady}
