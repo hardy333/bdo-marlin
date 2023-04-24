@@ -447,7 +447,7 @@ const AgTable = () => {
                 onClick={() => {
                   setPageSize(size);
                 }}
-                style={{ background: pageSize === size ? "#f3f7ff" : "" }}
+                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
               >
                 {size}
               </MenuItem>

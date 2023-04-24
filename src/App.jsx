@@ -28,6 +28,7 @@ import PasswordForm from "./components/PasswordForm";
 import Test from "./pages/Test";
 import OrderDetails from "./pages/OrderDetails";
 import InvoicesTable from "./pages/InvoicesTable";
+import PopupTest from "./pages/PopupTest";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -61,6 +62,7 @@ function App() {
             <Route path="/test" element={<Test />} />
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
+            <Route path="/popup" element={<PopupTest />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
