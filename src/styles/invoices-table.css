@@ -1,0 +1,31 @@
+.invoices-table-status-btn{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 5px;
+ width: 90%;
+ margin: auto;
+
+ height: 18px;
+ font-size: 12px;
+ color: black;
+ cursor: default;
+ font-weight: 600;
+}
+
+.invoices-table-status-btn--success{
+  background-color: #FF5886;
+
+}
+
+.invoices-table-status-btn--danger{
+  background-color: #1ED8B9;
+
+
+}
+
+.invoices-table .ag-cell[col-id="Status"]{
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}

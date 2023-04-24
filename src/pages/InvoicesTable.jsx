@@ -20,6 +20,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
+import "../styles/invoices-table.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -59,34 +60,44 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 
-const AgTable = () => {
+import d from "../assets/INVOICES_MOCK_DATA.json";
+import FourDotsSvg from "../components/FourDotsSvg";
+import { useNavigate } from "react-router-dom";
+
+console.log(d);
+
+const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isBigRow, setIsBigRow] = useState(true);
 
   const [headerList, setHeaderList] = useState([
     {
-      name: "Number",
+      name: "Vendor",
       isShowing: true,
     },
     {
-      name: "Item",
+      name: "Document",
       isShowing: true,
     },
     {
-      name: "Ordered",
+      name: "Waybill",
       isShowing: true,
     },
     {
-      name: "Delivered",
+      name: "Shop Address",
       isShowing: true,
     },
     {
-      name: "In time",
+      name: "Amount",
       isShowing: true,
     },
     {
-      name: "Service Level",
+      name: "Date",
+      isShowing: true,
+    },
+    {
+      name: "Status",
       isShowing: true,
     },
   ]);
@@ -103,41 +114,44 @@ const AgTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "Number",
-      // cellRendererFramework: (params) => {
-      //   return <div>Hello</div>;
-      // },
+      field: "Vendor",
     },
     {
-      field: "Item",
+      field: "Document",
     },
     {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
+      field: "Waybill",
     },
     {
-      field: "Delivered",
+      field: "Shop Address",
     },
     {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
+      field: "Amount",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "GEL";
       },
     },
     {
-      field: "Service level",
-      minWidth: 150,
-      // hide: true,
+      field: "Date",
+    },
+    {
+      field: "Status",
+      cellRenderer: (params) => {
+        const { value } = params;
+        const x = Number(value);
+        if (!value || x % 2 === 0)
+          return (
+            <button className="invoices-table-status-btn invoices-table-status-btn--danger ">
+              To be paid
+            </button>
+          );
+        return (
+          <button className="invoices-table-status-btn invoices-table-status-btn--success">
+            Paid
+          </button>
+        );
+      },
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -157,9 +171,9 @@ const AgTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch_XLSX_DATA();
+      d.splice(10, 2);
 
-      setRowData(data["By item"]);
+      setRowData(d);
     }
 
     fetchData();
@@ -182,6 +196,7 @@ const AgTable = () => {
       floatingFilter: showingFloatingFilter,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
+      //   console.log(params.filterParams);
 
       //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
       // },
@@ -271,6 +286,8 @@ const AgTable = () => {
     }
   };
 
+  console.log(rowHeightIndex);
+  const navigate = useNavigate();
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -281,8 +298,7 @@ const AgTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders:</span>
-            <span style={{ color: "#6E0FF5" }}>GDM</span>
+            <span>Invoices</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -379,6 +395,7 @@ const AgTable = () => {
               onClick={() => {
                 gridRef.current.api.resetRowHeights();
                 changeRowHeight();
+                console.log("CLicks");
               }}
               ref={rowHeightBtnRef}
               className="all-orders__btn"
@@ -397,11 +414,20 @@ const AgTable = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
+            {/* Show Grid */}
+            <button
+              className="all-orders__btn"
+              onClick={() => {
+                navigate("/invoices2");
+              }}
+            >
+              <FourDotsSvg fill="#D0C7E8" />
+            </button>
           </div>
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example invoices-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
@@ -412,6 +438,7 @@ const AgTable = () => {
             if (rowHeightIndex === 0) {
               return 25;
             } else if (rowHeightIndex === 1) {
+              console.log("In Medium");
               return 32;
             } else if (rowHeightIndex === 2) {
               return 37;
@@ -459,4 +486,4 @@ const AgTable = () => {
   );
 };
 
-export default AgTable;
+export default InvoicesTable;

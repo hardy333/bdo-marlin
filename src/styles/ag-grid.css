@@ -348,14 +348,21 @@ body{
 
 .page-size-menu .szh-menu{
   max-width: 50px !important;
+  overflow: hidden !important;
 }
 
 .page-size-menu .szh-menu__item{
   max-width: 100%;
+  border-bottom: 1px solid gray;
 }
 
 .page-size-menu .szh-menu--state-open{
   max-width: 50px !important;
+}
+
+.page-size-menu .szh-menu--state-open{
+  max-width: 50px !important;
+
 }
 
 .page-size-menu .szh-menu--dir-top{

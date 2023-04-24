@@ -27,6 +27,7 @@ const Home = () => {
           </div>
           <div className="home-links">
             <Link to="/order-details">Order Details</Link>
+            <Link to="/invoices-table">Invoices Table</Link>
           </div>
         </div>
 
