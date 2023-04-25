@@ -19,21 +19,25 @@ const DashboardNavbar = () => {
   const { pathname } = useLocation();
 
   const isStartingPage = startingPages.includes(pathname);
+  const arrow = (
+    <img
+      src={arrowBack}
+      alt=""
+      style={{
+        // height: "17px",
+        // width: 25,
+        marginRight: 10,
+        marginLeft: "0px",
+        cursor: "pointer",
+        marginRight: "auto",
+      }}
+    />
+  );
 
   return (
     <header className="dashboard-navbar">
-      <img
-        src={arrowBack}
-        alt=""
-        style={{
-          // height: "17px",
-          // width: 25,
-          marginRight: 10,
-          marginLeft: "0px",
-          cursor: "pointer",
-          marginRight: "auto",
-        }}
-      />
+      {pathname !== "/" ? arrow : null}
+
       {isStartingPage ? (
         <>
           <Link to="/login" className="btn abc btn-link btn-blue">
