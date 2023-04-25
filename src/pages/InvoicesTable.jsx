@@ -194,7 +194,6 @@ const InvoicesTable = () => {
       floatingFilter: showingFloatingFilter,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
 
       //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
       // },
@@ -284,7 +283,6 @@ const InvoicesTable = () => {
     }
   };
 
-  console.log(rowHeightIndex);
   const navigate = useNavigate();
   return (
     <DashboardLayout>
@@ -393,7 +391,6 @@ const InvoicesTable = () => {
               onClick={() => {
                 gridRef.current.api.resetRowHeights();
                 changeRowHeight();
-                console.log("CLicks");
               }}
               ref={rowHeightBtnRef}
               className="all-orders__btn"
@@ -436,7 +433,6 @@ const InvoicesTable = () => {
             if (rowHeightIndex === 0) {
               return 25;
             } else if (rowHeightIndex === 1) {
-              console.log("In Medium");
               return 32;
             } else if (rowHeightIndex === 2) {
               return 37;

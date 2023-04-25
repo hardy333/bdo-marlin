@@ -21,36 +21,16 @@ const Home = () => {
             <Link to="/profile">profile</Link>
             <Link to="/employees">Employees</Link>
             <Link to="/vendors">vendors</Link>
+            <small className="mt-4">Old Tables</small>
             <Link to="/dashboard">dashboard table old</Link>
             <Link to="/all-orders">all orders table </Link>
-            <Link to="/ag-table">ag table</Link>
           </div>
           <div className="home-links">
+            <Link to="/ag-table">ag table</Link>
             <Link to="/order-details">Order Details</Link>
             <Link to="/invoices-table">Invoices Table</Link>
           </div>
         </div>
-
-        {/* <ul>
-          <li>123</li>
-          <li>122</li>
-          <li>1122</li>
-          <li>9122</li>
-          <li>8122</li>
-          <li>7122</li>
-        </ul> */}
-
-        {/* <Menu menuButton={<MenuButton>xx</MenuButton>} transition>
-          <div style={{ position: "relative", zIndex: 999999 }}>
-            <MenuItem>Cut</MenuItem>
-            <MenuItem>Copy</MenuItem>
-            <MenuItem>Paste</MenuItem>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, labore
-            animi? Cumque, reiciendis vitae. Aliquid officiis ad assumenda
-            consectetur, eos magni, consequuntur aperiam quibusdam voluptatem
-            optio incidunt minima! Ad, dolores?
-          </div>
-        </Menu> */}
       </section>
     </DashboardLayout>
   );

@@ -286,7 +286,6 @@ const AgTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            {/* <img src={search} alt="" /> */}
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
@@ -369,7 +368,6 @@ const AgTable = () => {
                         {header.name}
                       </label>
                     </div>
-                    {/* <Switch checked={header.isShowing} /> */}
                   </MenuItem>
                 ))}
               </div>
@@ -392,7 +390,6 @@ const AgTable = () => {
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
                 "all-orders__btn": true,
-                // active: isFullScreen,
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
@@ -405,9 +402,7 @@ const AgTable = () => {
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
-          // gridOptions={{ rowHeight: 32 }}
           ref={gridRef}
-          // animateRows={true}
           getRowHeight={() => {
             if (rowHeightIndex === 0) {
               return 25;

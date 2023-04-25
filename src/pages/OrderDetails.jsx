@@ -51,6 +51,12 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
 import d from "../assets/MOCK_DATA-2.json";
+import ReverseExpandSvg from "../components/ReverseExpandSvg";
+import ExpandSvg from "../components/ExpandSvg";
+import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
+import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
+import ExpandingInput from "../components/ExpandingInput";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -183,6 +189,7 @@ const OrderDetails = () => {
   const onGridReady = (params) => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
+    gridRef.current.api.resetRowHeights();
   };
 
   const onFilterTextChange = (e) => {
@@ -228,12 +235,32 @@ const OrderDetails = () => {
     };
   }, []);
 
-  // const sortByAthleteDesc = () => {
-  //   gridColumnApi.applyColumnState({
-  //     state: [{ colId: "Number", sort: "desc" }],
-  //     defaultState: { sort: null },
-  //   });
-  // };
+  // Row Height logic
+  // Row Height logic
+
+  const rowHeightBtnRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      rowHeightBtnRef.current.click();
+    }, 500);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, []);
+
+  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
+  const [rowHeightIndex, setRowHeightIndex] = useState(1);
+
+  const changeRowHeight = () => {
+    if (rowHeightIndex === 2) {
+      setRowHeightIndex(0);
+    } else {
+      setRowHeightIndex((c) => c + 1);
+    }
+  };
+  const gridRef = useRef(null);
 
   return (
     <DashboardLayout>
@@ -252,9 +279,8 @@ const OrderDetails = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <button>
-              <img src={search} alt="" />
-            </button>
+            <ExpandingInput onFilterTextChange={onFilterTextChange} />
+
             {/* input filter */}
             <button
               ref={filterButtonRef}
@@ -277,7 +303,6 @@ const OrderDetails = () => {
                 active: showingFloatingFilter,
               })}
             >
-              {/* <img src={filterSvg} alt="" /> */}
               <svg
                 id="Layer_3"
                 xmlns="http://www.w3.org/2000/svg"
@@ -304,7 +329,6 @@ const OrderDetails = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  {/* <img src={optionsLines} alt="" className="flip transparent" /> */}
                   <svg
                     id="Layer_3"
                     xmlns="http://www.w3.org/2000/svg"
@@ -358,41 +382,38 @@ const OrderDetails = () => {
                       // e.stopPropagation = true;
                       // Keep the menu open after this menu item is clicked
                       e.keepOpen = true;
-                      toggleColumn(header.name);
                     }}
                   >
-                    <Switch checked={header.isShowing} />
-                    {header.name}
+                    <div className="switch">
+                      <input
+                        checked={header.isShowing}
+                        type="checkbox"
+                        id={header.name}
+                        className="switch__input"
+                        onChange={() => {
+                          toggleColumn(header.name);
+                        }}
+                      />
+                      <label htmlFor={header.name} className="switch__label">
+                        {header.name}
+                      </label>
+                    </div>
                   </MenuItem>
                 ))}
               </div>
             </Menu>
-            {/* padding */}
-            <button onClick={() => 2} className="all-orders__btn">
-              {/* <img src={horizontalLines} alt="" className="transparent" /> */}
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 60 58.81"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m56.93,6.13H3.07c-1.69,0-3.07-1.37-3.07-3.07S1.37,0,3.07,0h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,23.69H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,41.25H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m56.93,58.81H3.07c-1.69,0-3.07-1.37-3.07-3.07s1.37-3.07,3.07-3.07h53.87c1.69,0,3.07,1.37,3.07,3.07s-1.37,3.07-3.07,3.07Z"
-                />
-              </svg>
+            {/* Row height */}
+            <button
+              onClick={() => {
+                gridRef.current.api.resetRowHeights();
+                changeRowHeight();
+              }}
+              ref={rowHeightBtnRef}
+              className="all-orders__btn"
+            >
+              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
+              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
+              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
             </button>
             {/* expand */}
             <button
@@ -402,30 +423,7 @@ const OrderDetails = () => {
                 active: isFullScreen,
               })}
             >
-              {/* <img src={expandSvg} alt="" /> */}
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 46.28 46.28"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m43.48,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55c0-1-.81-1.81-1.81-1.81h-7.55c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c4.09,0,7.41,3.32,7.41,7.41v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m2.8,17.76c-1.54,0-2.8-1.26-2.8-2.8v-7.55C0,3.32,3.32,0,7.41,0h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54c-1,0-1.81.81-1.81,1.81v7.55c0,1.54-1.26,2.8-2.8,2.8Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m7.41,46.28c-4.09,0-7.41-3.32-7.41-7.41v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,1,.81,1.81,1.81,1.81h7.54c1.54,0,2.8,1.26,2.8,2.8s-1.26,2.8-2.8,2.8h-7.54Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m31.32,46.28c-1.54,0-2.8-1.26-2.8-2.8s1.26-2.8,2.8-2.8h7.55c1,0,1.81-.81,1.81-1.81v-7.55c0-1.54,1.26-2.8,2.8-2.8s2.8,1.26,2.8,2.8v7.55c0,4.09-3.32,7.41-7.41,7.41h-7.55Z"
-                />
-              </svg>
+              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
           </div>
         </div>
@@ -435,14 +433,22 @@ const OrderDetails = () => {
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
-          gridOptions={{ rowHeight: 32 }}
-          // rowStyle={{ maxHeight: "20px", height: "10px" }}
+          ref={gridRef}
           onGridReady={onGridReady}
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           pagination={true}
           components={components}
+          getRowHeight={() => {
+            if (rowHeightIndex === 0) {
+              return 25;
+            } else if (rowHeightIndex === 1) {
+              return 32;
+            } else if (rowHeightIndex === 2) {
+              return 37;
+            }
+          }}
           // enableRangeSelection={true}
           // copyHeadersToClipboard={true}
           // rowSelection={"multiple"}
