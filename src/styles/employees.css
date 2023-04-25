@@ -226,6 +226,18 @@
   
 }
 
+.employee-card-menu ul{
+  display: flex;
+  flex-direction: column;
+  min-width: 50px;
+  width: 50px;
+  overflow: hidden;
+
+}
+
+.employee-card-menu .szh-menu__item--hover{
+  background-color: rgba(0, 0,0, 0.03);
+}
 
 /* Modal */
 /* Modal */
