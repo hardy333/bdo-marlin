@@ -64,8 +64,6 @@ import d from "../assets/INVOICES_MOCK_DATA.json";
 import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
 
-console.log(d);
-
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -460,6 +458,7 @@ const InvoicesTable = () => {
 
         <Menu
           className="page-size-menu"
+          align="end"
           menuButton={
             <MenuButton className="page-size-btn">
               <span>Rows per page</span>
@@ -474,7 +473,7 @@ const InvoicesTable = () => {
                 onClick={() => {
                   setPageSize(size);
                 }}
-                style={{ background: pageSize === size ? "#f3f7ff" : "" }}
+                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
               >
                 {size}
               </MenuItem>

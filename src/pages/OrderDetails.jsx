@@ -452,6 +452,7 @@ const OrderDetails = () => {
 
         <Menu
           className="page-size-menu"
+          align="end"
           menuButton={
             <MenuButton className="page-size-btn">
               <span>Rows per page</span>
@@ -466,7 +467,7 @@ const OrderDetails = () => {
                 onClick={() => {
                   setPageSize(size);
                 }}
-                style={{ background: pageSize === size ? "#f3f7ff" : "" }}
+                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
               >
                 {size}
               </MenuItem>

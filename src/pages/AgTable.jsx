@@ -433,6 +433,7 @@ const AgTable = () => {
 
         <Menu
           className="page-size-menu"
+          align="end"
           menuButton={
             <MenuButton className="page-size-btn">
               <span>Rows per page</span>
