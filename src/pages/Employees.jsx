@@ -4,8 +4,9 @@ import "../styles/employees.css";
 import EmployeeCard from "../components/EmployeeCard";
 import searchSvg from "../assets/employees/search.svg";
 import searchSvg2 from "../assets/marlin-icons/search.svg";
-import plusSvg from "../assets/employees/plus.svg";
 import ExpandingInput from "../components/ExpandingInput";
+import PlusSvg from "../components/svgs/PlusSvg";
+import SearchSvg from "../components/svgs/SearchSvg";
 
 const Employees = () => {
   return (
@@ -13,15 +14,14 @@ const Employees = () => {
       <header className="employees-header">
         <div className="employees-settings">
           <h1>Employees</h1>
-          {/* <button className="btn btn-outlined btn-black">
-            <img src={plusSvg} alt="" />
+          <button className="btn btn-outlined btn-black ">
+            <PlusSvg fill="#211543" />
             Add
-          </button> */}
-          {/* <div className="input-wrapper">
+          </button>
+          <div className="input-wrapper">
             <input type="text" className="input" />
-            <img src={searchSvg2} alt="" />
-          </div> */}
-          <ExpandingInput />
+            <SearchSvg />
+          </div>
         </div>
       </header>
       <div className="employees-card-container">

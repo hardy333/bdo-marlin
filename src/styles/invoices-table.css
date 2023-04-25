@@ -3,12 +3,12 @@
  align-items: center;
  justify-content: center;
  border-radius: 5px;
- width: 90%;
+ width: 75%;
  margin: auto;
 
  height: 18px;
  font-size: 12px;
- color: black;
+ color: #211543;
  cursor: default;
  font-weight: 600;
 }
