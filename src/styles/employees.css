@@ -188,6 +188,11 @@ color: #211543;
   
 }
 
+.employee-pag-container button.active{
+  color:#21154384;
+
+}
+
 .employees-page-info{
   position: absolute;
   top: 50%;
