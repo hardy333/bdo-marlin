@@ -109,7 +109,15 @@
   right: 1.2rem;
   top: 1.8rem;
   cursor: pointer;
-  height: 15px;
+  height: 25px;
+  background-color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+
+}
+
+.employee-card__dots:hover{
+  background-color: #d0c7e815;
 }
 
 .employee-card__img{
