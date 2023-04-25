@@ -465,6 +465,7 @@ const OrderDetails = () => {
               <span className="btn">{pageSize}</span>
             </MenuButton>
           }
+          transition
         >
           {pageSizes.map((size) => {
             return (

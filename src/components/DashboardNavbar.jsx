@@ -19,7 +19,7 @@ const DashboardNavbar = () => {
   const { pathname } = useLocation();
 
   const isStartingPage = startingPages.includes(pathname);
-  const arrow = (
+  const backArrow = (
     <img
       src={arrowBack}
       alt=""
@@ -36,7 +36,7 @@ const DashboardNavbar = () => {
 
   return (
     <header className="dashboard-navbar">
-      {pathname !== "/" ? arrow : null}
+      {pathname !== "/" ? backArrow : null}
 
       {isStartingPage ? (
         <>

@@ -152,6 +152,7 @@ const InvoicesTable = () => {
       },
     },
   ]);
+
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
@@ -461,6 +462,7 @@ const InvoicesTable = () => {
               <span className="btn">{pageSize}</span>
             </MenuButton>
           }
+          transition
         >
           {pageSizes.map((size) => {
             return (

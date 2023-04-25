@@ -91,10 +91,7 @@ const Table = ({
     usePagination
   );
 
-
-  
   const { pageIndex, pageSize } = state;
-
 
   useEffect(() => {
     if (!rows || !rows.length) return;
@@ -157,7 +154,7 @@ const Table = ({
                         "table-input-wrapper": true,
                         "table-input-wrapper-show": showInputs,
                       })}
-                      style={{cursor: !column.canFilter && "default" }}
+                      style={{ cursor: !column.canFilter && "default" }}
                     >
                       {column.canFilter && (
                         <input
@@ -167,7 +164,7 @@ const Table = ({
                           className={classNames({})}
                           placeholder="Filter"
                           style={{
-                            borderBottom: "1px solid rgba(33, 21, 67, 0.13);",
+                            borderBottom: "1px solid rgba(33, 21, 67, 0.13)",
                             borderRadius: 0,
                             paddingLeft: 0,
                             fontSize: "14px",

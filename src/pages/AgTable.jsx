@@ -435,6 +435,7 @@ const AgTable = () => {
               <span className="btn">{pageSize}</span>
             </MenuButton>
           }
+          transition
         >
           {pageSizes.map((size) => {
             return (
