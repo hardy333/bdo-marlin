@@ -19,11 +19,14 @@
 .profile-card{
 
   background-color: #fff;
-  max-width: 850px;
+  max-width: 1000px;
+  width: 900px;
   margin: auto;
   padding: 4rem;
   margin-top: 6rem;
   border-radius: 15px;
+  margin-left: 0;
+  margin-right: 0;
 
 
 }
@@ -141,4 +144,13 @@
 
 .profile-form-container .btn:hover{
   filter: brightness(90%);
+}
+
+
+/* illustration */
+/* illustration */
+
+.profile-content-container{
+  display: flex;
+  align-items: center;
 }

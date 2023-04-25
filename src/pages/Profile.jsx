@@ -16,6 +16,9 @@ import {
 } from "react-router-dom";
 import classNames from "classnames";
 
+import illustration1 from "../assets/profile-illustration-1.svg";
+import illustration2 from "../assets/profile-illustration-2.svg";
+
 const Profile = () => {
   const location = useLocation();
   const { pathname } = location;
@@ -36,38 +39,49 @@ const Profile = () => {
           </div>
         </header>
         {/*  */}
-        <div className="profile-card">
-          <header className="profile-card-header">
-            <div className="profile-card-img-container">
-              <img src={user} alt="user" />
-            </div>
-          </header>
-          <div className="profile-form-container">
-            {/* Left */}
-            <div className="left">
-              <Link
-                className={classNames({
-                  active: param === "/profile",
-                })}
-                to="/profile"
-              >
-                Private Info
-              </Link>
-              <Link
-                to="change-password"
-                className={classNames({
-                  active: param === "/change-password",
-                })}
-              >
-                Password Change
-              </Link>
-            </div>
-            {/* Right */}
-            <div className="right">
-              <Outlet />
+
+        <section className="profile-content-container">
+          <div className="profile-card">
+            <header className="profile-card-header">
+              <div className="profile-card-img-container">
+                <img src={user} alt="user" />
+              </div>
+            </header>
+            <div className="profile-form-container">
+              {/* Left */}
+              <div className="left">
+                <Link
+                  className={classNames({
+                    active: param === "/profile",
+                  })}
+                  to="/profile"
+                >
+                  Private Info
+                </Link>
+                <Link
+                  to="change-password"
+                  className={classNames({
+                    active: param === "/change-password",
+                  })}
+                >
+                  Password Change
+                </Link>
+              </div>
+              {/* Right */}
+              <div className="right">
+                <Outlet />
+              </div>
             </div>
           </div>
-        </div>
+          {/* Illustration */}
+          <div className="illustration-container">
+            {param === "/profile" ? (
+              <img src={illustration1} alt="" />
+            ) : (
+              <img src={illustration2} alt="" />
+            )}
+          </div>
+        </section>
       </section>
     </DashboardLayout>
   );
