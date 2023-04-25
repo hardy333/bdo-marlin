@@ -49,6 +49,10 @@ const Employees = () => {
         <button>4</button>
         <button>5</button>
         <button>&rarr;</button>
+
+        <div className="employees-page-info">
+          <p>1-5 of 5</p>
+        </div>
       </div>
     </DashboardLayout>
   );

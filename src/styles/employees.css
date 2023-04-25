@@ -167,10 +167,37 @@ color: #211543;
 
   gap: 5px;
   color: #D0C7E8;
+
+  position: relative;
+
+ 
 }
 
+.employee-pag-container button{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 15px;
+  color: #D0C7E8;
+  transition: 0.2s ease;
 
+}
 
 .employee-pag-container button:hover{
-  color:#211543 ;
+  color:#211543;
+  
+}
+
+.employees-page-info{
+  position: absolute;
+  top: 50%;
+  right: 2.5rem;
+  transform: translate(0,-50%);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 15px;
+  color: #D0C7E8;
+
+
+  
 }
