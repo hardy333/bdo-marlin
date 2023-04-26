@@ -20,7 +20,7 @@
 
   background-color: #fff;
   max-width: 1000px;
-  width: 900px;
+  width: 800px;
   margin: auto;
   padding: 4rem;
   margin-top: 6rem;
@@ -113,9 +113,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-
   color: #211543;
-
 
 }
 
@@ -168,5 +166,6 @@
 }
 
 .illustration-container img{
+  width: 100%;
   
 }
