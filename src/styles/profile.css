@@ -107,7 +107,7 @@
 }
 
 .profile-form-container label{
-  width: 100px;
+  width: 130px;
   max-width: 100%;
   font-style: normal;
   font-weight: 700;
@@ -125,8 +125,6 @@
   padding: 1rem 2rem;
   box-shadow: unset;
 
-
-
 }
 
 .profile-form-container .input::placeholder{
@@ -139,7 +137,7 @@
   width: 200px;
   padding: 10px;
 
-  margin-left: calc(100px + 1.5rem);
+  margin-left: calc(130px + 1.2rem);
 }
 
 .profile-form-container .btn:hover{
@@ -153,4 +151,22 @@
 .profile-content-container{
   display: flex;
   align-items: center;
+}
+
+.profile-card{
+  /* background-color: yellow; */
+
+}
+
+
+.illustration-container{
+  /* background-color: red; */
+  flex-grow: 1;
+
+  display: flex;
+  justify-content: center;
+}
+
+.illustration-container img{
+  
 }
