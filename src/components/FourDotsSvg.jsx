@@ -1,6 +1,8 @@
 import React from "react";
 
 const FourDotsSvg = ({ fill }) => {
+  console.log(fill);
+
   return (
     <>
       <svg

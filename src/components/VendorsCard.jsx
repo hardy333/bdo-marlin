@@ -3,6 +3,8 @@ import React from "react";
 import carOrange from "../assets/car-orange.svg";
 import carPurple from "../assets/car-purple.svg";
 import classNames from "classnames";
+import CarDisabled from "./svgs/CarDisabled";
+import CarActive from "./svgs/CarActive";
 
 const VendorsCard = ({ variant = "disabled" }) => {
   const footerActive = (
@@ -29,11 +31,7 @@ const VendorsCard = ({ variant = "disabled" }) => {
       })}
     >
       <div className="vendor-card-top">
-        {variant === "orange" ? (
-          <img src={carOrange} alt="" />
-        ) : (
-          <img src={carPurple} alt="" />
-        )}
+        {variant === "disabled" ? <CarDisabled /> : <CarActive />}
         <div className="vendor-card-name">
           <h3>GDM</h3>
         </div>

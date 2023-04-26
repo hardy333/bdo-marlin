@@ -76,7 +76,7 @@
 
 .vendor-card{
   background-color: #fff;
-  padding: 22px 18px;
+  padding: 18px 18px;
   border-left: 5px solid transparent;
   border-radius: 5px;
   border-top-right-radius: 2px;
@@ -84,6 +84,13 @@
 
 
 }
+
+
+.vendor-card svg{
+  width: 50px;
+
+}
+
 
 .vendor-card-top{
   display: flex;

@@ -4,6 +4,24 @@
 
 }
 
+.invoices-settings{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.invoices-settings button{
+}
+
+.invoices-settings button svg{
+  width: 20px;
+}
+
+.invoices-settings button svg:hover{
+  filter: brightness(80%);
+}
+
 .invoices-header h1{
   font-style: normal;
   font-weight: 700;
