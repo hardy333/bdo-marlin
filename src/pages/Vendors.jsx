@@ -18,9 +18,9 @@ const Vendors = () => {
           {/* 1 */}
           <div className="vendors-switch-container">
             <p>My Vendors</p>
-            <div class="toggle-switch">
-              <input class="toggle-input" id="toggle" type="checkbox" />
-              <label class="toggle-label" for="toggle"></label>
+            <div className="toggle-switch">
+              <input className="toggle-input" id="toggle" type="checkbox" />
+              <label className="toggle-label" htmlFor="toggle"></label>
             </div>
             <p>All Vendors</p>
           </div>
@@ -43,16 +43,41 @@ const Vendors = () => {
         </header>
 
         <div className="vendors-card-container">
-          <VendorsCard variant="purple" />
-          <VendorsCard variant="purple" />
-          <VendorsCard variant="purple" />
-          <VendorsCard variant="purple" />
-          <VendorsCard variant="purple" />
+          <VendorsCard variant="active" />
+          <VendorsCard variant="active" />
+          <VendorsCard variant="active" />
+          <VendorsCard variant="active" />
+          <VendorsCard variant="active" />
+          <VendorsCard variant="active" />
           <VendorsCard />
           <VendorsCard />
           <VendorsCard />
           <VendorsCard />
           <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+          <VendorsCard />
+        </div>
+        <div className="employee-pag-container">
+          <button>&larr;</button>
+          <button className="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
+          <button>&rarr;</button>
+
+          <div className="employees-page-info">
+            <p>1-5 of 5</p>
+          </div>
         </div>
       </section>
     </DashboardLayout>
