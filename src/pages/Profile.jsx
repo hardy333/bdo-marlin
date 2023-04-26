@@ -33,10 +33,10 @@ const Profile = () => {
       <section className="profile">
         <header className="profile-header">
           <h1>Profile</h1>
-          <div className="input-wrapper">
+          {/* <div className="input-wrapper">
             <input type="text" className="input" />
             <img src={searchSvg} alt="" />
-          </div>
+          </div> */}
         </header>
         {/*  */}
 

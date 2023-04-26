@@ -8,6 +8,7 @@ import listSortSvg from "../assets/list-sort.svg";
 
 // css
 import "../styles/vendors.css";
+import SearchSvg from "../components/svgs/SearchSvg";
 
 const Vendors = () => {
   return (
@@ -24,19 +25,19 @@ const Vendors = () => {
             <p>All Vendors</p>
           </div>
           {/* 2 */}
-          <div className="vendors-btns-container">
+          {/* <div className="vendors-btns-container">
             <button>
               <img src={filterSvg} alt="" />
             </button>
             <button>
               <img src={listSortSvg} alt="" />
             </button>
-          </div>
+          </div> */}
           {/* 3 */}
           <div>
             <div className="input-wrapper">
               <input type="text" className="input" />
-              <img src={searchSvg} alt="" />
+              <SearchSvg />
             </div>
           </div>
         </header>

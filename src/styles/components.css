@@ -126,7 +126,7 @@ input[type="number"]{
 .toggle-switch {
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 50px;
   height: 24px;
   margin: 10px;
 }
@@ -141,7 +141,7 @@ input[type="number"]{
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
+  width: 50px;
   height: 24px;
   background-color: #fff;
   border-radius: 34px;
@@ -149,7 +149,6 @@ input[type="number"]{
   transition: background-color 0.3s;
 }
 
-/* Anahtarın yuvarlak kısmının stil */
 .toggle-switch .toggle-label::before {
   content: "";
   position: absolute;
@@ -163,13 +162,12 @@ input[type="number"]{
   transition: transform 0.3s;
 }
 
-/* Anahtarın etkin hale gelmesindeki stil değişiklikleri */
 .toggle-switch .toggle-input:checked + .toggle-label {
   background-color:  #6E0FF5;
 }
 
 .toggle-switch .toggle-input:checked + .toggle-label::before {
-  transform: translateX(16px);
+  transform: translateX(25px);
   background-color: #fff;
 }
 
