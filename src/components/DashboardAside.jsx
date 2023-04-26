@@ -92,7 +92,7 @@ const DashboardAside = () => {
         </Link>
         <ul ref={linkListRef} className="dashboard-aside__list">
           <li>
-            <Link to="/ag-table">
+            <Link to="/vendors">
               <img
                 className="dashboard-aside__list__vendor"
                 src={vendors}
@@ -102,41 +102,41 @@ const DashboardAside = () => {
             </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/all-orders">
               <img src={orders} alt="" />
               <span className="aside-label">შეკვეთები</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/catalog">
               <img src={catalog} alt="" />
               <span className="aside-label">კატალოგი</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/employees">
               <img src={employees} alt="" />
               <span className="aside-label">თანამშრომლები</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/invoices-table">
               <img src={invoices} alt="" />
               <span className="aside-label">ინვოისები</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <Link to="/all-orders">
+            <Link to="/settings">
               <img src={settings} alt="" />
               <span className="aside-label">სეთინგები</span>
             </Link>
           </li>
           {/*  */}
           <li className="aside-terms">
-            <a href="#">
+            <Link to="/terms">
               <img src={conditions} alt="" />
               <span className="aside-label">პირობები</span>
-            </a>
+            </Link>
           </li>
           <li className="aside-paper">
             <a href="#">

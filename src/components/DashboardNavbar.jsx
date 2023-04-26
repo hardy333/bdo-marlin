@@ -6,7 +6,7 @@ import gdm from "../assets/icons/gdm.png";
 import arrow from "../assets/navbar/arrow.svg";
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
 import arrowLeftNew from "../assets/all-orders/arrow-left-new.svg";
 import arrowBack from "../assets/back-arrow.svg";
@@ -17,6 +17,7 @@ const startingPages = ["/login", "/register"];
 
 const DashboardNavbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const isStartingPage = startingPages.includes(pathname);
   const backArrow = (
@@ -49,19 +50,24 @@ const DashboardNavbar = () => {
         </>
       ) : (
         <>
-          <div className="gdm-container">
+          <div
+            className="gdm-container"
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
             <a href="#">
               <img src={user} alt="" />
             </a>
             <span style={{ fontWeight: 700 }}>Daily</span>
           </div>
 
-          <a href="#" style={{ marginRight: 10 }}>
+          <Link to="/login" style={{ marginRight: 10 }}>
             <img src={ring} alt="" />
-          </a>
-          <a href="#">
+          </Link>
+          <Link to="/login">
             <img src={arrow} alt="" />
-          </a>
+          </Link>
         </>
       )}
     </header>
