@@ -1,0 +1,30 @@
+.pending-status-menu{
+  background-color: red;
+}
+
+.pending-status-menu ul{
+  padding: 5px 30px;
+
+}
+
+.pending-status-menu .szh-menu__item{
+  border-bottom: 1px solid #D0C7E8;
+  padding-inline: 5px;
+  margin-bottom: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #211543;
+  cursor: default;
+}
+
+.pending-status-menu .szh-menu__item:last-child{
+  border-bottom: none;
+}
+
+.pending-status-menu .szh-menu__item--hover{
+  background-color: transparent;
+  
+
+}

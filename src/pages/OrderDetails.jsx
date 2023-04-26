@@ -21,6 +21,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
+import "../styles/pending-status-menu.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -275,7 +276,17 @@ const OrderDetails = () => {
             <span>GDM</span>
             <span>A.Tsereteli 65</span>
             <span>10/02/2023</span>
-            <button className="btn btn-warning">Pending</button>
+            <Menu
+              className="pending-status-menu"
+              menuButton={<button className="btn btn-warning">Pending</button>}
+              direction="bottom"
+              align="center"
+              transition
+            >
+              <MenuItem>Approvrd 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
+            </Menu>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
