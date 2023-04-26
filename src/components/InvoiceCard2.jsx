@@ -27,10 +27,10 @@ const InvoiceCard2 = ({ paidStatus }) => {
           <span>Due Date</span>
           <span>January 31, 2023</span>
         </li>
-        <li>
+        {/* <li>
           <span>Amount</span>
           <span>5138 GEL</span>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
