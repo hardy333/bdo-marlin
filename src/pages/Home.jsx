@@ -34,6 +34,8 @@ const Home = () => {
             <Link to="/ag-table">ag table</Link>
             <Link to="/order-details">Order Details</Link>
             <Link to="/invoices-table">Invoices Table</Link>
+            <Link to="/logs">Logs/Settings Table</Link>
+            <Link to="/catalogue">Catalogue Table</Link>
           </div>
         </div>
       </section>
