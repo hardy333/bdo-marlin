@@ -31,6 +31,9 @@ import OrderDetails from "./pages/OrderDetails";
 import InvoicesTable from "./pages/InvoicesTable";
 import PopupTest from "./pages/PopupTest";
 import Terms from "./pages/Terms";
+import AllOrdersParent from "./pages/AllOrdersParent";
+import LogsTable from "./pages/LogsTable";
+import CatalogueTable from "./pages/CatalogueTable";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -66,6 +69,9 @@ function App() {
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/popup" element={<PopupTest />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+            <Route path="/logs" element={<LogsTable />} />
+            <Route path="/catalogue" element={<CatalogueTable />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>

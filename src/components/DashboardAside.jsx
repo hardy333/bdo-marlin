@@ -102,13 +102,13 @@ const DashboardAside = () => {
             </Link>
           </li>
           <li>
-            <Link to="/all-orders">
+            <Link to="/all-orders-parent">
               <img src={orders} alt="" />
               <span className="aside-label">შეკვეთები</span>
             </Link>
           </li>
           <li>
-            <Link to="/catalog">
+            <Link to="/catalogue">
               <img src={catalog} alt="" />
               <span className="aside-label">კატალოგი</span>
             </Link>
@@ -126,7 +126,7 @@ const DashboardAside = () => {
             </Link>
           </li>
           <li>
-            <Link to="/settings">
+            <Link to="/logs">
               <img src={settings} alt="" />
               <span className="aside-label">სეთინგები</span>
             </Link>
