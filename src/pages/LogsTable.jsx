@@ -58,6 +58,7 @@ import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import "../styles/logs.css";
 
 import d from "../assets/LOGS_MOCK_DATA.json";
 
@@ -133,7 +134,7 @@ const LogsTable = () => {
       field: "Error Code",
       cellRendererFramework: (params) => {
         return (
-          <div className="  catalougue-btn flex gap-10 justify-start p-2  ">
+          <div className="  logs-btn flex gap-10 justify-start p-2  ">
             <button
               style={{ height: 23, width: 23 }}
               className={`p-2 border-2 bg-red-500 border-none flex justify-center items-center rounded-lg ${
