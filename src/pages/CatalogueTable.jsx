@@ -31,6 +31,9 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
+import triangleRed from "../assets/triangle-red.svg";
+import triangleGreen from "../assets/triangle-green.svg";
+
 // Right Icons
 import expandSvg from "../assets/marlin-icons/expand.svg";
 import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
@@ -52,7 +55,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/MOCK_DATA-2.json";
+import d from "../assets/CATALOGUE_MOCK_DATA.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -67,7 +70,7 @@ const CatalogueTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "barcode",
+      name: "Barcode",
       isShowing: true,
     },
     {
@@ -75,7 +78,7 @@ const CatalogueTable = () => {
       isShowing: true,
     },
     {
-      name: "Quantity",
+      name: "Units",
       isShowing: true,
     },
     {
@@ -83,15 +86,15 @@ const CatalogueTable = () => {
       isShowing: true,
     },
     {
-      name: "Amount",
+      name: "Last Order Price",
       isShowing: true,
     },
     {
-      name: "Reserved",
+      name: "Last Change Date",
       isShowing: true,
     },
     {
-      name: "Scheduled",
+      name: "Status",
       isShowing: true,
     },
   ]);
@@ -106,7 +109,7 @@ const CatalogueTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "barcode",
+      field: "Barcode",
       cellRenderer: (params) => {
         const { value } = params;
         const index = value.indexOf("-");
@@ -117,23 +120,53 @@ const CatalogueTable = () => {
       field: "Product",
     },
     {
-      field: "Quantity",
+      field: "Units",
     },
     {
       field: "Price",
-    },
-    {
-      field: "Amount",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
       },
     },
     {
-      field: "Reserved",
+      field: "Last Order Price",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return (
+          <div
+            style={{ height: "100%", display: "flex" }}
+            className="items-center  gap-4 pe-20"
+          >
+            <span style={{ width: "50px" }}>{value + " " + "GEL"}</span>
+            <img
+              style={{ width: 14, height: 14 }}
+              src={
+                +value % 2 === 0 && +value > 40 ? triangleRed : triangleGreen
+              }
+              alt=""
+            />
+          </div>
+        );
+      },
     },
     {
-      field: "Scheduled",
+      field: "Last Change Date",
+    },
+    {
+      field: "Status",
+      cellRenderer: ({ value }) => {
+        return (
+          <div className="flex items-center" style={{ height: "100%" }}>
+            <button
+              style={{ background: +value % 2 === 0 ? "#01C6B5" : "#F55364" }}
+              className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
+            >
+              {+value % 2 === 0 ? "active" : "inactive"}
+            </button>
+          </div>
+        );
+      },
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
