@@ -59,6 +59,8 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 
+import d from "../assets/LOGS_MOCK_DATA.json";
+
 const LogsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -66,28 +68,31 @@ const LogsTable = () => {
 
   const [headerList, setHeaderList] = useState([
     {
-      name: "Number",
+      name: "Transition ID",
       isShowing: true,
     },
     {
-      name: "Item",
+      name: "Date",
       isShowing: true,
     },
     {
-      name: "Ordered",
+      name: "Sender",
       isShowing: true,
     },
     {
-      name: "Delivered",
+      name: "Receiver",
       isShowing: true,
     },
     {
-      name: "In time",
+      name: "Document #",
       isShowing: true,
     },
     {
-      name: "Service Level",
+      name: "Type",
       isShowing: true,
+    },
+    {
+      name: "Error Code",
     },
   ]);
   const [gridApi, setGridApi] = useState(null);
@@ -103,41 +108,44 @@ const LogsTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "Number",
+      field: "Transition ID",
       // cellRendererFramework: (params) => {
       //   return <div>Hello</div>;
       // },
     },
     {
-      field: "Item",
+      field: "Date",
     },
     {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
+      field: "Sender",
     },
     {
-      field: "Delivered",
+      field: "Receiver",
     },
     {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
-      },
+      field: "Document #",
     },
     {
-      field: "Service level",
+      field: "Type",
       minWidth: 150,
-      // hide: true,
+    },
+    {
+      field: "Error Code",
+      cellRendererFramework: (params) => {
+        return (
+          <div className="  catalougue-btn flex gap-10 justify-start p-2  ">
+            <button
+              style={{ height: 23, width: 23 }}
+              className={`p-2 border-2 bg-red-500 border-none flex justify-center items-center rounded-lg ${
+                +params.value % 2 === 0 ? "E" : "bg-green-500"
+              }`}
+            >
+              {+params.value % 2 === 0 ? "E" : "S"}
+            </button>
+            <span>{params.value}</span>
+          </div>
+        );
+      },
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -157,9 +165,10 @@ const LogsTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch_XLSX_DATA();
+      // const data = await fetch_XLSX_DATA();
+      d.splice(10, 2);
 
-      setRowData(data["By item"]);
+      setRowData(d);
     }
 
     fetchData();

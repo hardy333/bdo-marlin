@@ -33,3 +33,27 @@
   transform: translate(0, -50%);
 
 }
+
+.catalougue-btn{
+  align-items: center;
+  height: 100%;
+
+
+}
+
+.catalougue-btn button{
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 15px;
+border-radius: 7px;
+/* identical to box height */
+
+
+color: #FFFFFF;
+
+}
