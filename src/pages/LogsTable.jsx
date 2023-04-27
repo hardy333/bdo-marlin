@@ -137,8 +137,8 @@ const LogsTable = () => {
           <div className="  logs-btn flex gap-10 justify-start p-2  ">
             <button
               style={{ height: 23, width: 23 }}
-              className={`p-2 border-2 bg-red-500 border-none flex justify-center items-center rounded-lg ${
-                +params.value % 2 === 0 ? "E" : "bg-green-500"
+              className={`p-2 border-2  border-none flex justify-center items-center rounded-lg ${
+                +params.value % 2 === 0 ? "bg-red-500" : "bg-green-500"
               }`}
             >
               {+params.value % 2 === 0 ? "E" : "S"}
@@ -149,20 +149,20 @@ const LogsTable = () => {
       },
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
+  const [showingFloatingFilter, setShowingFloatingFilter] = useState(false);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
   const filterButtonRef = useRef(null);
 
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 100);
+  // useEffect(() => {
+  //   const filterButtonTimeout = setTimeout(() => {
+  //     filterButtonRef.current.click();
+  //   }, 100);
 
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(filterButtonTimeout);
+  //   };
+  // }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -260,15 +260,15 @@ const LogsTable = () => {
 
   const rowHeightBtnRef = useRef(null);
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
-    }, 500);
+  // useEffect(() => {
+  //   const t = setTimeout(() => {
+  //     rowHeightBtnRef.current.click();
+  //   }, 500);
 
-    return () => {
-      clearTimeout(t);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(t);
+  //   };
+  // }, []);
 
   const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
