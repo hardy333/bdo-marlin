@@ -58,6 +58,7 @@ import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import useFilterToggle from "../hooks/useFilterToggle";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -179,7 +180,7 @@ const AgTable = () => {
       filter: true,
       flex: 1,
       minWidth: 150,
-      floatingFilter: showingFloatingFilter,
+      floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
 
@@ -187,7 +188,7 @@ const AgTable = () => {
       // },
       floatingFilterComponent: CustomInput,
     }),
-    [showingFloatingFilter]
+    []
   );
 
   // EVents
@@ -271,6 +272,8 @@ const AgTable = () => {
     }
   };
 
+  const [showFilters, setShowFilters] = useFilterToggle();
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -289,24 +292,14 @@ const AgTable = () => {
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
-              ref={filterButtonRef}
+              // ref={filterButtonRef}
               onClick={() => {
-                setShowingFloatingFilter((c) => !c);
-                setTimeout(() => {
-                  document
-                    .querySelector(".ag-header-row-column-filter")
-                    ?.classList.toggle("hide");
-                  document
-                    .querySelectorAll(".ag-floating-filter")
-                    .forEach((elem) => {
-                      elem.classList.toggle("hide");
-                    });
-                }, 0);
+                setShowFilters(!showFilters);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
                 "all-orders__btn": true,
-                active: showingFloatingFilter,
+                active: showFilters,
               })}
             >
               <FilterSvg />

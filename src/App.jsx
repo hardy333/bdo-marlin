@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
 import Swip from "./components/Swip";
-import TableTest from "./components/TableTest";
 import Dashboard from "./pages/Dashboard";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
@@ -35,6 +34,7 @@ import Terms from "./pages/Terms";
 import AllOrdersParent from "./pages/AllOrdersParent";
 import LogsTable from "./pages/LogsTable";
 import CatalogueTable from "./pages/CatalogueTable";
+import TableTest from "./pages/TableTest";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -49,7 +49,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/s" element={<Swip />} />
-            <Route path="/table-test" element={<TableTest />} />
             <Route path="/all-orders" element={<AllOrders />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
@@ -73,6 +72,7 @@ function App() {
             <Route path="/all-orders-parent" element={<AllOrdersParent />} />
             <Route path="/logs" element={<LogsTable />} />
             <Route path="/catalogue" element={<CatalogueTable />} />
+            <Route path="/table-test" element={<TableTest />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
