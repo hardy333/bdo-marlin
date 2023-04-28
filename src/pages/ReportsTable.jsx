@@ -51,7 +51,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/MOCK_DATA-2.json";
+import d from "../assets/REPORTS_PARENT.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -66,31 +66,23 @@ const ReportsTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "barcode",
+      name: "Vendors",
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "Monthly Amount",
       isShowing: true,
     },
     {
-      name: "Quantity",
+      name: "Quantity Deviation",
       isShowing: true,
     },
     {
-      name: "Price",
+      name: "In Time Orders",
       isShowing: true,
     },
     {
-      name: "Amount",
-      isShowing: true,
-    },
-    {
-      name: "Reserved",
-      isShowing: true,
-    },
-    {
-      name: "Scheduled",
+      name: "Avarage Service Level",
       isShowing: true,
     },
   ]);
@@ -105,7 +97,7 @@ const ReportsTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "barcode",
+      field: "Vendors",
       cellRenderer: (params) => {
         const { value } = params;
         const index = value.indexOf("-");
@@ -113,26 +105,28 @@ const ReportsTable = () => {
       },
     },
     {
-      field: "Product",
-    },
-    {
-      field: "Quantity",
-    },
-    {
-      field: "Price",
-    },
-    {
-      field: "Amount",
+      field: "Monthly Amount",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " " + "GEL";
+        return value + " GEL";
       },
     },
     {
-      field: "Reserved",
+      field: "Quantity Deviation",
     },
     {
-      field: "Scheduled",
+      field: "Quantity Deviation",
+    },
+    {
+      field: "In Time Orders",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "%";
+      },
+    },
+    {
+      field: "Avarage Service Level",
+      minWidth: 250,
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -141,9 +135,7 @@ const ReportsTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      // const data = await fetch_XLSX_DATA();
       d.splice(10, 2);
-
       setRowData(d);
     }
 
@@ -256,23 +248,6 @@ const ReportsTable = () => {
 
   const [showFilters, setShowFilters] = useFilterToggle();
 
-  // URL info
-  const [searchParams] = useSearchParams();
-  let date = searchParams.get("date") || "01/30/2023";
-  let shop = searchParams.get("shop") || "SPAR001";
-  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
-  let vendor = searchParams.get("vendor") || "GDM";
-  let status = searchParams.get("status") || "Pending";
-
-  let statusBg;
-  if (status === "In Progress") {
-    statusBg = "#6E0FF5";
-  } else if (status === "Delivered") {
-    statusBg = "#01C6B5";
-  } else {
-    statusBg = "#FFC23C";
-  }
-
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -282,28 +257,7 @@ const ReportsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>order Details</h4>
-            <span>{vendor}</span>
-            <span>{shopAddress}</span>
-            <span>{date}</span>
-            <Menu
-              className="pending-status-menu"
-              menuButton={
-                <button
-                  style={{ backgroundColor: statusBg, color: "#fff" }}
-                  className="btn "
-                >
-                  {status}
-                </button>
-              }
-              direction="bottom"
-              align="center"
-              transition
-            >
-              <MenuItem>Approvrd 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
-            </Menu>
+            <h4>Service Level Report</h4>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

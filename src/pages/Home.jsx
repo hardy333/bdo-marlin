@@ -37,6 +37,7 @@ const Home = () => {
             <Link to="/invoices-table">Invoices Table</Link>
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
+            <Link to="/reports">service level reports</Link>
           </div>
         </div>
       </section>
