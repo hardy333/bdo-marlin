@@ -115,6 +115,18 @@
 }
 
 
+.dashboard-aside__list li:has(a.active)::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0px;
+  height: 100%;
+  width: 4px;
+  background-color: #fff;
+  border-radius: 25px;
+
+}
+
 .dashboard-aside__list a {
   display: flex;
   text-decoration: none;
@@ -132,6 +144,7 @@
   margin: auto;
   display: block;
   transition: all 0.3s;
+  filter: brightness(50%);
 }
 
 .aside-label {
@@ -167,8 +180,14 @@
 
 .dashboard-aside__list a:hover img {
   /* transform: scale(1.1); */
-  filter: brightness(90%);
+  filter: brightness(100%);
 }
+
+.dashboard-aside__list a.active img {
+  filter: brightness(100%);
+
+}
+
 
 .aside-terms {
   margin-top: auto;

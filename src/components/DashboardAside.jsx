@@ -21,7 +21,7 @@ import settings from "../assets/navbar/s.svg";
 import vendors from "../assets/navbar/vendors.svg";
 import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 import marlinText from "../assets/navbar/marlin-text.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import asideBtn from "../assets/aside-btn.svg";
 import reportSvg from "../assets/reports.svg";
 
@@ -93,63 +93,108 @@ const DashboardAside = () => {
         </Link>
         <ul ref={linkListRef} className="dashboard-aside__list">
           <li>
-            <Link to="/vendors">
+            <NavLink
+              to="/vendors"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img
                 className="dashboard-aside__list__vendor"
                 src={vendors}
                 alt=""
               />
               <span className="aside-label">მომწოდებლები</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/all-orders-parent">
+            <NavLink
+              to="/all-orders-parent"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={orders} alt="" />
               <span className="aside-label">შეკვეთები</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/catalogue">
+            <NavLink
+              to="/catalogue"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={catalog} alt="" />
               <span className="aside-label">კატალოგი</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/employees">
+            <NavLink
+              to="/employees"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={employees} alt="" />
               <span className="aside-label">თანამშრომლები</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/invoices-table">
+            <NavLink
+              to="/invoices-table"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={invoices} alt="" />
               <span className="aside-label">ინვოისები</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/Reports">
+            <NavLink
+              to="/Reports"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={reportSvg} alt="" />
               <span className="aside-label">რეპორტები</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/logs">
+            <NavLink
+              to="/logs"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={settings} alt="" />
               <span className="aside-label">სეთინგები</span>
-            </Link>
+            </NavLink>
           </li>
           {/*  */}
           <li className="aside-terms">
-            <Link to="/terms">
+            <NavLink
+              to="/terms"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={conditions} alt="" />
               <span className="aside-label">პირობები</span>
-            </Link>
+            </NavLink>
           </li>
           <li className="aside-paper">
-            <a href="#">
+            <NavLink
+              to="/contract"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
               <img src={contract} alt="" />
               <span className="aside-label">კონტრაქტი</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>

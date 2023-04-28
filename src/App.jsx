@@ -36,6 +36,7 @@ import LogsTable from "./pages/LogsTable";
 import CatalogueTable from "./pages/CatalogueTable";
 import TableTest from "./pages/TableTest";
 import ReportsTable from "./pages/ReportsTable";
+import Contract from "./pages/Contract";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -75,6 +76,7 @@ function App() {
             <Route path="/catalogue" element={<CatalogueTable />} />
             <Route path="/table-test" element={<TableTest />} />
             <Route path="/reports" element={<ReportsTable />} />
+            <Route path="/contract" element={<Contract />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
