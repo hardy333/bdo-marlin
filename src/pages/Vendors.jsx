@@ -12,7 +12,8 @@ import SearchSvg from "../components/svgs/SearchSvg";
 
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,
   ]);
 
   const [isChecked, setISChecked] = useState(true);
