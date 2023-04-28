@@ -144,17 +144,6 @@ const AgTable = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-  const filterButtonRef = useRef(null);
-
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 100);
-
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     async function fetchData() {
