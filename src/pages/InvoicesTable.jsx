@@ -63,6 +63,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import d from "../assets/INVOICES_MOCK_DATA.json";
 import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
+import useFilterToggle from "../hooks/useFilterToggle";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -156,17 +157,6 @@ const InvoicesTable = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-  const filterButtonRef = useRef(null);
-
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 100);
-
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -254,13 +244,6 @@ const InvoicesTable = () => {
     };
   }, []);
 
-  // const sortByAthleteDesc = () => {
-  //   gridColumnApi.applyColumnState({
-  //     state: [{ colId: "Number", sort: "desc" }],
-  //     defaultState: { sort: null },
-  //   });
-  // };
-
   const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
@@ -284,7 +267,9 @@ const InvoicesTable = () => {
     }
   };
 
+  const [showFilters, setShowFilters] = useFilterToggle();
   const navigate = useNavigate();
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -303,24 +288,13 @@ const InvoicesTable = () => {
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
-              ref={filterButtonRef}
               onClick={() => {
-                setShowingFloatingFilter((c) => !c);
-                setTimeout(() => {
-                  document
-                    .querySelector(".ag-header-row-column-filter")
-                    ?.classList.toggle("hide");
-                  document
-                    .querySelectorAll(".ag-floating-filter")
-                    .forEach((elem) => {
-                      elem.classList.toggle("hide");
-                    });
-                }, 0);
+                setShowFilters(!showFilters);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
                 "all-orders__btn": true,
-                active: showingFloatingFilter,
+                active: showFilters,
               })}
             >
               <FilterSvg />
