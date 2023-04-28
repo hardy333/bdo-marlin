@@ -65,6 +65,7 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 
 import arrowDown from "../assets/arrow-down-catalogue.svg";
+import useFilterToggle from "../hooks/useFilterToggle";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -173,17 +174,6 @@ const CatalogueTable = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-  const filterButtonRef = useRef(null);
-
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 1000);
-
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -210,7 +200,7 @@ const CatalogueTable = () => {
       filter: true,
       flex: 1,
       minWidth: 150,
-      floatingFilter: showingFloatingFilter,
+      floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
       //   console.log(params.filterParams);
@@ -219,7 +209,7 @@ const CatalogueTable = () => {
       // },
       floatingFilterComponent: CustomInput,
     }),
-    [showingFloatingFilter]
+    []
   );
 
   // EVents
@@ -310,6 +300,8 @@ const CatalogueTable = () => {
     { value: "Baked Goods", label: "Baked Goods" },
   ];
 
+  const [showFilters, setShowFilters] = useFilterToggle();
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -320,27 +312,6 @@ const CatalogueTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>Catalogue</h4>
-
-            {/* <Menu
-              className="catalougue-menu"
-              menuButton={
-                <button className="catalogue-menu-btn">
-                  Snacks
-                  <img src={arrowDown} alt="" />
-                </button>
-              }
-              direction="bottom"
-              align="center"
-              transition
-            >
-              <MenuItem>Snacks </MenuItem>
-              <MenuItem>Frozen Goods</MenuItem>
-              <MenuItem>ready Meals</MenuItem>
-              <MenuItem>Sweats</MenuItem>
-              <MenuItem>Ice Creams</MenuItem>
-              <MenuItem>baverages</MenuItem>
-              <MenuItem>Baked Goods</MenuItem>
-            </Menu> */}
 
             <Select
               className="react-select-container"
@@ -355,24 +326,13 @@ const CatalogueTable = () => {
 
             {/* input filter */}
             <button
-              ref={filterButtonRef}
               onClick={() => {
-                setShowingFloatingFilter((c) => !c);
-                setTimeout(() => {
-                  document
-                    .querySelector(".ag-header-row-column-filter")
-                    ?.classList.toggle("hide");
-                  document
-                    .querySelectorAll(".ag-floating-filter")
-                    .forEach((elem) => {
-                      elem.classList.toggle("hide");
-                    });
-                }, 0);
+                setShowFilters(!showFilters);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
                 "all-orders__btn": true,
-                active: showingFloatingFilter,
+                active: showFilters,
               })}
             >
               <svg
