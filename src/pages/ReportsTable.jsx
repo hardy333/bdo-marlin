@@ -20,8 +20,8 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
-
-import "../styles/all-orders-parent.css";
+import "../styles/order-details.css";
+import "../styles/pending-status-menu.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -31,8 +31,6 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
-
-import reverseExpand from "../assets/revers-expand.svg";
 // Right Icons
 import expandSvg from "../assets/marlin-icons/expand.svg";
 import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
@@ -52,116 +50,100 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import ExpandingInput from "../components/ExpandingInput";
+
+import d from "../assets/MOCK_DATA-2.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
-import FilterSvg from "../components/FilterSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
+import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
+import { useSearchParams } from "react-router-dom";
 
-import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
-import { allOrdersParentColumns } from "../utils/columnsDefs";
-import { useNavigate } from "react-router-dom";
-
-const AllOrdersParent = () => {
+const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(
-    allOrdersParentColumns.map((obj) => ({ name: obj.name, isShowing: true }))
-  );
+  const [headerList, setHeaderList] = useState([
+    {
+      name: "barcode",
+      isShowing: true,
+    },
+    {
+      name: "Product",
+      isShowing: true,
+    },
+    {
+      name: "Quantity",
+      isShowing: true,
+    },
+    {
+      name: "Price",
+      isShowing: true,
+    },
+    {
+      name: "Amount",
+      isShowing: true,
+    },
+    {
+      name: "Reserved",
+      isShowing: true,
+    },
+    {
+      name: "Scheduled",
+      isShowing: true,
+    },
+  ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
+  const [rowData, setRowData] = useState([
+    { make: "Toyota", model: "Celica", price: 35000 },
+    { make: "Ford", model: "Mondeo", price: 32000 },
+    { make: "Porsche", model: "Boxster", price: 72000 },
+  ]);
 
-  const gridRef = useRef(null);
-
-  const [columnDefs] = useState(
-    allOrdersParentColumns.map((obj) => {
-      if (obj.name === "Shop #") {
-        return {
-          field: obj.name,
-          cellRenderer: (params) => {
-            const { value } = params;
-            return "SPAR" + String(value).padStart(3, "0");
-          },
-        };
-      }
-
-      if (obj.name === "Vendors") {
-        const vendors = [
-          "Orbita",
-          "Kant",
-          "Diplomat",
-          "Vest Inv.",
-          "Magako",
-          "GDM",
-          "Svaneti",
-        ];
-
-        return {
-          field: obj.name,
-          cellRenderer: (params) => {
-            return vendors[Math.floor(Math.random() * vendors.length)];
-          },
-        };
-      }
-
-      if (obj.name === "Amount") {
-        return {
-          field: obj.name,
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
-
-      if (obj.name === "Status") {
-        return {
-          field: obj.name,
-          cellRenderer: (params) => {
-            const { value } = params;
-            if (value % 3 === 0) {
-              return "Pending";
-            } else if (value % 3 === 1) {
-              return "In Progress";
-            } else {
-              return "Delivered";
-            }
-          },
-          cellStyle: (params) => {
-            if (params.value % 3 === 0) {
-              return {
-                color: "#FFC23C",
-              };
-            } else if (params.value % 3 === 1) {
-              return {
-                color: "#6E0FF5",
-              };
-            } else {
-              return {
-                color: "#01C6B5",
-              };
-            }
-          },
-        };
-      }
-
-      return {
-        field: obj.name,
-      };
-    })
-  );
+  const [columnDefs] = useState([
+    {
+      field: "barcode",
+      cellRenderer: (params) => {
+        const { value } = params;
+        const index = value.indexOf("-");
+        return value.slice(0, index);
+      },
+    },
+    {
+      field: "Product",
+    },
+    {
+      field: "Quantity",
+    },
+    {
+      field: "Price",
+    },
+    {
+      field: "Amount",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "GEL";
+      },
+    },
+    {
+      field: "Reserved",
+    },
+    {
+      field: "Scheduled",
+    },
+  ]);
+  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
+      // const data = await fetch_XLSX_DATA();
       d.splice(10, 2);
+
       setRowData(d);
     }
 
@@ -185,6 +167,7 @@ const AllOrdersParent = () => {
       floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
+      //   console.log(params.filterParams);
 
       //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
       // },
@@ -244,6 +227,9 @@ const AllOrdersParent = () => {
     };
   }, []);
 
+  // Row Height logic
+  // Row Height logic
+
   const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
@@ -266,64 +252,63 @@ const AllOrdersParent = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
+  const gridRef = useRef(null);
+
   const [showFilters, setShowFilters] = useFilterToggle();
 
-  useEffect(() => {
-    const x = document.querySelector(
-      ".all-orders-parent .ag-center-cols-container"
-    );
+  // URL info
+  const [searchParams] = useSearchParams();
+  let date = searchParams.get("date") || "01/30/2023";
+  let shop = searchParams.get("shop") || "SPAR001";
+  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
+  let vendor = searchParams.get("vendor") || "GDM";
+  let status = searchParams.get("status") || "Pending";
 
-    if (!x) return;
-
-    const handleGridClick = (e) => {
-      const t = e.target;
-      const row = t.closest(".ag-row");
-
-      const shop = row.querySelector(".ag-cell[col-id='Shop #']").innerText;
-
-      const date = row.querySelector(".ag-cell[col-id='Date']").innerText;
-      const status = row.querySelector(".ag-cell[col-id='Status']").innerText;
-      const vendor = row.querySelector(".ag-cell[col-id='Vendors']").innerText;
-      const shopAddress = row.querySelector(
-        ".ag-cell[col-id='Shop Address']"
-      ).innerText;
-
-      console.log(shop);
-      console.log(date);
-      console.log(vendor);
-      console.log(shopAddress);
-      console.log(status);
-
-      navigate(
-        `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
-      );
-    };
-
-    x.addEventListener("click", handleGridClick);
-
-    return () => {
-      x.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi, gridRef]);
-
-  const navigate = useNavigate();
+  let statusBg;
+  if (status === "In Progress") {
+    statusBg = "#6E0FF5";
+  } else if (status === "Delivered") {
+    statusBg = "#01C6B5";
+  } else {
+    statusBg = "#FFC23C";
+  }
 
   return (
     <DashboardLayout>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="all-orders__gdm-container"
+            className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders:</span>
-            <span style={{ color: "#6E0FF5" }}>GDM</span>
+            <h4>order Details</h4>
+            <span>{vendor}</span>
+            <span>{shopAddress}</span>
+            <span>{date}</span>
+            <Menu
+              className="pending-status-menu"
+              menuButton={
+                <button
+                  style={{ backgroundColor: statusBg, color: "#fff" }}
+                  className="btn "
+                >
+                  {status}
+                </button>
+              }
+              direction="bottom"
+              align="center"
+              transition
+            >
+              <MenuItem>Approvrd 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
+            </Menu>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
+
             {/* input filter */}
             <button
               onClick={() => {
@@ -335,7 +320,25 @@ const AllOrdersParent = () => {
                 active: showFilters,
               })}
             >
-              <FilterSvg />
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 47.28 33.65"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+              </svg>
             </button>
             {/* popup */}
             <Menu
@@ -343,7 +346,25 @@ const AllOrdersParent = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <ColumnHideSvg />
+                  <svg
+                    id="Layer_3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 33.58 47.28"
+                  >
+                    <defs></defs>
+                    <path
+                      className="cls-1"
+                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                  </svg>
                 </MenuButton>
               }
               transition
@@ -416,6 +437,7 @@ const AllOrdersParent = () => {
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
                 "all-orders__btn": true,
+                active: isFullScreen,
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
@@ -424,11 +446,17 @@ const AllOrdersParent = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example all-orders-parent"
+        className="ag-theme-alpine ag-grid-example"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
           ref={gridRef}
+          onGridReady={onGridReady}
+          rowData={rowData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          pagination={true}
+          components={components}
           getRowHeight={() => {
             if (rowHeightIndex === 0) {
               return 25;
@@ -438,13 +466,6 @@ const AllOrdersParent = () => {
               return 37;
             }
           }}
-          // rowStyle={{ maxHeight: "20px", height: "10px" }}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
           // enableRangeSelection={true}
           // copyHeadersToClipboard={true}
           // rowSelection={"multiple"}
@@ -482,4 +503,4 @@ const AllOrdersParent = () => {
   );
 };
 
-export default AllOrdersParent;
+export default ReportsTable;

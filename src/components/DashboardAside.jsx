@@ -23,6 +23,7 @@ import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 import marlinText from "../assets/navbar/marlin-text.svg";
 import { Link } from "react-router-dom";
 import asideBtn from "../assets/aside-btn.svg";
+import reportSvg from "../assets/reports.svg";
 
 const DashboardAside = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -123,6 +124,12 @@ const DashboardAside = () => {
             <Link to="/invoices-table">
               <img src={invoices} alt="" />
               <span className="aside-label">ინვოისები</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/Reports">
+              <img src={reportSvg} alt="" />
+              <span className="aside-label">რეპორტები</span>
             </Link>
           </li>
           <li>

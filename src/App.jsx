@@ -35,6 +35,7 @@ import AllOrdersParent from "./pages/AllOrdersParent";
 import LogsTable from "./pages/LogsTable";
 import CatalogueTable from "./pages/CatalogueTable";
 import TableTest from "./pages/TableTest";
+import ReportsTable from "./pages/ReportsTable";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -73,6 +74,7 @@ function App() {
             <Route path="/logs" element={<LogsTable />} />
             <Route path="/catalogue" element={<CatalogueTable />} />
             <Route path="/table-test" element={<TableTest />} />
+            <Route path="/reports" element={<ReportsTable />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
