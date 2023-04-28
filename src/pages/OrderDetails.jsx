@@ -258,11 +258,11 @@ const OrderDetails = () => {
 
   // URL info
   const [searchParams] = useSearchParams();
-  const date = searchParams.get("date");
-  const shop = searchParams.get("shop");
-  const shopAddress = searchParams.get("shopAddress");
-  const vendor = searchParams.get("vendor");
-  const status = searchParams.get("status");
+  let date = searchParams.get("date") || "01/30/2023";
+  let shop = searchParams.get("shop") || "SPAR001";
+  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
+  let vendor = searchParams.get("vendor") || "GDM";
+  let status = searchParams.get("status") || "Pending";
 
   let statusBg;
   if (status === "In Progress") {
@@ -289,7 +289,10 @@ const OrderDetails = () => {
             <Menu
               className="pending-status-menu"
               menuButton={
-                <button style={{ backgroundColor: statusBg }} className="btn ">
+                <button
+                  style={{ backgroundColor: statusBg, color: "#fff" }}
+                  className="btn "
+                >
                   {status}
                 </button>
               }
