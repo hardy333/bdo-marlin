@@ -10,7 +10,6 @@ const useFilterToggle = () => {
     if (!filterRow) return;
 
     if (!showFilters) {
-      console.log("12");
       filterRow.style.display = "none";
     } else {
       filterRow.style.display = "block";

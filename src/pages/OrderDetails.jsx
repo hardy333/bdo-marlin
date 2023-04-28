@@ -58,6 +58,7 @@ import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
+import useFilterToggle from "../hooks/useFilterToggle";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -136,17 +137,6 @@ const OrderDetails = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-  const filterButtonRef = useRef(null);
-
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 1000);
-
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -173,7 +163,7 @@ const OrderDetails = () => {
       filter: true,
       flex: 1,
       minWidth: 150,
-      floatingFilter: showingFloatingFilter,
+      floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
       //   console.log(params.filterParams);
@@ -182,7 +172,7 @@ const OrderDetails = () => {
       // },
       floatingFilterComponent: CustomInput,
     }),
-    [showingFloatingFilter]
+    []
   );
 
   // EVents
@@ -263,6 +253,8 @@ const OrderDetails = () => {
   };
   const gridRef = useRef(null);
 
+  const [showFilters, setShowFilters] = useFilterToggle();
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -294,24 +286,13 @@ const OrderDetails = () => {
 
             {/* input filter */}
             <button
-              ref={filterButtonRef}
               onClick={() => {
-                setShowingFloatingFilter((c) => !c);
-                setTimeout(() => {
-                  document
-                    .querySelector(".ag-header-row-column-filter")
-                    ?.classList.toggle("hide");
-                  document
-                    .querySelectorAll(".ag-floating-filter")
-                    .forEach((elem) => {
-                      elem.classList.toggle("hide");
-                    });
-                }, 0);
+                setShowFilters(!showFilters);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
                 "all-orders__btn": true,
-                active: showingFloatingFilter,
+                active: showFilters,
               })}
             >
               <svg
