@@ -41,11 +41,12 @@ import filterSvg from "../assets/marlin-icons/filter-lines.svg";
 import optionsLines from "../assets/marlin-icons/options-lines.svg";
 
 import classNames from "classnames";
-import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 import "../styles/catalogue.css";
+
+import Select from "react-select";
 
 // css
 import "../styles/ag-grid.css";
@@ -299,6 +300,16 @@ const CatalogueTable = () => {
   };
   const gridRef = useRef(null);
 
+  const options = [
+    { value: "Snacks", label: "Snacks" },
+    { value: "Frozen Goods", label: "Frozen Goods" },
+    { value: "Ready Meals", label: "Ready Meals" },
+    { value: "Sweets", label: "Sweets" },
+    { value: "Ice Cream", label: "Ice Cream" },
+    { value: "beverages", label: "Beverages" },
+    { value: "Baked Goods", label: "Baked Goods" },
+  ];
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -310,7 +321,7 @@ const CatalogueTable = () => {
           >
             <h4>Catalogue</h4>
 
-            <Menu
+            {/* <Menu
               className="catalougue-menu"
               menuButton={
                 <button className="catalogue-menu-btn">
@@ -329,7 +340,14 @@ const CatalogueTable = () => {
               <MenuItem>Ice Creams</MenuItem>
               <MenuItem>baverages</MenuItem>
               <MenuItem>Baked Goods</MenuItem>
-            </Menu>
+            </Menu> */}
+
+            <Select
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={options}
+              defaultValue={{ value: "vanilla", label: "Vanilla" }}
+            />
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

@@ -1,9 +1,9 @@
 .pending-status-menu{
-  background-color: red;
 }
 
 .pending-status-menu ul{
   padding: 5px 30px;
+  margin-top: 5px !important;
 
 }
 

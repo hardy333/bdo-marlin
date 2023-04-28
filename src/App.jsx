@@ -8,6 +8,7 @@ import "./styles/scrollbars.css";
 import "./styles/aside.css";
 import "./styles/components.css";
 import "./styles/modal.css";
+import "./styles/react-select.css";
 
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AllOrders from "./pages/AllOrders";

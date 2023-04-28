@@ -2,17 +2,38 @@ import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import { Switch } from "@mui/material";
 import "../styles/switch.css";
+import Select from "react-select";
 
 const Test = () => {
+  const options = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
+  ];
+
+  console.log(options);
+
   return (
     <DashboardLayout>
       <div style={{ paddingLeft: "100px" }}>
-        <div class="switch">
-          <input type="checkbox" id="switch1" class="switch__input" />
-          <label htmlFor="switch1" class="switch__label">
-            Switch 1
-          </label>
-        </div>
+        <h2>Select example</h2>
+        <Select
+          className="react-select-container"
+          classNamePrefix="react-select"
+          // isSearchable={false}
+          options={options}
+          defaultValue={{ value: "vanilla", label: "Vanilla" }}
+          styles={{
+            control: (baseStyles, state) => {
+              console.log(baseStyles);
+
+              return {
+                ...baseStyles,
+                borderColor: state.isFocused ? "green" : "red",
+              };
+            },
+          }}
+        />
       </div>
     </DashboardLayout>
   );
