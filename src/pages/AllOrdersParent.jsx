@@ -21,6 +21,8 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 
+import "../styles/all-orders-parent.css";
+
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
 import expand from "../assets/all-orders/expand.svg";
@@ -62,6 +64,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 
 import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
 import { allOrdersParentColumns } from "../utils/columnsDefs";
+import { useNavigate } from "react-router-dom";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -82,6 +85,25 @@ const AllOrdersParent = () => {
           cellRenderer: (params) => {
             const { value } = params;
             return "SPAR" + String(value).padStart(3, "0");
+          },
+        };
+      }
+
+      if (obj.name === "Vendors") {
+        const vendors = [
+          "Orbita",
+          "Kant",
+          "Diplomat",
+          "Vest Inv.",
+          "Magako",
+          "GDM",
+          "Svaneti",
+        ];
+
+        return {
+          field: obj.name,
+          cellRenderer: (params) => {
+            return vendors[Math.floor(Math.random() * vendors.length)];
           },
         };
       }
@@ -132,8 +154,6 @@ const AllOrdersParent = () => {
       };
     })
   );
-
-  console.log(d);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -245,6 +265,46 @@ const AllOrdersParent = () => {
     }
   };
   const [showFilters, setShowFilters] = useFilterToggle();
+
+  useEffect(() => {
+    const x = document.querySelector(
+      ".all-orders-parent .ag-center-cols-container"
+    );
+
+    if (!x) return;
+
+    const handleGridClick = (e) => {
+      const t = e.target;
+      const row = t.closest(".ag-row");
+
+      const shop = row.querySelector(".ag-cell[col-id='Shop #']").innerText;
+
+      const date = row.querySelector(".ag-cell[col-id='Date']").innerText;
+      const status = row.querySelector(".ag-cell[col-id='Status']").innerText;
+      const vendor = row.querySelector(".ag-cell[col-id='Vendors']").innerText;
+      const shopAddress = row.querySelector(
+        ".ag-cell[col-id='Shop Address']"
+      ).innerText;
+
+      console.log(shop);
+      console.log(date);
+      console.log(vendor);
+      console.log(shopAddress);
+      console.log(status);
+
+      navigate(
+        `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
+      );
+    };
+
+    x.addEventListener("click", handleGridClick);
+
+    return () => {
+      x.removeEventListener("click", handleGridClick);
+    };
+  }, [gridApi, gridRef]);
+
+  const navigate = useNavigate();
 
   return (
     <DashboardLayout>
@@ -362,7 +422,7 @@ const AllOrdersParent = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example all-orders-parent"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

@@ -59,6 +59,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
+import { useSearchParams } from "react-router-dom";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -255,6 +256,23 @@ const OrderDetails = () => {
 
   const [showFilters, setShowFilters] = useFilterToggle();
 
+  // URL info
+  const [searchParams] = useSearchParams();
+  const date = searchParams.get("date");
+  const shop = searchParams.get("shop");
+  const shopAddress = searchParams.get("shopAddress");
+  const vendor = searchParams.get("vendor");
+  const status = searchParams.get("status");
+
+  let statusBg;
+  if (status === "In Progress") {
+    statusBg = "#6E0FF5";
+  } else if (status === "Delivered") {
+    statusBg = "#01C6B5";
+  } else {
+    statusBg = "#FFC23C";
+  }
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -265,12 +283,16 @@ const OrderDetails = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>order Details</h4>
-            <span>GDM</span>
-            <span>A.Tsereteli 65</span>
-            <span>10/02/2023</span>
+            <span>{vendor}</span>
+            <span>{shopAddress}</span>
+            <span>{date}</span>
             <Menu
               className="pending-status-menu"
-              menuButton={<button className="btn btn-warning">Pending</button>}
+              menuButton={
+                <button style={{ backgroundColor: statusBg }} className="btn ">
+                  {status}
+                </button>
+              }
               direction="bottom"
               align="center"
               transition
