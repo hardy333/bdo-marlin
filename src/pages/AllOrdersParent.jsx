@@ -58,108 +58,89 @@ import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import useFilterToggle from "../hooks/useFilterToggle";
+
+import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
+import { allOrdersParentColumns } from "../utils/columnsDefs";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isBigRow, setIsBigRow] = useState(true);
-
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "Number",
-      isShowing: true,
-    },
-    {
-      name: "Item",
-      isShowing: true,
-    },
-    {
-      name: "Ordered",
-      isShowing: true,
-    },
-    {
-      name: "Delivered",
-      isShowing: true,
-    },
-    {
-      name: "In time",
-      isShowing: true,
-    },
-    {
-      name: "Service Level",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(allOrdersParentColumns);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 },
-  ]);
+  const [rowData, setRowData] = useState(null);
 
   const gridRef = useRef(null);
 
-  const [columnDefs] = useState([
-    {
-      field: "Number",
-      // cellRendererFramework: (params) => {
-      //   return <div>Hello</div>;
-      // },
-    },
-    {
-      field: "Item",
-    },
-    {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
-    },
-    {
-      field: "Delivered",
-    },
-    {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
-      },
-    },
-    {
-      field: "Service level",
-      minWidth: 150,
-      // hide: true,
-    },
-  ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
+  const [columnDefs] = useState(
+    allOrdersParentColumns.map((obj) => {
+      if (obj.name === "Shop #") {
+        return {
+          field: obj.name,
+          cellRenderer: (params) => {
+            const { value } = params;
+            return "SPAR" + String(value).padStart(3, "0");
+          },
+        };
+      }
+
+      if (obj.name === "Amount") {
+        return {
+          field: obj.name,
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        };
+      }
+
+      if (obj.name === "Status") {
+        return {
+          field: obj.name,
+          cellRenderer: (params) => {
+            const { value } = params;
+            if (value % 3 === 0) {
+              return "Pending";
+            } else if (value % 3 === 1) {
+              return "In Progress";
+            } else {
+              return "Delivered";
+            }
+          },
+          cellStyle: (params) => {
+            if (params.value % 3 === 0) {
+              return {
+                color: "#FFC23C",
+              };
+            } else if (params.value % 3 === 1) {
+              return {
+                color: "#6E0FF5",
+              };
+            } else {
+              return {
+                color: "#01C6B5",
+              };
+            }
+          },
+        };
+      }
+
+      return {
+        field: obj.name,
+      };
+    })
+  );
+
+  console.log(d);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-  const filterButtonRef = useRef(null);
-
-  useEffect(() => {
-    const filterButtonTimeout = setTimeout(() => {
-      filterButtonRef.current.click();
-    }, 100);
-
-    return () => {
-      clearTimeout(filterButtonTimeout);
-    };
-  }, []);
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch_XLSX_DATA();
-
-      setRowData(data["By item"]);
+      d.splice(10, 2);
+      setRowData(d);
     }
 
     fetchData();
@@ -179,7 +160,7 @@ const AllOrdersParent = () => {
       filter: true,
       flex: 1,
       minWidth: 150,
-      floatingFilter: showingFloatingFilter,
+      floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
 
@@ -187,7 +168,7 @@ const AllOrdersParent = () => {
       // },
       floatingFilterComponent: CustomInput,
     }),
-    [showingFloatingFilter]
+    []
   );
 
   // EVents
@@ -241,13 +222,6 @@ const AllOrdersParent = () => {
     };
   }, []);
 
-  // const sortByAthleteDesc = () => {
-  //   gridColumnApi.applyColumnState({
-  //     state: [{ colId: "Number", sort: "desc" }],
-  //     defaultState: { sort: null },
-  //   });
-  // };
-
   const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
@@ -270,6 +244,7 @@ const AllOrdersParent = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
+  const [showFilters, setShowFilters] = useFilterToggle();
 
   return (
     <DashboardLayout>
@@ -289,24 +264,13 @@ const AllOrdersParent = () => {
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
-              ref={filterButtonRef}
               onClick={() => {
-                setShowingFloatingFilter((c) => !c);
-                setTimeout(() => {
-                  document
-                    .querySelector(".ag-header-row-column-filter")
-                    ?.classList.toggle("hide");
-                  document
-                    .querySelectorAll(".ag-floating-filter")
-                    .forEach((elem) => {
-                      elem.classList.toggle("hide");
-                    });
-                }, 0);
+                setShowFilters(!show);
               }}
               className={classNames({
                 "all-orders__btn-filter": true,
                 "all-orders__btn": true,
-                active: showingFloatingFilter,
+                active: showFilters,
               })}
             >
               <FilterSvg />
