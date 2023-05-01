@@ -38,6 +38,8 @@ const Home = () => {
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
             <Link to="/reports">service level reports</Link>
+            <br />
+            <Link to="/new-catalogue">New Catalogue</Link>
           </div>
         </div>
       </section>
