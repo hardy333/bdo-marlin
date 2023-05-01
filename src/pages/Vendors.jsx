@@ -16,7 +16,7 @@ const Vendors = () => {
     0,
   ]);
 
-  const [isChecked, setISChecked] = useState(true);
+  const [isChecked, setISChecked] = useState(false);
 
   return (
     <DashboardLayout>
