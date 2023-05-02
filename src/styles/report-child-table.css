@@ -1,0 +1,104 @@
+.report-child-header .title{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+
+}
+
+.report-child-header .vendor-name{
+  margin-right: 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+
+}
+
+.report-child-header .avarage{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.report-child-header .avarage-parcent{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #01C6B5;
+
+}
+
+/*  */
+/* service child menu : items, shops... */
+.report-child-menu{
+
+}
+
+.report-child-menu ul{
+  background: #FFFFFF;
+  box-shadow: 0px 3px 5px rgba(208, 199, 232, 0.5) !important;
+  border-radius: 15px !important;
+  overflow: hidden;
+}
+
+.report-child-menu-button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.report-child-menu-button:hover{
+  background: #ebe8f5ac;
+}
+
+/*  */
+/*  */
+/*  */
+
+
+
+
+.report-child-menu .szh-menu__item{
+  padding: 0;
+  height: 30px;  
+
+  display: flex;
+  align-items: center;  
+  gap: 1rem;
+  padding: 10px;
+  color: #D0C7E8;
+}
+
+
+.report-child-menu .szh-menu__item.selected{
+  color: rgb(26, 31, 61);
+
+}
+
+.report-child-menu .szh-menu__item svg{
+  width: 15px !important;
+  fill: #D0C7E8;
+  
+}
+
+.report-child-menu .szh-menu__item--hover{
+  background-color: #fff;
+  color: rgba(26, 31, 61, 0.578);
+}
+
+.report-child-menu .szh-menu__item--hover svg{
+  fill: rgba(26, 31, 61, 0.578);
+}
+
+.report-child-menu .szh-menu__item.selected svg{
+  fill: rgb(26, 31, 61);
+
+}
+
+

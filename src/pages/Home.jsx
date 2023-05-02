@@ -32,14 +32,25 @@ const Home = () => {
           <div className="home-links">
             <small>New Tables</small>
             <Link to="/ag-table">ag table</Link>
+            <br />
+            <small>Orders</small>
+            <hr />
             <Link to="/all-orders-parent">All Orders</Link>
             <Link to="/order-details">Order Details</Link>
+            <hr />
+
+            <br />
+            <small>Reports</small>
+            <hr />
+            <Link to="/reports">service level reports</Link>
+            <Link to="/reports-child">service level reports details</Link>
+            <hr />
+            <br />
+            <small>Single tables</small>
+            <Link to="/new-catalogue">New Catalogue</Link>
             <Link to="/invoices-table">Invoices Table</Link>
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
-            <Link to="/reports">service level reports</Link>
-            <br />
-            <Link to="/new-catalogue">New Catalogue</Link>
           </div>
         </div>
       </section>
