@@ -2,3 +2,14 @@
   cursor: pointer;
   
 }
+
+.all-orders-parent .ag-cell-focus{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.all-orders-parent .ag-row-focus{
+  filter: brightness(90%);
+
+}

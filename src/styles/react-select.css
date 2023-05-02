@@ -87,10 +87,8 @@
 
 
 .react-select__menu{
-  background-color: red;
   border-radius: 15px !important;
   overflow: hidden;
-  border-color: yellow !important;
 
 
   z-index: 999999999999999999999 !important;
@@ -99,6 +97,7 @@
 }
 
 .react-select__menu-list{
+  /* padding-inline: 20px; */
 
 }
 
@@ -115,8 +114,20 @@
   padding-inline: 0;
   cursor: pointer !important;
 
+  position: relative;
 
 }
+
+/* .react-select__option:before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  height: 0.5px;
+  width: calc(100% - 20px);
+  background-color: black;
+} */
 
 .react-select__option:last-child{
   border-bottom: none;
