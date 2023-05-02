@@ -1,39 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
-import { Switch } from "@mui/material";
 import "../styles/switch.css";
-import Select from "react-select";
+import ReactPaginate from "react-paginate";
+import "../styles/pag-test.css";
+
+const items = Array.from({ length: 1000 }).map((_, index) => index);
 
 const Test = () => {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  // const [itemOffset, setItemOffset] = useState(0);
+  // const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  console.log(options);
+  // const endOffset = itemOffset + itemsPerPage;
+  // const currentItems = items.slice(itemOffset, endOffset);
+  // const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  // const handlePageClick = (event) => {
+  //   console.log(typeof event.selected);
+  //   const newOffset = (event.selected * itemsPerPage) % items.length;
+  //   setItemOffset(newOffset);
+  // };
+
+  const changePage = (event) => {
+    console.log(event.selected);
+  };
 
   return (
     <DashboardLayout>
       <div style={{ paddingLeft: "100px" }}>
-        <h2>Select example</h2>
-        <Select
-          className="react-select-container"
-          classNamePrefix="react-select"
-          // isSearchable={false}
-          options={options}
-          defaultValue={{ value: "vanilla", label: "Vanilla" }}
-          styles={{
-            control: (baseStyles, state) => {
-              console.log(baseStyles);
+        {/* {items &&
+          items.map((item) => (
+            <div key={item}>
+              <h3>Item #{item}</h3>
+            </div>
+          ))} */}
 
-              return {
-                ...baseStyles,
-                borderColor: state.isFocused ? "green" : "red",
-              };
-            },
-          }}
-        />
+        <div className="pag-container">
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={changePage}
+            pageCount={50}
+            pageRangeDisplayed={2}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            marginPagesDisplayed={2}
+          />
+        </div>
       </div>
     </DashboardLayout>
   );

@@ -288,12 +288,6 @@ const AllOrdersParent = () => {
         ".ag-cell[col-id='Shop Address']"
       ).innerText;
 
-      console.log(shop);
-      console.log(date);
-      console.log(vendor);
-      console.log(shopAddress);
-      console.log(status);
-
       navigate(
         `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
       );

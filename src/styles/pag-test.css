@@ -1,0 +1,46 @@
+.ag-grid-example #ag-3{
+  position: relative;
+}
+
+.pag-container{
+  display: flex !important;
+  flex-direction: row !important;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.pag-container ul{
+  display: flex;
+  gap: 0.5rem;
+
+}
+
+.pag-container li a{
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 15px;
+text-align: center;
+
+color: #D0C7E8;
+
+}
+
+.pag-container li.selected a{
+
+  color: black;
+}
+
+.pag-container li a:hover{
+  color: rgba(0, 0, 0, 0.49);
+}
+
+.pag-container li.break a{
+  background-color: transparent;
+
+}

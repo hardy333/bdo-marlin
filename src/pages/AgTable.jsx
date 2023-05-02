@@ -59,6 +59,7 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
+import AgTablePag from "../components/AgTablePag";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -407,7 +408,6 @@ const AgTable = () => {
           // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
-
         <Menu
           className="page-size-menu"
           align="end"
@@ -433,6 +433,7 @@ const AgTable = () => {
             );
           })}
         </Menu>
+        <AgTablePag gridRef={gridRef} />
       </div>
     </DashboardLayout>
   );
