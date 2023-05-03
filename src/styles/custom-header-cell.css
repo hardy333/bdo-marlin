@@ -92,6 +92,11 @@
   width: 200px;
 } 
 
+.header-cell-menu-geo .szh-menu{
+  width: 240px;
+
+}
+
 .header-cell-menu .szh-menu svg{
   --size: 15px;
   width: var(--size);
@@ -167,3 +172,5 @@
   transform: translate(0, -50%) rotate(0deg);
 
 }
+
+

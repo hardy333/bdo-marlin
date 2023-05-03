@@ -67,6 +67,7 @@ import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
 import d from "../assets/products.json";
+import CustomHeaderCellGeo from "../components/CustomHeaderCellgeo";
 
 const CatalogueTablegeo = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -280,7 +281,7 @@ const CatalogueTablegeo = () => {
 
   const components = useMemo(() => {
     return {
-      agColumnHeader: CustomHeaderCell,
+      agColumnHeader: CustomHeaderCellGeo,
     };
   }, []);
 
