@@ -52,6 +52,10 @@ const Home = () => {
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
           </div>
+          <div className="home-links">
+            <small>Geo tables</small>
+            <Link to="/catalogue-geo">Catalogue geo</Link>
+          </div>
         </div>
       </section>
     </DashboardLayout>

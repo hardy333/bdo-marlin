@@ -39,6 +39,7 @@ import ReportsTable from "./pages/ReportsTable";
 import Contract from "./pages/Contract";
 import NewCatalogueTable from "./pages/NewCatalogueTable";
 import ReportsChildTable from "./pages/ReportsChildTable";
+import CatalogueTableGeo from "./pages/CatalogueTableGeo";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -81,6 +82,7 @@ function App() {
             <Route path="/contract" element={<Contract />} />
             <Route path="/new-catalogue" element={<NewCatalogueTable />} />
             <Route path="/reports-child" element={<ReportsChildTable />} />
+            <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </QueryClientProvider>
