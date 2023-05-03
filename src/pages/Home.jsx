@@ -55,6 +55,7 @@ const Home = () => {
           <div className="home-links">
             <small>Geo tables</small>
             <Link to="/catalogue-geo">Catalogue geo</Link>
+            <Link to="/catalogue-geo-resize">Catalogue geo with resize </Link>
           </div>
         </div>
       </section>
