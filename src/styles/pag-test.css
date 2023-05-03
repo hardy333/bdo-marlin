@@ -1,6 +1,9 @@
 .ag-grid-example #ag-3{
   position: relative;
 }
+.ag-paging-panel{
+  position: relative;
+}
 
 .pag-container{
   display: flex !important;

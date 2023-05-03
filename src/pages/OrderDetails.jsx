@@ -60,6 +60,7 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
+import AgTablePag from "../components/AgTablePag";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -182,6 +183,7 @@ const OrderDetails = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true);
   };
 
   const onFilterTextChange = (e) => {
@@ -272,6 +274,8 @@ const OrderDetails = () => {
   } else {
     statusBg = "#FFC23C";
   }
+
+  const [gridReady, setGridReady] = useState(false);
 
   return (
     <DashboardLayout>
@@ -472,6 +476,8 @@ const OrderDetails = () => {
           // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
+
+        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={67} />}
 
         <Menu
           className="page-size-menu"

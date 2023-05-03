@@ -60,6 +60,7 @@ import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
+import xlsExport from "xlsexport";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -187,6 +188,7 @@ const AgTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true);
   };
 
   const onFilterTextChange = (e) => {
@@ -264,6 +266,13 @@ const AgTable = () => {
 
   const [showFilters, setShowFilters] = useFilterToggle();
 
+  const exportData = () => {
+    const xls = new xlsExport(rowData);
+    xls.exportToXLS("export.xls");
+  };
+
+  const [gridReady, setGridReady] = useState(false);
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -294,6 +303,10 @@ const AgTable = () => {
             >
               <FilterSvg />
             </button>
+            <button onClick={exportData} style={{ background: "red" }}>
+              EX
+            </button>
+
             {/* popup */}
             <Menu
               align="center"
@@ -433,7 +446,7 @@ const AgTable = () => {
             );
           })}
         </Menu>
-        <AgTablePag gridRef={gridRef} />
+        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
       </div>
     </DashboardLayout>
   );
