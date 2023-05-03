@@ -61,6 +61,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
 import xlsExport from "xlsexport";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -268,7 +269,7 @@ const AgTable = () => {
 
   const exportData = () => {
     const xls = new xlsExport(rowData);
-    xls.exportToXLS("export.xls");
+    xls.exportToXLS("all-orders-gdm.xls");
   };
 
   const [gridReady, setGridReady] = useState(false);
@@ -302,9 +303,6 @@ const AgTable = () => {
               })}
             >
               <FilterSvg />
-            </button>
-            <button onClick={exportData} style={{ background: "red" }}>
-              EX
             </button>
 
             {/* popup */}
@@ -389,6 +387,12 @@ const AgTable = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={exportData}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

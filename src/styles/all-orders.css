@@ -156,6 +156,16 @@
     width: 27px;
 }
 
+.excel-export-btn{
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.excel-export-btn svg{
+    width: 50px !important;
+    height: 20px !important;
+}
+
 /* Table */
 /* Table */
 /* Table */
