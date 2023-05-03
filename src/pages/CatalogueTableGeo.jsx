@@ -75,16 +75,16 @@ const CatalogueTablegeo = () => {
   const [headerList, setHeaderList] = useState([
     {
       name: "ProductID",
-      showingName: "პროდუქტის ID",
+      showingName: "ბარკოდი",
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "Name",
       showingName: "სახელი",
       isShowing: true,
     },
     {
-      name: "Units",
+      name: "Unit",
       showingName: "რაოდენობა",
       isShowing: true,
     },
@@ -99,7 +99,7 @@ const CatalogueTablegeo = () => {
       isShowing: true,
     },
     {
-      name: "Last Change Date",
+      name: "LastChangeDate",
       showingName: "წინა შეცვლილი დრო",
       isShowing: true,
     },
@@ -121,8 +121,8 @@ const CatalogueTablegeo = () => {
   const [columnDefs] = useState([
     {
       field: "ProductID",
-      minWidth: 195,
-      headerName: "პროდუქტის ID",
+      minWidth: 150,
+      headerName: "ბარკოდი",
       cellRenderer: (params) => {
         return params.value;
       },
