@@ -73,31 +73,38 @@ const CatalogueTablegeo = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "Barcode",
+      name: "ProductID",
+      showingName: "პროდუქტის ID",
       isShowing: true,
     },
     {
       name: "Product",
+      showingName: "სახელი",
       isShowing: true,
     },
     {
       name: "Units",
+      showingName: "რაოდენობა",
       isShowing: true,
     },
     {
       name: "Price",
+      showingName: "ფასი",
       isShowing: true,
     },
     {
       name: "Last Order Price",
+      showingName: "წინა შეკვეთილი ფასი",
       isShowing: true,
     },
     {
       name: "Last Change Date",
+      showingName: "წინა შეცვლილი დრო",
       isShowing: true,
     },
     {
       name: "Status",
+      showingName: "სტატუსი",
       isShowing: true,
     },
   ]);
@@ -121,7 +128,7 @@ const CatalogueTablegeo = () => {
     },
     {
       field: "Name",
-      headerName: "სახეხლი",
+      headerName: "სახელი",
     },
     {
       field: "Unit",
@@ -163,7 +170,7 @@ const CatalogueTablegeo = () => {
     },
     {
       field: "LastChangeDate",
-      headerName: "წინა შეცვლილი ფასი",
+      headerName: "წინა შეცვლილი დრო",
       minWidth: 260,
     },
     {
@@ -441,7 +448,7 @@ const CatalogueTablegeo = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>
