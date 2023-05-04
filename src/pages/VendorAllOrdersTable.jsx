@@ -172,6 +172,7 @@ const VendorAllOrdersTable = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       rowHeightBtnRef.current.click();
+      console.log("Hello row height change");
     }, 500);
 
     return () => {
@@ -247,13 +248,17 @@ const VendorAllOrdersTable = () => {
       return 170;
     }
 
-    if (rowHeightIndex === 0) {
-      return 25;
-    } else if (rowHeightIndex === 1) {
-      return 32;
-    } else if (rowHeightIndex === 2) {
-      return 37;
-    }
+    console.log(rowHeightIndex);
+
+    // if (rowHeightIndex === 0) {
+    //   return 25;
+    // } else if (rowHeightIndex === 1) {
+    //   return 32;
+    // } else if (rowHeightIndex === 2) {
+    //   return 37;
+    // }
+
+    return 32;
   }
 
   return (
