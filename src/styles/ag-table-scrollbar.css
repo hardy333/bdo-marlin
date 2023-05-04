@@ -1,11 +1,11 @@
 
 
 .ag-body-horizontal-scroll-viewport{
-  display: none !important;
+  /* display: none !important; */
 
 }
 
-@media (max-width: 600px){
+@media (max-width: 1200px){
 
   .ag-body-horizontal-scroll-viewport{
     /* display:  block !important; */

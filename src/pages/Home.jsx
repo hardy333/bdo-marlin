@@ -62,6 +62,7 @@ const Home = () => {
             <Link to="/invoices-table">Invoices Table</Link>
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
+            <Link to="/stable-table">Stable Table</Link>
             <hr />
           </div>
           <div className="home-links">

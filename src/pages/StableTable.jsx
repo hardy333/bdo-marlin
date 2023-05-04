@@ -20,8 +20,6 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -31,9 +29,8 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
-import triangleRed from "../assets/triangle-red.svg";
-import triangleGreen from "../assets/triangle-green.svg";
 
+import reverseExpand from "../assets/revers-expand.svg";
 // Right Icons
 import expandSvg from "../assets/marlin-icons/expand.svg";
 import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
@@ -41,12 +38,10 @@ import filterSvg from "../assets/marlin-icons/filter-lines.svg";
 import optionsLines from "../assets/marlin-icons/options-lines.svg";
 
 import classNames from "classnames";
+import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
-import "../styles/catalogue.css";
-
-import Select from "react-select";
 
 // css
 import "../styles/ag-grid.css";
@@ -55,48 +50,47 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-
-import d from "../assets/CATALOGUE_MOCK_DATA.json";
+import ExpandingInput from "../components/ExpandingInput";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
+import ColumnHideSvg from "../components/ColumnHideSvg";
+import FilterSvg from "../components/FilterSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-
-import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
+import AgTablePag from "../components/AgTablePag";
+import xlsExport from "xlsexport";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
-const CatalogueTable = () => {
+const StableTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isBigRow, setIsBigRow] = useState(true);
+
   const [headerList, setHeaderList] = useState([
     {
-      name: "Barcode",
+      name: "Number",
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "Item",
       isShowing: true,
     },
     {
-      name: "Units",
+      name: "Ordered",
       isShowing: true,
     },
     {
-      name: "Price",
+      name: "Delivered",
       isShowing: true,
     },
     {
-      name: "Last Order Price",
+      name: "In time",
       isShowing: true,
     },
     {
-      name: "Last Change Date",
-      isShowing: true,
-    },
-    {
-      name: "Status",
+      name: "Service Level",
       isShowing: true,
     },
   ]);
@@ -105,66 +99,41 @@ const CatalogueTable = () => {
 
   const [rowData, setRowData] = useState(null);
 
+  const gridRef = useRef(null);
+
   const [columnDefs] = useState([
     {
-      field: "Barcode",
-      cellRenderer: (params) => {
-        const { value } = params;
-        const index = value.indexOf("-");
-        return value.slice(0, index);
+      field: "Number",
+    },
+    {
+      field: "Item",
+    },
+    {
+      field: "Ordered",
+      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
+    },
+    {
+      field: "Delivered",
+    },
+    {
+      field: "In time",
+      cellStyle: (params) => {
+        if (params.value === "Yes") {
+          return {
+            color: "#FFC23C",
+            fontWeight: 600,
+          };
+        } else {
+          return {
+            color: "#6E0FF5",
+            fontWeight: 600,
+          };
+        }
       },
     },
     {
-      field: "Product",
-    },
-    {
-      field: "Units",
-    },
-    {
-      field: "Price",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "Last Order Price",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return (
-          <div
-            style={{ height: "100%", display: "flex" }}
-            className="items-center  gap-4 pe-20"
-          >
-            <span style={{ width: "50px" }}>{value + " " + "GEL"}</span>
-            <img
-              style={{ width: 14, height: 14 }}
-              src={
-                +value % 2 === 0 && +value > 40 ? triangleRed : triangleGreen
-              }
-              alt=""
-            />
-          </div>
-        );
-      },
-    },
-    {
-      field: "Last Change Date",
-    },
-    {
-      field: "Status",
-      cellRenderer: ({ value }) => {
-        return (
-          <div className="flex items-center" style={{ height: "100%" }}>
-            <button
-              style={{ background: +value % 2 === 0 ? "#01C6B5" : "#F55364" }}
-              className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
-            >
-              {+value % 2 === 0 ? "active" : "inactive"}
-            </button>
-          </div>
-        );
-      },
+      field: "Service level",
+      minWidth: 150,
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -173,10 +142,9 @@ const CatalogueTable = () => {
 
   useEffect(() => {
     async function fetchData() {
-      // const data = await fetch_XLSX_DATA();
-      d.splice(10, 2);
+      const data = await fetch_XLSX_DATA();
 
-      setRowData(d);
+      setRowData(data["By item"]);
     }
 
     fetchData();
@@ -199,7 +167,6 @@ const CatalogueTable = () => {
       floatingFilter: true,
       suppressMovable: true,
       // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
 
       //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
       // },
@@ -214,6 +181,10 @@ const CatalogueTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true);
+    console.log("Grid on ready ");
+
+    showTable();
   };
 
   const onFilterTextChange = (e) => {
@@ -259,69 +230,37 @@ const CatalogueTable = () => {
     };
   }, []);
 
-  // Row Height logic
-  // Row Height logic
-
-  const rowHeightBtnRef = useRef(null);
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
-    }, 500);
-
-    return () => {
-      clearTimeout(t);
-    };
-  }, []);
-
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
-  const [rowHeightIndex, setRowHeightIndex] = useState(1);
-
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
-  const gridRef = useRef(null);
-
-  const options = [
-    { value: "Snacks", label: "Snacks" },
-    { value: "Frozen Goods", label: "Frozen Goods" },
-    { value: "Ready Meals", label: "Ready Meals" },
-    { value: "Sweets", label: "Sweets" },
-    { value: "Ice Cream", label: "Ice Cream" },
-    { value: "beverages", label: "Beverages" },
-    { value: "Baked Goods", label: "Baked Goods" },
-  ];
-
   const [showFilters, setShowFilters] = useFilterToggle();
+
+  const [gridReady, setGridReady] = useState(false);
+
+  const stableTableRef = useRef(null);
+
+  function showTable() {
+    setTimeout(() => {
+      stableTableRef.current.style.opacity = "1";
+    }, 300);
+    console.log("Helllo 123 123");
+  }
 
   return (
     <DashboardLayout>
       <header className="all-orders__header">
+        <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="order-details-left"
-            style={{ paddingLeft: "0", marginLeft: 10 }}
+            className="all-orders__gdm-container"
+            style={{ paddingLeft: "0", marginLeft: 10, cursor: "default" }}
           >
-            <h4>Catalogue</h4>
-
-            <Select
-              className="react-select-container"
-              classNamePrefix="react-select"
-              options={options}
-              defaultValue={{ value: "vanilla", label: "Vanilla" }}
-            />
+            <span style={{ cursor: "default" }}>Stable table</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
             {/* input filter */}
             <button
+              // ref={filterButtonRef}
               onClick={() => {
                 setShowFilters(!showFilters);
               }}
@@ -331,25 +270,7 @@ const CatalogueTable = () => {
                 active: showFilters,
               })}
             >
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
+              <FilterSvg />
             </button>
             {/* popup */}
             <Menu
@@ -357,25 +278,7 @@ const CatalogueTable = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
+                  <ColumnHideSvg />
                 </MenuButton>
               }
               transition
@@ -430,25 +333,10 @@ const CatalogueTable = () => {
                 ))}
               </div>
             </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
             <button
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
                 "all-orders__btn": true,
-                active: isFullScreen,
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
@@ -457,9 +345,24 @@ const CatalogueTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
-        style={{ minHeight: 595, width: "100%" }}
+        ref={stableTableRef}
+        className="ag-theme-alpine stable-table"
+        style={{ minHeight: 595, width: "100%", opacity: 0 }}
       >
+        {/* {isShowingTable === false ? (
+          <h1>Loading...</h1>
+        ) : (
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+        )} */}
         <AgGridReact
           ref={gridRef}
           onGridReady={onGridReady}
@@ -468,19 +371,6 @@ const CatalogueTable = () => {
           defaultColDef={defaultColDef}
           pagination={true}
           components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
 
@@ -509,9 +399,10 @@ const CatalogueTable = () => {
             );
           })}
         </Menu>
+        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
       </div>
     </DashboardLayout>
   );
 };
 
-export default CatalogueTable;
+export default StableTable;

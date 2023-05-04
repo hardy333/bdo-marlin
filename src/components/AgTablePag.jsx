@@ -10,7 +10,6 @@ const AgTablePag = ({ gridRef, pageCount }) => {
 
   useEffect(() => {
     const x = document.querySelector(".ag-paging-panel");
-    console.log(x);
   }, []);
 
   if (document.querySelector(".ag-paging-panel")) {

@@ -4,8 +4,6 @@ import dots from "../assets/employees/dots.svg";
 import userCircle from "../assets/marlin-icons/purple-user.svg";
 import { Menu, MenuItem } from "@szhsin/react-menu";
 
-console.log(userCircle);
-
 const EmployeeCard = () => {
   return (
     <article className="employee-card">
