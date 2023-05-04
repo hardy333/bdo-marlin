@@ -31,7 +31,7 @@ body{
 }
 
 .status-container li{
-  padding: 0 0 3rem 3rem;
+  padding: 0 0 2.5rem 3rem;
   font-weight: 400;
   font-size: 14px;
   line-height: 15px;
@@ -43,7 +43,6 @@ position: relative;
 }
 
 .status-container li:first-child{
-  color: #6E0FF5;
   padding-top: 0;
 }
 

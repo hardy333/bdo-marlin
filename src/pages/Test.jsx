@@ -20,6 +20,8 @@ const Test = () => {
           </ul>
         </div>
       </div>
+
+      <h2>Hello</h2>
     </DashboardLayout>
   );
 };

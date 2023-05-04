@@ -31,12 +31,22 @@ const Home = () => {
           </div>
           <div className="home-links">
             <small>New Tables</small>
+            <hr />
             <Link to="/ag-table">ag table</Link>
+            <hr />
             <br />
             <small>Orders</small>
             <hr />
             <Link to="/all-orders-parent">All Orders</Link>
             <Link to="/order-details">Order Details</Link>
+            <hr />
+
+            <br />
+            <small>
+              Vendor all Orders(ერთი კონკრეტული ვენდორისთვის ყველა შეკვეთა ??)
+            </small>
+            <hr />
+            <Link to="/vendor-all-orders">vendor all orders</Link>
             <hr />
 
             <br />
@@ -47,10 +57,12 @@ const Home = () => {
             <hr />
             <br />
             <small>Single tables</small>
+            <hr />
             <Link to="/new-catalogue">New Catalogue</Link>
             <Link to="/invoices-table">Invoices Table</Link>
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
+            <hr />
           </div>
           <div className="home-links">
             <small>Geo tables</small>
