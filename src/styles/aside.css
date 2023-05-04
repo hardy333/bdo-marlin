@@ -101,6 +101,7 @@
   pointer-events: all;
 
   max-width: 100%;
+  overflow: hidden;
 
 
 }
