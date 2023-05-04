@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/custom-header-cell.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import dotsSvg from "../assets/employees/dots.svg";
+import dotsSvg2 from "../assets/dotsSvg2.svg";
 import downIcon from "../assets/marlin-icons/down-arrow.png";
 import classNames from "classnames";
 
@@ -83,7 +84,7 @@ const CustomHeaderCellGeoResize = (props) => {
         className="header-cell-menu header-cell-menu-geo"
         menuButton={
           <MenuButton>
-            <img src={dotsSvg} alt="" />
+            <img src={dotsSvg2} alt="" />
           </MenuButton>
         }
         transition

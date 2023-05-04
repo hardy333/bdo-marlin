@@ -22,7 +22,7 @@
   position: absolute;
 
   top: 50%;
-  right: 2rem;
+  right: -1rem !important;
   transform: translate(0, -50%);
 
   border-radius: 100%;
@@ -154,10 +154,12 @@
   height: 1.5rem;
   position: absolute;
   top: 50%;
-  right: 5rem;
+  right: 1.6rem;
   display: none;
   transition: all 0.2s ease-in-out;
-  transform: translate(0, -50%) rotate(180deg);
+  transform: translate(0, -50%) rotate(180deg) scale(0.9);
+  filter: hue-rotate(130deg);
+  opacity: 0.4;
 
 }
 
@@ -169,7 +171,7 @@
 
 .custom-header-cell-container.desc .heading-sorting-arrow-img{
   display: block;
-  transform: translate(0, -50%) rotate(0deg);
+  transform: translate(0, -50%) rotate(0deg) scale(0.9);
 
 }
 
