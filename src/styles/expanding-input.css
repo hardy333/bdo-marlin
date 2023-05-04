@@ -20,7 +20,7 @@
 
 .expanding-input{
   border: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #211543;
   font-size: 14px;
   padding: 2px 4px;
   width: 100%;
@@ -34,7 +34,7 @@
 }
 
 .expanding-input-wrapper.open .expanding-input{
-  border-bottom-color: black;
+  border-bottom-color: #211543;
 }
 
 .expanding-input:focus{
@@ -73,7 +73,7 @@
 
 .expanding-input-wrapper.open .expanding-input-img-x{
   opacity: 1;
-  fill: black;
+  fill: #211543;
   pointer-events: all;
 }
 
