@@ -22,6 +22,7 @@ const DashboardNavbar = () => {
   const isStartingPage = startingPages.includes(pathname);
   const backArrow = (
     <img
+      onClick={() => navigate(-1)}
       src={arrowBack}
       alt=""
       style={{

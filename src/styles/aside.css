@@ -37,6 +37,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  max-width: 100%;
 }
 
 /* LOGO */
@@ -98,7 +100,7 @@
   padding-inline: 2rem;
   pointer-events: all;
 
-
+  max-width: 100%;
 
 
 }
@@ -147,6 +149,14 @@
   filter: brightness(50%);
 }
 
+.dashboard-aside__list span{
+  transition: 0.3s;
+  filter: brightness(50%);
+  opacity: 0;
+
+}
+
+
 .aside-label {
   text-decoration: none;
 
@@ -183,11 +193,24 @@
   filter: brightness(100%);
 }
 
+.body-sidebar-open  .dashboard-aside__list a:hover span{
+  filter: brightness(100%) !important;
+  opacity: 1
+
+
+}
+
+
 .dashboard-aside__list a.active img {
   filter: brightness(100%);
 
 }
 
+
+.body-sidebar-open .dashboard-aside__list a.active span {
+  filter: brightness(100%);
+  opacity: 1;
+}
 
 .aside-terms {
   margin-top: auto;

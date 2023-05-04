@@ -312,8 +312,8 @@ const AllOrdersParent = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders:</span>
-            <span style={{ color: "#6E0FF5" }}>GDM</span>
+            <span>All Orders</span>
+            {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
