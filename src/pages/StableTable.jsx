@@ -62,6 +62,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
 import xlsExport from "xlsexport";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import "../styles/stable-table.css";
 
 const StableTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -162,14 +163,11 @@ const StableTable = () => {
     () => ({
       sortable: true,
       filter: true,
+      minWidth: 100,
+      maxWidth: 222,
       flex: 1,
-      minWidth: 150,
       floatingFilter: true,
-      suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
+      suppressMovable: false,
       floatingFilterComponent: CustomInput,
     }),
     []
@@ -184,6 +182,7 @@ const StableTable = () => {
     setGridReady(true);
     console.log("Grid on ready ");
 
+    params.api.sizeColumnsToFit();
     showTable();
   };
 
@@ -363,7 +362,9 @@ const StableTable = () => {
             paginationPageSize={pageSize}
           ></AgGridReact>
         )} */}
+
         <AgGridReact
+          alwaysShowHorizontalScroll={false}
           ref={gridRef}
           onGridReady={onGridReady}
           rowData={rowData}
