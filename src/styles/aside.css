@@ -147,12 +147,12 @@
   margin: auto;
   display: block;
   transition: all 0.3s;
-  filter: brightness(50%);
+  filter: brightness(60%);
 }
 
 .dashboard-aside__list span{
   transition: 0.3s;
-  filter: brightness(50%);
+  filter: brightness(60%);
   opacity: 0;
 
 }
