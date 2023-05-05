@@ -24,7 +24,7 @@ body{
   left: 0;
   bottom: 0;
   transform: translate(-50%, 0);
-  width: 2px;
+  width: 1px;
   height: 100%;
 
   background-color: #1ED8B9;
@@ -54,7 +54,7 @@ position: relative;
 
   left: 0;
   transform: translate(-50%, 0);
-  --size: 10px;
+  --size: 8px;
   width: var(--size);
   height: var(--size);
 
@@ -75,7 +75,7 @@ position: relative;
   bottom: 0;
   top: 0;
   left: 0;
-  width: 2px;
+  width: 1px;
   height: 100%;
   z-index: 9;
   transform: translate(-50%, 0);

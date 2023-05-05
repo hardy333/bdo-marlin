@@ -197,16 +197,11 @@ const CatalogueTablegeo = () => {
 
   useEffect(() => {
     async function fetchData() {
-      // const data = await fetch_XLSX_DATA();
-      console.log(d);
-
       setRowData(d.json);
     }
 
     fetchData();
   }, []);
-
-  console.log(rowData);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -224,11 +219,6 @@ const CatalogueTablegeo = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []
