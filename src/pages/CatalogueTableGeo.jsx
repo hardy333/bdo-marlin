@@ -326,7 +326,7 @@ const CatalogueTablegeo = () => {
 
   return (
     <DashboardLayout>
-      <header className="all-orders__header">
+      <header className="all-orders__header page-geo">
         <div className="all-orders__settings">
           {/* Left */}
           <div

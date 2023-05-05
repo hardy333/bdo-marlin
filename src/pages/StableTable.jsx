@@ -159,19 +159,15 @@ const StableTable = () => {
     }
   }, [isFullScreen]);
 
-  const defaultColDef = useMemo(
-    () => ({
-      sortable: true,
-      filter: true,
-      minWidth: 100,
-      maxWidth: 222,
-      flex: 1,
-      floatingFilter: true,
-      suppressMovable: false,
-      floatingFilterComponent: CustomInput,
-    }),
-    []
-  );
+  const defaultColDef = useMemo(() => ({
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    suppressMovable: false,
+    floatingFilterComponent: CustomInput,
+    width: 1385 / headerList.filter((obj) => obj.isShowing).length,
+    minWidth: 150,
+  }));
 
   // EVents
   // EVents
@@ -364,7 +360,7 @@ const StableTable = () => {
         )} */}
 
         <AgGridReact
-          alwaysShowHorizontalScroll={false}
+          // alwaysShowHorizontalScroll={false}
           ref={gridRef}
           onGridReady={onGridReady}
           rowData={rowData}
@@ -373,6 +369,7 @@ const StableTable = () => {
           pagination={true}
           components={components}
           paginationPageSize={pageSize}
+          suppressHorizontalScroll={true}
         ></AgGridReact>
 
         <Menu

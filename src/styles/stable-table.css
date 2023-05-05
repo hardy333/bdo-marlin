@@ -18,7 +18,6 @@
   height: 3rem;
   /* color: #D0C7E8 !important; */
   color: #211543;
-
 }
 
 .stable-table input::placeholder{
@@ -31,3 +30,16 @@
   box-shadow: none !important;
 }
 
+
+
+/* scrollbar */
+
+.stable-table .ag-body-horizontal-scroll{
+  display: none !important;
+
+}
+
+.stable-table .ag-body-horizontal-scroll-viewport{
+  display: none !important;
+
+}

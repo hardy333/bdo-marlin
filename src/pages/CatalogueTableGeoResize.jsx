@@ -69,6 +69,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import d from "../assets/products.json";
 import CustomHeaderCellGeo from "../components/CustomHeaderCellgeo";
 import CustomHeaderCellGeoResize from "../components/CutomHeaderCellGeoResize";
+import "../styles/catalogue-geo-table.css";
 
 const CatalogueTablegeoResize = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -326,7 +327,7 @@ const CatalogueTablegeoResize = () => {
 
   return (
     <DashboardLayout>
-      <header className="all-orders__header">
+      <header className="all-orders__header page-geo">
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -483,7 +484,7 @@ const CatalogueTablegeoResize = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example page-geo"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
