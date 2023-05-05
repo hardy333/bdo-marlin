@@ -245,10 +245,8 @@ const VendorAllOrdersTable = () => {
   function getRowHeight(params) {
     const { id } = params.node;
     if (id == openedRowId) {
-      return 170;
+      return 140;
     }
-
-    console.log(rowHeightIndex);
 
     // if (rowHeightIndex === 0) {
     //   return 25;
