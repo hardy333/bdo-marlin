@@ -99,9 +99,7 @@ const ReportsTable = () => {
     {
       field: "Vendors",
       cellRenderer: (params) => {
-        const { value } = params;
-        const index = value.indexOf("-");
-        return value.slice(0, index);
+        return params.value;
       },
     },
     {
