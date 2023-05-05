@@ -417,10 +417,15 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
 }
 
 .page-size-btn .btn{
   padding: 0;
   margin: 0;
 
+}
+
+.ag-paging-row-summary-panel{
+  font-weight: 500;
 }

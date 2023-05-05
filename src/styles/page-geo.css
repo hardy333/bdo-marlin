@@ -45,3 +45,8 @@ body{
 .ag-theme-alpine {
   --ag-font-family: "DejaVu Sans";
 }
+
+
+.ag-theme-example {
+  --ag-font-family: "DejaVu Sans";
+}

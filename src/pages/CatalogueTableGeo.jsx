@@ -483,7 +483,7 @@ const CatalogueTablegeo = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example page-geo"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
