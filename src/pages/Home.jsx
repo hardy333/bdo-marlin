@@ -58,7 +58,7 @@ const Home = () => {
             <br />
             <small>Single tables</small>
             <hr />
-            <Link to="/new-catalogue">New Catalogue</Link>
+            <Link to="/new-catalogue">New Catalogue with backend data</Link>
             <Link to="/invoices-table">Invoices Table</Link>
             <Link to="/logs">Logs/Settings Table</Link>
             <Link to="/catalogue">Catalogue Table</Link>
@@ -69,6 +69,10 @@ const Home = () => {
             <small>Geo tables</small>
             <Link to="/catalogue-geo">Catalogue geo</Link>
             <Link to="/catalogue-geo-resize">Catalogue geo with resize </Link>
+            <br />
+            <small>new 4 Tables</small>
+            <Link to="/catalogue">Catalogue 3</Link>
+            <Link to="/catalogue-5-level">Catalogue 5</Link>
           </div>
         </div>
       </section>

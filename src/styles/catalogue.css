@@ -16,10 +16,13 @@
 }
 
 .categories .input-wrapper .input:focus{
-
   border:1px solid #6E0FF5;
   outline: none;
   
+}
+
+.categories .input-wrapper  svg{
+  left: 0.5rem !important;
 }
 
 

@@ -45,6 +45,7 @@ import CatalogueTableGeo from "./pages/CatalogueTableGeo";
 import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import StableTable from "./pages/StableTable";
+import CatalogueTable5Level from "./pages/CatalogueTable5Level";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -89,6 +90,10 @@ function App() {
             <Route path="/reports-child" element={<ReportsChildTable />} />
             <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
             <Route path="/stable-table" element={<StableTable />} />
+            <Route
+              path="/catalogue-5-level"
+              element={<CatalogueTable5Level />}
+            />
             <Route
               path="/vendor-all-orders"
               element={<VendorAllOrdersTable />}

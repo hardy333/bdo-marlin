@@ -13,11 +13,12 @@
 .categories__header{
   padding: 1rem;
 
+
 }
 
 
 .categories__list-container{
-  height: 450px;
+  height: 470px;
   overflow-y: auto;
 }
 
@@ -50,7 +51,7 @@
 
 .categories__footer{
   padding: 1rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   font-size: 14px;
   padding-left: 1.5rem;
 }
@@ -86,7 +87,7 @@
 }
 
 .section-2__container{
-  height: 500px;
+  height: 505px;
   overflow-y: scroll;
   padding: 0 2rem;
 
@@ -114,5 +115,38 @@
 
 .section-2 li:hover{
   color: #000000;
+  
+}
+
+/* section-2 5-level */
+/* section-2 5-level */
+
+.categories .parent-li{
+  font-weight: 700;
+}
+
+.categories .section-2__list-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-content: start;
+  align-items: start;
+
+}
+
+.categories .section-2__list-container ul{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-3{
+  width: 300px !important;
+}
+
+.section-3__list{
+  display: grid;
+  grid-template-columns: 1fr  1fr;
+  gap: 1.2rem 1.5rem ;
   
 }

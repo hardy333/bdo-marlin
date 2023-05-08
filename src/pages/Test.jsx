@@ -84,6 +84,15 @@ export const items1 = [
   "Tortillas",
 ];
 
+export const parentCategories = [
+  "Chips",
+  "Nacho",
+  "Tortia",
+  "sunflower Seeds",
+  "Popcorn",
+  "Crackers",
+];
+
 const Test = () => {
   const [isHover, setIsHover] = useState(false);
   const [isSectionHover, setIsSectionHover] = useState(false);
@@ -98,9 +107,12 @@ const Test = () => {
     setIsHover(false);
   };
 
+  // section 3
+  const [selectedItem, setSelectedItem] = useState(null);
+
   return (
     <DashboardLayout>
-      <div className="categories">
+      <div className="categories categories--5">
         <section className="section-first">
           <header className="categories__header">
             <div className="input-wrapper">
@@ -141,12 +153,62 @@ const Test = () => {
             </div>
           </header>
           <div className={`section-2__container ${isHover ? "open" : ""}`}>
-            <ul className="section-2__list">
-              {items1.map((item, index) => (
-                <li key={`${item}-${index}`}>{item}</li>
-              ))}
-            </ul>
+            <div className="section-2__list-container">
+              {[
+                ...parentCategories,
+                ...parentCategories,
+                ...parentCategories,
+                ...parentCategories,
+              ].map((parentCat, i) => {
+                return (
+                  <ul key={i}>
+                    <li className="parent-li">{parentCat}</li>
+                    {Array.from({
+                      length: Math.floor(Math.random() * 5 + 7),
+                    }).map((_, index) => {
+                      const item =
+                        items1[Math.floor(Math.random() * items1.length)];
+                      return (
+                        <li
+                          key={index}
+                          onClick={(e) => {
+                            setSelectedItem(item);
+                          }}
+                        >
+                          {item}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                );
+              })}
+            </div>
           </div>
+
+          <section
+            className={classNames({
+              "section-2": true,
+              "section-3 open": true,
+              open: selectedItem,
+            })}
+          >
+            <header>
+              <div className="input-wrapper">
+                <input type="text" className="input" />
+                <SearchSvg />
+              </div>
+            </header>
+
+            <div className={`section-2__container `}>
+              <ul className="section-3__list">
+                {items1.map((item, index) => (
+                  <li key={index} onClick={() => setIsHover(false)}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
         </section>
       </div>
     </DashboardLayout>
