@@ -1,4 +1,30 @@
+.catalogue-label{
+  font-size: 14px !important;
+}
 
+.categories .input-wrapper{
+}
+
+.categories .input-wrapper .input{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.categories .input-wrapper .input{
+  border:1px solid #211543a1;
+  
+}
+
+.categories .input-wrapper .input:focus{
+
+  border:1px solid #6E0FF5;
+  outline: none;
+  
+}
+
+
+/* Catalogue Menu */
+/* Catalogue Menu */
 
 .catalogue-menu ul{
 
@@ -45,15 +71,12 @@
   display: flex;
   align-items: center;
   height: 100%;
-
   font-style: normal;
-font-weight: 700;
-font-size: 12px;
-line-height: 15px;
-border-radius: 7px;
-/* identical to box height */
-
-
-color: #FFFFFF;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 7px;
+  /* identical to box height */
+  color: #FFFFFF;
 
 }

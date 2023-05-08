@@ -315,9 +315,11 @@ const CatalogueTable = () => {
     setIsHover(false);
   };
 
+  const [isChecked, setISChecked] = useState(false);
+
   return (
     <DashboardLayout>
-      <header className="all-orders__header">
+      <header className="all-orders__header catalogue-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -326,12 +328,27 @@ const CatalogueTable = () => {
           >
             <h4>Catalogue</h4>
 
-            <Select
+            <div className="vendors-switch-container">
+              <p className="catalogue-label">My products</p>
+              <div className="toggle-switch">
+                <input
+                  className="toggle-input"
+                  checked={isChecked}
+                  onChange={() => setISChecked(!isChecked)}
+                  id="toggle"
+                  type="checkbox"
+                />
+                <label className="toggle-label" htmlFor="toggle"></label>
+              </div>
+              <p className="catalogue-label">All Products</p>
+            </div>
+
+            {/* <Select
               className="react-select-container"
               classNamePrefix="react-select"
               options={options}
               defaultValue={{ value: "vanilla", label: "Vanilla" }}
-            />
+            /> */}
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
