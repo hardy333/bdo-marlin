@@ -48,6 +48,8 @@ import "../styles/catalogue.css";
 
 import Select from "react-select";
 
+import { items1, items } from "./Test";
+
 // css
 import "../styles/ag-grid.css";
 import fetch_XLSX_DATA from "../utils/getData";
@@ -66,6 +68,7 @@ import ExpandingInput from "../components/ExpandingInput";
 
 import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
+import SearchSvg from "../components/svgs/SearchSvg";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -297,6 +300,20 @@ const CatalogueTable = () => {
   ];
 
   const [showFilters, setShowFilters] = useFilterToggle();
+  // --------//
+  // --------//
+  const [isHover, setIsHover] = useState(false);
+  const [isSectionHover, setIsSectionHover] = useState(false);
+
+  const c = useMemo(() => {
+    return Array.from({ length: 30 }).map((_, index) => {
+      return items1[Math.floor(Math.random() * items1.length)];
+    });
+  }, []);
+
+  const disableHoverAsync = () => {
+    setIsHover(false);
+  };
 
   return (
     <DashboardLayout>
@@ -456,59 +473,110 @@ const CatalogueTable = () => {
           </div>
         </div>
       </header>
-      <div
-        className="ag-theme-alpine ag-grid-example"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
+      <div className="flex gap-2">
+        <div className="categories">
+          <section className="section-first">
+            <header className="categories__header">
+              <div className="input-wrapper">
+                <input type="text" className="input" />
+                <SearchSvg />
+              </div>
+            </header>
+            <div className="categories__list-container">
+              <ul className="categories__list">
+                {c.map((item, index) => (
+                  <li
+                    key={index}
+                    onMouseOut={disableHoverAsync}
+                    onMouseOver={() => setIsHover(true)}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="categories__footer">
+              <p>View full structure </p>
+            </div>
+          </section>
 
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+          <section
+            className={classNames({
+              "section-2": true,
+              open: isHover || isSectionHover,
+            })}
+            onMouseOut={() => setIsSectionHover(false)}
+            onMouseOver={() => setIsSectionHover(true)}
+          >
+            <header>
+              <div className="input-wrapper">
+                <input type="text" className="input" />
+                <SearchSvg />
+              </div>
+            </header>
+            <div className={`section-2__container ${isHover ? "open" : ""}`}>
+              <ul className="section-2__list">
+                {items1.map((item, index) => (
+                  <li key={`${item}-${index}`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </div>
+        <div
+          className="ag-theme-alpine ag-grid-example"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            // enableRangeSelection={true}
+            // copyHeadersToClipboard={true}
+            // rowSelection={"multiple"}
+            // paginationAutoPageSize={true}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
       </div>
     </DashboardLayout>
   );

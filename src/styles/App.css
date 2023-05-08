@@ -118,6 +118,7 @@ img{
   transition: var(--sidebar-open-animation-duration) ease-in-out;
 
   transition: all 0.3s ease-in-out;
+  overflow: hidden;
 
   
 }
