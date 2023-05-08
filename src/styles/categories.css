@@ -150,3 +150,13 @@
   gap: 1.2rem 1.5rem ;
   
 }
+
+ .section-3{
+  pointer-events: none !important;
+
+
+}
+
+.section-2.open .section-3{
+  pointer-events: all;
+}

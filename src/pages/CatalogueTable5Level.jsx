@@ -507,7 +507,7 @@ const CatalogueTable5Level = () => {
                 {c.map((item, index) => (
                   <li
                     key={index}
-                    onMouseOut={disableHoverAsync}
+                    onMouseLeave={disableHoverAsync}
                     onMouseOver={() => setIsHover(true)}
                   >
                     {item}
@@ -525,7 +525,7 @@ const CatalogueTable5Level = () => {
               "section-2": true,
               open: isHover || isSectionHover,
             })}
-            onMouseOut={() => setIsSectionHover(false)}
+            onMouseLeave={() => setIsSectionHover(false)}
             onMouseOver={() => setIsSectionHover(true)}
           >
             <header>
@@ -573,6 +573,7 @@ const CatalogueTable5Level = () => {
                 "section-3 open": true,
                 open: selectedItem,
               })}
+              onMouseOver={() => setIsSectionHover((c) => true)}
             >
               <header>
                 <div className="input-wrapper">
