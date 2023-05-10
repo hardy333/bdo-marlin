@@ -23,6 +23,8 @@ import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 
+import Select from "react-select";
+
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
 import expand from "../assets/all-orders/expand.svg";
@@ -62,7 +64,17 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
+import ItemsMenu from "../components/ItemsMenu";
 
+const options = [
+  { value: "Orbita", label: "Orbita" },
+  { value: "Kant", label: "Kant" },
+  { value: "Ready Meals", label: "Ready Meals" },
+  { value: "Diplomat", label: "Diplomat" },
+  { value: "Vest Inv", label: "Vest Inv." },
+  { value: "Magako", label: "Magako" },
+  { value: "Svaneti", label: "Svaneti" },
+];
 const SlaByVendorsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -266,6 +278,14 @@ const SlaByVendorsTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>Service Level Report</h4>
+            <Select
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={options}
+              defaultValue={{ value: "GDM", label: "GDM" }}
+            />
+
+            <ItemsMenu />
 
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
           </div>

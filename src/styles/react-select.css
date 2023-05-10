@@ -1,5 +1,5 @@
 .react-select-container{
-  width: 200px;
+  width: 180px;
   outline: none !important;
   border: none !important;
 }
@@ -93,7 +93,7 @@
 
   z-index: 999999999999999999999 !important;
 
-  box-shadow: 0px 3px 5px rgba(208, 199, 232, 0.25) !important;
+  box-shadow: 0px 1px 3px 1px rgba(208, 199, 232, 0.25) !important;
 }
 
 .react-select__menu-list{
@@ -110,7 +110,7 @@
   line-height: 15px;
 
   color: #211543;
-  border-bottom: 0.5px solid #D0C7E8;
+  /* border-bottom: 0.5px solid #D0C7E8; */
   padding-inline: 0;
   cursor: pointer !important;
 

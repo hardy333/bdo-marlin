@@ -7,6 +7,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import { addDays, format } from "date-fns";
 import { Menu, MenuItem } from "@szhsin/react-menu";
+import ItemsMenu from "../components/ItemsMenu";
 
 const Test2 = () => {
   const [dateState, setDateState] = useState([
@@ -19,6 +20,7 @@ const Test2 = () => {
 
   return (
     <DashboardLayout>
+      <ItemsMenu />
       <Menu
         className="date-menu"
         menuButton={
