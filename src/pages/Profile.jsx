@@ -16,8 +16,10 @@ import {
 } from "react-router-dom";
 import classNames from "classnames";
 
-import illustration1 from "../assets/profile-illustration-1.svg";
-import illustration2 from "../assets/profile-illustration-2.svg";
+// import illustration1 from "../assets/profile-illustration-1.svg";
+// import illustration2 from "../assets/profile-illustration-2.svg";
+import illustration1 from "../assets/profile-illustrations/a.jpg";
+import illustration2 from "../assets/profile-illustrations/b.jpg";
 
 const Profile = () => {
   const location = useLocation();
