@@ -70,6 +70,7 @@ import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import SearchSvg from "../components/svgs/SearchSvg";
 import fetch_XLSX_DATA2 from "../utils/getData2";
+import AgTablePag from "../components/AgTablePag";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -186,8 +187,6 @@ const CatalogueTable = () => {
     async function fetchData() {
       // const data = await fetch_XLSX_DATA();
       d.splice(10, 2);
-
-      setRowData(d);
     }
 
     fetchData();
@@ -225,6 +224,8 @@ const CatalogueTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+
+    setGridReady(true);
   };
 
   const onFilterTextChange = (e) => {
@@ -326,6 +327,7 @@ const CatalogueTable = () => {
   const [cat1, setCat1] = useState(null);
   const [cat2, setCat2] = useState(null);
   const [cat3, setCat3] = useState(null);
+  const [count, setCount] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -349,13 +351,22 @@ const CatalogueTable = () => {
       setCat2(c2);
       setCat3(c3);
 
-      gridApi.refreshCells();
+      if (rowData) {
+        setRowData(
+          rowData.map((obj, index) => ({ ...obj, Product: c3[index] }))
+        );
+        setCount(count + 1);
+      }
+
+      setRowData(d.map((obj, index) => ({ ...obj, Product: c3[index] })));
     };
 
     fetchData();
   }, []);
 
   const [isChecked, setISChecked] = useState(false);
+
+  const [gridReady, setGridReady] = useState(false);
 
   return (
     <DashboardLayout>
@@ -608,6 +619,13 @@ const CatalogueTable = () => {
             // paginationAutoPageSize={true}
             paginationPageSize={pageSize}
           ></AgGridReact>
+
+          {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(92 / pageSize)}
+            />
+          )}
 
           <Menu
             className="page-size-menu"
