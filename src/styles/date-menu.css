@@ -20,7 +20,6 @@
   transform: translate(-50%, 2px);
   background-color: #D0C7E8;
   transition: 0.2s ease;
-
 }
 
 .btn-date:hover::before{

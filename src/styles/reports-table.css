@@ -1,0 +1,14 @@
+.sla-all-table .ag-row{
+  cursor: pointer;
+}
+
+.sla-all-table  .ag-cell-focus{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.sla-all-table  .ag-row-focus{
+  filter: brightness(90%);
+
+}

@@ -50,7 +50,6 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import "../styles/reports-table.css";
 
 import d from "../assets/REPORTS_PARENT.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
@@ -60,11 +59,11 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 
-const ReportsTable = () => {
+const SlaByVendorsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
@@ -257,31 +256,6 @@ const ReportsTable = () => {
     },
   ]);
 
-  useEffect(() => {
-    const x = document.querySelector(
-      ".sla-all-table .ag-center-cols-container"
-    );
-
-    if (!x) return;
-
-    const handleGridClick = (e) => {
-      const t = e.target;
-      const row = t.closest(".ag-row");
-
-      const vendor = row.querySelector(".ag-cell[col-id='Vendors']").innerText;
-
-      navigate(`/sla-by-vendors?vendor=${vendor}`);
-    };
-
-    x.addEventListener("click", handleGridClick);
-
-    return () => {
-      x.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi, gridRef]);
-
-  const navigate = useNavigate();
-
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -436,7 +410,7 @@ const ReportsTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example sla-all-table"
+        className="ag-theme-alpine ag-grid-example"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
@@ -493,4 +467,4 @@ const ReportsTable = () => {
   );
 };
 
-export default ReportsTable;
+export default SlaByVendorsTable;

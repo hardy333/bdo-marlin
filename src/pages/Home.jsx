@@ -77,7 +77,7 @@ const Home = () => {
             <br />
             <small>SLA tables</small>
             <Link to="/reports">SLA All</Link>
-            <Link to="/reports">SLA By Vendor</Link>
+            <Link to="/sla-by-vendors">SLA By Vendor</Link>
             <Link to="/reports">SLA Grapcis</Link>
           </div>
         </div>
