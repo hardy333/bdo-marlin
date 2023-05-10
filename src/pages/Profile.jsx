@@ -18,8 +18,8 @@ import classNames from "classnames";
 
 // import illustration1 from "../assets/profile-illustration-1.svg";
 // import illustration2 from "../assets/profile-illustration-2.svg";
-import illustration1 from "../assets/profile-illustrations/a.jpg";
-import illustration2 from "../assets/profile-illustrations/b.jpg";
+import illustration1 from "../assets/profile-illustrations/a.png";
+import illustration2 from "../assets/profile-illustrations/b.png";
 
 const Profile = () => {
   const location = useLocation();
@@ -78,9 +78,9 @@ const Profile = () => {
           {/* Illustration */}
           <div className="illustration-container">
             {param === "/profile" ? (
-              <img src={illustration1} alt="" />
+              <img loading="eager" src={illustration1} alt="" />
             ) : (
-              <img src={illustration2} alt="" />
+              <img loading="eager" src={illustration2} alt="" />
             )}
           </div>
         </section>

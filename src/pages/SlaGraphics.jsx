@@ -69,6 +69,7 @@ import ItemsMenu from "../components/ItemsMenu";
 import SearchSvg from "../components/svgs/SearchSvg";
 import { items1 } from "./Test";
 import SlaChart from "../components/SlaChart";
+import DatePickerBtn2 from "../components/DatePickerBtn2";
 
 const options = [
   { value: "Orbita", label: "Orbita" },
@@ -81,13 +82,18 @@ const options = [
 ];
 
 const SlaGraphics = () => {
-  const [dateState, setDateState] = useState([
-    {
+  const [dateState, setDateState] = useState({
+    selection: {
       startDate: new Date(),
-      endDate: addDays(new Date(), 5),
+      endDate: null,
       key: "selection",
     },
-  ]);
+    compare: {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 3),
+      key: "compare",
+    },
+  });
 
   const [isHover, setIsHover] = useState(false);
   const [isSectionHover, setIsSectionHover] = useState(false);
@@ -189,7 +195,7 @@ const SlaGraphics = () => {
                 <small>Demand In Time</small>
               </div>
               <div className="self-end justify-end justify-self-end ml-auto">
-                <DatePickerBtn
+                <DatePickerBtn2
                   dateState={dateState}
                   setDateState={setDateState}
                 />
