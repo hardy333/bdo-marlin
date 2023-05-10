@@ -261,7 +261,7 @@ body.dashboard-main-fullscreen .dashboard-main{
   opacity: 1;
 }
 
-input{
+.input{
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 0.7rem;
@@ -271,7 +271,7 @@ input{
 
 }
 
-input:focus{
+.input:focus{
   outline-offset: 2px;
   outline: 1px var(--color-primary-4) solid;
 

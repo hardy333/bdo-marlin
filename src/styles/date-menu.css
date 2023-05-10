@@ -14,10 +14,18 @@
   content: "";
   position: absolute;
   bottom: 5px;
-  left: 20px;
-  right: 20px;
+  left: 50%;
+  width: 80%;
   height: 1px;
-  background-color: #21154391;
+  transform: translate(-50%, 2px);
+  background-color: #D0C7E8;
+  transition: 0.2s ease;
+
+}
+
+.btn-date:hover::before{
+  width: 85%;
+  transform: translate(-50%, 2px) ;
 }
 
 .date-menu .szh-menu__item{
@@ -36,6 +44,16 @@
 .rdrDateRangePickerWrapper{
   box-shadow: none !important;
 }
+
+.rdrDateRangePickerWrapper span{
+}
+
+
+.rdrDateRangePickerWrapper select{
+  font-weight: 400;
+}
+
+
 
 /* left */
 /*  left */
