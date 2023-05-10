@@ -70,9 +70,15 @@ const Home = () => {
             <Link to="/catalogue-geo">Catalogue geo</Link>
             <Link to="/catalogue-geo-resize">Catalogue geo with resize </Link>
             <br />
-            <small>new 4 Tables</small>
+            <small>Catalogue tables</small>
             <Link to="/catalogue">Catalogue 3</Link>
             <Link to="/catalogue-5-level">Catalogue 5</Link>
+
+            <br />
+            <small>SLA tables</small>
+            <Link to="/reports">SLA All</Link>
+            <Link to="/reports">SLA By Vendor</Link>
+            <Link to="/reports">SLA Grapcis</Link>
           </div>
         </div>
       </section>

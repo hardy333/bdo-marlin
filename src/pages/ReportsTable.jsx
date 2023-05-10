@@ -60,6 +60,8 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
+import DatePickerBtn from "../components/DatePickerBtn";
+import { addDays } from "date-fns";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -246,6 +248,14 @@ const ReportsTable = () => {
 
   const [showFilters, setShowFilters] = useFilterToggle();
 
+  const [dateState, setDateState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 5),
+      key: "selection",
+    },
+  ]);
+
   return (
     <DashboardLayout>
       <header className="all-orders__header">
@@ -256,6 +266,8 @@ const ReportsTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>Service Level Report</h4>
+
+            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

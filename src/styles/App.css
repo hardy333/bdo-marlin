@@ -110,7 +110,7 @@ img{
   background-color: #F9F8FC;
   flex-grow: 1;
   padding: 3rem;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   /* this is sidebars full space(width+leftPadding+rightPadding+dashboard items right padding) */
   padding-bottom: 1rem;
   display: flex;

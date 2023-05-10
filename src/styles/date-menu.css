@@ -1,0 +1,73 @@
+
+.btn-date{
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  /* identical to box height */
+  color: #211543;
+  margin:auto;
+
+  position: relative;
+}
+
+.btn-date::before{
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background-color: #21154391;
+}
+
+.date-menu .szh-menu__item{
+  background-color: #fff;
+
+}
+
+.date-menu .szh-menu__item--hover{
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  background-color: #fff;
+
+}
+
+.rdrDateRangePickerWrapper{
+  box-shadow: none !important;
+}
+
+/* left */
+/*  left */
+.rdrDefinedRangesWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.rdrStaticRanges{
+  /* margin-top: auto; */
+}
+
+.rdrInputRanges{
+  /* display: none; */
+}
+
+
+/*  */
+/*  */
+.rdrDateDisplayWrapper{
+  background-color: #fff !important;
+}
+
+.rdrDateDisplayWr, .rdrDateRangeWrapper{
+  background-color: #fff !important;
+}
+
+.rdrDateDisplay{
+  background-color: #fff !important;
+
+}
+
+.rdrDateInput{
+  box-shadow: none;
+}

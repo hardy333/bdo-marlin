@@ -10,6 +10,7 @@ import "./styles/modal.css";
 import "./styles/react-select.css";
 import "./styles/page-geo.css";
 import "./styles/column-toggle-popup.css";
+import "./styles/date-menu.css";
 
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AllOrders from "./pages/AllOrders";
@@ -46,6 +47,7 @@ import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import StableTable from "./pages/StableTable";
 import CatalogueTable5Level from "./pages/CatalogueTable5Level";
+import Test2 from "./pages/Test2";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -88,6 +90,7 @@ function App() {
             <Route path="/contract" element={<Contract />} />
             <Route path="/new-catalogue" element={<NewCatalogueTable />} />
             <Route path="/reports-child" element={<ReportsChildTable />} />
+            <Route path="/test2" element={<Test2 />} />
             <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
             <Route path="/stable-table" element={<StableTable />} />
             <Route
