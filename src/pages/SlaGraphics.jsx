@@ -184,7 +184,7 @@ const SlaGraphics = () => {
         {/* Graphics */}
         <div className="sla-chart-container placeholder pl-5 h-100">
           <header className="sla-graphics-header">
-            <h1>Avarage Service elvel</h1>
+            <h1>Avarage Service Level</h1>
             <div className="flex gap-10 mt-10">
               <div className="sla-percent-container">
                 <span>78%</span>
