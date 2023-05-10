@@ -28,6 +28,10 @@
 
 }
 
+.dashboard-aside.go-right {
+  left: 100px;
+}
+
 
 .dashboard-aside  a{
     text-decoration: none;

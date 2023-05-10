@@ -27,7 +27,7 @@ import reportSvg from "../assets/reports.svg";
 
 import "../styles/aside-light.css";
 
-const DashboardAsideLight = () => {
+const DashboardAsideLight = ({ selected = false, left = false }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleBodyClass = () => {
@@ -37,27 +37,6 @@ const DashboardAsideLight = () => {
   };
 
   const linkListRef = useRef(null);
-
-  // useEffect(() => {
-
-  //   const asideSapns = document.querySelectorAll(".dashboard-aside__list a span")
-
-  //   const hideSpan = (span) => {
-  //     if(!document.body.classList.contains("body-sidebar-open")){
-  //       span.style.display = "none"
-  //     }
-  //   }
-
-  //   asideSapns.forEach(span => {
-  //     span.addEventListener("transitionend", () => hideSpan(span))
-  //   })
-
-  //   return () => {
-  //     asideSapns.forEach(span => {
-  //       span.removeEventListener("transitionend", () => hideSpan(span))
-  //     })
-  //   }
-  // }, [])
 
   useEffect(() => {
     const linkLabels = linkListRef.current.querySelectorAll(".aside-label");
@@ -78,7 +57,11 @@ const DashboardAsideLight = () => {
   }, []);
 
   return (
-    <aside className="dashboard-aside dashboard-aside-light">
+    <aside
+      className={`dashboard-aside dashboard-aside-light ${
+        left ? "go-left" : ""
+      }`}
+    >
       <button onClick={toggleBodyClass} className="aside-btn">
         <img src={asideBtn} alt="" />
       </button>
@@ -159,7 +142,13 @@ const DashboardAsideLight = () => {
             <NavLink
               to="/invoices-table"
               className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
+                selected
+                  ? "active"
+                  : isPending
+                  ? "pending"
+                  : isActive
+                  ? "active"
+                  : ""
               }
             >
               <img src={invoices} alt="" />

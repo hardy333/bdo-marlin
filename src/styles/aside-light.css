@@ -5,7 +5,9 @@
 }
 
 
-
+.dashboard-aside-light.go-left{
+  left: 1rem;
+}
 
 .dashboard-aside-light .dashboard-aside__list img {
   width: 2.5rem;
