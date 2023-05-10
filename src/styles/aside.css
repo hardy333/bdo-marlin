@@ -133,6 +133,11 @@
   border-radius: 25px;
 }
 
+.dashboard-aside__list li:has(a.active){
+  background-color: hsl(256, 51%, 18%);
+
+}
+
 
 .dashboard-aside__list li:has(a.active)::before{
   content: "";
