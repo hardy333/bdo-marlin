@@ -5,11 +5,11 @@ import "../styles/sla-chart.css";
 const series = [
   {
     name: "series1",
-    data: [31, 40, 28, 51, 42, 109, 100],
+    data: [31, 70, 28, 51, 88, 60, 100],
   },
   {
     name: "series2",
-    data: [11, 32, 45, 32, 34, 52, 41],
+    data: [90, 32, 45, 32, 20, 52, 41],
   },
 ];
 const options = {
@@ -47,12 +47,22 @@ const options = {
       "2018-09-19T05:30:00.000Z",
       "2018-09-19T06:30:00.000Z",
     ],
+    title: {
+      text: "Time",
+    },
+  },
+  yaxis: {
+    // categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    min: 5,
+    max: 100,
+    title: {
+      text: "Avarage Service Level",
+    },
   },
   tooltip: {
     x: {
       format: "dd/MM/yy HH:mm",
     },
-    // colors: ["#6E0FF5", "#F55364"],
   },
 };
 
