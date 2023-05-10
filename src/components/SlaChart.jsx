@@ -4,11 +4,11 @@ import "../styles/sla-chart.css";
 
 const series = [
   {
-    name: "series1",
+    name: "Duration A",
     data: [31, 70, 28, 51, 88, 60, 100],
   },
   {
-    name: "series2",
+    name: "Duration 2",
     data: [90, 32, 45, 32, 20, 52, 41],
   },
 ];
@@ -48,7 +48,7 @@ const options = {
       "2018-09-19T06:30:00.000Z",
     ],
     title: {
-      text: "Time",
+      text: "Time Duration",
     },
   },
   yaxis: {
