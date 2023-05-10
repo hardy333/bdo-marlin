@@ -117,7 +117,7 @@
 }
 
 .dashboard-aside__list li:hover{
-  background-color: hsl(256, 51%, 18%);
+  /* background-color: hsl(256, 51%, 18%); */
 
 
 }
@@ -134,7 +134,7 @@
 }
 
 .dashboard-aside__list li:has(a.active){
-  background-color: hsl(256, 51%, 18%);
+  /* background-color: hsl(256, 51%, 18%); */
 
 }
 
