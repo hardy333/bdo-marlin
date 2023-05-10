@@ -50,6 +50,7 @@ import CatalogueTable5Level from "./pages/CatalogueTable5Level";
 import Test2 from "./pages/Test2";
 import SlaByVendorsTable from "./pages/SlaByVendorsTable";
 import SlaGraphics from "./pages/SlaGraphics";
+import Components from "./pages/Components";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -73,6 +74,7 @@ function App() {
               <Route path="change-password" element={<PasswordForm />} />
             </Route>
             <Route path="/vendors" element={<Vendors />} />
+            <Route path="/components" element={<Components />} />
             <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />

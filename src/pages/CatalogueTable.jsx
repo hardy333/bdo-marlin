@@ -69,6 +69,7 @@ import ExpandingInput from "../components/ExpandingInput";
 import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import SearchSvg from "../components/svgs/SearchSvg";
+import fetch_XLSX_DATA2 from "../utils/getData2";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -119,6 +120,13 @@ const CatalogueTable = () => {
     },
     {
       field: "Product",
+      cellRenderer: (params) => {
+        if (cat3) {
+          return cat3[Math.floor(Math.random() * cat3.length)];
+        }
+
+        return params.value;
+      },
     },
     {
       field: "Units",
@@ -315,6 +323,38 @@ const CatalogueTable = () => {
     setIsHover(false);
   };
 
+  const [cat1, setCat1] = useState(null);
+  const [cat2, setCat2] = useState(null);
+  const [cat3, setCat3] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch_XLSX_DATA2();
+      console.log(data);
+      let c1 = [];
+      let c2 = [];
+      let c3 = [];
+
+      data.TDSheet.forEach((obj) => {
+        c1.push(obj["კატეგორია"]);
+        c2.push(obj["ქვეკატეგორია"]);
+        c3.push(obj["პროდუქტი"]);
+      });
+
+      c1 = Array.from(new Set(c1));
+      c2 = Array.from(new Set(c2));
+      c3 = Array.from(new Set(c3));
+
+      setCat1(c1);
+      setCat2(c2);
+      setCat3(c3);
+
+      gridApi.refreshCells();
+    };
+
+    fetchData();
+  }, []);
+
   const [isChecked, setISChecked] = useState(false);
 
   return (
@@ -491,6 +531,7 @@ const CatalogueTable = () => {
         </div>
       </header>
       <div className="flex gap-2">
+        {/* Categories */}
         <div className="categories">
           <section className="section-first">
             <header className="categories__header">
@@ -501,7 +542,7 @@ const CatalogueTable = () => {
             </header>
             <div className="categories__list-container">
               <ul className="categories__list">
-                {c.map((item, index) => (
+                {cat1?.map((item, index) => (
                   <li
                     key={index}
                     onMouseOut={disableHoverAsync}
@@ -533,7 +574,7 @@ const CatalogueTable = () => {
             </header>
             <div className={`section-2__container ${isHover ? "open" : ""}`}>
               <ul className="section-2__list">
-                {items1.map((item, index) => (
+                {cat2?.map((item, index) => (
                   <li key={`${item}-${index}`}>{item}</li>
                 ))}
               </ul>
