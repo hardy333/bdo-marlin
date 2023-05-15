@@ -8,75 +8,60 @@ import RegionSvg from "./svgs/service-level-svgs/RegionSvg";
 import arrowDown from "../assets/arrow-down.svg";
 import classNames from "classnames";
 
+const itemsList = [
+  {
+    svg: <HouseSvg />,
+    label: "Shop",
+  },
+  {
+    svg: <ItemSvg />,
+    label: "Item",
+  },
+  {
+    svg: <CategorySvg />,
+    label: "Category",
+  },
+  {
+    svg: <BrandSvg />,
+    label: "Brand",
+  },
+  {
+    label: "Region",
+    svg: <RegionSvg />,
+  },
+];
+
 const ItemsMenu = () => {
-  const [reportCategory, setReportCategory] = useState("shop");
+  const [reportCategory, setReportCategory] = useState(itemsList[0]);
 
   return (
-    <Menu
-      className="report-child-menu"
-      menuButton={
-        <button className="report-child-menu-button">
-          <img src={arrowDown} alt="" />
-        </button>
-      }
-      transition
-    >
-      <MenuItem
-        className={classNames({
-          selected: reportCategory === "shop",
-        })}
-        onClick={() => {
-          setReportCategory("shop");
-        }}
+    <div>
+      <Menu
+        className="report-child-menu"
+        menuButton={
+          <button className="report-child-menu-button">
+            {reportCategory.svg} {reportCategory.label}
+          </button>
+        }
+        transition
       >
-        <HouseSvg />
-        Shop
-      </MenuItem>
-      <MenuItem
-        className={classNames({
-          selected: reportCategory === "item",
+        {itemsList.map((item) => {
+          return (
+            <MenuItem
+              key={item.label}
+              className={classNames({
+                selected: reportCategory.label === item.label,
+              })}
+              onClick={() => {
+                setReportCategory(item);
+              }}
+            >
+              {item.svg} {item.label}
+            </MenuItem>
+          );
         })}
-        onClick={() => {
-          setReportCategory("item");
-        }}
-      >
-        <ItemSvg />
-        Item
-      </MenuItem>
-      <MenuItem
-        className={classNames({
-          selected: reportCategory === "category",
-        })}
-        onClick={() => {
-          setReportCategory("category");
-        }}
-      >
-        <CategorySvg />
-        Category
-      </MenuItem>
-      <MenuItem
-        className={classNames({
-          selected: reportCategory === "brand",
-        })}
-        onClick={() => {
-          setReportCategory("brand");
-        }}
-      >
-        <BrandSvg />
-        Brand
-      </MenuItem>
-      <MenuItem
-        className={classNames({
-          selected: reportCategory === "region",
-        })}
-        onClick={() => {
-          setReportCategory("region");
-        }}
-      >
-        <RegionSvg />
-        Region
-      </MenuItem>
-    </Menu>
+      </Menu>
+    </div>
   );
 };
 

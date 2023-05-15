@@ -305,8 +305,6 @@ const ReportsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>Service Level Report</h4>
-
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
           </div>
           {/* Right */}

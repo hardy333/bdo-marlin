@@ -44,13 +44,25 @@
 }
 
 .report-child-menu-button{
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  height: 36px;
+  padding: 0 1rem;
+  border-radius: 14px;
+  width: 150px;
+  font-size: 15px;
+
+  background-color: #fff;
 
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+
+
+}
+
+.report-child-menu-button svg{
+  width: 15px;
+  max-height: 15px;
 }
 
 .report-child-menu-button:hover{
@@ -62,7 +74,9 @@
 /*  */
 
 
-
+.report-child-menu .szh-menu{
+  margin-top: 10px !important;
+}
 
 .report-child-menu .szh-menu__item{
   padding: 0;
