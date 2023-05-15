@@ -69,6 +69,20 @@
   background: #ebe8f5ac;
 }
 
+.report-child-menu-arrow {
+  transition: transform 0.3s ease;
+  fill: hsl(0, 0%, 80%);
+  transform: scale(1.3);
+  margin-left: auto;
+}
+
+
+.report-child-menu-button.open .report-child-menu-arrow {
+  transform: scale(1.3) rotate(-180deg);
+  fill: hsl(0, 0%, 40%);
+
+}
+
 /*  */
 /*  */
 /*  */
