@@ -107,27 +107,41 @@ const ReportsTable = () => {
     },
     {
       field: "Monthly Amount",
+      headerName: "Orders",
+
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL";
+        return value;
       },
     },
     {
       field: "Quantity Deviation",
+      headerName: "Amount",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "Gel";
+      },
     },
     {
       field: "Quantity Deviation",
+      headerName: "SLA by Quantity",
     },
     {
       field: "In Time Orders",
+      headerName: "SLA by Amount",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " " + "%";
+        return value + " " + "Gel";
       },
     },
     {
       field: "Avarage Service Level",
+      headerName: "In Time Orders",
       minWidth: 250,
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "%";
+      },
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -456,10 +470,6 @@ const ReportsTable = () => {
               return 37;
             }
           }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
 
