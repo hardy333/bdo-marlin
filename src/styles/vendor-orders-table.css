@@ -39,3 +39,26 @@
 .vendors-all-orders-table .ag-cell--opened .status-container{
   display: block;
 }
+
+
+.avarage-sla{
+  font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 15px;
+
+color: #211543;
+
+
+}
+
+.avarage-sla span{
+  font-weight: 700;
+font-size: 16px;
+line-height: 19px;
+
+color: #01C6B5;
+display: inline-block;
+margin-left: 10px;
+
+}

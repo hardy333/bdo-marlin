@@ -112,33 +112,47 @@ const SlaByVendorsTable = () => {
   const [columnDefs] = useState([
     {
       field: "Vendors",
+      headerName: "Order #",
       cellRenderer: (params) => {
-        return params.value;
+        return Math.floor(Math.random() * 100 + 50);
       },
     },
     {
       field: "Monthly Amount",
+      headerName: "Order Date",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL";
+        return "2/5/2023";
       },
     },
     {
       field: "Quantity Deviation",
+      headerName: "Shop #",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return "SPA" + value;
+      },
     },
     {
       field: "Quantity Deviation",
+      headerName: "SLA by quantity",
     },
     {
       field: "In Time Orders",
+      headerName: "SLA by amount",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " " + "%";
+        return value + " " + "Gel";
       },
     },
     {
       field: "Avarage Service Level",
+      headerName: "In time Orders",
       minWidth: 250,
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "%";
+      },
     },
   ]);
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
@@ -288,6 +302,9 @@ const SlaByVendorsTable = () => {
             <ItemsMenu />
 
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+            <p className="avarage-sla">
+              Avarage Servise level: <span>82%</span>
+            </p>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
