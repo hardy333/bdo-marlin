@@ -52,6 +52,8 @@ import SlaByVendorsTable from "./pages/SlaByVendorsTable";
 import SlaGraphics from "./pages/SlaGraphics";
 import Components from "./pages/Components";
 import SlaGraphicsTest from "./pages/SlaGraphicsTest";
+import DiscountsTable from "./pages/DiscountsTable";
+import DiscountsCards from "./pages/DiscountsCards";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -101,6 +103,8 @@ function App() {
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
             <Route path="/sla-graphics" element={<SlaGraphics />} />
             <Route path="/sla-graphics-test" element={<SlaGraphicsTest />} />
+            <Route path="/discounts-table" element={<DiscountsTable />} />
+            <Route path="/discounts-cards" element={<DiscountsCards />} />
             <Route
               path="/catalogue-5-level"
               element={<CatalogueTable5Level />}

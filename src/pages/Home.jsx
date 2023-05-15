@@ -79,6 +79,10 @@ const Home = () => {
             <Link to="/reports">SLA All</Link>
             <Link to="/sla-by-vendors">SLA By Vendor</Link>
             <Link to="/sla-graphics">SLA Grapcis</Link>
+            <br />
+            <small>Discounts</small>
+            <Link to="/discounts-table">Discounts Table</Link>
+            <Link to="/discounts-cards">discounts Cards</Link>
           </div>
         </div>
       </section>
