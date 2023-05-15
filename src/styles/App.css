@@ -43,7 +43,7 @@ body{
   /* font-family: "BPG Nino Mtavruli", sans-serif; */
   /* font-family: "babuka"; */
   /* font-family: "BPG Nateli", sans-serif; */
-  overflow: hidden;
+  /* overflow: hidden; */
   --sidebar-width: 65px;
   --sidebar-inline-margin: 10px;
   --sidebar-full-space: calc(var(--sidebar-width) + var(--sidebar-inline-margin));
@@ -119,7 +119,7 @@ img{
   transition: var(--sidebar-open-animation-duration) ease-in-out;
 
   transition: all 0.3s ease-in-out;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   
 }
