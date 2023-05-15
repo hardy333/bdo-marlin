@@ -375,7 +375,7 @@ const VendorAllOrdersTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example  vendors-all-orders-table"
+        className="ag-theme-alpine ag-grid-example  vendors-all-orders-table "
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

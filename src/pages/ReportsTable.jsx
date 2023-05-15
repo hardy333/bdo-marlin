@@ -450,7 +450,7 @@ const ReportsTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example sla-all-table"
+        className="ag-theme-alpine ag-grid-example sla-all-table sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

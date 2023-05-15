@@ -447,7 +447,7 @@ const SlaByVendorsTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
