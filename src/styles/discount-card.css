@@ -1,0 +1,67 @@
+
+
+.discount-card{
+  background: #FFFFFF;
+  box-shadow: 0px 3px 5px rgba(208, 199, 232, 0.05);
+  border-radius: 15px;
+  padding: 2rem 2rem;
+  padding-bottom: 2.2rem;
+  position: relative;
+}
+
+.discount-card h2{
+  font-weight: 700;
+font-size: 18px;
+line-height: 17px;
+text-align: center;
+
+color: #211543;
+margin-bottom: 0.5rem;
+
+
+}
+
+.discount-card h3{
+  font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+text-align: center;
+
+color: #211543;
+margin-bottom: 1.5rem;
+
+}
+
+.discount-card h4{
+  font-weight: 400;
+font-size: 16px;
+line-height: 15px;
+
+color: #FFA23C;
+margin-bottom: 1rem;
+
+
+}
+
+.discount-card .from-till{
+  font-weight: 400;
+font-size: 14px;
+line-height: 15px;
+
+color: #211543;
+margin-bottom: 0.5rem;
+
+
+}
+
+.discount-card .from-till span{
+  display: inline-block;
+  margin-right: 1rem;
+
+}
+
+.discount-card .btn{
+  margin-inline: auto;
+  border: none;
+  margin-top: 2rem;
+}
