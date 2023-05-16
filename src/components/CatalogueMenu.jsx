@@ -45,7 +45,7 @@ const CatalogueMenu = () => {
               key={i}
               style={{
                 background:
-                  i === +selectedCategory?.split(" ")[1] ? "#d0c7e820" : "",
+                  i === +selectedCategory?.split(" ")[1] ? "#d0c7e85d" : "",
               }}
             >
               Hello {i}
@@ -78,6 +78,7 @@ const CatalogueMenu = () => {
           <li>Hello {selectedCategory?.split(" ")[1]} Hello</li>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
         </ul>
+
         <ul>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
@@ -87,6 +88,7 @@ const CatalogueMenu = () => {
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
         </ul>
+
         <ul>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
           <li>Hello {selectedCategory?.split(" ")[1]} </li>
