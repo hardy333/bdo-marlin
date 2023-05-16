@@ -70,31 +70,31 @@ const CatalogueMenu = () => {
         className={`catalogue-menu-list-2 ${isOutsideWrapper ? "" : "open"}`}
       >
         <ul>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} abc sbs </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} Hello</li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
         </ul>
         <ul>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} param pam</li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
         </ul>
         <ul>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
-          <li>Hello </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          <li>Hello {selectedCategory?.split(" ")[1]} </li>
         </ul>
       </section>
     </div>
