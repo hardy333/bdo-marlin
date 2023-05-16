@@ -24,6 +24,7 @@ import marlinText from "../assets/navbar/marlin-text.svg";
 import { Link, NavLink } from "react-router-dom";
 import asideBtn from "../assets/aside-btn.svg";
 import reportSvg from "../assets/reports.svg";
+import percentSvg from "../assets/percent.svg";
 
 const DashboardAside = ({ selected = false, left = true }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -106,6 +107,17 @@ const DashboardAside = ({ selected = false, left = true }) => {
             >
               <img src={orders} alt="" />
               <span className="aside-label">შეკვეთები</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/discounts-table"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              <img src={percentSvg} alt="" />
+              <span className="aside-label">ფასდაკლებები</span>
             </NavLink>
           </li>
           <li>
