@@ -71,6 +71,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import SearchSvg from "../components/svgs/SearchSvg";
 import fetch_XLSX_DATA2 from "../utils/getData2";
 import AgTablePag from "../components/AgTablePag";
+import CatalogueMenu from "../components/CatalogueMenu";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -543,54 +544,8 @@ const CatalogueTable = () => {
       </header>
       <div className="flex gap-2">
         {/* Categories */}
-        <div className="categories">
-          <section className="section-first">
-            <header className="categories__header">
-              <div className="input-wrapper">
-                <input type="text" className="input" />
-                <SearchSvg />
-              </div>
-            </header>
-            <div className="categories__list-container">
-              <ul className="categories__list">
-                {cat1?.map((item, index) => (
-                  <li
-                    key={index}
-                    onMouseOut={disableHoverAsync}
-                    onMouseOver={() => setIsHover(true)}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="categories__footer">
-              <p>View full structure </p>
-            </div>
-          </section>
-
-          <section
-            className={classNames({
-              "section-2": true,
-              open: isHover || isSectionHover,
-            })}
-            onMouseOut={() => setIsSectionHover(false)}
-            onMouseOver={() => setIsSectionHover(true)}
-          >
-            <header>
-              <div className="input-wrapper">
-                <input type="text" className="input" />
-                <SearchSvg />
-              </div>
-            </header>
-            <div className={`section-2__container ${isHover ? "open" : ""}`}>
-              <ul className="section-2__list">
-                {cat2?.map((item, index) => (
-                  <li key={`${item}-${index}`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </section>
+        <div className="catalogue-menu-container">
+          <CatalogueMenu />
         </div>
         <div
           className="ag-theme-alpine ag-grid-example"
