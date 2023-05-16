@@ -28,8 +28,6 @@ import reportSvg from "../assets/reports.svg";
 const DashboardAside = ({ selected = false, left = true }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(selected);
-
   const toggleBodyClass = () => {
     if (document.body) {
       document.body.classList.toggle("body-sidebar-open");
@@ -41,9 +39,7 @@ const DashboardAside = ({ selected = false, left = true }) => {
   useEffect(() => {
     const linkLabels = linkListRef.current.querySelectorAll(".aside-label");
 
-    const handleTransitionEnd = () => {
-      // console.log(linkLabel, "Transition end ");
-    };
+    const handleTransitionEnd = () => {};
 
     linkLabels.forEach((linkLabel) => {
       linkLabel.addEventListener("transitionend", handleTransitionEnd);
