@@ -4,24 +4,54 @@ import SearchSvg from "./svgs/SearchSvg";
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
+import data from "../assets/goodwill-data.json";
+
+let categories = [];
+let resData = {};
+
+const processData = (data) => {
+  const allCategories = [];
+  data.forEach((obj) => {
+    allCategories.push(obj.category);
+  });
+
+  categories = Array.from(new Set(allCategories));
+
+  data.forEach((obj) => {
+    if (resData[obj.category]) {
+      resData[obj.category].push(obj.product);
+    } else {
+      resData[obj.category] = [obj.product];
+    }
+  });
+};
+
+processData(data);
+
 const CatalogueMenu = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isOutsideWrapper, setIsOutsideWrapper] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleMouseOver = (e) => {
     if (e.target.classList.contains("category-li")) {
-      const cat = e.target.textContent;
+      const span = e.target.querySelector(".category-name");
+      const cat = span.getAttribute("data-value");
       setSelectedCategory(cat);
     }
   };
 
   const handleMouseLeave = (e) => {
     setIsOutsideWrapper(true);
-    setSelectedCategory(null);
   };
 
   const handleMouseEnter = (e) => {
     setIsOutsideWrapper(false);
+  };
+
+  const handleProductClick = (e, name) => {
+    setIsOutsideWrapper(true);
+    setSelectedProduct(name);
   };
 
   return (
@@ -30,7 +60,7 @@ const CatalogueMenu = () => {
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       style={{
-        width: isOutsideWrapper ? "200px" : "650px",
+        width: isOutsideWrapper ? "200px" : "850px",
       }}
     >
       <section className="catalogue-menu-list-1">
@@ -39,22 +69,17 @@ const CatalogueMenu = () => {
           <SearchSvg />
         </div>
         <ul onMouseOver={handleMouseOver}>
-          {Array.from({ length: 200 }).map((_, i) => (
+          {categories.map((category, i) => (
             <li
-              className="category-li"
+              className={`category-li ${
+                selectedCategory === category ? "active" : ""
+              }`}
               key={i}
-              style={{
-                background:
-                  i === +selectedCategory?.split(" ")[1] ? "#d0c7e85d" : "",
-              }}
             >
-              Hello {i}
-              <span
-                style={{
-                  display:
-                    i === +selectedCategory?.split(" ")[1] ? "block" : "none",
-                }}
-              >
+              <span className="category-name" data-value={category}>
+                {category}
+              </span>
+              <span className="category-arrow">
                 <BsArrowRightShort />
               </span>
             </li>
@@ -70,33 +95,20 @@ const CatalogueMenu = () => {
         className={`catalogue-menu-list-2 ${isOutsideWrapper ? "" : "open"}`}
       >
         <ul>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} abc sbs </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} Hello</li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-        </ul>
-
-        <ul>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} param pam</li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-        </ul>
-
-        <ul>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
-          <li>Hello {selectedCategory?.split(" ")[1]} </li>
+          {selectedCategory &&
+            resData[selectedCategory].map((name, index) => {
+              return (
+                <li
+                  onClick={(e) => handleProductClick(e, name)}
+                  key={name + index}
+                  style={{
+                    fontWeight: name === selectedProduct ? "700" : "500",
+                  }}
+                >
+                  {name}
+                </li>
+              );
+            })}
         </ul>
       </section>
     </div>

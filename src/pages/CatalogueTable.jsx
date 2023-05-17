@@ -333,7 +333,6 @@ const CatalogueTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch_XLSX_DATA2();
-      console.log(data);
       let c1 = [];
       let c2 = [];
       let c3 = [];

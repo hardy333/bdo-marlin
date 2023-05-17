@@ -8,7 +8,7 @@
 .catalogue-menu-wrapper{
   height: 100%;
   display: flex;
-  width: 650px;
+  width: 850px;
 }
 
 .catalogue-menu-list-1{
@@ -37,6 +37,7 @@
   padding-left: 1rem;
   flex: 1;
   padding-bottom: 0;
+  padding-bottom: 1rem;
 }
 
 .catalogue-menu-list-1 li{
@@ -44,14 +45,12 @@
   padding: 0.5rem 1rem;
   border-radius: 15px;
   font-weight: 500;
-font-size: 14px;
-line-height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #211543;
+  padding-right: 3rem !important;
+  position: relative;
 
-color: #211543;
-
-display: flex;
-justify-content: space-between;
-align-items: center;
 }
 
 .catalogue-menu-list-1 li:hover{
@@ -59,7 +58,43 @@ align-items: center;
 
 }
 
+.catalogue-menu-list-1 li.active{
+  background-color: #d0c7e85d !important;
+
+}
+
+.category-name{
+  height: 100%;
+  width: 100%;
+
+  display: block;
+  overflow: hidden;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+}
+
+
+
+.category-arrow{
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: block;
+  z-index: 99999999;
+  display: none;
+
+}
+
+.catalogue-menu-list-1 li.active .category-arrow{
+  display: block;
+}
+
+
 .catalogue-menu-list-1 li svg{
+ 
 
 }
 
@@ -92,16 +127,14 @@ align-items: center;
 }
 
 .catalogue-menu-list-2{
-  width: 400px;
+  width: 600px;
   background-color: #fff;
   border-radius: 15px;
   padding: 1rem;
   flex-shrink: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
   /* display: none; */
   margin-left: 0.5rem;
+  padding-right: 0.5rem;
 
   position: relative;
   z-index: 29999999999999;
@@ -110,6 +143,7 @@ align-items: center;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s ease;
+
 }
 
 .catalogue-menu-list-2.open{
@@ -120,9 +154,24 @@ align-items: center;
   
 }
 
+.catalogue-menu-list-2 ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: max-content;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+
 .catalogue-menu-list-2 li{
+  flex-shrink: 1;
   cursor: pointer;
   font-size: 14px;
+  /* border: 1px solid green; */
+
 }
 
 .catalogue-menu-list-2 li:hover{
