@@ -124,6 +124,12 @@ img{
   
 }
 
+.dashboard-main.static{
+  padding-left: 115px;
+  
+}
+
+
 body.dashboard-main-fullscreen .dashboard-main{
   position: fixed;
   top: 0;

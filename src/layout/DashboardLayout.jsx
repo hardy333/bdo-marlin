@@ -3,12 +3,14 @@ import DashboardAside from "../components/DashboardAside";
 import DashboardNavbar from "../components/DashboardNavbar";
 import DashboardAsideLight from "../components/DashboardAsideLight";
 
-const DashboardLayout = ({ children, light = false }) => {
+const DashboardLayout = ({ children, light = false, staticMain = false }) => {
   return (
     <div className="dashboard">
       {light ? <DashboardAsideLight left={true} /> : <DashboardAside />}
       <DashboardNavbar />
-      <main className="dashboard-main">{children}</main>
+      <main className={`dashboard-main ${staticMain ? "static" : ""}`}>
+        {children}
+      </main>
     </div>
   );
 };

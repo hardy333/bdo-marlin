@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <DashboardLayout>
+    <DashboardLayout staticMain={true}>
       <div className="register">
         <div className="register__container">
           <h1>Register</h1>
