@@ -14,7 +14,7 @@ const Login = () => {
             <input className="input" type="email" placeholder="E-mail" />
             <input className="input" type="password" placeholder="Password" />
             <small className="ml-auto ">
-              <a href="" style={{ color: "#406aff" }} className="login-link">
+              <a href="" className="login-link">
                 Forgot password?
               </a>
             </small>

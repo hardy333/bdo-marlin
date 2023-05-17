@@ -53,11 +53,7 @@ const Register = () => {
               <input type="checkbox" />
               <span>
                 I accept{" "}
-                <a
-                  className="link login-link"
-                  href="#"
-                  style={{ color: "#406aff" }}
-                >
+                <a className="link login-link" href="#">
                   terms and conditions
                 </a>
               </span>
@@ -65,11 +61,7 @@ const Register = () => {
             <button className="btn btn-blue">Register</button>
             <p className="register-form__login">
               Already have an account?{" "}
-              <Link
-                className="link login-link"
-                to="/login"
-                style={{ color: "#406aff" }}
-              >
+              <Link className="link login-link" to="/login">
                 Log in
               </Link>
             </p>

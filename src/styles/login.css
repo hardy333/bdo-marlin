@@ -82,7 +82,10 @@
 }
 
 
+.login-link{
+  color: #2654D3 !important;
+}
 
 .login-link:hover{
-  filter: brightness(85%);
+  color: #0A389e !important;
 }
