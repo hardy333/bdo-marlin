@@ -14,12 +14,14 @@ const Login = () => {
             <input className="input" type="email" placeholder="E-mail" />
             <input className="input" type="password" placeholder="Password" />
             <small className="ml-auto ">
-              <a href="">Forgot password?</a>
+              <a href="" style={{ color: "#406aff" }} className="login-link">
+                Forgot password?
+              </a>
             </small>
             <button className="btn btn-blue">Log in</button>
             <p className="login-form__login">
               Do not have an account?{" "}
-              <Link className="link" to="/register">
+              <Link className="link login-link" to="/register">
                 Register
               </Link>
             </p>

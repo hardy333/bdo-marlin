@@ -51,8 +51,9 @@
   background-color: var(--color-primary-4);
   margin: auto;
   color: #fff;
-  width: 100%;
+  width: 220px;
   padding: 10px 20px;
+
   border-radius: 30px;
   margin-bottom: 2rem;
   border: 1px solid transparent;
@@ -80,3 +81,8 @@
   color: #406AFF
 }
 
+
+
+.login-link:hover{
+  filter: brightness(85%);
+}
