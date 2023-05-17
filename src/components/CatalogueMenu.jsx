@@ -102,7 +102,7 @@ const CatalogueMenu = () => {
                   onClick={(e) => handleProductClick(e, name)}
                   key={name + index}
                   style={{
-                    fontWeight: name === selectedProduct ? "700" : "500",
+                    color: name === selectedProduct ? "#6E0FF5" : "",
                   }}
                 >
                   {name}
