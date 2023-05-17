@@ -117,7 +117,7 @@ input[type="number"]{
 }
 
 .input-wrapper input:focus + svg{
-  fill:#211543;
+  fill:#6E0FF5;
 }
 
 

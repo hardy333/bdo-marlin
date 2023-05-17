@@ -199,7 +199,7 @@ align-items: center;
 }
 
 .catalogue-menu-container .input-wrapper .input:focus{
-  border:1px solid #6E0FF5;
+  /* border:1px solid #6E0FF5; */
   outline: none;
   
 }

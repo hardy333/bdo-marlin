@@ -126,7 +126,7 @@ img{
 
 .dashboard-main.static{
   padding-left: 115px;
-  
+
 }
 
 
@@ -273,13 +273,15 @@ body.dashboard-main-fullscreen .dashboard-main{
   border-radius: 0.7rem;
   box-shadow: 2px 2px 5px rgba(0,0,0, 0.2);
   font-size: 1.6rem;
+  outline: none;
 
 
 }
 
 .input:focus{
   outline-offset: 2px;
-  outline: 1px var(--color-primary-4) solid;
+  
+  /* outline: 1px var(--color-primary-4) solid; */
 
 }
 
