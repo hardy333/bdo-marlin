@@ -94,6 +94,10 @@ const CatalogueMenu = () => {
       <section
         className={`catalogue-menu-list-2 ${isOutsideWrapper ? "" : "open"}`}
       >
+        <div className="input-wrapper">
+          <input type="text" className="input" />
+          <SearchSvg />
+        </div>
         <ul>
           {selectedCategory &&
             resData[selectedCategory].map((name, index) => {

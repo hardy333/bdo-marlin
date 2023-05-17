@@ -186,11 +186,15 @@ align-items: center;
 .catalogue-menu-container .input-wrapper{
   margin-right: 1rem;
   margin-left: 1rem;
+  width: 180px;
+
 }
 
 .catalogue-menu-container .input-wrapper .input{
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 2.5rem !important;
+
 }
 
 .catalogue-menu-container .input-wrapper .input{
