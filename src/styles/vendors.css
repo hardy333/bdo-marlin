@@ -169,6 +169,16 @@
   padding: 0;
 }
 
+.vendor-card__btn{
+  background-color: red;
+  height: 50px;
+  width: 50px;
+}
+
+.vendor-card__btn svg{
+  fill: green !important;
+}
+
 .vendor-card-hr{
   width: 1px;
   height: 1rem;
