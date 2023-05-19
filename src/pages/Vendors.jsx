@@ -9,6 +9,7 @@ import listSortSvg from "../assets/list-sort.svg";
 // css
 import "../styles/vendors.css";
 import SearchSvg from "../components/svgs/SearchSvg";
+import { AnimatePresence } from "framer-motion";
 
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
@@ -46,15 +47,17 @@ const Vendors = () => {
         </header>
 
         <div className="vendors-card-container">
-          {vendorArr
-            .filter((num) => (isChecked ? true : num === 1))
-            .map((num, index) => {
-              return num === 1 ? (
-                <VendorsCard key={index} variant="active" />
-              ) : (
-                <VendorsCard key={index} />
-              );
-            })}
+          <AnimatePresence>
+            {vendorArr
+              .filter((num) => (isChecked ? true : num === 1))
+              .map((num, index) => {
+                return num === 1 ? (
+                  <VendorsCard key={index} index={index} variant="active" />
+                ) : (
+                  <VendorsCard key={index} index={index} />
+                );
+              })}
+          </AnimatePresence>
         </div>
         <div className="employee-pag-container">
           <button>&larr;</button>
