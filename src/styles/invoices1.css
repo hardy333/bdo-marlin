@@ -28,14 +28,13 @@
   font-size: 30px;
   line-height: 36px;
   color: #211543;
-
 }
 
 .invoices-card-container{
   margin-top: 2rem;
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   overflow-y: auto;
   height: 400px;
@@ -115,16 +114,12 @@
 @media (max-width: 1200px){
   .invoices-card-container{
     grid-template-columns: repeat(2, 1fr);
-
-
   }
 }
 
 @media (max-width: 900px){
   .invoices-card-container{
     grid-template-columns: repeat(1, 1fr);
-
-
   }
 }
 
@@ -138,8 +133,6 @@
   
   .invoices-card-container{
     padding: 0 4rem;
-
-
   }
 }
 
@@ -185,7 +178,7 @@
 .invoice-card-2 ul{
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.3rem;
   font-size: 14px;
 }
 
