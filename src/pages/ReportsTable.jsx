@@ -310,7 +310,6 @@ const ReportsTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
             {/* input filter */}
             <button
               onClick={() => {

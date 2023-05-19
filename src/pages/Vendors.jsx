@@ -10,6 +10,10 @@ import listSortSvg from "../assets/list-sort.svg";
 import "../styles/vendors.css";
 import SearchSvg from "../components/svgs/SearchSvg";
 import { AnimatePresence } from "framer-motion";
+import Modal from "react-modal";
+import "../styles/vendors-modal.css";
+import CarActive from "../components/svgs/CarActive";
+import CarDisabled from "../components/svgs/CarDisabled";
 
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
@@ -18,6 +22,16 @@ const Vendors = () => {
   ]);
 
   const [isChecked, setISChecked] = useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    console.log("Open modal");
+    setIsOpen(true);
+  }
 
   return (
     <DashboardLayout>
@@ -52,9 +66,18 @@ const Vendors = () => {
               .filter((num) => (isChecked ? true : num === 1))
               .map((num, index) => {
                 return num === 1 ? (
-                  <VendorsCard key={index} index={index} variant="active" />
+                  <VendorsCard
+                    openModal={openModal}
+                    key={index}
+                    index={index}
+                    variant="active"
+                  />
                 ) : (
-                  <VendorsCard key={index} index={index} />
+                  <VendorsCard
+                    openModal={openModal}
+                    key={index}
+                    index={index}
+                  />
                 );
               })}
           </AnimatePresence>
@@ -72,6 +95,30 @@ const Vendors = () => {
             <p>1-5 of 5</p>
           </div>
         </div>
+
+        <Modal
+          isOpen={modalIsOpen}
+          shouldCloseOnOverlayClick={true}
+          onRequestClose={closeModal}
+          className="employees-modal vendors-modal"
+          overlayClassName="employees-modal-overlay"
+          closeTimeoutMS={300}
+        >
+          <header>
+            <CarDisabled />
+            <div>
+              <p>KANT</p>
+              <small>30333244332</small>
+            </div>
+          </header>
+          <p className="vendors-modal-p">
+            Lets connect and make communication easier!
+          </p>
+
+          <footer>
+            <button className="btn btn-success">Send Request</button>
+          </footer>
+        </Modal>
       </section>
     </DashboardLayout>
   );

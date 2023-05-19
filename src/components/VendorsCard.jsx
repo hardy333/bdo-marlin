@@ -14,7 +14,7 @@ import "tippy.js/dist/tippy.css"; // optional
 
 import { motion } from "framer-motion";
 
-const VendorsCard = ({ variant = "disabled", index }) => {
+const VendorsCard = ({ variant = "disabled", index, openModal }) => {
   const footerActive = (
     <div className="vendor-card-footer">
       {/* <button className="btn btn-link">View Calendar</button>
@@ -39,14 +39,17 @@ const VendorsCard = ({ variant = "disabled", index }) => {
     </div>
   );
 
-  console.log(index);
   const footerDisabled = (
     <div className="vendor-card-footer vendor-card-footer--disabled">
-      <button className="btn btn-purple ">Send request</button>
-      {/* <button className="btn btn-link">View Catalogue</button> */}
-      <button>
-        <img src={catalogue} alt="" />
+      <button onClick={openModal} className="btn btn-purple ">
+        Send request
       </button>
+      {/* <button className="btn btn-link">View Catalogue</button> */}
+      <Tippy content="Catalogue">
+        <button>
+          <img src={catalogue} alt="" />
+        </button>
+      </Tippy>
     </div>
   );
 
@@ -63,7 +66,7 @@ const VendorsCard = ({ variant = "disabled", index }) => {
       })}
       exit={(i) => ({
         opacity: 0,
-        y: -50,
+        y: 0,
         transition: {
           // delay: i * 0.05,
         },

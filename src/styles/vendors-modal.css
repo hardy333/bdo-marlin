@@ -1,0 +1,40 @@
+.vendors-modal{
+  
+  background-color: #6E0FF5;
+  border: none;
+  
+  color: #fff;
+}
+
+.vendors-modal header{
+  display: flex;
+  gap: 1rem
+}
+.vendors-modal header svg{
+  width: 90px;
+}
+
+
+.vendors-modal header p{
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.vendors-modal-p{
+  font-size: 30px;
+  margin: 20px 0;
+
+}
+
+.vendors-modal footer{
+  display: flex;
+  justify-content: center;
+}
+
+.vendors-modal footer button{
+  color: #fff;
+}
+
+.vendors-modal footer button:hover{
+  background-color: var(--color-success);
+}
