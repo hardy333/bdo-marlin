@@ -13,6 +13,9 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
 import { motion } from "framer-motion";
+import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
+import VendorsCatalogueSvg from "./svgs/VendorsCatalogueSvg";
+import VendorsShopSvg from "./svgs/VendorsShopSvg";
 
 const VendorsCard = ({ variant = "disabled", index, openModal }) => {
   const footerActive = (
@@ -20,20 +23,28 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
       {/* <button className="btn btn-link">View Calendar</button>
       <div className="vendor-card-hr"></div>
       <button className="btn btn-link">View Catalogue</button> */}
-      <Tippy content="Shop">
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="bottom"
+        content="Shop"
+      >
         <button className="vendor-card__btn">
-          <img src={shoppingBag} alt="" />
+          {/* <img src={shoppingBag} alt="" /> */}
+          <VendorsShopSvg />
         </button>
       </Tippy>
-      <Tippy content="Catalogue">
+      <Tippy arrow={false} placement="bottom" content="Catalogue">
         <button className="vendor-card__btn">
-          <img src={catalogue} alt="" />
+          {/* <img src={catalogue} alt="" /> */}
+          <VendorsCatalogueSvg />
         </button>
       </Tippy>
 
-      <Tippy content="Calendar">
+      <Tippy arrow={false} placement="bottom" content="Calendar">
         <button className="vendor-card__btn">
-          <img src={calendar} alt="" />
+          {/* <img src={calendar} alt="" /> */}
+          <VendorsCalendarSvg />
         </button>
       </Tippy>
     </div>
@@ -45,9 +56,10 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         Send request
       </button>
       {/* <button className="btn btn-link">View Catalogue</button> */}
-      <Tippy content="Catalogue">
+      <Tippy arrow={false} placement="bottom" content="Catalogue">
         <button>
-          <img src={catalogue} alt="" />
+          {/* <img src={catalogue} alt="" /> */}
+          <VendorsCatalogueSvg />
         </button>
       </Tippy>
     </div>

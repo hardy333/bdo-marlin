@@ -12,6 +12,7 @@ import "./styles/page-geo.css";
 import "./styles/column-toggle-popup.css";
 import "./styles/date-menu.css";
 import "./styles/catalogue-menu.css";
+import "./styles/tippy.css";
 
 import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AllOrders from "./pages/AllOrders";

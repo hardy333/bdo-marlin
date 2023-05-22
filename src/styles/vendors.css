@@ -201,7 +201,41 @@
 
 }
 
+.vendor-card-footer svg{
+  width: 18px;
+  height: 18px;
+}
 
+.vendor-card-footer svg:hover rect{
+  fill: #6E0FF5;
+  stroke: #6E0FF5 !important;
+}
+
+.vendors-calendar-svg .cls-1{
+  fill:none;
+  stroke:#1a1f3d;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width:5.69px;
+
+}
+
+.vendors-shop-svg .cls-1{
+  fill:none;
+  stroke:#1a1f3d;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width:4.65px;
+}
+
+.vendors-calendar-svg .cls-2{
+  fill:#1a1f3d;
+
+}
+
+.vendor-card-footer svg:hover .cls-1{
+  stroke: #6E0FF5;
+}
 
 /* @media (max-width: 1200px) {
   .vendors-card-container{

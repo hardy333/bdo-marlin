@@ -1,19 +1,37 @@
 .vendors-modal{
-  
   background-color: #6E0FF5;
   border: none;
-  
   color: #fff;
+  padding: 3rem;
+  max-width: 600px;
+}
+
+.vendors-modal__btn{
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  padding: 1rem;
+  background-color: transparent;
+  transform: scale(0.8);
+
+}
+
+.vendors-modal__btn:hover{
+  background-color:transparent !important;
+  border: none !important;
+  outline: none !important;
+  filter: brightness(90%)
+
 }
 
 .vendors-modal header{
   display: flex;
   gap: 1rem
 }
+
 .vendors-modal header svg{
   width: 90px;
 }
-
 
 .vendors-modal header p{
   font-size: 30px;
@@ -23,18 +41,28 @@
 .vendors-modal-p{
   font-size: 30px;
   margin: 20px 0;
+  line-height: 1.2;
+  margin-bottom: 0;
 
 }
 
 .vendors-modal footer{
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 0;
 }
 
 .vendors-modal footer button{
-  color: #fff;
+  color: #000;
+  border-radius: 12px;
+  flex-grow: 0;
+  margin-left: 20px;
+  font-weight: 600;
 }
 
 .vendors-modal footer button:hover{
-  background-color: var(--color-success);
+  /* background-color: var(--color-success); */
+  background-color: var(--color-primary-1) !important;
+  filter: brightness(90%);
 }

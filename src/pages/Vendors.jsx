@@ -15,6 +15,8 @@ import "../styles/vendors-modal.css";
 import CarActive from "../components/svgs/CarActive";
 import CarDisabled from "../components/svgs/CarDisabled";
 
+import cartImg from "../assets/cart-img.png";
+
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
     1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -104,6 +106,37 @@ const Vendors = () => {
           overlayClassName="employees-modal-overlay"
           closeTimeoutMS={300}
         >
+          <button className="vendors-modal__btn">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_653_746)">
+                <path
+                  d="M2.22485 2.22498L21.7749 21.775"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M2.22485 21.775L21.7749 2.22498"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_653_746">
+                  <rect width="24" height="24" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
           <header>
             <CarDisabled />
             <div>
@@ -116,6 +149,7 @@ const Vendors = () => {
           </p>
 
           <footer>
+            <img src={cartImg} alt="" />
             <button className="btn btn-success">Send Request</button>
           </footer>
         </Modal>
