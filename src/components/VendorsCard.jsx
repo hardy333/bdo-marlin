@@ -34,14 +34,24 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
           <VendorsShopSvg />
         </button>
       </Tippy>
-      <Tippy arrow={false} placement="bottom" content="Catalogue">
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="bottom"
+        content="Catalogue"
+      >
         <button className="vendor-card__btn">
           {/* <img src={catalogue} alt="" /> */}
           <VendorsCatalogueSvg />
         </button>
       </Tippy>
 
-      <Tippy arrow={false} placement="bottom" content="Calendar">
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="bottom"
+        content="Calendar"
+      >
         <button className="vendor-card__btn">
           {/* <img src={calendar} alt="" /> */}
           <VendorsCalendarSvg />
@@ -56,7 +66,12 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         Send request
       </button>
       {/* <button className="btn btn-link">View Catalogue</button> */}
-      <Tippy arrow={false} placement="bottom" content="Catalogue">
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="bottom"
+        content="Catalogue"
+      >
         <button>
           {/* <img src={catalogue} alt="" /> */}
           <VendorsCatalogueSvg />

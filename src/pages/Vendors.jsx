@@ -152,7 +152,7 @@ const Vendors = () => {
           </p>
 
           <footer>
-            <img src={cartImg} alt="" />
+            <img src={cartImg} width="324" height="129" alt="" />
             <button className="btn btn-success">Send Request</button>
           </footer>
         </Modal>
