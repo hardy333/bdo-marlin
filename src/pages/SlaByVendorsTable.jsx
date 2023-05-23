@@ -311,9 +311,7 @@ const SlaByVendorsTable = () => {
               options={options}
               defaultValue={{ value: "GDM", label: "GDM" }}
             />
-
             <ItemsMenu />
-
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
             <p className="avarage-sla">
               Avarage Servise level: <span>82%</span>

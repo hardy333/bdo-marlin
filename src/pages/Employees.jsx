@@ -27,6 +27,7 @@ const customStyles = {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PeopleSvg from "../components/svgs/PeopleSvg";
+import PersonCheckSvg from "../components/svgs/PersonCheckSvg";
 
 const Employees = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -71,19 +72,19 @@ const Employees = () => {
             <h2>Administrator</h2>
             <ul>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
             </ul>
@@ -97,19 +98,19 @@ const Employees = () => {
             <h2>Analist</h2>
             <ul>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
             </ul>
@@ -123,19 +124,19 @@ const Employees = () => {
             <h2>Shop Manager</h2>
             <ul>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
               <li>
-                <img src={personCheckImg} alt="" />
+                <PersonCheckSvg />
                 <span>Blaa bla bla bla</span>
               </li>
             </ul>

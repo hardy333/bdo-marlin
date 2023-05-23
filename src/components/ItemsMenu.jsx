@@ -52,7 +52,6 @@ const ItemsMenu = () => {
             </svg>
           </button>
         )}
-        transition
       >
         {itemsList.map((item) => {
           return (

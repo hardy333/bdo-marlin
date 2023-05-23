@@ -3,7 +3,6 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-
 }
 
 .report-child-header .vendor-name{
@@ -32,8 +31,6 @@
 
 /*  */
 /* service child menu : items, shops... */
-.report-child-menu{
-}
 
 .report-child-menu ul{
   background: #FFFFFF;
@@ -62,7 +59,7 @@
 }
 
 .report-child-menu-button:hover{
-  background: #ebe8f5ac;
+  /* background: #ebe8f5ac; */
 }
 
 .report-child-menu-arrow {
@@ -70,6 +67,13 @@
   fill: hsl(0, 0%, 80%);
   transform: scale(1.3);
   margin-left: auto;
+}
+.report-child-menu-button.open {
+  outline: 1px solid #bb86fc;
+}
+
+.report-child-menu-button:focus{
+  outline: 1px solid #bb86fc;
 }
 
 .report-child-menu-button.open .report-child-menu-arrow {
@@ -86,6 +90,8 @@
 .report-child-menu .szh-menu{
   margin-top: 10px !important;
   width: 180px;
+  box-shadow: 0px 1px 3px 1px rgba(208, 199, 232, 0.25) !important;
+
 }
 
 .report-child-menu .szh-menu__item{

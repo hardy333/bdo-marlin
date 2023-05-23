@@ -21,8 +21,7 @@
 
 .react-select__control--is-focused{
   outline: none !important;
-  box-shadow: 0px 0px 0px 1px #bb86fc !important;
-
+box-shadow: none !important;
 }
 
 
