@@ -53,13 +53,20 @@ const DiscountsCards = () => {
             options={options}
             defaultValue={{ value: "GDM", label: "GDM" }}
           />
-          <button className="btn btn-outlined btn-black ">
+          {/* <button className="btn btn-outlined btn-black ">
             <PlusSvg fill="#211543" />
             Add
-          </button>
-          <button className="all-orders__btn excel-export-btn">
+          </button> */}
+          <button
+            className="all-orders__btn excel-export-btn"
+            style={{ marginLeft: "auto", marginRight: "30px" }}
+          >
             <ExcelExportSvg />
           </button>
+          <div className="input-wrapper">
+            <input type="text" className="input" />
+            <SearchSvg />
+          </div>
         </header>
 
         <div className="discount-cards-container">

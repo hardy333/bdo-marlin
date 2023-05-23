@@ -8,6 +8,11 @@ import ExpandingInput from "../components/ExpandingInput";
 import PlusSvg from "../components/svgs/PlusSvg";
 import SearchSvg from "../components/svgs/SearchSvg";
 import Modal from "react-modal";
+import "../styles/employees-modal-x.css";
+
+import personCheckImg from "../assets/persons-check.png";
+import personsImg from "../assets/persons.png";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -42,23 +47,87 @@ const Employees = () => {
         isOpen={modalIsOpen}
         shouldCloseOnOverlayClick={true}
         onRequestClose={closeModal}
-        className="employees-modal "
+        className="employees-modal employees-modal-x"
         overlayClassName="employees-modal-overlay"
         closeTimeoutMS={300}
       >
-        <h2>Add New Employee</h2>
-        <input type="text" placeholder="Employee Name" />
-        <input type="text" placeholder="Employee Age" />
-        <button
-          onClick={() => {
-            closeModal();
-            notify();
-          }}
-          className="btn btn-success"
-        >
-          Add{" "}
-        </button>
-        <small>By clicking Sign up, you agree to the terms of use.</small>
+        <div className="left">
+          <h2>Invite colleagues to work with you</h2>
+          <input type="text" placeholder="name" />
+          <input type="text" placeholder="Last Name" />
+          <input type="text" placeholder="E-mail" />
+          <input type="text" placeholder="Role" />
+          <input type="text" placeholder="Access Objects" />
+          <button className="btn ">Add Collegue</button>
+        </div>
+        <div className="right">
+          {/* 1 */}
+          <div>
+            <h2>Administrator</h2>
+            <ul>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+            </ul>
+          </div>
+          {/* 1 */}
+          <div>
+            <h2>Analist</h2>
+            <ul>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+            </ul>
+          </div>
+          {/* 1 */}
+          <div>
+            <h2>Shop Manager</h2>
+            <ul>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+              <li>
+                <img src={personCheckImg} alt="" />
+                <span>Blaa bla bla bla</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </Modal>
 
       <header className="employees-header">

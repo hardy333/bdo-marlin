@@ -106,7 +106,10 @@ const Vendors = () => {
           overlayClassName="employees-modal-overlay"
           closeTimeoutMS={300}
         >
-          <button className="vendors-modal__btn">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="vendors-modal__btn"
+          >
             <svg
               width="24"
               height="24"
