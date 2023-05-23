@@ -9,7 +9,7 @@
   position: relative;
 
   min-height: 213px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .discount-card h2{
@@ -86,7 +86,6 @@ margin-bottom: 2px;
 }
 
 .discount-card .triangle {
-  color: red;
   width: 100px;
   height: 100px;
   background-color: #6E0FF5;
@@ -95,11 +94,19 @@ margin-bottom: 2px;
 
   top: 0;
   right: 0; 
-  transform: rotate(45deg) translate(50%, -50%);
-display: none;
+  transform:  translate(60%, -60%) rotate(45deg);
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 
 }
 
 .discount-card .triangle span{
-  display: none;
+  /* display: none; */
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 1px;
+  font-weight: 600;
+
 }

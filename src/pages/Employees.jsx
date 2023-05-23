@@ -26,6 +26,7 @@ const customStyles = {
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PeopleSvg from "../components/svgs/PeopleSvg";
 
 const Employees = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -64,7 +65,8 @@ const Employees = () => {
           {/* 1 */}
           <div className="list-box">
             <div className="img-circle">
-              <img src={personsImg} alt="" />
+              {/* <img src={personsImg} alt="" /> */}
+              <PeopleSvg />
             </div>
             <h2>Administrator</h2>
             <ul>
@@ -89,7 +91,8 @@ const Employees = () => {
           {/* 2 */}
           <div className="list-box">
             <div className="img-circle">
-              <img src={personsImg} alt="" />
+              <PeopleSvg />
+              {/* <img src={personsImg} alt="" /> */}
             </div>
             <h2>Analist</h2>
             <ul>
@@ -114,7 +117,8 @@ const Employees = () => {
           {/* 3 */}
           <div className="list-box">
             <div className="img-circle">
-              <img src={personsImg} alt="" />
+              {/* <img src={personsImg} alt="" /> */}
+              <PeopleSvg />
             </div>
             <h2>Shop Manager</h2>
             <ul>

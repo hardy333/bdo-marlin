@@ -142,3 +142,14 @@ margin-top: 2rem;
 
 }
 
+.people-svg{
+  width: 25px;
+  transform: translate(2px, 0);
+}
+
+
+.people-svg .cls-1{opacity:.52;} 
+.people-svg .cls-2{isolation:isolate;} 
+.people-svg .cls-3{opacity:.8;}
+.people-svg .cls-4{fill:#6e0ff5;}
+.people-svg .cls-5{mix-blend-mode:multiply;}
