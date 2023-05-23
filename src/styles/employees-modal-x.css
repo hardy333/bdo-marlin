@@ -6,6 +6,9 @@
   overflow: hidden;
   min-width: 800px;
   gap: 0;
+  border: none;
+  background-color: transparent;
+  
 }
 
 
@@ -33,6 +36,7 @@ margin-bottom: 3rem;
   width: 40%;
   background-color: #211543;
   padding: 3rem;
+  padding-left: 0;
 
 }
 
@@ -64,11 +68,37 @@ margin-bottom: 5px;
 
 color: #FFFFFF;
   display: flex;
-  align-items: center;
+  align-items: center;  
   gap: 1rem;
   color: #fff;
 }
 
+.employees-modal-x .list-box{
+  padding-left: 3rem;
+  position: relative;
+
+
+}
+
+.employees-modal-x .img-circle{
+  --size: 45px;
+  width: var(--size);
+  height: var(--size);
+
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -10px);
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LEFT */
+/* LEFT */
 .employees-modal-x input{
   width: 307px;
 height: 47px;
@@ -111,3 +141,4 @@ border-radius: 15px;
 margin-top: 2rem;
 
 }
+

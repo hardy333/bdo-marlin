@@ -62,7 +62,10 @@ const Employees = () => {
         </div>
         <div className="right">
           {/* 1 */}
-          <div>
+          <div className="list-box">
+            <div className="img-circle">
+              <img src={personsImg} alt="" />
+            </div>
             <h2>Administrator</h2>
             <ul>
               <li>
@@ -83,8 +86,11 @@ const Employees = () => {
               </li>
             </ul>
           </div>
-          {/* 1 */}
-          <div>
+          {/* 2 */}
+          <div className="list-box">
+            <div className="img-circle">
+              <img src={personsImg} alt="" />
+            </div>
             <h2>Analist</h2>
             <ul>
               <li>
@@ -105,8 +111,11 @@ const Employees = () => {
               </li>
             </ul>
           </div>
-          {/* 1 */}
-          <div>
+          {/* 3 */}
+          <div className="list-box">
+            <div className="img-circle">
+              <img src={personsImg} alt="" />
+            </div>
             <h2>Shop Manager</h2>
             <ul>
               <li>
