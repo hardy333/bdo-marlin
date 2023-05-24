@@ -32,6 +32,15 @@
 }
 
 /* Headers */
+.discounts-table .ag-header-active[aria-colindex="4"],
+.discounts-table .ag-header-active[aria-colindex="5"],
+.discounts-table .ag-header-active[aria-colindex="6"],
+.discounts-table .ag-header-active[aria-colindex="7"],
+.discounts-table .ag-header-active[aria-colindex="8"]{
+  background-color: rgba(235, 232, 245, 0.5) !important;
+}
+
+
 .discounts-table .ag-header-cell[aria-colindex="4"],
 .discounts-table .ag-header-cell[aria-colindex="5"],
 .discounts-table .ag-header-cell[aria-colindex="6"],

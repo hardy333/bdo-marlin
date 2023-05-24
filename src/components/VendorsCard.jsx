@@ -96,6 +96,7 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         y: 0,
         transition: {
           // delay: i * 0.05,
+          duration: 0.6,
         },
       })}
       className={classNames({

@@ -21,8 +21,8 @@ const useFilterToggle = () => {
       header.style.height = "49px";
       header.style.minHeight = "49px";
     } else {
-      header.style.height = "97px";
-      header.style.minHeight = "97px";
+      header.style.height = "78px";
+      header.style.minHeight = "78px";
     }
   });
 
