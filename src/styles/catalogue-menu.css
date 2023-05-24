@@ -193,6 +193,8 @@ align-items: center;
 
 .catalogue-menu-container .input-wrapper .input{
   border:1px solid #211543a1;
+  font-size: 14px;
+  height: 25px;
   
 }
 

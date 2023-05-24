@@ -60,16 +60,18 @@ const CatalogueMenu = () => {
   let arrRight = [];
 
   if (resData && selectedCategory) {
-    resData[selectedCategory].forEach((name, index) => {
-      if (index % 2 === 0) {
-        arrLeft.push(name);
-      } else {
-        arrRight.push(name);
-      }
-    });
+    resData[selectedCategory]
+      .filter((name) => name.includes(subCategorySearchValue))
+      .forEach((name, index) => {
+        if (index % 2 === 0) {
+          arrLeft.push(name);
+        } else {
+          arrRight.push(name);
+        }
+      });
   }
 
-  console.log(arrLeft, arrRight);
+  console.log(categorySearchValue, subCategorySearchValue);
 
   return (
     <div
@@ -91,21 +93,23 @@ const CatalogueMenu = () => {
           <SearchSvg />
         </div>
         <ul onMouseMove={handleMouseOver}>
-          {categories.map((category, i) => (
-            <li
-              className={`category-li ${
-                selectedCategory === category ? "active" : ""
-              }`}
-              key={i}
-            >
-              <span className="category-name" data-value={category}>
-                {category}
-              </span>
-              <span className="category-arrow">
-                <BsArrowRightShort />
-              </span>
-            </li>
-          ))}
+          {categories
+            .filter((name) => name.includes(categorySearchValue))
+            .map((category, i) => (
+              <li
+                className={`category-li ${
+                  selectedCategory === category ? "active" : ""
+                }`}
+                key={i}
+              >
+                <span className="category-name" data-value={category}>
+                  {category}
+                </span>
+                <span className="category-arrow">
+                  <BsArrowRightShort />
+                </span>
+              </li>
+            ))}
         </ul>
         <div className="catalogue-menu-footer">
           <p>
