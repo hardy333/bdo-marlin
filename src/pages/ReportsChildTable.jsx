@@ -285,7 +285,15 @@ const ReportsChildTable = () => {
               <Menu
                 className="report-child-menu"
                 menuButton={
-                  <button className="report-child-menu-button">
+                  <button
+                    className="report-child-menu-button"
+                    style={{
+                      width: 40,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
                     <img src={arrowDown} alt="" />
                   </button>
                 }

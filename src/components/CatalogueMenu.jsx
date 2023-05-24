@@ -32,6 +32,8 @@ const CatalogueMenu = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isOutsideWrapper, setIsOutsideWrapper] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [categorySearchValue, setCategorySearchValue] = useState("");
+  const [subCategorySearchValue, setSubCategorySearchValue] = useState("");
 
   const handleMouseOver = (e) => {
     if (e.target.classList.contains("category-li")) {
@@ -54,6 +56,21 @@ const CatalogueMenu = () => {
     setSelectedProduct(name);
   };
 
+  let arrLeft = [];
+  let arrRight = [];
+
+  if (resData && selectedCategory) {
+    resData[selectedCategory].forEach((name, index) => {
+      if (index % 2 === 0) {
+        arrLeft.push(name);
+      } else {
+        arrRight.push(name);
+      }
+    });
+  }
+
+  console.log(arrLeft, arrRight);
+
   return (
     <div
       className="catalogue-menu-wrapper"
@@ -65,10 +82,15 @@ const CatalogueMenu = () => {
     >
       <section className="catalogue-menu-list-1">
         <div className="input-wrapper">
-          <input type="text" className="input" />
+          <input
+            type="text"
+            className="input"
+            value={categorySearchValue}
+            onChange={(e) => setCategorySearchValue(e.target.value)}
+          />
           <SearchSvg />
         </div>
-        <ul onMouseOver={handleMouseOver}>
+        <ul onMouseMove={handleMouseOver}>
           {categories.map((category, i) => (
             <li
               className={`category-li ${
@@ -95,12 +117,17 @@ const CatalogueMenu = () => {
         className={`catalogue-menu-list-2 ${isOutsideWrapper ? "" : "open"}`}
       >
         <div className="input-wrapper">
-          <input type="text" className="input" />
+          <input
+            type="text"
+            className="input"
+            value={subCategorySearchValue}
+            onChange={(e) => setSubCategorySearchValue(e.target.value)}
+          />
           <SearchSvg />
         </div>
-        <ul>
-          {selectedCategory &&
-            resData[selectedCategory].map((name, index) => {
+        <div className="catalogue-menu-list-2__list-wrapper">
+          <ul className="left">
+            {arrLeft.map((name, index) => {
               return (
                 <li
                   onClick={(e) => handleProductClick(e, name)}
@@ -113,7 +140,23 @@ const CatalogueMenu = () => {
                 </li>
               );
             })}
-        </ul>
+          </ul>
+          <ul className="right">
+            {arrRight.map((name, index) => {
+              return (
+                <li
+                  onClick={(e) => handleProductClick(e, name)}
+                  key={name + index}
+                  style={{
+                    color: name === selectedProduct ? "#6E0FF5" : "",
+                  }}
+                >
+                  {name}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </section>
     </div>
   );

@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/discount-card.css";
 import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
 import ayeeSvg from "../assets/ayee.png";
+import EyeSvg from "./svgs/EyeSvg";
+import NewSvg from "./svgs/NewSvg";
 
 const DiscountCard = () => {
   return (
@@ -9,10 +11,16 @@ const DiscountCard = () => {
       <h2>Snacks -10%</h2>
       <h3>Document #23120</h3>
       {Math.random() - 0.5 > 0 ? (
-        <img src={ayeeSvg} className="discount-card__ayee-img" alt="" />
+        <div className="discount-card__ayee-img">
+          <EyeSvg />
+        </div>
       ) : (
-        <div className="triangle">
-          <span>new</span>
+        // <div className="triangle">
+        //   <span>new</span>
+        // </div>
+
+        <div className="discount-card__new-img">
+          <NewSvg />
         </div>
       )}
 

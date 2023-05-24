@@ -81,9 +81,26 @@ margin-bottom: 2px;
   display: block;
   top: 1rem;
   right: 1rem;
-
+  font-size: 30pg;
 
 }
+
+.discount-card__ayee-img svg{
+  width: 15px;
+  height: 15px;
+}
+
+.discount-card__new-img{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.discount-card__new-img svg{
+  width: 50px;
+  height: 50px;
+}
+
 
 .discount-card .triangle {
   width: 100px;
