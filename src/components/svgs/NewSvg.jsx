@@ -9,7 +9,7 @@ const NewSvg = () => {
       height="60"
       viewBox="0 0 60 60"
     >
-      <polygon points="60 28.99 60 60 0 0 31.01 0 60 28.99" fill="#f55364" />
+      <polygon points="60 28.99 60 60 0 0 31.01 0 60 28.99" fill="#6E0FF5" />
       <text
         transform="translate(22.39 13.55) rotate(45)"
         fill="#fff"

@@ -35,13 +35,7 @@ const Profile = () => {
       <section className="profile">
         <header className="profile-header">
           <h1>Profile</h1>
-          {/* <div className="input-wrapper">
-            <input type="text" className="input" />
-            <img src={searchSvg} alt="" />
-          </div> */}
         </header>
-        {/*  */}
-
         <section className="profile-content-container">
           <div className="profile-card">
             <header className="profile-card-header">
@@ -76,13 +70,13 @@ const Profile = () => {
             </div>
           </div>
           {/* Illustration */}
-          <div className="illustration-container">
+          {/* <div className="illustration-container">
             {param === "/profile" ? (
               <img loading="eager" src={illustration1} alt="" />
             ) : (
               <img loading="eager" src={illustration2} alt="" />
             )}
-          </div>
+          </div> */}
         </section>
       </section>
     </DashboardLayout>
