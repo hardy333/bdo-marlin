@@ -306,7 +306,7 @@ const SlaByVendorsTable = () => {
           >
             <h4>Service Level Report</h4>
             <Select
-              className="react-select-container"
+              className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={options}
               defaultValue={{ value: "GDM", label: "GDM" }}

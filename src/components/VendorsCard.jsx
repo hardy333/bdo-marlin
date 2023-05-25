@@ -12,7 +12,7 @@ import calendar from "../assets/calendar.svg";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
 import VendorsCatalogueSvg from "./svgs/VendorsCatalogueSvg";
 import VendorsShopSvg from "./svgs/VendorsShopSvg";
@@ -91,14 +91,13 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
           delay: i * 0.05,
         },
       })}
-      exit={(i) => ({
+      exit={{
         opacity: 0,
         y: 0,
         transition: {
-          // delay: i * 0.05,
           duration: 0.6,
         },
-      })}
+      }}
       className={classNames({
         "vendor-card": true,
         active: variant === "active",

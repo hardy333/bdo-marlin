@@ -3,6 +3,7 @@
   outline: none !important;
   border: none ;
   cursor: pointer;
+
 }
 
 /* Control */
@@ -16,6 +17,24 @@
   min-height: 0px !important;
   height: 100%;
   cursor: pointer !important;
+  padding-left: 2.6rem;
+
+
+}
+
+.react-select__control::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translate(0, -50%);
+  display: block;
+  z-index: 999;
+  width: 20px;
+  height: 12px;
+  background-image: url(../assets/vendor-car.svg);
+  background-repeat: no-repeat;
+
 
 }
 

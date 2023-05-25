@@ -1,0 +1,19 @@
+.test-div{
+  width: 100px;
+  height: 40px;
+  background-color: red;
+
+  position: relative;
+}
+
+.test-div::before{
+  content: url("../assets/car-disabled.svg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+
+}
