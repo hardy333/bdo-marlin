@@ -123,6 +123,8 @@ const VendorsCalendarTable = () => {
 
   const gridRef = useRef(null);
 
+  const days = ["M", "T", "W", "T", "F", "S", "S"];
+
   const [columnDefs] = useState([
     {
       field: "Shop",
@@ -146,7 +148,35 @@ const VendorsCalendarTable = () => {
       maxWidth: 180,
     },
     {
-      field: "Dis Date",
+      field: "Distributor's Date",
+      cellRendererFramework: (params) => {
+        const d1 = Math.floor(Math.random() * 6);
+        const d2 = Math.floor(Math.random() * 6);
+        return (
+          <div className="dis-date-container">
+            <div className="days-container">
+              {days.map((d, index) => (
+                <span
+                  key={d}
+                  style={{
+                    color: d1 === index || d2 == index ? "#211543" : "#AE9EDC",
+                  }}
+                >
+                  {d}
+                </span>
+              ))}
+            </div>
+            <div className="circle-container">
+              <span
+                className={`circle ${Math.random() - 0.5 > 0 ? "active" : ""}`}
+              ></span>
+              <span
+                className={`circle ${Math.random() - 0.5 > 0 ? "active" : ""}`}
+              ></span>
+            </div>
+          </div>
+        );
+      },
     },
   ]);
 
