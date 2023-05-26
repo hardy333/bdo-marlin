@@ -15,16 +15,27 @@
   position: absolute;
   bottom: 5px;
   left: 50%;
-  width: 80%;
+  width: 90%;
   height: 1px;
   transform: translate(-50%, 0px);
   background-color: #D0C7E8;
   transition: 0.2s ease;
+  background-color: transparent;
+  box-shadow: 0px 1px 0px 0px #21154370;
 }
 
 .btn-date:hover::before{
-  width: 85%;
-  transform: translate(-50%, 2px) ;
+  transform: translate(-50%, 1px) ;
+}
+
+/* Date menu */
+/* Date menu */
+
+.date-menu {
+}
+
+.date-menu .szh-menu{
+  overflow: hidden;
 }
 
 .date-menu .szh-menu__item{
@@ -59,16 +70,57 @@
 .rdrDefinedRangesWrapper{
   display: flex;
   flex-direction: column;
+  border-right: 0;
 }
 
 .rdrStaticRanges{
-  /* margin-top: auto; */
+  margin-top: auto;
 }
 
 .rdrInputRanges{
-  /* display: none; */
+  display: none;
 }
 
+.rdrStaticRange{
+  /* border: none; */
+}
+
+
+
+.rdrStaticRange:last-child{
+  border: none;
+}
+
+
+/* top date input/buttons */
+/* top date input/buttons */
+.rdrDateInput{
+  border-radius: 30px !important;
+  box-shadow: none !important;
+  background-color: #F9F8FC !important;
+}
+
+.rdrDateInput:hover{
+  filter: brightness(110%);
+}
+
+.rdrDateDisplay:nth-child(2) .rdrDateInput{
+  background-color: #fff !important;
+  /* border: 2px solid #F9F8FC !important; */
+  outline:  2px solid #F9F8FC !important;
+}
+
+.rdrDateDisplay:nth-child(2) .rdrDateInput:hover{
+filter: brightness(98%);
+/* border: 2px solid #F9F8FC !important; */
+
+}
+
+/* data left-right arrows */
+/* data left-right arrows */
+.rdrNextPrevButton{
+  display: none !important;
+}
 
 /*  */
 /*  */
@@ -87,4 +139,36 @@
 
 .rdrDateInput{
   box-shadow: none;
+}
+
+/* Date Bod */
+/* Date Bod */
+.date-box{
+  position: absolute;
+
+  left: 2rem;
+  top: 2rem;
+  color: #6E0FF5;
+}
+
+.date-box p{
+  margin-bottom: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+
+
+}
+
+.date-box p.red{
+  /* color: #F55364; */
+  margin-top: 5px;
+ 
+  
+}
+
+.date-box p.blue{
+  color: #6E0FF5;
+
 }

@@ -33,17 +33,23 @@ const options = [
   { value: "Svaneti", label: "Svaneti" },
 ];
 
+// "#6E0FF5", "#F55364",
 const SlaGraphics = () => {
   const [dateState, setDateState] = useState({
     selection: {
       startDate: new Date(),
       endDate: addDays(new Date(), 2),
       key: "selection",
+      color: "#F55364",
     },
     compare: {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 3),
+      // startDate: null,
+      // endDate: null,
+      // startDate: new Date(),
+      // endDate: addDays(new Date(), 3),
+      // disabled: true,
       key: "compare",
+      color: "#6E0FF5",
     },
   });
   // a1 or a2 |  b1 or b2
@@ -131,6 +137,9 @@ const SlaGraphics = () => {
               </div>
               <div className="self-end justify-end justify-self-end ml-auto">
                 <DatePickerBtn2
+                  changeDataA={changeDataA}
+                  changeDataB={changeDataB}
+                  changeDemands={changeDemands}
                   dateState={dateState}
                   setDateState={setDateState}
                   changeAllData={changeAllData}
