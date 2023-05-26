@@ -16,52 +16,12 @@ const DatePickerBtn2 = ({
   changeDataB,
   changeDemands,
 }) => {
-  useEffect(() => {
-    const cont = document.querySelector(".rdrDefinedRangesWrapper");
-    if (!cont) {
-      console.log("No Cont");
-      return;
-    }
-
-    createPortal(
-      <div className="pag-container">
-        <h2>Hello 3443</h2>
-        <h2>Hello 43342</h2>
-        <p>Lorem lorem </p>
-      </div>,
-      cont
-    );
-  }, []);
-
-  const render = () => {
-    const cont = document.querySelector(".rdrDefinedRangesWrapper");
-    if (!cont) {
-      console.log("No Cont");
-      return;
-    }
-
-    console.log("Hhellod 12 12");
-
-    createPortal(
-      <div className="date-box">
-        <h2>Hello 3443</h2>
-        <h2>Hello 43342</h2>
-        <p>Lorem lorem </p>
-      </div>,
-      cont
-    );
-  };
-
   return (
     <Menu
       className="date-menu"
       menuButton={({ open }) => {
-        if (open) {
-          render();
-        }
-
         return (
-          <button className="btn btn-date">
+          <button className="btn btn-date" style={{ width: "420px" }}>
             <span style={{ color: "#F55364" }}>
               {format(dateState["selection"].startDate, "MMM dd, yyyy")} -{" "}
               {format(dateState["selection"].endDate, "MMM dd, yyyy")}

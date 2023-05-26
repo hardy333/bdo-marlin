@@ -21,6 +21,25 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 
+import "../styles/all-orders-parent.css";
+import "../styles/vendors-calendar.css";
+
+// images
+import arrowLeft from "../assets/all-orders/arrow-left.svg";
+import expand from "../assets/all-orders/expand.svg";
+import filter from "../assets/all-orders/filter.svg";
+import search from "../assets/all-orders/search.svg";
+import x from "../assets/all-orders/x.svg";
+import cardPink from "../assets/all-orders/car-pink.svg";
+import burgerLines from "../assets/all-orders/view-list.svg";
+
+import reverseExpand from "../assets/revers-expand.svg";
+// Right Icons
+import expandSvg from "../assets/marlin-icons/expand.svg";
+import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
+import filterSvg from "../assets/marlin-icons/filter-lines.svg";
+import optionsLines from "../assets/marlin-icons/options-lines.svg";
+
 import classNames from "classnames";
 import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
@@ -39,42 +58,61 @@ import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import ColumnHideSvg from "../components/ColumnHideSvg";
 import FilterSvg from "../components/FilterSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
-import AgTablePag from "../components/AgTablePag";
-import xlsExport from "xlsexport";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
-import "../styles/stable-table.css";
 
-const StableTable = () => {
+import d1 from "../assets/vendors-calendar-1.json";
+import d2 from "../assets/vendors-calendar-2.json";
+import { allOrdersParentColumns } from "../utils/columnsDefs";
+import { DateRange } from "react-date-range";
+import VendorsDateRange from "../components/VendorsDateRange";
+
+import Select from "react-select";
+
+const vendors = [
+  "Orbita",
+  "Kant",
+  "Diplomat",
+  "Vest Inv.",
+  "Magako",
+  "GDM",
+  "Svaneti",
+];
+
+const options = [
+  { value: "Orbita", label: "Orbita" },
+  { value: "Kant", label: "Kant" },
+  { value: "Ready Meals", label: "Ready Meals" },
+  { value: "Diplomat", label: "Diplomat" },
+  { value: "Vest Inv", label: "Vest Inv." },
+  { value: "Magako", label: "Magako" },
+  { value: "Svaneti", label: "Svaneti" },
+];
+
+const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isBigRow, setIsBigRow] = useState(true);
-
   const [headerList, setHeaderList] = useState([
     {
-      name: "Number",
+      name: "Shop",
       isShowing: true,
     },
     {
-      name: "Item",
+      name: "Shop Address",
       isShowing: true,
     },
     {
-      name: "Ordered",
+      name: "Vendor",
       isShowing: true,
     },
     {
-      name: "Delivered",
+      name: "Brand",
       isShowing: true,
     },
     {
-      name: "In time",
-      isShowing: true,
-    },
-    {
-      name: "Service Level",
+      name: "Dis Date",
       isShowing: true,
     },
   ]);
@@ -87,52 +125,50 @@ const StableTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "Number",
-    },
-    {
-      field: "Item",
-    },
-    {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
-    },
-    {
-      field: "Delivered",
-    },
-    {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
+      field: "Shop",
+      width: 120,
+      minWidth: 120,
+      maxWidth: 130,
+      cellRendererFramework: (params) => {
+        return <div>Shop{String(params.value).padStart(3, "0")}</div>;
       },
     },
     {
-      field: "Service level",
-      minWidth: 150,
+      field: "Shop Address",
+      maxWidth: 200,
+    },
+    {
+      field: "Vendor",
+      maxWidth: 180,
+    },
+    {
+      field: "Brand",
+      maxWidth: 180,
+    },
+    {
+      field: "Dis Date",
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+  const [rowDataLabel, setRowDataLabel] = useState("d1");
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await fetch_XLSX_DATA();
-
-      setRowData(data["By item"]);
+    function fetchData() {
+      setRowData(d1);
     }
 
     fetchData();
   }, []);
+
+  const changeRowData = () => {
+    if (rowDataLabel === "d1") {
+      setRowData(d2);
+      setRowDataLabel("d2");
+    } else {
+      setRowData(d1);
+      setRowDataLabel("d1");
+    }
+  };
 
   useEffect(() => {
     if (isFullScreen) {
@@ -142,15 +178,23 @@ const StableTable = () => {
     }
   }, [isFullScreen]);
 
-  const defaultColDef = useMemo(() => ({
-    sortable: true,
-    filter: true,
-    floatingFilter: true,
-    suppressMovable: false,
-    floatingFilterComponent: CustomInput,
-    width: 1385 / headerList.filter((obj) => obj.isShowing).length,
-    minWidth: 150,
-  }));
+  const defaultColDef = useMemo(
+    () => ({
+      sortable: true,
+      filter: true,
+      flex: 1,
+      minWidth: 150,
+      floatingFilter: true,
+      suppressMovable: true,
+      // floatingFilterComponent: (params) => {
+
+      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
+      // },
+      floatingFilterComponent: CustomInput,
+    }),
+    []
+  );
+  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   // EVents
   // EVents
@@ -158,11 +202,6 @@ const StableTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true);
-    console.log("Grid on ready ");
-
-    params.api.sizeColumnsToFit();
-    showTable();
   };
 
   const onFilterTextChange = (e) => {
@@ -208,18 +247,29 @@ const StableTable = () => {
     };
   }, []);
 
+  const rowHeightBtnRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      rowHeightBtnRef.current.click();
+    }, 500);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, []);
+
+  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
+  const [rowHeightIndex, setRowHeightIndex] = useState(1);
+
+  const changeRowHeight = () => {
+    if (rowHeightIndex === 2) {
+      setRowHeightIndex(0);
+    } else {
+      setRowHeightIndex((c) => c + 1);
+    }
+  };
   const [showFilters, setShowFilters] = useFilterToggle();
-
-  const [gridReady, setGridReady] = useState(false);
-
-  const stableTableRef = useRef(null);
-
-  function showTable() {
-    setTimeout(() => {
-      stableTableRef.current.style.opacity = "1";
-    }, 300);
-    console.log("Helllo 123 123");
-  }
 
   return (
     <DashboardLayout>
@@ -229,16 +279,26 @@ const StableTable = () => {
           {/* Left */}
           <div
             className="all-orders__gdm-container"
-            style={{ paddingLeft: "0", marginLeft: 10, cursor: "default" }}
+            style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span style={{ cursor: "default" }}>Stable table</span>
+            <span className="me-8">Vendors Calendar</span>
+            {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
+            <Select
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={options}
+              defaultValue={{ value: "GDM", label: "GDM" }}
+              onChange={() => {
+                console.log("Select changes");
+                changeRowData();
+              }}
+            />
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             {/* input filter */}
             <button
-              // ref={filterButtonRef}
               onClick={() => {
                 setShowFilters(!showFilters);
               }}
@@ -311,6 +371,20 @@ const StableTable = () => {
                 ))}
               </div>
             </Menu>
+            {/* Row height */}
+            <button
+              onClick={() => {
+                gridRef.current.api.resetRowHeights();
+                changeRowHeight();
+              }}
+              ref={rowHeightBtnRef}
+              className="all-orders__btn"
+            >
+              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
+              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
+              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
+            </button>
+            {/* expand */}
             <button
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
@@ -322,16 +396,31 @@ const StableTable = () => {
           </div>
         </div>
       </header>
-      <div
-        ref={stableTableRef}
-        className="ag-theme-alpine stable-table"
-        style={{ minHeight: 595, width: "100%", opacity: 0 }}
-      >
-        {/* {isShowingTable === false ? (
-          <h1>Loading...</h1>
-        ) : (
+      {/* ..... */}
+      <div className="flex gap-2">
+        <div className="vendors-calendar__left">
+          {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima eum,
+          praesentium natus repellat nulla illo inventore, nisi suscipit,
+          aliquam aspernatur ducimus quia tempore sunt voluptates recusandae
+          veniam eius illum reprehenderit! */}
+          <VendorsDateRange changeRowData={changeRowData} />
+        </div>
+
+        <div
+          className="ag-theme-alpine ag-grid-example all-orders-parent"
+          style={{ minHeight: 595, width: "100%" }}
+        >
           <AgGridReact
             ref={gridRef}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
             onGridReady={onGridReady}
             rowData={rowData}
             columnDefs={columnDefs}
@@ -339,51 +428,38 @@ const StableTable = () => {
             pagination={true}
             components={components}
             paginationPageSize={pageSize}
+            suppressHorizontalScroll={true}
           ></AgGridReact>
-        )} */}
 
-        <AgGridReact
-          // alwaysShowHorizontalScroll={false}
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          paginationPageSize={pageSize}
-          suppressHorizontalScroll={true}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
-        >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
       </div>
     </DashboardLayout>
   );
 };
 
-export default StableTable;
+export default VendorsCalendarTable;

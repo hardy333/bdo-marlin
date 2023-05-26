@@ -45,8 +45,8 @@ const SlaGraphics = () => {
     compare: {
       // startDate: null,
       // endDate: null,
-      // startDate: new Date(),
-      // endDate: addDays(new Date(), 3),
+      startDate: new Date(),
+      endDate: addDays(new Date(), 3),
       // disabled: true,
       key: "compare",
       color: "#6E0FF5",

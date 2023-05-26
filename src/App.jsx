@@ -57,6 +57,7 @@ import SlaGraphicsTest from "./pages/SlaGraphicsTest";
 import DiscountsTable from "./pages/DiscountsTable";
 import DiscountsCards from "./pages/DiscountsCards";
 import MainHome from "./pages/MainHome";
+import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -109,6 +110,10 @@ function App() {
             <Route path="/sla-graphics-test" element={<SlaGraphicsTest />} />
             <Route path="/discounts-table" element={<DiscountsTable />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
+            <Route
+              path="/vendors-calendar"
+              element={<VendorsCalendarTable />}
+            />
             <Route
               path="/catalogue-5-level"
               element={<CatalogueTable5Level />}
