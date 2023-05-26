@@ -195,13 +195,11 @@ align-items: center;
   border:1px solid #211543a1;
   font-size: 14px;
   height: 25px;
-  
 }
 
 .catalogue-menu-container .input-wrapper .input:focus{
   /* border:1px solid #6E0FF5; */
   outline: none;
-  
 }
 
 .catalogue-menu-container .input-wrapper  svg{

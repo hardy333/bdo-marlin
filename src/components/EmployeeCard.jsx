@@ -1,15 +1,31 @@
 import React from "react";
-import user from "../assets/employees/user.svg";
 import dots from "../assets/employees/dots.svg";
-import userCircle from "../assets/marlin-icons/purple-user.svg";
 import { Menu, MenuItem } from "@szhsin/react-menu";
+import { motion } from "framer-motion";
 
-const EmployeeCard = () => {
+const EmployeeCard = ({
+  name,
+  setCompirmationModalOpen,
+  openModal,
+  setAactiveEmployee,
+  deleteEmployee,
+}) => {
   return (
-    <article className="employee-card">
+    <motion.article
+      layout
+      initial={{ opacity: 1 }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{
+        opacity: 0,
+        transition: {
+          duration: 1,
+        },
+      }}
+      className="employee-card"
+    >
       <div className="employee-card__img-container">
-        {/* <img src={userCircle} className="employee-card__img" alt="" /> */}
-
         <svg
           className="employee-card__img"
           id="Layer_3"
@@ -37,15 +53,33 @@ const EmployeeCard = () => {
         direction="bottom"
         align="center"
         className="employee-card-menu"
-        menuButton={<img className="employee-card__dots" src={dots} alt="" />}
+        menuButton={({ open }) => (
+          <img
+            onClick={() => setAactiveEmployee(name)}
+            className={`employee-card__dots ${open ? "open" : ""}`}
+            src={dots}
+            alt=""
+          />
+        )}
         transition
       >
-        <MenuItem>1</MenuItem>
-        <MenuItem>2</MenuItem>
-        <MenuItem>3</MenuItem>
+        <MenuItem
+          onClick={() => {
+            openModal();
+          }}
+        >
+          Edit
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setCompirmationModalOpen(true);
+          }}
+        >
+          delete
+        </MenuItem>
       </Menu>
 
-      <h2>Mariam Mamulia</h2>
+      <h2>{name}</h2>
       <h3>Aadministrator</h3>
       <h4>Access:</h4>
       <ul>
@@ -55,8 +89,10 @@ const EmployeeCard = () => {
         <li>Gvirila</li>
         <li>Fresco</li>
       </ul>
-      <button className="btn btn-success">Change</button>
-    </article>
+      <button className="btn btn-success" onClick={openModal}>
+        Change
+      </button>
+    </motion.article>
   );
 };
 

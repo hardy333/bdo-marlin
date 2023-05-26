@@ -16,7 +16,7 @@ const VendorsCatalogueSvg = () => {
             strokeLinejoin: "round",
             strokeWidth: "5.14px",
           }}
-          class="cls-1"
+          className="cls-1"
           x="2.57"
           y="2.57"
           width="49.87"
@@ -25,7 +25,7 @@ const VendorsCatalogueSvg = () => {
           ry="10.59"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="13.2"
           y="12.91"
@@ -35,7 +35,7 @@ const VendorsCatalogueSvg = () => {
           ry="1.98"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="31.72"
           y="12.91"
@@ -45,7 +45,7 @@ const VendorsCatalogueSvg = () => {
           ry="1.98"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="13.2"
           y="27.52"
@@ -55,7 +55,7 @@ const VendorsCatalogueSvg = () => {
           ry="1.98"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="31.72"
           y="27.52"
@@ -65,7 +65,7 @@ const VendorsCatalogueSvg = () => {
           ry="1.98"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="13.2"
           y="42.14"
@@ -75,7 +75,7 @@ const VendorsCatalogueSvg = () => {
           ry="1.98"
         />
         <rect
-          class="cls-2"
+          className="cls-2"
           fill="#1a1f3d"
           x="31.72"
           y="42.14"

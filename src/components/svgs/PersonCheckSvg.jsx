@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 const PersonCheckSvg = () => {
   return (
     <svg
@@ -16,5 +18,7 @@ const PersonCheckSvg = () => {
     </svg>
   );
 };
+
+
 
 export default PersonCheckSvg;

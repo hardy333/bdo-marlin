@@ -27,7 +27,7 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         className="tooltip-1"
         arrow={false}
         placement="bottom"
-        content="Shop"
+        content="Orders"
       >
         <button className="vendor-card__btn">
           {/* <img src={shoppingBag} alt="" /> */}

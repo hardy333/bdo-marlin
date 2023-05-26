@@ -65,6 +65,7 @@
 .employees-card-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-auto-rows: 230px;
   gap: 3rem;
   margin-top: 1.5rem;
   height: 400px;
@@ -105,7 +106,7 @@
 
 .employee-card__dots{
   position: absolute;
-  right: 1.2rem;
+  right: 0.5rem;
   top: 1.8rem;
   cursor: pointer;
   height: 25px;
@@ -116,8 +117,14 @@
 }
 
 .employee-card__dots:hover{
-  background-color: #d0c7e815;
+  background-color: hsla(256, 42%, 85%, 0.082);
 }
+
+.employee-card__dots.open{
+  background-color: hsla(256, 42%, 65%, 0.080);
+
+}
+
 
 .employee-card__img{
 
@@ -237,9 +244,9 @@
 .employee-card-menu ul{
   display: flex;
   flex-direction: column;
-  min-width: 50px;
-  width: 50px;
+  min-width: 70px;
   overflow: hidden;
+  width: 70px
 
 }
 

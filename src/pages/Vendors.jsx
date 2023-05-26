@@ -16,6 +16,8 @@ import CarActive from "../components/svgs/CarActive";
 import CarDisabled from "../components/svgs/CarDisabled";
 
 import cartImg from "../assets/cart-img.png";
+import CloseModalSvg from "../components/svgs/CloseModalSvg";
+import VendorsModal from "../components/VendorsModal";
 
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
@@ -98,64 +100,11 @@ const Vendors = () => {
           </div>
         </div>
 
-        <Modal
-          isOpen={modalIsOpen}
-          shouldCloseOnOverlayClick={true}
-          onRequestClose={closeModal}
-          className="employees-modal vendors-modal"
-          overlayClassName="employees-modal-overlay"
-          closeTimeoutMS={300}
-        >
-          <button
-            onClick={() => setIsOpen(false)}
-            className="vendors-modal__btn"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clip-path="url(#clip0_653_746)">
-                <path
-                  d="M2.22485 2.22498L21.7749 21.775"
-                  stroke="white"
-                  stroke-width="3"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M2.22485 21.775L21.7749 2.22498"
-                  stroke="white"
-                  stroke-width="3"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_653_746">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </button>
-          <header>
-            <CarDisabled />
-            <div>
-              <p>KANT</p>
-              <small>30333244332</small>
-            </div>
-          </header>
-          <p className="vendors-modal-p">
-            Lets connect and make communication easier!
-          </p>
-
-          <footer>
-            <img src={cartImg} width="324" height="129" alt="" />
-            <button className="btn btn-success">Send Request</button>
-          </footer>
-        </Modal>
+        <VendorsModal
+          setIsOpen={setIsOpen}
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+        />
       </section>
     </DashboardLayout>
   );

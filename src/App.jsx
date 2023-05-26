@@ -56,6 +56,7 @@ import Components from "./pages/Components";
 import SlaGraphicsTest from "./pages/SlaGraphicsTest";
 import DiscountsTable from "./pages/DiscountsTable";
 import DiscountsCards from "./pages/DiscountsCards";
+import MainHome from "./pages/MainHome";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -67,7 +68,8 @@ function App() {
       <TableSettingsContextProvider>
         <QueryClientProvider client={queryClient}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<MainHome />} />
+            <Route path="/h2" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/s" element={<Swip />} />
             <Route path="/all-orders" element={<AllOrders />} />

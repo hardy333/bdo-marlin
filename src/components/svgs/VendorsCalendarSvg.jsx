@@ -16,16 +16,16 @@ const VendorsCalendarSvg = () => {
       <g id="Document">
         <g id="Stroke-4">
           <path
-            class="cls-1"
+            className="cls-1"
             d="m18.63,62.84c-9.44,0-15.79-6.47-15.79-16.09v-22.22c0-9.7,6.15-16.01,15.66-16.09h22.74c9.44,0,15.79,6.47,15.79,16.09v22.23c0,9.56-6.3,16.02-15.67,16.08h-22.73Z"
           />
         </g>
       </g>
-      <line class="cls-1" x1="6.43" y1="28.43" x2="54.01" y2="28.43" />
-      <line class="cls-1" x1="19.53" y1="14.49" x2="19.53" y2="2.84" />
-      <line class="cls-1" x1="40.44" y1="14.49" x2="40.44" y2="2.84" />
+      <line className="cls-1" x1="6.43" y1="28.43" x2="54.01" y2="28.43" />
+      <line className="cls-1" x1="19.53" y1="14.49" x2="19.53" y2="2.84" />
+      <line className="cls-1" x1="40.44" y1="14.49" x2="40.44" y2="2.84" />
       <rect
-        class="cls-2"
+        className="cls-2"
         x="14.1"
         y="37.56"
         width="5.57"
@@ -34,7 +34,7 @@ const VendorsCalendarSvg = () => {
         ry="1.55"
       />
       <rect
-        class="cls-2"
+        className="cls-2"
         x="14.1"
         y="47.26"
         width="5.57"
@@ -43,7 +43,7 @@ const VendorsCalendarSvg = () => {
         ry="1.55"
       />
       <rect
-        class="cls-2"
+        className="cls-2"
         x="42.67"
         y="37.56"
         width="5.57"
@@ -52,7 +52,7 @@ const VendorsCalendarSvg = () => {
         ry="1.55"
       />
       <rect
-        class="cls-2"
+        className="cls-2"
         x="28.39"
         y="37.56"
         width="5.57"
@@ -61,7 +61,7 @@ const VendorsCalendarSvg = () => {
         ry="1.55"
       />
       <rect
-        class="cls-2"
+        className="cls-2"
         x="28.39"
         y="47.26"
         width="5.57"

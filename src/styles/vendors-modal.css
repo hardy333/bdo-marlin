@@ -12,16 +12,21 @@
   right: 1rem;
   padding: 1rem;
   background-color: transparent;
-  transform: scale(0.8);
+  /* transform: scale(0.8); */
+  cursor: pointer;
+  z-index: 999;
 
 }
 
 .vendors-modal__btn:hover{
-  background-color:transparent !important;
   border: none !important;
   outline: none !important;
-  filter: brightness(90%)
+  filter: brightness(90%);
 
+}
+
+.vendors-modal__btn svg{
+  pointer-events: none;
 }
 
 .vendors-modal header{

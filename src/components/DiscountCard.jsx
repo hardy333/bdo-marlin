@@ -15,10 +15,6 @@ const DiscountCard = () => {
           <EyeSvg />
         </div>
       ) : (
-        // <div className="triangle">
-        //   <span>new</span>
-        // </div>
-
         <div className="discount-card__new-img">
           <NewSvg />
         </div>
