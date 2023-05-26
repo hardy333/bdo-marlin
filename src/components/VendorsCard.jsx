@@ -16,8 +16,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
 import VendorsCatalogueSvg from "./svgs/VendorsCatalogueSvg";
 import VendorsShopSvg from "./svgs/VendorsShopSvg";
+import { useNavigate } from "react-router-dom";
 
 const VendorsCard = ({ variant = "disabled", index, openModal }) => {
+  const navigate = useNavigate();
+
   const footerActive = (
     <div className="vendor-card-footer">
       {/* <button className="btn btn-link">View Calendar</button>
@@ -29,7 +32,12 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         placement="bottom"
         content="Orders"
       >
-        <button className="vendor-card__btn">
+        <button
+          className="vendor-card__btn"
+          onClick={() => {
+            navigate("/all-orders-parent");
+          }}
+        >
           {/* <img src={shoppingBag} alt="" /> */}
           <VendorsShopSvg />
         </button>
@@ -40,7 +48,12 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         placement="bottom"
         content="Catalogue"
       >
-        <button className="vendor-card__btn">
+        <button
+          className="vendor-card__btn"
+          onClick={() => {
+            navigate("/catalogue");
+          }}
+        >
           {/* <img src={catalogue} alt="" /> */}
           <VendorsCatalogueSvg />
         </button>
@@ -52,7 +65,12 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
         placement="bottom"
         content="Calendar"
       >
-        <button className="vendor-card__btn">
+        <button
+          className="vendor-card__btn"
+          onClick={() => {
+            navigate("/vendors-calendar");
+          }}
+        >
           {/* <img src={calendar} alt="" /> */}
           <VendorsCalendarSvg />
         </button>

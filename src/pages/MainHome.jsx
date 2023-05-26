@@ -147,9 +147,8 @@ const MainHome = () => {
         </div>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis,
-          aspernatur explicabo! Laborum debitis id corporis velit, error minus
-          incidunt quae?
+          Pardon our digital dust! We're working hard behind the scenes to bring
+          you an amazing tech product. Stay tuned!"
         </p>
       </div>
     </DashboardLayout>

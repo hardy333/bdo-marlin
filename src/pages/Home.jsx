@@ -83,6 +83,9 @@ const Home = () => {
             <small>Discounts</small>
             <Link to="/discounts-table">Discounts Table</Link>
             <Link to="/discounts-cards">discounts Cards</Link>
+            <br />
+            <small>Calendar</small>
+            <Link to="/vendors-calendar">Vendors Calendar</Link>
           </div>
         </div>
       </section>

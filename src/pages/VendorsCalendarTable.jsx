@@ -437,7 +437,7 @@ const VendorsCalendarTable = () => {
         </div>
 
         <div
-          className="ag-theme-alpine ag-grid-example all-orders-parent"
+          className="ag-theme-alpine ag-grid-example "
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact
