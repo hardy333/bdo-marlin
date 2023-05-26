@@ -43,7 +43,7 @@ body{
   /* font-family: "BPG Nino Mtavruli", sans-serif; */
   /* font-family: "babuka"; */
   /* font-family: "BPG Nateli", sans-serif; */
-  /* overflow: hidden; */
+  /* overflow-x: hidden; */
   --sidebar-width: 65px;
   --sidebar-inline-margin: 10px;
   --sidebar-full-space: calc(var(--sidebar-width) + var(--sidebar-inline-margin));

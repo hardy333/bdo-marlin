@@ -2,16 +2,6 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import "../styles/sla-chart.css";
 
-const series = [
-  {
-    name: "Duration A",
-    data: [31, 70, 28, 51, 88, 60, 100],
-  },
-  {
-    name: "Duration 2",
-    data: [90, 32, 45, 32, 20, 52, 41],
-  },
-];
 const options = {
   chart: {
     height: 350,
@@ -52,7 +42,6 @@ const options = {
     },
   },
   yaxis: {
-    // categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     min: 5,
     max: 100,
     title: {
@@ -66,7 +55,28 @@ const options = {
   },
 };
 
-const SlaChart = () => {
+const A = {
+  a1: [31, 70, 28, 51, 88, 60, 100],
+  a2: [80, 30, 58, 15, 88, 30, 40],
+};
+
+const B = {
+  b1: [90, 32, 45, 32, 20, 52, 41],
+  b2: [20, 62, 35, 30, 28, 12, 91],
+};
+
+const SlaChart = ({ dataA, dataB }) => {
+  const series = [
+    {
+      name: "Duration A",
+      data: A[dataA],
+    },
+    {
+      name: "Duration B",
+      data: B[dataB],
+    },
+  ];
+
   return (
     <ReactApexChart
       options={options}

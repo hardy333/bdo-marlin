@@ -28,7 +28,7 @@ const processData = (data) => {
 
 processData(data);
 
-const CatalogueMenu = () => {
+const CatalogueMenu = ({ changeAllData }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isOutsideWrapper, setIsOutsideWrapper] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -54,6 +54,9 @@ const CatalogueMenu = () => {
   const handleProductClick = (e, name) => {
     setIsOutsideWrapper(true);
     setSelectedProduct(name);
+    if (changeAllData) {
+      changeAllData();
+    }
   };
 
   let arrLeft = [];
@@ -70,8 +73,6 @@ const CatalogueMenu = () => {
         }
       });
   }
-
-  console.log(categorySearchValue, subCategorySearchValue);
 
   return (
     <div
