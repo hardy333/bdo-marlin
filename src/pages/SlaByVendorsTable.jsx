@@ -297,7 +297,7 @@ const SlaByVendorsTable = () => {
               options={options}
               defaultValue={{ value: "GDM", label: "GDM" }}
             />
-            <ItemsMenu />
+            <ItemsMenu isSlaVendors={true} />
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
             <p className="avarage-sla">
               ASL: <span>82%</span>
@@ -464,10 +464,6 @@ const SlaByVendorsTable = () => {
               return 37;
             }
           }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
 

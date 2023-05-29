@@ -7,6 +7,7 @@ import BrandSvg from "./svgs/service-level-svgs/BrandSvg";
 import RegionSvg from "./svgs/service-level-svgs/RegionSvg";
 import arrowDown from "../assets/arrow-down.svg";
 import classNames from "classnames";
+import { useNavigate } from "react-router-dom";
 
 const itemsList = [
   {
@@ -31,8 +32,9 @@ const itemsList = [
   },
 ];
 
-const ItemsMenu = () => {
+const ItemsMenu = ({ isSlaVendors = false }) => {
   const [reportCategory, setReportCategory] = useState(itemsList[0]);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -62,6 +64,13 @@ const ItemsMenu = () => {
               })}
               onClick={() => {
                 setReportCategory(item);
+                if (!isSlaVendors) {
+                  return;
+                } else {
+                  if (item.label === "Category") {
+                    navigate("/sla-graphics");
+                  }
+                }
               }}
             >
               {item.svg} {item.label}
@@ -74,5 +83,3 @@ const ItemsMenu = () => {
 };
 
 export default ItemsMenu;
-
-
