@@ -15,7 +15,6 @@ import "./styles/catalogue-menu.css";
 import "./styles/tippy.css";
 
 import TableSettingsContextProvider from "./context/TableSettingsContext";
-import AllOrders from "./pages/AllOrders";
 import Hello from "./pages/Hello";
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
@@ -73,7 +72,6 @@ function App() {
             <Route path="/links" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/s" element={<Swip />} />
-            <Route path="/all-orders" element={<AllOrders />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
             <Route path="/employees" element={<Employees />} />

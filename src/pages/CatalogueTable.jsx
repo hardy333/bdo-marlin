@@ -109,7 +109,7 @@ const CatalogueTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
+  const [rowData, setRowData] = useState(d);
 
   const [columnDefs] = useState([
     {
@@ -183,15 +183,6 @@ const CatalogueTable = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      // const data = await fetch_XLSX_DATA();
-      d.splice(10, 2);
-    }
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (isFullScreen) {

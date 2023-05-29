@@ -102,11 +102,7 @@ const SlaByVendorsTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 },
-  ]);
+  const [rowData, setRowData] = useState(d);
 
   const [columnDefs] = useState([
     {
@@ -158,15 +154,6 @@ const SlaByVendorsTable = () => {
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      d.splice(10, 2);
-      setRowData(d);
-    }
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (isFullScreen) {

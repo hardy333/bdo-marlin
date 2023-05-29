@@ -75,7 +75,7 @@ const AllOrdersParent = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
+  const [rowData, setRowData] = useState(d);
 
   const gridRef = useRef(null);
 
@@ -158,15 +158,6 @@ const AllOrdersParent = () => {
   );
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      d.splice(10, 2);
-      setRowData(d);
-    }
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (isFullScreen) {

@@ -119,7 +119,7 @@ const VendorsCalendarTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
+  const [rowData, setRowData] = useState(d1);
 
   const gridRef = useRef(null);
 
@@ -181,14 +181,6 @@ const VendorsCalendarTable = () => {
   ]);
 
   const [rowDataLabel, setRowDataLabel] = useState("d1");
-
-  useEffect(() => {
-    function fetchData() {
-      setRowData(d1);
-    }
-
-    fetchData();
-  }, []);
 
   const changeRowData = () => {
     if (rowDataLabel === "d1") {
