@@ -210,7 +210,6 @@
 
 .employee-pag-container button{
   font-style: normal;
-  font-weight: 700;
   font-size: 14px;
   line-height: 15px;
   color: #D0C7E8;
@@ -225,7 +224,6 @@
 
 .employee-pag-container button.active{
   color:#21154384;
-
 }
 
 .employees-page-info{
@@ -233,12 +231,10 @@
   top: 50%;
   right: 2.5rem;
   transform: translate(0,-50%);
-  font-weight: 700;
   font-size: 14px;
   line-height: 15px;
   color: #D0C7E8;
 
-  
 }
 
 .employee-card-menu ul{

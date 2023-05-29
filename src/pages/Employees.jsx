@@ -103,14 +103,12 @@ const Employees = () => {
       <div className="employee-pag-container">
         <button>&larr;</button>
         <button className="active">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
         <button>&rarr;</button>
 
         <div className="employees-page-info">
-          <p>1-5 of 5</p>
+          <p>
+            1-{employeesArr.length} of {employeesArr.length}
+          </p>
         </div>
       </div>
     </DashboardLayout>
