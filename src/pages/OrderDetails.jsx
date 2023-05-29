@@ -98,11 +98,7 @@ const OrderDetails = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState([
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxster", price: 72000 },
-  ]);
+  const [rowData, setRowData] = useState(d);
 
   const [columnDefs] = useState([
     {
@@ -136,20 +132,8 @@ const OrderDetails = () => {
       field: "Scheduled",
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      // const data = await fetch_XLSX_DATA();
-      d.splice(10, 2);
-
-      setRowData(d);
-    }
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -167,11 +151,6 @@ const OrderDetails = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []

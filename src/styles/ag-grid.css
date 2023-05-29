@@ -98,14 +98,6 @@ body{
 
 }
 
-.ag-header-row-column-filter{
-
-}
-
-.ag-header-row-column-filter *{
-  /* overflow: hidden !important; */
-
-}
 
 .ag-header-cell{
   overflow: visible !important;
@@ -113,6 +105,14 @@ body{
 
 .ag-header-cell-comp-wrapper{
   overflow: visible !important;
+}
+
+.ag-header-row-column-filter{
+
+}
+
+.ag-header{
+
 }
 
 /* BODY */

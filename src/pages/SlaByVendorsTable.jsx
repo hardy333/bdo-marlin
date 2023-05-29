@@ -154,6 +154,7 @@ const SlaByVendorsTable = () => {
       },
     },
   ]);
+
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
@@ -183,11 +184,6 @@ const SlaByVendorsTable = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []
