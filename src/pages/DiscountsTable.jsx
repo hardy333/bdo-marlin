@@ -198,11 +198,7 @@ const DiscountsTable = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-      //   console.log(params.filterParams);
 
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []
@@ -305,7 +301,7 @@ const DiscountsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>Discounts</h4>
+            <h4 style={{ marginRight: 20 }}>Discounts</h4>
             <p className="discount-container">
               Vendor :<span> GDM</span>
             </p>
@@ -313,8 +309,9 @@ const DiscountsTable = () => {
             <p className="discount-container">
               Discount #:<span> 23120</span>
             </p>
-
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+            <p className="discount-container">
+              Period: <span>1/10/2023 - 10/10/2023</span>
+            </p>
             <ItemsMenu />
           </div>
           {/* Right */}
