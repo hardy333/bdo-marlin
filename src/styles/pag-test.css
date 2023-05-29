@@ -24,14 +24,17 @@
 
 .pag-container li a{
   font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 12px;
-line-height: 15px;
-text-align: center;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
 
-color: #D0C7E8;
+}
 
+.pag-container li.previous a,
+.pag-container li.next a{
+  font-size: 14px;
 }
 
 .pag-container li.selected a{

@@ -17,11 +17,11 @@ const AgTablePag = ({ gridRef, pageCount }) => {
       <div className="pag-container">
         <ReactPaginate
           breakLabel="..."
-          nextLabel=">"
+          previousLabel="&larr;"
+          nextLabel="&rarr;"
           onPageChange={changePage}
           pageCount={pageCount}
           pageRangeDisplayed={2}
-          previousLabel="<"
           renderOnZeroPageCount={null}
           marginPagesDisplayed={2}
         />

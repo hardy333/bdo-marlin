@@ -203,8 +203,8 @@ body{
   margin-top: 1rem;
   border: none;
   color: #D0C7E8; 
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 400 !important;
+  font-size: 13px;
   line-height: 15px;
   height: 20px;
   /* padding-right: 2rem; */
@@ -214,6 +214,13 @@ body{
   display: none;
 }
 
+.ag-paging-panel span{
+  font-weight: 500;
+
+}
+.ag-paging-row-summary-panel-number{
+  font-weight: 500 !important;
+}
 
 /* Inputs */
 /* Inputs */
@@ -336,11 +343,14 @@ body{
   align-items: center;
   margin-right: 20px;
   font-size: 12px;
+  font-weight: 400 !important;
+
 
 }
 
 .page-size-btn .btn{
   font-size: 14px;
+  font-weight: 500 !important;
 }
 
 .page-size-menu{
@@ -350,16 +360,15 @@ body{
 .page-size-menu .szh-menu{
   width: 50px;
   min-width: 0;
-
   width: 50px;
-
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(173, 157, 187, 0.5);
   border-radius: 15px;
   overflow: hidden;
 
-}
+  
 
+}
 
 
 .page-size-menu .szh-menu__item{
@@ -419,6 +428,9 @@ body{
   align-items: center;
   justify-content: center;
   font-weight: 500;
+
+  display: flex;
+  align-items: center;
 }
 
 .page-size-btn .btn{
