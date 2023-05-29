@@ -319,12 +319,10 @@ const DiscountsTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>Discounts</h4>
-            <Select
-              className="react-select-container"
-              classNamePrefix="react-select"
-              options={options}
-              defaultValue={{ value: "GDM", label: "GDM" }}
-            />
+            <p className="discount-container">
+              Vendor :<span> GDM</span>
+            </p>
+
             <p className="discount-container">
               Discount #:<span> 23120</span>
             </p>
