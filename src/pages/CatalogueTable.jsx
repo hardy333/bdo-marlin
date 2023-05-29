@@ -170,7 +170,7 @@ const CatalogueTable = () => {
         return (
           <div className="flex items-center" style={{ height: "100%" }}>
             <button
-              style={{ background: +value % 2 === 0 ? "#01C6B5" : "#F55364" }}
+              style={{ color: +value % 2 === 0 ? "#01C6B5" : "#F55364" }}
               className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
             >
               {+value % 2 === 0 ? "active" : "inactive"}
@@ -393,13 +393,6 @@ const CatalogueTable = () => {
               </div>
               <p className="catalogue-label">All Products</p>
             </div>
-
-            {/* <Select
-              className="react-select-container"
-              classNamePrefix="react-select"
-              options={options}
-              defaultValue={{ value: "vanilla", label: "Vanilla" }}
-            /> */}
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

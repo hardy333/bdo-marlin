@@ -17,13 +17,12 @@
 }
 
 .invoices-table-status-btn--success{
-  color: #FF5886;
-  
+  color: #1ED8B9;
 
 }
 
 .invoices-table-status-btn--danger{
-  color: #1ED8B9;
+  color: #FF5886;
 
 }
 
