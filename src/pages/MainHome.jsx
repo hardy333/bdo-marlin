@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/main-home.css";
 import DashboardLayout from "../layout/DashboardLayout";
+import { Link } from "react-router-dom";
 
 const MainHome = () => {
   return (
@@ -148,7 +149,7 @@ const MainHome = () => {
 
         <p>
           Pardon our digital dust! We're working hard behind the scenes to bring
-          you an amazing tech product. Stay tuned!"
+          you an amazing tech <Link to="/links">product</Link>. Stay tuned!"
         </p>
       </div>
     </DashboardLayout>
