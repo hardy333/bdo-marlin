@@ -4,23 +4,27 @@
  justify-content: center;
  border-radius: 5px;
  /* margin: auto; */
- padding-inline: 15px;
  width: 86px;
  height: 18px;
- font-size: 12px;
+ font-size: 13px;
  color: #211543;
  cursor: default;
  font-weight: 600;
+ background-color: transparent;
+ text-align: start;
+ padding: 0;
+
+ /* background-color: red; */
 }
 
 .invoices-table-status-btn--success{
-  background-color: #FF5886;
+  color: #FF5886;
+  
 
 }
 
 .invoices-table-status-btn--danger{
-  background-color: #1ED8B9;
-
+  color: #1ED8B9;
 
 }
 
