@@ -2,7 +2,7 @@
 .expanding-input-wrapper{
   position: relative;
   --img-size: 18px;
-  width: 220px;
+  width: 170px;
   max-width: 100%;
   width: calc(var(--img-size));
   --duration: 0.3s;
@@ -15,7 +15,7 @@
 }
 
 .expanding-input-wrapper.open{
-  width: 220px;
+  width: 170px;
 }
 
 .expanding-input{

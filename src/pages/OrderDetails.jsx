@@ -304,7 +304,7 @@ const OrderDetails = () => {
               align="center"
               transition
             >
-              <MenuItem>Approvrd 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
               <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
               <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
             </Menu>

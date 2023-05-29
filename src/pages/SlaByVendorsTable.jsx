@@ -22,25 +22,11 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
+import "../styles/sla-by-vendors-table.css";
 
 import Select from "react-select";
 
-// images
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import expand from "../assets/all-orders/expand.svg";
-import filter from "../assets/all-orders/filter.svg";
-import search from "../assets/all-orders/search.svg";
-import x from "../assets/all-orders/x.svg";
-import cardPink from "../assets/all-orders/car-pink.svg";
-import burgerLines from "../assets/all-orders/view-list.svg";
-// Right Icons
-import expandSvg from "../assets/marlin-icons/expand.svg";
-import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
-import filterSvg from "../assets/marlin-icons/filter-lines.svg";
-import optionsLines from "../assets/marlin-icons/options-lines.svg";
-
 import classNames from "classnames";
-import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
@@ -297,12 +283,12 @@ const SlaByVendorsTable = () => {
 
   return (
     <DashboardLayout>
-      <header className="all-orders__header">
-        <div className="all-orders__settings">
+      <header className="all-orders__header sla-by-vendors__header">
+        <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
             className="order-details-left"
-            style={{ paddingLeft: "0", marginLeft: 10 }}
+            style={{ paddingLeft: "0", marginLeft: 0 }}
           >
             <h4>Service Level Report</h4>
             <Select
@@ -314,7 +300,7 @@ const SlaByVendorsTable = () => {
             <ItemsMenu />
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />
             <p className="avarage-sla">
-              Avarage Servise level: <span>82%</span>
+              ASL: <span>82%</span>
             </p>
           </div>
           {/* Right */}

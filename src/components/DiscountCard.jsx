@@ -4,8 +4,11 @@ import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
 import ayeeSvg from "../assets/ayee.png";
 import EyeSvg from "./svgs/EyeSvg";
 import NewSvg from "./svgs/NewSvg";
+import { useNavigate } from "react-router-dom";
 
 const DiscountCard = () => {
+  const navigate = useNavigate();
+
   return (
     <article className="discount-card">
       <h2>Snacks -10%</h2>
@@ -28,7 +31,14 @@ const DiscountCard = () => {
         <p>1/02/2023 - 10/02/2023</p>
       </div>
 
-      <button className="btn btn-success">View Products</button>
+      <button
+        onClick={() => {
+          navigate("/discounts-table");
+        }}
+        className="btn btn-success"
+      >
+        View Products
+      </button>
     </article>
   );
 };

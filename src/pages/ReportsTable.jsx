@@ -305,7 +305,16 @@ const ReportsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+            <h4 style={{ fontSize: "18px" }}>Service Level Report</h4>
+            <div className="flex items-center">
+              <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                Period:
+              </span>
+              <DatePickerBtn
+                dateState={dateState}
+                setDateState={setDateState}
+              />
+            </div>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

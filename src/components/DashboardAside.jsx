@@ -111,7 +111,7 @@ const DashboardAside = ({ selected = false, left = true }) => {
           </li>
           <li>
             <NavLink
-              to="/discounts-table"
+              to="/discounts-cards"
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "active" : ""
               }

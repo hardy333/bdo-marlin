@@ -52,7 +52,7 @@ const DashboardNavbar = () => {
       ) : (
         <>
           <div
-            className="gdm-container"
+            className="gdm-container cursor-pointer"
             onClick={() => {
               navigate("/profile");
             }}

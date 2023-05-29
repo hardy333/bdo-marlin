@@ -59,7 +59,7 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             <PeopleSvg />
             {/* <img src={personsImg} alt="" /> */}
           </div>
-          <h2>Analist</h2>
+          <h2>Analyst</h2>
           <ul>
             <li>
               <PersonCheckSvg />

@@ -12,11 +12,7 @@ import SearchSvg from "../components/svgs/SearchSvg";
 import { AnimatePresence } from "framer-motion";
 import Modal from "react-modal";
 import "../styles/vendors-modal.css";
-import CarActive from "../components/svgs/CarActive";
-import CarDisabled from "../components/svgs/CarDisabled";
 
-import cartImg from "../assets/cart-img.png";
-import CloseModalSvg from "../components/svgs/CloseModalSvg";
 import VendorsModal from "../components/VendorsModal";
 
 const Vendors = () => {
@@ -65,7 +61,7 @@ const Vendors = () => {
         </header>
 
         <div className="vendors-card-container">
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {vendorArr
               .filter((num) => (isChecked ? true : num === 1))
               .map((num, index) => {

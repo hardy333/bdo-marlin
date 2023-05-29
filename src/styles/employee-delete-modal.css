@@ -9,7 +9,7 @@
 }
 
 .employee-delete-modal-overlay{
-  background-color: transparent;
+  background-color: transparent !important;
   
 }
 
@@ -84,4 +84,19 @@
 
 
 .employee-delete-modal .btn-close svg{
+}
+
+.employee-delete-modal .ReactModal__Overlay--after-open{
+  background-color: rgba(0, 0, 0, 0) !important;
+
+  background-color: transparent !important;
+  border: 2px solid red !important;
+
+}
+
+.employee-delete-modal .ReactModal__Overlay--before-close{
+  background-color: rgba(0, 0, 0, 0) !important;
+
+  background-color: transparent !important;
+
 }

@@ -3,6 +3,17 @@
   height: 565px;
   background-color: #fff;
   border-radius: 15px;
+
+  font-family: serif;
+  /* font-family: "babuka", sans-serif !important; */
+  font-family: "DejaVu Sans", sans-serif !important;
+
+
+}
+
+.catalogue-menu-container *{
+  /* font-family: "babuka", sans-serif !important; */
+  
 }
 
 .catalogue-menu-wrapper{

@@ -62,6 +62,7 @@ const ExpandingInput = ({ onFilterTextChange }) => {
         height="9"
         onClick={() => {
           inputRef.current.value = "";
+          onFilterTextChange({ target: inputRef.current });
         }}
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
