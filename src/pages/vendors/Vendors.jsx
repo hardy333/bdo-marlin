@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
-import VendorsCard from "../components/VendorsCard";
-
-import searchSvg from "../assets/employees/search.svg";
-import filterSvg from "../assets/filter.svg";
-import listSortSvg from "../assets/list-sort.svg";
+import DashboardLayout from "../../layout/DashboardLayout";
+import VendorsCard from "./VendorsCard";
 
 // css
-import "../styles/vendors.css";
-import SearchSvg from "../components/svgs/SearchSvg";
+import "../../styles/vendors.css";
+import SearchSvg from "../../components/svgs/SearchSvg";
 import { AnimatePresence } from "framer-motion";
-import Modal from "react-modal";
-import "../styles/vendors-modal.css";
+import "../../styles/vendors-modal.css";
 
-import VendorsModal from "../components/VendorsModal";
+import VendorsModal from "../../components/VendorsModal";
+
+import { vendorsData } from "./vendorsData";
 
 const Vendors = () => {
   const [vendorArr, setVendorArr] = useState([
@@ -62,19 +59,23 @@ const Vendors = () => {
 
         <div className="vendors-card-container">
           <AnimatePresence initial={false}>
-            {vendorArr
-              .filter((num) => (isChecked ? true : num === 1))
-              .map((num, index) => {
-                return num === 1 ? (
+            {vendorsData
+              .filter((vendorObj) =>
+                isChecked ? true : vendorObj.status === "active"
+              )
+              .map((vendorObj, index) => {
+                return vendorObj.status === "active" ? (
                   <VendorsCard
                     openModal={openModal}
                     key={index}
                     index={index}
                     variant="active"
+                    vendorName={vendorObj.name}
                   />
                 ) : (
                   <VendorsCard
                     openModal={openModal}
+                    vendorName={vendorObj.name}
                     key={index}
                     index={index}
                   />
@@ -94,7 +95,9 @@ const Vendors = () => {
           <div className="employees-page-info">
             <p>
               1-
-              {vendorArr.filter((num) => (isChecked ? true : num === 1)).length}{" "}
+              {
+                vendorArr.filter((num) => (isChecked ? true : num === 1)).length
+              }{" "}
               of{" "}
               {vendorArr.filter((num) => (isChecked ? true : num === 1)).length}
             </p>

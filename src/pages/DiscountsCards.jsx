@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DashboardLayout from "../layout/DashboardLayout";
 import SearchSvg from "../components/svgs/SearchSvg";
-import VendorsCard from "../components/VendorsCard";
+import VendorsCard from "./vendors/VendorsCard";
 import "../styles/discounts-cards.css";
 
 import Select from "react-select";

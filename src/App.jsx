@@ -20,7 +20,7 @@ import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
 import Employees from "./pages/Employees";
 import Profile from "./pages/Profile";
-import Vendors from "./pages/Vendors";
+import Vendors from "./pages/vendors/Vendors";
 import Invoices1 from "./pages/Invoices1";
 import Invoices2 from "./pages/Invoices2";
 import Home from "./pages/Home";

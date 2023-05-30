@@ -1,24 +1,24 @@
 import React from "react";
 
-import carOrange from "../assets/car-orange.svg";
-import carPurple from "../assets/car-purple.svg";
 import classNames from "classnames";
-import CarDisabled from "./svgs/CarDisabled";
-import CarActive from "./svgs/CarActive";
-import shoppingBag from "../assets/shopping-bag.svg";
-import catalogue from "../assets/catalogue.svg";
-import calendar from "../assets/calendar.svg";
+import CarDisabled from "../../components/svgs/CarDisabled";
+import CarActive from "../../components/svgs/CarActive";
 
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
 import { AnimatePresence, motion } from "framer-motion";
-import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
-import VendorsCatalogueSvg from "./svgs/VendorsCatalogueSvg";
-import VendorsShopSvg from "./svgs/VendorsShopSvg";
+import VendorsCalendarSvg from "../../components/svgs/VendorsCalendarSvg";
+import VendorsCatalogueSvg from "../../components/svgs/VendorsCatalogueSvg";
+import VendorsShopSvg from "../../components/svgs/VendorsShopSvg";
 import { useNavigate } from "react-router-dom";
 
-const VendorsCard = ({ variant = "disabled", index, openModal }) => {
+const VendorsCard = ({
+  variant = "disabled",
+  index,
+  openModal,
+  vendorName,
+}) => {
   const navigate = useNavigate();
 
   const footerActive = (
@@ -125,10 +125,12 @@ const VendorsCard = ({ variant = "disabled", index, openModal }) => {
       <div className="vendor-card-top">
         {variant === "disabled" ? <CarDisabled /> : <CarActive />}
         <div className="vendor-card-name">
-          <h3>GDM</h3>
+          <h3>{vendorName}</h3>
         </div>
       </div>
-      <p className="vendor-card-products">432 Products</p>
+      <p className="vendor-card-products">
+        {Math.floor(Math.random() * 300 + 100)} Products
+      </p>
       <div className="vendor-card-bottom">
         {variant === "disabled" ? footerDisabled : footerActive}
       </div>
