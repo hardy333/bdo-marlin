@@ -20,7 +20,8 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
-import "../styles/invoices-table.css";
+import "../styles/order-details.css";
+import "../styles/pending-status-menu.css";
 
 // images
 import arrowLeft from "../assets/all-orders/arrow-left.svg";
@@ -30,8 +31,6 @@ import search from "../assets/all-orders/search.svg";
 import x from "../assets/all-orders/x.svg";
 import cardPink from "../assets/all-orders/car-pink.svg";
 import burgerLines from "../assets/all-orders/view-list.svg";
-
-import reverseExpand from "../assets/revers-expand.svg";
 // Right Icons
 import expandSvg from "../assets/marlin-icons/expand.svg";
 import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
@@ -51,40 +50,36 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import ExpandingInput from "../components/ExpandingInput";
+
+import d from "../assets/MOCK_DATA-2.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
-import FilterSvg from "../components/FilterSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-
-import d from "../assets/INVOICES_MOCK_DATA.json";
-import FourDotsSvg from "../components/FourDotsSvg";
-import { useNavigate } from "react-router-dom";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
+import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
+import { useSearchParams } from "react-router-dom";
+import AgTablePag from "../components/AgTablePag";
 
-const InvoicesTable = () => {
+const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isBigRow, setIsBigRow] = useState(true);
-
   const [headerList, setHeaderList] = useState([
     {
-      name: "Vendor",
+      name: "barcode",
       isShowing: true,
     },
     {
-      name: "Document",
+      name: "Product",
       isShowing: true,
     },
     {
-      name: "Waybill",
+      name: "Quantity",
       isShowing: true,
     },
     {
-      name: "Shop Address",
+      name: "Price",
       isShowing: true,
     },
     {
@@ -92,11 +87,11 @@ const InvoicesTable = () => {
       isShowing: true,
     },
     {
-      name: "Date",
+      name: "Reserved",
       isShowing: true,
     },
     {
-      name: "Status",
+      name: "Scheduled",
       isShowing: true,
     },
   ]);
@@ -105,52 +100,47 @@ const InvoicesTable = () => {
 
   const [rowData, setRowData] = useState(d);
 
-  const gridRef = useRef(null);
-
   const [columnDefs] = useState([
     {
-      field: "Vendor",
+      field: "barcode",
+      cellRenderer: (params) => {
+        const { value } = params;
+        const index = value.indexOf("-");
+        return value.slice(0, index);
+      },
     },
     {
-      field: "Document",
+      field: "Product",
     },
     {
-      field: "Waybill",
+      field: "Quantity",
     },
     {
-      field: "Shop Address",
+      field: "Price",
+      headerName: "Purchase Quantity",
     },
     {
       field: "Amount",
+      headerName: "Invoice Amount",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
       },
     },
     {
-      field: "Date",
-    },
-    {
-      field: "Status",
+      field: "Reserved",
+      headerName: "Purchased Amount",
       cellRenderer: (params) => {
         const { value } = params;
-        const x = Number(value);
-        if (!value || x % 2 === 0)
-          return (
-            <button className="invoices-table-status-btn invoices-table-status-btn--danger ">
-              To be paid
-            </button>
-          );
-        return (
-          <button className="invoices-table-status-btn invoices-table-status-btn--success">
-            Paid
-          </button>
-        );
+        return value + " " + "GEL";
       },
     },
+    {
+      field: "Scheduled",
+      show: false,
+      hide: true,
+    },
   ]);
-
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -168,15 +158,11 @@ const InvoicesTable = () => {
       filter: true,
       flex: 1,
       minWidth: 150,
-      floatingFilter: showingFloatingFilter,
+      floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
-    [showingFloatingFilter]
+    []
   );
 
   // EVents
@@ -185,6 +171,7 @@ const InvoicesTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true);
   };
 
   const onFilterTextChange = (e) => {
@@ -230,6 +217,9 @@ const InvoicesTable = () => {
     };
   }, []);
 
+  // Row Height logic
+  // Row Height logic
+
   const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
@@ -252,47 +242,48 @@ const InvoicesTable = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
+  const gridRef = useRef(null);
 
   const [showFilters, setShowFilters] = useFilterToggle();
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const x = document.querySelector(
-      ".invoices-table .ag-center-cols-container"
-    );
+  // URL info
+  const [searchParams] = useSearchParams();
+  let date = searchParams.get("date") || "01/30/2023";
+  let shop = searchParams.get("shop") || "SPAR001";
+  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
+  let vendor = searchParams.get("vendor") || "GDM";
+  let status = searchParams.get("status") || "Pending";
 
-    if (!x) return;
+  let statusBg;
+  if (status === "In Progress") {
+    statusBg = "#6E0FF5";
+  } else if (status === "Delivered") {
+    statusBg = "#01C6B5";
+  } else {
+    statusBg = "#FFC23C";
+  }
 
-    const handleGridClick = (e) => {
-      const t = e.target;
-      const row = t.closest(".ag-row");
-
-      navigate(`/invoice-details`);
-    };
-
-    x.addEventListener("click", handleGridClick);
-
-    return () => {
-      x.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi, gridRef]);
+  const [gridReady, setGridReady] = useState(false);
 
   return (
     <DashboardLayout>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="all-orders__gdm-container"
+            className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>Invoices</span>
+            <h4 style={{ marginRight: 10 }}>Invoice Details</h4>
+            <span>Vendors: {vendor}</span>
+            <span>Date #: {date}</span>
+            <span>Waybill: 9282034</span>
+            <span>Document #: 9282034</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            {/* <img src={search} alt="" /> */}
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
+
             {/* input filter */}
             <button
               onClick={() => {
@@ -304,7 +295,25 @@ const InvoicesTable = () => {
                 active: showFilters,
               })}
             >
-              <FilterSvg />
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 47.28 33.65"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                />
+              </svg>
             </button>
             {/* popup */}
             <Menu
@@ -312,7 +321,25 @@ const InvoicesTable = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <ColumnHideSvg />
+                  <svg
+                    id="Layer_3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 33.58 47.28"
+                  >
+                    <defs></defs>
+                    <path
+                      className="cls-1"
+                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                  </svg>
                 </MenuButton>
               }
               transition
@@ -363,7 +390,6 @@ const InvoicesTable = () => {
                         {header.name}
                       </label>
                     </div>
-                    {/* <Switch checked={header.isShowing} /> */}
                   </MenuItem>
                 ))}
               </div>
@@ -386,31 +412,26 @@ const InvoicesTable = () => {
               onClick={() => setIsFullScreen(!isFullScreen)}
               className={classNames({
                 "all-orders__btn": true,
-                // active: isFullScreen,
+                active: isFullScreen,
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            {/* Show Grid */}
-            <button
-              className="all-orders__btn"
-              onClick={() => {
-                navigate("/invoices2");
-              }}
-            >
-              <FourDotsSvg fill="#D0C7E8" />
             </button>
           </div>
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example invoices-table"
+        className="ag-theme-alpine ag-grid-example"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact
-          // gridOptions={{ rowHeight: 32 }}
           ref={gridRef}
-          // animateRows={true}
+          onGridReady={onGridReady}
+          rowData={rowData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          pagination={true}
+          components={components}
           getRowHeight={() => {
             if (rowHeightIndex === 0) {
               return 25;
@@ -420,19 +441,14 @@ const InvoicesTable = () => {
               return 37;
             }
           }}
-          // rowStyle={{ maxHeight: "20px", height: "10px" }}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
           // enableRangeSelection={true}
           // copyHeadersToClipboard={true}
           // rowSelection={"multiple"}
           // paginationAutoPageSize={true}
           paginationPageSize={pageSize}
         ></AgGridReact>
+
+        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={67} />}
 
         <Menu
           className="page-size-menu"
@@ -464,4 +480,4 @@ const InvoicesTable = () => {
   );
 };
 
-export default InvoicesTable;
+export default InvoiceDetailsTable;

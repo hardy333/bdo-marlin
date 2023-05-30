@@ -87,6 +87,11 @@ const Home = () => {
             <small>Calendar</small>
             <Link to="/vendors-calendar">Vendors Calendar</Link>
           </div>
+          <div className="home-links">
+            <small>Invoices</small>
+            <Link to="/invoices-table">Invoices Table</Link>
+            <Link to="/invoice-details">Invoice Details</Link>
+          </div>
         </div>
       </section>
     </DashboardLayout>
