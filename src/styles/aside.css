@@ -1,7 +1,6 @@
 .dashboard-aside {
   background-color: var(--bg-aside);
-  min-height: 450px;
-  max-height: 100vh;
+  min-height: 580px;
   width: var(--sidebar-width);
 
   /* padding: 1rem; */
@@ -157,11 +156,9 @@
   color: white;
   gap: 1rem;
   align-items: center;
-
   /* font-family: "babuka" !important; */
   text-transform: lowercase;
   width: 100%;
-
   padding:0.5rem 2rem;
 
 }
@@ -184,13 +181,11 @@
 
 .aside-label {
   text-decoration: none;
-
   font-style: normal;
   font-weight: 500;
   letter-spacing: 0.7px;
   font-size: 14px;
   line-height: 24px;
-
   color: rgba(255, 255, 255, 0.8) !important;
   opacity: 0;
   transition: var(--sidebar-open-animation-duration) ease-in-out;
@@ -214,7 +209,6 @@
 }
 
 .dashboard-aside__list li:hover img{
-
   /* transform: scale(1.1); */
   filter: brightness(100%);
 }
