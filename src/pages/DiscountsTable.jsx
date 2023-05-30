@@ -40,7 +40,6 @@ import filterSvg from "../assets/marlin-icons/filter-lines.svg";
 import optionsLines from "../assets/marlin-icons/options-lines.svg";
 
 import classNames from "classnames";
-import { Switch } from "@mui/material";
 import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];

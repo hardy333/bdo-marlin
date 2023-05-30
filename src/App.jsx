@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
@@ -11,8 +10,8 @@ import "./styles/date-menu.css";
 import "./styles/catalogue-menu.css";
 import "./styles/tippy.css";
 import "./styles/components.css";
+import "./styles/report-child-table.css";
 
-import TableSettingsContextProvider from "./context/TableSettingsContext";
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
 import Employees from "./pages/Employees";
@@ -51,67 +50,52 @@ import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 import SlaCategory from "./pages/SlaCategory";
 
-const queryClient = new QueryClient();
-
 function App() {
   return (
     <>
-      <TableSettingsContextProvider>
-        <QueryClientProvider client={queryClient}>
-          <Routes>
-            <Route path="/" element={<MainHome />} />
-            <Route path="/links" element={<Home />} />
-            <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
-            <Route path="/sla-category" element={<SlaCategory />} />
-            <Route path="/ag-table" element={<AgTable />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/profile" element={<Profile />}>
-              <Route index element={<ProfileForm />} />
-              <Route path="change-password" element={<PasswordForm />} />
-            </Route>
-            <Route path="/vendors" element={<Vendors />} />
-            <Route path="/invoices1" element={<Invoices1 />} />
-            <Route path="/invoices2" element={<Invoices2 />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/prices" element={<Prices />} />
-            <Route path="/main-dashboard" element={<MainDashboard />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/order-details" element={<OrderDetails />} />
-            <Route path="/invoices-table" element={<InvoicesTable />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/all-orders-parent" element={<AllOrdersParent />} />
-            <Route path="/logs" element={<LogsTable />} />
-            <Route path="/catalogue" element={<CatalogueTable />} />
-            <Route path="/reports" element={<ReportsTable />} />
-            <Route path="/contract" element={<Contract />} />
-            <Route path="/new-catalogue" element={<NewCatalogueTable />} />
-            <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
-            <Route path="/stable-table" element={<StableTable />} />
-            <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
-            <Route path="/sla-graphics" element={<SlaGraphics />} />
-            <Route path="/discounts-table" element={<DiscountsTable />} />
-            <Route path="/discounts-cards" element={<DiscountsCards />} />
-            <Route
-              path="/vendors-calendar"
-              element={<VendorsCalendarTable />}
-            />
-            <Route
-              path="/catalogue-5-level"
-              element={<CatalogueTable5Level />}
-            />
-            <Route
-              path="/vendor-all-orders"
-              element={<VendorAllOrdersTable />}
-            />
-            <Route
-              path="/catalogue-geo-resize"
-              element={<CatalogueTablegeoResize />}
-            />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </QueryClientProvider>
-      </TableSettingsContextProvider>
+      <Routes>
+        <Route path="/" element={<MainHome />} />
+        <Route path="/links" element={<Home />} />
+        <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
+        <Route path="/sla-category" element={<SlaCategory />} />
+        <Route path="/ag-table" element={<AgTable />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/profile" element={<Profile />}>
+          <Route index element={<ProfileForm />} />
+          <Route path="change-password" element={<PasswordForm />} />
+        </Route>
+        <Route path="/vendors" element={<Vendors />} />
+        <Route path="/invoices1" element={<Invoices1 />} />
+        <Route path="/invoices2" element={<Invoices2 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/prices" element={<Prices />} />
+        <Route path="/main-dashboard" element={<MainDashboard />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/order-details" element={<OrderDetails />} />
+        <Route path="/invoices-table" element={<InvoicesTable />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+        <Route path="/logs" element={<LogsTable />} />
+        <Route path="/catalogue" element={<CatalogueTable />} />
+        <Route path="/reports" element={<ReportsTable />} />
+        <Route path="/contract" element={<Contract />} />
+        <Route path="/new-catalogue" element={<NewCatalogueTable />} />
+        <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
+        <Route path="/stable-table" element={<StableTable />} />
+        <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
+        <Route path="/sla-graphics" element={<SlaGraphics />} />
+        <Route path="/discounts-table" element={<DiscountsTable />} />
+        <Route path="/discounts-cards" element={<DiscountsCards />} />
+        <Route path="/vendors-calendar" element={<VendorsCalendarTable />} />
+        <Route path="/catalogue-5-level" element={<CatalogueTable5Level />} />
+        <Route path="/vendor-all-orders" element={<VendorAllOrdersTable />} />
+        <Route
+          path="/catalogue-geo-resize"
+          element={<CatalogueTablegeoResize />}
+        />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </>
   );
 }
