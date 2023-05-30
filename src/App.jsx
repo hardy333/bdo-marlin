@@ -1,11 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
-import Swip from "./components/Swip";
-import Dashboard from "./pages/Dashboard";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
 import "./styles/aside.css";
-import "./styles/components.css";
 import "./styles/modal.css";
 import "./styles/react-select.css";
 import "./styles/page-geo.css";
@@ -13,9 +10,9 @@ import "./styles/column-toggle-popup.css";
 import "./styles/date-menu.css";
 import "./styles/catalogue-menu.css";
 import "./styles/tippy.css";
+import "./styles/components.css";
 
 import TableSettingsContextProvider from "./context/TableSettingsContext";
-import Hello from "./pages/Hello";
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
 import Employees from "./pages/Employees";
@@ -33,34 +30,26 @@ import PasswordForm from "./components/PasswordForm";
 import Test from "./pages/Test";
 import OrderDetails from "./pages/OrderDetails";
 import InvoicesTable from "./pages/InvoicesTable";
-import PopupTest from "./pages/PopupTest";
 import Terms from "./pages/Terms";
 import AllOrdersParent from "./pages/AllOrdersParent";
 import LogsTable from "./pages/LogsTable";
 import CatalogueTable from "./pages/CatalogueTable";
-import TableTest from "./pages/TableTest";
 import ReportsTable from "./pages/ReportsTable";
 import Contract from "./pages/Contract";
 import NewCatalogueTable from "./pages/NewCatalogueTable";
-import ReportsChildTable from "./pages/ReportsChildTable";
 import CatalogueTableGeo from "./pages/CatalogueTableGeo";
 import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import StableTable from "./pages/StableTable";
 import CatalogueTable5Level from "./pages/CatalogueTable5Level";
-import Test2 from "./pages/Test2";
 import SlaByVendorsTable from "./pages/SlaByVendorsTable";
 import SlaGraphics from "./pages/SlaGraphics";
-import Components from "./pages/Components";
-import SlaGraphicsTest from "./pages/SlaGraphicsTest";
 import DiscountsTable from "./pages/DiscountsTable";
 import DiscountsCards from "./pages/DiscountsCards";
 import MainHome from "./pages/MainHome";
 import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 import SlaCategory from "./pages/SlaCategory";
-// import TableSettings from "./components/TableSettings";
-// import settings from "../s"
 
 const queryClient = new QueryClient();
 
@@ -72,11 +61,8 @@ function App() {
           <Routes>
             <Route path="/" element={<MainHome />} />
             <Route path="/links" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
             <Route path="/sla-category" element={<SlaCategory />} />
-            <Route path="/s" element={<Swip />} />
-            <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
@@ -84,7 +70,6 @@ function App() {
               <Route path="change-password" element={<PasswordForm />} />
             </Route>
             <Route path="/vendors" element={<Vendors />} />
-            <Route path="/components" element={<Components />} />
             <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />
@@ -94,22 +79,17 @@ function App() {
             <Route path="/test" element={<Test />} />
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
-            <Route path="/popup" element={<PopupTest />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/all-orders-parent" element={<AllOrdersParent />} />
             <Route path="/logs" element={<LogsTable />} />
             <Route path="/catalogue" element={<CatalogueTable />} />
-            <Route path="/table-test" element={<TableTest />} />
             <Route path="/reports" element={<ReportsTable />} />
             <Route path="/contract" element={<Contract />} />
             <Route path="/new-catalogue" element={<NewCatalogueTable />} />
-            <Route path="/reports-child" element={<ReportsChildTable />} />
-            <Route path="/test2" element={<Test2 />} />
             <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
             <Route path="/stable-table" element={<StableTable />} />
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
             <Route path="/sla-graphics" element={<SlaGraphics />} />
-            <Route path="/sla-graphics-test" element={<SlaGraphicsTest />} />
             <Route path="/discounts-table" element={<DiscountsTable />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
             <Route

@@ -37,7 +37,10 @@ const DashboardNavbar = () => {
   );
 
   return (
-    <header className="dashboard-navbar" style={{ height: "63px" }}>
+    <header
+      className="dashboard-navbar"
+      style={{ height: "63px", flexShrink: 0 }}
+    >
       {pathname !== "/" ? backArrow : null}
 
       {isStartingPage ? (
