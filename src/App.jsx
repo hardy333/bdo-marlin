@@ -58,6 +58,7 @@ import DiscountsCards from "./pages/DiscountsCards";
 import MainHome from "./pages/MainHome";
 import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
+import SlaCategory from "./pages/SlaCategory";
 // import TableSettings from "./components/TableSettings";
 // import settings from "../s"
 
@@ -73,6 +74,7 @@ function App() {
             <Route path="/links" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
+            <Route path="/sla-category" element={<SlaCategory />} />
             <Route path="/s" element={<Swip />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/ag-table" element={<AgTable />} />

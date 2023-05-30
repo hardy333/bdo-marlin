@@ -32,8 +32,9 @@ const itemsList = [
   },
 ];
 
-const ItemsMenu = ({ isSlaVendors = false }) => {
-  const [reportCategory, setReportCategory] = useState(itemsList[0]);
+const ItemsMenu = ({ isSlaVendors = false, category = false }) => {
+  const index = category ? 2 : 0;
+  const [reportCategory, setReportCategory] = useState(itemsList[index]);
   const navigate = useNavigate();
 
   return (
@@ -68,7 +69,7 @@ const ItemsMenu = ({ isSlaVendors = false }) => {
                   return;
                 } else {
                   if (item.label === "Category") {
-                    navigate("/sla-graphics");
+                    navigate("/sla-category");
                   }
                 }
               }}
