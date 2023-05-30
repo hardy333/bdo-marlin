@@ -71,9 +71,9 @@ const DiscountsCards = () => {
 
         <div className="discount-cards-container">
           {vendorArr
-            .filter((num) => (isChecked ? true : num === 1 || num === 0))
+            .filter((num, index) => (isChecked ? true : num === 1 || num === 0))
             .map((num, index) => {
-              return <DiscountCard />;
+              return <DiscountCard index={index} />;
             })}
         </div>
         <div className="employee-pag-container">

@@ -5,21 +5,20 @@ import ayeeSvg from "../assets/ayee.png";
 import EyeSvg from "./svgs/EyeSvg";
 import NewSvg from "./svgs/NewSvg";
 import { useNavigate } from "react-router-dom";
+import CrystalSvg from "./svgs/CrystalSvg";
 
-const DiscountCard = () => {
+const DiscountCard = ({ index }) => {
   const navigate = useNavigate();
 
   return (
     <article className="discount-card">
       <h2>Snacks -10%</h2>
       <h3>Document #23120</h3>
-      {Math.random() - 0.5 > 0 ? (
-        <div className="discount-card__ayee-img">
-          <EyeSvg />
-        </div>
+      {index > 3 ? (
+        <></>
       ) : (
         <div className="discount-card__new-img">
-          <NewSvg />
+          <CrystalSvg />
         </div>
       )}
 
