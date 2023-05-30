@@ -53,8 +53,6 @@ const Employees = () => {
     setEmployeesArr(employeesArr.filter((currName) => currName !== name));
   };
 
-  console.log(activeEmployee);
-
   return (
     <>
       <ToastContainer autoClose={2000} hideProgressBar={true} />
