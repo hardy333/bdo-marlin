@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const MainHome = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="main-home">
         <div className="main-home__ill-container">
           <svg
@@ -152,7 +152,7 @@ const MainHome = () => {
           you an amazing tech <Link to="/links">product</Link>. Stay tuned!"
         </p>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

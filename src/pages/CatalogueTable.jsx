@@ -360,7 +360,7 @@ const CatalogueTable = () => {
   const [gridReady, setGridReady] = useState(false);
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header catalogue-header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -592,7 +592,7 @@ const CatalogueTable = () => {
           </Menu>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

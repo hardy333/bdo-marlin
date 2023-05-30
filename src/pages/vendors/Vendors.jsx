@@ -31,7 +31,7 @@ const Vendors = () => {
   }
 
   return (
-    <DashboardLayout>
+    <>
       <section className="vendors">
         <header className="vendors-header">
           {/* 1 */}
@@ -110,7 +110,7 @@ const Vendors = () => {
           modalIsOpen={modalIsOpen}
         />
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

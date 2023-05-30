@@ -19,7 +19,7 @@ const Test2 = () => {
   ]);
 
   return (
-    <DashboardLayout>
+    <>
       <ItemsMenu />
       <Menu
         className="date-menu"
@@ -46,7 +46,7 @@ const Test2 = () => {
           />
         </MenuItem>
       </Menu>
-    </DashboardLayout>
+    </>
   );
 };
 

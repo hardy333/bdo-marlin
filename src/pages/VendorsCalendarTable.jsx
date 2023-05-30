@@ -293,7 +293,7 @@ const VendorsCalendarTable = () => {
   const [showFilters, setShowFilters] = useFilterToggle();
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
@@ -479,7 +479,7 @@ const VendorsCalendarTable = () => {
           </Menu>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

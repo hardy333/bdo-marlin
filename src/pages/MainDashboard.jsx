@@ -6,7 +6,7 @@ import ApexChart2 from "../components/ApexChart2";
 
 const MainDashboard = () => {
   return (
-    <DashboardLayout>
+    <>
       <section className="main-dashboard">
         <header className="main-dashboard-header">
           <div>
@@ -44,7 +44,7 @@ const MainDashboard = () => {
           </div>
         </div>
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

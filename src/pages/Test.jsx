@@ -96,9 +96,9 @@ export const parentCategories = [
 
 const Test = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="test-div"></div>
-    </DashboardLayout>
+    </>
   );
 };
 

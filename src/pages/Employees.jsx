@@ -56,7 +56,7 @@ const Employees = () => {
   console.log(activeEmployee);
 
   return (
-    <DashboardLayout>
+    <>
       <ToastContainer autoClose={2000} hideProgressBar={true} />
       <EmployeesCompirmationModal
         compirmationModalOpen={compirmationModalOpen}
@@ -111,7 +111,7 @@ const Employees = () => {
           </p>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

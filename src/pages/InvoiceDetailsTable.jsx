@@ -265,7 +265,7 @@ const InvoiceDetailsTable = () => {
   const [gridReady, setGridReady] = useState(false);
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -475,7 +475,7 @@ const InvoiceDetailsTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

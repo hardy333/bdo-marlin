@@ -305,7 +305,7 @@ const NewCatalogueTable = () => {
   const [showFilters, setShowFilters] = useFilterToggle();
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -516,7 +516,7 @@ const NewCatalogueTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

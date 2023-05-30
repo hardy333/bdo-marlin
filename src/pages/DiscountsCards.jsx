@@ -41,7 +41,7 @@ const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
 
   return (
-    <DashboardLayout>
+    <>
       <section className="discounts">
         <header className="discounts-header">
           {/* 1 */}
@@ -92,7 +92,7 @@ const DiscountsCards = () => {
           </div>
         </div>
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

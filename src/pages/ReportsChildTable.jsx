@@ -269,7 +269,7 @@ const ReportsChildTable = () => {
   }
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header report-child-header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -559,7 +559,7 @@ const ReportsChildTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

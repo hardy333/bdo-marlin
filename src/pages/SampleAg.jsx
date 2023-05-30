@@ -75,7 +75,7 @@ const SampleAg = () => {
   };
 
   return (
-    <DashboardLayout>
+    <>
       <h2>Hello</h2>
       <div className="ag-grid-alpine">
         <AgGridReact
@@ -87,7 +87,7 @@ const SampleAg = () => {
           paginationPageSize={15}
         ></AgGridReact>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

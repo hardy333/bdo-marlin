@@ -279,7 +279,7 @@ const ReportsTable = () => {
   const navigate = useNavigate();
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -487,7 +487,7 @@ const ReportsTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

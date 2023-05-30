@@ -321,7 +321,7 @@ const CatalogueTable5Level = () => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header catalogue-header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -649,7 +649,7 @@ const CatalogueTable5Level = () => {
           </Menu>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

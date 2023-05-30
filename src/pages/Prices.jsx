@@ -9,7 +9,7 @@ import fireImg from "../assets/prices/fire.svg";
 
 const Prices = () => {
   return (
-    <DashboardLayout>
+    <>
       <section className="prices">
         <div className="prices__container">
           {/* Price Card 1 */}
@@ -77,7 +77,7 @@ const Prices = () => {
           </article>
         </div>
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

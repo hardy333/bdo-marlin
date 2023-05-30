@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <DashboardLayout staticMain={true}>
+    <>
       <div className="login">
         <div className="login__container">
           <h1>Welcome Again!</h1>
@@ -28,7 +28,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

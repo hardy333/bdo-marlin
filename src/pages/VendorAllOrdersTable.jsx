@@ -47,8 +47,6 @@ const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -259,7 +257,7 @@ const VendorAllOrdersTable = () => {
   }
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
@@ -415,7 +413,7 @@ const VendorAllOrdersTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

@@ -52,7 +52,7 @@ const TableTest = () => {
   // 49
 
   return (
-    <DashboardLayout>
+    <>
       <button
         className="w-[100px] bg-red-500 rounded-lg text-white mb-2"
         onClick={() => setShowFilters(!showFilters)}
@@ -76,7 +76,7 @@ const TableTest = () => {
           paginationPageSize={15}
         ></AgGridReact>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

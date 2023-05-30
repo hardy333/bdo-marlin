@@ -315,7 +315,7 @@ const CatalogueTablegeo = () => {
   const [showFilters, setShowFilters] = useFilterToggle();
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header page-geo">
         <div className="all-orders__settings">
           {/* Left */}
@@ -526,7 +526,7 @@ const CatalogueTablegeo = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

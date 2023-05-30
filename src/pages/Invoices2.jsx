@@ -11,7 +11,7 @@ const Invoices2 = () => {
   const navigate = useNavigate();
 
   return (
-    <DashboardLayout>
+    <>
       <header className="invoices-header">
         <h1>Invoices</h1>
 
@@ -63,7 +63,7 @@ const Invoices2 = () => {
           <p>1-5 of 5</p>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

@@ -370,7 +370,7 @@ const SlaCategory = () => {
     },
   ]);
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header catalogue-header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -595,7 +595,7 @@ const SlaCategory = () => {
           </Menu>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

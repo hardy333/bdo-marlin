@@ -6,7 +6,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 const Home = () => {
   return (
-    <DashboardLayout>
+    <>
       <section className="home">
         <h1>pages</h1>
 
@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

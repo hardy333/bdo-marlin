@@ -1,2 +1,0 @@
-const vendorsData = []
-const itemsData = []

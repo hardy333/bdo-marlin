@@ -31,7 +31,7 @@ const Profile = () => {
   console.log(param);
 
   return (
-    <DashboardLayout>
+    <>
       <section className="profile">
         <header className="profile-header">
           <h1>Profile</h1>
@@ -79,7 +79,7 @@ const Profile = () => {
           </div> */}
         </section>
       </section>
-    </DashboardLayout>
+    </>
   );
 };
 

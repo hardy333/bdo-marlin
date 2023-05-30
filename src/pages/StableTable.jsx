@@ -221,7 +221,7 @@ const StableTable = () => {
   }
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
@@ -381,7 +381,7 @@ const StableTable = () => {
         </Menu>
         {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

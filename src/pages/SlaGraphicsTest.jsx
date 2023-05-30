@@ -111,7 +111,7 @@ const SlaGraphicsTest = () => {
   const [isChecked, setISChecked] = useState(false);
 
   return (
-    <DashboardLayout light={true}>
+    <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
           {/* Left */}
@@ -207,7 +207,7 @@ const SlaGraphicsTest = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

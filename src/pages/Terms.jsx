@@ -3,7 +3,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 
 const Terms = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="w-5/6 mx-auto text-center">
         <h2 className="mb-5 text-9xl">Our terms </h2>
         <p className="max-w-screen-md mx-auto mt-20">
@@ -13,7 +13,7 @@ const Terms = () => {
           aliquam possimus asperiores molestias.
         </p>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

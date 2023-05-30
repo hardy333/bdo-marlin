@@ -6,7 +6,7 @@ import "../styles/invoices1.css";
 
 const Invoices1 = () => {
   return (
-    <DashboardLayout>
+    <>
       <header className="invoices-header">
         <h1>Invoices</h1>
 
@@ -35,7 +35,7 @@ const Invoices1 = () => {
         <InvoiceCard1 paidStatus="Paid" />
         <InvoiceCard1 paidStatus="Paid" />
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

@@ -244,7 +244,7 @@ const SlaByVendorsTable = () => {
   ]);
 
   return (
-    <DashboardLayout>
+    <>
       <header className="all-orders__header sla-by-vendors__header">
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
@@ -455,7 +455,7 @@ const SlaByVendorsTable = () => {
           })}
         </Menu>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 
