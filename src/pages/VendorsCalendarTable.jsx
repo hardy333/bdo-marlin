@@ -48,6 +48,7 @@ import d2 from "../assets/vendors-calendar-2.json";
 import VendorsDateRange from "../components/VendorsDateRange";
 
 import Select from "react-select";
+import { DayPicker } from "react-day-picker";
 
 const vendors = [
   "Orbita",
@@ -266,6 +267,7 @@ const VendorsCalendarTable = () => {
     }
   };
   const [showFilters, setShowFilters] = useFilterToggle();
+  const [selected, setSelected] = useState(null);
 
   return (
     <>
@@ -399,7 +401,17 @@ const VendorsCalendarTable = () => {
           praesentium natus repellat nulla illo inventore, nisi suscipit,
           aliquam aspernatur ducimus quia tempore sunt voluptates recusandae
           veniam eius illum reprehenderit! */}
-          <VendorsDateRange changeRowData={changeRowData} />
+          {/* <VendorsDateRange changeRowData={changeRowData} /> */}
+          <div className=" date-picker-wrapper">
+            <DayPicker
+              mode="single"
+              selected={selected}
+              onSelect={(x) => {
+                setSelected(x);
+                changeRowData();
+              }}
+            />
+          </div>
         </div>
 
         <div

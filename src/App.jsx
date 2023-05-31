@@ -12,6 +12,7 @@ import "./styles/tippy.css";
 import "./styles/components.css";
 import "./styles/report-child-table.css";
 import "./styles/date-range-picker-one.css";
+import "./styles/date-picker.css";
 
 import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
