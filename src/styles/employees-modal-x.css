@@ -148,6 +148,10 @@ margin-top: 2rem;
 
 }
 
+.employees-modal-x .btn:hover{
+  background-color: #360083;;
+}
+
 .people-svg{
   width: 25px;
   transform: translate(2px, 0);

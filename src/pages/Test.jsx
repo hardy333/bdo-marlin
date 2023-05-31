@@ -1,13 +1,7 @@
-import React, { useMemo, useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/switch.css";
-import ReactPaginate from "react-paginate";
 import "../styles/pag-test.css";
 import "../styles/status-component.css";
 import "../styles/categories.css";
-import SearchSvg from "../components/svgs/SearchSvg";
-import classNames from "classnames";
-import CatalogueMenu from "../components/CatalogueMenu";
 import "../styles/test.css";
 export const items = Array.from({ length: 1000 }).map((_, index) => index);
 
@@ -97,7 +91,12 @@ export const parentCategories = [
 const Test = () => {
   return (
     <>
-      <div className="test-div"></div>
+      <div className="test-div">
+        <h2>Hello </h2>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+      </div>
     </>
   );
 };
