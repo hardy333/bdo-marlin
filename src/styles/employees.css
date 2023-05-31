@@ -104,31 +104,43 @@
 
 }
 
-.employee-card__dots{
+.employee-card__dots-btn{
   position: absolute;
-  right: 0.5rem;
+  right: 0.4rem;
   top: 1.8rem;
-  cursor: pointer;
+
   height: 25px;
+  width: 25px;
+
   background-color: white;
   padding: 5px 12px;
   border-radius: 20px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
 }
 
-.employee-card__dots:hover{
+.employee-card__dots-btn:hover{
   background-color: hsla(256, 42%, 85%, 0.082);
 }
 
-.employee-card__dots.open{
+.employee-card__dots-btn.open{
   background-color: hsla(256, 42%, 65%, 0.080);
 
 }
 
-
-.employee-card__img{
+.employee-card__dots-btn svg{
+  flex-shrink: 0;
+  min-width: 100px;
+  height: 15px;
 
 }
+
+
+
 
 .employee-card h2{
   font-weight: 700;
@@ -243,7 +255,6 @@
   min-width: 70px;
   overflow: hidden;
   width: 70px
-
 }
 
 .employee-card-menu .szh-menu__item--hover{
