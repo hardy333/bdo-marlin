@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import SearchSvg from "../components/svgs/SearchSvg";
-import VendorsCard from "./vendors/VendorsCard";
 import "../styles/discounts-cards.css";
 
 import Select from "react-select";
-import PlusSvg from "../components/svgs/PlusSvg";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import DiscountCard from "../components/DiscountCard";
 
@@ -53,10 +50,6 @@ const DiscountsCards = () => {
             options={options}
             defaultValue={{ value: "GDM", label: "GDM" }}
           />
-          {/* <button className="btn btn-outlined btn-black ">
-            <PlusSvg fill="#211543" />
-            Add
-          </button> */}
           <button
             className="all-orders__btn excel-export-btn"
             style={{ marginLeft: "auto", marginRight: "30px" }}
@@ -79,10 +72,6 @@ const DiscountsCards = () => {
         <div className="employee-pag-container">
           <button>&larr;</button>
           <button className="active">1</button>
-          {/* <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button> */}
           <button>&rarr;</button>
 
           <div className="employees-page-info">

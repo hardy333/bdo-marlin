@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useMemo, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -12,7 +6,6 @@ import "../styles/ag-table-scrollbar.css";
 
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
-import { AgGridReact } from "ag-grid-react";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
@@ -24,49 +17,13 @@ import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 
 import Select from "react-select";
-
-// images
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import expand from "../assets/all-orders/expand.svg";
-import filter from "../assets/all-orders/filter.svg";
-import search from "../assets/all-orders/search.svg";
-import x from "../assets/all-orders/x.svg";
-import cardPink from "../assets/all-orders/car-pink.svg";
-import burgerLines from "../assets/all-orders/view-list.svg";
-// Right Icons
-import expandSvg from "../assets/marlin-icons/expand.svg";
-import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
-import filterSvg from "../assets/marlin-icons/filter-lines.svg";
-import optionsLines from "../assets/marlin-icons/options-lines.svg";
-
 import classNames from "classnames";
-import { Switch } from "@mui/material";
-import { COLUMNS_BY_ITEM } from "../columns";
-
-const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
-import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import CustomHeaderCell from "../components/CustomHeaderCell";
-import CustomInput from "../components/CustomInput";
 import "../styles/sla-graphics.css";
 
-import d from "../assets/REPORTS_PARENT.json";
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-import useFilterToggle from "../hooks/useFilterToggle";
-import { useSearchParams } from "react-router-dom";
-import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
-import ItemsMenu from "../components/ItemsMenu";
-import SearchSvg from "../components/svgs/SearchSvg";
 import { items1 } from "./Test";
 import SlaChart from "../components/SlaChart";
 import DatePickerBtn2 from "../components/DatePickerBtn2";
@@ -107,8 +64,6 @@ const SlaGraphicsTest = () => {
   const disableHoverAsync = () => {
     setIsHover(false);
   };
-
-  const [isChecked, setISChecked] = useState(false);
 
   return (
     <>

@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/main-dashboard.css";
 import ApexChart1 from "../components/ApexChart1";
 import ApexChart2 from "../components/ApexChart2";

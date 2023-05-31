@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/popup-page.css";
 import CustomPopup from "../components/CustomPopup";
 

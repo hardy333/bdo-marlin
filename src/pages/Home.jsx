@@ -1,8 +1,6 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
-import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 const Home = () => {
   return (

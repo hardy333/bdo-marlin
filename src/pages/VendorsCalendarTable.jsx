@@ -186,10 +186,6 @@ const VendorsCalendarTable = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []

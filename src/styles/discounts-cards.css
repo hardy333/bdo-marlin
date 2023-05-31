@@ -34,7 +34,6 @@
   flex-grow: 1;
   padding-left: 0;
   height: 570px;
-  /* background-color: red; */
 
 }
 
@@ -47,7 +46,6 @@
   transition: all 0.2s ease;
   border: 1px solid var(--color-text-2);
   margin-right: 0;
-
 }
 
 

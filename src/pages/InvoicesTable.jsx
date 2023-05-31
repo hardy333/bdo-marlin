@@ -169,10 +169,6 @@ const InvoicesTable = () => {
       minWidth: 150,
       floatingFilter: showingFloatingFilter,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
-
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     [showingFloatingFilter]
@@ -241,7 +237,6 @@ const InvoicesTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {

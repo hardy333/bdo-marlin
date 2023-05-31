@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { AgGridReact } from "ag-grid-react";
 
 const SampleAg = () => {
@@ -44,9 +43,6 @@ const SampleAg = () => {
       minWidth: 150,
       flex: 1,
     },
-    // {
-    //   field: "Product category",
-    // },
   ]);
 
   useEffect(() => {

@@ -1,9 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/employees.css";
 import EmployeeCard from "../components/EmployeeCard";
-import ExpandingInput from "../components/ExpandingInput";
 import PlusSvg from "../components/svgs/PlusSvg";
 import SearchSvg from "../components/svgs/SearchSvg";
 import "../styles/employees-modal-x.css";
@@ -12,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import EmployeesCompirmationModal from "../components/svgs/EmployeesCompirmationModal";
 import EmployeesMainModal from "../components/EmployeesMainModal";
-import { AnimatePresence, LayoutGroup } from "framer-motion";
+import { LayoutGroup } from "framer-motion";
 
 const namesArr = [
   "Daniel Pataraia",

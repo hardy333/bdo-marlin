@@ -1,10 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 import { AgGridReact } from "ag-grid-react";
 import CustomInput from "../components/CustomInput";
 import testTableColumnDefs from "../testTableColumnDefs";
 import fetch_XLSX_DATA from "../utils/getData";
-import { he } from "date-fns/locale";
 import useFilterToggle from "../hooks/useFilterToggle";
 
 const TableTest = () => {
@@ -39,17 +37,11 @@ const TableTest = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
-      // floatingFilterComponent: (params) => {
 
-      //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
-      // },
       floatingFilterComponent: CustomInput,
     }),
     []
   );
-
-  // 97
-  // 49
 
   return (
     <>

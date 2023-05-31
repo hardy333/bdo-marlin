@@ -126,8 +126,6 @@ const SlaByVendorsTable = () => {
     },
   ]);
 
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
-
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   useEffect(() => {

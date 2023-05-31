@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/prices.css";
-import DashboardLayout from "../layout/DashboardLayout";
 
 import essentialImg from "../assets/prices/essential.svg";
 import standardImg from "../assets/prices/standard.svg";

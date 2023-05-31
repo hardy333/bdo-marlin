@@ -1,25 +1,8 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
-import searchSvg from "../assets/employees/search.svg";
 import "../styles/profile.css";
-import userSvg from "../assets/employees/user.svg";
 import user from "../assets/user.png";
-import ProfileForm from "../components/ProfileForm";
-import PasswordForm from "../components/PasswordForm";
-import {
-  Link,
-  Outlet,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
-
-// import illustration1 from "../assets/profile-illustration-1.svg";
-// import illustration2 from "../assets/profile-illustration-2.svg";
-import illustration1 from "../assets/profile-illustrations/a.png";
-import illustration2 from "../assets/profile-illustrations/b.png";
 
 const Profile = () => {
   const location = useLocation();
@@ -27,8 +10,6 @@ const Profile = () => {
 
   const slashIndex = pathname.lastIndexOf("/");
   const param = pathname.slice(slashIndex);
-
-  console.log(param);
 
   return (
     <>

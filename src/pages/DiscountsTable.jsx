@@ -41,8 +41,6 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { useSearchParams } from "react-router-dom";
-import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import ItemsMenu from "../components/ItemsMenu";
 
@@ -157,8 +155,6 @@ const DiscountsTable = () => {
     const xls = new XlsExport(rowData);
     xls.exportToXLS("discounts-table.xls");
   };
-
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 

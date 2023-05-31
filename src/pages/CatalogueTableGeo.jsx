@@ -13,35 +13,18 @@ import "../styles/ag-table-scrollbar.css";
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
-
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 
-// images
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import expand from "../assets/all-orders/expand.svg";
-import filter from "../assets/all-orders/filter.svg";
-import search from "../assets/all-orders/search.svg";
-import x from "../assets/all-orders/x.svg";
-import cardPink from "../assets/all-orders/car-pink.svg";
-import burgerLines from "../assets/all-orders/view-list.svg";
 import triangleRed from "../assets/triangle-red.svg";
 import triangleGreen from "../assets/triangle-green.svg";
 
-// Right Icons
-import expandSvg from "../assets/marlin-icons/expand.svg";
-import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
-import filterSvg from "../assets/marlin-icons/filter-lines.svg";
-import optionsLines from "../assets/marlin-icons/options-lines.svg";
-
 import classNames from "classnames";
-import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 import "../styles/catalogue.css";
@@ -50,10 +33,7 @@ import Select from "react-select";
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
@@ -63,7 +43,6 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 
-import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
 import d from "../assets/products.json";
@@ -191,7 +170,6 @@ const CatalogueTablegeo = () => {
       },
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -290,7 +268,6 @@ const CatalogueTablegeo = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
