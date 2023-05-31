@@ -3,6 +3,7 @@ import "../styles/profile.css";
 import user from "../assets/user.png";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
+import UserSvg from "../components/svgs/UserSvg";
 
 const Profile = () => {
   const location = useLocation();
@@ -21,7 +22,8 @@ const Profile = () => {
           <div className="profile-card">
             <header className="profile-card-header">
               <div className="profile-card-img-container">
-                <img src={user} alt="user" />
+                {/* <img src={user} alt="user" /> */}
+                <UserSvg />
               </div>
             </header>
             <div className="profile-form-container">

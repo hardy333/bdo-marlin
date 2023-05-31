@@ -47,14 +47,18 @@
 }
 
 .profile-card-img-container{
-  background-color: var(--color-primary-2);
   --size: 52px;
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
   border-radius: 100%;
+
+
+}
+
+.profile-card-img-container svg{
+  width: 49px;
+  height: 49px;
+  flex-wrap: 0;
+  flex-shrink: 0;
 }
 
 .profile-form-container{
