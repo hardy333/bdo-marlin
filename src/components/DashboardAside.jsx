@@ -53,14 +53,6 @@ const DashboardAside = ({ selected = false, left = true }) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("Aside Mount");
-
-    return () => {
-      console.log("Aside un Mount");
-    };
-  }, []);
-
   return (
     <aside className={`dashboard-aside ${!left ? "go-right" : ""}`}>
       <button onClick={toggleBodyClass} className="aside-btn">

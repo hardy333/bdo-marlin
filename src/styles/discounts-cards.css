@@ -2,13 +2,14 @@
   flex-grow: 1;
 
 }
+
 .discounts h1{
   font-weight: 700;
-font-size: 20px;
-line-height: 24px;
+  font-size: 20px;
+  line-height: 24px;
 
-color: #211543;
-margin-right: 3rem;
+  color: #211543;
+  margin-right: 3rem;
 
 }
 
@@ -22,6 +23,9 @@ margin-right: 3rem;
 .discount-cards-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  /* grid-template-columns: repeat(6, 1fr); */
+  grid-auto-rows: max-content;
+  align-items: start;
   gap: 3rem;
   margin-top: 1.5rem;
   overflow-y: auto;
@@ -30,6 +34,7 @@ margin-right: 3rem;
   flex-grow: 1;
   padding-left: 0;
   height: 570px;
+  /* background-color: red; */
 
 }
 

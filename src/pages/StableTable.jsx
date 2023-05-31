@@ -22,14 +22,12 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 
 import classNames from "classnames";
-import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
 import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -38,18 +36,13 @@ import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import ColumnHideSvg from "../components/ColumnHideSvg";
 import FilterSvg from "../components/FilterSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
-import xlsExport from "xlsexport";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import "../styles/stable-table.css";
 
 const StableTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isBigRow, setIsBigRow] = useState(true);
 
   const [headerList, setHeaderList] = useState([
     {
@@ -119,7 +112,6 @@ const StableTable = () => {
       minWidth: 150,
     },
   ]);
-  const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 

@@ -52,8 +52,6 @@ import { items1, items } from "./Test";
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -66,9 +64,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 
-import arrowDown from "../assets/arrow-down-catalogue.svg";
 import useFilterToggle from "../hooks/useFilterToggle";
-import SearchSvg from "../components/svgs/SearchSvg";
 import fetch_XLSX_DATA2 from "../utils/getData2";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";

@@ -27,14 +27,11 @@ import "../styles/sla-by-vendors-table.css";
 import Select from "react-select";
 
 import classNames from "classnames";
-import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -47,7 +44,6 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { useSearchParams } from "react-router-dom";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import ItemsMenu from "../components/ItemsMenu";

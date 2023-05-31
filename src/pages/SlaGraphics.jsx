@@ -13,7 +13,6 @@ import Select from "react-select";
 
 // css
 import "../styles/ag-grid.css";
-import DashboardLayout from "../layout/DashboardLayout";
 import "../styles/sla-graphics.css";
 
 import { addDays } from "date-fns";
@@ -21,7 +20,6 @@ import { items1 } from "./Test";
 import SlaChart from "../components/SlaChart";
 import DatePickerBtn2 from "../components/DatePickerBtn2";
 import CatalogueMenu from "../components/CatalogueMenu";
-import { useEffect } from "react";
 
 const options = [
   { value: "Orbita", label: "Orbita" },
