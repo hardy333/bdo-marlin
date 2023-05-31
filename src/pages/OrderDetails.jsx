@@ -43,6 +43,7 @@ import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
+import useRemoveId from "../components/useRemoveId";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -237,6 +238,7 @@ const OrderDetails = () => {
   }
 
   const [gridReady, setGridReady] = useState(false);
+  useRemoveId(gridApi, gridRef);
 
   return (
     <>
@@ -411,6 +413,7 @@ const OrderDetails = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example"
         style={{ minHeight: 595, width: "100%" }}
       >

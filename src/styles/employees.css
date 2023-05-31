@@ -65,7 +65,7 @@
 .employees-card-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  grid-auto-rows: 230px;
+  /* grid-auto-rows: 230px; */
   gap: 3rem;
   margin-top: 1.5rem;
   height: 400px;
@@ -74,6 +74,8 @@
   padding-top: 2rem;
   flex-grow: 1;
   padding-left: 0;
+
+  /* overflow-x: hidden; */
 
 
 }
@@ -85,7 +87,6 @@
   padding: 2rem 2rem;
   padding-bottom: 2.2rem;
   position: relative;
-
 
 }
 
@@ -134,12 +135,9 @@
 
 .employee-card__dots-btn svg{
   flex-shrink: 0;
-  min-width: 100px;
   height: 15px;
 
 }
-
-
 
 
 .employee-card h2{

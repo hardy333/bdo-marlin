@@ -47,6 +47,7 @@ import ItemsMenu from "../components/ItemsMenu";
 import "../styles/discounts-table.css";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import XlsExport from "xlsexport";
+import useRemoveId from "../components/useRemoveId";
 
 const options = [
   { value: "Orbita", label: "Orbita" },
@@ -268,6 +269,8 @@ const DiscountsTable = () => {
     },
   ]);
 
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header">
@@ -437,6 +440,7 @@ const DiscountsTable = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example  discounts-table"
         style={{ minHeight: 595, width: "100%" }}
       >

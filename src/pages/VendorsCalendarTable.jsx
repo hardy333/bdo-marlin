@@ -49,6 +49,7 @@ import VendorsDateRange from "../components/VendorsDateRange";
 
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
+import useRemoveId from "../components/useRemoveId";
 
 const vendors = [
   "Orbita",
@@ -256,7 +257,6 @@ const VendorsCalendarTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
@@ -268,6 +268,8 @@ const VendorsCalendarTable = () => {
   };
   const [showFilters, setShowFilters] = useFilterToggle();
   const [selected, setSelected] = useState(null);
+
+  useRemoveId(gridApi, gridRef);
 
   return (
     <>
@@ -415,6 +417,7 @@ const VendorsCalendarTable = () => {
         </div>
 
         <div
+          id="marlin-table"
           className="ag-theme-alpine ag-grid-example "
           style={{ minHeight: 595, width: "100%" }}
         >

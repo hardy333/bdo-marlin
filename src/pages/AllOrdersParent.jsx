@@ -44,6 +44,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
 import { allOrdersParentColumns } from "../utils/columnsDefs";
 import { useNavigate } from "react-router-dom";
+import useRemoveId from "../components/useRemoveId";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -267,6 +268,7 @@ const AllOrdersParent = () => {
   }, [gridApi, gridRef]);
 
   const navigate = useNavigate();
+  useRemoveId(gridApi, gridRef);
 
   return (
     <>
@@ -384,6 +386,7 @@ const AllOrdersParent = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example all-orders-parent"
         style={{ minHeight: 595, width: "100%" }}
       >

@@ -46,6 +46,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import fetch_XLSX_DATA2 from "../utils/getData2";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";
+import useRemoveId from "../components/useRemoveId";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -327,6 +328,8 @@ const CatalogueTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header catalogue-header">
@@ -499,6 +502,7 @@ const CatalogueTable = () => {
           <CatalogueMenu />
         </div>
         <div
+          id="marlin-table"
           className="ag-theme-alpine ag-grid-example"
           style={{ minHeight: 595, width: "100%" }}
         >

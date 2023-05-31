@@ -57,6 +57,7 @@ import vendorsArr from "../data/vendors-data";
 import ItemsMenu from "../components/ItemsMenu";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
+import useRemoveId from "../components/useRemoveId";
 
 const SlaCategory = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -344,6 +345,9 @@ const SlaCategory = () => {
       color: "#6E0FF5",
     },
   ]);
+
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header catalogue-header">
@@ -509,6 +513,7 @@ const SlaCategory = () => {
           <CatalogueMenu />
         </div>
         <div
+          id="marlin-table"
           className="ag-theme-alpine ag-grid-example"
           style={{ minHeight: 595, width: "100%" }}
         >

@@ -48,6 +48,7 @@ import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import ItemsMenu from "../components/ItemsMenu";
 import vendorsArr from "../data/vendors-data";
+import useRemoveId from "../components/useRemoveId";
 
 const SlaByVendorsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -238,6 +239,8 @@ const SlaByVendorsTable = () => {
     },
   ]);
 
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header">
@@ -401,6 +404,7 @@ const SlaByVendorsTable = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
       >

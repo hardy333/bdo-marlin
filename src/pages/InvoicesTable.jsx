@@ -63,6 +63,7 @@ import d from "../assets/INVOICES_MOCK_DATA.json";
 import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
 import useFilterToggle from "../hooks/useFilterToggle";
+import useRemoveId from "../components/useRemoveId";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -271,6 +272,8 @@ const InvoicesTable = () => {
     };
   }, [gridApi, gridRef]);
 
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header">
@@ -398,6 +401,7 @@ const InvoicesTable = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example invoices-table"
         style={{ minHeight: 595, width: "100%" }}
       >

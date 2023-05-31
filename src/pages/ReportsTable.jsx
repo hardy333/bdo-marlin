@@ -37,6 +37,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
+import useRemoveId from "../components/useRemoveId";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -252,6 +253,8 @@ const ReportsTable = () => {
 
   const navigate = useNavigate();
 
+  useRemoveId(gridApi, gridRef);
+
   return (
     <>
       <header className="all-orders__header">
@@ -412,6 +415,7 @@ const ReportsTable = () => {
         </div>
       </header>
       <div
+        id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-all-table sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
       >
