@@ -3,10 +3,8 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
 import { DateRangePicker } from "react-date-range";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { Menu, MenuItem } from "@szhsin/react-menu";
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
 
 const DatePickerBtn = ({ dateState, setDateState }) => {
   return (
@@ -32,6 +30,7 @@ const DatePickerBtn = ({ dateState, setDateState }) => {
           months={1}
           ranges={dateState}
           direction="horizontal"
+          className="date-range-picker-one"
         />
       </MenuItem>
     </Menu>

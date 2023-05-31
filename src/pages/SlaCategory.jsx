@@ -341,6 +341,7 @@ const SlaCategory = () => {
       startDate: new Date(),
       endDate: addDays(new Date(), 5),
       key: "selection",
+      color: "#6E0FF5",
     },
   ]);
   return (

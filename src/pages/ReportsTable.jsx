@@ -1,17 +1,9 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "../styles/ag-table-scrollbar.css";
 
-// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
-// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
 
 import "@szhsin/react-menu/dist/index.css";
@@ -212,7 +204,6 @@ const ReportsTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
@@ -232,6 +223,7 @@ const ReportsTable = () => {
       startDate: new Date(),
       endDate: addDays(new Date(), 5),
       key: "selection",
+      color: "#6E0FF5",
     },
   ]);
 

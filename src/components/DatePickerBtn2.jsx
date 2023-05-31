@@ -9,7 +9,6 @@ import { Menu } from "@szhsin/react-menu";
 const DatePickerBtn2 = ({
   dateState,
   setDateState,
-  changeAllData,
   changeDataA,
   changeDataB,
   changeDemands,
