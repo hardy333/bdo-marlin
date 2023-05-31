@@ -1,6 +1,4 @@
-.date-range-picker-one{
-  background-color: red;
-}
+
 
 
 .date-range-picker-one .rdrDefinedRangesWrapper{
@@ -19,6 +17,7 @@
 .rdrYearPicker select{
   border-radius: 30px;
   width: 110px;
+
 }
 
 .rdrDayNumber span::after{
@@ -48,12 +47,18 @@
 
 }
 
+.rdrStaticRangeLabel{
+
+}
+
 .rdrStaticRange:hover{
-  background-color: #F9F8FC;
+  background-color: #f9f8fc6b;
 }
 
 .rdrStaticRange:hover .rdrStaticRangeLabel{
-  background-color: #F9F8FC;
+  background-color: inherit;
+
+
 }
 
 .rdrStaticRange:last-child{
