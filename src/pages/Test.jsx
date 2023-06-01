@@ -92,7 +92,7 @@ export const parentCategories = [
 ];
 
 const Test = () => {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(null);
 
   return (
     <>

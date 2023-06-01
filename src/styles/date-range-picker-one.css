@@ -38,8 +38,6 @@
   margin: 0 !important;
   border: none !important;
   position: relative;
-
-
 }
 
 .rdrStaticRangeLabel{
@@ -53,8 +51,6 @@
 .rdrStaticRange:hover .rdrStaticRangeLabel{
   background-color: #fff !important;
   color: #6E0FF5;
-
-
 }
 
 .rdrStaticRange:last-child{
@@ -67,11 +63,9 @@
   left: 1rem;
   bottom: 0;
   /* transform: translate(-50%, 0); */
-  
   height: 1px;
   width: 150px;
   display: block;
-
   background-color: #ebe8f58a;
 }
 

@@ -145,7 +145,7 @@ const CatalogueTable = () => {
         return (
           <div className="flex items-center" style={{ height: "100%" }}>
             <button
-              style={{ color: +value % 2 === 0 ? "#01C6B5" : "#F55364" }}
+              style={{ color: +value % 2 === 0 ? "#6E0FF5" : "#F55364" }}
               className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
             >
               {+value % 2 === 0 ? "active" : "inactive"}

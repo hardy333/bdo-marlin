@@ -5,8 +5,8 @@
   border-radius: 15px;
 
   font-family: serif;
-  /* font-family: "babuka", sans-serif !important; */
   font-family: "DejaVu Sans", sans-serif !important;
+  outline: 1px solid var(--color-primary-4);
 
 
 }
@@ -61,6 +61,7 @@
   color: #211543;
   padding-right: 3rem !important;
   position: relative;
+  font-weight: 700;
 
 }
 
