@@ -45,6 +45,8 @@ import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
 import { allOrdersParentColumns } from "../utils/columnsDefs";
 import { useNavigate } from "react-router-dom";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -381,6 +383,12 @@ const AllOrdersParent = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

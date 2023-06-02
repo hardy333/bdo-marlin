@@ -64,6 +64,8 @@ import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
 import useFilterToggle from "../hooks/useFilterToggle";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -396,6 +398,12 @@ const InvoicesTable = () => {
               }}
             >
               <FourDotsSvg fill="#D0C7E8" />
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

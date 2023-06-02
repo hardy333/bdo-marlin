@@ -46,8 +46,8 @@ import ItemsMenu from "../components/ItemsMenu";
 
 import "../styles/discounts-table.css";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
-import XlsExport from "xlsexport";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
 
 const options = [
   { value: "Orbita", label: "Orbita" },
@@ -151,11 +151,6 @@ const DiscountsTable = () => {
       },
     },
   ]);
-
-  const exportData = () => {
-    const xls = new XlsExport(rowData);
-    xls.exportToXLS("discounts-table.xls");
-  };
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -432,7 +427,7 @@ const DiscountsTable = () => {
             </button>
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={exportData}
+              onClick={() => exportData(rowData)}
             >
               <ExcelExportSvg />
             </button>

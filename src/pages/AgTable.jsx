@@ -28,7 +28,6 @@ const pageSizes = [5, 10, 15, 20, 25, 30];
 // css
 import "../styles/ag-grid.css";
 import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -42,9 +41,7 @@ import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
-import xlsExport from "xlsexport";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
-import CustomColumnFilter from "../components/CustomColumnFilter";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -251,11 +248,6 @@ const AgTable = () => {
 
   const [showFilters, setShowFilters] = useFilterToggle();
 
-  const exportData = () => {
-    const xls = new xlsExport(rowData);
-    xls.exportToXLS("all-orders-gdm.xls");
-  };
-
   const [gridReady, setGridReady] = useState(false);
 
   return (
@@ -374,7 +366,7 @@ const AgTable = () => {
             </button>
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={exportData}
+              onClick={() => exportData(rowData)}
             >
               <ExcelExportSvg />
             </button>

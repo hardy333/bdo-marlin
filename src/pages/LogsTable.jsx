@@ -28,6 +28,8 @@ import "../styles/logs.css";
 
 import d from "../assets/LOGS_MOCK_DATA.json";
 import useFilterToggle from "../hooks/useFilterToggle";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const LogsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -129,6 +131,12 @@ const LogsTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
+            </button>
           </div>
         </div>
       </header>

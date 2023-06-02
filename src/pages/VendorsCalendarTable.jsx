@@ -50,6 +50,8 @@ import VendorsDateRange from "../components/VendorsDateRange";
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const vendors = [
   "Orbita",
@@ -392,6 +394,12 @@ const VendorsCalendarTable = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

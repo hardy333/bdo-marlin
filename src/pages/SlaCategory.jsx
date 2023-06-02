@@ -58,6 +58,8 @@ import ItemsMenu from "../components/ItemsMenu";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const SlaCategory = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -503,6 +505,12 @@ const SlaCategory = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

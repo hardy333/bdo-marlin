@@ -43,6 +43,8 @@ import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -398,6 +400,12 @@ const InvoiceDetailsTable = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

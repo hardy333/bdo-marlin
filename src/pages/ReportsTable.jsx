@@ -38,6 +38,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -410,6 +412,12 @@ const ReportsTable = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>

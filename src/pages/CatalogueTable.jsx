@@ -47,6 +47,8 @@ import fetch_XLSX_DATA2 from "../utils/getData2";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -492,6 +494,12 @@ const CatalogueTable = () => {
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+            </button>
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
             </button>
           </div>
         </div>
