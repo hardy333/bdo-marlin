@@ -46,10 +46,10 @@ const HeaderCellMenu2 = ({ p }) => {
     // p.onFloatingFilterChanged("contains", val);
     // console.log(p);
     const x = p.onFloatingFilterChanged;
-    // console.log(p.api.getFilterInstance);
+    console.log(p);
     // console.log(val);
 
-    const filterInsatnce = p.api.getFilterInstance("Item");
+    const filterInsatnce = p.api.getFilterInstance(p.column.colId);
     filterInsatnce.setModel({
       filterType: "text",
       // type: "startsWith",
@@ -67,7 +67,6 @@ const HeaderCellMenu2 = ({ p }) => {
     p.api.onFilterChanged();
   };
 
-  console.log(open);
   return (
     <>
       <Menu
