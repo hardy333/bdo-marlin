@@ -5,6 +5,7 @@ import dotsSvg from "../assets/employees/dots.svg";
 import dotsSvg2 from "../assets/dotsSvg2.svg";
 import downIcon from "../assets/marlin-icons/down-arrow.png";
 import classNames from "classnames";
+import HeaderCellMenu2 from "./HeaderCellMenu2";
 
 const CustomHeaderCell = (props) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -56,9 +57,9 @@ const CustomHeaderCell = (props) => {
         {props.displayName}
         <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
       </span>
+
+      <HeaderCellMenu2 p={props} />
       <Menu
-        // align="center"
-        // direction="bottom"
         className="header-cell-menu"
         menuButton={
           <MenuButton>
@@ -238,7 +239,7 @@ const CustomHeaderCell = (props) => {
               d="m33.86,40.07c-1.08.13-2.25.17-3.42.17h-.37C8.36,40.12.69,27.03.36,26.45c-.29-.54-.42-1.17-.33-1.75v-.08c-.08-.54.04-1.13.33-1.62.17-.33,2.58-4.42,8.33-8.08l4.54,4.54c-3.33,1.87-5.38,3.96-6.46,5.29,2.25,2.67,8.37,8.42,20.88,9.13l.04.04.67.67,5.5,5.5Z"
             />
           </svg>
-          Hide {props.displayName} column
+          Hide current column
         </MenuItem>
         <MenuItem
           onClick={() => {

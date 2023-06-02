@@ -1,11 +1,4 @@
-import React, {
-  Fragment,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 
 // Css
 import "../styles/filter-input.css";
@@ -17,6 +10,7 @@ const CustomInput = forwardRef((props, ref) => {
     onInputBoxChanged(text);
   }, [text]);
 
+  console.log(props);
   const onInputBoxChanged = (val) => {
     props.parentFilterInstance((instance) => {
       instance.onFloatingFilterChanged("contains", val);

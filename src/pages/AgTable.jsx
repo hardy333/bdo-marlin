@@ -44,6 +44,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
 import xlsExport from "xlsexport";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import CustomColumnFilter from "../components/CustomColumnFilter";
 
 const AgTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -161,6 +162,7 @@ const AgTable = () => {
       //   return <input style={{ width: "100%" }} placeholder="Search in table" />;
       // },
       floatingFilterComponent: CustomInput,
+      // CustomColumnFilter: CustomColumnFilter,
     }),
     []
   );

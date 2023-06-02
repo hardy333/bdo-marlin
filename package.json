@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
     "@szhsin/react-menu": "^3.5.2",
     "@tanstack/react-table": "^8.7.9",
     "@tippyjs/react": "^4.2.6",
+    "@uidotdev/usehooks": "^2.0.1",
     "ag-grid-community": "^29.3.5",
     "ag-grid-react": "^29.3.5",
     "apexcharts": "^3.39.0",
