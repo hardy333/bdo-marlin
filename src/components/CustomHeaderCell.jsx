@@ -59,7 +59,7 @@ const CustomHeaderCell = (props) => {
       </span>
 
       <HeaderCellMenu2 p={props} />
-      <Menu
+      {/* <Menu
         className="header-cell-menu"
         menuButton={
           <MenuButton>
@@ -270,7 +270,7 @@ const CustomHeaderCell = (props) => {
           </svg>
           Show All Columns
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </div>
   );
 };
