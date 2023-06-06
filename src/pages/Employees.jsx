@@ -80,7 +80,8 @@ const Employees = () => {
   }
 
   const delteEmployee = (name) => {
-    setEmployeesArr(employeesArr.filter((currName) => currName !== name));
+    console.log(name);
+    setEmployeesArr(employeesArr.filter((c) => c.name !== name));
   };
 
   return (
