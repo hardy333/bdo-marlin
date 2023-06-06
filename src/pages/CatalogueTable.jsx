@@ -49,6 +49,7 @@ import CatalogueMenu from "../components/CatalogueMenu";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import TriangleSvg from "../components/svgs/TriangleSvg";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -127,12 +128,14 @@ const CatalogueTable = () => {
             className="items-center  gap-4 pe-20"
           >
             <span style={{ width: "50px" }}>{value + " " + "GEL"}</span>
-            <img
-              style={{ width: 14, height: 14 }}
-              src={
-                +value % 2 === 0 && +value > 40 ? triangleRed : triangleGreen
-              }
-              alt=""
+            <TriangleSvg
+              fill={+value % 2 === 0 && +value > 40 ? "#FF3360" : "#6E0FF5"}
+              style={{
+                transform:
+                  +value % 2 === 0 && +value > 40
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
+              }}
             />
           </div>
         );
