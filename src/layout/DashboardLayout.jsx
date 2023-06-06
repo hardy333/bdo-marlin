@@ -18,7 +18,7 @@ const DashboardLayout = ({ light = false }) => {
 
   let classN = "";
 
-  if (pathname === "/dash") {
+  if (pathname === "/") {
     classN = "dashboard--dash";
   }
 

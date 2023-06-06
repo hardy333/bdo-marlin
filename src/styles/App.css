@@ -97,11 +97,13 @@ img{
   height: 100vh;
   /* dashboard navbar and dashboar-main will use this padding */
   --right-adge-padding: 4rem;
-  background: #F5F5F5;
 
 }
 .dashboard--dash{
+  background: #F9F8FC;
+
 }
+
 
 .dashboard--dash::before{
   content: "";

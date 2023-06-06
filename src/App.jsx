@@ -60,7 +60,7 @@ function App() {
     <>
       <Routes>
         <Route element={<DashboardLayout />}>
-          <Route path="/" element={<MainHome />} />
+          <Route path="/" element={<Dash />} />
           <Route path="/links" element={<Home />} />
           <Route path="/dash" element={<Dash />} />
           <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
