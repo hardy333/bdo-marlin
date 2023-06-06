@@ -5,34 +5,34 @@ const PasswordForm = () => {
     <form className="profile-form">
       {/* 1 */}
       <div className="form-control">
-        <label htmlFor="name">Old Password</label>
+        <label htmlFor="name">ძველი პაროლი</label>
         <input
           className="input"
           type="password"
           id="name"
-          placeholder="Enter your Name"
+          placeholder="ძეველი პაროლი"
         />
       </div>
       {/* 2 */}
       <div className="form-control">
-        <label htmlFor="surname">New Password</label>
+        <label htmlFor="surname">ახალი პაროლი</label>
         <input
           className="input"
           type="password"
           id="surname"
-          placeholder="Enter your Surname"
+          placeholder="ახალი პაროლი"
         />
       </div>
       {/* 3 */}
       <div className="form-control">
-        <label htmlFor="number">Repeat</label>
+        <label htmlFor="number">გაიმეორეთ</label>
         <input
           className="input"
           type="password"
-          placeholder="Enter your Number"
+          placeholder="გაიმეორეთ ძველი პაროლი"
         />
       </div>
-      <button className="btn btn-success">Update and save</button>
+      <button className="btn btn-success">განახლება</button>
     </form>
   );
 };

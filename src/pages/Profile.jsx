@@ -16,7 +16,7 @@ const Profile = () => {
     <>
       <section className="profile">
         <header className="profile-header">
-          <h1>Profile</h1>
+          <h1>პროფილი</h1>
         </header>
         <section className="profile-content-container">
           <div className="profile-card">
@@ -35,7 +35,7 @@ const Profile = () => {
                   })}
                   to="/profile"
                 >
-                  Private Info
+                  პირადი ინფო
                 </Link>
                 <Link
                   to="change-password"
@@ -43,7 +43,7 @@ const Profile = () => {
                     active: param === "/change-password",
                   })}
                 >
-                  Password Change
+                  პაროლის შეცვლა
                 </Link>
               </div>
               {/* Right */}

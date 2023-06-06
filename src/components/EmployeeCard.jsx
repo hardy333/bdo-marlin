@@ -7,6 +7,8 @@ import DotsSvg from "./svgs/DotsSvg";
 
 const EmployeeCard = ({
   name,
+  status,
+  access,
   setCompirmationModalOpen,
   openModal,
   setAactiveEmployee,
@@ -56,20 +58,20 @@ const EmployeeCard = ({
             openModal();
           }}
         >
-          Edit
+          რედაქტირება
         </MenuItem>
         <MenuItem
           onClick={() => {
             setCompirmationModalOpen(true);
           }}
         >
-          delete
+          წაშლა
         </MenuItem>
       </Menu>
 
       <h2>{name}</h2>
-      <h3>Aadministrator</h3>
-      <h4>Access:</h4>
+      <h3>{status}</h3>
+      <h4>წვდომა:</h4>
       <ul>
         <li>2 Nabiji</li>
         <li>Spar</li>
@@ -78,7 +80,7 @@ const EmployeeCard = ({
         <li>Fresco</li>
       </ul>
       <button className="btn btn-success" onClick={openModal}>
-        Change
+        რედაქტირება
       </button>
     </motion.article>
   );

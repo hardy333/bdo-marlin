@@ -25,13 +25,13 @@ const EmployeesCompirmationModal = ({
         <CloseModalSvg fill="#1c1238" />
       </button>
       <div>
-        <p>Are you sure you want to delete {activeEmployee} ?</p>
+        <p>დარწმუნებული ხართ რომ გინდათ {activeEmployee} - ის წაშლა ?</p>
         <footer>
           <button
             className="btn btn-no"
             onClick={() => setCompirmationModalOpen(false)}
           >
-            No
+            არა
           </button>
           <button
             className="btn btn-yes"
@@ -40,7 +40,7 @@ const EmployeesCompirmationModal = ({
               setCompirmationModalOpen(false);
             }}
           >
-            Yes
+            კი
           </button>
         </footer>
       </div>

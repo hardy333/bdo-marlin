@@ -18,13 +18,13 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
         <CloseModalSvg />
       </button>
       <div className="left">
-        <h2>Invite colleagues to work with you</h2>
-        <input type="text" placeholder="name" />
-        <input type="text" placeholder="Last Name" />
-        <input type="text" placeholder="E-mail" />
-        <input type="text" placeholder="Role" />
-        <input type="text" placeholder="Access Objects" />
-        <button className="btn ">Add Collegue</button>
+        <h2>მოიწვიე კოლეგები და იმუშავე მათთან ერთად</h2>
+        <input type="text" placeholder="სახელი" />
+        <input type="text" placeholder="გვარი" />
+        <input type="text" placeholder="იმეილი" />
+        <input type="text" placeholder="როლი" />
+        <input type="text" placeholder="წვდომა" />
+        <button className="btn ">დაამატე კოლეგა</button>
       </div>
       <div className="right">
         {/* 1 */}
@@ -33,7 +33,7 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             {/* <img src={personsImg} alt="" /> */}
             <PeopleSvg />
           </div>
-          <h2>Administrator</h2>
+          <h2>ადმინისტრატორი</h2>
           <ul>
             <li>
               <PersonCheckSvg />
@@ -59,7 +59,7 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             <PeopleSvg />
             {/* <img src={personsImg} alt="" /> */}
           </div>
-          <h2>Analyst</h2>
+          <h2>ანალიტიკოსი</h2>
           <ul>
             <li>
               <PersonCheckSvg />
@@ -85,7 +85,7 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             {/* <img src={personsImg} alt="" /> */}
             <PeopleSvg />
           </div>
-          <h2>Shop Manager</h2>
+          <h2>მაღაზიის მენეჯერი</h2>
           <ul>
             <li>
               <PersonCheckSvg />

@@ -13,22 +13,22 @@ import EmployeesMainModal from "../components/EmployeesMainModal";
 import { LayoutGroup } from "framer-motion";
 
 const namesArr = [
-  "Daniel Pataraia",
-  "Daniel Alasania",
-  "Petre Bolkvadze",
-  "Nikoloz Zakariadze",
-  "Luka Zibzibadze",
-  "Bidzina Toreli",
-  "Vakhtang Dadiani",
-  "Zviadi Abakelia",
-  "Ramazi Tavdgiridze",
-  "Korneli Chiaureli",
-  "Otar Khujadze",
-  "Davit Sakandelidze",
-  "Zaal Mkheidze",
-  "Stepane Ochiauri",
-  "Andria Zviadadze",
-  "Iona Gakharia",
+  { access: {}, status: "ადმინისტრატორი", name: "დანიელ პატარაია" },
+  { access: {}, status: "ბიზნეს ანალიტიკოსი", name: "დანიელ ალასანია" },
+  { access: {}, status: "მაღაზიის მენეჯერი", name: "პეტრე ბოლქვაძე" },
+  { access: {}, status: "ადმინისტრატორი", name: "ლიკა ბექაური" },
+  { access: {}, status: "ადმინისტრატორი", name: "ანა წერეთელი" },
+  { access: {}, status: "ბიზნეს ანალიტიკოსი", name: "ბიძინა თორელი" },
+  { access: {}, status: "მაღაზიის მენეჯერი", name: "მანანა მელია" },
+  { access: {}, status: "ადმინისტრატორი", name: "ზვიადი ჭავჭავაძე" },
+  { access: {}, status: "ბიზნეს ანალიტიკოსი", name: "რამაზი თავდგერიძე" },
+  { access: {}, status: "ადმინისტრატორი", name: "ნიკა ჩადუნელი" },
+  { access: {}, status: "ადმინისტრატორი", name: "ოთარ ხუჯაძე" },
+  { access: {}, status: "ბიზნეს ანალიტიკოსი", name: "დავით საგინაშვილი" },
+  { access: {}, status: "მაღაზიის მენეჯერი", name: "ზაალ მხეიძე" },
+  { access: {}, status: "ადმინისტრატორი", name: "სტეფანე ოჩიაშვილი" },
+  { access: {}, status: "მაღაზიის მენეჯერი", name: "ანდრია ზვიადაძე" },
+  { access: {}, status: "ადმინისტრატორი", name: "იონა გახარია" },
 ];
 
 const Employees = () => {
@@ -68,10 +68,10 @@ const Employees = () => {
 
       <header className="employees-header">
         <div className="employees-settings">
-          <h1>Employees</h1>
+          <h1>თანამშრომლები</h1>
           <button onClick={openModal} className="btn btn-outlined btn-black ">
             <PlusSvg fill="#211543" />
-            Add
+            დამატება
           </button>
           <div className="input-wrapper">
             <input type="text" className="input" />
@@ -82,12 +82,14 @@ const Employees = () => {
 
       <div className="employees-card-container">
         <LayoutGroup>
-          {employeesArr.map((name) => {
+          {employeesArr.map((employee) => {
             return (
               <EmployeeCard
                 openModal={openModal}
-                key={name}
-                name={name}
+                key={employee.name}
+                name={employee.name}
+                status={employee.status}
+                access={employee.access}
                 setAactiveEmployee={setAactiveEmployee}
                 setCompirmationModalOpen={setCompirmationModalOpen}
                 delteEmployee={delteEmployee}

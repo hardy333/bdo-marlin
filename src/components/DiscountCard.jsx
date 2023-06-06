@@ -36,7 +36,7 @@ const DiscountCard = ({ index }) => {
         }}
         className="btn btn-success"
       >
-        შეამოწმე პროდუქტი
+        ნახე პროდუქცია
       </button>
     </article>
   );
