@@ -24,24 +24,7 @@ import "../styles/global-filter-input.css";
 import "../styles/all-orders-parent.css";
 import "../styles/vendor-orders-table.css";
 
-// images
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import expand from "../assets/all-orders/expand.svg";
-import filter from "../assets/all-orders/filter.svg";
-import search from "../assets/all-orders/search.svg";
-import x from "../assets/all-orders/x.svg";
-import cardPink from "../assets/all-orders/car-pink.svg";
-import burgerLines from "../assets/all-orders/view-list.svg";
-
-import reverseExpand from "../assets/revers-expand.svg";
-// Right Icons
-import expandSvg from "../assets/marlin-icons/expand.svg";
-import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
-import filterSvg from "../assets/marlin-icons/filter-lines.svg";
-import optionsLines from "../assets/marlin-icons/options-lines.svg";
-
 import classNames from "classnames";
-import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -169,7 +152,6 @@ const VendorAllOrdersTable = () => {
   useEffect(() => {
     const t = setTimeout(() => {
       rowHeightBtnRef.current.click();
-      console.log("Hello row height change");
     }, 500);
 
     return () => {
@@ -177,7 +159,6 @@ const VendorAllOrdersTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
@@ -201,9 +182,15 @@ const VendorAllOrdersTable = () => {
     const handleClick = (e) => {
       const cell = e.target;
       const row = e.target.parentElement;
+
+      console.log(row);
+      console.log(cell);
+
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
-      if (colName !== "Status") return;
+      if (colName !== "Status") {
+        navigate(`/order-details`);
+      }
 
       const prevOpenedCell = document.querySelector(
         ".vendors-all-orders-table .ag-cell--opened"
@@ -232,6 +219,8 @@ const VendorAllOrdersTable = () => {
       tableElem.removeEventListener("click", handleClick);
     };
   }, [gridApi, gridRef]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!gridRef.current) return;

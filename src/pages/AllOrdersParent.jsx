@@ -105,16 +105,61 @@ const AllOrdersParent = () => {
       if (obj.name === "Status") {
         return {
           field: obj.name,
+          // cellRenderer: (params) => {
+          //   const { value } = params;
+          //   if (value % 3 === 0) {
+          //     return "Pending";
+          //   } else if (value % 3 === 1) {
+          //     return "In Progress";
+          //   } else {
+          //     return "Delivered";
+          //   }
+          // },
+          minWidth: 250,
+
           cellRenderer: (params) => {
             const { value } = params;
+            let res = "";
+            let color = "";
             if (value % 3 === 0) {
-              return "Pending";
+              res = "Pending";
             } else if (value % 3 === 1) {
-              return "In Progress";
+              res = "In Progress";
             } else {
-              return "Delivered";
+              res = "Delivered";
             }
+
+            if (params.value % 3 === 0) {
+              color = "#FFC23C";
+            } else if (params.value % 3 === 1) {
+              color = "#6E0FF5";
+            } else {
+              color = "#01C6B5";
+            }
+
+            return (
+              <>
+                <span
+                  className="ag-cell-status-value"
+                  style={{ pointerEvents: "none", color }}
+                >
+                  {res}
+                </span>
+                <div
+                  className="status-container"
+                  style={{ pointerEvents: "none" }}
+                >
+                  <ul>
+                    <li style={{ color }}>{res}</li>
+                    <li>Something 11:06, 2/10/2023</li>
+                    <li>Received 11:06, 2/10/2023</li>
+                    <li>Sent 11:06, 2/10/2023</li>
+                  </ul>
+                </div>
+              </>
+            );
           },
+
           cellStyle: (params) => {
             if (params.value % 3 === 0) {
               return {
@@ -236,6 +281,7 @@ const AllOrdersParent = () => {
     }
   };
   const [showFilters, setShowFilters] = useFilterToggle();
+  const [openedRowId, setOpenedRowId] = useState(null);
 
   useEffect(() => {
     const x = document.querySelector(
@@ -245,21 +291,48 @@ const AllOrdersParent = () => {
     if (!x) return;
 
     const handleGridClick = (e) => {
-      const t = e.target;
-      const row = t.closest(".ag-row");
+      const cell = e.target;
+      const row = cell.closest(".ag-row");
 
-      const shop = row.querySelector(".ag-cell[col-id='Shop #']").innerText;
+      const colName = cell.getAttribute("col-id");
+      const rowId = +row.getAttribute("row-id");
 
-      const date = row.querySelector(".ag-cell[col-id='Date']").innerText;
-      const status = row.querySelector(".ag-cell[col-id='Status']").innerText;
-      const vendor = row.querySelector(".ag-cell[col-id='Vendors']").innerText;
-      const shopAddress = row.querySelector(
-        ".ag-cell[col-id='Shop Address']"
-      ).innerText;
+      if (colName !== "Status") {
+        //  for navigation
+        const shop = row.querySelector(".ag-cell[col-id='Shop #']").innerText;
+        const date = row.querySelector(".ag-cell[col-id='Date']").innerText;
+        const status = row.querySelector(".ag-cell[col-id='Status']").innerText;
+        const vendor = row.querySelector(
+          ".ag-cell[col-id='Vendors']"
+        ).innerText;
+        const shopAddress = row.querySelector(
+          ".ag-cell[col-id='Shop Address']"
+        ).innerText;
 
-      navigate(
-        `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
+        navigate(
+          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
+        );
+      }
+
+      const prevOpenedCell = document.querySelector(
+        ".all-orders-parent .ag-cell--opened"
       );
+
+      if (prevOpenedCell) {
+        prevOpenedCell.classList.remove("ag-cell--opened");
+      }
+
+      if (prevOpenedCell !== cell) {
+        cell.classList.add("ag-cell--opened");
+      }
+
+      setOpenedRowId((currOpenedRowId) => {
+        if (currOpenedRowId === rowId) {
+          return null;
+        } else {
+          return rowId;
+        }
+      });
     };
 
     x.addEventListener("click", handleGridClick);
@@ -269,8 +342,29 @@ const AllOrdersParent = () => {
     };
   }, [gridApi, gridRef]);
 
+  useEffect(() => {
+    if (!gridRef.current) return;
+    if (!gridApi) return;
+    gridRef.current.api.resetRowHeights();
+  }, [openedRowId, gridRef, gridApi]);
+
   const navigate = useNavigate();
   useRemoveId(gridApi, gridRef);
+
+  function getRowHeight(params) {
+    const { id } = params.node;
+    if (id == openedRowId) {
+      return 140;
+    }
+
+    if (rowHeightIndex === 0) {
+      return 25;
+    } else if (rowHeightIndex === 1) {
+      return 32;
+    } else if (rowHeightIndex === 2) {
+      return 37;
+    }
+  }
 
   return (
     <>
@@ -400,15 +494,7 @@ const AllOrdersParent = () => {
       >
         <AgGridReact
           ref={gridRef}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
+          getRowHeight={getRowHeight}
           onGridReady={onGridReady}
           rowData={rowData}
           columnDefs={columnDefs}

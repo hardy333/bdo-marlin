@@ -64,7 +64,6 @@ const DashboardAside = ({ selected = false, left = true }) => {
           <svg
             id="Layer_1"
             className="logo-img"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 292.32 270.51"
             style={{ fill: "white" }}
           >

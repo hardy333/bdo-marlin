@@ -422,7 +422,7 @@ const OrderDetails = () => {
       </header>
       <div
         id="marlin-table"
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example order-details-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

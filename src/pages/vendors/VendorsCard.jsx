@@ -35,7 +35,7 @@ const VendorsCard = ({
         <button
           className="vendor-card__btn"
           onClick={() => {
-            navigate("/all-orders-parent");
+            navigate("/vendor-all-orders");
           }}
         >
           {/* <img src={shoppingBag} alt="" /> */}

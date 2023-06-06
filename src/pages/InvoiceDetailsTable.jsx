@@ -22,6 +22,7 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
+import "../styles/invoice-details-table.css";
 
 import classNames from "classnames";
 
@@ -41,7 +42,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
@@ -249,6 +250,26 @@ const InvoiceDetailsTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
+  useEffect(() => {
+    const x = document.querySelector(".ag-center-cols-container");
+
+    if (!x) return;
+
+    const handleGridClick = (e) => {
+      const t = e.target;
+
+      navigate(`/order-details`);
+    };
+
+    x.addEventListener("click", handleGridClick);
+
+    return () => {
+      x.removeEventListener("click", handleGridClick);
+    };
+  }, [gridApi, gridRef]);
+
+  const navigate = useNavigate();
+
   return (
     <>
       <header className="all-orders__header">
@@ -411,7 +432,7 @@ const InvoiceDetailsTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example invoice-details-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

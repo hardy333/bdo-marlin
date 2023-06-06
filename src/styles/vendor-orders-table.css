@@ -63,3 +63,7 @@
   margin-left: 10px;
 
 }
+
+.vendors-all-orders-table .ag-row{
+  cursor: pointer;
+}
