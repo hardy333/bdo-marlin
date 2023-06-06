@@ -4,6 +4,7 @@ import DashboardNavbar from "../components/DashboardNavbar";
 import DashboardAsideLight from "../components/DashboardAsideLight";
 import { Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
+import messengerImg from "../assets/messenger.svg";
 
 const staticMainPathnames = ["/login", "/register"];
 
@@ -15,8 +16,17 @@ const DashboardLayout = ({ light = false }) => {
     staticMain = true;
   }
 
+  let classN = "";
+
+  if (pathname === "/dash") {
+    classN = "dashboard--dash";
+  }
+
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${classN}`}>
+      <button className="btn-messenger">
+        <img src={messengerImg} alt="" />
+      </button>
       {light ? <DashboardAsideLight left={true} /> : <DashboardAside />}
       <DashboardNavbar />
       <main className={`dashboard-main ${staticMain ? "static" : ""}`}>

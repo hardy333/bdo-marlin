@@ -7,11 +7,13 @@ import arrow from "../assets/navbar/arrow.svg";
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import arrowLeftNew from "../assets/all-orders/arrow-left-new.svg";
 import arrowBack from "../assets/back-arrow.svg";
+import DashAdd from "../assets/dash-add.png";
+import DashHouse from "../assets/dash-house.png";
 
 import "../styles/dashboard-navbar.css";
+import PlusSvg from "./svgs/PlusSvg";
+import HouseSvg from "./svgs/service-level-svgs/HouseSvg";
 
 const startingPages = ["/login", "/register"];
 
@@ -66,8 +68,24 @@ const DashboardNavbar = () => {
             <span style={{ fontWeight: 700 }}>Daily</span>
           </div>
 
-          <Link to="/login" style={{ marginRight: 10 }}>
+          <Link to="/login" className="ring-link" style={{ marginRight: 10 }}>
             <img src={ring} alt="" />
+            <div className="ring-box">
+              <header>
+                <PlusSvg />
+                <HouseSvg />
+              </header>
+              <p>Dear Giorgi,</p>
+              <p>
+                Your orders to GDM has been approved. See what they have
+                reserved for you:
+              </p>
+              <h2>GDM Orders</h2>
+              <footer>
+                <p>Order amount:</p>
+                <p>413.5 GEL</p>
+              </footer>
+            </div>
           </Link>
           <Link to="/login">
             <img src={arrow} alt="" />

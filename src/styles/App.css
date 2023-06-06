@@ -77,7 +77,6 @@ body.body-sidebar-open{
   margin: 0px;
   max-height: 100vh;
   padding: 0px;
-  /* background-color: red; */
 
 }
 
@@ -98,8 +97,68 @@ img{
   height: 100vh;
   /* dashboard navbar and dashboar-main will use this padding */
   --right-adge-padding: 4rem;
+  background: #F5F5F5;
 
 }
+.dashboard--dash{
+}
+
+.dashboard--dash::before{
+  content: "";
+  position: absolute;
+
+  width: 300px;
+  background-color: white;
+  display: block;
+  top: 0.5rem;
+  bottom: 1.4rem;
+  right: 1rem;
+  z-index: 9;
+  background-color: #fff;
+  border-radius: 15px;
+
+  background-image: url(../assets/dash-car.png);
+  background-repeat: no-repeat;
+  background-position: 50% 70%;
+  background-size: contain;
+
+
+
+}
+
+.btn-messenger{
+  position: absolute;
+
+  --dis: 3rem;
+
+  bottom: var(--dis);
+  right: var(--dis);
+  z-index: 9999;
+  display: none;
+}
+.dashboard--dash .btn-messenger{
+  display: block;
+}
+
+.btn-messenger::before{
+  content: "Hello, How can we help?";
+  background-color: #fff;
+  width: 250px;
+  padding: 1rem;
+  border-radius: 15px;
+  font-weight: 700;
+
+  position: absolute;
+
+  left: 0%;
+  top: -30px;
+  font-size: 14px;
+  transform: translate(-90%, 0);
+  z-index: -1;
+  box-shadow: 0px 4px 4px rgba(110, 15, 245, 0.06);
+  cursor: default;
+}
+
 
 /* Main */
 .dashboard-main{

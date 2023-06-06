@@ -53,6 +53,7 @@ import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 import SlaCategory from "./pages/SlaCategory";
 import DashboardLayout from "./layout/DashboardLayout";
+import Dash from "./pages/Dash";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<MainHome />} />
           <Route path="/links" element={<Home />} />
+          <Route path="/dash" element={<Dash />} />
           <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
           <Route path="/sla-category" element={<SlaCategory />} />
           <Route path="/ag-table" element={<AgTable />} />
