@@ -12,8 +12,8 @@ const DiscountCard = ({ index }) => {
 
   return (
     <article className="discount-card">
-      <h2>Snacks -10%</h2>
-      <h3>Document #23120</h3>
+      <h2>სნექები -10%</h2>
+      <h3>დოკუმენტი: #23120</h3>
       {index > 3 ? (
         <></>
       ) : (
@@ -25,7 +25,7 @@ const DiscountCard = ({ index }) => {
       <div className="discount-card__body">
         <h4>
           <VendorsCalendarSvg />
-          Valid Period
+          აქტიური პერიოდი
         </h4>
         <p>1/02/2023 - 10/02/2023</p>
       </div>
@@ -36,7 +36,7 @@ const DiscountCard = ({ index }) => {
         }}
         className="btn btn-success"
       >
-        View Products
+        შეამოწმე პროდუქტი
       </button>
     </article>
   );
