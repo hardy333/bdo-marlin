@@ -73,11 +73,7 @@ const EmployeeCard = ({
       <h3>{status}</h3>
       <h4>წვდომა:</h4>
       <ul>
-        <li>2 Nabiji</li>
-        <li>Spar</li>
-        <li>Nikora</li>
-        <li>Gvirila</li>
-        <li>Fresco</li>
+        <li>{access}</li>
       </ul>
       <button className="btn btn-success" onClick={openModal}>
         რედაქტირება

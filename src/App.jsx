@@ -101,7 +101,7 @@ function App() {
             path="/catalogue-geo-resize"
             element={<CatalogueTablegeoResize />}
           />
-          <Route path="*" element={<Error />} />
+          <Route path="/*" element={<Error />} />
         </Route>
       </Routes>
     </>

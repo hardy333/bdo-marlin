@@ -25,7 +25,7 @@ const DiscountCard = ({ index }) => {
       <div className="discount-card__body">
         <h4>
           <VendorsCalendarSvg />
-          აქტიური პერიოდი
+          აქტიურია
         </h4>
         <p>1/02/2023 - 10/02/2023</p>
       </div>
