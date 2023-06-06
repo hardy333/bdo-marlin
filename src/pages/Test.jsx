@@ -100,6 +100,7 @@ const Test = () => {
         <div className=" date-picker-wrapper">
           <DayPicker mode="single" selected={selected} onSelect={setSelected} />
         </div>
+        <p>აბგდევზთ</p>
       </div>
     </>
   );

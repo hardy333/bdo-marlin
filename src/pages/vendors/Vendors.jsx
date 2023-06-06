@@ -36,7 +36,7 @@ const Vendors = () => {
         <header className="vendors-header">
           {/* 1 */}
           <div className="vendors-switch-container">
-            <p>My Vendors</p>
+            <p>ჩემი ვენდორები</p>
             <div className="toggle-switch">
               <input
                 className="toggle-input"
@@ -47,7 +47,7 @@ const Vendors = () => {
               />
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
-            <p>All Vendors</p>
+            <p>ყველა ვენდორი</p>
           </div>
           <div>
             <div className="input-wrapper">

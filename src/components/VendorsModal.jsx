@@ -20,17 +20,17 @@ const VendorsModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
       <header>
         <CarDisabled />
         <div>
-          <p>KANT</p>
+          <p>მომწონდებელი 1</p>
           <small>30333244332</small>
         </div>
       </header>
       <p className="vendors-modal-p">
-        Lets connect and make communication easier!
+        დავინტეგრირდეთ და გავიმარტივოთ კომუნიკაცია
       </p>
 
       <footer>
         <img src={cartImg} width="324" height="129" alt="" />
-        <button className="btn btn-success">Send Request</button>
+        <button className="btn btn-success">მოითხოვე ინტეგრაცია</button>
       </footer>
     </Modal>
   );

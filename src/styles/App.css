@@ -5,7 +5,7 @@
   src: url("../assets/fonts/bpg_dejavu_sans.otf") format('otf');
 }
 
-
+@import url("//cdn.web-fonts.ge/fonts/bpg-nateli/css/bpg-nateli.min.css");
 
 *{
   margin: 0px;
@@ -37,10 +37,13 @@ body{
   min-height: 100vh;
   font-size: 1.6rem;
   /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'Inter', sans-serif;
+  /* font-family: 'Inter', sans-serif; */
+  /* font-family: "DejaVu Sans", sans-serif !important; */
+
   /* font-family: "BPG Nino Mtavruli", sans-serif; */
   /* font-family: "babuka"; */
   /* font-family: "BPG Nateli", sans-serif; */
+  font-family: "BPG Nateli", sans-serif;
   /* overflow-x: hidden; */
   --sidebar-width: 65px;
   --sidebar-inline-margin: 10px;
@@ -249,7 +252,7 @@ body.dashboard-main-fullscreen .dashboard-main{
 
 .dashboard-navbar img{
   width: 3.3rem;
-  margin-left: 3rem;
+  margin-left: 2rem;
   cursor: pointer;
 }
 
@@ -258,7 +261,6 @@ body.dashboard-main-fullscreen .dashboard-main{
   align-items: center;
 
   gap: 1rem;
-  margin-right: 2rem;
 
 }
 

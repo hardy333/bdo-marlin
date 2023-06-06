@@ -65,7 +65,7 @@ const DashboardNavbar = () => {
             <a href="#">
               <img src={user} alt="" />
             </a>
-            <span style={{ fontWeight: 700 }}>Daily</span>
+            <span style={{ fontWeight: 700 }}>რითეილერი</span>
           </div>
 
           <Link to="/login" className="ring-link" style={{ marginRight: 10 }}>

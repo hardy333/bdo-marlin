@@ -30,7 +30,7 @@ const VendorsCard = ({
         className="tooltip-1"
         arrow={false}
         placement="bottom"
-        content="Orders"
+        content="შეკვეთები"
       >
         <button
           className="vendor-card__btn"
@@ -46,7 +46,7 @@ const VendorsCard = ({
         className="tooltip-1"
         arrow={false}
         placement="bottom"
-        content="Catalogue"
+        content="კატალოგი"
       >
         <button
           className="vendor-card__btn"
@@ -63,7 +63,7 @@ const VendorsCard = ({
         className="tooltip-1"
         arrow={false}
         placement="bottom"
-        content="Calendar"
+        content="კალენდარი"
       >
         <button
           className="vendor-card__btn"
@@ -81,14 +81,14 @@ const VendorsCard = ({
   const footerDisabled = (
     <div className="vendor-card-footer vendor-card-footer--disabled">
       <button onClick={openModal} className="btn btn-purple ">
-        Send request
+        მოითხოვე ინტეგრაცია
       </button>
       {/* <button className="btn btn-link">View Catalogue</button> */}
       <Tippy
         className="tooltip-1"
         arrow={false}
         placement="bottom"
-        content="Catalogue"
+        content="კატალოგი"
       >
         <button>
           {/* <img src={catalogue} alt="" /> */}
@@ -129,7 +129,7 @@ const VendorsCard = ({
         </div>
       </div>
       <p className="vendor-card-products">
-        {Math.floor(Math.random() * 300 + 100)} Products
+        {Math.floor(Math.random() * 300 + 100)} პროდუქტი
       </p>
       <div className="vendor-card-bottom">
         {variant === "disabled" ? footerDisabled : footerActive}

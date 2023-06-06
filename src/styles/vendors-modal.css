@@ -3,7 +3,8 @@
   border: none;
   color: #fff;
   padding: 3rem;
-  max-width: 600px;
+  width: 630px;
+  max-width: 630px;
 }
 
 .vendors-modal__btn{
@@ -31,20 +32,24 @@
 
 .vendors-modal header{
   display: flex;
-  gap: 1rem
+  gap: 1rem;
 }
 
 .vendors-modal header svg{
-  width: 90px;
+  width: 80px;
 }
 
 .vendors-modal header p{
-  font-size: 30px;
+  font-size: 20px;
   line-height: 30px;
 }
 
+.vendors-modal header small{
+  text-align: start;
+  align-self: flex-start;
+}
 .vendors-modal-p{
-  font-size: 30px;
+  font-size: 24px;
   margin: 20px 0;
   line-height: 1.2;
   margin-bottom: 0;
