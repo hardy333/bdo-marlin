@@ -92,6 +92,7 @@ export const parentCategories = [
 const Test = () => {
   return (
     <>
+      <span className="parag">აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ</span>
       <ColumnCHart />
     </>
   );

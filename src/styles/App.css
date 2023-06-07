@@ -1,11 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-@font-face {
-  font-family: "babuka";
-  src: url("../assets/fonts/bpg_dejavu_sans.otf") format('otf');
-}
-
-@import url("//cdn.web-fonts.ge/fonts/bpg-nateli/css/bpg-nateli.min.css");
 
 *{
   margin: 0px;
@@ -26,33 +18,33 @@
 
   --color-text-1: #2a1f4b;
   --color-text-2: #211543;
-
-
   --icon-color-dark: #1A1F3D;
   --icon-color-light: #D0C7E8;
 
 }
 
+@import url("//cdn.web-fonts.ge/fonts/bpg-nateli/css/bpg-nateli.min.css");
+
+
 body{
   min-height: 100vh;
   font-size: 1.6rem;
-  /* font-family: 'Open Sans', sans-serif; */
-  /* font-family: 'Inter', sans-serif; */
-  /* font-family: "DejaVu Sans", sans-serif !important; */
-
-  /* font-family: "BPG Nino Mtavruli", sans-serif; */
-  /* font-family: "babuka"; */
-  /* font-family: "BPG Nateli", sans-serif; */
-  font-family: "BPG Nateli", sans-serif;
-  /* overflow-x: hidden; */
   --sidebar-width: 65px;
   --sidebar-inline-margin: 10px;
   --sidebar-full-space: calc(var(--sidebar-width) + var(--sidebar-inline-margin));
   --sidebar-open-animation-duration: 0.3s;
+  /* font-family: "BPG Nateli", sans-serif !important; */
+  font-family: "DejaVu Sans", sans-serif !important;
 
 }
 
 
+
+.parag{
+  color: red;
+  font-family: "DejaVu Sans", sans-serif !important;
+  font-size: 26px;
+}
 
 /* a{
   font-family: "babuka" !important;
@@ -68,6 +60,9 @@ li{
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* p,button,a, h1,h2,h3,h4,h5,h6,div,span{
+  font-family: "dejavu" !important;
+} */
 
 
 
