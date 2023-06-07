@@ -4,6 +4,9 @@ import ApexChart1 from "../components/ApexChart1";
 import ApexChart2 from "../components/ApexChart2";
 import "../styles/dash.css";
 import DashTopChart from "../components/DashTopChart";
+import { Link } from "react-router-dom";
+import BubbleChat from "../components/BubbleChat";
+import ColumnCHart from "../components/ColumnCHart";
 
 const Dash = () => {
   return (
@@ -15,7 +18,9 @@ const Dash = () => {
             <h2>324</h2>
           </div>
           <div className="stat-card">
-            <h3>Suppliers</h3>
+            <h3>
+              <Link to="/test">Suppliers</Link>
+            </h3>
             <h2>246</h2>
           </div>
           <div className="stat-card">
@@ -44,8 +49,11 @@ const Dash = () => {
               <DashTopChart />
             </div>
             <div className="bottom-chart-container">
-              <section className="left-chart"></section>
-              <section className="right-chart"></section>
+              <section className="left-chart">
+                <h2>Service level: Top 5 Vendors</h2>
+                <ColumnCHart />
+              </section>
+              <section className="right-chart">{/* <BubbleChat /> */}</section>
             </div>
           </div>
         </div>

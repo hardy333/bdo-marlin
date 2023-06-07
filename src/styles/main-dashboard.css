@@ -169,3 +169,13 @@
 
 
 }
+
+.left-chart h2{
+  font-weight: 700;
+font-size: 16px;
+line-height: 19px;
+
+color: #211543;
+padding-left: 20px;
+padding-top: 10px;
+}

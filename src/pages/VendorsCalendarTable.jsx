@@ -150,6 +150,7 @@ const VendorsCalendarTable = () => {
             </div>
             <div className="circle-container">
               <span
+                style={{ display: Math.random() - 0.5 > 0 ? "none" : "" }}
                 className={`circle ${Math.random() - 0.5 > 0 ? "active" : ""}`}
               ></span>
               <span
@@ -269,7 +270,7 @@ const VendorsCalendarTable = () => {
     }
   };
   const [showFilters, setShowFilters] = useFilterToggle();
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);
 

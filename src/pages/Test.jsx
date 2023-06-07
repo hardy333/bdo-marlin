@@ -3,9 +3,7 @@ import "../styles/pag-test.css";
 import "../styles/status-component.css";
 import "../styles/categories.css";
 import "../styles/test.css";
-import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
-import { useState } from "react";
+import ColumnCHart from "../components/ColumnCHart";
 export const items = Array.from({ length: 1000 }).map((_, index) => index);
 
 export const items1 = [
@@ -92,16 +90,9 @@ export const parentCategories = [
 ];
 
 const Test = () => {
-  const [selected, setSelected] = useState(null);
-
   return (
     <>
-      <div className="test-div mt-20 ms-20">
-        <div className=" date-picker-wrapper">
-          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
-        </div>
-        <p>აბგდევზთ</p>
-      </div>
+      <ColumnCHart />
     </>
   );
 };
