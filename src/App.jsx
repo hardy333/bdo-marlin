@@ -56,6 +56,7 @@ import DashboardLayout from "./layout/DashboardLayout";
 import Dash from "./pages/Dash";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import Test2 from "./pages/Test2";
+import Test3 from "./pages/Test3";
 
 const queryClient = new QueryClient();
 
@@ -85,6 +86,7 @@ function App() {
             <Route path="/main-dashboard" element={<MainDashboard />} />
             <Route path="/test" element={<Test />} />
             <Route path="/test2" element={<Test2 />} />
+            <Route path="/test3" element={<Test3 />} />
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/terms" element={<Terms />} />
