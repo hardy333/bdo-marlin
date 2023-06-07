@@ -59,9 +59,10 @@ li{
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* p,button,a, h1,h2,h3,h4,h5,h6,div,span{
-  font-family: "dejavu" !important;
-} */
+p,button,a, h1,h2,h3,h4,h5,h6,div,span, label, input, input::placeholder{
+  font-family: "DejaVu Sans", sans-serif !important;
+
+}
 
 
 

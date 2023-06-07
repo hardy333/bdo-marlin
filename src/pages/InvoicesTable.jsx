@@ -22,31 +22,12 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/invoices-table.css";
 
-// images
-import arrowLeft from "../assets/all-orders/arrow-left.svg";
-import expand from "../assets/all-orders/expand.svg";
-import filter from "../assets/all-orders/filter.svg";
-import search from "../assets/all-orders/search.svg";
-import x from "../assets/all-orders/x.svg";
-import cardPink from "../assets/all-orders/car-pink.svg";
-import burgerLines from "../assets/all-orders/view-list.svg";
-
-import reverseExpand from "../assets/revers-expand.svg";
-// Right Icons
-import expandSvg from "../assets/marlin-icons/expand.svg";
-import horizontalLines from "../assets/marlin-icons/horizontal-lines.svg";
-import filterSvg from "../assets/marlin-icons/filter-lines.svg";
-import optionsLines from "../assets/marlin-icons/options-lines.svg";
-
 import classNames from "classnames";
-import { COLUMNS_BY_ITEM } from "../columns";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
-import DashboardLayout from "../layout/DashboardLayout";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -59,13 +40,16 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 
-import d from "../assets/INVOICES_MOCK_DATA.json";
+import d from "../assets/invoices.json";
 import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
 import useFilterToggle from "../hooks/useFilterToggle";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import vendorsArr from "../data/vendors-data";
+
+console.log(vendorsArr);
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -74,11 +58,11 @@ const InvoicesTable = () => {
 
   const [headerList, setHeaderList] = useState([
     {
-      name: "Vendor",
+      name: "თარიღი",
       isShowing: true,
     },
     {
-      name: "Document",
+      name: "დოკუმენტის #",
       isShowing: true,
     },
     {
@@ -86,19 +70,15 @@ const InvoicesTable = () => {
       isShowing: true,
     },
     {
-      name: "Shop Address",
+      name: "მისამართი",
       isShowing: true,
     },
     {
-      name: "Amount",
+      name: "რაოდენობა",
       isShowing: true,
     },
     {
-      name: "Date",
-      isShowing: true,
-    },
-    {
-      name: "Status",
+      name: "თარიღი",
       isShowing: true,
     },
   ]);
@@ -111,29 +91,41 @@ const InvoicesTable = () => {
 
   const [columnDefs] = useState([
     {
+      field: "Date",
+      headerName: "თარიღი",
+    },
+    {
+      field: "Waybill #",
+    },
+    {
+      field: "Documnet #",
+      headerName: "დოკუმნეტის #",
+    },
+    {
       field: "Vendor",
+      headerName: "მომწოდებელი",
+      cellRenderer: (params) => {
+        return vendorsArr[Math.floor(Math.random() * vendorsArr.length)].value;
+      },
     },
     {
-      field: "Document",
-    },
-    {
-      field: "Waybill",
-    },
-    {
-      field: "Shop Address",
+      field: "Shop",
+      headerName: "მაღაზია",
     },
     {
       field: "Amount",
+      headerName: "რაოდენობა",
+
       cellRenderer: (params) => {
-        const { value } = params;
+        let { value } = params;
+        if (!value) value = 10;
         return value + " " + "GEL";
       },
     },
     {
-      field: "Date",
-    },
-    {
       field: "Status",
+      headerName: "სტატუსი",
+      hide: true,
       cellRenderer: (params) => {
         const { value } = params;
         const x = Number(value);
