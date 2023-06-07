@@ -266,10 +266,10 @@ const ReportsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ fontSize: "18px" }}>Service Level Report</h4>
+            <h4 style={{ fontSize: "18px" }}>სერვისის დონე</h4>
             <div className="flex items-center">
               <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                Period:
+                პერიოდი:
               </span>
               <DatePickerBtn
                 dateState={dateState}

@@ -252,7 +252,7 @@ const SlaByVendorsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4>Service Level Report</h4>
+            <h4>სერვისის დონე</h4>
             <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"

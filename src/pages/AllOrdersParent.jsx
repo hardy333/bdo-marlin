@@ -115,7 +115,7 @@ const AllOrdersParent = () => {
           //     return "Delivered";
           //   }
           // },
-          minWidth: 250,
+          minWidth: 200,
 
           cellRenderer: (params) => {
             const { value } = params;
@@ -376,7 +376,7 @@ const AllOrdersParent = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders</span>
+            <span>ყველა შეკვეთა</span>
             {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
           </div>
           {/* Right */}

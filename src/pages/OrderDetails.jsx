@@ -251,10 +251,16 @@ const OrderDetails = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>order Details</h4>
-            <span>{vendor}</span>
-            <span>{shopAddress}</span>
-            <span>{date}</span>
+            <h4 style={{ marginRight: 10 }}>ორდერის დეტალები</h4>
+            <p className="discount-container">
+              მომწოდებელი: <span>{vendor}</span>
+            </p>
+            <p className="discount-container">
+              მაღაზია: <span>{shopAddress}</span>
+            </p>
+            <p className="discount-container">
+              თარიღი: <span>{date}</span>
+            </p>
             <Menu
               className="pending-status-menu"
               menuButton={

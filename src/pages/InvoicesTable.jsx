@@ -286,7 +286,7 @@ const InvoicesTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>Invoices</span>
+            <span>ინვოისები</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

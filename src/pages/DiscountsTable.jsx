@@ -275,16 +275,16 @@ const DiscountsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 20 }}>Discounts</h4>
+            <h4 style={{ marginRight: 20 }}>ფასდაკლებები</h4>
             <p className="discount-container">
-              Vendor :<span> GDM</span>
+              მომწოდებელი :<span> მწარმოებელი 1</span>
             </p>
 
             <p className="discount-container">
-              Discount #:<span> 23120</span>
+              ფასდაკლება #:<span> 23120</span>
             </p>
             <p className="discount-container">
-              Period: <span>1/10/2023 - 10/10/2023</span>
+              პერიოდი: <span>1/10/2023 - 10/10/2023</span>
             </p>
             <ItemsMenu />
           </div>

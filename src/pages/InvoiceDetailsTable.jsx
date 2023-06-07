@@ -279,11 +279,11 @@ const InvoiceDetailsTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 10 }}>Invoice Details</h4>
-            <span>Vendors: {vendor}</span>
-            <span>Date #: {date}</span>
+            <h4 style={{ marginRight: 10 }}>ინვოისის დეტალები</h4>
+            <span>მომწოდებელი: {vendor}</span>
+            <span>თარიღი: {date}</span>
             <span>Waybill: 9282034</span>
-            <span>Document #: 9282034</span>
+            <span>დოკუმენტი #: 9282034</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
