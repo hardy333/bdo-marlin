@@ -257,7 +257,7 @@ const SlaByVendorsTable = () => {
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
-              defaultValue={{ value: "GDM", label: "GDM" }}
+              defaultValue={{ value: "მწარმოებელი 1", label: "მწარმოებელი 1" }}
             />
             <ItemsMenu isSlaVendors={true} />
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />

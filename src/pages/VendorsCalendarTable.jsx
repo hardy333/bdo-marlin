@@ -73,6 +73,8 @@ const options = [
   { value: "Svaneti", label: "Svaneti" },
 ];
 
+import vendorsArr from "../data/vendors-data";
+
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -289,8 +291,8 @@ const VendorsCalendarTable = () => {
             <Select
               className="react-select-container"
               classNamePrefix="react-select"
-              options={options}
-              defaultValue={{ value: "GDM", label: "GDM" }}
+              options={vendorsArr}
+              defaultValue={{ value: "მწარმოებელი 1", label: "მწარმოებელი 1" }}
               onChange={() => {
                 console.log("Select changes");
                 changeRowData();
