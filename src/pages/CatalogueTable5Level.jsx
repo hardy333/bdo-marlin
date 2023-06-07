@@ -103,24 +103,24 @@ const CatalogueTable5Level = () => {
     },
     {
       field: "Last Order Price",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return (
-          <div
-            style={{ height: "100%", display: "flex" }}
-            className="items-center  gap-4 pe-20"
-          >
-            <span style={{ width: "50px" }}>{value + " " + "GEL"}</span>
-            <img
-              style={{ width: 14, height: 14 }}
-              src={
-                +value % 2 === 0 && +value > 40 ? triangleRed : triangleGreen
-              }
-              alt=""
-            />
-          </div>
-        );
-      },
+      // cellRenderer: (params) => {
+      //   const { value } = params;
+      //   return (
+      //     <div
+      //       style={{ height: "100%", display: "flex" }}
+      //       className="items-center  gap-4 pe-20"
+      //     >
+      //       <span style={{ width: "50px" }}>{value + " " + "GEL"}</span>
+      //       <img
+      //         style={{ width: 14, height: 14 }}
+      //         src={
+      //           +value % 2 === 0 && +value > 40 ? triangleRed : triangleGreen
+      //         }
+      //         alt=""
+      //       />
+      //     </div>
+      //   );
+      // },
     },
     {
       field: "Last Change Date",

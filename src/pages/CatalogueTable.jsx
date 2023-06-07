@@ -18,8 +18,6 @@ import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 
 // images
-import triangleRed from "../assets/triangle-red.svg";
-import triangleGreen from "../assets/triangle-green.svg";
 
 import classNames from "classnames";
 
@@ -344,10 +342,10 @@ const CatalogueTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>კატალოგი</h4>
+            <h4>Catalogue</h4>
 
             <div className="vendors-switch-container">
-              <p className="catalogue-label">ჩემი ქორდუქტები</p>
+              <p className="catalogue-label">My products</p>
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
@@ -358,7 +356,7 @@ const CatalogueTable = () => {
                 />
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
-              <p className="catalogue-label">ყველა პროდუქტი</p>
+              <p className="catalogue-label">All Products</p>
             </div>
           </div>
           {/* Right */}

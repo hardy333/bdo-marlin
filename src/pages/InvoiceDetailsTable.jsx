@@ -34,7 +34,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/MOCK_DATA-2.json";
+import d from "../assets/invoice-details.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -52,7 +52,7 @@ const InvoiceDetailsTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "barcode",
+      name: "შეკვეთის",
       isShowing: true,
     },
     {
@@ -87,43 +87,32 @@ const InvoiceDetailsTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "barcode",
-      cellRenderer: (params) => {
-        const { value } = params;
-        const index = value.indexOf("-");
-        return value.slice(0, index);
-      },
+      field: "Order #",
+      headerName: "შეკვეთის #",
+    },
+    {
+      field: "Barcode",
+      headerName: "ბარკოდი",
     },
     {
       field: "Product",
+      headerName: "პროდუქტი",
     },
     {
       field: "Quantity",
-    },
-    {
-      field: "Price",
-      headerName: "Purchase Quantity",
-    },
-    {
-      field: "Amount",
-      headerName: "Invoice Amount",
+      headerName: "რაოდენობა",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
       },
     },
     {
-      field: "Reserved",
-      headerName: "Purchased Amount",
+      field: "Invoice Amount",
+      headerName: "ინვოისის თანხა",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
       },
-    },
-    {
-      field: "Scheduled",
-      show: false,
-      hide: true,
     },
   ]);
 
