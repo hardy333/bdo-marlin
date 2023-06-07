@@ -48,6 +48,8 @@ import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import TriangleSvg from "../components/svgs/TriangleSvg";
+import { useQuery } from "react-query";
+import { getData } from "./Test3";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -87,22 +89,21 @@ const CatalogueTable = () => {
 
   const [rowData, setRowData] = useState(d);
 
+  const url =
+    "https://10.0.0.202:5001/api/CatalogueFront/M00001/4eca0fc3-f307-11ed-8120-005056b5a0aa";
+
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+
   const [columnDefs] = useState([
     {
       field: "Barcode",
       cellRenderer: (params) => {
-        const { value } = params;
-        const index = value.indexOf("-");
         return value.slice(0, index);
       },
     },
     {
       field: "Product",
       cellRenderer: (params) => {
-        if (cat3) {
-          return cat3[Math.floor(Math.random() * cat3.length)];
-        }
-
         return params.value;
       },
     },
@@ -112,7 +113,6 @@ const CatalogueTable = () => {
     {
       field: "Price",
       cellRenderer: (params) => {
-        const { value } = params;
         return value + " " + "GEL";
       },
     },
@@ -515,29 +515,33 @@ const CatalogueTable = () => {
           className="ag-theme-alpine ag-grid-example"
           style={{ minHeight: 595, width: "100%" }}
         >
-          <AgGridReact
-            ref={gridRef}
-            onGridReady={onGridReady}
-            rowData={rowData}
-            columnDefs={columnDefs}
-            defaultColDef={defaultColDef}
-            pagination={true}
-            components={components}
-            getRowHeight={() => {
-              if (rowHeightIndex === 0) {
-                return 25;
-              } else if (rowHeightIndex === 1) {
-                return 32;
-              } else if (rowHeightIndex === 2) {
-                return 37;
-              }
-            }}
-            // enableRangeSelection={true}
-            // copyHeadersToClipboard={true}
-            // rowSelection={"multiple"}
-            // paginationAutoPageSize={true}
-            paginationPageSize={pageSize}
-          ></AgGridReact>
+          {isLoading ? (
+            <h1>Loading ... </h1>
+          ) : (
+            <AgGridReact
+              ref={gridRef}
+              onGridReady={onGridReady}
+              rowData={rowData}
+              columnDefs={columnDefs}
+              defaultColDef={defaultColDef}
+              pagination={true}
+              components={components}
+              getRowHeight={() => {
+                if (rowHeightIndex === 0) {
+                  return 25;
+                } else if (rowHeightIndex === 1) {
+                  return 32;
+                } else if (rowHeightIndex === 2) {
+                  return 37;
+                }
+              }}
+              // enableRangeSelection={true}
+              // copyHeadersToClipboard={true}
+              // rowSelection={"multiple"}
+              // paginationAutoPageSize={true}
+              paginationPageSize={pageSize}
+            ></AgGridReact>
+          )}
 
           {gridReady === true && (
             <AgTablePag

@@ -168,7 +168,7 @@
   height: 1.5rem;
   position: absolute;
   top: 50%;
-  right: 1.6rem;
+  right: -1.2rem;
   display: none;
   transition: all 0.2s ease-in-out;
   transform: translate(0, -50%) rotate(180deg) scale(0.9);

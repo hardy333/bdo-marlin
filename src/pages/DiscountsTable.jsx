@@ -155,7 +155,7 @@ const DiscountsTable = () => {
       },
     },
     {
-      field: "Ordered Quantity ",
+      field: "Ordered Quantity",
       headerName: "შეკვეთილი რაოდენობა",
 
       cellRenderer: (params) => {

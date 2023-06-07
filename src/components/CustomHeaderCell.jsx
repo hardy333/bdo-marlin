@@ -73,8 +73,8 @@ const CustomHeaderCell = (props) => {
       <span className="cell-outer-span">
         <span onClick={handleSorting} className="cell-inner-span">
           {props.displayName}
-          <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
         </span>
+        <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
         <HeaderCellMenu2 p={props} />
       </span>
 

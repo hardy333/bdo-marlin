@@ -138,6 +138,7 @@ const AllOrdersParent = () => {
           },
         };
       }
+
       if (obj.name === "Date") {
         return {
           field: obj.name,

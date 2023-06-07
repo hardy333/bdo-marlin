@@ -3,10 +3,10 @@ import { useQuery } from "react-query";
 
 const url = "https://10.0.0.202:5001/api/Catalogues?page=1&pageSize=10";
 
-const getData = () => fetch(url).then((res) => res.json());
+export const getData = (url) => fetch(url).then((res) => res.json());
 
 const Test3 = () => {
-  const { isLoading, error, data } = useQuery("repoData", getData);
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
   if (isLoading) return "Loading...";
 
