@@ -52,32 +52,30 @@ const InvoiceDetailsTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "შეკვეთის",
+      name: "Order #",
+      showingName: "შეკვეთის #",
+      isShowing: true,
+    },
+    {
+      name: "Barcode",
+      showingName: "ბარკოდი",
+
       isShowing: true,
     },
     {
       name: "Product",
       isShowing: true,
+      showingName: "პროდუქტი",
     },
     {
       name: "Quantity",
       isShowing: true,
+      showingName: "რაოდენობა",
     },
     {
-      name: "Price",
+      name: "Invoice Amount",
       isShowing: true,
-    },
-    {
-      name: "Amount",
-      isShowing: true,
-    },
-    {
-      name: "Reserved",
-      isShowing: true,
-    },
-    {
-      name: "Scheduled",
-      isShowing: true,
+      showingName: "ინვოისის თანხა",
     },
   ]);
   const [gridApi, setGridApi] = useState(null);
@@ -310,6 +308,7 @@ const InvoiceDetailsTable = () => {
               </svg>
             </button>
             {/* popup */}
+
             <Menu
               align="center"
               direction="top"
@@ -381,13 +380,14 @@ const InvoiceDetailsTable = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>
                 ))}
               </div>
             </Menu>
+
             {/* Row height */}
             <button
               onClick={() => {
