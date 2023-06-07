@@ -63,9 +63,11 @@ const AllOrdersParent = () => {
 
   const [columnDefs] = useState(
     allOrdersParentColumns.map((obj) => {
+      console.log(obj.name);
       if (obj.name === "Shop #") {
         return {
           field: obj.name,
+          headerName: "მაღაზიის #",
           cellRenderer: (params) => {
             const { value } = params;
             return "SPAR" + String(value).padStart(3, "0");
@@ -86,6 +88,7 @@ const AllOrdersParent = () => {
 
         return {
           field: obj.name,
+          headerName: "მომწოდებლები",
           cellRenderer: (params) => {
             return vendors[Math.floor(Math.random() * vendors.length)];
           },
@@ -95,6 +98,50 @@ const AllOrdersParent = () => {
       if (obj.name === "Amount") {
         return {
           field: obj.name,
+          headerName: "რაოდენობა",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        };
+      }
+
+      if (obj.name === "Shop Address") {
+        return {
+          field: obj.name,
+          headerName: "მაღაზიის მისამართი",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        };
+      }
+
+      if (obj.name === "Scheduled") {
+        return {
+          field: obj.name,
+          headerName: "გეგმიური მიწოდება",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        };
+      }
+
+      if (obj.name === "Service Level") {
+        return {
+          field: obj.name,
+          headerName: "სერვისის დონე",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        };
+      }
+      if (obj.name === "Date") {
+        return {
+          field: obj.name,
+          headerName: "თარიღი",
           cellRenderer: (params) => {
             const { value } = params;
             return value + " GEL";
@@ -105,6 +152,7 @@ const AllOrdersParent = () => {
       if (obj.name === "Status") {
         return {
           field: obj.name,
+          headerName: "სტატუსი",
           // cellRenderer: (params) => {
           //   const { value } = params;
           //   if (value % 3 === 0) {
@@ -115,8 +163,8 @@ const AllOrdersParent = () => {
           //     return "Delivered";
           //   }
           // },
-          minWidth: 200,
-
+          minWidth: 190,
+          maxWidth: 200,
           cellRenderer: (params) => {
             const { value } = params;
             let res = "";

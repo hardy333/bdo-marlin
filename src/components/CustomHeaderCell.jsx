@@ -12,8 +12,15 @@ const CustomHeaderCell = (props) => {
   const [sortingState, setSortingState] = useState(["none", "asc", "desc"]);
   const [sortingStateIndex, setSortingStateIndex] = useState(0);
 
-  const handleSorting = () => {
-    // disableAllColumnsSorting();
+  const handleSorting = (e) => {
+    console.log(e.target, e);
+    if (
+      e.target.classList.contains("header-cell-menu-button-2") ||
+      e.target.tagName === "IMG"
+    ) {
+      console.log("True");
+      return;
+    }
 
     let newIndex = sortingStateIndex + 1;
     if (sortingStateIndex >= sortingState.length - 1) {
@@ -45,6 +52,16 @@ const CustomHeaderCell = (props) => {
       });
   };
 
+  // useEffect(() => {
+  //   const btn = document.querySelector(".header-cell-menu-button-2");
+
+  //   if (!btn) return;
+  //   btn.addEventListener("click", (e) => {
+  //     e.stopPropagation();
+  //     console.log(e, "Click");
+  //   });
+  // }, []);
+
   return (
     <div
       className={classNames({
@@ -53,12 +70,14 @@ const CustomHeaderCell = (props) => {
         desc: sortingState[sortingStateIndex] === "desc",
       })}
     >
-      <span onClick={handleSorting}>
-        {props.displayName}
-        <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
+      <span className="cell-outer-span">
+        <span onClick={handleSorting} className="cell-inner-span">
+          {props.displayName}
+          <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
+        </span>
+        <HeaderCellMenu2 p={props} />
       </span>
 
-      <HeaderCellMenu2 p={props} />
       {/* <Menu
         className="header-cell-menu"
         menuButton={

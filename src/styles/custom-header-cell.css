@@ -10,13 +10,22 @@
 
 }
 
+.custom-header-cell-container .cell-outer-span{
+  position: relative;
+}
 
-.custom-header-cell-container span{
-  height: 100%;
-  display: flex;
+.custom-header-cell-container .cell-inner-span{
+  /* display: flex; */
   align-items: center;
   font-size: 14px;
   color: #211543 !important;
+  overflow: hidden; 
+  display: block; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  height: 20px;
+  width: 100px;
+  position: relative;
 }
 
 .custom-header-cell-container > span{

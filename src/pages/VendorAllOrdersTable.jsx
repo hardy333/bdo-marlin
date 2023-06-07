@@ -52,7 +52,11 @@ const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState(
-    allOrdersParentColumns.map((obj) => ({ name: obj.name, isShowing: true }))
+    allOrdersParentColumns.map((obj) => ({
+      name: obj.name,
+      showingName: obj.showingName,
+      isShowing: true,
+    }))
   );
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -133,7 +137,6 @@ const VendorAllOrdersTable = () => {
       gridColumnApi.setColumnVisible(header.name, false);
     });
   };
-
   const showAllColumns = () => {
     setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
     headerList.forEach((header) => {
@@ -188,6 +191,7 @@ const VendorAllOrdersTable = () => {
 
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
+
       if (colName !== "Status") {
         navigate(`/order-details`);
       }
@@ -246,8 +250,8 @@ const VendorAllOrdersTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>All Orders:</span>
-            <span style={{ color: "#6E0FF5" }}>GDM</span>
+            <span>ყველა შეკვეთა: </span>
+            <span style={{ color: "#6E0FF5" }}>მომწოდებელი 1</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -266,12 +270,31 @@ const VendorAllOrdersTable = () => {
               <FilterSvg />
             </button>
             {/* popup */}
+
             <Menu
               align="center"
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <ColumnHideSvg />
+                  <svg
+                    id="Layer_3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 33.58 47.28"
+                  >
+                    <defs></defs>
+                    <path
+                      className="cls-1"
+                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                  </svg>
                 </MenuButton>
               }
               transition
@@ -319,13 +342,14 @@ const VendorAllOrdersTable = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>
                 ))}
               </div>
             </Menu>
+
             {/* Row height */}
             <button
               onClick={() => {

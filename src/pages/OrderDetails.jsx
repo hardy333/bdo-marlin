@@ -88,6 +88,7 @@ const OrderDetails = () => {
   const [columnDefs] = useState([
     {
       field: "barcode",
+      headerName: "ბარკოდები",
       cellRenderer: (params) => {
         const { value } = params;
         const index = value.indexOf("-");
@@ -96,15 +97,19 @@ const OrderDetails = () => {
     },
     {
       field: "Product",
+      headerName: "პროდუქტი",
     },
     {
       field: "Quantity",
+      headerName: "რაოდენობა",
     },
     {
       field: "Price",
+      headerName: "ფასი",
     },
     {
       field: "Amount",
+      headerName: "თანხა",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
@@ -112,9 +117,11 @@ const OrderDetails = () => {
     },
     {
       field: "Reserved",
+      headerName: "დარეზერვებულია",
     },
     {
       field: "Scheduled",
+      headerName: "გეგმიური მიწოდება",
     },
   ]);
 

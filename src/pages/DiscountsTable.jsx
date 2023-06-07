@@ -104,9 +104,11 @@ const DiscountsTable = () => {
   const [columnDefs] = useState([
     {
       field: "Product",
+      headerName: "პროდუქტი",
     },
     {
       field: "Standard Price",
+      headerName: "სტანდარტული ფასი",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " GEL";
@@ -114,6 +116,8 @@ const DiscountsTable = () => {
     },
     {
       field: "Discount price",
+      headerName: "ფასდაკლების თანხა",
+
       cellRenderer: (params) => {
         const { value } = params;
         return <span style={{ color: "#6E0FF5" }}>{value + " GEL"}</span>;
@@ -121,9 +125,12 @@ const DiscountsTable = () => {
     },
     {
       field: "Min Quantity",
+      headerName: "მინიმალური რაოდენობა",
     },
     {
       field: "Max Quantity",
+      headerName: "მაქს რაოდენობა",
+
       cellRenderer: (params) => {
         const { value } = params;
         return value;
@@ -131,6 +138,8 @@ const DiscountsTable = () => {
     },
     {
       field: "Min Amount",
+      headerName: "მინ ღირებულება",
+
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
@@ -138,13 +147,17 @@ const DiscountsTable = () => {
     },
     {
       field: "Ordered Amount",
+      headerName: "გადახდილი თანხა",
+
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "GEL";
       },
     },
     {
-      field: "Ordered Quantity",
+      field: "Ordered Quantity ",
+      headerName: "შეკვეთილი რაოდენობა",
+
       cellRenderer: (params) => {
         const { value } = params;
         return value;

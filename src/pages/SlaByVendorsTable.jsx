@@ -100,7 +100,7 @@ const SlaByVendorsTable = () => {
     },
     {
       field: "Quantity Deviation",
-      headerName: "Shop #",
+      headerName: "მაღაზიის #",
       cellRenderer: (params) => {
         const { value } = params;
         return "SPA" + value;
@@ -257,7 +257,7 @@ const SlaByVendorsTable = () => {
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
-              defaultValue={{ value: "მწარმოებელი 1", label: "მწარმოებელი 1" }}
+              defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             <ItemsMenu isSlaVendors={true} />
             <DatePickerBtn dateState={dateState} setDateState={setDateState} />

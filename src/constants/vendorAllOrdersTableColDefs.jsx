@@ -14,6 +14,8 @@ const vendorAllOrdersColDefs = allOrdersParentColumns.map((obj) => {
   if (obj.name === "Shop #") {
     return {
       field: obj.name,
+      headerName: "მაღაზიის #",
+      hide: false,
       cellRenderer: (params) => {
         const { value } = params;
         return "SPAR" + String(value).padStart(3, "0");
@@ -45,9 +47,45 @@ const vendorAllOrdersColDefs = allOrdersParentColumns.map((obj) => {
   if (obj.name === "Amount") {
     return {
       field: obj.name,
+      headerName: "რაოდენობა",
+      hide: false,
+
       cellRenderer: (params) => {
         const { value } = params;
         return value + " GEL";
+      },
+    };
+  }
+  if (obj.name === "Service Level") {
+    return {
+      field: obj.name,
+      hide: false,
+      headerName: "სერვისის დონე",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL";
+      },
+    };
+  }
+  if (obj.name === "Shop Address") {
+    return {
+      field: obj.name,
+      hide: false,
+      headerName: "მაღაზიის მისამართი",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value;
+      },
+    };
+  }
+  if (obj.name === "Scheduled") {
+    return {
+      field: obj.name,
+      hide: false,
+      headerName: "გეგმიური მიწოდება",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value;
       },
     };
   }
@@ -55,7 +93,10 @@ const vendorAllOrdersColDefs = allOrdersParentColumns.map((obj) => {
   if (obj.name === "Status") {
     return {
       field: obj.name,
-      minWidth: 250,
+      minWidth: 220,
+      hide: false,
+
+      headerName: "სტატუსი",
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -107,6 +148,7 @@ const vendorAllOrdersColDefs = allOrdersParentColumns.map((obj) => {
 
   return {
     field: obj.name,
+    hide: true,
   };
 });
 

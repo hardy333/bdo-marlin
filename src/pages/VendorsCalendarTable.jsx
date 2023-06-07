@@ -112,27 +112,32 @@ const VendorsCalendarTable = () => {
   const [columnDefs] = useState([
     {
       field: "Shop",
+      headerName: "მაღაზია",
       width: 120,
       minWidth: 120,
-      maxWidth: 130,
+      maxWidth: 150,
       cellRendererFramework: (params) => {
         return <div>Shop{String(params.value).padStart(3, "0")}</div>;
       },
     },
     {
       field: "Shop Address",
+      headerName: "მისამართი",
       maxWidth: 200,
     },
     {
       field: "Vendor",
+      headerName: "მომწოდებელი",
       maxWidth: 180,
     },
     {
       field: "Brand",
+      headerName: "ბრენდი",
       maxWidth: 180,
     },
     {
       field: "Distributor's Date",
+      headerName: "მოწოდების თარიღი",
       cellRendererFramework: (params) => {
         const d1 = Math.floor(Math.random() * 6);
         const d2 = Math.floor(Math.random() * 6);
@@ -286,13 +291,13 @@ const VendorsCalendarTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span className="me-8">Vendors Calendar</span>
+            <span className="me-8">მომწოდებლების კალენდარი</span>
             {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
             <Select
               className="react-select-container"
               classNamePrefix="react-select"
               options={vendorsArr}
-              defaultValue={{ value: "მწარმოებელი 1", label: "მწარმოებელი 1" }}
+              defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
               onChange={() => {
                 console.log("Select changes");
                 changeRowData();
