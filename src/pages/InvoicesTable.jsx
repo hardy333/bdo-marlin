@@ -49,7 +49,6 @@ import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import vendorsArr from "../data/vendors-data";
 
-console.log(vendorsArr);
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
