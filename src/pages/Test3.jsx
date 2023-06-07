@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 
-const url = "https://jsonplaceholder.typicode.com/todos";
+const url = "http://10.0.0.202:5001/api/Catalogues?page=1&pageSize=10"
 
 const getData = () => fetch(url).then((res) => res.json());
 
