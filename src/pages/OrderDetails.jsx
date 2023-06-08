@@ -142,7 +142,15 @@ const OrderDetails = () => {
     },
     {
       field: "reservedQuantity",
-      headerName: "დარეზერვირებული",
+      headerName: "დარეზერვირებული ",
+      cellRenderer: (params) => {
+        const { value } = params;
+        let color = ""
+        if(params.data.redStatus){
+         color = "red"
+        }
+        return <span style={{color: color}}>{value}</span>
+      },
     },
   ]);
 
