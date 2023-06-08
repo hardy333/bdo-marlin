@@ -43,10 +43,12 @@ import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
-import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
+// import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
 import { allOrdersParentColumns } from "../utils/columnsDefs";
 import { useNavigate } from "react-router-dom";
 import vendorAllOrdersColDefs from "../constants/vendorAllOrdersTableColDefs";
+import { useQuery } from "react-query";
+import { getData } from "./Test3";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -61,22 +63,129 @@ const VendorAllOrdersTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
 
   const gridRef = useRef(null);
 
-  const [columnDefs] = useState(vendorAllOrdersColDefs);
+  
+  const url =
+    "https://10.0.0.202:5001/api/OrdersByAccountAndVendorFront/M00001/D00002";
+
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+    console.log(data.data, rowData, "xx");
+    console.log("Hello from useEffect");
+  }, [data, isLoading, error]);
+
+
+  const [columnDefs] = useState([
+    {
+      field: "shop",
+      headerName: "მაღაზია",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value
+      },
+    },
+    {
+      field: "amount",
+      headerName: "თანხა",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL"
+      },
+    },
+    {
+      field: "scheduled",
+      headerName: "გეგმიური მიწოდება",
+      cellRenderer: (params) => {
+
+        const { value } = params;
+        return "2023-06-10"
+      },
+    },
+
+    {
+      field: "status",
+      headerName: "სტატუსი",
+
+      minWidth: 190,
+      maxWidth: 200,
+      cellRenderer: (params) => {
+        const { value } = params;
+        let color = "";
+
+
+        if (value === "გაგზავნილია") {
+          color = "#FFC23C";
+        } else if (value === "მიწოდებულია") {
+          color = "#01C6B5";
+        } else if(value === "პროცესშია"){
+          color = "#6E0FF5";
+        }else if(value === "დადასტურებულია"){
+          color = "#FF7BA7";
+        }
+
+        return (
+          <>
+            <span
+              className="ag-cell-status-value"
+              style={{ pointerEvents: "none", color }}
+            >
+              {value}
+            </span>
+            <div className="status-container" style={{ pointerEvents: "none" }}>
+              <ul>
+                <li style={{ color }}>{value}</li>
+                <li>Something 11:06, 2/10/2023</li>
+                <li>Received 11:06, 2/10/2023</li>
+                <li>Sent 11:06, 2/10/2023</li>
+              </ul>
+            </div>
+          </>
+        );
+      },
+
+      cellStyle: (params) => {
+        if (params.value % 3 === 0) {
+          return {
+            color: "#FFC23C",
+          };
+        } else if (params.value % 3 === 1) {
+          return {
+            color: "#6E0FF5",
+          };
+        } else {
+          return {
+            color: "#01C6B5",
+          };
+        }
+      },
+    },
+    {
+      field: "serviceLevel",
+      headerName: "სერვისის დონე",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return Math.floor(Math.random()*60+40) + "%";
+      },
+    },
+  ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
-  useEffect(() => {
-    async function fetchData() {
-      d.splice(10, 2);
-      setRowData(d);
-    }
-
-    fetchData();
-  }, []);
+  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -185,9 +294,6 @@ const VendorAllOrdersTable = () => {
     const handleClick = (e) => {
       const cell = e.target;
       const row = e.target.parentElement;
-
-      console.log(row);
-      console.log(cell);
 
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");

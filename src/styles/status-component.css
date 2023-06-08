@@ -5,6 +5,7 @@ body{
 
 .status-container{
   width: 220px;
+  --status-color: #1ED8B9;
 }
 
 .status-container ul{
@@ -27,11 +28,11 @@ body{
   width: 1px;
   height: 100%;
 
-  background-color: #1ED8B9;
+  background-color: var(--status-color);
 }
 
 .status-container li{
-  padding: 0 0 1.7rem 2.5rem;
+  padding: 0 0 1.7rem 1.2rem;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
@@ -58,7 +59,7 @@ body{
 
   border-radius: 100%;
 
-  background-color: #1ED8B9;
+  background-color: var(--status-color);
 
 }
 

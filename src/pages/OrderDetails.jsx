@@ -46,6 +46,8 @@ import AgTablePag from "../components/AgTablePag";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import { useQuery } from "react-query";
+import { getData } from "./Test3";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -83,7 +85,28 @@ const OrderDetails = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
+  
+  const url =
+    " https://10.0.0.202:5001/api/OrderDetailsFront/5e93afb9-87cb-49d1-8e4a-f765f8b87705";
+
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+    console.log(data.data, rowData, "xx");
+    console.log("Hello from useEffect");
+  }, [data, isLoading, error]);
+
 
   const [columnDefs] = useState([
     {
@@ -91,24 +114,27 @@ const OrderDetails = () => {
       headerName: "ბარკოდები",
       cellRenderer: (params) => {
         const { value } = params;
-        const index = value.indexOf("-");
-        return value.slice(0, index);
+        return value;
       },
     },
     {
-      field: "Product",
+      field: "product",
       headerName: "პროდუქტი",
     },
     {
-      field: "Quantity",
+      field: "quantity",
       headerName: "რაოდენობა",
     },
     {
-      field: "Price",
+      field: "price",
       headerName: "ფასი",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " " + "GEL";
+      },
     },
     {
-      field: "Amount",
+      field: "amount",
       headerName: "თანხა",
       cellRenderer: (params) => {
         const { value } = params;
@@ -118,10 +144,6 @@ const OrderDetails = () => {
     {
       field: "Reserved",
       headerName: "დარეზერვებულია",
-    },
-    {
-      field: "Scheduled",
-      headerName: "გეგმიური მიწოდება",
     },
   ]);
 
@@ -232,20 +254,29 @@ const OrderDetails = () => {
   // URL info
   const [searchParams] = useSearchParams();
   let date = searchParams.get("date") || "01/30/2023";
-  let shop = searchParams.get("shop") || "SPAR001";
-  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
+  let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
   let vendor = searchParams.get("vendor") || "GDM";
-  let status = searchParams.get("status") || "Pending";
+  let status = searchParams.get("status") || "გაგზავნილია";
 
   let statusBg;
-  if (status === "In Progress") {
-    statusBg = "#6E0FF5";
-  } else if (status === "Delivered") {
-    statusBg = "#01C6B5";
-  } else {
-    statusBg = "#FFC23C";
-  }
+  // if (status === "In Progress") {
+  //   statusBg = "#6E0FF5";
+  // } else if (status === "Delivered") {
+  //   statusBg = "#01C6B5";
+  // } else {
+  //   statusBg = "#FFC23C";
+  // }
 
+  
+  if (status === "გაგზავნილია") {
+      statusBg = "#FFC23C";
+  } else if (status === "მიწოდებულია") {
+    statusBg = "#01C6B5";
+  } else if(status === "პროცესშია"){
+    statusBg = "#6E0FF5";
+  }else if(status === "დადასტურებულია"){
+    statusBg = "#FF7BA7";
+  }
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 

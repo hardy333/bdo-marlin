@@ -82,17 +82,18 @@ const AllOrdersParent = () => {
   const [columnDefs] = useState([
     {
       field: "shop",
-      headerName: "მაღაზიის #",
+      headerName: "მაღაზია",
       cellRenderer: (params) => {
         const { value } = params;
-        return "SPAR" + String(value).padStart(3, "0");
+        return value
       },
     },
     {
       field: "date",
       headerName: "თარიღი",
       cellRenderer: (params) => {
-        return vendors[Math.floor(Math.random() * vendors.length)];
+        const { value } = params;
+        return value
       },
     },
 
@@ -101,23 +102,24 @@ const AllOrdersParent = () => {
       headerName: "მომწოდებელი",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL";
+        return value 
       },
     },
     {
       field: "amount",
-      headerName: "რაოდენობა",
+      headerName: "თანხა",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL";
+        return value + " GEL"
       },
     },
     {
       field: "scheduled",
       headerName: "გეგმიური მიწოდება",
       cellRenderer: (params) => {
+
         const { value } = params;
-        return value + " GEL";
+        return "2023-06-10"
       },
     },
     {
@@ -128,22 +130,17 @@ const AllOrdersParent = () => {
       maxWidth: 200,
       cellRenderer: (params) => {
         const { value } = params;
-        let res = "";
         let color = "";
-        if (value % 3 === 0) {
-          res = "Pending";
-        } else if (value % 3 === 1) {
-          res = "In Progress";
-        } else {
-          res = "Delivered";
-        }
 
-        if (params.value % 3 === 0) {
+
+        if (value === "გაგზავნილია") {
           color = "#FFC23C";
-        } else if (params.value % 3 === 1) {
-          color = "#6E0FF5";
-        } else {
+        } else if (value === "მიწოდებულია") {
           color = "#01C6B5";
+        } else if(value === "პროცესშია"){
+          color = "#6E0FF5";
+        }else if(value === "დადასტურებულია"){
+          color = "#FF7BA7";
         }
 
         return (
@@ -152,14 +149,14 @@ const AllOrdersParent = () => {
               className="ag-cell-status-value"
               style={{ pointerEvents: "none", color }}
             >
-              {res}
+              {value}
             </span>
-            <div className="status-container" style={{ pointerEvents: "none" }}>
+            <div className="status-container" style={{ pointerEvents: "none", "--status-color":color }}>
               <ul>
-                <li style={{ color }}>{res}</li>
-                <li>Something 11:06, 2/10/2023</li>
-                <li>Received 11:06, 2/10/2023</li>
-                <li>Sent 11:06, 2/10/2023</li>
+                <li style={{ color }}>{value}</li>
+                <li>მუშავდება 11:06, 2/10/2023</li>
+                <li>პროცესშია 11:06, 2/10/2023</li>
+                <li>გაიგზავნა 11:06, 2/10/2023</li>
               </ul>
             </div>
           </>
@@ -187,7 +184,7 @@ const AllOrdersParent = () => {
       headerName: "სერვისის დონე",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL";
+        return Math.floor(Math.random()*60+40) + "%";
       },
     },
   ]);
@@ -305,20 +302,18 @@ const AllOrdersParent = () => {
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
 
-      if (colName !== "Status") {
+      if (colName !== "status") {
         //  for navigation
-        const shop = row.querySelector(".ag-cell[col-id='Shop #']").innerText;
-        const date = row.querySelector(".ag-cell[col-id='Date']").innerText;
-        const status = row.querySelector(".ag-cell[col-id='Status']").innerText;
+        const shop = row.querySelector(".ag-cell[col-id='shop']").innerText;
+        const date = row.querySelector(".ag-cell[col-id='date']").innerText;
+        const status = row.querySelector(".ag-cell[col-id='status']").innerText;
         const vendor = row.querySelector(
-          ".ag-cell[col-id='Vendors']"
+          ".ag-cell[col-id='vendor']"
         ).innerText;
-        const shopAddress = row.querySelector(
-          ".ag-cell[col-id='Shop Address']"
-        ).innerText;
+ 
 
         navigate(
-          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&shopAddress=${shopAddress}&status=${status}`
+          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&status=${status}`
         );
       }
 
