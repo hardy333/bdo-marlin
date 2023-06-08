@@ -43,12 +43,81 @@ import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
 import { addDays } from "date-fns";
 import ItemsMenu from "../components/ItemsMenu";
+import Select from "react-select";
 
 import "../styles/discounts-table.css";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
+import vendorsArr from "../data/vendors-data";
 
+const shopsArr = [
+  {
+    value: "  აბაშა",
+    label: "  აბაშა",
+  },
+ 
+  {
+    value: "ამბროლაური, ჭრებალო #163",
+    label: "ამბროლაური, ჭრებალო #163",
+  },
+  {
+    value: "ბათუმი, ბრწყინავლე 42",
+    label: "ბათუმი, ბრწყინავლე 42",
+  },
+  {
+    value: "ბათუმი, გორგასალის 1",
+    label: "ბათუმი, გორგასალის 1",
+  },
+  {
+    value: "ბათუმი, ზუბალაშვილის N3",
+    label: "ბათუმი, ზუბალაშვილის N3",
+  },
+  {
+    value: "ბაკურაინი #161",
+    label: "ბაკურაინი #161",
+  },
+  {
+    value: "ბათუმი, ლერმონტო},ვი",
+    label: "ბათუმი, ლერმონტო},ვი",
+  },
+  {
+    value: "გურჯაანი, ბაკურციხე",
+    label: "გურჯაანი, ბაკურციხე",
+  },
+  {
+    value: "ზუგდიდი, გამსახურდიას 38",
+    label: "ზუგდიდი, გამსახურდიას 38",
+  },
+  {
+    value: "ზესტაფონი, სვირი 2",
+    label: "ზესტაფონი, სვირი 2",
+  },
+  {
+    value: "გორი",
+    label: "გორი",
+  },
+  {
+    value: "ვანი",
+    label: "ვანი",
+  },
+  {
+    value: "ზუგდიდი, სანაპიროს 10",
+    label: "ზუგდიდი, სანაპიროს 10",
+  },
+  {
+    value: "ქუთაისი 11",
+    label: "ქუთაისი 11",
+  },
+  {
+    value: "ბაღდათი, წერეთლის 18",
+    label: "ბაღდათი, წერეთლის 18",
+  },
+  {
+    value: "ამბროლაური, კოსტავას 6",
+    label: "ამბროლაური, კოსტავას 6",
+  },
+];
 
 const DiscountsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -213,7 +282,6 @@ const DiscountsTable = () => {
     gridApi.setQuickFilter(e.target.value);
   };
 
-
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
       header.name !== name
@@ -306,7 +374,13 @@ const DiscountsTable = () => {
             <p className="discount-container">
               პერიოდი: <span>1/10/2023 - 10/10/2023</span>
             </p>
-            <ItemsMenu />
+            <Select
+              className="react-select-container sla-select"
+              classNamePrefix="react-select"
+              options={shopsArr}
+              defaultValue={{ value: "ბათუმი, ზუბალაშვილის N3", label: "ბათუმი, ზუბალაშვილის N3" }}
+            />
+            {/* <ItemsMenu /> */}
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -344,8 +418,8 @@ const DiscountsTable = () => {
               </svg>
             </button>
             {/* popup */}
-            
-<Menu
+
+            <Menu
               align="center"
               direction="top"
               menuButton={
