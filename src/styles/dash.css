@@ -139,3 +139,36 @@
   background-color: #D2B9FA;
 
  }
+/* 
+ .c-small-li{
+  animation: c-small-anim 0.3s ease;
+  opacity: 0;
+  transform: translate(0, 20px);
+  animation-direction: reverse;
+ }
+
+ .c-small-li-1{
+  animation-delay: 0s;
+ }
+ .c-small-li-2{
+  animation-delay: 0.2s;
+ }
+ .c-small-li-3{
+  animation-delay: 0.4s;
+ }
+ .c-small-li-4{
+  animation-delay: 0.6s;
+ }
+
+ @keyframes c-small-anim {
+  0%{
+    opacity: 0;
+    transform: translate(0, 20px);
+  };
+  100%{
+    opacity: 1;
+    transform: translate(0, 0px);
+
+  }
+  
+ } */

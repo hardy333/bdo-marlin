@@ -1,6 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {motion} from "framer-motion"
+import { useStateManager } from 'react-select'
+
+const variants = {
+    initial: {
+        opacity: 0,
+        y: 10
+
+    },
+    animate: (custom) => ({
+        opacity: 1,
+        transition: {delay: custom * 0.1}
+
+    }),
+    exit: {
+        opacity: 1,
+        y: 10
+
+    }
+}
 
 const RightChartBubbles = () => {
+    const [smallCircles] = useState([1,2,3,4])
+    
   return (
     <div className='right-chart-buttons'>
         <div className="left">
@@ -11,22 +33,22 @@ const RightChartBubbles = () => {
         </div>
         <div className="right">
             <ul>
-                <li>
-                    <span className='c-small c-small-1'></span>
-                    <span>მომწოდებელი 1</span>
-                </li>
-                <li>
-                    <span className='c-small c-small-2'></span>
-                    <span>მომწოდებელი 2</span>
-                </li>
-                <li>
-                    <span className='c-small c-small-3'></span>
-                    <span>მომწოდებელი 3</span>
-                </li>
-                <li>
-                    <span className='c-small c-small-4'></span>
-                    <span>მომწოდებელი 4</span>
-                </li>
+                {
+                    smallCircles.map(num => (
+                        <motion.li 
+                key={num}
+                custom={num - 1}
+                variants={variants}
+                animate="animate"
+                initial="initial"
+                exit="exit"
+                 className={`c-small-li c-small-li-${num}`}>
+                    <span className={`c-small c-small-${num}`}></span>
+                    <span>მომწოდებელი {num}</span>
+                </motion.li>
+                    ))
+                }
+                
             </ul>
         </div>
     </div>

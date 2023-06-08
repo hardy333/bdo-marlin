@@ -54,32 +54,35 @@ const OrderDetails = () => {
   const [headerList, setHeaderList] = useState([
     {
       name: "barcode",
+      showingName: "ბარკოდი",
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "product",
+      showingName: "პროდუქტი",
       isShowing: true,
     },
     {
-      name: "Quantity",
+      name: "quantity",
+      showingName: "რაოდენობა",
       isShowing: true,
     },
     {
-      name: "Price",
+      name: "price",
+      showingName: "ფასი",
       isShowing: true,
     },
     {
-      name: "Amount",
+      name: "amount",
+      showingName: "თანხა",
       isShowing: true,
     },
     {
-      name: "Reserved",
+      name: "reservedQuantity",
+      showingName: "დარეზერვებული",
       isShowing: true,
     },
-    {
-      name: "Scheduled",
-      isShowing: true,
-    },
+
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -361,7 +364,8 @@ const OrderDetails = () => {
               </svg>
             </button>
             {/* popup */}
-            <Menu
+            
+<Menu
               align="center"
               direction="top"
               menuButton={
@@ -432,7 +436,7 @@ const OrderDetails = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>

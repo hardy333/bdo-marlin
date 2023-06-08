@@ -49,15 +49,6 @@ import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 
-const options = [
-  { value: "Orbita", label: "Orbita" },
-  { value: "Kant", label: "Kant" },
-  { value: "Ready Meals", label: "Ready Meals" },
-  { value: "Diplomat", label: "Diplomat" },
-  { value: "Vest Inv", label: "Vest Inv." },
-  { value: "Magako", label: "Magako" },
-  { value: "Svaneti", label: "Svaneti" },
-];
 
 const DiscountsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -65,34 +56,49 @@ const DiscountsTable = () => {
   const [headerList, setHeaderList] = useState([
     {
       name: "Product",
+      showingName: "პროდუქტი",
       isShowing: true,
     },
     {
       name: "Standard Price",
+      showingName: "სტანდარტული ფასი",
+
       isShowing: true,
     },
     {
       name: "Discount price",
+      showingName: "ფასდაკლების ფასი",
+
       isShowing: true,
     },
     {
       name: "Min Quantity",
+      showingName: "მინ. რაოდენობა",
+
       isShowing: true,
     },
     {
       name: "Max Quantity",
+      showingName: "მაქს. რაოდენობა",
+
       isShowing: true,
     },
     {
       name: "Min Amount",
+      showingName: "მინ. თანხა",
+
       isShowing: true,
     },
     {
       name: "Ordered Amount",
+      showingName: "გადახდილი თანხა",
+
       isShowing: true,
     },
     {
       name: "Ordered Quantity",
+      showingName: "შეკვეთილი რაოდენობა ",
+
       isShowing: true,
     },
   ]);
@@ -125,11 +131,11 @@ const DiscountsTable = () => {
     },
     {
       field: "Min Quantity",
-      headerName: "მინიმალური რაოდენობა",
+      headerName: "მინ. რაოდენობა",
     },
     {
       field: "Max Quantity",
-      headerName: "მაქს რაოდენობა",
+      headerName: "მაქს. რაოდენობა",
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -138,7 +144,7 @@ const DiscountsTable = () => {
     },
     {
       field: "Min Amount",
-      headerName: "მინ ღირებულება",
+      headerName: "მინ. ღირებულება",
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -206,6 +212,7 @@ const DiscountsTable = () => {
 
     gridApi.setQuickFilter(e.target.value);
   };
+
 
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
@@ -337,7 +344,8 @@ const DiscountsTable = () => {
               </svg>
             </button>
             {/* popup */}
-            <Menu
+            
+<Menu
               align="center"
               direction="top"
               menuButton={
@@ -408,7 +416,7 @@ const DiscountsTable = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>

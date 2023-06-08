@@ -54,11 +54,36 @@ const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState(
-    allOrdersParentColumns.map((obj) => ({
-      name: obj.name,
-      showingName: obj.showingName,
-      isShowing: true,
-    }))
+    [
+      {
+        name: "shop",
+        showingName: "მაღაზია",
+        isShowing: true
+      },
+      {
+        name: "amount",
+        showingName: "თანხა",
+        isShowing: true
+      },
+      {
+        name: "scheduled",
+        showingName: "გეგმიური მიწოდება",
+        isShowing: true
+      },
+  
+      {
+        name: "status",
+        showingName: "სტატუსი",
+        isShowing: true
+    
+      },
+      {
+        name: "serviceLevel",
+        showingName: "სერვისის დონე",
+        isShowing: true
+      },
+    ]
+    
   );
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -225,6 +250,7 @@ const VendorAllOrdersTable = () => {
     gridApi.setQuickFilter(e.target.value);
   };
 
+
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
       header.name !== name
@@ -244,6 +270,7 @@ const VendorAllOrdersTable = () => {
       gridColumnApi.setColumnVisible(header.name, false);
     });
   };
+  
   const showAllColumns = () => {
     setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
     headerList.forEach((header) => {

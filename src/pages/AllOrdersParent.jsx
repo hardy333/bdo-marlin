@@ -41,7 +41,6 @@ import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
 import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
-import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
 import { allOrdersParentColumns } from "../utils/columnsDefs";
 import { useNavigate } from "react-router-dom";
 import useRemoveId from "../components/useRemoveId";
@@ -54,7 +53,51 @@ const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState(
-    allOrdersParentColumns.map((obj) => ({ name: obj.name, isShowing: true }))
+    [
+    {
+      name: "shop",
+      showingName: "მაღაზია",
+      isShowing: true
+
+    },
+    {
+      name: "date",
+      showingName: "თარიღი",
+      isShowing: true
+
+    },
+
+    {
+      name: "vendor",
+      showingName: "მომწოდებელი",
+      isShowing: true
+
+    },
+    {
+      name: "amount",
+      showingName: "თანხა",
+      isShowing: true
+
+    },
+    {
+      name: "scheduled",
+      showingName: "გეგმიური მიწოდება",
+      isShowing: true
+
+    },
+    {
+      name: "status",
+      showingName: "სტატუსი",
+      isShowing: true
+
+      },
+
+    {
+      name: "serviceLevel",
+      showingName: "სერვისის დონე",
+      isShowing: true
+      
+    }]
   );
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -404,7 +447,25 @@ const AllOrdersParent = () => {
               direction="top"
               menuButton={
                 <MenuButton className="all-orders__btn ">
-                  <ColumnHideSvg />
+                  <svg
+                    id="Layer_3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 33.58 47.28"
+                  >
+                    <defs></defs>
+                    <path
+                      className="cls-1"
+                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                    <path
+                      className="cls-1"
+                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                    />
+                  </svg>
                 </MenuButton>
               }
               transition
@@ -452,7 +513,7 @@ const AllOrdersParent = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>
