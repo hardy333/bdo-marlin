@@ -75,14 +75,14 @@ const DashboardNavbar = () => {
                 <PlusSvg />
                 <HouseSvg />
               </header>
-              <p>Dear Giorgi,</p>
+              <p>ძვირფასო გიორგი,</p>
               <p>
-                Your orders to GDM has been approved. See what they have
-                reserved for you:
+                თქვენი ორდერი მომწოდებელთან მიღებულია. ნახეთ რა პროდუქციაა
+                თქვენთვის ხელმისაწვდომი:
               </p>
-              <h2>GDM Orders</h2>
+              <h2>მომწოდებლის შეგვეთები</h2>
               <footer>
-                <p>Order amount:</p>
+                <p>შეკვეთის თანხა:</p>
                 <p>413.5 GEL</p>
               </footer>
             </div>

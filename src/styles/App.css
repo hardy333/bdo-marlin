@@ -144,7 +144,7 @@ img{
 }
 
 .btn-messenger::before{
-  content: "Hello, How can we help?";
+  content: "რით შგევიძლია დაგეხმაროთ?";
   background-color: #fff;
   width: 250px;
   padding: 1rem;

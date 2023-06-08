@@ -68,14 +68,25 @@ const Dash = () => {
         </div>
 
         <div className="main-dashboard-right">
-          <header className="main-dashboard-header">
+          <header
+            className="main-dashboard-header"
+            style={{ "--animate-duration": "300ms" }}
+          >
             <div>
-              <h2>გაგზავნილი შეკვეთები</h2>
-              <h3>124,765.88 GEL</h3>
+              <h2 className="animate__fadeInDown animate__animated">
+                გაგზავნილი შეკვეთები
+              </h2>
+              <h3 className="animate__fadeInUp animate__animated">
+                124,765.88 GEL
+              </h3>
             </div>
             <div>
-              <h2>შეკვეთები გზაში</h2>
-              <h3>65,540.50 GEL</h3>
+              <h2 className="animate__fadeInDown animate__animated">
+                შეკვეთები გზაში
+              </h2>
+              <h3 className="animate__fadeInUp animate__animated">
+                65,540.50 GEL
+              </h3>
             </div>
           </header>
           <div className="main-dashboard-charts">

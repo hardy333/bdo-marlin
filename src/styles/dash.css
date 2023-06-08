@@ -62,12 +62,19 @@
   background-color: #6E0FF5;
  }
 
+ .c-big.active::before{
+  color:#6E0FF5;
+  transform: translate(-5px, -5px);
+}
+
+ 
  .c-big::before{
     position: absolute;
     content: "30%";
     top: -2rem;
     left: 0;
     font-size: 12px;
+    transition: transform 0.3s ease;
 
  }
 
@@ -122,6 +129,8 @@
   border-radius: 100%;
   display: block;
  }
+
+
  
  .c-small-1{
   background-color: #6E0FF5;
@@ -139,36 +148,31 @@
   background-color: #D2B9FA;
 
  }
-/* 
+
+
  .c-small-li{
-  animation: c-small-anim 0.3s ease;
-  opacity: 0;
-  transform: translate(0, 20px);
-  animation-direction: reverse;
+  user-select: none;
+
+
+ }
+ .c-small-li.active .c-small{
+  transform: scale(1.2);
+
+
  }
 
- .c-small-li-1{
-  animation-delay: 0s;
- }
- .c-small-li-2{
-  animation-delay: 0.2s;
- }
- .c-small-li-3{
-  animation-delay: 0.4s;
- }
- .c-small-li-4{
-  animation-delay: 0.6s;
+ .c-small-li span{
+    pointer-events: none;
  }
 
- @keyframes c-small-anim {
+ @keyframes anim {
   0%{
-    opacity: 0;
-    transform: translate(0, 20px);
-  };
+    transform: scale(1);
+
+  }
   100%{
-    opacity: 1;
-    transform: translate(0, 0px);
+    transform: scale(1.2);
 
   }
   
- } */
+ }

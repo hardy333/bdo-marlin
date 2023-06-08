@@ -33,11 +33,11 @@ const options = {
   },
   xaxis: {
     categories: [
-      ["vendor 1"],
-      ["vendor 2"],
-      ["vendor 3"],
-      ["vendor 4"],
-      ["vendor 5"],
+      ["მომწ. 1"],
+      ["მომწ. 2"],
+      ["მომწ. 3"],
+      ["მომწ. 4"],
+      ["მომწ. 5"],
     ],
     labels: {
       style: {
