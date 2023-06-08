@@ -19,7 +19,7 @@ const Dash = () => {
           </div>
           <div className="stat-card">
             <h3>
-              <Link to="/test">Suppliers</Link>
+              Suppliers
             </h3>
             <h2>246</h2>
           </div>

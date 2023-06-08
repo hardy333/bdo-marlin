@@ -32,7 +32,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/CATALOGUE_MOCK_DATA.json";
+// import d from "../assets/CATALOGUE_MOCK_DATA.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -56,71 +56,97 @@ const CatalogueTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "Barcode",
+      name: "barcode",
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "product",
       isShowing: true,
     },
     {
-      name: "Units",
+      name: "units",
       isShowing: true,
     },
     {
-      name: "Price",
+      name: "price",
       isShowing: true,
     },
     {
-      name: "Last Order Price",
+      name: "lastOrderPrice",
       isShowing: true,
     },
     {
-      name: "Last Change Date",
+      name: "lastOrderChange",
       isShowing: true,
     },
     {
-      name: "Status",
+      name: "status",
       isShowing: true,
     },
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
 
   const url =
     "https://10.0.0.202:5001/api/CatalogueFront/M00001/4eca0fc3-f307-11ed-8120-005056b5a0aa";
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
-  console.log(data)
+  const [rowData, setRowData] = useState(() => {
+    if(data || data?.data){
+      return data.data
+    }
+    return null
+  });
+
+  
+  useEffect(() => {
+    if(!data) return
+    if(isLoading) return
+    if(error) return
+    setRowData(data.data)
+    console.log(data.data, rowData, "xx")
+    console.log("Hello from useEffect")
+
+  }, [data, isLoading, error])
+
 
 
   const [columnDefs] = useState([
     {
       field: "barcode",
-      cellRenderer: (params) => {
-        return value.slice(0, index);
-      },
+      headerName: "ბარკოდი",
+      
     },
     {
       field: "product",
+      headerName: "პროდუქტი",
+
       cellRenderer: (params) => {
+        const { value } = params;
+
         return params.value;
       },
     },
     {
       field: "unit",
+      headerName: "ერთეული",
+
     },
     {
       field: "price",
+      headerName: "ფასი",
+
       cellRenderer: (params) => {
+        const { value } = params;
+
         return value + " " + "GEL";
       },
     },
     {
       field: "lastOrderPrice",
+      headerName: "უკანასკნელი შეცვლილი ფასი",
       cellRenderer: (params) => {
         const { value } = params;
         return (
@@ -144,23 +170,35 @@ const CatalogueTable = () => {
     },
     {
       field: "lastChangeDate",
+      headerName: "უკანასკნელი შეცვლილი თარიღი",
     },
     {
-      field: "Status",
+      field: "status",
+      headerName: "სტატუსი",
       cellRenderer: ({ value }) => {
+        let color = ""
+        if(value === "აქტიური"){
+          color = "#6E0FF5"
+        } else if(value === "გაუქმებული"){
+          color = "#FF3360"
+
+        }else if(value === "მიუწვდომელი"){
+          color = "#FFA23C"
+        }
         return (
           <div className="flex items-center" style={{ height: "100%" }}>
             <button
-              style={{ color: +value % 2 === 0 ? "#6E0FF5" : "#F55364" }}
+              style={{ color: color }}
               className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
             >
-              {+value % 2 === 0 ? "active" : "inactive"}
+              {value}
             </button>
           </div>
         );
       },
     },
   ]);
+
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -253,7 +291,6 @@ const CatalogueTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
@@ -265,15 +302,7 @@ const CatalogueTable = () => {
   };
   const gridRef = useRef(null);
 
-  const options = [
-    { value: "Snacks", label: "Snacks" },
-    { value: "Frozen Goods", label: "Frozen Goods" },
-    { value: "Ready Meals", label: "Ready Meals" },
-    { value: "Sweets", label: "Sweets" },
-    { value: "Ice Cream", label: "Ice Cream" },
-    { value: "beverages", label: "Beverages" },
-    { value: "Baked Goods", label: "Baked Goods" },
-  ];
+
 
   const [showFilters, setShowFilters] = useFilterToggle();
   // --------//
@@ -291,44 +320,7 @@ const CatalogueTable = () => {
     setIsHover(false);
   };
 
-  const [cat1, setCat1] = useState(null);
-  const [cat2, setCat2] = useState(null);
-  const [cat3, setCat3] = useState(null);
-  const [count, setCount] = useState(10);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch_XLSX_DATA2();
-      let c1 = [];
-      let c2 = [];
-      let c3 = [];
-
-      data.TDSheet.forEach((obj) => {
-        c1.push(obj["კატეგორია"]);
-        c2.push(obj["ქვეკატეგორია"]);
-        c3.push(obj["პროდუქტი"]);
-      });
-
-      c1 = Array.from(new Set(c1));
-      c2 = Array.from(new Set(c2));
-      c3 = Array.from(new Set(c3));
-
-      setCat1(c1);
-      setCat2(c2);
-      setCat3(c3);
-
-      if (rowData) {
-        setRowData(
-          rowData.map((obj, index) => ({ ...obj, Product: c3[index] }))
-        );
-        setCount(count + 1);
-      }
-
-      setRowData(d.map((obj, index) => ({ ...obj, Product: c3[index] })));
-    };
-
-    fetchData();
-  }, []);
 
   const [isChecked, setISChecked] = useState(false);
 
@@ -345,10 +337,10 @@ const CatalogueTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>Catalogue</h4>
+            <h4>კატალოგი</h4>
 
             <div className="vendors-switch-container">
-              <p className="catalogue-label">My products</p>
+              <p className="catalogue-label">ჩემი პროდუქტები</p>
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
@@ -359,7 +351,7 @@ const CatalogueTable = () => {
                 />
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
-              <p className="catalogue-label">All Products</p>
+              <p className="catalogue-label">ყველა პროდუქტი</p>
             </div>
           </div>
           {/* Right */}
@@ -521,27 +513,26 @@ const CatalogueTable = () => {
           {isLoading ? (
             <h1>Loading ... </h1>
           ) : (
-            // <AgGridReact
-            //   ref={gridRef}
-            //   onGridReady={onGridReady}
-            //   rowData={rowData}
-            //   columnDefs={columnDefs}
-            //   defaultColDef={defaultColDef}
-            //   pagination={true}
-            //   components={components}
-            //   getRowHeight={() => {
-            //     if (rowHeightIndex === 0) {
-            //       return 25;
-            //     } else if (rowHeightIndex === 1) {
-            //       return 32;
-            //     } else if (rowHeightIndex === 2) {
-            //       return 37;
-            //     }
-            //   }}
+            <AgGridReact
+              ref={gridRef}
+              onGridReady={onGridReady}
+              rowData={rowData}
+              columnDefs={columnDefs}
+              defaultColDef={defaultColDef}
+              pagination={true}
+              components={components}
+              getRowHeight={() => {
+                if (rowHeightIndex === 0) {
+                  return 25;
+                } else if (rowHeightIndex === 1) {
+                  return 32;
+                } else if (rowHeightIndex === 2) {
+                  return 37;
+                }
+              }}
      
-            //   paginationPageSize={pageSize}
-            // ></AgGridReact>
-            <p>Hello </p>
+              paginationPageSize={pageSize}
+            ></AgGridReact>
           )}
 
           {gridReady === true && (

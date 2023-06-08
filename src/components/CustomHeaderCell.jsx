@@ -13,12 +13,10 @@ const CustomHeaderCell = (props) => {
   const [sortingStateIndex, setSortingStateIndex] = useState(0);
 
   const handleSorting = (e) => {
-    console.log(e.target, e);
     if (
       e.target.classList.contains("header-cell-menu-button-2") ||
       e.target.tagName === "IMG"
     ) {
-      console.log("True");
       return;
     }
 
