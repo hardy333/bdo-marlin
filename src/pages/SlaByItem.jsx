@@ -36,7 +36,6 @@ import React, {
   import CustomHeaderCell from "../components/CustomHeaderCell";
   import CustomInput from "../components/CustomInput";
   
-  import d from "../assets/REPORTS_PARENT.json";
   import ReverseExpandSvg from "../components/ReverseExpandSvg";
   import ExpandSvg from "../components/ExpandSvg";
   import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
