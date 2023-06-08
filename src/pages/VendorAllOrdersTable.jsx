@@ -84,8 +84,6 @@ const VendorAllOrdersTable = () => {
     if (isLoading) return;
     if (error) return;
     setRowData(data.data);
-    console.log(data.data, rowData, "xx");
-    console.log("Hello from useEffect");
   }, [data, isLoading, error]);
 
 
@@ -112,7 +110,7 @@ const VendorAllOrdersTable = () => {
       cellRenderer: (params) => {
 
         const { value } = params;
-        return "2023-06-10"
+        return value
       },
     },
 

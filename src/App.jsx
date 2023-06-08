@@ -57,6 +57,10 @@ import Dash from "./pages/Dash";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import Test2 from "./pages/Test2";
 import Test3 from "./pages/Test3";
+import SlaByShops from "./pages/SlaByShops";
+import SlaByItem from "./pages/SlaByItem";
+import SlaByOrders from "./pages/SlaByOrders";
+import SlaByVendor from "./pages/SlaByVendor";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +103,11 @@ function App() {
             <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
             <Route path="/stable-table" element={<StableTable />} />
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
+            <Route path="/sla-by-vendor" element={<SlaByVendor />} />
+            <Route path="/sla-by-shops" element={<SlaByShops />} />
+            <Route path="/sla-by-item" element={<SlaByItem />} />
+            <Route path="/sla-by-category" element={<SlaByItem />} />
+            <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/sla-graphics" element={<SlaGraphics />} />
             <Route path="/discounts-table" element={<DiscountsTable />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />

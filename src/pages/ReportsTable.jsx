@@ -40,6 +40,8 @@ import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import { useQuery } from "react-query";
+import { getData } from "./Test3";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -69,18 +71,37 @@ const ReportsTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
 
+  const url =
+  "https://10.0.0.202:5001/api/SLAByVendors";
+
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
+
+useEffect(() => {
+  if (!data) return;
+  if (isLoading) return;
+  if (error) return;
+  setRowData(data.data);
+}, [data, isLoading, error]);
+
+  
   const [columnDefs] = useState([
     {
-      field: "Vendors",
+      field: "vendor",
       cellRenderer: (params) => {
         return params.value;
       },
     },
     {
-      field: "Monthly Amount",
-      headerName: "Orders",
+      field: "orders",
+      headerName: "მომწოდებელი",
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -88,19 +109,19 @@ const ReportsTable = () => {
       },
     },
     {
-      field: "Quantity Deviation",
-      headerName: "Amount",
+      field: "amount",
+      headerName: "თანხა",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "Gel";
       },
     },
     {
-      field: "Quantity Deviation",
+      field: "slaByQuantity",
       headerName: "SLA by Quantity",
     },
     {
-      field: "In Time Orders",
+      field: "slaByAmount",
       headerName: "SLA by Amount",
       cellRenderer: (params) => {
         const { value } = params;
@@ -108,7 +129,7 @@ const ReportsTable = () => {
       },
     },
     {
-      field: "Avarage Service Level",
+      field: "inTimeOrders",
       headerName: "In Time Orders",
       minWidth: 250,
       cellRenderer: (params) => {
@@ -241,9 +262,9 @@ const ReportsTable = () => {
       const t = e.target;
       const row = t.closest(".ag-row");
 
-      const vendor = row.querySelector(".ag-cell[col-id='Vendors']").innerText;
+      const vendor = row.querySelector(".ag-cell[col-id='vendor']").innerText;
 
-      navigate(`/sla-by-vendors?vendor=${vendor}`);
+      navigate(`/sla-by-orders`);
     };
 
     x.addEventListener("click", handleGridClick);

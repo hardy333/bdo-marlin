@@ -142,8 +142,8 @@ const OrderDetails = () => {
       },
     },
     {
-      field: "Reserved",
-      headerName: "დარეზერვებულია",
+      field: "reservedQuantity",
+      headerName: "დარეზერვირებული",
     },
   ]);
 
