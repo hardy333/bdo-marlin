@@ -57,30 +57,37 @@ const CatalogueTable = () => {
   const [headerList, setHeaderList] = useState([
     {
       name: "barcode",
+      showingName: "ბარკოდი",
       isShowing: true,
     },
     {
       name: "product",
+      showingName: "პროდუქტი",
       isShowing: true,
     },
     {
-      name: "units",
+      name: "unit",
+      showingName: "ერთეული",
       isShowing: true,
     },
     {
       name: "price",
+      showingName: "ფასი",
       isShowing: true,
     },
     {
       name: "lastOrderPrice",
+      showingName: "უკ. შეკ. ფასი",
       isShowing: true,
     },
     {
-      name: "lastOrderChange",
+      name: "lastChangeDate",
+      showingName: "უკ. შეკ. თარიღი ",
       isShowing: true,
     },
     {
       name: "status",
+      showingName: "სტატუსი",
       isShowing: true,
     },
   ]);
@@ -234,6 +241,7 @@ const CatalogueTable = () => {
     gridApi.setQuickFilter(e.target.value);
   };
 
+ 
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
       header.name !== name
@@ -377,7 +385,8 @@ const CatalogueTable = () => {
               </svg>
             </button>
             {/* popup */}
-            <Menu
+            
+<Menu
               align="center"
               direction="top"
               menuButton={
@@ -448,7 +457,7 @@ const CatalogueTable = () => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>

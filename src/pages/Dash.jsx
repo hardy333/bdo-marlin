@@ -25,11 +25,11 @@ const Dash = () => {
             <h2>246</h2>
           </div>
           <div className="stat-card">
-            <h3>ვენდორები</h3>
+            <h3>მომწოდებლები</h3>
             <h2>523</h2>
           </div>
           <div className="stat-card">
-            <h3>ღია ორდერები</h3>
+            <h3>ღია შეკვეთები</h3>
             <h2>246</h2>
           </div>
         </div>
@@ -41,7 +41,7 @@ const Dash = () => {
               <h3>124,765.88 GEL</h3>
             </div>
             <div>
-              <h2>მიმდინარე ორდერები</h2>
+              <h2>შეკვეთები გზაში</h2>
               <h3>65,540.50 GEL</h3>
             </div>
           </header>
@@ -51,7 +51,7 @@ const Dash = () => {
             </div>
             <div className="bottom-chart-container">
               <section className="left-chart">
-                <h2>სერვისის დონე: ტოპ 5 ვენდორი</h2>
+                <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
                 <ColumnCHart />
               </section>
               <section className="right-chart">
