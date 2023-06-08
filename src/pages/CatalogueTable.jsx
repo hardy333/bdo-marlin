@@ -94,6 +94,8 @@ const CatalogueTable = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
+  console.log(data)
+
   const [columnDefs] = useState([
     {
       field: "Barcode",
@@ -518,29 +520,27 @@ const CatalogueTable = () => {
           {isLoading ? (
             <h1>Loading ... </h1>
           ) : (
-            <AgGridReact
-              ref={gridRef}
-              onGridReady={onGridReady}
-              rowData={rowData}
-              columnDefs={columnDefs}
-              defaultColDef={defaultColDef}
-              pagination={true}
-              components={components}
-              getRowHeight={() => {
-                if (rowHeightIndex === 0) {
-                  return 25;
-                } else if (rowHeightIndex === 1) {
-                  return 32;
-                } else if (rowHeightIndex === 2) {
-                  return 37;
-                }
-              }}
-              // enableRangeSelection={true}
-              // copyHeadersToClipboard={true}
-              // rowSelection={"multiple"}
-              // paginationAutoPageSize={true}
-              paginationPageSize={pageSize}
-            ></AgGridReact>
+            // <AgGridReact
+            //   ref={gridRef}
+            //   onGridReady={onGridReady}
+            //   rowData={rowData}
+            //   columnDefs={columnDefs}
+            //   defaultColDef={defaultColDef}
+            //   pagination={true}
+            //   components={components}
+            //   getRowHeight={() => {
+            //     if (rowHeightIndex === 0) {
+            //       return 25;
+            //     } else if (rowHeightIndex === 1) {
+            //       return 32;
+            //     } else if (rowHeightIndex === 2) {
+            //       return 37;
+            //     }
+            //   }}
+     
+            //   paginationPageSize={pageSize}
+            // ></AgGridReact>
+            <p>Hello </p>
           )}
 
           {gridReady === true && (

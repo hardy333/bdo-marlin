@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 
-const url = "https://10.0.0.202:5001/api/Catalogues?page=1&pageSize=10";
+const url = "https://10.0.0.202:5001/api/CatalogueFront/M00001/4eca0fc3-f307-11ed-8120-005056b5a0aa";
 
 export const getData = (url) => fetch(url).then((res) => res.json());
 
