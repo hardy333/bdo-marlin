@@ -6,6 +6,7 @@ import dotsSvg2 from "../assets/dotsSvg2.svg";
 import downIcon from "../assets/marlin-icons/down-arrow.png";
 import classNames from "classnames";
 import HeaderCellMenu2 from "./HeaderCellMenu2";
+import Tippy from "@tippyjs/react";
 
 const CustomHeaderCell = (props) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -69,9 +70,16 @@ const CustomHeaderCell = (props) => {
       })}
     >
       <span className="cell-outer-span">
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="top"
+        content={props.displayName}
+      >
         <span onClick={handleSorting} className="cell-inner-span">
-          {props.displayName}
+          {props.displayName} 
         </span>
+        </Tippy>
         <img src={downIcon} className="heading-sorting-arrow-img" alt="" />
         <HeaderCellMenu2 p={props} />
       </span>
