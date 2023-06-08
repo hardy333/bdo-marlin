@@ -95,13 +95,14 @@ useEffect(() => {
   const [columnDefs] = useState([
     {
       field: "vendor",
+      headerName: "მომწოდებელი",
       cellRenderer: (params) => {
         return params.value;
       },
     },
     {
       field: "orders",
-      headerName: "მომწოდებელი",
+      headerName: "შეკვეთები",
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -110,7 +111,7 @@ useEffect(() => {
     },
     {
       field: "amount",
-      headerName: "თანხა",
+      headerName: "შეკვეთის თანხა",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "Gel";

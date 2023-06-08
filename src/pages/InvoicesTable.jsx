@@ -105,7 +105,7 @@ const InvoicesTable = () => {
     },
     {
       field: "Documnet #",
-      headerName: "დოკუმნეტის #",
+      headerName: "დოკუმენტის #",
     },
     {
       field: "Vendor",
