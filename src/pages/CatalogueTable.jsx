@@ -77,12 +77,12 @@ const CatalogueTable = () => {
     },
     {
       name: "lastOrderPrice",
-      showingName: "უკ. შეკ. ფასი",
+      showingName: "წინა ფასი",
       isShowing: true,
     },
     {
       name: "lastChangeDate",
-      showingName: "უკ. შეკ. თარიღი ",
+      showingName: "ცვლილების თარიღი ",
       isShowing: true,
     },
     {
@@ -146,7 +146,7 @@ const CatalogueTable = () => {
     },
     {
       field: "lastOrderPrice",
-      headerName: "უკანასკნელი შეცვლილი ფასი",
+      headerName: "წინა ფასი",
       cellRenderer: (params) => {
         const { value } = params;
         return (
@@ -170,7 +170,7 @@ const CatalogueTable = () => {
     },
     {
       field: "lastChangeDate",
-      headerName: "უკანასკნელი შეცვლილი თარიღი",
+      headerName: "ცვლილების თარიღი",
     },
     {
       field: "status",

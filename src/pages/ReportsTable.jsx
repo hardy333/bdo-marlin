@@ -48,24 +48,35 @@ const ReportsTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
     {
-      name: "Vendors",
-      isShowing: true,
+      name: "vendor",
+      showingName: "მომწოდებელი",
+      isShowing: true
     },
     {
-      name: "Monthly Amount",
-      isShowing: true,
+      name: "orders",
+      showingName: "შეკვეთები",
+      isShowing: true
+
     },
     {
-      name: "Quantity Deviation",
-      isShowing: true,
+      name: "amount",
+      showingName: "შეკვეთის თანხა",
+      isShowing: true
     },
     {
-      name: "In Time Orders",
-      isShowing: true,
+      name: "slaByQuantity",
+      showingName: "SL რაოდენობით",
+      isShowing: true
     },
     {
-      name: "Avarage Service Level",
-      isShowing: true,
+      name: "slaByAmount",
+      showingName: "SL თანხით",
+      isShowing: true
+    },
+    {
+      name: "inTimeOrders",
+      showingName: "დროულად",
+      isShowing: true
     },
   ]);
   const [gridApi, setGridApi] = useState(null);
@@ -334,7 +345,8 @@ useEffect(() => {
               </svg>
             </button>
             {/* popup */}
-            <Menu
+           
+<Menu
               align="center"
               direction="top"
               menuButton={
@@ -405,7 +417,7 @@ useEffect(() => {
                         }}
                       />
                       <label htmlFor={header.name} className="switch__label">
-                        {header.name}
+                        {header.showingName}
                       </label>
                     </div>
                   </MenuItem>
