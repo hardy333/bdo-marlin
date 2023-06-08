@@ -94,30 +94,32 @@ const CatalogueTable = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
+  console.log(data);
+
   const [columnDefs] = useState([
     {
-      field: "Barcode",
+      field: "barcode",
       cellRenderer: (params) => {
         return value.slice(0, index);
       },
     },
     {
-      field: "Product",
+      field: "product",
       cellRenderer: (params) => {
         return params.value;
       },
     },
     {
-      field: "Units",
+      field: "unit",
     },
     {
-      field: "Price",
+      field: "price",
       cellRenderer: (params) => {
         return value + " " + "GEL";
       },
     },
     {
-      field: "Last Order Price",
+      field: "lastOrderPrice",
       cellRenderer: (params) => {
         const { value } = params;
         return (
@@ -140,7 +142,7 @@ const CatalogueTable = () => {
       },
     },
     {
-      field: "Last Change Date",
+      field: "lastChangeDate",
     },
     {
       field: "Status",
