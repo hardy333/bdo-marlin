@@ -29,12 +29,27 @@ const options = [
   { value: "მომწოდებელი 20", label: "მომწოდებელი 20" },
 ];
 
-const DiscountsCards = () => {
-  const [vendorArr, setVendorArr] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
-  ]);
+const products = [
+  {dis: 25, name: "კონსერვი",},
+{dis: 45, name: "ფქვილი",},
+{dis: 20, name: "კვერცხი",},
+{dis: 10, name: "ლიმონი",},
+{dis: 30, name: "ბანანი",},
+{dis: 20, name: "კივი"},
+{dis: 10, name: "შოკოლადი"},
+{dis: 5, name: "სათამაშოები",},
+{dis: 30, name: " ჯაგრისი"},
+{dis: 15, name: "ვანილი",},
+{dis: 20, name: "კოქტეილები",},
+{dis: 50, name: "ბლითი",},
+{dis: 10, name: "ზეთისხილი",},
+{dis: 10, name: "ძეხვი",},
+{dis: 35, name: "არაჟანი",},
+{dis: 10, name: "ზეთი",},
+{dis: 50, name: "ნაყინი"},
+]
 
+const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
 
   return (
@@ -79,10 +94,9 @@ const DiscountsCards = () => {
         </header>
 
         <div className="discount-cards-container">
-          {vendorArr
-            .filter((num, index) => (isChecked ? true : num === 1 || num === 0))
-            .map((num, index) => {
-              return <DiscountCard index={index} />;
+          {products
+            .map((obj, index) => {
+              return <DiscountCard key={index} name={obj.name} dis={obj.dis} index={index} />;
             })}
         </div>
         <div className="employee-pag-container">
@@ -92,7 +106,7 @@ const DiscountsCards = () => {
 
           <div className="employees-page-info">
             <p>
-              1-{vendorArr.length} of {vendorArr.length}
+              1-{products.length} of {products.length}
             </p>
           </div>
         </div>

@@ -7,13 +7,13 @@ import NewSvg from "./svgs/NewSvg";
 import { useNavigate } from "react-router-dom";
 import CrystalSvg from "./svgs/CrystalSvg";
 
-const DiscountCard = ({ index }) => {
+const DiscountCard = ({ index, name, dis }) => {
   const navigate = useNavigate();
 
   return (
     <article className="discount-card">
-      <h2>სნექები -10%</h2>
-      <h3>დოკუმენტი: #23120</h3>
+      <h2>{name} - {dis}%</h2>
+      <h3>დოკუმენტი: #{Math.floor(Math.random()*2000+30330)}</h3>
       {index > 3 ? (
         <></>
       ) : (
@@ -25,7 +25,7 @@ const DiscountCard = ({ index }) => {
       <div className="discount-card__body">
         <h4>
           <VendorsCalendarSvg />
-          აქტიურია:
+          {Math.random() - 0.4 > 0 ? "აქტიურია" : "არააქტიურია"}
         </h4>
         <p>1/02/2023 - 10/02/2023</p>
       </div>
