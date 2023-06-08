@@ -87,37 +87,31 @@ const CatalogueTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-
   const url =
     "https://10.0.0.202:5001/api/CatalogueFront/M00001/4eca0fc3-f307-11ed-8120-005056b5a0aa";
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
   const [rowData, setRowData] = useState(() => {
-    if(data || data?.data){
-      return data.data
+    if (data || data?.data) {
+      return data.data;
     }
-    return null
+    return null;
   });
 
-  
   useEffect(() => {
-    if(!data) return
-    if(isLoading) return
-    if(error) return
-    setRowData(data.data)
-    console.log(data.data, rowData, "xx")
-    console.log("Hello from useEffect")
-
-  }, [data, isLoading, error])
-
-
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+    console.log(data.data, rowData, "xx");
+    console.log("Hello from useEffect");
+  }, [data, isLoading, error]);
 
   const [columnDefs] = useState([
     {
       field: "barcode",
       headerName: "ბარკოდი",
-      
     },
     {
       field: "product",
@@ -132,7 +126,6 @@ const CatalogueTable = () => {
     {
       field: "unit",
       headerName: "ერთეული",
-
     },
     {
       field: "price",
@@ -176,14 +169,13 @@ const CatalogueTable = () => {
       field: "status",
       headerName: "სტატუსი",
       cellRenderer: ({ value }) => {
-        let color = ""
-        if(value === "აქტიური"){
-          color = "#6E0FF5"
-        } else if(value === "გაუქმებული"){
-          color = "#FF3360"
-
-        }else if(value === "მიუწვდომელი"){
-          color = "#FFA23C"
+        let color = "";
+        if (value === "აქტიური") {
+          color = "#6E0FF5";
+        } else if (value === "გაუქმებული") {
+          color = "#FF3360";
+        } else if (value === "მიუწვდომელი") {
+          color = "#FFA23C";
         }
         return (
           <div className="flex items-center" style={{ height: "100%" }}>
@@ -198,7 +190,6 @@ const CatalogueTable = () => {
       },
     },
   ]);
-
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -302,8 +293,6 @@ const CatalogueTable = () => {
   };
   const gridRef = useRef(null);
 
-
-
   const [showFilters, setShowFilters] = useFilterToggle();
   // --------//
   // --------//
@@ -319,8 +308,6 @@ const CatalogueTable = () => {
   const disableHoverAsync = () => {
     setIsHover(false);
   };
-
-
 
   const [isChecked, setISChecked] = useState(false);
 
@@ -530,7 +517,6 @@ const CatalogueTable = () => {
                   return 37;
                 }
               }}
-     
               paginationPageSize={pageSize}
             ></AgGridReact>
           )}

@@ -47,6 +47,8 @@ import { useNavigate } from "react-router-dom";
 import useRemoveId from "../components/useRemoveId";
 import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import { useQuery } from "react-query";
+import { getData } from "./Test3";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -57,181 +59,138 @@ const AllOrdersParent = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
-
   const gridRef = useRef(null);
 
-  const [columnDefs] = useState(
-    allOrdersParentColumns.map((obj) => {
-      console.log(obj.name);
-      if (obj.name === "Shop #") {
-        return {
-          field: obj.name,
-          headerName: "მაღაზიის #",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return "SPAR" + String(value).padStart(3, "0");
-          },
-        };
-      }
+  const url = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
-      if (obj.name === "Vendors") {
-        const vendors = [
-          "Orbita",
-          "Kant",
-          "Diplomat",
-          "Vest Inv.",
-          "Magako",
-          "GDM",
-          "Svaneti",
-        ];
+  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
-        return {
-          field: obj.name,
-          headerName: "მომწოდებლები",
-          cellRenderer: (params) => {
-            return vendors[Math.floor(Math.random() * vendors.length)];
-          },
-        };
-      }
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
 
-      if (obj.name === "Amount") {
-        return {
-          field: obj.name,
-          headerName: "რაოდენობა",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+  }, [data, isLoading, error]);
 
-      if (obj.name === "Shop Address") {
-        return {
-          field: obj.name,
-          headerName: "მაღაზიის მისამართი",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
+  const [columnDefs] = useState([
+    {
+      field: "shop",
+      headerName: "მაღაზიის #",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return "SPAR" + String(value).padStart(3, "0");
+      },
+    },
+    {
+      field: "date",
+      headerName: "თარიღი",
+      cellRenderer: (params) => {
+        return vendors[Math.floor(Math.random() * vendors.length)];
+      },
+    },
 
-      if (obj.name === "Scheduled") {
-        return {
-          field: obj.name,
-          headerName: "გეგმიური მიწოდება",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
+    {
+      field: "vendor",
+      headerName: "მომწოდებელი",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL";
+      },
+    },
+    {
+      field: "amount",
+      headerName: "რაოდენობა",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL";
+      },
+    },
+    {
+      field: "scheduled",
+      headerName: "გეგმიური მიწოდება",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL";
+      },
+    },
+    {
+      field: "status",
+      headerName: "სტატუსი",
 
-      if (obj.name === "Service Level") {
-        return {
-          field: obj.name,
-          headerName: "სერვისის დონე",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
+      minWidth: 190,
+      maxWidth: 200,
+      cellRenderer: (params) => {
+        const { value } = params;
+        let res = "";
+        let color = "";
+        if (value % 3 === 0) {
+          res = "Pending";
+        } else if (value % 3 === 1) {
+          res = "In Progress";
+        } else {
+          res = "Delivered";
+        }
 
-      if (obj.name === "Date") {
-        return {
-          field: obj.name,
-          headerName: "თარიღი",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        };
-      }
+        if (params.value % 3 === 0) {
+          color = "#FFC23C";
+        } else if (params.value % 3 === 1) {
+          color = "#6E0FF5";
+        } else {
+          color = "#01C6B5";
+        }
 
-      if (obj.name === "Status") {
-        return {
-          field: obj.name,
-          headerName: "სტატუსი",
-          // cellRenderer: (params) => {
-          //   const { value } = params;
-          //   if (value % 3 === 0) {
-          //     return "Pending";
-          //   } else if (value % 3 === 1) {
-          //     return "In Progress";
-          //   } else {
-          //     return "Delivered";
-          //   }
-          // },
-          minWidth: 190,
-          maxWidth: 200,
-          cellRenderer: (params) => {
-            const { value } = params;
-            let res = "";
-            let color = "";
-            if (value % 3 === 0) {
-              res = "Pending";
-            } else if (value % 3 === 1) {
-              res = "In Progress";
-            } else {
-              res = "Delivered";
-            }
+        return (
+          <>
+            <span
+              className="ag-cell-status-value"
+              style={{ pointerEvents: "none", color }}
+            >
+              {res}
+            </span>
+            <div className="status-container" style={{ pointerEvents: "none" }}>
+              <ul>
+                <li style={{ color }}>{res}</li>
+                <li>Something 11:06, 2/10/2023</li>
+                <li>Received 11:06, 2/10/2023</li>
+                <li>Sent 11:06, 2/10/2023</li>
+              </ul>
+            </div>
+          </>
+        );
+      },
 
-            if (params.value % 3 === 0) {
-              color = "#FFC23C";
-            } else if (params.value % 3 === 1) {
-              color = "#6E0FF5";
-            } else {
-              color = "#01C6B5";
-            }
-
-            return (
-              <>
-                <span
-                  className="ag-cell-status-value"
-                  style={{ pointerEvents: "none", color }}
-                >
-                  {res}
-                </span>
-                <div
-                  className="status-container"
-                  style={{ pointerEvents: "none" }}
-                >
-                  <ul>
-                    <li style={{ color }}>{res}</li>
-                    <li>Something 11:06, 2/10/2023</li>
-                    <li>Received 11:06, 2/10/2023</li>
-                    <li>Sent 11:06, 2/10/2023</li>
-                  </ul>
-                </div>
-              </>
-            );
-          },
-
-          cellStyle: (params) => {
-            if (params.value % 3 === 0) {
-              return {
-                color: "#FFC23C",
-              };
-            } else if (params.value % 3 === 1) {
-              return {
-                color: "#6E0FF5",
-              };
-            } else {
-              return {
-                color: "#01C6B5",
-              };
-            }
-          },
-        };
-      }
-
-      return {
-        field: obj.name,
-      };
-    })
-  );
+      cellStyle: (params) => {
+        if (params.value % 3 === 0) {
+          return {
+            color: "#FFC23C",
+          };
+        } else if (params.value % 3 === 1) {
+          return {
+            color: "#6E0FF5",
+          };
+        } else {
+          return {
+            color: "#01C6B5",
+          };
+        }
+      },
+    },
+    {
+      field: "serviceLevel",
+      headerName: "სერვისის დონე",
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value + " GEL";
+      },
+    },
+  ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
