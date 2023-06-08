@@ -61,6 +61,7 @@ import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
 import SlaByVendor from "./pages/SlaByVendor";
+import SlaByCategory from "./pages/SlaByCategory";
 
 const queryClient = new QueryClient();
 
@@ -106,7 +107,7 @@ function App() {
             <Route path="/sla-by-vendor" element={<SlaByVendor />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />
-            <Route path="/sla-by-category" element={<SlaByItem />} />
+            <Route path="/sla-by-category" element={<SlaByCategory />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/sla-graphics" element={<SlaGraphics />} />
             <Route path="/discounts-table" element={<DiscountsTable />} />
