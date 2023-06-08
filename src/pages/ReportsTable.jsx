@@ -118,11 +118,11 @@ useEffect(() => {
     },
     {
       field: "slaByQuantity",
-      headerName: "SLA by Quantity",
+      headerName: "SL რაოდენობით",
     },
     {
       field: "slaByAmount",
-      headerName: "SLA by Amount",
+      headerName: "SL თანხით",
       cellRenderer: (params) => {
         const { value } = params;
         return value + " " + "Gel";
@@ -130,7 +130,7 @@ useEffect(() => {
     },
     {
       field: "inTimeOrders",
-      headerName: "In Time Orders",
+      headerName: "დროულად",
       minWidth: 250,
       cellRenderer: (params) => {
         const { value } = params;
