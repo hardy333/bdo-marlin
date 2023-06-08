@@ -7,6 +7,7 @@ import DashTopChart from "../components/DashTopChart";
 import { Link } from "react-router-dom";
 import BubbleChat from "../components/BubbleChat";
 import ColumnCHart from "../components/ColumnCHart";
+import RightChartBubbles from "../components/RightChartBubbles";
 
 const Dash = () => {
   return (
@@ -14,21 +15,21 @@ const Dash = () => {
       <section className="main-dashboard">
         <div className="main-dashboard-stats">
           <div className="stat-card">
-            <h3>Shops</h3>
+            <h3>მაღაზიები</h3>
             <h2>324</h2>
           </div>
           <div className="stat-card">
             <h3>
-              Suppliers
+              ასორტიმენტი
             </h3>
             <h2>246</h2>
           </div>
           <div className="stat-card">
-            <h3>Vendors</h3>
+            <h3>ვენდორები</h3>
             <h2>523</h2>
           </div>
           <div className="stat-card">
-            <h3>Open Orders</h3>
+            <h3>ღია ორდერები</h3>
             <h2>246</h2>
           </div>
         </div>
@@ -36,11 +37,11 @@ const Dash = () => {
         <div className="main-dashboard-right">
           <header className="main-dashboard-header">
             <div>
-              <h2>Pending Orders</h2>
+              <h2>გაგზავნილი შეკვეთები</h2>
               <h3>124,765.88 GEL</h3>
             </div>
             <div>
-              <h2>Orders on the Way</h2>
+              <h2>მიმდინარე ორდერები</h2>
               <h3>65,540.50 GEL</h3>
             </div>
           </header>
@@ -50,10 +51,13 @@ const Dash = () => {
             </div>
             <div className="bottom-chart-container">
               <section className="left-chart">
-                <h2>Service level: Top 5 Vendors</h2>
+                <h2>სერვისის დონე: ტოპ 5 ვენდორი</h2>
                 <ColumnCHart />
               </section>
-              <section className="right-chart">{/* <BubbleChat /> */}</section>
+              <section className="right-chart">
+              <h2>პრობლემური მომწოდებლები</h2>
+                <RightChartBubbles />
+              </section>
             </div>
           </div>
         </div>

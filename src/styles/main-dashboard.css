@@ -94,10 +94,11 @@
 
 .stat-card h3{
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 19px;
   text-align: center;
   color: #211543;
+  margin-bottom: 2rem;
 
 }
 
@@ -171,7 +172,6 @@
 }
 
 .left-chart h2{
-  font-weight: 700;
 font-size: 16px;
 line-height: 19px;
 
