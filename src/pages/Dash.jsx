@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import BubbleChat from "../components/BubbleChat";
 import ColumnCHart from "../components/ColumnCHart";
 import RightChartBubbles from "../components/RightChartBubbles";
+import CountUp from "react-countup";
 
 const Dash = () => {
   return (
@@ -16,21 +17,53 @@ const Dash = () => {
         <div className="main-dashboard-stats">
           <div className="stat-card">
             <h3>მაღაზიები</h3>
-            <h2>324</h2>
+
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={324}
+              duration={0.5}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
+            </CountUp>
           </div>
           <div className="stat-card">
-            <h3>
-              ასორტიმენტი
-            </h3>
-            <h2>246</h2>
+            <h3>ასორტიმენტი</h3>
+
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={4534}
+              duration={0.4}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
+            </CountUp>
           </div>
           <div className="stat-card">
             <h3>მომწოდებლები</h3>
-            <h2>523</h2>
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={523}
+              duration={0.6}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>523</h2>}
+            </CountUp>
           </div>
           <div className="stat-card">
             <h3>ღია შეკვეთები</h3>
-            <h2>246</h2>
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={646}
+              duration={0.8}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>646</h2>}
+            </CountUp>
           </div>
         </div>
 
@@ -55,7 +88,7 @@ const Dash = () => {
                 <ColumnCHart />
               </section>
               <section className="right-chart">
-              <h2>პრობლემური მომწოდებლები</h2>
+                <h2>პრობლემური მომწოდებლები</h2>
                 <RightChartBubbles />
               </section>
             </div>
