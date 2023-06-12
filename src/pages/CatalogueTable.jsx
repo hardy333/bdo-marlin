@@ -111,8 +111,6 @@ const CatalogueTable = () => {
     if (isLoading) return;
     if (error) return;
     setRowData(data.data);
-    console.log(data.data, rowData, "xx");
-    console.log("Hello from useEffect");
   }, [data, isLoading, error]);
 
   const [columnDefs] = useState([

@@ -86,10 +86,13 @@ const OrderDetails = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
+  const [searchParams] = useSearchParams();
+  const orderID = searchParams.get("orderID") || "5e93afb9-87cb-49d1-8e4a-f765f8b87705"
 
   
   const url =
-    " https://10.0.0.202:5001/api/OrderDetailsFront/5e93afb9-87cb-49d1-8e4a-f765f8b87705";
+    `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
+
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
@@ -155,6 +158,7 @@ const OrderDetails = () => {
         return <span style={{color: color}}>{value}</span>
       },
     },
+  
   ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
@@ -262,12 +266,12 @@ const OrderDetails = () => {
   const [showFilters, setShowFilters] = useFilterToggle();
 
   // URL info
-  const [searchParams] = useSearchParams();
   let date = searchParams.get("date") || "01/30/2023";
   let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
   let vendor = searchParams.get("vendor") || "GDM";
   let status = searchParams.get("status") || "გაგზავნილია";
 
+  console.log(status)
   let statusBg;
   // if (status === "In Progress") {
   //   statusBg = "#6E0FF5";

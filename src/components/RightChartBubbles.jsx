@@ -22,15 +22,12 @@ const RightChartBubbles = () => {
   const [hoverI, setHoverI] = useState(null);
 
   const hoverStart = (e, num) => {
-    console.log("S");
     setHoverI(num);
   };
 
   const hoverEnd = () => {
-    console.log("e");
     setHoverI(null);
   };
-  console.log(hoverI);
 
   return (
     <div className="right-chart-buttons">

@@ -97,7 +97,9 @@ const AllOrdersParent = () => {
       showingName: "სერვისის დონე",
       isShowing: true
       
-    }]
+    },
+   
+  ]
   );
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -107,6 +109,8 @@ const AllOrdersParent = () => {
   const url = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+
+  console.log(data)
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -145,7 +149,8 @@ const AllOrdersParent = () => {
       headerName: "მომწოდებელი",
       cellRenderer: (params) => {
         const { value } = params;
-        return value 
+        console.log(params)
+        return <span data-order-id={params.data.orderID}>{value}</span>
       },
     },
     {
@@ -229,6 +234,12 @@ const AllOrdersParent = () => {
         const { value } = params;
         return Math.floor(Math.random()*60+40) + "%";
       },
+    },
+    {
+      field: "orderID",
+      headerName: "orderID",
+      show: false,
+      hide: true
     },
   ]);
 
@@ -349,14 +360,19 @@ const AllOrdersParent = () => {
         //  for navigation
         const shop = row.querySelector(".ag-cell[col-id='shop']").innerText;
         const date = row.querySelector(".ag-cell[col-id='date']").innerText;
-        const status = row.querySelector(".ag-cell[col-id='status']").innerText;
+        const status = row.querySelector(".ag-cell[col-id='status'] .ag-cell-status-value").innerText;
         const vendor = row.querySelector(
           ".ag-cell[col-id='vendor']"
         ).innerText;
+
+        const orderID = row.querySelector(
+          ".ag-cell[col-id='vendor'] span"
+        ).getAttribute("data-order-id")
  
 
+
         navigate(
-          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&status=${status}`
+          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&status=${status}&orderID=${orderID}`
         );
       }
 
