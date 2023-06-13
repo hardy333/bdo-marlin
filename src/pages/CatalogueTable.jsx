@@ -342,7 +342,9 @@ const CatalogueTable = () => {
 
   return (
     <>
-      <header className="all-orders__header catalogue-header">
+      <header className="all-orders__header catalogue-header" style={{position: "relative"}}>
+      <ProgressBar show={isFetching} />
+
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -524,7 +526,6 @@ const CatalogueTable = () => {
           className="ag-theme-alpine ag-grid-example"
           style={{ minHeight: 595, width: "100%", position: "relative" }}
         >
-        <ProgressBar show={isFetching} />
           <AgGridReact
             ref={gridRef}
             onGridReady={onGridReady}

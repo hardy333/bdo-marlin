@@ -5,10 +5,11 @@
     z-index: 0;
     background-color: hwb(265 32% 0% / 0.542);
     position: absolute;
-    top: -4px;
+    top: -20px;
     left: 0;
     border-radius: 2px;
     width: 100%;
+    /* display: block !important; */
 }
 
 .progress-bar span{
