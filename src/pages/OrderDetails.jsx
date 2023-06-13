@@ -95,6 +95,8 @@ const OrderDetails = () => {
 
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  console.log(data)
+  
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -108,8 +110,6 @@ const OrderDetails = () => {
     if (isLoading) return;
     if (error) return;
     setRowData(data.data);
-    console.log(data.data, rowData, "xx");
-    console.log("Hello from useEffect");
   }, [data, isLoading, error]);
 
 
@@ -272,6 +272,7 @@ const OrderDetails = () => {
   let status = searchParams.get("status") || "გაგზავნილია";
 
   console.log(status)
+  
   let statusBg;
   // if (status === "In Progress") {
   //   statusBg = "#6E0FF5";

@@ -97,6 +97,9 @@ const VendorAllOrdersTable = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
+  console.log(data)
+
+  
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -312,7 +315,7 @@ const VendorAllOrdersTable = () => {
   const [openedRowId, setOpenedRowId] = useState(null);
 
   useEffect(() => {
-    const tableElem = document.querySelector(".vendors-all-orders-table");
+    const tableElem = document.querySelector(".vendors-all-orders-table .ag-center-cols-container");
 
     if (!tableElem) return;
 
@@ -323,7 +326,8 @@ const VendorAllOrdersTable = () => {
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
 
-      if (colName !== "Status") {
+      
+      if (colName !== "status") {
         navigate(`/order-details`);
       }
 

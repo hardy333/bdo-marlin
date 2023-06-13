@@ -1,40 +1,49 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchSvg from "./svgs/SearchSvg";
 
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import data from "../assets/goodwill-data.json";
+import { useQuery } from "react-query";
+import { getData } from "../pages/Test3";
+import { useMemo } from "react";
 
-let categories = [];
-let resData = {};
+// let categories = [];
+// let resData = {};
 
-const processData = (data) => {
-  const allCategories = [];
-  data.forEach((obj) => {
-    allCategories.push(obj.category);
-  });
+// const processData = (data) => {
+//   const allCategories = [];
+//   data.forEach((obj) => {
+//     allCategories.push(obj.category);
+//   });
 
-  categories = Array.from(new Set(allCategories));
+//   categories = Array.from(new Set(allCategories));
 
-  data.forEach((obj) => {
-    if (resData[obj.category]) {
-      resData[obj.category].push(obj.product);
-    } else {
-      resData[obj.category] = [obj.product];
-    }
-  });
-};
+//   data.forEach((obj) => {
+//     if (resData[obj.category]) {
+//       resData[obj.category].push(obj.product);
+//     } else {
+//       resData[obj.category] = [obj.product];
+//     }
+//   });
 
-processData(data);
+//   console.log(categories)
+// };
 
-const CatalogueMenu = ({ changeAllData }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+// processData(data);
+
+const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
+  // Selected category, sub category
+  const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
+  const [selectedProduct, setSelectedProduct] = useState("ჩიფსი");
+  // ....
   const [isOutsideWrapper, setIsOutsideWrapper] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  // Search values
   const [categorySearchValue, setCategorySearchValue] = useState("");
   const [subCategorySearchValue, setSubCategorySearchValue] = useState("");
 
+  // Events
   const handleMouseOver = (e) => {
     if (e.target.classList.contains("category-li")) {
       const span = e.target.querySelector(".category-name");
@@ -54,25 +63,101 @@ const CatalogueMenu = ({ changeAllData }) => {
   const handleProductClick = (e, name) => {
     setIsOutsideWrapper(true);
     setSelectedProduct(name);
+
+    // console.log(resArr)
+    // console.log(selectedCategory)
+    
+    const id = resArr.find(obj => obj.name === selectedCategory).children.find(obj => obj.name === name).categoryid
+
+    setSubCatId(id)
+    
     if (changeAllData) {
       changeAllData();
     }
   };
 
+  // ------------------------ //
+  
+  const url =
+    "https://10.0.0.202:5001/api/ProductCategories?page=1&pageSize=182";
+
+  const { isLoading, error, data, } = useQuery("catalogueMenuData", () => getData(url));
+
+
+
+  const resArr = useMemo(() => {
+    if(!data) return
+    const {data: catData} = data
+    const resObj = {}
+    const resArr = []
+
+    catData.forEach((obj) => {
+      if(obj.name === "ჩიფსი"){
+        console.log(obj)
+      }
+      if(obj.parentFolder === ""){
+        resObj[obj.categoryid] = obj
+        resObj[obj.categoryid].children = []
+      }else{
+        if(!resObj[obj.parentFolder]){
+          const parentObj = catData.find(obj => obj.categoryId === obj.parentFolder)
+          if(parentObj){
+            resObj[obj.parentFolder] = parentObj 
+          }
+          if(resObj[obj.parentFolder]){
+
+            resObj[obj.parentFolder].children = [obj]
+          }
+        }else{
+          resObj[obj.parentFolder].children.push(obj)
+
+        }
+        
+      }
+
+    })
+
+
+    for(let [key, value] of Object.entries(resObj)){
+      resArr.push(value)
+    }
+
+    return resArr
+  }, [data])
+
+  
+  
+  // const [rowData, setRowData] = useState(() => {
+  //   if (data || data?.data) {
+  //     return data.data;
+  //   }
+  //   return null;
+  // });
+
+  
+  
+  
+  // ------------------------ //
+  
+  
+  
+
   let arrLeft = [];
   let arrRight = [];
 
-  if (resData && selectedCategory) {
-    resData[selectedCategory]
-      .filter((name) => name.includes(subCategorySearchValue))
-      .forEach((name, index) => {
+
+  if (resArr && selectedCategory) {
+    resArr.find(obj => obj.name === selectedCategory)?.children
+      .filter((obj) => obj.name.includes(subCategorySearchValue))
+      .forEach((obj, index) => {
         if (index % 2 === 0) {
-          arrLeft.push(name);
+          arrLeft.push(obj);
         } else {
-          arrRight.push(name);
+          arrRight.push(obj);
         }
       });
   }
+
 
   return (
     <div
@@ -94,17 +179,16 @@ const CatalogueMenu = ({ changeAllData }) => {
           <SearchSvg />
         </div>
         <ul onMouseMove={handleMouseOver}>
-          {categories
-            .filter((name) => name.includes(categorySearchValue))
-            .map((category, i) => (
+          {resArr?.filter((catObj) => catObj.name.includes(categorySearchValue))
+            .map((catObj, i) => (
               <li
                 className={`category-li ${
-                  selectedCategory === category ? "active" : ""
+                  selectedCategory === catObj.name ? "active" : ""
                 }`}
                 key={i}
               >
-                <span className="category-name" data-value={category}>
-                  {category}
+                <span className="category-name" data-value={catObj.name}>
+                  {catObj.name}
                 </span>
                 <span className="category-arrow">
                   <BsArrowRightShort />
@@ -132,31 +216,32 @@ const CatalogueMenu = ({ changeAllData }) => {
         </div>
         <div className="catalogue-menu-list-2__list-wrapper">
           <ul className="left">
-            {arrLeft.map((name, index) => {
+            {arrLeft.map((subCatObj, index) => {
               return (
                 <li
-                  onClick={(e) => handleProductClick(e, name)}
-                  key={name + index}
+                  onClick={(e) => handleProductClick(e, subCatObj.name)}
+                  key={subCatObj.name + index}
                   style={{
-                    color: name === selectedProduct ? "#6E0FF5" : "",
+                    color: subCatObj.name === selectedProduct ? "#6E0FF5" : "",
                   }}
                 >
-                  {name}
+                  {subCatObj.name}
                 </li>
               );
             })}
           </ul>
           <ul className="right">
-            {arrRight.map((name, index) => {
+            {arrRight.map((subCatObj, index) => {
               return (
                 <li
-                  onClick={(e) => handleProductClick(e, name)}
-                  key={name + index}
+                  onClick={(e) => handleProductClick(e, subCatObj.name)}
+                  key={subCatObj.name + index}
+                  data-hello="Hello"
                   style={{
-                    color: name === selectedProduct ? "#6E0FF5" : "",
+                    color: subCatObj.name === selectedProduct ? "#6E0FF5" : "",
                   }}
                 >
-                  {name}
+                  {subCatObj.name}
                 </li>
               );
             })}

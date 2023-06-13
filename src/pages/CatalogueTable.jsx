@@ -93,12 +93,21 @@ const CatalogueTable = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
+  const [subCatId, setSubCatId] = useState("e1307628-f308-11ed-8120-005056b5a0aa")
 
+  console.log(subCatId)
+  
   const url =
-    "https://10.0.0.202:5001/api/CatalogueFront/M00001/4eca0fc3-f307-11ed-8120-005056b5a0aa";
+    `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
 
-  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  const { isLoading, error, data, refetch } = useQuery(["catalogueTableData", subCatId], () => getData(url));
 
+  useEffect(() => {
+
+    refetch()
+    
+  }, [subCatId])
+  
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -110,6 +119,8 @@ const CatalogueTable = () => {
     if (!data) return;
     if (isLoading) return;
     if (error) return;
+
+    console.log(data.data)
     setRowData(data.data);
   }, [data, isLoading, error]);
 
@@ -506,16 +517,13 @@ const CatalogueTable = () => {
       <div className="flex gap-2">
         {/* Categories */}
         <div className="catalogue-menu-container">
-          <CatalogueMenu />
+          <CatalogueMenu setSubCatId={setSubCatId}/>
         </div>
         <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example"
           style={{ minHeight: 595, width: "100%" }}
         >
-          {isLoading ? (
-            <h1>Loading ... </h1>
-          ) : (
             <AgGridReact
               ref={gridRef}
               onGridReady={onGridReady}
@@ -535,7 +543,6 @@ const CatalogueTable = () => {
               }}
               paginationPageSize={pageSize}
             ></AgGridReact>
-          )}
 
           {gridReady === true && (
             <AgTablePag

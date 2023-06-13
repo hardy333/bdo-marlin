@@ -67,3 +67,7 @@
 .vendors-all-orders-table .ag-row{
   cursor: pointer;
 }
+
+.ag-cell--opened{
+  padding-top: 10px;
+}

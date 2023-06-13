@@ -364,6 +364,7 @@ const AllOrdersParent = () => {
         const vendor = row.querySelector(
           ".ag-cell[col-id='vendor']"
         ).innerText;
+        
 
         const orderID = row.querySelector(
           ".ag-cell[col-id='vendor'] span"

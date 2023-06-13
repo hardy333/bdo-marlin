@@ -9,7 +9,7 @@ const variants = {
   },
   animate: (custom) => ({
     opacity: 1,
-    transition: { delay: custom * 0.1 },
+    transition: { delay: custom * 0.1 + 0.2 },
   }),
   exit: {
     opacity: 1,
