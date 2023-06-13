@@ -4,7 +4,6 @@ import SearchSvg from "./svgs/SearchSvg";
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-import data from "../assets/goodwill-data.json";
 import { useQuery } from "react-query";
 import { getData } from "../pages/Test3";
 import { useMemo } from "react";

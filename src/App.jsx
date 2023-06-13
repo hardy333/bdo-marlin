@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
@@ -15,14 +16,13 @@ import "./styles/date-range-picker-one.css";
 import "./styles/date-picker.css";
 import "./styles/floating-filter.css";
 
-import AgTable from "./pages/AgTable";
 import Error from "./pages/Error";
 import Employees from "./pages/Employees";
 import Profile from "./pages/Profile";
 import Vendors from "./pages/vendors/Vendors";
 import Invoices1 from "./pages/Invoices1";
 import Invoices2 from "./pages/Invoices2";
-import Home from "./pages/Home";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Prices from "./pages/Prices";
@@ -35,15 +35,27 @@ import InvoicesTable from "./pages/InvoicesTable";
 import Terms from "./pages/Terms";
 import AllOrdersParent from "./pages/AllOrdersParent";
 import LogsTable from "./pages/LogsTable";
-import CatalogueTable from "./pages/CatalogueTable";
 import ReportsTable from "./pages/ReportsTable";
+import CatalogueTable from "./pages/CatalogueTable";
+
+//  lazy
+// import NewCatalogueTable from "./pages/NewCatalogueTable";
+// import CatalogueTableGeo from "./pages/CatalogueTableGeo";
+// import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
+// import StableTable from "./pages/StableTable";
+// import CatalogueTable5Level from "./pages/CatalogueTable5Level";
+// import AgTable from "./pages/AgTable";
+
+// const NewCatalogueTable = React.lazy(() => import("./pages/NewCatalogueTable"));
+// const CatalogueTableGeo = React.lazy(() => import("./pages/CatalogueTableGeo"));
+// const CatalogueTablegeoResize = React.lazy(() => import("./pages/CatalogueTablegeoResize"));
+// const StableTable = React.lazy(() => import("./pages/StableTable"));
+// const CatalogueTable5Level = React.lazy(() => import("./pages/CatalogueTable5Level"));
+// const AgTable = React.lazy(() => import("./pages/AgTable"));
+
+
 import Contract from "./pages/Contract";
-import NewCatalogueTable from "./pages/NewCatalogueTable";
-import CatalogueTableGeo from "./pages/CatalogueTableGeo";
-import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
-import StableTable from "./pages/StableTable";
-import CatalogueTable5Level from "./pages/CatalogueTable5Level";
 import SlaByVendorsTable from "./pages/SlaByVendorsTable";
 import SlaGraphics from "./pages/SlaGraphics";
 import DiscountsTable from "./pages/DiscountsTable";
@@ -72,11 +84,9 @@ function App() {
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
-            <Route path="/links" element={<Home />} />
             <Route path="/dash" element={<Dash />} />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
             <Route path="/sla-category" element={<SlaCategory />} />
-            <Route path="/ag-table" element={<AgTable />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />
@@ -100,9 +110,7 @@ function App() {
             <Route path="/catalogue" element={<CatalogueTable />} />
             <Route path="/reports" element={<ReportsTable />} />
             <Route path="/contract" element={<Contract />} />
-            <Route path="/new-catalogue" element={<NewCatalogueTable />} />
-            <Route path="/catalogue-geo" element={<CatalogueTableGeo />} />
-            <Route path="/stable-table" element={<StableTable />} />
+            {/* -------------------- */}
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
             <Route path="/sla-by-vendor" element={<SlaByVendor />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
@@ -117,16 +125,8 @@ function App() {
               element={<VendorsCalendarTable />}
             />
             <Route
-              path="/catalogue-5-level"
-              element={<CatalogueTable5Level />}
-            />
-            <Route
               path="/vendor-all-orders"
               element={<VendorAllOrdersTable />}
-            />
-            <Route
-              path="/catalogue-geo-resize"
-              element={<CatalogueTablegeoResize />}
             />
             <Route path="/*" element={<Error />} />
           </Route>
