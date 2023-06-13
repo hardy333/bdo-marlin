@@ -133,6 +133,7 @@ const CatalogueTable = () => {
     {
       field: "product",
       headerName: "პროდუქტი",
+      minWidth: 200,
 
       cellRenderer: (params) => {
         const { value } = params;
@@ -143,10 +144,12 @@ const CatalogueTable = () => {
     {
       field: "unit",
       headerName: "ერთეული",
+      maxWidth: 150,
     },
     {
       field: "price",
       headerName: "ფასი",
+      maxWidth: 150,
 
       cellRenderer: (params) => {
         const { value } = params;
