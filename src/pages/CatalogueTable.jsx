@@ -50,6 +50,7 @@ import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg
 import TriangleSvg from "../components/svgs/TriangleSvg";
 import { useQuery } from "react-query";
 import { getData } from "./Test3";
+import ProgressBar from "../components/ProgressBar";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -93,21 +94,23 @@ const CatalogueTable = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-  const [subCatId, setSubCatId] = useState("e1307628-f308-11ed-8120-005056b5a0aa")
+  const [subCatId, setSubCatId] = useState(
+    "e1307628-f308-11ed-8120-005056b5a0aa"
+  );
 
-  console.log(subCatId)
-  
-  const url =
-    `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
 
-  const { isLoading, error, data, refetch } = useQuery(["catalogueTableData", subCatId], () => getData(url));
+  const url = `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
+
+  const { isLoading, error, data, refetch, isFetching } = useQuery(
+    ["catalogueTableData", subCatId],
+    () => getData(url)
+  );
+
 
   useEffect(() => {
+    refetch();
+  }, [subCatId]);
 
-    refetch()
-    
-  }, [subCatId])
-  
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -119,8 +122,6 @@ const CatalogueTable = () => {
     if (!data) return;
     if (isLoading) return;
     if (error) return;
-
-    console.log(data.data)
     setRowData(data.data);
   }, [data, isLoading, error]);
 
@@ -159,14 +160,13 @@ const CatalogueTable = () => {
       cellRenderer: (params) => {
         const { value } = params;
 
-        let newVal = value
-        let up = false
-        if(Math.random() - 0.33 < 0){
-          newVal = value + 1
-          up = true
+        let newVal = value;
+        let up = false;
+        if (Math.random() - 0.33 < 0) {
+          newVal = value + 1;
+          up = true;
         }
-        
-        
+
         return (
           <div
             style={{ height: "100%", display: "flex" }}
@@ -176,10 +176,7 @@ const CatalogueTable = () => {
             <TriangleSvg
               fill={up ? "#FF3360" : "#6E0FF5"}
               style={{
-                transform:
-                  up
-                    ? "rotate(180deg)"
-                    : "rotate(0deg)",
+                transform: up ? "rotate(180deg)" : "rotate(0deg)",
               }}
             />
           </div>
@@ -259,7 +256,6 @@ const CatalogueTable = () => {
     gridApi.setQuickFilter(e.target.value);
   };
 
- 
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
       header.name !== name
@@ -403,8 +399,8 @@ const CatalogueTable = () => {
               </svg>
             </button>
             {/* popup */}
-            
-<Menu
+
+            <Menu
               align="center"
               direction="top"
               menuButton={
@@ -517,32 +513,34 @@ const CatalogueTable = () => {
       <div className="flex gap-2">
         {/* Categories */}
         <div className="catalogue-menu-container">
-          <CatalogueMenu setSubCatId={setSubCatId}/>
+          <CatalogueMenu setSubCatId={setSubCatId} />
         </div>
+        
         <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example"
-          style={{ minHeight: 595, width: "100%" }}
+          style={{ minHeight: 595, width: "100%", position: "relative" }}
         >
-            <AgGridReact
-              ref={gridRef}
-              onGridReady={onGridReady}
-              rowData={rowData}
-              columnDefs={columnDefs}
-              defaultColDef={defaultColDef}
-              pagination={true}
-              components={components}
-              getRowHeight={() => {
-                if (rowHeightIndex === 0) {
-                  return 25;
-                } else if (rowHeightIndex === 1) {
-                  return 32;
-                } else if (rowHeightIndex === 2) {
-                  return 37;
-                }
-              }}
-              paginationPageSize={pageSize}
-            ></AgGridReact>
+        <ProgressBar show={isFetching} />
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
 
           {gridReady === true && (
             <AgTablePag

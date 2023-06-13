@@ -95,7 +95,6 @@ const OrderDetails = () => {
 
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
-  console.log(data)
   
 
   const [rowData, setRowData] = useState(() => {
@@ -271,7 +270,6 @@ const OrderDetails = () => {
   let vendor = searchParams.get("vendor") || "GDM";
   let status = searchParams.get("status") || "გაგზავნილია";
 
-  console.log(status)
   
   let statusBg;
   // if (status === "In Progress") {

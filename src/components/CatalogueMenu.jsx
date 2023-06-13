@@ -93,7 +93,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
 
     catData.forEach((obj) => {
       if(obj.name === "ჩიფსი"){
-        console.log(obj)
       }
       if(obj.parentFolder === ""){
         resObj[obj.categoryid] = obj

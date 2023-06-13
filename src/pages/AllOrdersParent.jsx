@@ -110,7 +110,6 @@ const AllOrdersParent = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
-  console.log(data)
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

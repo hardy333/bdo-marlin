@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import ProgressBar from "../components/ProgressBar";
 
 const url = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
@@ -14,7 +15,12 @@ const Test3 = () => {
 
   console.log(data);
 
-  return <div>Test3</div>;
+  return <div>
+    <div className="h-[200px] bg-red-400  ">
+     <ProgressBar show={true} />
+      
+    </div>
+  </div>;
 };
 
 export default Test3;
