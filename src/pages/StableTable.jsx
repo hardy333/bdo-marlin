@@ -302,7 +302,7 @@ const StableTable = () => {
     
     document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
 
-      text += cell.textContent + "    "
+      text += cell.textContent+ "\t" + "    "
       const colIndex = cell.getAttribute("aria-colindex")
 
       if(endColIndex === colIndex){
