@@ -142,7 +142,6 @@ const StableTable = () => {
   const endCellRef = useRef(null)
   
   const tBodyMouseDown = (e) => {
-    console.log("Mouse Click")
     clearColoredCells()
     const cell = e.target.closest(".ag-cell")
     const row = e.target.closest(".ag-row")
@@ -162,12 +161,10 @@ const StableTable = () => {
 
   const tBodyMouseMove = (e) => {
     if(!startCellRef.current) return;
-    console.log("Mouse Move")
     const cell = e.target.closest(".ag-cell")
     const row = e.target.closest(".ag-row")
 
     const startRow = startCellRef.current.closest(".ag-row")
-    console.log(startRow)
 
     endCellRef.current = cell
     
@@ -192,7 +189,6 @@ const StableTable = () => {
 
   const tBodyMouseUp = (e) => {
     startCellRef.current = null
-    console.log("Clear", startCellRef.current)
     // clearColoredCells()
 
   }
@@ -227,7 +223,6 @@ const StableTable = () => {
     if(!gridReady) return
     const tBody = document.querySelector(".copy-paste-table .ag-body")
 
-    console.log(tBody)
 
     tBody.addEventListener("mousedown", tBodyMouseDown)
     tBody.addEventListener("mousemove", tBodyMouseMove)
@@ -249,8 +244,9 @@ const StableTable = () => {
   },[gridReady])
 
   const keyDown = (e) => {
-    console.log(e)
-    if(e.key === "c" && e.ctrlKey){
+    console.log(e.code, e.key, e.ctrlKey, e.code === "KeyC")
+    if(e.code === "KeyC" && e.ctrlKey){
+      console.log(111)
       copyToClop()
       flashCells()
     }
@@ -264,7 +260,6 @@ const StableTable = () => {
   }
 
   const copyToClop = () => {
-    console.log("Copy")
         // Step 1: create a textarea element.
         // It is capable of holding linebreaks (newlines) unlike "input" element
         const mySmartTextarea = document.createElement('textarea');
@@ -289,6 +284,12 @@ const StableTable = () => {
         parentElement.removeChild(mySmartTextarea);
 
 
+        setTimeout(() => {
+          document.querySelectorAll(".cell-flash").forEach(cell => {
+            cell.classList.remove("cell-flash")
+          })
+        }, 10)
+
 
   }
   
@@ -297,7 +298,6 @@ const StableTable = () => {
   const generateCopyText = () => {
     let text = ""
     
-    console.log(endCellRef.current)
     const endColIndex = endCellRef.current.getAttribute("aria-colindex")
     
     document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
