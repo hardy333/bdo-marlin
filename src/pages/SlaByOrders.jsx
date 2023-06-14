@@ -430,7 +430,7 @@ import React, {
               </button>
               <button
                 className="all-orders__btn excel-export-btn"
-                onClick={() => exportData(rowData)}
+                onClick={() => exportData(rowData, "sla-orders")}
               >
                 <ExcelExportSvg />
               </button>

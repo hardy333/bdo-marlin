@@ -430,7 +430,7 @@ import SlaMenu from "../components/SlaMenu";
               </button>
               <button
                 className="all-orders__btn excel-export-btn"
-                onClick={() => exportData(rowData)}
+                onClick={() => exportData(rowData, "sla-by-shops")}
               >
                 <ExcelExportSvg />
               </button>

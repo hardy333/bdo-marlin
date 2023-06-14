@@ -416,7 +416,7 @@ const InvoicesTable = () => {
             </button>
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData)}
+              onClick={() => exportData(rowData, "invoices")}
             >
               <ExcelExportSvg />
             </button>

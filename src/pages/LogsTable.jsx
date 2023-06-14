@@ -133,7 +133,7 @@ const LogsTable = () => {
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData)}
+              onClick={() => exportData(rowData, "logs")}
             >
               <ExcelExportSvg />
             </button>

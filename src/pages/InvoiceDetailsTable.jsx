@@ -413,7 +413,7 @@ const InvoiceDetailsTable = () => {
             </button>
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData)}
+              onClick={() => exportData(rowData, "invoice-details")}
             >
               <ExcelExportSvg />
             </button>
