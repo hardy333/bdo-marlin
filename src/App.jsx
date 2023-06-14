@@ -42,7 +42,7 @@ import CatalogueTable from "./pages/CatalogueTable";
 // import NewCatalogueTable from "./pages/NewCatalogueTable";
 // import CatalogueTableGeo from "./pages/CatalogueTableGeo";
 // import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
-// import StableTable from "./pages/StableTable";
+import StableTable from "./pages/StableTable";
 // import CatalogueTable5Level from "./pages/CatalogueTable5Level";
 // import AgTable from "./pages/AgTable";
 
@@ -96,6 +96,7 @@ function App() {
             <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/stable-table" element={<StableTable />} />
             <Route path="/register" element={<Register />} />
             <Route path="/prices" element={<Prices />} />
             <Route path="/main-dashboard" element={<MainDashboard />} />

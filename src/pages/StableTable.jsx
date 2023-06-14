@@ -132,12 +132,176 @@ const StableTable = () => {
   };
 
 
-
-
   const [gridReady, setGridReady] = useState(false);
 
+  // Copy paste 
+  // Copy paste 
+
+  // const [startCell, setStartCell] = useState(null)
+  const startCellRef = useRef(null)
+  const endCellRef = useRef(null)
+  
+  const tBodyMouseDown = (e) => {
+    console.log("Mouse Click")
+    clearColoredCells()
+    const cell = e.target.closest(".ag-cell")
+    const row = e.target.closest(".ag-row")
+    cell.classList.add("cell-copy-paste-active")
+
+    if(!cell || !row) return
+
+    startCellRef.current = cell
+
+    const [x,y] = getXY(cell, row)
 
 
+    
+
+    
+  }
+
+  const tBodyMouseMove = (e) => {
+    if(!startCellRef.current) return;
+    console.log("Mouse Move")
+    const cell = e.target.closest(".ag-cell")
+    const row = e.target.closest(".ag-row")
+
+    const startRow = startCellRef.current.closest(".ag-row")
+    console.log(startRow)
+
+    endCellRef.current = cell
+    
+    const [x1,y1] = getXY(startCellRef.current, startRow)
+    const [x2,y2] = getXY(cell, row)
+
+      colorCells(x1,y1,x2,y2)
+
+    
+    // if(y1 <= y2 && x1 <= x2){
+    //   colorCells(x1,y1,x2,y2)
+    // }else if(y1 > y2 && x1 <= x2){
+    //   colorCells(x2,y2, x1, y1)
+    // }else if(y1 <= y2 && x1 > x2){
+    //   colorCells(x1,y2, x2, y1)
+
+    // }else if(y1 > y2 && x1 > x2){
+    //   colorCells(x2,y2, x1, y1)
+    // }
+    
+  }
+
+  const tBodyMouseUp = (e) => {
+    startCellRef.current = null
+    console.log("Clear", startCellRef.current)
+    // clearColoredCells()
+
+  }
+
+  const getXY = (cell, row) => {
+    const x = Number(cell.getAttribute("aria-colindex"))
+    const y = Number(row.getAttribute("row-index"))
+    return [x,y]
+  }
+
+  const colorCells = (x1,y1,x2,y2) => {
+    for(let i = y1; i <= y2; i++){
+      const row = document.querySelector(`.ag-row[row-index='${i}']`)
+      for(let j = x1; j <= x2; j++){
+        const cell = row.querySelector(`.ag-cell[aria-colindex='${j}']`)
+        cell.classList.add("cell-copy-paste-active")
+      }
+    }
+
+  }
+
+  const clearColoredCells = () => {
+    document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
+      cell.classList.remove("cell-copy-paste-active")
+    })
+
+  }
+
+
+
+  useEffect(() => {
+    if(!gridReady) return
+    const tBody = document.querySelector(".copy-paste-table .ag-body")
+
+    console.log(tBody)
+
+    tBody.addEventListener("mousedown", tBodyMouseDown)
+    tBody.addEventListener("mousemove", tBodyMouseMove)
+    tBody.addEventListener("mouseup", tBodyMouseUp)
+
+    window.addEventListener("keydown", keyDown)
+   
+
+
+    return () => {
+      tBody.removeEventListener("mousedown", tBodyMouseDown)
+      tBody.removeEventListener("mousemove", tBodyMouseMove)
+      tBody.removeEventListener("mouseup", tBodyMouseUp)
+      window.removeEventListener("keydown", keyDown)
+
+      
+    }
+    
+  },[gridReady])
+
+  const keyDown = (e) => {
+    copyToClop()
+  }
+
+  const copyToClop = () => {
+    console.log("Copy")
+        // Step 1: create a textarea element.
+        // It is capable of holding linebreaks (newlines) unlike "input" element
+        const mySmartTextarea = document.createElement('textarea');
+
+        const text = generateCopyText()
+        
+        // Step 2: Store your string in innerHTML of mySmartTextarea element        
+        mySmartTextarea.innerHTML = text || ""
+        
+        // Step3: find an id element within the body to append your mySmartTextarea there temporarily
+        const parentElement = document.getElementById('root');
+        parentElement.appendChild(mySmartTextarea);
+        
+        // Step 4: Simulate selection of your text from mySmartTextarea programmatically 
+        mySmartTextarea.select();
+        
+        // Step 5: simulate copy command (ctrl+c)
+        // now your string with newlines should be copied to your clipboard 
+        document.execCommand('copy');
+
+        // Step 6: Now you can get rid of your "smart" textarea element
+        parentElement.removeChild(mySmartTextarea);
+
+
+
+  }
+  
+
+
+  const generateCopyText = () => {
+    let text = ""
+    
+    console.log(endCellRef.current)
+    const endColIndex = endCellRef.current.getAttribute("aria-colindex")
+    
+    document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
+
+      text += cell.textContent + "    "
+      const colIndex = cell.getAttribute("aria-colindex")
+
+      if(endColIndex === colIndex){
+        text += "\n"
+      }
+    })
+
+    return text
+    
+  }
 
   return (
     <>
@@ -146,7 +310,7 @@ const StableTable = () => {
         
       </header>
       <div
-        className="ag-theme-alpine stable-table"
+        className="ag-theme-alpine stable-table copy-paste-table"
         style={{ minHeight: 595, width: "100%",  }}
       >
         <AgGridReact
@@ -157,7 +321,6 @@ const StableTable = () => {
           suppressHorizontalScroll={true}
           components={components}
           getRowHeight={(props) => {
-            console.log(props)
             if (2 === 0) {
               return 25;
             } else if (1 === 1) {
