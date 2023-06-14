@@ -1,7 +1,7 @@
 .progress-bar{
     overflow: hidden;
     display: block;
-    height: 4px;
+    height: 2px;
     z-index: 0;
     background-color: hwb(265 32% 0% / 0.542);
     position: absolute;
