@@ -7,33 +7,28 @@ const ProgressBar = ({ show }) => {
   const [timesUp, setTimesUp] = useState(false);
 
   useEffect(() => {
+    if(show === false && timesUp === true) return
     setTimesUp(false);
 
-    const time = setInterval(() => {
+    const time = setTimeout(() => {
       setTimesUp(true);
-    }, 1000);
+      console.log("Hello")
+    }, 300);
 
     return () => {
-      clearInterval(time);
+      clearTimeout(time);
     };
-  }, []);
+  }, [show]);
 
-  let isShowing = false
-  if(show){
-    isShowing =  true
-  }else{
-    if(!timesUp){
-        isShowing = true
-    }
-  }
+
+  console.log(show, timesUp)
  
 
-  console.log(show, timesUp, isShowing)
   
   return (
     <div
       className="progress-bar"
-      style={{ display: isShowing ? "" : "none" }}
+      style={{ display: show || !timesUp ? "" : "none" }}
     >
       <span></span>
     </div>
