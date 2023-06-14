@@ -249,7 +249,18 @@ const StableTable = () => {
   },[gridReady])
 
   const keyDown = (e) => {
-    copyToClop()
+    console.log(e)
+    if(e.key === "c" && e.ctrlKey){
+      copyToClop()
+      flashCells()
+    }
+  }
+
+  const flashCells = () => {
+    document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
+      cell.classList.add("cell-flash")
+    })
+
   }
 
   const copyToClop = () => {

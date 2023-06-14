@@ -62,3 +62,20 @@
 }
 
 
+
+
+.stable-table .ag-cell.cell-flash{
+  animation: cell-anim 0.3s;
+}
+
+@keyframes cell-anim{
+  0%{
+  filter: brightness(200%)
+
+  }
+
+  100%{
+  filter: brightness(100%);
+
+  }
+}
