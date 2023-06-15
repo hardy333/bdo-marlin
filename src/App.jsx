@@ -74,6 +74,7 @@ import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
 import SlaByVendor from "./pages/SlaByVendor";
 import SlaByCategory from "./pages/SlaByCategory";
+import ExpandableTable from "./pages/ExpandableTable";
 
 const queryClient = new QueryClient();
 
@@ -88,6 +89,7 @@ function App() {
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
             <Route path="/sla-category" element={<SlaCategory />} />
             <Route path="/employees" element={<Employees />} />
+            <Route path="/expandable-table" element={<ExpandableTable />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />
               <Route path="change-password" element={<PasswordForm />} />

@@ -1,0 +1,46 @@
+.expandable-table .ag-cell{
+    
+    
+}
+
+.expandable-table .ag-cell.ag-cell-focus{
+    border-color: transparent !important;
+}
+
+.expandable-table .plus-minus-span{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100% !important;
+    text-align: center;
+    
+}
+
+.expandable-table .custom-col-container{
+    width: 100%;
+    height: 200px;
+    display: block;
+}
+
+.expandable-table .custom-col-container > div{
+    padding-left: 50px;
+    color: rgb(33, 21, 67);
+    font-weight: normal;
+    font-size: 12px;
+    position: relative;
+}
+
+.expandable-table .custom-col-container > div::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    background-color: black;
+    height: 1px;
+
+
+    display: none;
+
+    
+}
