@@ -1,6 +1,14 @@
+.expandable-table .ag-row{
+    overflow: hidden;
+}
+
 .expandable-table .ag-cell{
-    
-    
+    overflow: hidden;
+}
+
+.expandable-table .ag-row.opened .ag-cell{
+    overflow: visible !important;
+
 }
 
 .expandable-table .ag-cell.ag-cell-focus{
@@ -10,24 +18,48 @@
 .expandable-table .plus-minus-span{
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100% !important;
     text-align: center;
+
+    position: relative;
+    width: 35px;
+    height: 17px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+
+    
+    
+}
+
+.expandable-table .plus-minus-span::before{
+    content: "";
+    position: absolute;
+    width: 1500px;
+    height: 5px;
+    background-color:white;
+    bottom: 0;
+    left: -80px;
+    box-shadow: 0px 1px 0px 0px #DDE2EB;
+    z-index: 999;
+    pointer-events: none;
     
 }
 
 .expandable-table .custom-col-container{
     width: 100%;
-    height: 200px;
     display: block;
 }
 
 .expandable-table .custom-col-container > div{
-    padding-left: 50px;
+    padding-left: 30px;
     color: rgb(33, 21, 67);
     font-weight: normal;
-    font-size: 12px;
+    font-size: 11px;
     position: relative;
+    height: 41.6px;
 }
 
 .expandable-table .custom-col-container > div::before{
@@ -35,10 +67,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 400px;
-    background-color: black;
+    width: calc(100% + 36px);
+    background-color: #f2f1f7;
     height: 1px;
-
 
     display: none;
 

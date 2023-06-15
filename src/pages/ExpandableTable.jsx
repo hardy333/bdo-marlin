@@ -21,6 +21,8 @@ import fetch_XLSX_DATA from "../utils/getData";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import "../styles/stable-table.css";
 
+
+
 const ExpandableTable = () => {
   const [headerList, setHeaderList] = useState([
     {
@@ -60,7 +62,7 @@ const ExpandableTable = () => {
       cellRenderer:  (props) => {
         const {value} = props
         return <div>
-            <span className="plus-minus-span" style={{paddingRight: "1px", width: "20px", height: "17px", display: "inline-block"}}>+</span>
+            <span className="plus-minus-span">+</span>
             <span>{value}</span>
             <div className="custom-col-container"></div>
         </div>
@@ -197,7 +199,13 @@ const ExpandableTable = () => {
 
         const newCell = document.createElement("DIV")
         
-        newCell.textContent = arr[index]
+        if(index === 0){
+          newCell.innerHTML = `<span class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span>` + arr[index]
+
+        }else{
+          newCell.textContent = arr[index]
+
+        }
         
         columnContainer.append(newCell)
 
@@ -217,6 +225,9 @@ const ExpandableTable = () => {
   const expandedRow = useRef(null)
   const expandedRowId = useRef(null)
 
+  const expandLevel2 = () => {
+
+  }
 
   useEffect(() => {
     const tBody = document.querySelector(
@@ -225,8 +236,17 @@ const ExpandableTable = () => {
 
     if (!tBody) return;
 
-    const handleGridClick = (e) => {
+    const handleGridClick = (e) => {  
       const target = e.target;
+      if(!target.classList.contains("plus-minus-span")){
+        return
+      }
+      
+      if(target.classList.contains("plus-minus-span-2")){
+        expandLevel2()
+        return
+      }
+      
       const cell = target.closest(".ag-cell");
       const row = target.closest(".ag-row");
       const rowId = +row.getAttribute("row-id");
@@ -240,10 +260,13 @@ const ExpandableTable = () => {
         expandedRow.current = null
         expandedRowId.current = null
         row.querySelector(".plus-minus-span").textContent = "+"
+        row.classList.remove("opened")
+
       }else{
         expandedRow.current = row
         expandedRowId.current = rowId
-        row.querySelector(".plus-minus-span").textContent = "-"
+        row.querySelector(".plus-minus-span").innerHTML = "-"
+        row.classList.add("opened")
         renderSubTable()
       }
 
@@ -268,7 +291,7 @@ const ExpandableTable = () => {
   function getRowHeight(params) {
     const { id } = params.node;
     if (id == expandedRowId.current) {
-      return 600;
+      return 41.6*10 +1
     }
 
   
