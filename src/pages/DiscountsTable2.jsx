@@ -5,6 +5,9 @@ import React, {
   useRef,
   useState,
 } from "react";
+import ReactDOM from "react-dom/client";
+
+
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -32,6 +35,7 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
+import "../styles/discounts-table-2.css"
 
 import d from "../assets/discounts-table.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
@@ -41,7 +45,6 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { addDays } from "date-fns";
 import Select from "react-select";
 
 import "../styles/discounts-table.css";
@@ -54,7 +57,7 @@ const shopsArr = [
     value: "  აბაშა",
     label: "  აბაშა",
   },
- 
+
   {
     value: "ამბროლაური, ჭრებალო #163",
     label: "ამბროლაური, ჭრებალო #163",
@@ -117,7 +120,8 @@ const shopsArr = [
   },
 ];
 
-const DiscountsTable = () => {
+
+const DiscountsTable2 = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [headerList, setHeaderList] = useState([
@@ -176,65 +180,80 @@ const DiscountsTable = () => {
 
   const [columnDefs] = useState([
     {
-      field: "Product",
-      headerName: "პროდუქტი",
-    },
-    {
-      field: "Standard Price",
-      headerName: "სტანდარტული ფასი",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " GEL";
-      },
-    },
-    {
-      field: "Discount price",
-      headerName: "ფასდაკლების თანხა",
+      headerName: "",
+      children: [
+        {
+          field: "Product",
+          headerName: "პროდუქტი",
+        },
+        {
+          field: "Standard",
+          headerName: "სტანდარტული ფასი",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " GEL";
+          },
+        },
+        {
+          field: "Discount price",
+          headerName: "ფასდაკლების თანხა",
 
-      cellRenderer: (params) => {
-        const { value } = params;
-        return <span style={{ color: "#6E0FF5" }}>{value + " GEL"}</span>;
-      },
+          cellRenderer: (params) => {
+            const { value } = params;
+            return <span style={{ color: "#6E0FF5" }}>{value + " GEL"}</span>;
+          },
+        },
+      ],
     },
     {
-      field: "Min Quantity",
-      headerName: "მინ. რაოდენობა",
-    },
-    {
-      field: "Max Quantity",
-      headerName: "მაქს. რაოდენობა",
+      headerName: "ფასდაკლების პირობები",
+      children: [
+        {
+          field: "Min Quantity",
+          headerName: "მინ. რაოდენობა",
+        },
+        {
+          field: "Max Quantity",
+          headerName: "მაქს. რაოდენობა",
 
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value;
+          },
+        },
+        {
+          field: "Min Amount",
+          headerName: "მინ. ღირებულება",
+
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " " + "GEL";
+          },
+        },
+      ],
     },
     {
-      field: "Min Amount",
-      headerName: "მინ. ღირებულება",
+      headerName: "უკვე შეძენლი",
+      children: [
+        {
+          field: "Ordered Amount",
+          headerName: "გადახდილი თანხა",
 
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "Ordered Amount",
-      headerName: "გადახდილი თანხა",
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value + " " + "GEL";
+          },
+        },
+        {
+          field: "Ordered Quantity",
+          headerName: "შეკვეთილი რაოდენობა",
 
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "Ordered Quantity",
-      headerName: "შეკვეთილი რაოდენობა",
-
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
+          cellRenderer: (params) => {
+            const { value } = params;
+            return value;
+          },
+        },
+      ],
     },
   ]);
 
@@ -340,15 +359,7 @@ const DiscountsTable = () => {
   };
   const gridRef = useRef(null);
 
-  const [showFilters, setShowFilters] = useFilterToggle();
-
-  const [dateState, setDateState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 5),
-      key: "selection",
-    },
-  ]);
+  const [showFilters, setShowFilters] = useFilterToggle(true);
 
   useRemoveId(gridApi, gridRef);
 
@@ -356,12 +367,13 @@ const DiscountsTable = () => {
     <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
+            
           {/* Left */}
           <div
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 20 }}>ფასდაკლებები</h4>
+            <h4 style={{ marginRight: 20 }} id="discunts">ფასდაკლებები</h4>
             <p className="discount-container">
               მომწოდებელი :<span> მწარმოებელი 1</span>
             </p>
@@ -372,12 +384,7 @@ const DiscountsTable = () => {
             <p className="discount-container">
               პერიოდი: <span>1/10/2023 - 10/10/2023</span>
             </p>
-            <Select
-              className="react-select-container sla-select"
-              classNamePrefix="react-select"
-              options={shopsArr}
-              defaultValue={{ value: "ბათუმი, ზუბალაშვილის N3", label: "ბათუმი, ზუბალაშვილის N3" }}
-            />
+            
             {/* <ItemsMenu /> */}
           </div>
           {/* Right */}
@@ -529,9 +536,18 @@ const DiscountsTable = () => {
       </header>
       <div
         id="marlin-table"
-        className="ag-theme-alpine ag-grid-example  discounts-table"
+        className="ag-theme-alpine ag-grid-example  discounts-table discounts-table-with-groups"
         style={{ minHeight: 595, width: "100%" }}
       >
+        <Select
+              className="react-select-container sla-select doscounts-table-select"
+              classNamePrefix="react-select"
+              options={shopsArr}
+              defaultValue={{
+                value: "ბათუმი, ზუბალაშვილის N3",
+                label: "ბათუმი, ზუბალაშვილის N3",
+              }}
+            />
         <AgGridReact
           ref={gridRef}
           onGridReady={onGridReady}
@@ -586,4 +602,4 @@ const DiscountsTable = () => {
   );
 };
 
-export default DiscountsTable;
+export default DiscountsTable2;

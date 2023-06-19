@@ -75,6 +75,7 @@ import SlaByOrders from "./pages/SlaByOrders";
 import SlaByVendor from "./pages/SlaByVendor";
 import SlaByCategory from "./pages/SlaByCategory";
 import ExpandableTable from "./pages/ExpandableTable";
+import DiscountsTable2 from "./pages/DiscountsTable2";
 
 const queryClient = new QueryClient();
 
@@ -121,7 +122,8 @@ function App() {
             <Route path="/sla-by-category" element={<SlaByCategory />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/sla-graphics" element={<SlaGraphics />} />
-            <Route path="/discounts-table" element={<DiscountsTable />} />
+            <Route path="/discounts-table" element={<DiscountsTable2 />} />
+            <Route path="/discounts-table-2" element={<DiscountsTable2 />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
             <Route
               path="/vendors-calendar"

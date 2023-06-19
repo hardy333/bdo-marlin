@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const useFilterToggle = () => {
+const useFilterToggle = (isLarge) => {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
@@ -17,12 +17,19 @@ const useFilterToggle = () => {
 
     if (!header) return;
 
+    let smallHeight = 49
+    let bigHeight = 78
+    if(isLarge){
+       smallHeight = 95
+       bigHeight = 125
+    }
+    
     if (!showFilters) {
-      header.style.height = "49px";
-      header.style.minHeight = "49px";
+      header.style.height = smallHeight + "px";
+      header.style.minHeight = smallHeight + "px";
     } else {
-      header.style.height = "78px";
-      header.style.minHeight = "78px";
+      header.style.height = bigHeight + "px";
+      header.style.minHeight = bigHeight + "px";
     }
   });
 

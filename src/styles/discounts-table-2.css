@@ -1,0 +1,72 @@
+
+.discounts-table-with-groups .ag-header-group-cell-label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    line-height: 19px;
+    color: #6E0FF5;
+
+}
+
+.discounts-table-with-groups .ag-header-group-cell-with-group[aria-colindex="4"]{
+  background-color: rgba(235, 232, 245, 0.5) !important;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+}
+
+.discounts-table-with-groups .ag-header-group-cell-with-group[aria-colindex="7"] .ag-header-group-cell-label{
+    justify-content: flex-start !important;
+}
+
+
+.discounts-table-with-groups .ag-header-cell[aria-colindex="7"]:hover,
+.discounts-table-with-groups .ag-header-cell[aria-colindex="8"]:hover{
+    background-color: white !important;
+
+}
+
+
+.discounts-table-with-groups{
+    position: relative !important;
+}
+
+/* select */
+/* select */
+/* select */
+/* select */
+
+
+.doscounts-table-select{
+    position: absolute !important;
+    top: 15px;
+    right: 20px;
+    z-index: 9999;
+    width: 180px;
+    border: 1px solid black;
+    border-radius: 15px;
+    height: 30px;
+}
+
+
+.doscounts-table-select .react-select__control::before{
+    display: none;
+}
+
+.doscounts-table-select .react-select__control{
+    padding-left: 5px;
+}
+
+.doscounts-table-select .react-select__value-container {
+    height: 30px !important;
+    padding-top: 0 !important;
+}
+
+
+.doscounts-table-select .react-select__single-value {
+    height: 30px;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
