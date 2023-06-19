@@ -1,217 +1,265 @@
-import React, { useEffect, useMemo } from "react";
-import { COLUMNS_BY_ITEM, COLUMNS_BY_SHOP } from "../columns.js";
-import { useTable, usePagination, useSortBy } from "react-table";
-import "../styles/table.css";
-import "../styles/tablePopup.css";
-import cross from "../assets/icons/cross.png";
-import check from "../assets/icons/check.png";
-import { useGlobalFilter } from "react-table/dist/react-table.development.js";
-import TablePagination from "./TablePagination.jsx";
+import React, { useEffect, useRef, useState } from "react";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import ExpandingInput from "../components/ExpandingInput";
+import ReverseExpandSvg from "../components/ReverseExpandSvg";
+import ExpandSvg from "../components/ExpandSvg";
+import ColumnHideSvg from "../components/ColumnHideSvg";
+import FilterSvg from "../components/FilterSvg";
+import RowHeightBigSvg from "../components/RowHeightBigSvg";
+import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
+import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+import useFilterToggle from "../hooks/useFilterToggle";
 
-import arrow from "../assets/icons/arrow-sort.png";
-import smallArrow from "../assets/icons/left-arrow.png";
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 import classNames from "classnames";
-import useOutsidePopupClick from "../hooks/useOutsidePopupClick.jsx";
-import { TableSettingsContext } from "../context/TableSettingsContext.jsx";
-import { useContext } from "react";
 
-// const initData = JSON.parse(window.localStorage.getItem("table-data") || [])
-
-
+import { allOrdersParentColumns } from "../utils/columnsDefs";
+import { allOrdersParentHeaderList } from "../column-definitions/AllOrdersParentDefs";
+import Tippy from "@tippyjs/react";
 
 const TableSettings = ({
-  tableData = [],
-  type = "By item",
-  option = "Snacks",
-  searchValue = "",
-  isSorting = false,
-//   setAvgSLA,
+  gridApi,
+  defHeaderList,
+  rowData,
+  gridRef,
+  gridColumnApi,
+  rowHeightIndex,
+  setRowHeightIndex,
 }) => {
-  const columns = useMemo(
-    () => (type === "By shop" ? COLUMNS_BY_SHOP : COLUMNS_BY_ITEM),
-    [type]
-  );
+  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const data = useMemo(() => {
-    return tableData.filter((product) => {
-      if (type === "By item") {
-        return product["Product Category"] === option;
-      }
-
-      if (type === "By shop") {
-        return product["Address"] === option;
-      }
-    });
-  }, [tableData, option]);
-
-  const a = useContext(TableSettingsContext)
-
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    nextPage,
-    previousPage,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    state,
-    setGlobalFilter,
-    gotoPage,
-    pageCount,
-    prepareRow,
-    rows,
-    ...x
-  } = useTable(
-    {
-      columns,
-      data,
-      initialState: { pageIndex: 0, pageSize: 10 },
-      disableSortBy: !isSorting,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
-
-  const { pageIndex } = state;
-
+  const [headerList, setHeaderList] = useState(defHeaderList);
 
   useEffect(() => {
-    setGlobalFilter(searchValue);
-  }, [searchValue]);
+    if (isFullScreen) {
+      document.body.classList.add("dashboard-main-fullscreen");
+    } else {
+      document.body.classList.remove("dashboard-main-fullscreen");
+    }
+  }, [isFullScreen]);
 
-  useOutsidePopupClick();
+  const rowHeightBtnRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      rowHeightBtnRef.current.click();
+    }, 500);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, []);
+
+  const onFilterTextChange = (e) => {
+    if (e.target.value === "") {
+      setIsGlobalFilterEmpty(true);
+    } else {
+      setIsGlobalFilterEmpty(false);
+    }
+
+    gridApi.setQuickFilter(e.target.value);
+  };
+
+  const toggleColumn = (name) => {
+    const newHeaderList = headerList.map((header) =>
+      header.name !== name
+        ? header
+        : { ...header, isShowing: !header.isShowing }
+    );
+    const currHeader = headerList.find((header) => header.name === name);
+    setHeaderList(newHeaderList);
+    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
+  };
+
+  const hideAllColumns = () => {
+    setHeaderList(
+      headerList.map((header) => ({ ...header, isShowing: false }))
+    );
+    headerList.forEach((header) => {
+      gridColumnApi.setColumnVisible(header.name, false);
+    });
+  };
+
+  const showAllColumns = () => {
+    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
+    headerList.forEach((header) => {
+      gridColumnApi.setColumnVisible(header.name, true);
+    });
+  };
+
+  const [showFilters, setShowFilters] = useFilterToggle();
+
+  const changeRowHeight = () => {
+    if (rowHeightIndex === 2) {
+      setRowHeightIndex(0);
+    } else {
+      setRowHeightIndex((c) => c + 1);
+    }
+  };
+
   return (
     <>
-      <div className="table-wrapper">
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th
-                    {...column.getHeaderProps()}
-                    onClick={(e) => {
-                      document
-                        .querySelector(".open-popup")
-                        ?.classList.remove("open-popup");
+      {/* Expand Input */}
+      <ExpandingInput onFilterTextChange={onFilterTextChange} />
+      {/* input filter */}
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="top"
+        content="ფილტრაცია"
+      >
+        <button
+          onClick={() => {
+            setShowFilters(!showFilters);
+          }}
+          className={classNames({
+            "all-orders__btn-filter": true,
+            "all-orders__btn": true,
+            active: showFilters,
+          })}
+        >
+          <FilterSvg />
+        </button>
+      </Tippy>
+      {/* popup */}
 
-                      e.currentTarget.classList.toggle("open-popup");
-                    }}
-                    style={{ pointerEvents: !isSorting ? "none" : "" }}
-                  >
-                    <img
-                      src={arrow}
-                      width={13}
-                      className={classNames({
-                        hide: !isSorting || !column.canSort,
-                        sorted: column.isSorted,
-                        desc: column.isSortedDesc,
-                        sortImg: true,
-                      })}
-                    />
-                    {column.render("Header")}
-
-                    <div
-                      className={classNames({
-                        hide: !isSorting || !column.canSort,
-                        sortPopup: true,
-                      })}
-                    >
-                      <div
-                        className={classNames({
-                          active: column.isSortedDesc && column.isSorted,
-                          "th-popup-col": true,
-                        })}
-                        onClick={() => column.toggleSortBy(true)}
-                      >
-                        {column.Header === "In Time" ? (
-                          <>
-                            In time
-                            <img className="img-in-time" src={check} />
-                          </>
-                        ) : (
-                          <>
-                            Largest
-                            <img src={smallArrow} />
-                          </>
-                        )}
-                      </div>
-                      <div
-                        className={classNames({
-                          active: !column.isSortedDesc && column.isSorted,
-                          "th-popup-col": true,
-                        })}
-                        onClick={() => column.toggleSortBy(false)}
-                      >
-                        {column.Header === "In Time" ? (
-                          <>
-                            Late
-                            <img className="img-in-time" src={cross} />
-                          </>
-                        ) : (
-                          <>
-                            Smallest
-                            <img src={smallArrow} />
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => {
-                    let td = cell.render("Cell");
-
-                    // In service level
-                    if (cell.column.Header === "Service Level") {
-                      td = Math.round(Number(cell.value) * 100) + "%";
-                    }
-
-                    // Amount
-                    if (cell.column.Header === "Amount") {
-                      td = cell.value + " GEL";
-                    }
-
-                    // In time
-                    if (cell.column.Header === "In Time") {
-                      td =
-                        cell.value === "No" ? (
-                          <img src={cross} />
-                        ) : (
-                          <img src={check} />
-                        );
-                    }
-
-                    return <td {...cell.getCellProps()}>{td}</td>;
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <TablePagination
-        gotoPage={gotoPage}
-        pageIndex={pageIndex}
-        pageCount={pageCount}
-        canNextPage={canNextPage}
-        canPreviousPage={canPreviousPage}
-        pageOptions={pageOptions}
-        nextPage={nextPage}
-        previousPage={previousPage}
-      />
+      <Menu
+        align="center"
+        direction="top"
+        menuButton={
+          <Tippy
+            className="tooltip-1"
+            arrow={false}
+            placement="top"
+            content="სვეტების გათიშვა"
+          >
+            <MenuButton className="all-orders__btn ">
+              <svg
+                id="Layer_3"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 33.58 47.28"
+              >
+                <defs></defs>
+                <path
+                  className="cls-1"
+                  d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                />
+                <path
+                  className="cls-1"
+                  d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                />
+              </svg>
+            </MenuButton>
+          </Tippy>
+        }
+        transition
+      >
+        <div className="column-toggle-popup">
+          <header className="column-toggle-popup__header">
+            <button
+              className={classNames({
+                btn: true,
+                active: !headerList.every((header) => !header.isShowing),
+              })}
+              onClick={hideAllColumns}
+            >
+              Hide All
+            </button>
+            <button
+              className={classNames({
+                btn: true,
+                active: headerList.some((header) => !header.isShowing),
+              })}
+              onClick={showAllColumns}
+            >
+              Show All
+            </button>
+          </header>
+          {headerList.map((header, index) => (
+            <MenuItem
+              key={header.name + index}
+              value={header.name}
+              onClick={(e) => {
+                // Stop the `onItemClick` of root menu component from firing
+                // e.stopPropagation = true;
+                // Keep the menu open after this menu item is clicked
+                e.keepOpen = true;
+              }}
+            >
+              <div className="switch">
+                <input
+                  checked={header.isShowing}
+                  type="checkbox"
+                  id={header.name}
+                  className="switch__input"
+                  onChange={() => {
+                    toggleColumn(header.name);
+                  }}
+                />
+                <label htmlFor={header.name} className="switch__label">
+                  {header.showingName}
+                </label>
+              </div>
+            </MenuItem>
+          ))}
+        </div>
+      </Menu>
+      {/* Row height */}
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="top"
+        content="სტრიქონების სიმაღლე"
+      >
+        <button
+          onClick={() => {
+            gridRef.current.api.resetRowHeights();
+            changeRowHeight();
+          }}
+          ref={rowHeightBtnRef}
+          className="all-orders__btn"
+        >
+          {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
+          {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
+          {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
+        </button>
+      </Tippy>
+      {/* expand */}
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="top"
+        content="გადიდება"
+      >
+        <button
+          onClick={() => setIsFullScreen(!isFullScreen)}
+          className={classNames({
+            "all-orders__btn": true,
+          })}
+        >
+          {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+        </button>
+      </Tippy>
+      <Tippy
+        className="tooltip-1"
+        arrow={false}
+        placement="top"
+        content="ექსელში ექსპორტი"
+      >
+        <button
+          className="all-orders__btn excel-export-btn"
+          onClick={() => exportData(rowData, "all-orders")}
+        >
+          <ExcelExportSvg />
+        </button>
+      </Tippy>
     </>
   );
 };
