@@ -74,6 +74,7 @@ const options = [
 ];
 
 import vendorsArr from "../data/vendors-data";
+import Tippy from "@tippyjs/react";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -141,12 +142,21 @@ const VendorsCalendarTable = () => {
       cellRendererFramework: (params) => {
         const d1 = Math.floor(Math.random() * 6);
         const d2 = Math.floor(Math.random() * 6);
+
+        let isTwo = false
+        let tooltipText = "ყველ კვირა"
+        
+        if(Math.random() -0.5 > 0){
+          isTwo = true
+          tooltipText = "2 კვირაში ერთხელ"
+        }
+        
         return (
           <div className="dis-date-container">
             <div className="days-container">
               {days.map((d, index) => (
                 <span
-                  key={d}
+                  key={d+index}
                   style={{
                     color: d1 === index || d2 == index ? "#211543" : "#AE9EDC",
                   }}
@@ -155,15 +165,25 @@ const VendorsCalendarTable = () => {
                 </span>
               ))}
             </div>
-            <div className="circle-container">
-              <span
-                style={{ display: Math.random() - 0.5 > 0 ? "none" : "" }}
-                className={`circle ${Math.random() - 0.5 > 0 ? "active" : ""}`}
-              ></span>
-              <span
-                className={`circle ${Math.random() - 0.5 > 0 ? "active" : ""}`}
-              ></span>
-            </div>
+            <Tippy
+              className="tooltip-1"
+              arrow={false}
+              placement="top"
+              content={tooltipText}
+            >
+              <div className="circle-container">
+                <span
+                  className={`circle active`}
+                ></span>
+                <span
+                  className={`circle ${
+                    isTwo  ? "active stroked" : ""
+                  }`}
+                  style={{ display: isTwo ? "block" : "none" }}
+
+                ></span>
+              </div>
+            </Tippy>
           </div>
         );
       },

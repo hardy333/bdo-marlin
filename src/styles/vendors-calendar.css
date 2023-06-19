@@ -44,3 +44,10 @@
   background-color: #6E0FF5;
 
 }
+
+.circle-container .circle.stroked{
+  background-color: transparent;
+  border: 1px solid  #6E0FF5;
+  width: 9px;
+  height: 9px;
+}
