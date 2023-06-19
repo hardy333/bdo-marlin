@@ -146,8 +146,6 @@ const ExpandableTable = () => {
     fetchData();
   }, []);
 
-
-
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: false,
@@ -175,14 +173,13 @@ const ExpandableTable = () => {
   };
 
 
-  const [gridReady, setGridReady] = useState(false);
 
   // Expandable logic    
   // Expandable logic  
 
   const renderSubTable = () => {
     
-    data.forEach((obj, index) => {
+    data.forEach((obj, rowIndex) => {
       const val1 = obj["Order #"]
       const val2 = obj["Order Address"]
       const val3 = obj["Quantity Deviation"]
@@ -193,14 +190,19 @@ const ExpandableTable = () => {
       const arr = [val1, val2, val3, val4, val5,val6]
 
       const cells = expandedRow.current.querySelectorAll(".ag-cell")
-      console.log(cells, expandedRow.current)
+
       cells.forEach((cell, index) => {
         const columnContainer = cell.querySelector(".custom-col-container")
 
         const newCell = document.createElement("DIV")
+        newCell.setAttribute("data-index", rowIndex)
         
         if(index === 0){
-          newCell.innerHTML = `<span class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span>` + arr[index]
+          newCell.innerHTML = `
+          <div class="plus-minus-span-wrapper">
+            <span  class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span> ${arr[index]}
+          </div>
+          `
 
         }else{
           newCell.textContent = arr[index]
@@ -215,20 +217,101 @@ const ExpandableTable = () => {
     })
     
   }
-  
-  
-  
-  const gridRef = useRef(null);
 
-    
-  const [openedRowId, setOpenedRowId] = useState(null);
-  const expandedRow = useRef(null)
-  const expandedRowId = useRef(null)
+  // Second Actions 22
+  // Second Actions 22
+  
+  const openSecondTable = (targetSpan) => {
 
-  const expandLevel2 = () => {
 
   }
 
+  const isSecondOpen = useRef(false)
+  
+  const renderSecondTable = (targetSpan) => {
+    const text = targetSpan.textContent
+
+    const rowIndex = targetSpan.parentElement.parentElement.getAttribute("data-index")
+
+    const rowCells = document.querySelectorAll(`div[data-index='${rowIndex}']`)
+
+
+    
+    if(text === "-"){
+      targetSpan.textContent = "+"
+      isSecondOpen.current = false
+
+      rowCells.forEach(rowCell => {
+        rowCell.style.height = "40px"
+        rowCell.style.overflow = "hidden"
+      })
+    }else{
+      targetSpan.textContent = "-"
+      isSecondOpen.current = true
+      
+      rowCells.forEach(rowCell => {
+        rowCell.style.height = "800px"
+        rowCell.style.overflow = "hidden"
+
+
+      })
+    }
+    
+
+
+
+    console.log(rowCells)
+
+    // return 
+
+    
+    
+    data.forEach((obj, index) => {
+      const val1 = obj["Order #"]
+      const val2 = obj["Order Address"]
+      const val3 = obj["Quantity Deviation"]
+      const val4 = obj["In Time Orders"]
+      const val5 = obj["Service Level"]
+      const val6 = obj["ip_address"]
+
+      const arr = [val1, val2, val3, val4, val5,val6]
+
+  
+      rowCells.forEach((cell, index) => {
+
+        const newCell = document.createElement("DIV")
+        // newCell.style.border ="1px solid green";
+        newCell.style.paddingLeft ="20px";
+        if(index === 0){
+          newCell.innerHTML = `
+          <div class="plus-minus-span-wrapper">
+            <span  class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span> ${arr[index]}
+          </div>
+          `
+        }else{
+          newCell.textContent = arr[index]
+        }
+        
+        
+        cell.append(newCell)
+
+
+      })
+
+    })
+    
+  }
+  
+  
+  const [gridReady, setGridReady] = useState(false);
+  const gridRef = useRef(null);
+  const expandedRow = useRef(null)
+  const expandedRowId = useRef(null)
+
+
+  // Click Logic
+  // Click Logic
+  // Click Logic
   useEffect(() => {
     const tBody = document.querySelector(
       ".expandable-table .ag-body"
@@ -243,7 +326,10 @@ const ExpandableTable = () => {
       }
       
       if(target.classList.contains("plus-minus-span-2")){
-        expandLevel2()
+        console.log(target)
+        
+        // openSecondTable(target)
+        renderSecondTable(target)
         return
       }
       
@@ -270,8 +356,6 @@ const ExpandableTable = () => {
         renderSubTable()
       }
 
-
-
         gridRef.current.api.resetRowHeights();
 
  
@@ -287,15 +371,6 @@ const ExpandableTable = () => {
     
   }, [gridApi]);
 
-  
-  function getRowHeight(params) {
-    const { id } = params.node;
-    if (id == expandedRowId.current) {
-      return 41.6*10 +1
-    }
-
-  
-  }
 
   return (
     <>
@@ -319,7 +394,16 @@ const ExpandableTable = () => {
           defaultColDef={defaultColDef}
           suppressHorizontalScroll={true}
           components={components}
-          getRowHeight={getRowHeight}
+          getRowHeight={(params) => {
+            const { id } = params.node;
+           
+            if (id == expandedRowId.current) {
+              if(isSecondOpen.current){
+                return 1300
+              }
+              return 41.6*10 +1
+            }
+          }}
         ></AgGridReact>
       </div>
     </>
