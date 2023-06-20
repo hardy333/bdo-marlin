@@ -81,3 +81,7 @@
 
 .plus-minus-span-wrapper{
 }
+
+.plus-minus-span-3{
+    pointer-events: none;
+}

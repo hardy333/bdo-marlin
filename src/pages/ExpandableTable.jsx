@@ -284,8 +284,8 @@ const ExpandableTable = () => {
         newCell.style.paddingLeft ="20px";
         if(index === 0){
           newCell.innerHTML = `
-          <div class="plus-minus-span-wrapper">
-            <span  class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span> ${arr[index]}
+          <div class="plus-minus-span-wrapper" style="padding-left: 30px;" >
+            ${arr[index]}
           </div>
           `
         }else{
