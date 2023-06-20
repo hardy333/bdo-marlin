@@ -171,6 +171,8 @@ const StableTable = () => {
     const [x1,y1] = getXY(startCellRef.current, startRow)
     const [x2,y2] = getXY(cell, row)
 
+    clearColoredCells()
+    
       if(x1 <= x2 && y1 <= y2){
         colorCells(x1,y1,x2,y2)
       }else if(x1 > x2 && y1 <= y2){
@@ -305,13 +307,30 @@ const StableTable = () => {
     
     const endColIndex = endCellRef.current.getAttribute("aria-colindex")
     let prevColIndex = null
+    let firstColIndex = null
     
-    document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
+    document.querySelectorAll(".cell-copy-paste-active").forEach((cell, i) => {
       const colIndex = Number(cell.getAttribute("aria-colindex"))
-      if(prevColIndex && colIndex < prevColIndex){
-        text += "\n" 
+      if(i === 0){
+        firstColIndex = colIndex
       }
-      text += cell.textContent+ "\t" + "    "
+
+      let cellText = cell.textContent
+      let newText = ""
+      
+      
+      if(prevColIndex && colIndex <= prevColIndex){
+          newText = "\n" + cellText
+      }else if(prevColIndex === null && i === 0){
+        newText = cellText
+      }else{
+        newText = "\t" + cellText
+
+      }
+
+      text += newText
+
+      console.log(text)
 
      
       console.log(colIndex, prevColIndex)
