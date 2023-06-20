@@ -171,7 +171,13 @@ const StableTable = () => {
     const [x1,y1] = getXY(startCellRef.current, startRow)
     const [x2,y2] = getXY(cell, row)
 
-      colorCells(x1,y1,x2,y2)
+      if(x1 <= x2 && y1 <= y2){
+        colorCells(x1,y1,x2,y2)
+      }else if(x1 > x2 && y1 <= y2){
+        colorCells(x2,y1,x1,y2)
+
+      }
+      console.log(x2,y1,x1,y2)
 
     
     // if(y1 <= y2 && x1 <= x2){
@@ -237,7 +243,6 @@ const StableTable = () => {
       tBody.removeEventListener("mousemove", tBodyMouseMove)
       tBody.removeEventListener("mouseup", tBodyMouseUp)
       window.removeEventListener("keydown", keyDown)
-
       
     }
     
@@ -299,15 +304,20 @@ const StableTable = () => {
     let text = ""
     
     const endColIndex = endCellRef.current.getAttribute("aria-colindex")
+    let prevColIndex = null
     
     document.querySelectorAll(".cell-copy-paste-active").forEach(cell => {
-
-      text += cell.textContent+ "\t" + "    "
-      const colIndex = cell.getAttribute("aria-colindex")
-
-      if(endColIndex === colIndex){
-        text += "\n"
+      const colIndex = Number(cell.getAttribute("aria-colindex"))
+      if(prevColIndex && colIndex < prevColIndex){
+        text += "\n" 
       }
+      text += cell.textContent+ "\t" + "    "
+
+     
+      console.log(colIndex, prevColIndex)
+
+      prevColIndex = Number(colIndex)
+
     })
 
     return text
