@@ -260,7 +260,6 @@ const ExpandableTable = () => {
 
 
 
-    console.log(rowCells)
 
     // return 
 
@@ -326,7 +325,6 @@ const ExpandableTable = () => {
       }
       
       if(target.classList.contains("plus-minus-span-2")){
-        console.log(target)
         
         // openSecondTable(target)
         renderSecondTable(target)
@@ -399,9 +397,9 @@ const ExpandableTable = () => {
            
             if (id == expandedRowId.current) {
               if(isSecondOpen.current){
-                return 1300
+                return 3800
               }
-              return 41.6*10 +1
+              return 81.6*10 +1
             }
           }}
         ></AgGridReact>
