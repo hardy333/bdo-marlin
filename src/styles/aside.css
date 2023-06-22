@@ -21,7 +21,7 @@
 
   user-select: none;
 
-  z-index: 1001;
+  z-index: 999999999;
 
   /* font-family: "DejaVu Sans", sans-serif !important; */
 
@@ -263,4 +263,36 @@
   transform: rotate(180deg);
 
 
+}
+
+/* Responsive */
+/* Responsive */
+/* Responsive */
+
+
+
+.sidebar-menu-btn{
+  font-size: 40px;
+  display: none;
+  margin-right: 2rem;
+
+}
+
+
+
+
+.aside-overlay{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.197);
+  z-index: 999999999;
+  display: none;
+}
+
+.body-sidebar-open .aside-overlay{
+  display: block;
 }

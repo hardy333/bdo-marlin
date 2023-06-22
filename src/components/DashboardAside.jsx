@@ -26,7 +26,11 @@ import asideBtn from "../assets/aside-btn.svg";
 import reportSvg from "../assets/reports.svg";
 import percentSvg from "../assets/percent.svg";
 
-const DashboardAside = ({ selected = false, left = true }) => {
+const DashboardAside = ({
+  selected = false,
+  left = true,
+  responsive = true,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleBodyClass = () => {
@@ -54,7 +58,11 @@ const DashboardAside = ({ selected = false, left = true }) => {
   }, []);
 
   return (
-    <aside className={`dashboard-aside ${!left ? "go-right" : ""}`}>
+    <aside
+      className={`dashboard-aside ${!left ? "go-right" : ""} ${
+        responsive ? "responsive" : ""
+      }`}
+    >
       <button onClick={toggleBodyClass} className="aside-btn">
         <img src={asideBtn} alt="" />
       </button>

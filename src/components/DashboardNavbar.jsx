@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowBack from "../assets/back-arrow.svg";
 import DashAdd from "../assets/dash-add.png";
 import DashHouse from "../assets/dash-house.png";
+import { BiMenu } from "react-icons/bi";
 
 import "../styles/dashboard-navbar.css";
 import PlusSvg from "./svgs/PlusSvg";
@@ -38,11 +39,18 @@ const DashboardNavbar = () => {
     />
   );
 
+  const toggleSidebar = () => {
+    document.body.classList.toggle("body-sidebar-open");
+  };
+
   return (
     <header
       className="dashboard-navbar"
       style={{ height: "63px", flexShrink: 0 }}
     >
+      <button className="sidebar-menu-btn" onClick={toggleSidebar}>
+        <BiMenu />
+      </button>
       {pathname !== "/" ? backArrow : null}
 
       {isStartingPage ? (

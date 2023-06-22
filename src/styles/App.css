@@ -38,6 +38,8 @@ body{
   /* font-family: 'Inter'; */
   font-family: "DejaVu Sans", sans-serif !important;
 
+  position: relative;
+
 }
 
 
@@ -181,6 +183,36 @@ img{
   transition: all 0.3s ease-in-out;
   /* overflow: hidden; */
 
+  
+}
+
+@media (max-width: 900px) {
+  .sidebar-menu-btn{
+    display: block !important;
+  }
+
+  .dashboard-main{
+    padding-left: 30px;
+  }
+  .dashboard-navbar{
+    padding-left: 30px !important;
+  }
+
+  .dashboard-aside.responsive{
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    left: 0;
+    transform: translate(-110%, 0);
+  }
+  
+  .dashboard-aside.responsive .aside-btn{
+    display: none;
+  }
+  
+  .body-sidebar-open .dashboard-aside.responsive{
+    transform: translate(0, 0);
+  }
   
 }
 
