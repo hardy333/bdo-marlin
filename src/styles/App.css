@@ -101,6 +101,13 @@ img{
   /* dashboard navbar and dashboar-main will use this padding */
   --right-adge-padding: 4rem;
 
+  overflow-y: auto;
+  /* 63 is navbar Height */
+
+  /* padding-top: 63px; */
+
+  border: 2px solid blue;
+  flex-shrink: 1;
 }
 .dashboard--dash{
   background: #F9F8FC;
@@ -182,6 +189,11 @@ img{
 
   transition: all 0.3s ease-in-out;
   /* overflow: hidden; */
+  border: 1px solid red;
+  flex-shrink: 1;
+
+  height: 200px;
+  
 
   
 }
@@ -271,6 +283,7 @@ body.dashboard-main-fullscreen .dashboard-main{
 
   padding-left: calc(var(--sidebar-full-space) + var(--right-adge-padding));
   transition: var(--sidebar-open-animation-duration) ease-in-out;
+
 
 }
 
