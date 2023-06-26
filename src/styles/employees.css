@@ -70,6 +70,7 @@
   margin-top: 1.5rem;
   height: 400px;
   overflow-y: auto;
+  /* overflow: hidden; */
   padding: 3rem;
   /* padding right should be less than padding-left becouse of scrollbar, which takes space */
   padding-right: 24px;
@@ -83,6 +84,7 @@
   /* margin-inline: -30px;
   padding-left: 30px; */
   /* border: 1px solid red; */
+  overflow-x: visible !important;
 
 
 }
@@ -259,7 +261,8 @@
   flex-direction: column;
   min-width: 100px;
   overflow: hidden;
-  width: 100px
+  width: 100px;
+  margin-left: -10px !important;
 }
 
 .employee-card-menu .szh-menu__item--hover{
