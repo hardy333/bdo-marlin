@@ -223,7 +223,6 @@
   gap: 5px;
   color: #D0C7E8;
   position: relative;
-
  
 }
 
@@ -248,11 +247,12 @@
 .employees-page-info{
   position: absolute;
   top: 50%;
-  right: 2.5rem;
+  right: 0rem;
   transform: translate(0,-50%);
   font-size: 14px;
   line-height: 15px;
   color: #D0C7E8;
+  font-size: 14px;
 
 }
 
