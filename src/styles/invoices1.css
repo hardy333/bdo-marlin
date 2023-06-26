@@ -40,7 +40,7 @@
   height: 400px;
   flex-grow: 1;
   padding-top: 0;
-  padding-right: 3rem;
+  padding-right: 24px;
 }
 
 /* Card */
@@ -132,8 +132,12 @@
   }
   
   .invoices-card-container{
-    padding: 0 4rem;
+    /* padding: 0 4rem; */
+    margin-inline: -30px;
+    padding-left: 30px;
+  
   }
+
 }
 
 /* 22222 */
