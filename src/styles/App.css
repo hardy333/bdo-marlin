@@ -204,6 +204,7 @@ img{
   }
   .dashboard-navbar{
     padding-left: 30px !important;
+    padding-inline: 10px !important;
   }
 
   .dashboard-aside.responsive{
@@ -506,9 +507,6 @@ input[type="radio"] + label{
   cursor: pointer;
 }
 
-
-
-
 /* Shops setting */
 
 .shop-settings{
@@ -545,35 +543,12 @@ input[type="radio"] + label{
 
 
 @media  (max-width: 900px){
-  body{
+  .dashboard-main{
+    padding-inline: 5px;
+    
   }
-  
-  .settings__top{
-    display: flex;
-    flex-direction: column !important;
-    margin-top: 0;
-    gap: 1rem;
-  }
+ 
 
-  .settings__bottom{
-    flex-direction: column;
-    gap: 1rem;
-  }
 
-  .swiper{
-    width: 200px;
-    overflow: hidden;
-    display: none;
-  }
 
-  .swiper-slide .carousel-item{
-    padding: 1rem;
-    height: 5rem;
-  }
-
-  .options-container{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-  }
 }

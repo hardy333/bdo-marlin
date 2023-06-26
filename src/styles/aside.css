@@ -115,12 +115,13 @@
 
 }
 
+.dashboard-aside__list li:hover{
+  /* background-color: hsl(256, 51%, 18%); */
 
-/* Li styles start */
-/* Li styles start */
 
+}
 
-/* .dashboard-aside__list li:hover::before{
+.dashboard-aside__list li:hover::before{
   content: "";
   position: absolute;
   top: 0;
@@ -129,10 +130,14 @@
   width: 4px;
   background-color: #fff;
   border-radius: 25px;
-} */
+}
+
+.dashboard-aside__list li:has(a.active){
+  /* background-color: hsl(256, 51%, 18%); */
+
+}
 
 
-/* 
 .dashboard-aside__list li:has(a.active)::before{
   content: "";
   position: absolute;
@@ -142,35 +147,8 @@
   width: 4px;
   background-color: #fff;
   border-radius: 25px;
-} */
-
-/* Li styles end */
-/* Li styles end */
-.dashboard-aside__list a.active::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0px;
-  height: 100%;
-  width: 4px;
-  background-color: #fff;
-  border-radius: 25px;
-
 
 }
-
-.dashboard-aside__list a:hover::before{
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0px;
-  height: 100%;
-  width: 4px;
-  background-color: #fff;
-  border-radius: 25px;
-
-}
-
 
 .dashboard-aside__list a {
   display: flex;
@@ -221,6 +199,15 @@
   pointer-events: all;
 }
 
+.dashboard-aside__list__vendor {
+  display: block;
+  transform: translate(0, 5px);
+}
+
+.dashboard-aside__list__vendor + span {
+  transform: translate(0, 5px);
+}
+
 .dashboard-aside__list li:hover img{
   /* transform: scale(1.1); */
   filter: brightness(100%);
@@ -249,15 +236,7 @@
   margin-top: auto;
 }
 
-
-/* Vendors icon adgast */
-.dashboard-aside__list__vendor {
-  display: block;
-  transform: translate(0, 5px);
-}
-
-.dashboard-aside__list__vendor + span {
-  transform: translate(0, 5px);
+.aside-paper {
 }
 
 
@@ -284,6 +263,10 @@
   transform: rotate(180deg);
 
 
+}
+
+.aside-settings{
+  margin-bottom: 40px;
 }
 
 /* Responsive */
@@ -314,6 +297,18 @@
   display: none;
 }
 
-.body-sidebar-open .aside-overlay{
-  display: block;
+@media (max-width: 900px) {
+  .body-sidebar-open .aside-overlay{
+    display: block;
+  }
+  
+  /* .body-sidebar-responsive-close  .dashboard-aside.responsive{
+    transform: translate(-110%, 0);
+
+  }
+
+  .body-sidebar-responsive-close .aside-overlay{
+    display: none;
+  } */
 }
+

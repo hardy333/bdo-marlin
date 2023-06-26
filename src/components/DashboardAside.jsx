@@ -57,6 +57,11 @@ const DashboardAside = ({
     };
   }, []);
 
+  const handleLinkClick = () => {
+    // document.body.classList.add("body-sidebar-responsive-close");
+    document.body.classList.remove("body-sidebar-open");
+  };
+
   return (
     <aside
       className={`dashboard-aside ${!left ? "go-right" : ""} ${
@@ -90,7 +95,7 @@ const DashboardAside = ({
           {/* <span className="aside-label">Marlin</span> */}
         </Link>
         <ul ref={linkListRef} className="dashboard-aside__list">
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/vendors"
               className={({ isActive, isPending }) =>
@@ -105,7 +110,7 @@ const DashboardAside = ({
               <span className="aside-label">მომწოდებლები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/all-orders-parent"
               className={({ isActive, isPending }) =>
@@ -116,7 +121,7 @@ const DashboardAside = ({
               <span className="aside-label">შეკვეთები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/discounts-cards"
               className={({ isActive, isPending }) =>
@@ -127,7 +132,7 @@ const DashboardAside = ({
               <span className="aside-label">ფასდაკლებები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/catalogue"
               className={({ isActive, isPending }) =>
@@ -138,7 +143,7 @@ const DashboardAside = ({
               <span className="aside-label">კატალოგი</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/employees"
               className={({ isActive, isPending }) =>
@@ -149,7 +154,7 @@ const DashboardAside = ({
               <span className="aside-label">თანამშრომლები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/invoices-table"
               className={({ isActive, isPending }) =>
@@ -166,7 +171,7 @@ const DashboardAside = ({
               <span className="aside-label">ინვოისები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <NavLink
               to="/Reports"
               className={({ isActive, isPending }) =>
@@ -177,7 +182,7 @@ const DashboardAside = ({
               <span className="aside-label">რეპორტები</span>
             </NavLink>
           </li>
-          <li>
+          <li onClick={handleLinkClick} className="aside-settings">
             <NavLink
               to="/logs"
               className={({ isActive, isPending }) =>
@@ -189,7 +194,7 @@ const DashboardAside = ({
             </NavLink>
           </li>
           {/*  */}
-          <li className="aside-terms">
+          <li onClick={handleLinkClick} className="aside-terms">
             <NavLink
               to="/terms"
               className={({ isActive, isPending }) =>
@@ -200,7 +205,7 @@ const DashboardAside = ({
               <span className="aside-label">პირობები</span>
             </NavLink>
           </li>
-          <li className="aside-paper">
+          <li onClick={handleLinkClick} className="aside-paper">
             <NavLink
               to="/contract"
               className={({ isActive, isPending }) =>

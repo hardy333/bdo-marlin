@@ -41,6 +41,7 @@ const DashboardNavbar = () => {
 
   const toggleSidebar = () => {
     document.body.classList.toggle("body-sidebar-open");
+    document.body.classList.remove("body-sidebar-responsive-close");
   };
 
   return (
