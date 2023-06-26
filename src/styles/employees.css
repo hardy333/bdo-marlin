@@ -65,20 +65,25 @@
 .employees-card-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  /* grid-auto-rows: 230px; */
+  grid-auto-rows: max-content;
   gap: 3rem;
   margin-top: 1.5rem;
   height: 400px;
   overflow-y: auto;
   padding: 3rem;
+  /* padding right should be less than padding-left becouse of scrollbar, which takes space */
+  padding-right: 24px;
   padding-top: 2rem;
   flex-grow: 1;
   flex-shrink: 1;
   padding-left: 0;
+  /* align-items: start; */
 
   /* overflow-x: hidden; */
   /* margin-inline: -30px;
   padding-left: 30px; */
+  /* border: 1px solid red; */
+
 
 }
 

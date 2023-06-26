@@ -103,10 +103,8 @@ img{
 
   overflow-y: auto;
   /* 63 is navbar Height */
-
   /* padding-top: 63px; */
 
-  border: 2px solid blue;
   flex-shrink: 1;
 }
 .dashboard--dash{
@@ -174,7 +172,6 @@ img{
 
 /* Main */
 .dashboard-main{
-
   /* background-color: #F3F7FF; */
   background-color: #F9F8FC;
   flex-grow: 1;
@@ -189,9 +186,8 @@ img{
 
   transition: all 0.3s ease-in-out;
   /* overflow: hidden; */
-  border: 1px solid red;
+  /* border: 1px solid green; */
   flex-shrink: 1;
-
   height: 200px;
   
 
