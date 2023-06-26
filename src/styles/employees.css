@@ -77,7 +77,8 @@
   padding-left: 0;
 
   /* overflow-x: hidden; */
-
+  /* margin-inline: -30px;
+  padding-left: 30px; */
 
 }
 
@@ -297,4 +298,11 @@
   .employees-settings .btn{
     margin-right: auto;
   }
+
+  .employees-card-container{
+    margin-inline: -30px;
+    padding-left: 30px;
+  
+  }
+  
 }
