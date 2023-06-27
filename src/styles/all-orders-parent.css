@@ -46,3 +46,15 @@
 .all-orders-parent  .ag-cell{
   background-color: white;
 }
+
+@media (max-width: 600px){
+  .all-orders__settings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+  }
+
+  
+}
