@@ -85,9 +85,6 @@
     top: 0;
     left: 10px;
     font-size: 16px;
-
-
-
   }
 
   .settings-container-responsive span.hide{
@@ -97,6 +94,10 @@
 
   .settings-container-responsive .all-orders__settings__options{
     /* background-color:red; */
+  }
+
+  .settings-container-responsive .expanding-input{
+    font-size: 16px !important;
   }
   
 }
