@@ -64,27 +64,39 @@
     flex-direction: row;
     padding-inline: 10px;
     position: relative;
+    /* background-color:red !important; */
+    /* background-color:green; */
+    justify-content: flex-end;
 
   }
  
 
+  .settings-container-responsive .all-orders__gdm-container{
+    margin: 0 !important;
+    background-color: pink !important;
+  }
+
 
   .settings-container-responsive span{
     opacity: 1;
-    width: 124px;
     transition: all 0.2s;
     height: 24px;
     position: absolute;
     top: 0;
     left: 10px;
+    font-size: 16px;
+
 
 
   }
 
   .settings-container-responsive span.hide{
     opacity: 0;
-    /* width: 0; */
 
+  }
+
+  .settings-container-responsive .all-orders__settings__options{
+    /* background-color:red; */
   }
   
 }

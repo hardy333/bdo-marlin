@@ -122,7 +122,7 @@ const ColneAllOrdersPage = () => {
   return (
     <>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container"></div>
+        {/* <div className="all-orders__arrow-container"></div> */}
         <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
