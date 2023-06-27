@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../styles/expanding-input.css";
 import classNames from "classnames";
 
-const ExpandingInput = ({ onFilterTextChange }) => {
+const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef();
   const inputRef = useRef();
@@ -12,6 +12,7 @@ const ExpandingInput = ({ onFilterTextChange }) => {
       if (inputRef.current.value.length > 0) return;
       if (wrapperRef.current.contains(e.target)) return;
       setIsOpen(false);
+      setIsSearchOpen(false);
     };
 
     window.addEventListener("click", handleClick);
@@ -28,6 +29,7 @@ const ExpandingInput = ({ onFilterTextChange }) => {
         open: isOpen,
       })}
       ref={wrapperRef}
+      onClick={() => setIsSearchOpen(true)}
     >
       <input
         ref={inputRef}

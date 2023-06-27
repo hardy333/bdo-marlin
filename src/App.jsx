@@ -53,7 +53,6 @@ import StableTable from "./pages/StableTable";
 // const CatalogueTable5Level = React.lazy(() => import("./pages/CatalogueTable5Level"));
 // const AgTable = React.lazy(() => import("./pages/AgTable"));
 
-
 import Contract from "./pages/Contract";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import SlaByVendorsTable from "./pages/SlaByVendorsTable";
@@ -76,6 +75,7 @@ import SlaByVendor from "./pages/SlaByVendor";
 import SlaByCategory from "./pages/SlaByCategory";
 import ExpandableTable from "./pages/ExpandableTable";
 import DiscountsTable2 from "./pages/DiscountsTable2";
+import ColneAllOrdersPage from "./pages/CloneAllOrdersPage";
 
 const queryClient = new QueryClient();
 
@@ -116,6 +116,7 @@ function App() {
             <Route path="/contract" element={<Contract />} />
             {/* -------------------- */}
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
+            <Route path="/clone-all-orders" element={<ColneAllOrdersPage />} />
             <Route path="/sla-by-vendor" element={<SlaByVendor />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />

@@ -20,6 +20,7 @@ import { allOrdersParentHeaderList } from "../column-definitions/AllOrdersParent
 import Tippy from "@tippyjs/react";
 
 const TableSettings = ({
+  setIsSearchOpen,
   gridApi,
   defHeaderList,
   rowData,
@@ -103,7 +104,10 @@ const TableSettings = ({
   return (
     <>
       {/* Expand Input */}
-      <ExpandingInput onFilterTextChange={onFilterTextChange} />
+      <ExpandingInput
+        setIsSearchOpen={setIsSearchOpen}
+        onFilterTextChange={onFilterTextChange}
+      />
       {/* input filter */}
       <Tippy
         className="tooltip-1"

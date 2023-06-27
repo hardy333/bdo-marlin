@@ -56,5 +56,35 @@
 
   }
 
+   /*  */
+  /*  */
+  /*  */
+
+  .settings-container-responsive{
+    flex-direction: row;
+    padding-inline: 10px;
+    position: relative;
+
+  }
+ 
+
+
+  .settings-container-responsive span{
+    opacity: 1;
+    width: 124px;
+    transition: all 0.2s;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+
+
+  }
+
+  .settings-container-responsive span.hide{
+    opacity: 0;
+    /* width: 0; */
+
+  }
   
 }
