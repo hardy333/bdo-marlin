@@ -20,7 +20,6 @@ import Error from "./pages/Error";
 import Employees from "./pages/Employees";
 import Profile from "./pages/Profile";
 import Vendors from "./pages/vendors/Vendors";
-import Invoices1 from "./pages/Invoices1";
 import Invoices2 from "./pages/Invoices2";
 
 import Login from "./pages/Login";
@@ -29,7 +28,6 @@ import Prices from "./pages/Prices";
 import MainDashboard from "./pages/MainDashboard";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
-import Test from "./pages/Test";
 import OrderDetails from "./pages/OrderDetails";
 import InvoicesTable from "./pages/InvoicesTable";
 import Terms from "./pages/Terms";
@@ -56,18 +54,12 @@ import StableTable from "./pages/StableTable";
 import Contract from "./pages/Contract";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import SlaByVendorsTable from "./pages/SlaByVendorsTable";
-import SlaGraphics from "./pages/SlaGraphics";
-import DiscountsTable from "./pages/DiscountsTable";
 import DiscountsCards from "./pages/DiscountsCards";
-import MainHome from "./pages/MainHome";
 import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
-import SlaCategory from "./pages/SlaCategory";
 import DashboardLayout from "./layout/DashboardLayout";
 import Dash from "./pages/Dash";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import Test2 from "./pages/Test2";
-import Test3 from "./pages/Test3";
 import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
@@ -86,9 +78,7 @@ function App() {
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
-            <Route path="/dash" element={<Dash />} />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
-            <Route path="/sla-category" element={<SlaCategory />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/expandable-table" element={<ExpandableTable />} />
             <Route path="/profile" element={<Profile />}>
@@ -96,36 +86,38 @@ function App() {
               <Route path="change-password" element={<PasswordForm />} />
             </Route>
             <Route path="/vendors" element={<Vendors />} />
-            <Route path="/invoices1" element={<Invoices1 />} />
             <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/stable-table" element={<StableTable />} />
             <Route path="/register" element={<Register />} />
+
             <Route path="/prices" element={<Prices />} />
             <Route path="/main-dashboard" element={<MainDashboard />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/test2" element={<Test2 />} />
-            <Route path="/test3" element={<Test3 />} />
+
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
-            <Route path="/terms" element={<Terms />} />
+
             <Route path="/all-orders-parent" element={<AllOrdersParent />} />
             <Route path="/logs" element={<LogsTable />} />
-            <Route path="/catalogue" element={<CatalogueTable />} />
-            <Route path="/reports" element={<ReportsTable />} />
+            {/*  */}
             <Route path="/contract" element={<Contract />} />
+            <Route path="/terms" element={<Terms />} />
             {/* -------------------- */}
             <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
             <Route path="/clone-all-orders" element={<ColneAllOrdersPage />} />
+
             <Route path="/sla-by-vendor" element={<SlaByVendor />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />
             <Route path="/sla-by-category" element={<SlaByCategory />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
-            <Route path="/sla-graphics" element={<SlaGraphics />} />
+            <Route path="/reports" element={<ReportsTable />} />
+
+            {/*  */}
             <Route path="/discounts-table" element={<DiscountsTable2 />} />
-            <Route path="/discounts-table-2" element={<DiscountsTable2 />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
+            {/*  */}
+            <Route path="/catalogue" element={<CatalogueTable />} />
             <Route
               path="/vendors-calendar"
               element={<VendorsCalendarTable />}
@@ -134,6 +126,8 @@ function App() {
               path="/vendor-all-orders"
               element={<VendorAllOrdersTable />}
             />
+            {/*  */}
+
             <Route path="/*" element={<Error />} />
           </Route>
         </Routes>
