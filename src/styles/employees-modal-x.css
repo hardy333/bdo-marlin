@@ -32,7 +32,8 @@ margin-bottom: 3rem;
 
 }
 
-.employees-modal-x .right{
+.employees-modal-x .right,
+.tippy-content .right{
   width: 40%;
   background-color: #211543;
   padding: 3rem;
@@ -40,7 +41,8 @@ margin-bottom: 3rem;
 
 }
 
-.employees-modal-x .right h2{
+.employees-modal-x .right h2,
+.tippy-content .right h2{
   font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
@@ -53,13 +55,15 @@ padding-left: 1rem;
 
 margin-bottom: 1rem;
 }
-.employees-modal-x .right  ul{
+.employees-modal-x .right  ul,
+.tippy-content .right  ul{
   margin-bottom: 2rem;
   padding-left: 1rem;
 
 }
 
-.employees-modal-x .right  li{
+.employees-modal-x .right  li,
+.tippy-content  .right  li{
   font-style: normal;
 font-weight: 400;
 font-size: 14px;
@@ -73,19 +77,22 @@ color: #FFFFFF;
   color: #fff;
 }
 
-.employees-modal-x .right  li svg{
+.employees-modal-x .right  li svg,
+.tippy-content  .right  li svg{
   max-width: 13px;
   max-height: 13px;
 }
 
-.employees-modal-x .list-box{
+.employees-modal-x .list-box,
+.tippy-content  .list-box{
   padding-left: 3rem;
   position: relative;
 
 
 }
 
-.employees-modal-x .img-circle{
+.employees-modal-x .img-circle,
+.tippy-content  .img-circle{
   --size: 45px;
   width: var(--size);
   height: var(--size);
@@ -101,6 +108,38 @@ color: #FFFFFF;
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-content  .right{
+  width: 800px;
+  display: flex;
+  flex-direction: row !important;
+  gap: 0rem;
+  border-radius: 15px;
+}
+
+.tippy-content .list-box{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:0;
+  justify-items: start;
+  row-gap: 2rem;
+}
+
+.tippy-content .img-circle{
+  position: static;
+  transform: translate(0, 0);
+
+}
+
+.tippy-content h2{
+  align-self: center;
+  justify-self: start;
+  transform: translate(-30px, 5px);
+}
+
+.tippy-content .list-box ul{
+  grid-column: span 2;
 }
 
 /* LEFT */
@@ -164,6 +203,62 @@ margin-top: 2rem;
 .people-svg .cls-4{fill:#6e0ff5;}
 .people-svg .cls-5{mix-blend-mode:multiply;}
 
+/* Role Input */
+/* Role Input */
+.role-input-wrapper{
+  margin-inline: auto;
+  width: 310px;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  position: relative;
+}
+
+.role-input-wrapper::before{
+ 
+}
+
+.role-input-icon{
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(0, -50%);
+  --size: 3rem;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* color: var(--color-text-1); */
+  display: none;
+
+}
+
+.role-input-icon  svg{
+  width: 25px;
+  height: 25px;
+  /* fill: var(--color-text-1); */
+}
+
+.role-input-icon:hover svg{
+  fill: var(--color-primary-4);
+
+}
+
+.role-input{
+  margin-bottom: 0 !important;
+}
+
+div[data-tippy-root]{
+  z-index: 9999999999999999999 !important;
+
+}
+
+.employee-modal-tooltip{
+  position: relative;
+  z-index: 99999999999999999999999 !important;
+  background-color:transparent !important;
+}
 
 
 @media (max-width: 700px) {
@@ -188,4 +283,11 @@ margin-top: 2rem;
   .employees-modal-x .vendors-modal__btn svg path{
     stroke: #211543 !important;
   }
+
+  
+.role-input-icon{
+ 
+  display: block;
+
+}
 }

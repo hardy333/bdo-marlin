@@ -3,6 +3,9 @@ import Modal from "react-modal";
 import CloseModalSvg from "../components/svgs/CloseModalSvg";
 import PeopleSvg from "../components/svgs/PeopleSvg";
 import PersonCheckSvg from "../components/svgs/PersonCheckSvg";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import Tippy from "@tippyjs/react";
+import EmployeeModalInfo from "./EmployeeModalInfo";
 
 const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
   return (
@@ -22,7 +25,20 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
         <input type="text" placeholder="სახელი" />
         <input type="text" placeholder="გვარი" />
         <input type="text" placeholder="იმეილი" />
-        <input type="text" placeholder="როლი" className="role-input" />
+        <div className="role-input-wrapper">
+          <input type="text" placeholder="როლი" className="role-input" />
+
+          <Tippy
+            className="employee-modal-tooltip"
+            arrow={false}
+            placement="top"
+            content={<EmployeeModalInfo />}
+          >
+            <span className="role-input-icon">
+              <IoIosInformationCircleOutline />
+            </span>
+          </Tippy>
+        </div>
         <input type="text" placeholder="წვდომა" />
         <button className="btn ">დაამატე კოლეგა</button>
       </div>
