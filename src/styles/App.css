@@ -234,6 +234,16 @@ img{
 
 }
 
+@media (max-width: 700px) {
+
+  
+.dashboard-main.static{
+  padding-right: 15px;
+  padding-left: 15px;
+
+}
+}
+
 
 body.dashboard-main-fullscreen .dashboard-main{
   position: fixed;

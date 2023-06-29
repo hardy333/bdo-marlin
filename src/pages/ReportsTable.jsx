@@ -136,8 +136,6 @@ const ReportsTable = () => {
     },
   ]);
 
-
-
   useEffect(() => {
     if (isFullScreen) {
       document.body.classList.add("dashboard-main-fullscreen");
@@ -167,18 +165,15 @@ const ReportsTable = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-
   const components = useMemo(() => {
     return {
       agColumnHeader: CustomHeaderCell,
     };
   }, []);
 
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const gridRef = useRef(null);
-
 
   const [dateState, setDateState] = useState([
     {
@@ -227,7 +222,13 @@ const ReportsTable = () => {
           >
             <h4 style={{ fontSize: "18px" }}>სერვისის დონე</h4>
             <div className="flex items-center">
-              <span style={{ fontSize: "14px", fontWeight: "600" }}>
+              <span
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  paddingRight: 10,
+                }}
+              >
                 პერიოდი:
               </span>
               <DatePickerBtn

@@ -170,3 +170,14 @@
   margin-right: 2rem;
   font-size: 14px !important;
 }
+
+
+@media (max-width: 700px) {
+
+  
+  .register-form__grid{
+    width: 100%;
+  
+  }
+  }
+  

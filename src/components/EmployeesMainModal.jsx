@@ -22,7 +22,7 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
         <input type="text" placeholder="სახელი" />
         <input type="text" placeholder="გვარი" />
         <input type="text" placeholder="იმეილი" />
-        <input type="text" placeholder="როლი" />
+        <input type="text" placeholder="როლი" className="role-input" />
         <input type="text" placeholder="წვდომა" />
         <button className="btn ">დაამატე კოლეგა</button>
       </div>

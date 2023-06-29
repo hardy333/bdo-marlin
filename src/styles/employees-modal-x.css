@@ -163,3 +163,29 @@ margin-top: 2rem;
 .people-svg .cls-3{opacity:.8;}
 .people-svg .cls-4{fill:#6e0ff5;}
 .people-svg .cls-5{mix-blend-mode:multiply;}
+
+
+
+@media (max-width: 700px) {
+  .employees-modal-x{
+    max-width: 100%;
+    min-width: unset;
+
+  }
+  .employees-modal-x .left{
+    width: 100%;
+  }
+  .employees-modal-x .right{
+    display: none;
+  }
+  
+  .employees-modal-x .vendors-modal__btn {
+    transform: scale(0.7);
+    top: 0.1rem;
+    right: 0.1rem;
+  }
+  
+  .employees-modal-x .vendors-modal__btn svg path{
+    stroke: #211543 !important;
+  }
+}

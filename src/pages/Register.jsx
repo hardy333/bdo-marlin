@@ -3,22 +3,21 @@ import "../styles/register.css";
 import DashboardLayout from "../layout/DashboardLayout";
 import { Link } from "react-router-dom";
 
-const url = "https://10.0.0.202:5001/api/Users"
+const url = "https://10.0.0.202:5001/api/Users";
 // const url = "https://jsonplaceholder.typicode.com/users";
 
-
 const y = {
-  "id": 0,
-  "accountID": "string",
-  "userID": "string",
-  "firstName": "Nick",
-  "lastName": "White",
-  "contactNumber": "string",
-  "email": "string",
-  "description": "string",
-  "positionInCompany": "string",
-  "password": "string"
-}
+  id: 0,
+  accountID: "string",
+  userID: "string",
+  firstName: "Nick",
+  lastName: "White",
+  contactNumber: "string",
+  email: "string",
+  description: "string",
+  positionInCompany: "string",
+  password: "string",
+};
 
 const x = {
   userID: "string",
@@ -28,36 +27,32 @@ const x = {
   email: "string",
   description: "string",
   positionInCompany: "string",
-  password: "string"
-}
-
+  password: "string",
+};
 
 const Register = () => {
   useEffect(() => {
     console.log("123");
   }, []);
 
-  const handleClick =  (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
 
-      fetch(url, {
+    fetch(url, {
       method: "POST",
       body: JSON.stringify(x),
       headers: {
-        'Content-Type': 'application/json'
-      }
-
+        "Content-Type": "application/json",
+      },
     })
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
       <div className="register">
-        <h2>Hello</h2>
         <div className="register__container">
           <h1>Register</h1>
           <form
@@ -148,7 +143,9 @@ const Register = () => {
                 </a>
               </span>
             </p>
-            <button className="btn btn-blue" onClick={handleClick}>Register</button>
+            <button className="btn btn-blue" onClick={handleClick}>
+              Register
+            </button>
             <p className="register-form__login">
               Already have an account?{" "}
               <Link className="link login-link" to="/login">

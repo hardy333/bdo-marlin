@@ -12,7 +12,9 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
       if (inputRef.current.value.length > 0) return;
       if (wrapperRef.current.contains(e.target)) return;
       setIsOpen(false);
-      setIsSearchOpen(false);
+      if (setIsSearchOpen) {
+        setIsSearchOpen(false);
+      }
     };
 
     window.addEventListener("click", handleClick);

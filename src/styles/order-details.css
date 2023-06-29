@@ -54,5 +54,10 @@
  .all-orders__settings__options{
   margin-left: auto;
  }
+
+ .btn-date{
+  margin: 0;
+  padding-left: 0 !important;
+ }
  
 }
