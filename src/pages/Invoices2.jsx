@@ -6,6 +6,7 @@ import SearchSvg from "../components/svgs/SearchSvg";
 import FourDotsSvg from "../components/FourDotsSvg";
 import ListSvg from "../components/svgs/ListSvg";
 import { useNavigate } from "react-router-dom";
+import "../styles/invoices1.css";
 
 const Invoices2 = () => {
   const navigate = useNavigate();

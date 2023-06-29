@@ -1,11 +1,7 @@
 import React from "react";
 import "../styles/main-dashboard.css";
-import ApexChart1 from "../components/ApexChart1";
-import ApexChart2 from "../components/ApexChart2";
 import "../styles/dash.css";
 import DashTopChart from "../components/DashTopChart";
-import { Link } from "react-router-dom";
-import BubbleChat from "../components/BubbleChat";
 import ColumnCHart from "../components/ColumnCHart";
 import RightChartBubbles from "../components/RightChartBubbles";
 import CountUp from "react-countup";

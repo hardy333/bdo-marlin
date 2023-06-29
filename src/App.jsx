@@ -58,7 +58,10 @@ import DiscountsCards from "./pages/DiscountsCards";
 import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 import DashboardLayout from "./layout/DashboardLayout";
-import Dash from "./pages/Dash";
+
+// import Dash from "./pages/Dash";
+const Dash = React.lazy(() => import("./pages/Dash"));
+
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
@@ -77,7 +80,14 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route element={<DashboardLayout />}>
-            <Route path="/" element={<Dash />} />
+            <Route
+              path="/"
+              element={
+                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                  <Dash />
+                </React.Suspense>
+              }
+            />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/expandable-table" element={<ExpandableTable />} />
@@ -92,7 +102,6 @@ function App() {
             <Route path="/register" element={<Register />} />
 
             <Route path="/prices" element={<Prices />} />
-            <Route path="/main-dashboard" element={<MainDashboard />} />
 
             <Route path="/order-details" element={<OrderDetails />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
