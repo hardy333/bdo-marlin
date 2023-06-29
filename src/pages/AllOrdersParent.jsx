@@ -29,10 +29,10 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
-import { getData } from "./Test3";
 import TableSettings from "../components/TableSettings";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import allOrdersParentDefs from "../column-definitions/AllOrdersParentDefs";
+import { fetchData } from "../utils/fetchData";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -45,7 +45,7 @@ const AllOrdersParent = () => {
 
   const url = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
-  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

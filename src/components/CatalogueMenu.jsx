@@ -5,32 +5,8 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import { useQuery } from "react-query";
-import { getData } from "../pages/Test3";
 import { useMemo } from "react";
-
-// let categories = [];
-// let resData = {};
-
-// const processData = (data) => {
-//   const allCategories = [];
-//   data.forEach((obj) => {
-//     allCategories.push(obj.category);
-//   });
-
-//   categories = Array.from(new Set(allCategories));
-
-//   data.forEach((obj) => {
-//     if (resData[obj.category]) {
-//       resData[obj.category].push(obj.product);
-//     } else {
-//       resData[obj.category] = [obj.product];
-//     }
-//   });
-
-//   console.log(categories)
-// };
-
-// processData(data);
+import { fetchData } from "../utils/fetchData";
 
 const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   // Selected category, sub category
@@ -65,66 +41,63 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
 
     // console.log(resArr)
     // console.log(selectedCategory)
-    
-    const id = resArr.find(obj => obj.name === selectedCategory).children.find(obj => obj.name === name).categoryid
 
-    setSubCatId(id)
-    
+    const id = resArr
+      .find((obj) => obj.name === selectedCategory)
+      .children.find((obj) => obj.name === name).categoryid;
+
+    setSubCatId(id);
+
     if (changeAllData) {
       changeAllData();
     }
   };
 
   // ------------------------ //
-  
+
   const url =
     "https://10.0.0.202:5001/api/ProductCategories?page=1&pageSize=182";
 
-  const { isLoading, error, data, } = useQuery("catalogueMenuData", () => getData(url));
-
-
+  const { isLoading, error, data } = useQuery("catalogueMenuData", () =>
+    fetchData(url)
+  );
 
   const resArr = useMemo(() => {
-    if(!data) return
-    const {data: catData} = data
-    const resObj = {}
-    const resArr = []
+    if (!data) return;
+    const { data: catData } = data;
+    const resObj = {};
+    const resArr = [];
 
     catData.forEach((obj) => {
-      if(obj.name === "ჩიფსი"){
+      if (obj.name === "ჩიფსი") {
       }
-      if(obj.parentFolder === ""){
-        resObj[obj.categoryid] = obj
-        resObj[obj.categoryid].children = []
-      }else{
-        if(!resObj[obj.parentFolder]){
-          const parentObj = catData.find(obj => obj.categoryId === obj.parentFolder)
-          if(parentObj){
-            resObj[obj.parentFolder] = parentObj 
+      if (obj.parentFolder === "") {
+        resObj[obj.categoryid] = obj;
+        resObj[obj.categoryid].children = [];
+      } else {
+        if (!resObj[obj.parentFolder]) {
+          const parentObj = catData.find(
+            (obj) => obj.categoryId === obj.parentFolder
+          );
+          if (parentObj) {
+            resObj[obj.parentFolder] = parentObj;
           }
-          if(resObj[obj.parentFolder]){
-
-            resObj[obj.parentFolder].children = [obj]
+          if (resObj[obj.parentFolder]) {
+            resObj[obj.parentFolder].children = [obj];
           }
-        }else{
-          resObj[obj.parentFolder].children.push(obj)
-
+        } else {
+          resObj[obj.parentFolder].children.push(obj);
         }
-        
       }
+    });
 
-    })
-
-
-    for(let [key, value] of Object.entries(resObj)){
-      resArr.push(value)
+    for (let [key, value] of Object.entries(resObj)) {
+      resArr.push(value);
     }
 
-    return resArr
-  }, [data])
+    return resArr;
+  }, [data]);
 
-  
-  
   // const [rowData, setRowData] = useState(() => {
   //   if (data || data?.data) {
   //     return data.data;
@@ -132,21 +105,15 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   //   return null;
   // });
 
-  
-  
-  
   // ------------------------ //
-  
-  
-  
 
   let arrLeft = [];
   let arrRight = [];
 
-
   if (resArr && selectedCategory) {
-    resArr.find(obj => obj.name === selectedCategory)?.children
-      .filter((obj) => obj.name.includes(subCategorySearchValue))
+    resArr
+      .find((obj) => obj.name === selectedCategory)
+      ?.children.filter((obj) => obj.name.includes(subCategorySearchValue))
       .forEach((obj, index) => {
         if (index % 2 === 0) {
           arrLeft.push(obj);
@@ -155,7 +122,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
         }
       });
   }
-
 
   return (
     <div
@@ -177,7 +143,8 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
           <SearchSvg />
         </div>
         <ul onMouseMove={handleMouseOver}>
-          {resArr?.filter((catObj) => catObj.name.includes(categorySearchValue))
+          {resArr
+            ?.filter((catObj) => catObj.name.includes(categorySearchValue))
             .map((catObj, i) => (
               <li
                 className={`category-li ${

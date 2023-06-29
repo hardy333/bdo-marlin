@@ -3,8 +3,8 @@ import SearchSvg from "../components/svgs/SearchSvg";
 import "../styles/discounts-cards.css";
 
 import Select from "react-select";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import DiscountCard from "../components/DiscountCard";
+import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 
 const options = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
@@ -80,12 +80,7 @@ const DiscountsCards = () => {
             <p>ყველა</p>
           </div>
 
-          <button
-            className="all-orders__btn excel-export-btn"
-            style={{ marginLeft: "auto", marginRight: "30px" }}
-          >
-            <ExcelExportSvg />
-          </button>
+          <LazyExcelExportBtn />
 
           <div className="input-wrapper">
             <input type="text" className="input" />

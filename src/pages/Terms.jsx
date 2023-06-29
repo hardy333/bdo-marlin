@@ -1,6 +1,4 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
-
 const Terms = () => {
   return (
     <>

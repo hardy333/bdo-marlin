@@ -28,9 +28,9 @@ import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
-import { getData } from "./Test3";
 import TableSettings from "../components/TableSettings";
 import { useNavigate } from "react-router-dom";
+import { fetchData } from "../utils/fetchData";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -72,7 +72,7 @@ const ReportsTable = () => {
 
   const url = "https://10.0.0.202:5001/api/SLAByVendors";
 
-  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

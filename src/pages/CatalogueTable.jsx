@@ -24,8 +24,6 @@ import classNames from "classnames";
 const pageSizes = [5, 10, 15, 20, 25, 30];
 import "../styles/catalogue.css";
 
-import { items1 } from "./Test";
-
 // css
 import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
@@ -41,16 +39,14 @@ import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 
 import useFilterToggle from "../hooks/useFilterToggle";
-import fetch_XLSX_DATA2 from "../utils/getData2";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import TriangleSvg from "../components/svgs/TriangleSvg";
 import { useQuery } from "react-query";
-import { getData } from "./Test3";
 import ProgressBar from "../components/ProgressBar";
+import { fetchData } from "../utils/fetchData";
+import ExcelExportBtn from "../components/ExcelExportBtn";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -98,14 +94,12 @@ const CatalogueTable = () => {
     "e1307628-f308-11ed-8120-005056b5a0aa"
   );
 
-
   const url = `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
 
   const { isLoading, error, data, refetch, isFetching } = useQuery(
     ["catalogueTableData", subCatId],
-    () => getData(url)
+    () => fetchData(url)
   );
-
 
   useEffect(() => {
     refetch();
@@ -324,12 +318,6 @@ const CatalogueTable = () => {
   const [isHover, setIsHover] = useState(false);
   const [isSectionHover, setIsSectionHover] = useState(false);
 
-  const c = useMemo(() => {
-    return Array.from({ length: 30 }).map((_, index) => {
-      return items1[Math.floor(Math.random() * items1.length)];
-    });
-  }, []);
-
   const disableHoverAsync = () => {
     setIsHover(false);
   };
@@ -342,8 +330,11 @@ const CatalogueTable = () => {
 
   return (
     <>
-      <header className="all-orders__header catalogue-header" style={{position: "relative"}}>
-      <ProgressBar show={isFetching} />
+      <header
+        className="all-orders__header catalogue-header"
+        style={{ position: "relative" }}
+      >
+        <ProgressBar show={isFetching} />
 
         <div className="all-orders__settings">
           {/* Left */}
@@ -506,12 +497,7 @@ const CatalogueTable = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "catalogue")}
-            >
-              <ExcelExportSvg />
-            </button>
+            <ExcelExportBtn data={rowData} name="catalogue" />
           </div>
         </div>
       </header>
@@ -520,7 +506,7 @@ const CatalogueTable = () => {
         <div className="catalogue-menu-container">
           <CatalogueMenu setSubCatId={setSubCatId} />
         </div>
-        
+
         <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example"

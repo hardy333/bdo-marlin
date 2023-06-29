@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import ExpandingInput from "../components/ExpandingInput";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
 import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -15,9 +12,8 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
 import classNames from "classnames";
 
-import { allOrdersParentColumns } from "../utils/columnsDefs";
-import { allOrdersParentHeaderList } from "../column-definitions/AllOrdersParentDefs";
 import Tippy from "@tippyjs/react";
+import LazyExcelExportBtn from "./LazyExcelExportBtn";
 
 const TableSettings = ({
   setIsSearchOpen,
@@ -101,6 +97,7 @@ const TableSettings = ({
     }
   };
 
+  console.log(rowData);
   return (
     <>
       {/* Expand Input */}
@@ -257,12 +254,7 @@ const TableSettings = ({
         placement="top"
         content="ექსელში ექსპორტი"
       >
-        <button
-          className="all-orders__btn excel-export-btn"
-          onClick={() => exportData(rowData, "all-orders")}
-        >
-          <ExcelExportSvg />
-        </button>
+        <LazyExcelExportBtn data={rowData} name="" />
       </Tippy>
     </>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
 
 const Contract = () => {
   return (

@@ -36,7 +36,6 @@ import CustomInput from "../components/CustomInput";
 import ExpandingInput from "../components/ExpandingInput";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
 import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -44,11 +43,9 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
 // import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
-import { allOrdersParentColumns } from "../utils/columnsDefs";
 import { useNavigate } from "react-router-dom";
-import vendorAllOrdersColDefs from "../constants/vendorAllOrdersTableColDefs";
 import { useQuery } from "react-query";
-import { getData } from "./Test3";
+import { fetchData } from "../utils/fetchData";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -89,7 +86,7 @@ const VendorAllOrdersTable = () => {
   const url =
     "https://10.0.0.202:5001/api/OrdersByAccountAndVendorFront/M00001/D00002";
 
-  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
   console.log(data);
 

@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import ReactDOM from "react-dom/client";
 
-
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -35,7 +34,7 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import "../styles/discounts-table-2.css"
+import "../styles/discounts-table-2.css";
 
 import d from "../assets/discounts-table.json";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
@@ -48,9 +47,9 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import Select from "react-select";
 
 import "../styles/discounts-table.css";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
+
+import ExcelExportBtn from "../components/ExcelExportBtn";
 
 const shopsArr = [
   {
@@ -119,7 +118,6 @@ const shopsArr = [
     label: "ამბროლაური, კოსტავას 6",
   },
 ];
-
 
 const DiscountsTable2 = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -367,13 +365,14 @@ const DiscountsTable2 = () => {
     <>
       <header className="all-orders__header">
         <div className="all-orders__settings">
-            
           {/* Left */}
           <div
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 20 }} id="discunts">ფასდაკლებები</h4>
+            <h4 style={{ marginRight: 20 }} id="discunts">
+              ფასდაკლებები
+            </h4>
             <p className="discount-container">
               მომწოდებელი :<span> მწარმოებელი 1</span>
             </p>
@@ -384,7 +383,7 @@ const DiscountsTable2 = () => {
             <p className="discount-container">
               პერიოდი: <span>1/10/2023 - 10/10/2023</span>
             </p>
-            
+
             {/* <ItemsMenu /> */}
           </div>
           {/* Right */}
@@ -525,12 +524,7 @@ const DiscountsTable2 = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "discounts")}
-            >
-              <ExcelExportSvg />
-            </button>
+            <ExcelExportBtn data={rowData} name="discounts" />
           </div>
         </div>
       </header>
@@ -540,14 +534,14 @@ const DiscountsTable2 = () => {
         style={{ minHeight: 595, width: "100%" }}
       >
         <Select
-              className="react-select-container sla-select doscounts-table-select"
-              classNamePrefix="react-select"
-              options={shopsArr}
-              defaultValue={{
-                value: "ბათუმი, ზუბალაშვილის N3",
-                label: "ბათუმი, ზუბალაშვილის N3",
-              }}
-            />
+          className="react-select-container sla-select doscounts-table-select"
+          classNamePrefix="react-select"
+          options={shopsArr}
+          defaultValue={{
+            value: "ბათუმი, ზუბალაშვილის N3",
+            label: "ბათუმი, ზუბალაშვილის N3",
+          }}
+        />
         <AgGridReact
           ref={gridRef}
           onGridReady={onGridReady}

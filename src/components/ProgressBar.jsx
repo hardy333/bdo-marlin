@@ -7,12 +7,11 @@ const ProgressBar = ({ show }) => {
   const [timesUp, setTimesUp] = useState(false);
 
   useEffect(() => {
-    if(show === false && timesUp === true) return
+    if (show === false && timesUp === true) return;
     setTimesUp(false);
 
     const time = setTimeout(() => {
       setTimesUp(true);
-      console.log("Hello")
     }, 300);
 
     return () => {
@@ -20,11 +19,6 @@ const ProgressBar = ({ show }) => {
     };
   }, [show]);
 
-
-  console.log(show, timesUp)
- 
-
-  
   return (
     <div
       className="progress-bar"

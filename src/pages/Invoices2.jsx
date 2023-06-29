@@ -1,6 +1,4 @@
 import React from "react";
-import DashboardLayout from "../layout/DashboardLayout";
-import searchSvg from "../assets/employees/search.svg";
 import InvoiceCard2 from "../components/InvoiceCard2";
 import SearchSvg from "../components/svgs/SearchSvg";
 import FourDotsSvg from "../components/FourDotsSvg";

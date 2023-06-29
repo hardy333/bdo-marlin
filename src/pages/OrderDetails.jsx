@@ -43,10 +43,9 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import { useQuery } from "react-query";
-import { getData } from "./Test3";
+import { fetchData } from "../utils/fetchData";
+import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -91,7 +90,7 @@ const OrderDetails = () => {
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery("repoData", () => getData(url));
+  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -461,12 +460,7 @@ const OrderDetails = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "order-details")}
-            >
-              <ExcelExportSvg />
-            </button>
+            <LazyExcelExportBtn data={rowData} name="" />
           </div>
         </div>
       </header>

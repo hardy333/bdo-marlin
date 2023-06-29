@@ -34,7 +34,6 @@ import CustomInput from "../components/CustomInput";
 import ExpandingInput from "../components/ExpandingInput";
 import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
 import FilterSvg from "../components/FilterSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
@@ -45,9 +44,8 @@ import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
 import useFilterToggle from "../hooks/useFilterToggle";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import vendorsArr from "../data/vendors-data";
+import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -418,12 +416,7 @@ const InvoicesTable = () => {
             >
               <FourDotsSvg fill="#D0C7E8" />
             </button>
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "invoices")}
-            >
-              <ExcelExportSvg />
-            </button>
+            <LazyExcelExportBtn data={rowData} name="sss" />
           </div>
         </div>
       </header>

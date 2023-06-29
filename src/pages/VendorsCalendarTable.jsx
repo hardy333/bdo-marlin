@@ -45,13 +45,10 @@ import useFilterToggle from "../hooks/useFilterToggle";
 
 import d1 from "../assets/vendors-calendar-1.json";
 import d2 from "../assets/vendors-calendar-2.json";
-import VendorsDateRange from "../components/VendorsDateRange";
 
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 
 const vendors = [
   "Orbita",
@@ -75,6 +72,7 @@ const options = [
 
 import vendorsArr from "../data/vendors-data";
 import Tippy from "@tippyjs/react";
+import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -417,12 +415,8 @@ const VendorsCalendarTable = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "vendors-calendar")}
-            >
-              <ExcelExportSvg />
-            </button>
+
+            <LazyExcelExportBtn data={rowData} name="" />
           </div>
         </div>
       </header>

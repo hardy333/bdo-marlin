@@ -17,7 +17,9 @@ import "./styles/date-picker.css";
 import "./styles/floating-filter.css";
 
 import Error from "./pages/Error";
-import Employees from "./pages/Employees";
+
+const Employees = React.lazy(() => import("./pages/Employees"));
+
 import Profile from "./pages/Profile";
 import Vendors from "./pages/vendors/Vendors";
 import Invoices2 from "./pages/Invoices2";
@@ -25,11 +27,9 @@ import Invoices2 from "./pages/Invoices2";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Prices from "./pages/Prices";
-import MainDashboard from "./pages/MainDashboard";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
 import OrderDetails from "./pages/OrderDetails";
-import InvoicesTable from "./pages/InvoicesTable";
 import Terms from "./pages/Terms";
 import AllOrdersParent from "./pages/AllOrdersParent";
 import LogsTable from "./pages/LogsTable";
@@ -37,40 +37,22 @@ import ReportsTable from "./pages/ReportsTable";
 import CatalogueTable from "./pages/CatalogueTable";
 
 //  lazy
-// import NewCatalogueTable from "./pages/NewCatalogueTable";
-// import CatalogueTableGeo from "./pages/CatalogueTableGeo";
-// import CatalogueTablegeoResize from "./pages/CatalogueTableGeoResize";
-import StableTable from "./pages/StableTable";
-// import CatalogueTable5Level from "./pages/CatalogueTable5Level";
-// import AgTable from "./pages/AgTable";
-
-// const NewCatalogueTable = React.lazy(() => import("./pages/NewCatalogueTable"));
-// const CatalogueTableGeo = React.lazy(() => import("./pages/CatalogueTableGeo"));
-// const CatalogueTablegeoResize = React.lazy(() => import("./pages/CatalogueTablegeoResize"));
-// const StableTable = React.lazy(() => import("./pages/StableTable"));
-// const CatalogueTable5Level = React.lazy(() => import("./pages/CatalogueTable5Level"));
-// const AgTable = React.lazy(() => import("./pages/AgTable"));
 
 import Contract from "./pages/Contract";
 import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
-import SlaByVendorsTable from "./pages/SlaByVendorsTable";
 import DiscountsCards from "./pages/DiscountsCards";
 import VendorsCalendarTable from "./pages/VendorsCalendarTable";
 import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 import DashboardLayout from "./layout/DashboardLayout";
-
-// import Dash from "./pages/Dash";
+import InvoicesTable from "./pages/InvoicesTable";
 const Dash = React.lazy(() => import("./pages/Dash"));
 
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
-import SlaByVendor from "./pages/SlaByVendor";
 import SlaByCategory from "./pages/SlaByCategory";
-import ExpandableTable from "./pages/ExpandableTable";
 import DiscountsTable2 from "./pages/DiscountsTable2";
-import ColneAllOrdersPage from "./pages/CloneAllOrdersPage";
 
 const queryClient = new QueryClient();
 
@@ -88,44 +70,46 @@ function App() {
                 </React.Suspense>
               }
             />
+            <Route path="/invoices-table" element={<InvoicesTable />} />
+
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/expandable-table" element={<ExpandableTable />} />
+            <Route
+              path="/employees"
+              element={
+                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                  <Employees />
+                </React.Suspense>
+              }
+            />
+            <Route path="/invoices2" element={<Invoices2 />} />
+
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />
               <Route path="change-password" element={<PasswordForm />} />
             </Route>
             <Route path="/vendors" element={<Vendors />} />
-            <Route path="/invoices2" element={<Invoices2 />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/stable-table" element={<StableTable />} />
             <Route path="/register" element={<Register />} />
 
             <Route path="/prices" element={<Prices />} />
 
             <Route path="/order-details" element={<OrderDetails />} />
-            <Route path="/invoices-table" element={<InvoicesTable />} />
 
             <Route path="/all-orders-parent" element={<AllOrdersParent />} />
             <Route path="/logs" element={<LogsTable />} />
-            {/*  */}
+
             <Route path="/contract" element={<Contract />} />
             <Route path="/terms" element={<Terms />} />
-            {/* -------------------- */}
-            <Route path="/sla-by-vendors" element={<SlaByVendorsTable />} />
-            <Route path="/clone-all-orders" element={<ColneAllOrdersPage />} />
 
-            <Route path="/sla-by-vendor" element={<SlaByVendor />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />
             <Route path="/sla-by-category" element={<SlaByCategory />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/reports" element={<ReportsTable />} />
 
-            {/*  */}
             <Route path="/discounts-table" element={<DiscountsTable2 />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
-            {/*  */}
+
             <Route path="/catalogue" element={<CatalogueTable />} />
             <Route
               path="/vendors-calendar"
@@ -135,7 +119,6 @@ function App() {
               path="/vendor-all-orders"
               element={<VendorAllOrdersTable />}
             />
-            {/*  */}
 
             <Route path="/*" element={<Error />} />
           </Route>

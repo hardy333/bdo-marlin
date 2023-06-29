@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -26,15 +26,14 @@ import ExpandingInput from "../components/ExpandingInput";
 
 import "../styles/logs.css";
 
-import d from "../assets/LOGS_MOCK_DATA.json";
+// import d from "../assets/LOGS_MOCK_DATA.json";
 import useFilterToggle from "../hooks/useFilterToggle";
-import exportData from "../utils/exportData";
-import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
+import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 
 const LogsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [gridApi, setGridApi] = useState(null);
-  const [rowData, setRowData] = useState(d);
+  const [rowData, setRowData] = useState(null);
   const gridRef = useRef(null);
 
   const [columnDefs] = useState([
@@ -76,6 +75,15 @@ const LogsTable = () => {
       },
     },
   ]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch("/LOGS_MOCK_DATA.json");
+      const d = await res.json();
+      setRowData(d);
+    };
+    getData();
+  }, []);
 
   const defaultColDef = useMemo(
     () => ({
@@ -136,12 +144,7 @@ const LogsTable = () => {
               setIsSearchOpen={setIsSearchOpen}
               onFilterTextChange={onFilterTextChange}
             />
-            <button
-              className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData, "logs")}
-            >
-              <ExcelExportSvg />
-            </button>
+            <LazyExcelExportBtn data={rowData} name="" />
           </div>
         </div>
       </header>

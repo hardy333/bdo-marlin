@@ -7,7 +7,7 @@ import CarActive from "../../components/svgs/CarActive";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import VendorsCalendarSvg from "../../components/svgs/VendorsCalendarSvg";
 import VendorsCatalogueSvg from "../../components/svgs/VendorsCatalogueSvg";
 import VendorsShopSvg from "../../components/svgs/VendorsShopSvg";
