@@ -117,7 +117,6 @@ const ColneAllOrdersPage = () => {
   }
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  console.log({ isSearchOpen });
 
   return (
     <>

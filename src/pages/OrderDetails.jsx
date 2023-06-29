@@ -82,20 +82,16 @@ const OrderDetails = () => {
       showingName: "დარეზერვებული",
       isShowing: true,
     },
-
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [searchParams] = useSearchParams();
-  const orderID = searchParams.get("orderID") || "5e93afb9-87cb-49d1-8e4a-f765f8b87705"
+  const orderID =
+    searchParams.get("orderID") || "5e93afb9-87cb-49d1-8e4a-f765f8b87705";
 
-  
-  const url =
-    `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
-
+  const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
-  
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -110,7 +106,6 @@ const OrderDetails = () => {
     if (error) return;
     setRowData(data.data);
   }, [data, isLoading, error]);
-
 
   const [columnDefs] = useState([
     {
@@ -150,14 +145,13 @@ const OrderDetails = () => {
       headerName: "დარეზერვირებული ",
       cellRenderer: (params) => {
         const { value } = params;
-        let color = ""
-        if(params.data.redStatus){
-         color = "red"
+        let color = "";
+        if (params.data.redStatus) {
+          color = "red";
         }
-        return <span style={{color: color}}>{value}</span>
+        return <span style={{ color: color }}>{value}</span>;
       },
     },
-  
   ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
@@ -270,7 +264,6 @@ const OrderDetails = () => {
   let vendor = searchParams.get("vendor") || "GDM";
   let status = searchParams.get("status") || "გაგზავნილია";
 
-  
   let statusBg;
   // if (status === "In Progress") {
   //   statusBg = "#6E0FF5";
@@ -280,14 +273,13 @@ const OrderDetails = () => {
   //   statusBg = "#FFC23C";
   // }
 
-  
   if (status === "გაგზავნილია") {
-      statusBg = "#FFC23C";
+    statusBg = "#FFC23C";
   } else if (status === "მიწოდებულია") {
     statusBg = "#01C6B5";
-  } else if(status === "პროცესშია"){
+  } else if (status === "პროცესშია") {
     statusBg = "#6E0FF5";
-  }else if(status === "დადასტურებულია"){
+  } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
   }
   const [gridReady, setGridReady] = useState(false);
@@ -302,7 +294,7 @@ const OrderDetails = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 10 }}>ორდერის დეტალები</h4>
+            <h4 style={{ marginRight: 10 }}>შეკვეთის დეტალები</h4>
             <p className="discount-container">
               მომწოდებელი: <span>{vendor}</span>
             </p>
@@ -367,8 +359,8 @@ const OrderDetails = () => {
               </svg>
             </button>
             {/* popup */}
-            
-<Menu
+
+            <Menu
               align="center"
               direction="top"
               menuButton={

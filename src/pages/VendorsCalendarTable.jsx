@@ -143,20 +143,20 @@ const VendorsCalendarTable = () => {
         const d1 = Math.floor(Math.random() * 6);
         const d2 = Math.floor(Math.random() * 6);
 
-        let isTwo = false
-        let tooltipText = "ყველ კვირა"
-        
-        if(Math.random() -0.5 > 0){
-          isTwo = true
-          tooltipText = "2 კვირაში ერთხელ"
+        let isTwo = false;
+        let tooltipText = "ყველ კვირა";
+
+        if (Math.random() - 0.5 > 0) {
+          isTwo = true;
+          tooltipText = "2 კვირაში ერთხელ";
         }
-        
+
         return (
           <div className="dis-date-container">
             <div className="days-container">
               {days.map((d, index) => (
                 <span
-                  key={d+index}
+                  key={d + index}
                   style={{
                     color: d1 === index || d2 == index ? "#211543" : "#AE9EDC",
                   }}
@@ -172,15 +172,10 @@ const VendorsCalendarTable = () => {
               content={tooltipText}
             >
               <div className="circle-container">
+                <span className={`circle active`}></span>
                 <span
-                  className={`circle active`}
-                ></span>
-                <span
-                  className={`circle ${
-                    isTwo  ? "active stroked" : ""
-                  }`}
+                  className={`circle ${isTwo ? "active stroked" : ""}`}
                   style={{ display: isTwo ? "block" : "none" }}
-
                 ></span>
               </div>
             </Tippy>
@@ -304,11 +299,10 @@ const VendorsCalendarTable = () => {
   return (
     <>
       <header className="all-orders__header">
-        <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="all-orders__gdm-container"
+            className="all-orders__gdm-container  order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <span className="me-8">მომწოდებლების კალენდარი</span>

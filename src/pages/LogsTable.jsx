@@ -116,21 +116,26 @@ const LogsTable = () => {
     setGridApi(params.api);
   };
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div className="all-orders__settings">
+        <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10, cursor: "default" }}
           >
-            <span>Logs</span>
+            <span className={`${isSearchOpen ? "hide" : ""}`}>Logs</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
+            <ExpandingInput
+              setIsSearchOpen={setIsSearchOpen}
+              onFilterTextChange={onFilterTextChange}
+            />
             <button
               className="all-orders__btn excel-export-btn"
               onClick={() => exportData(rowData, "logs")}

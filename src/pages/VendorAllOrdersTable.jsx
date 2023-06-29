@@ -53,53 +53,46 @@ import { getData } from "./Test3";
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(
-    [
-      {
-        name: "shop",
-        showingName: "მაღაზია",
-        isShowing: true
-      },
-      {
-        name: "amount",
-        showingName: "თანხა",
-        isShowing: true
-      },
-      {
-        name: "scheduled",
-        showingName: "გეგმიური მიწოდება",
-        isShowing: true
-      },
-  
-      {
-        name: "status",
-        showingName: "სტატუსი",
-        isShowing: true
-    
-      },
-      {
-        name: "serviceLevel",
-        showingName: "სერვისის დონე",
-        isShowing: true
-      },
-    ]
-    
-  );
+  const [headerList, setHeaderList] = useState([
+    {
+      name: "shop",
+      showingName: "მაღაზია",
+      isShowing: true,
+    },
+    {
+      name: "amount",
+      showingName: "თანხა",
+      isShowing: true,
+    },
+    {
+      name: "scheduled",
+      showingName: "გეგმიური მიწოდება",
+      isShowing: true,
+    },
+
+    {
+      name: "status",
+      showingName: "სტატუსი",
+      isShowing: true,
+    },
+    {
+      name: "serviceLevel",
+      showingName: "სერვისის დონე",
+      isShowing: true,
+    },
+  ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-
   const gridRef = useRef(null);
 
-  
   const url =
     "https://10.0.0.202:5001/api/OrdersByAccountAndVendorFront/M00001/D00002";
 
   const { isLoading, error, data } = useQuery("repoData", () => getData(url));
 
-  console.log(data)
+  console.log(data);
 
-  
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -114,14 +107,13 @@ const VendorAllOrdersTable = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-
   const [columnDefs] = useState([
     {
       field: "shop",
       headerName: "მაღაზია",
       cellRenderer: (params) => {
         const { value } = params;
-        return value
+        return value;
       },
     },
     {
@@ -129,16 +121,15 @@ const VendorAllOrdersTable = () => {
       headerName: "თანხა",
       cellRenderer: (params) => {
         const { value } = params;
-        return value + " GEL"
+        return value + " GEL";
       },
     },
     {
       field: "scheduled",
       headerName: "გეგმიური მიწოდება",
       cellRenderer: (params) => {
-
         const { value } = params;
-        return value
+        return value;
       },
     },
 
@@ -152,14 +143,13 @@ const VendorAllOrdersTable = () => {
         const { value } = params;
         let color = "";
 
-
         if (value === "გაგზავნილია") {
           color = "#FFC23C";
         } else if (value === "მიწოდებულია") {
           color = "#01C6B5";
-        } else if(value === "პროცესშია"){
+        } else if (value === "პროცესშია") {
           color = "#6E0FF5";
-        }else if(value === "დადასტურებულია"){
+        } else if (value === "დადასტურებულია") {
           color = "#FF7BA7";
         }
 
@@ -204,14 +194,12 @@ const VendorAllOrdersTable = () => {
       headerName: "სერვისის დონე",
       cellRenderer: (params) => {
         const { value } = params;
-        return Math.floor(Math.random()*60+40) + "%";
+        return Math.floor(Math.random() * 60 + 40) + "%";
       },
     },
   ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
-  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -253,7 +241,6 @@ const VendorAllOrdersTable = () => {
     gridApi.setQuickFilter(e.target.value);
   };
 
-
   const toggleColumn = (name) => {
     const newHeaderList = headerList.map((header) =>
       header.name !== name
@@ -273,7 +260,7 @@ const VendorAllOrdersTable = () => {
       gridColumnApi.setColumnVisible(header.name, false);
     });
   };
-  
+
   const showAllColumns = () => {
     setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
     headerList.forEach((header) => {
@@ -315,7 +302,9 @@ const VendorAllOrdersTable = () => {
   const [openedRowId, setOpenedRowId] = useState(null);
 
   useEffect(() => {
-    const tableElem = document.querySelector(".vendors-all-orders-table .ag-center-cols-container");
+    const tableElem = document.querySelector(
+      ".vendors-all-orders-table .ag-center-cols-container"
+    );
 
     if (!tableElem) return;
 
@@ -326,7 +315,6 @@ const VendorAllOrdersTable = () => {
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
 
-      
       if (colName !== "status") {
         navigate(`/order-details`);
       }
@@ -375,22 +363,29 @@ const VendorAllOrdersTable = () => {
     return 32;
   }
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div className="all-orders__settings">
+        <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>ყველა შეკვეთა: </span>
-            <span style={{ color: "#6E0FF5" }}>მომწოდებელი 1</span>
+            <span className={`${isSearchOpen ? "hide" : ""}`}>
+              ყველა შეკვეთა:
+              <span style={{ color: "#6E0FF5" }}>მომწოდებელი 1</span>
+            </span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
+            <ExpandingInput
+              setIsSearchOpen={setIsSearchOpen}
+              onFilterTextChange={onFilterTextChange}
+            />
             {/* input filter */}
             <button
               onClick={() => {

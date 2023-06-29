@@ -49,7 +49,6 @@ import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import vendorsArr from "../data/vendors-data";
 
-
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -274,22 +273,27 @@ const InvoicesTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div className="all-orders__settings">
+        <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>ინვოისები</span>
+            <span className={`${isSearchOpen ? "hide" : ""}`}>ინვოისები</span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
             {/* <img src={search} alt="" /> */}
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
+            <ExpandingInput
+              setIsSearchOpen={setIsSearchOpen}
+              onFilterTextChange={onFilterTextChange}
+            />
             {/* input filter */}
             <button
               onClick={() => {

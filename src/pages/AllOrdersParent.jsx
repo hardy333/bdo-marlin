@@ -34,8 +34,6 @@ import TableSettings from "../components/TableSettings";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import allOrdersParentDefs from "../column-definitions/AllOrdersParentDefs";
 
-
-
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
   const [gridApi, setGridApi] = useState(null);
@@ -63,9 +61,7 @@ const AllOrdersParent = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  
   const [columnDefs] = useState(allOrdersParentDefs);
-
 
   const defaultColDef = useMemo(
     () => ({
@@ -87,10 +83,8 @@ const AllOrdersParent = () => {
     };
   }, []);
 
+  useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
 
-  useOrdersNavigate(gridApi, gridRef,setOpenedRowId)
-
-  
   // EVents
   // EVents
   const onGridReady = (params) => {
@@ -99,17 +93,13 @@ const AllOrdersParent = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-  
-
   useEffect(() => {
     if (!gridRef.current) return;
     if (!gridApi) return;
     gridRef.current.api.resetRowHeights();
   }, [openedRowId, gridRef, gridApi]);
 
-
   useRemoveId(gridApi, gridRef);
-
 
   function getRowHeight(params) {
     const { id } = params.node;
@@ -126,21 +116,34 @@ const AllOrdersParent = () => {
     }
   }
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div className="all-orders__settings">
-           {/* Left */}
-           <div
+        <div className="all-orders__settings settings-container-responsive">
+          {/* Left */}
+          <div
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span>ყველა შეკვეთა</span>
+            <span className={`${isSearchOpen ? "hide" : ""}`}>
+              ყველა შეკვეთა
+            </span>
             {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
           </div>
           <div className="all-orders__settings__options">
-            <TableSettings defHeaderList={allOrdersParentDefs} rowData={rowData} gridApi={gridApi} gridRef={gridRef} gridColumnApi={gridColumnApi} rowHeightIndex={rowHeightIndex} setRowHeightIndex={setRowHeightIndex}/>
+            <TableSettings
+              setIsSearchOpen={setIsSearchOpen}
+              defHeaderList={allOrdersParentDefs}
+              rowData={rowData}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+            />
           </div>
         </div>
       </header>

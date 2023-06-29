@@ -53,6 +53,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    padding-inline: 10px;
 
   }
 
@@ -62,11 +63,11 @@
 
   .settings-container-responsive{
     flex-direction: row;
-    padding-inline: 10px;
     position: relative;
     /* background-color:red !important; */
     /* background-color:green; */
     justify-content: flex-end;
+    align-items: center;
 
   }
  
@@ -74,17 +75,27 @@
   .settings-container-responsive .all-orders__gdm-container{
     margin: 0 !important;
     background-color: pink !important;
+    height: 100%;
   }
 
 
-  .settings-container-responsive span{
+  .settings-container-responsive .all-orders__gdm-container > span{
     opacity: 1;
     transition: all 0.2s;
     height: 24px;
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 10px;
     font-size: 16px;
+
+    display: flex;
+    align-items: center;
+    /* background-color:red; */
+  }
+
+  .all-orders__gdm-container > span{
+    cursor: default;
+
   }
 
   .settings-container-responsive span.hide{
