@@ -1,9 +1,7 @@
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/header-cell-menu-2.css";
 import dotsSvg2 from "../assets/dotsSvg2.svg";
-import { Menu as Menu2 } from "@headlessui/react";
-import { useClickAway } from "@uidotdev/usehooks";
 const filterStates = [
   {
     label: "Equals",
