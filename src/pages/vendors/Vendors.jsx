@@ -6,6 +6,7 @@ import "../../styles/vendors.css";
 import SearchSvg from "../../components/svgs/SearchSvg";
 import { AnimatePresence } from "framer-motion";
 import "../../styles/vendors-modal.css";
+import "../../styles/employees.css";
 
 import VendorsModal from "../../components/VendorsModal";
 

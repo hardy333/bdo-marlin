@@ -131,13 +131,13 @@ const TableSettings = ({
         align="center"
         direction="top"
         menuButton={
-          <Tippy
-            className="tooltip-1"
-            arrow={false}
-            placement="top"
-            content="სვეტების გათიშვა"
-          >
-            <MenuButton className="all-orders__btn ">
+          <MenuButton className="all-orders__btn ">
+            <Tippy
+              className="tooltip-1"
+              arrow={false}
+              placement="top"
+              content="სვეტების გათიშვა"
+            >
               <svg
                 id="Layer_3"
                 xmlns="http://www.w3.org/2000/svg"
@@ -157,8 +157,8 @@ const TableSettings = ({
                   d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
                 />
               </svg>
-            </MenuButton>
-          </Tippy>
+            </Tippy>
+          </MenuButton>
         }
         transition
       >

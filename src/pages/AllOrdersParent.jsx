@@ -31,7 +31,9 @@ import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import TableSettings from "../components/TableSettings";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
-import allOrdersParentDefs from "../column-definitions/AllOrdersParentDefs";
+import allOrdersParentDefs, {
+  allOrdersParentHeaderList,
+} from "../column-definitions/AllOrdersParentDefs";
 import { fetchData } from "../utils/fetchData";
 
 const AllOrdersParent = () => {
@@ -136,7 +138,7 @@ const AllOrdersParent = () => {
           <div className="all-orders__settings__options">
             <TableSettings
               setIsSearchOpen={setIsSearchOpen}
-              defHeaderList={allOrdersParentDefs}
+              defHeaderList={allOrdersParentHeaderList}
               rowData={rowData}
               gridApi={gridApi}
               gridRef={gridRef}

@@ -15,6 +15,8 @@ import "./styles/report-child-table.css";
 import "./styles/date-range-picker-one.css";
 import "./styles/date-picker.css";
 import "./styles/floating-filter.css";
+import "./styles/table-global.css";
+import "./styles/switch.css";
 
 import Error from "./pages/Error";
 
