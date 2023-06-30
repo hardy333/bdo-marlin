@@ -70,6 +70,8 @@ const options = [
   { value: "Svaneti", label: "Svaneti" },
 ];
 
+import { FaCalendarAlt } from "react-icons/fa";
+
 import vendorsArr from "../data/vendors-data";
 import Tippy from "@tippyjs/react";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
@@ -305,6 +307,28 @@ const VendorsCalendarTable = () => {
           >
             <span className="me-8">მომწოდებლების კალენდარი</span>
             {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
+            <button></button>
+            <Menu
+              className="vendor-calendar-menu"
+              menuButton={
+                <button className="vendor-calendar-btn">
+                  <FaCalendarAlt />
+                </button>
+              }
+            >
+              <MenuItem>
+                <div className=" date-picker-wrapper">
+                  <DayPicker
+                    mode="single"
+                    selected={selected}
+                    onSelect={(x) => {
+                      setSelected(x);
+                      changeRowData();
+                    }}
+                  />
+                </div>
+              </MenuItem>
+            </Menu>
             <Select
               className="react-select-container"
               classNamePrefix="react-select"

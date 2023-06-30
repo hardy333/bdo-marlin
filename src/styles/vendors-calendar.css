@@ -51,3 +51,38 @@
   width: 9px;
   height: 9px;
 }
+
+.vendor-calendar-btn{
+  display: none;
+}
+
+.vendor-calendar-menu{
+  background-color: #fff;
+}
+.vendor-calendar-menu .szh-menu__item:hover{
+  background-color: #fff;
+}
+
+.vendor-calendar-menu .szh-menu__item--hover{
+  background-color: #fff;
+}
+
+@media (max-width: 800px) {
+  .vendors-calendar__left{
+    display: none;
+  }
+
+  .vendor-calendar-btn{
+    display: block;
+    margin-left: -4rem;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .vendor-calendar-btn{
+    display: block;
+    margin-left: 0rem;
+    margin-bottom: 1rem;
+  }
+}
