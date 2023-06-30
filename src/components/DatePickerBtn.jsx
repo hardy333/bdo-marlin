@@ -32,6 +32,7 @@ const DatePickerBtn = ({ dateState, setDateState }) => {
           ranges={dateState}
           direction="horizontal"
           className="date-range-picker-one"
+          anchor="start"
         />
       </MenuItem>
     </Menu>

@@ -79,11 +79,15 @@
 
 @media (max-width: 501px) {
   .date-menu ul{
-    margin-left: -20px !important;
+    margin-left: -10px !important;
+  }
+
+  .date-menu .szh-menu__item{
+    padding: 0 !important;
   }
   
   .date-range-picker-one {
-    width: 320px !important;
+    width: 300px;
   }
 
   .date-menu .rdrDefinedRangesWrapper{
@@ -107,5 +111,33 @@
     width: 60px;
     left: 0rem;
   }
+
+
+  .date-menu .rdrDay{
+    width: 40px;
+
+  }
   
+
+  .date-menu .rdrWeekDay{
+    width: 40px !important;
+    max-width: 40px;
+  }
+
+  .date-menu .rdrDateDisplay{
+    gap:0;
+    width: 270px;
+  }
+  
+  .date-menu .rdrDateInput{
+    width: 140px !important;
+    max-width: 140px !important;
+  }
+
+  .date-menu .rdrMonthAndYearPickers{
+    max-width: 100% !important;
+    width: 100% !important;  
+    max-width: 300px !important;
+    min-width: 0 !important;
+  }
 }
