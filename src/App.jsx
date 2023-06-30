@@ -56,6 +56,9 @@ import SlaByOrders from "./pages/SlaByOrders";
 import SlaByCategory from "./pages/SlaByCategory";
 import DiscountsTable2 from "./pages/DiscountsTable2";
 
+import StableTable from "./pages/StableTable";
+import ExpandableTable from "./pages/ExpandableTable";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -73,7 +76,8 @@ function App() {
               }
             />
             <Route path="/invoices-table" element={<InvoicesTable />} />
-
+            <Route path="/stable-table" element={<StableTable />} />
+            <Route path="/expandable-table" element={<ExpandableTable />} />
             <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
             <Route
               path="/employees"

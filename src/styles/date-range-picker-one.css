@@ -1,10 +1,13 @@
 
 
 
+.date-range-picker-one {
+  width: 450px;
+}
+
 .date-range-picker-one .rdrDefinedRangesWrapper{
   border-color: #fff;
 }
-
 
 .date-range-picker-one .rdrMonthName{
   display: none;
@@ -64,11 +67,39 @@
   bottom: 0;
   /* transform: translate(-50%, 0); */
   height: 1px;
-  width: 150px;
+  width: 110px;
   display: block;
   background-color: #ebe8f58a;
 }
 
 .rdrStaticRange:last-child:before{
   display: none;
+}
+
+
+@media (max-width: 501px) {
+  .date-menu ul{
+    margin-left: -5px !important;
+  }
+  
+  .date-range-picker-one {
+    width: 380px !important;
+  }
+  .rdrStaticRange{
+    padding-left: 0 !important;
+  }
+
+  .rdrStaticRangeLabel{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 65px;
+
+  }
+
+  .rdrStaticRange:before{
+  
+    width: 60px;
+    left: 0rem;
+  }
+  
 }

@@ -7,3 +7,7 @@
 svg{
   outline: none;
 }
+
+.ag-cell-focus{
+  border-color: transparent !important;
+}
