@@ -79,25 +79,31 @@
 
 @media (max-width: 501px) {
   .date-menu ul{
-    margin-left: -5px !important;
+    margin-left: -20px !important;
   }
   
   .date-range-picker-one {
-    width: 380px !important;
+    width: 320px !important;
   }
-  .rdrStaticRange{
+
+  .date-menu .rdrDefinedRangesWrapper{
+    display: none;
+  }
+
+  
+  .date-menu .rdrStaticRange{
     padding-left: 0 !important;
   }
 
-  .rdrStaticRangeLabel{
+  .date-menu .rdrStaticRangeLabel{
     padding-left: 0 !important;
     padding-right: 0 !important;
     width: 65px;
+    background-color:red;
 
   }
 
-  .rdrStaticRange:before{
-  
+  .date-menu .rdrStaticRange:before{
     width: 60px;
     left: 0rem;
   }

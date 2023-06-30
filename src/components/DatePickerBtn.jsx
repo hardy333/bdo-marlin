@@ -24,6 +24,7 @@ const DatePickerBtn = ({ dateState, setDateState }) => {
         }}
       >
         <DateRangePicker
+          dragSelectionEnabled
           onChange={(item) => setDateState([item.selection])}
           showSelectionPreview={true}
           moveRangeOnFirstSelection={false}
