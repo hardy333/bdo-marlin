@@ -91,7 +91,7 @@ const OrderDetails = () => {
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("order-details-data", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -236,7 +236,7 @@ const OrderDetails = () => {
 
   useEffect(() => {
     const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
+      rowHeightBtnRef.current?.click();
     }, 500);
 
     return () => {
@@ -285,7 +285,7 @@ const OrderDetails = () => {
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
   
   return (

@@ -29,7 +29,7 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
             price
           } = row;
           return (
-            <article key={barcode+index} className="table-card order-details-card">
+            <article key={index} className="table-card order-details-card">
               <div className="table-card-row">
                 <span>Barcode</span>
                 <span>{barcode}</span>

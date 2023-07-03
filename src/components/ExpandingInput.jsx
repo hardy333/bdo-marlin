@@ -31,7 +31,11 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
         open: isOpen,
       })}
       ref={wrapperRef}
-      onClick={() => setIsSearchOpen(true)}
+      onClick={() => {
+        if(setIsSearchOpen){
+          setIsSearchOpen(true)
+        }
+      }}
     >
       <input
         ref={inputRef}

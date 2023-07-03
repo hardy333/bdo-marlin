@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AllOrdersCards = ({ data }) => {
   if (!data) {
     // return <h1>Loading ...</h1>;
+    console.log("Hell")
     data = [
       {
         shop: "SPAR001",
@@ -49,12 +50,10 @@ const AllOrdersCards = ({ data }) => {
       <section className="table-cards-container">
         {data.map((row, index) => {
           const { shop, date, vendor, amount, serviceLevel, status } = row;
-          console.log({row})
           return (
             <article onClick={() => {
-              console.log("CLick")
               navigate("/order-details")
-            }} key={shop+index} className="table-card all-orders-card">
+            }} key={index} className="table-card all-orders-card">
               <header className="table-card-row">
                 <h3>
                   <span>{vendor}</span>

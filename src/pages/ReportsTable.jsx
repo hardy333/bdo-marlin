@@ -83,6 +83,8 @@ const ReportsTable = () => {
     return null;
   });
 
+  console.log(data)
+  
   useEffect(() => {
     if (!data) return;
     if (isLoading) return;
@@ -213,7 +215,7 @@ const ReportsTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
 
   return (
