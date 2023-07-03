@@ -18,6 +18,7 @@ const ReportsCards = ({ data }) => {
           const {  orders, vendor, amount, slaByQuantity,slaByAmount, inTimeOrders } = row;
           return (
             <article onClick={() => {
+                navigate("/sla-by-orders")
             }} key={index} className="table-card reports-card">
               <header className="table-card-row">
                 <h3>

@@ -86,7 +86,7 @@ const SlaByOrders = () => {
 
   const url = "https://10.0.0.202:5001/api/SLAByOrders";
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("sla-by-orders-data", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

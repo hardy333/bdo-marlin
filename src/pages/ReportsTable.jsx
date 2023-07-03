@@ -74,7 +74,7 @@ const ReportsTable = () => {
 
   const url = "https://10.0.0.202:5001/api/SLAByVendors";
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("reports-data", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
