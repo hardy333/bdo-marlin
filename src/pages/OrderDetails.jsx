@@ -46,7 +46,8 @@ import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
-
+import { useMediaQuery } from "@uidotdev/usehooks";
+import OrderDetailsCards from "../components/OrderDetailsCards";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -284,6 +285,8 @@ const OrderDetails = () => {
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 500px)");
+
   return (
     <>
       <header className="all-orders__header">
@@ -322,205 +325,221 @@ const OrderDetails = () => {
               <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
             </Menu>
           </div>
-          {/* Right */}
-          <div className="all-orders__settings__options">
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
+          {isSmallDevice ? null : (
+            <div className="all-orders__settings__options">
+              <ExpandingInput onFilterTextChange={onFilterTextChange} />
+
+              {/* input filter */}
+              <button
+                onClick={() => {
+                  setShowFilters(!showFilters);
+                }}
+                className={classNames({
+                  "all-orders__btn-filter": true,
+                  "all-orders__btn": true,
+                  active: showFilters,
+                })}
               >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
-            </button>
-            {/* popup */}
+                <svg
+                  id="Layer_3"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 47.28 33.65"
+                >
+                  <defs></defs>
+                  <path
+                    className="cls-1"
+                    d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                  />
+                  <path
+                    className="cls-1"
+                    d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                  />
+                  <path
+                    className="cls-1"
+                    d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
+                  />
+                </svg>
+              </button>
+              {/* popup */}
 
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
+              <Menu
+                align="center"
+                direction="top"
+                menuButton={
+                  <MenuButton className="all-orders__btn ">
+                    <svg
+                      id="Layer_3"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 33.58 47.28"
+                    >
+                      <defs></defs>
+                      <path
+                        className="cls-1"
+                        d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
                       />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.showingName}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-                active: isFullScreen,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            <LazyExcelExportBtn data={rowData} name="" />
-          </div>
+                      <path
+                        className="cls-1"
+                        d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                      />
+                      <path
+                        className="cls-1"
+                        d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
+                      />
+                    </svg>
+                  </MenuButton>
+                }
+                transition
+              >
+                <div className="column-toggle-popup">
+                  <header className="column-toggle-popup__header">
+                    <button
+                      className={classNames({
+                        btn: true,
+                        active: !headerList.every(
+                          (header) => !header.isShowing
+                        ),
+                      })}
+                      onClick={hideAllColumns}
+                    >
+                      Hide All
+                    </button>
+                    <button
+                      className={classNames({
+                        btn: true,
+                        active: headerList.some((header) => !header.isShowing),
+                      })}
+                      onClick={showAllColumns}
+                    >
+                      Show All
+                    </button>
+                  </header>
+                  {headerList.map((header) => (
+                    <MenuItem
+                      key={header.name}
+                      value={header.name}
+                      onClick={(e) => {
+                        // Stop the `onItemClick` of root menu component from firing
+                        // e.stopPropagation = true;
+                        // Keep the menu open after this menu item is clicked
+                        e.keepOpen = true;
+                      }}
+                    >
+                      <div className="switch">
+                        <input
+                          checked={header.isShowing}
+                          type="checkbox"
+                          id={header.name}
+                          className="switch__input"
+                          onChange={() => {
+                            toggleColumn(header.name);
+                          }}
+                        />
+                        <label htmlFor={header.name} className="switch__label">
+                          {header.showingName}
+                        </label>
+                      </div>
+                    </MenuItem>
+                  ))}
+                </div>
+              </Menu>
+              {/* Row height */}
+              <button
+                onClick={() => {
+                  gridRef.current.api.resetRowHeights();
+                  changeRowHeight();
+                }}
+                ref={rowHeightBtnRef}
+                className="all-orders__btn"
+              >
+                {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
+                {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
+                {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
+              </button>
+              {/* expand */}
+              <button
+                onClick={() => setIsFullScreen(!isFullScreen)}
+                className={classNames({
+                  "all-orders__btn": true,
+                  active: isFullScreen,
+                })}
+              >
+                {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
+              </button>
+              <LazyExcelExportBtn data={rowData} name="" />
+            </div>
+          )}
         </div>
       </header>
-      <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example order-details-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={67} />}
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <OrderDetailsCards
+          data={rowData}
+          status={status}
+          vendor={vendor}
+          statusBg={statusBg}
+          date={date}
+        />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example order-details-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            // enableRangeSelection={true}
+            // copyHeadersToClipboard={true}
+            // rowSelection={"multiple"}
+            // paginationAutoPageSize={true}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          {gridReady === true && (
+            <AgTablePag gridRef={gridRef} pageCount={67} />
+          )}
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };
