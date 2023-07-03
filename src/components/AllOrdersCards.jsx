@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/order-details-card.css";
 import Tippy from "@tippyjs/react";
+import { useNavigate } from "react-router-dom";
 
 const AllOrdersCards = ({ data }) => {
   if (!data) {
@@ -41,13 +42,17 @@ const AllOrdersCards = ({ data }) => {
     ];
   }
 
+  const navigate = useNavigate()
+
   return (
     <>
       <section className="table-cards-container">
-        {data.map((row) => {
+        {data.map((row, index) => {
           const { shop, date, vendor, amount, serviceLevel, status } = row;
           return (
-            <article className="table-card all-orders-card">
+            <article onClick={() => {
+              navigate("/order-details")
+            }} key={shop+index} className="table-card all-orders-card">
               <header className="table-card-row">
                 <h3>
                   <span>{vendor}</span>

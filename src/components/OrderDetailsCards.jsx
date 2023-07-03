@@ -6,10 +6,12 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
     return <h1>Loading ...</h1>;
   }
 
+  console.log(data)
+  
   return (
     <>
       <section className="table-cards-container">
-        {data.map((row) => {
+        {data.map((row, index) => {
           const {
             barcode,
             quantity,
@@ -19,7 +21,7 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
             amount,
           } = row;
           return (
-            <article className="table-card order-details-card">
+            <article key={barcode+index} className="table-card order-details-card">
               <header className="table-card-row">
                 <h3>
                   <span>{vendor}</span>

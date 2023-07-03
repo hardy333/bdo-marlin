@@ -87,7 +87,7 @@ const OrderDetails = () => {
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [searchParams] = useSearchParams();
   const orderID =
-    searchParams.get("orderID") || "5e93afb9-87cb-49d1-8e4a-f765f8b87705";
+    searchParams.get("orderID") || "f0ce0829-044b-11ee-8123-005056b5a0aa";
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
@@ -287,6 +287,8 @@ const OrderDetails = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
 
+  console.log(rowData)
+  
   return (
     <>
       <header className="all-orders__header">
