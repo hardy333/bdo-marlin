@@ -18,50 +18,43 @@ import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
 
-const Employees = React.lazy(() => import("./pages/Employees"));
-const Dash = React.lazy(() => import("./pages/Dash"));
+import Employees from "./pages/Employees";
+import Dash from "./pages/Dash";
 
-const Error = React.lazy(() => import("./pages/Error"));
-const Profile = React.lazy(() => import("./pages/Profile"));
-const Vendors = React.lazy(() => import("./pages/vendors/Vendors"));
-const Invoices2 = React.lazy(() => import("./pages/Invoices2"));
+import Error from "./pages/Error";
+import Profile from "./pages/Profile";
+import Vendors from "./pages/vendors/Vendors";
+import Invoices2 from "./pages/Invoices2";
 
-const Login = React.lazy(() => import("./pages/Login"));
-const Register = React.lazy(() => import("./pages/Register"));
-const Prices = React.lazy(() => import("./pages/Prices"));
-const ProfileForm = React.lazy(() => import("./components/ProfileForm"));
-const PasswordForm = React.lazy(() => import("./components/PasswordForm"));
-const OrderDetails = React.lazy(() => import("./pages/OrderDetails"));
-const Terms = React.lazy(() => import("./pages/Terms"));
-const AllOrdersParent = React.lazy(() => import("./pages/AllOrdersParent"));
-const LogsTable = React.lazy(() => import("./pages/LogsTable"));
-const ReportsTable = React.lazy(() => import("./pages/ReportsTable"));
-const CatalogueTable = React.lazy(() => import("./pages/CatalogueTable"));
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Prices from "./pages/Prices";
+import ProfileForm from "./components/ProfileForm";
+import PasswordForm from "./components/PasswordForm";
+import OrderDetails from "./pages/OrderDetails";
+import Terms from "./pages/Terms";
+import AllOrdersParent from "./pages/AllOrdersParent";
+import LogsTable from "./pages/LogsTable";
+import ReportsTable from "./pages/ReportsTable";
+import CatalogueTable from "./pages/CatalogueTable";
 
-//  lazy
+import Contract from "./pages/Contract";
+import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
+import DiscountsCards from "./pages/DiscountsCards";
+import VendorsCalendarTable from "./pages/VendorsCalendarTable";
+import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 
-const Contract = React.lazy(() => import("./pages/Contract"));
-const VendorAllOrdersTable = React.lazy(() =>
-  import("./pages/VendorAllOrdersTable")
-);
-const DiscountsCards = React.lazy(() => import("./pages/DiscountsCards"));
-const VendorsCalendarTable = React.lazy(() =>
-  import("./pages/VendorsCalendarTable")
-);
-const InvoiceDetailsTable = React.lazy(() =>
-  import("./pages/InvoiceDetailsTable")
-);
-const DashboardLayout = React.lazy(() => import("./layout/DashboardLayout"));
-const InvoicesTable = React.lazy(() => import("./pages/InvoicesTable"));
+import DashboardLayout from "./layout/DashboardLayout";
+import InvoicesTable from "./pages/InvoicesTable";
 
-const SlaByShops = React.lazy(() => import("./pages/SlaByShops"));
-const SlaByItem = React.lazy(() => import("./pages/SlaByItem"));
-const SlaByOrders = React.lazy(() => import("./pages/SlaByOrders"));
-const SlaByCategory = React.lazy(() => import("./pages/SlaByCategory"));
-const DiscountsTable2 = React.lazy(() => import("./pages/DiscountsTable2"));
+import SlaByShops from "./pages/SlaByShops";
+import SlaByItem from "./pages/SlaByItem";
+import SlaByOrders from "./pages/SlaByOrders";
+import SlaByCategory from "./pages/SlaByCategory";
+import DiscountsTable2 from "./pages/DiscountsTable2";
 
-const StableTable = React.lazy(() => import("./pages/StableTable"));
-const ExpandableTable = React.lazy(() => import("./pages/ExpandableTable"));
+import StableTable from "./pages/StableTable";
+import ExpandableTable from "./pages/ExpandableTable";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 
@@ -73,236 +66,53 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route element={<DashboardLayout />}>
-            <Route
-              path="/"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Dash />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/invoices-table"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <InvoicesTable />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/employees"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Employees />
-                </React.Suspense>
-              }
-            />
+            <Route path="/" element={<Dash />} />
+            <Route path="/invoices-table" element={<InvoicesTable />} />
+            <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />
               <Route path="change-password" element={<PasswordForm />} />
             </Route>
-            <Route
-              path="/stable-table"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <StableTable />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/expandable-table"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <ExpandableTable />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/invoice-details"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <InvoiceDetailsTable />
-                </React.Suspense>
-              }
-            />
+            <Route path="/stable-table" element={<StableTable />} />
+            <Route path="/expandable-table" element={<ExpandableTable />} />
+            <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
 
-            <Route
-              path="/invoices2"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Invoices2 />
-                </React.Suspense>
-              }
-            />
+            <Route path="/invoices2" element={<Invoices2 />} />
 
-            <Route
-              path="/vendors"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Vendors />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Login />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Register />
-                </React.Suspense>
-              }
-            />
+            <Route path="/vendors" element={<Vendors />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-            <Route
-              path="/prices"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Prices />
-                </React.Suspense>
-              }
-            />
+            <Route path="/prices" element={<Prices />} />
 
-            <Route
-              path="/order-details"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <OrderDetails />
-                </React.Suspense>
-              }
-            />
+            <Route path="/order-details" element={<OrderDetails />} />
 
-            <Route
-              path="/all-orders-parent"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <AllOrdersParent />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/logs"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <LogsTable />
-                </React.Suspense>
-              }
-            />
+            <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+            <Route path="/logs" element={<LogsTable />} />
 
-            <Route
-              path="/contract"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Contract />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/terms"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Terms />
-                </React.Suspense>
-              }
-            />
+            <Route path="/contract" element={<Contract />} />
+            <Route path="/terms" element={<Terms />} />
 
-            <Route
-              path="/sla-by-shops"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <SlaByShops />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/sla-by-item"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <SlaByItem />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/sla-by-category"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <SlaByCategory />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/sla-by-orders"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <SlaByOrders />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/reports"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <ReportsTable />
-                </React.Suspense>
-              }
-            />
+            <Route path="/sla-by-shops" element={<SlaByShops />} />
+            <Route path="/sla-by-item" element={<SlaByItem />} />
+            <Route path="/sla-by-category" element={<SlaByCategory />} />
+            <Route path="/sla-by-orders" element={<SlaByOrders />} />
+            <Route path="/reports" element={<ReportsTable />} />
 
-            <Route
-              path="/discounts-table"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <DiscountsTable2 />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/discounts-cards"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <DiscountsCards />
-                </React.Suspense>
-              }
-            />
+            <Route path="/discounts-table" element={<DiscountsTable2 />} />
+            <Route path="/discounts-cards" element={<DiscountsCards />} />
 
-            <Route
-              path="/catalogue"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <CatalogueTable />
-                </React.Suspense>
-              }
-            />
+            <Route path="/catalogue" element={<CatalogueTable />} />
             <Route
               path="/vendors-calendar"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <VendorsCalendarTable />
-                </React.Suspense>
-              }
+              element={<VendorsCalendarTable />}
             />
             <Route
               path="/vendor-all-orders"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <VendorAllOrdersTable />
-                </React.Suspense>
-              }
+              element={<VendorAllOrdersTable />}
             />
 
-            <Route
-              path="/*"
-              element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
-                  <Error />
-                </React.Suspense>
-              }
-            />
+            <Route path="/*" element={<Error />} />
           </Route>
         </Routes>
       </QueryClientProvider>
