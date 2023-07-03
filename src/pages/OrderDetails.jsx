@@ -285,7 +285,7 @@ const OrderDetails = () => {
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 500px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
 
   return (
     <>

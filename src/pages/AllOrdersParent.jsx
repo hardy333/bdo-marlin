@@ -35,6 +35,9 @@ import allOrdersParentDefs, {
   allOrdersParentHeaderList,
 } from "../column-definitions/AllOrdersParentDefs";
 import { fetchData } from "../utils/fetchData";
+import AllOrdersCards from "../components/AllOrdersCards";
+
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -119,6 +122,8 @@ const AllOrdersParent = () => {
   }
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
+  console.log(isSmallDevice);
 
   return (
     <>
@@ -149,48 +154,52 @@ const AllOrdersParent = () => {
           </div>
         </div>
       </header>
-      <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example all-orders-parent"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          getRowHeight={getRowHeight}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <AllOrdersCards data={rowData} />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example all-orders-parent"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <AgGridReact
+            ref={gridRef}
+            getRowHeight={getRowHeight}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };
