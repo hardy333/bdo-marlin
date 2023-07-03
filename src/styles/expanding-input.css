@@ -18,6 +18,7 @@
   width: 170px;
 }
 
+
 .expanding-input{
   border: 0;
   border-bottom: 1px solid #211543;
@@ -77,3 +78,12 @@
   pointer-events: all;
 }
 
+
+
+@media (max-width: 380px) {
+  .expanding-input-wrapper.open{
+    width: 150px;
+  }
+  
+  
+}
