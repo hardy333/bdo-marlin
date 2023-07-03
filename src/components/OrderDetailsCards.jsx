@@ -1,12 +1,20 @@
 import React from "react";
 import "../styles/order-details-card.css";
+import { useEffect } from "react";
 
 const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
   if (!data) {
     return <h1>Loading ...</h1>;
   }
 
-  console.log(data)
+
+  // useEffect(() => {
+  //   console.log("Order details card mount")
+  //   return () => {
+  //   console.log("Order details card un-mount")
+
+  //   }
+  // }, [])
   
   return (
     <>

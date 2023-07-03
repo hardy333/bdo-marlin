@@ -31,6 +31,8 @@ import { useQuery } from "react-query";
 import TableSettings from "../components/TableSettings";
 import { useNavigate } from "react-router-dom";
 import { fetchData } from "../utils/fetchData";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import ReportsCards from "./ReportsCards";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -211,6 +213,9 @@ const ReportsTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
+
+
   return (
     <>
       <header className="all-orders__header">
@@ -240,6 +245,7 @@ const ReportsTable = () => {
           {/* Right */}
           <div className="all-orders__settings__options">
             <TableSettings
+            isSmallDevice={isSmallDevice}
               defHeaderList={headerList}
               rowData={rowData}
               gridApi={gridApi}
@@ -251,7 +257,9 @@ const ReportsTable = () => {
           </div>
         </div>
       </header>
-      <div
+      {
+        isSmallDevice ? <ReportsCards data={rowData} /> : (
+          <div
         id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-all-table sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
@@ -302,6 +310,8 @@ const ReportsTable = () => {
           })}
         </Menu>
       </div>
+        )
+      }
     </>
   );
 };

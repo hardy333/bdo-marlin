@@ -49,8 +49,10 @@ const AllOrdersCards = ({ data }) => {
       <section className="table-cards-container">
         {data.map((row, index) => {
           const { shop, date, vendor, amount, serviceLevel, status } = row;
+          console.log({row})
           return (
             <article onClick={() => {
+              console.log("CLick")
               navigate("/order-details")
             }} key={shop+index} className="table-card all-orders-card">
               <header className="table-card-row">

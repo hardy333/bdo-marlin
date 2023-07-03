@@ -98,7 +98,6 @@ const TableSettings = ({
     }
   };
 
-  console.log(rowData);
   return (
     <>
       {/* Expand Input */}
@@ -229,7 +228,7 @@ const TableSettings = ({
           style={{display: isSmallDevice ?  "none" : ""}}
 
           onClick={() => {
-            gridRef.current.api.resetRowHeights();
+            gridRef.current?.api.resetRowHeights();
             changeRowHeight();
           }}
           ref={rowHeightBtnRef}

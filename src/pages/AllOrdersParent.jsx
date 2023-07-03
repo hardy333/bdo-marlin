@@ -123,14 +123,13 @@ const AllOrdersParent = () => {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
-  console.log(isSmallDevice);
 
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
         <div
-        style={{width: isSmallDevice ?  "300px" : "", marginInline: "auto"}}
+        // style={{width: isSmallDevice ?  "300px" : "", marginInline: "auto"}}
 
          className="all-orders__settings settings-container-responsive">
           {/* Left */}

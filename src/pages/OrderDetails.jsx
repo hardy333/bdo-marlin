@@ -287,7 +287,6 @@ const OrderDetails = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 490px)");
 
-  console.log(rowData)
   
   return (
     <>

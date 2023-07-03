@@ -79,7 +79,7 @@
 /* All Orders Card */
 
 .all-orders-card{
-  width: 300px;
+  /* width: 300px; */
 }
 
 .all-orders-card header{
@@ -92,4 +92,18 @@
 
 .all-orders-card div.table-card-row:last-child{
   border: none;
+}
+
+
+/* Reports */
+/* Reports */
+
+.reports-card{
+
+}
+
+.reports-card .box{
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
 }
