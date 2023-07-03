@@ -52,6 +52,8 @@ import { useLocation } from "react-router-dom";
 import SlaMenu from "../components/SlaMenu";
 import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import SlaOrdersCards from "../components/SlaOrdersCards";
 
 const SlaByOrders = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -262,6 +264,9 @@ const SlaByOrders = () => {
 
   useRemoveId(gridApi, gridRef);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
+
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header">
@@ -426,7 +431,9 @@ const SlaByOrders = () => {
           </div>
         </div>
       </header>
-      <div
+      {
+        isSmallDevice ? <SlaOrdersCards data={rowData} /> : (
+          <div
         id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
@@ -477,6 +484,8 @@ const SlaByOrders = () => {
           })}
         </Menu>
       </div>
+        )
+      }
     </>
   );
 };
