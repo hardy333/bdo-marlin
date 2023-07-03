@@ -47,6 +47,7 @@ import { useQuery } from "react-query";
 import ProgressBar from "../components/ProgressBar";
 import { fetchData } from "../utils/fetchData";
 import ExcelExportBtn from "../components/ExcelExportBtn";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -328,6 +329,10 @@ const CatalogueTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
+
+  const [showCatalogue, setShowCatalogue] = useState(false);
+
   return (
     <>
       <header
@@ -343,6 +348,18 @@ const CatalogueTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4>კატალოგი</h4>
+            {isSmallDevice ? (
+              <div className="mobile-cat-container">
+                <button onClick={() => setShowCatalogue(true)}>Cat</button>
+                <div
+                  className={`catalogue-menu-container mobile-catalogue-menu-container ${
+                    showCatalogue ? "show" : "hide"
+                  }`}
+                >
+                  <CatalogueMenu setSubCatId={setSubCatId} />
+                </div>
+              </div>
+            ) : null}
 
             <div className="vendors-switch-container">
               <p className="catalogue-label">ჩემი პროდუქტები</p>
@@ -503,9 +520,11 @@ const CatalogueTable = () => {
       </header>
       <div className="flex gap-2">
         {/* Categories */}
-        <div className="catalogue-menu-container">
-          <CatalogueMenu setSubCatId={setSubCatId} />
-        </div>
+        {isSmallDevice ? null : (
+          <div className="catalogue-menu-container">
+            <CatalogueMenu setSubCatId={setSubCatId} />
+          </div>
+        )}
 
         <div
           id="marlin-table"
