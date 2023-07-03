@@ -17,20 +17,11 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
             quantity,
             product,
             reservedQuantity,
-            price,
-            amount,
+            amount, 
+            price
           } = row;
           return (
             <article key={barcode+index} className="table-card order-details-card">
-              <header className="table-card-row">
-                <h3>
-                  <span>{vendor}</span>
-                  <small> {date}</small>
-                </h3>
-                <span className="status" style={{ color: statusBg }}>
-                  {status}
-                </span>
-              </header>
               <div className="table-card-row">
                 <span>Barcode</span>
                 <span>{barcode}</span>
@@ -38,6 +29,14 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
               <div className="table-card-row">
                 <span>Product</span>
                 <span>{product}</span>
+              </div>
+              <div className="table-card-row">
+                <span>Amount</span>
+                <span>{amount}</span>
+              </div>
+              <div className="table-card-row">
+                <span>Price</span>
+                <span>{price}</span>
               </div>
               <div className="table-card-row">
                 <span>Quantity</span>

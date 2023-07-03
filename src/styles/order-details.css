@@ -42,6 +42,13 @@
 }
 
 
+.btn-status-2{
+  background-color: #FFC23C36 !important;
+  color: #ffc13c !important;
+  border-radius: 5px !important;
+  letter-spacing: 0.7px;
+}
+
 @media (max-width: 600px) {
  .order-details-left{
   display: flex;
@@ -61,3 +68,4 @@
  }
  
 }
+

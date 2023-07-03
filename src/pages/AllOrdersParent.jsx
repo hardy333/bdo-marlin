@@ -129,7 +129,10 @@ const AllOrdersParent = () => {
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div className="all-orders__settings settings-container-responsive">
+        <div
+        style={{width: isSmallDevice ?  "300px" : "", marginInline: "auto"}}
+
+         className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
             className="all-orders__gdm-container"
@@ -142,6 +145,7 @@ const AllOrdersParent = () => {
           </div>
           <div className="all-orders__settings__options">
             <TableSettings
+            isSmallDevice={isSmallDevice}
               setIsSearchOpen={setIsSearchOpen}
               defHeaderList={allOrdersParentHeaderList}
               rowData={rowData}

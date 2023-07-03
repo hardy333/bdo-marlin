@@ -16,6 +16,7 @@ import Tippy from "@tippyjs/react";
 import LazyExcelExportBtn from "./LazyExcelExportBtn";
 
 const TableSettings = ({
+  isSmallDevice,
   setIsSearchOpen,
   gridApi,
   defHeaderList,
@@ -121,6 +122,7 @@ const TableSettings = ({
             "all-orders__btn": true,
             active: showFilters,
           })}
+          style={{display: isSmallDevice ?  "none" : ""}}
         >
           <FilterSvg />
         </button>
@@ -131,7 +133,10 @@ const TableSettings = ({
         align="center"
         direction="top"
         menuButton={
-          <MenuButton className="all-orders__btn ">
+          <MenuButton 
+          style={{display: isSmallDevice ?  "none" : ""}}
+
+          className="all-orders__btn ">
             <Tippy
               className="tooltip-1"
               arrow={false}
@@ -165,6 +170,7 @@ const TableSettings = ({
         <div className="column-toggle-popup">
           <header className="column-toggle-popup__header">
             <button
+
               className={classNames({
                 btn: true,
                 active: !headerList.every((header) => !header.isShowing),
@@ -220,6 +226,8 @@ const TableSettings = ({
         content="სტრიქონების სიმაღლე"
       >
         <button
+          style={{display: isSmallDevice ?  "none" : ""}}
+
           onClick={() => {
             gridRef.current.api.resetRowHeights();
             changeRowHeight();
@@ -240,6 +248,8 @@ const TableSettings = ({
         content="გადიდება"
       >
         <button
+          style={{display: isSmallDevice ?  "none" : ""}}
+
           onClick={() => setIsFullScreen(!isFullScreen)}
           className={classNames({
             "all-orders__btn": true,

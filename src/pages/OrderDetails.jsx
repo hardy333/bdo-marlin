@@ -313,7 +313,7 @@ const OrderDetails = () => {
               menuButton={
                 <button
                   style={{ backgroundColor: statusBg, color: "#fff" }}
-                  className="btn "
+                  className="btn btn-status-2"
                 >
                   {status}
                 </button>

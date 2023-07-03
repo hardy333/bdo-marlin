@@ -77,6 +77,10 @@
 
 /* All Orders Card */
 /* All Orders Card */
+
+.all-orders-card{
+  width: 300px;
+}
 .all-orders-card div.table-card-row{
   border-bottom: 1px solid #d0c7e881;
 }

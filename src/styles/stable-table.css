@@ -49,6 +49,7 @@
   background-color: #a078d747 !important;
   box-shadow: none !important;
   outline: none !important;
+  border: none !important;
 
 }
 
@@ -69,12 +70,12 @@
 
 @keyframes cell-anim{
   0%{
-  filter: brightness(200%)
+    filter: brightness(200%)
 
   }
 
   100%{
-  filter: brightness(100%);
+    filter: brightness(100%);
 
   }
 }
