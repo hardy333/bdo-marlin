@@ -44,9 +44,12 @@
 
 .btn-status-2{
   background-color: #FFC23C36 !important;
-  color: #ffc13c !important;
+  color: #FFA23C !important;
   border-radius: 5px !important;
   letter-spacing: 0.7px;
+  font-weight: 700px;
+  height: 25px;
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {
