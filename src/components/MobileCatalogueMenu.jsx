@@ -7,7 +7,13 @@ import "../styles/mobile-catalogue-menu.css";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 import { useEffect } from "react";
 
-const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setCat, setProd }) => {
+const MobileCatalogueMenu = ({
+  setShowCatalogue,
+  changeAllData,
+  setSubCatId,
+  setCat,
+  setProd,
+}) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
   const [selectedProduct, setSelectedProduct] = useState("ჩიფსი");
@@ -26,7 +32,12 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
 
   const resArr = useMemo(() => {
     if (!data) return;
-    const { data: catData } = data;
+    let catData = null;
+    if (!data) {
+      catData = [];
+    } else {
+      catData = data.data;
+    }
     const resObj = {};
     const resArr = [];
 
@@ -78,52 +89,49 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
       });
   }
 
-  const [showSubCategory, setShowSubCategory] = useState(false)
+  const [showSubCategory, setShowSubCategory] = useState(false);
 
   const handleProductClick = (e, productName) => {
-    setSelectedProduct(productName)
-    setShowCatalogue(false)
-    setShowSubCategory(false)
+    setSelectedProduct(productName);
+    setShowCatalogue(false);
+    setShowSubCategory(false);
 
-    // 
+    //
     const id = resArr
-    .find((obj) => obj.name === selectedCategory)
-    .children.find((obj) => obj.name === productName).categoryid;
+      .find((obj) => obj.name === selectedCategory)
+      .children.find((obj) => obj.name === productName).categoryid;
 
     setSubCatId(id);
 
-    setCat(selectedCategory)
-    setProd(productName)
-
-  }
+    setCat(selectedCategory);
+    setProd(productName);
+  };
 
   useEffect(() => {
-
     const closeCatalogueMenu = (e) => {
-      console.log(e.code === "Escape")
-      if(e.code === "Escape"){
-        setShowCatalogue(false)
+      console.log(e.code === "Escape");
+      if (e.code === "Escape") {
+        setShowCatalogue(false);
       }
-    }
+    };
 
-    window.addEventListener("keydown", closeCatalogueMenu )
-   
+    window.addEventListener("keydown", closeCatalogueMenu);
+
     return () => {
-     window.removeEventListener("keydown", closeCatalogueMenu )
+      window.removeEventListener("keydown", closeCatalogueMenu);
+    };
+  }, []);
 
-      
-    }
-
-  }, [])
-  
   return (
     <div className="mobile-catalogue-menu">
       {/* Main List */}
       <ul className="category-container">
-        <li className="back-item" onClick={() => setShowCatalogue(false)}> 
-          <span className="back-item-arrow"><BsArrowLeftShort /></span>
+        <li className="back-item" onClick={() => setShowCatalogue(false)}>
+          <span className="back-item-arrow">
+            <BsArrowLeftShort />
+          </span>
           <span className="back-item-label"> უკან </span>
-         </li>
+        </li>
         {resArr
           ?.filter((catObj) => catObj.name.includes(categorySearchValue))
           .map((catObj, i) => (
@@ -133,8 +141,8 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
               }`}
               key={i}
               onClick={() => {
-                setSelectedCategory(catObj.name)
-                setShowSubCategory(true)
+                setSelectedCategory(catObj.name);
+                setShowSubCategory(true);
               }}
             >
               <span className="category-name" data-value={catObj.name}>
@@ -148,11 +156,15 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
       </ul>
 
       {/* Sub Category */}
-      <div className={`sub-category-container ${showSubCategory ? "show" : ""}`}>
-      <li className="back-item" onClick={() => setShowSubCategory(false)}> 
-          <span className="back-item-arrow"><BsArrowLeftShort /></span>
+      <div
+        className={`sub-category-container ${showSubCategory ? "show" : ""}`}
+      >
+        <li className="back-item" onClick={() => setShowSubCategory(false)}>
+          <span className="back-item-arrow">
+            <BsArrowLeftShort />
+          </span>
           <span className="back-item-label"> {selectedCategory} </span>
-         </li>
+        </li>
         <ul className="left">
           {arrLeft.map((subCatObj, index) => {
             return (
