@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useMemo } from "react";
 import { fetchData } from "../utils/fetchData";
 import "../styles/mobile-catalogue-menu.css";
-import { BsArrowRightShort } from "react-icons/bs";
+import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 
 const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setCat, setProd }) => {
   // Selected category, sub category
@@ -100,6 +100,10 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
     <div className="mobile-catalogue-menu">
       {/* Main List */}
       <ul className="category-container">
+        <li className="back-item" onClick={() => setShowCatalogue(false)}> 
+          <span className="back-item-arrow"><BsArrowLeftShort /></span>
+          <span className="back-item-label"> უკან </span>
+         </li>
         {resArr
           ?.filter((catObj) => catObj.name.includes(categorySearchValue))
           .map((catObj, i) => (
@@ -125,6 +129,10 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
 
       {/* Sub Category */}
       <div className={`sub-category-container ${showSubCategory ? "show" : ""}`}>
+      <li className="back-item" onClick={() => setShowSubCategory(false)}> 
+          <span className="back-item-arrow"><BsArrowLeftShort /></span>
+          <span className="back-item-label"> {selectedCategory} </span>
+         </li>
         <ul className="left">
           {arrLeft.map((subCatObj, index) => {
             return (
