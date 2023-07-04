@@ -6,7 +6,7 @@ import { fetchData } from "../utils/fetchData";
 import "../styles/mobile-catalogue-menu.css";
 import { BsArrowRightShort } from "react-icons/bs";
 
-const MobileCatalogueMenu = ({ changeAllData, setSubCatId }) => {
+const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setCat, setProd }) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
   const [selectedProduct, setSelectedProduct] = useState("ჩიფსი");
@@ -77,11 +77,29 @@ const MobileCatalogueMenu = ({ changeAllData, setSubCatId }) => {
       });
   }
 
+  const [showSubCategory, setShowSubCategory] = useState(false)
+
+  const handleProductClick = (e, productName) => {
+    setSelectedProduct(productName)
+    setShowCatalogue(false)
+    setShowSubCategory(false)
+
+    // 
+    const id = resArr
+    .find((obj) => obj.name === selectedCategory)
+    .children.find((obj) => obj.name === productName).categoryid;
+
+    setSubCatId(id);
+
+    setCat(selectedCategory)
+    setProd(productName)
+
+  }
+  
   return (
     <div className="mobile-catalogue-menu">
-      <h2>Mobile cat menu</h2>
       {/* Main List */}
-      <ul>
+      <ul className="category-container">
         {resArr
           ?.filter((catObj) => catObj.name.includes(categorySearchValue))
           .map((catObj, i) => (
@@ -90,6 +108,10 @@ const MobileCatalogueMenu = ({ changeAllData, setSubCatId }) => {
                 selectedCategory === catObj.name ? "active" : ""
               }`}
               key={i}
+              onClick={() => {
+                setSelectedCategory(catObj.name)
+                setShowSubCategory(true)
+              }}
             >
               <span className="category-name" data-value={catObj.name}>
                 {catObj.name}
@@ -102,7 +124,7 @@ const MobileCatalogueMenu = ({ changeAllData, setSubCatId }) => {
       </ul>
 
       {/* Sub Category */}
-      <div className="sub-category-container">
+      <div className={`sub-category-container ${showSubCategory ? "show" : ""}`}>
         <ul className="left">
           {arrLeft.map((subCatObj, index) => {
             return (

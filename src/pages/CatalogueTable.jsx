@@ -49,6 +49,7 @@ import { fetchData } from "../utils/fetchData";
 import ExcelExportBtn from "../components/ExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import MobileCatalogueMenu from "../components/MobileCatalogueMenu";
+import {BiFoodMenu } from "react-icons/bi"
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -333,7 +334,8 @@ const CatalogueTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
   const [showCatalogue, setShowCatalogue] = useState(false);
-  console.log(showCatalogue);
+  const [cat, setCat] = useState("სასუსნავები")
+  const [prod, setProd] = useState("ჩიფსი")
 
   return (
     <>
@@ -349,21 +351,14 @@ const CatalogueTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4>კატალოგი</h4>
-            {isSmallDevice ? (
-              <div className="mobile-cat-container">
-                <button onClick={() => setShowCatalogue(!showCatalogue)}>
-                  Cat
-                </button>
-                <div
-                  className={`mobile-catalogue-menu-container ${
-                    showCatalogue ? "show" : "hide"
-                  }`}
-                >
-                  <MobileCatalogueMenu setSubCatId={setSubCatId} />
-                </div>
+            <h4 className="heading">კატალოგი
+              <div className="heading-label-container">
+               <span className="label label-cat"> {cat}</span> 
+               <span className="label label-arrow"> - </span>  
+               <span className="label label-prod">{prod}</span>
               </div>
-            ) : null}
+            </h4>
+          
 
             <div className="vendors-switch-container">
               <p className="catalogue-label">ჩემი პროდუქტები</p>
@@ -382,6 +377,20 @@ const CatalogueTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
+          {isSmallDevice ? (
+              <div className="mobile-cat-container">
+                <button onClick={() => setShowCatalogue(!showCatalogue)}>
+                  <BiFoodMenu />
+                </button>
+                <div
+                  className={`mobile-catalogue-menu-container ${
+                    showCatalogue ? "show" : "hide"
+                  }`}
+                >
+                  <MobileCatalogueMenu setCat={setCat} setProd={setProd} setShowCatalogue={setShowCatalogue} setSubCatId={setSubCatId} />
+                </div>
+              </div>
+            ) : null}
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
             {/* input filter */}
