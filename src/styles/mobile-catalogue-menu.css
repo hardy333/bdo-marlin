@@ -1,10 +1,4 @@
-.mobile-cat-container {
-  margin-right: auto !important; 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 0;
-}
+
 
 
 .mobile-cat-container  button{
@@ -36,6 +30,11 @@
   font-size: 12px;
 }
 
+.mobile-cat-container {
+  display: none;
+
+}
+
 @media (max-width: 610px){
   .catalogue-header .all-orders__settings__options{
     width: 100%;
@@ -60,6 +59,13 @@
     width: 100%;
     bottom: -20px;
     display: block;
+  }
+
+  .mobile-cat-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 0;
   }
   
 
