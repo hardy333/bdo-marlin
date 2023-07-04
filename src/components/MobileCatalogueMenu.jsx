@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { fetchData } from "../utils/fetchData";
 import "../styles/mobile-catalogue-menu.css";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
+import { useEffect } from "react";
 
 const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setCat, setProd }) => {
   // Selected category, sub category
@@ -95,6 +96,25 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
     setProd(productName)
 
   }
+
+  useEffect(() => {
+
+    const closeCatalogueMenu = (e) => {
+      console.log(e.code === "Escape")
+      if(e.code === "Escape"){
+        setShowCatalogue(false)
+      }
+    }
+
+    window.addEventListener("keydown", closeCatalogueMenu )
+   
+    return () => {
+     window.removeEventListener("keydown", closeCatalogueMenu )
+
+      
+    }
+
+  }, [])
   
   return (
     <div className="mobile-catalogue-menu">
