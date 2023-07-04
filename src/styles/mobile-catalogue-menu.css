@@ -2,20 +2,22 @@
   margin-right: auto !important; 
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  margin-left: 0;
 }
 
 
 .mobile-cat-container  button{
   font-size: 30px;
 
+  background-color: red;
+  margin-left: 0;
 }
 
 .mobile-cat-container  button svg{
   height: 25px;
   fill:#D0C7E8;
 }
-
-
 
 .catalogue-header .heading{
   position: relative;
@@ -37,6 +39,7 @@
 @media (max-width: 610px){
   .catalogue-header .all-orders__settings__options{
     width: 100%;
+    background-color: pink;
   }
 
   .catalogue-header .heading{
