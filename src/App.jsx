@@ -18,6 +18,8 @@ import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
 
+// Hello
+
 const Employees = React.lazy(() => import("./pages/Employees"));
 const Dash = React.lazy(() => import("./pages/Dash"));
 
