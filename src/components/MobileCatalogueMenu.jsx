@@ -6,6 +6,7 @@ import { fetchData } from "../utils/fetchData";
 import "../styles/mobile-catalogue-menu.css";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 import { useEffect } from "react";
+import catalogueData from "../data/catalogue-menu-data";
 
 const MobileCatalogueMenu = ({
   setShowCatalogue,
@@ -31,13 +32,14 @@ const MobileCatalogueMenu = ({
   );
 
   const resArr = useMemo(() => {
-    if (!data) return;
     let catData = null;
     if (!data) {
-      catData = [];
+      catData = catalogueData;
     } else {
       catData = data.data;
     }
+
+    console.log(catData);
     const resObj = {};
     const resArr = [];
 
