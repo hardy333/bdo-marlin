@@ -99,6 +99,7 @@
 .mobile-catalogue-menu .category-container li{
   position: relative;
   padding: 0.6rem;
+  cursor: pointer;
 }
 
 .mobile-catalogue-menu .category-container li::before{
@@ -118,6 +119,11 @@
 
 .mobile-catalogue-menu .category-container li.active{
   color: var(--color-primary-4);
+}
+
+.mobile-catalogue-menu .category-container li:hover{
+  color: var(--color-primary-4);
+
 }
 
 /* Sub Category */
@@ -145,7 +151,13 @@
 
 }
 
+.mobile-catalogue-menu .sub-category-container li{
+  cursor: pointer;
+}
 
+.mobile-catalogue-menu .sub-category-container li:hover{
+  color: var(--color-primary-4);
+}
 
 .mobile-catalogue-menu .sub-category-container.show{
   transform: translate(0%, 0);
