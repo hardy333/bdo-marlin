@@ -7,6 +7,8 @@ import "../styles/mobile-catalogue-menu.css";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 import { useEffect } from "react";
 
+
+
 const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setCat, setProd }) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
@@ -24,6 +26,8 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
     fetchData(url)
   );
 
+
+  
   const resArr = useMemo(() => {
     if (!data) return;
     const { data: catData } = data;
@@ -98,9 +102,7 @@ const MobileCatalogueMenu = ({setShowCatalogue, changeAllData, setSubCatId, setC
   }
 
   useEffect(() => {
-
     const closeCatalogueMenu = (e) => {
-      console.log(e.code === "Escape")
       if(e.code === "Escape"){
         setShowCatalogue(false)
       }
