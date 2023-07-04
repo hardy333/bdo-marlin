@@ -71,7 +71,7 @@ const AllOrdersCards = ({ data }) => {
               }}
               key={index}
               className="table-card all-orders-card"
-              style={{ borderLeft: `2px solid ${color}` }}
+              style={{ borderLeft: `4px solid ${color}` }}
             >
               <header className="table-card-row">
                 <h3>
