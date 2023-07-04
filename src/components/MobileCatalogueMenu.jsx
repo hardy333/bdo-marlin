@@ -124,7 +124,11 @@ const MobileCatalogueMenu = ({
   }, []);
 
   return (
-    <div className="mobile-catalogue-menu">
+    <div
+      className={`mobile-catalogue-menu ${
+        showSubCategory ? "show-sub-category" : ""
+      }`}
+    >
       {/* Main List */}
       <ul className="category-container">
         <li className="back-item" onClick={() => setShowCatalogue(false)}>
