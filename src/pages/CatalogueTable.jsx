@@ -48,6 +48,7 @@ import ProgressBar from "../components/ProgressBar";
 import { fetchData } from "../utils/fetchData";
 import ExcelExportBtn from "../components/ExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import MobileCatalogueMenu from "../components/MobileCatalogueMenu";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -332,6 +333,7 @@ const CatalogueTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
   const [showCatalogue, setShowCatalogue] = useState(false);
+  console.log(showCatalogue);
 
   return (
     <>
@@ -350,13 +352,15 @@ const CatalogueTable = () => {
             <h4>კატალოგი</h4>
             {isSmallDevice ? (
               <div className="mobile-cat-container">
-                <button onClick={() => setShowCatalogue(true)}>Cat</button>
+                <button onClick={() => setShowCatalogue(!showCatalogue)}>
+                  Cat
+                </button>
                 <div
-                  className={`catalogue-menu-container mobile-catalogue-menu-container ${
+                  className={`mobile-catalogue-menu-container ${
                     showCatalogue ? "show" : "hide"
                   }`}
                 >
-                  <CatalogueMenu setSubCatId={setSubCatId} />
+                  <MobileCatalogueMenu setSubCatId={setSubCatId} />
                 </div>
               </div>
             ) : null}

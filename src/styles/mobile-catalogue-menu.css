@@ -1,0 +1,10 @@
+
+
+.mobile-catalogue-menu-container.show{
+  display: block;
+}
+
+
+.mobile-catalogue-menu-container.hide{
+  display: none;
+}
