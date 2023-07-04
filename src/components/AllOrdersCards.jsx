@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AllOrdersCards = ({ data }) => {
   if (!data) {
     // return <h1>Loading ...</h1>;
-    console.log("Hell")
+    console.log("Hell");
     data = [
       {
         shop: "SPAR001",
@@ -43,17 +43,36 @@ const AllOrdersCards = ({ data }) => {
     ];
   }
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
       <section className="table-cards-container">
         {data.map((row, index) => {
           const { shop, date, vendor, amount, serviceLevel, status } = row;
+          let color = "";
+
+          if (status === "გაგზავნილია") {
+            color = "#FFC23C";
+          } else if (status === "მიწოდებულია") {
+            color = "#01C6B5";
+          } else if (status === "პროცესშია") {
+            color = "#6E0FF5";
+          } else if (status === "დადასტურებულია") {
+            color = "#FF7BA7";
+          } else if (status === "გასაგზავნია") {
+            color = "#f55364";
+          }
+
           return (
-            <article onClick={() => {
-              navigate("/order-details")
-            }} key={index} className="table-card all-orders-card">
+            <article
+              onClick={() => {
+                navigate("/order-details");
+              }}
+              key={index}
+              className="table-card all-orders-card"
+              style={{ borderLeft: `2px solid ${color}` }}
+            >
               <header className="table-card-row">
                 <h3>
                   <span>{vendor}</span>
@@ -76,7 +95,7 @@ const AllOrdersCards = ({ data }) => {
                   placement="left"
                   content="delevered"
                 >
-                  <span style={{ color: "#6E0FF5" }}>{status}</span>
+                  <span style={{ color: color }}>{status}</span>
                 </Tippy>
               </div>
               <div className="table-card-row">
