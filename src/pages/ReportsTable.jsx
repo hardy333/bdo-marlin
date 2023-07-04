@@ -33,6 +33,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
+import {BsFillCalendarCheckFill} from "react-icons/bs"
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -220,7 +221,7 @@ const ReportsTable = () => {
 
   return (
     <>
-      <header className="all-orders__header">
+      <header className="all-orders__header sla-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -228,24 +229,26 @@ const ReportsTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4 style={{ fontSize: "18px" }}>სერვისის დონე</h4>
-            <div className="flex items-center">
+            
+          </div>
+          {/* Right */}
+          <div className="all-orders__settings__options">
+          <div className="flex items-center sla-date">
               <span
                 style={{
-                  fontSize: "14px",
                   fontWeight: "600",
                   paddingRight: 10,
+                  display: "flex",
                 }}
+                className="calendar-span"
               >
-                პერიოდი:
+                <BsFillCalendarCheckFill />
               </span>
               <DatePickerBtn
                 dateState={dateState}
                 setDateState={setDateState}
               />
             </div>
-          </div>
-          {/* Right */}
-          <div className="all-orders__settings__options">
             <TableSettings
             isSmallDevice={isSmallDevice}
               defHeaderList={headerList}

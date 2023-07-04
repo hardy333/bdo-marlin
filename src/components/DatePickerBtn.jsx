@@ -12,8 +12,8 @@ const DatePickerBtn = ({ dateState, setDateState }) => {
       className="date-menu"
       menuButton={
         <button className="btn btn-date">
-          {format(dateState[0].startDate, "MMM dd, yyyy")} -{" "}
-          {format(dateState[0].endDate, "MMM dd, yyyy")}
+          {format(dateState[0].startDate, "MM.dd.yyyy")} -{" "}
+          {format(dateState[0].endDate, "MM.dd.yyyy")}
         </button>
       }
       transition

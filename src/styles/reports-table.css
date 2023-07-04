@@ -55,3 +55,47 @@
   background-color: rgba(235, 232, 245, 0.5) !important;
 
 }
+
+
+/* ------------ */
+/* ------------ */
+.sla-date{
+  font-size: 14px !important;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.sla-date .btn-date{
+  font-size: 14px !important;
+
+}
+
+.sla-date .btn-date::before{
+  left: 83px;
+}
+
+.sla-date .calendar-span{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+
+}
+.sla-date .calendar-span svg{
+  fill: #211543;
+
+}
+
+.sla-header .all-orders__settings__options{
+  margin-left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.sla-header .order-details-left{
+  margin-left: 0 !important;
+}
+
+.sla-header .all-orders__settings{
+  gap: 1rem !important;
+}
