@@ -3,9 +3,9 @@
 
 .mobile-cat-container  button{
   font-size: 30px;
-
-  background-color: red;
   margin-left: 0;
+  width: 26px;
+  height: 26px;
 }
 
 .mobile-cat-container  button svg{
@@ -38,7 +38,6 @@
 @media (max-width: 610px){
   .catalogue-header .all-orders__settings__options{
     width: 100%;
-    background-color: pink;
     display: flex;
     justify-content: start
   }
@@ -68,6 +67,9 @@
     align-items: center;
     justify-content: flex-start;
     margin-left: 0;
+    width: 26px;
+    height: 26px;
+    margin-right: auto;
   }
   
 
