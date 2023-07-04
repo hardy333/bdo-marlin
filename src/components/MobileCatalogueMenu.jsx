@@ -109,7 +109,6 @@ const MobileCatalogueMenu = ({
 
   useEffect(() => {
     const closeCatalogueMenu = (e) => {
-      console.log(e.code === "Escape");
       if (e.code === "Escape") {
         setShowCatalogue(false);
       }
