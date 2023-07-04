@@ -39,6 +39,8 @@
   .catalogue-header .all-orders__settings__options{
     width: 100%;
     background-color: pink;
+    display: flex;
+    justify-content: start
   }
 
   .catalogue-header .heading{
