@@ -67,10 +67,15 @@ const StableTable = React.lazy(() => import("./pages/StableTable"));
 const ExpandableTable = React.lazy(() => import("./pages/ExpandableTable"));
 
 import { QueryClientProvider, QueryClient } from "react-query";
+import Loader2 from "./components/Loader2";
 
 const queryClient = new QueryClient();
 
 function App() {
+
+  const color = "#6E0FF5";
+  
+  
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -79,7 +84,11 @@ function App() {
             <Route
               path="/"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={
+                  <>
+                  <Loader2 color={color} />
+                  </>
+                }>
                   <Dash />
                 </React.Suspense>
               }
@@ -87,7 +96,11 @@ function App() {
             <Route
               path="/invoices-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <InvoicesTable />
                 </React.Suspense>
               }
@@ -95,7 +108,11 @@ function App() {
             <Route
               path="/employees"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Employees />
                 </React.Suspense>
               }
@@ -107,7 +124,11 @@ function App() {
             <Route
               path="/stable-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <StableTable />
                 </React.Suspense>
               }
@@ -115,7 +136,11 @@ function App() {
             <Route
               path="/expandable-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <ExpandableTable />
                 </React.Suspense>
               }
@@ -123,7 +148,11 @@ function App() {
             <Route
               path="/invoice-details"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <InvoiceDetailsTable />
                 </React.Suspense>
               }
@@ -132,7 +161,11 @@ function App() {
             <Route
               path="/invoices2"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Invoices2 />
                 </React.Suspense>
               }
@@ -141,7 +174,11 @@ function App() {
             <Route
               path="/vendors"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Vendors />
                 </React.Suspense>
               }
@@ -149,7 +186,11 @@ function App() {
             <Route
               path="/login"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Login />
                 </React.Suspense>
               }
@@ -157,7 +198,11 @@ function App() {
             <Route
               path="/register"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Register />
                 </React.Suspense>
               }
@@ -166,7 +211,11 @@ function App() {
             <Route
               path="/prices"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Prices />
                 </React.Suspense>
               }
@@ -175,7 +224,11 @@ function App() {
             <Route
               path="/order-details"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <OrderDetails />
                 </React.Suspense>
               }
@@ -184,7 +237,11 @@ function App() {
             <Route
               path="/all-orders-parent"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <AllOrdersParent />
                 </React.Suspense>
               }
@@ -192,7 +249,11 @@ function App() {
             <Route
               path="/logs"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <LogsTable />
                 </React.Suspense>
               }
@@ -201,7 +262,11 @@ function App() {
             <Route
               path="/contract"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Contract />
                 </React.Suspense>
               }
@@ -209,7 +274,11 @@ function App() {
             <Route
               path="/terms"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Terms />
                 </React.Suspense>
               }
@@ -218,7 +287,11 @@ function App() {
             <Route
               path="/sla-by-shops"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <SlaByShops />
                 </React.Suspense>
               }
@@ -226,7 +299,11 @@ function App() {
             <Route
               path="/sla-by-item"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <SlaByItem />
                 </React.Suspense>
               }
@@ -234,7 +311,11 @@ function App() {
             <Route
               path="/sla-by-category"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <SlaByCategory />
                 </React.Suspense>
               }
@@ -242,7 +323,11 @@ function App() {
             <Route
               path="/sla-by-orders"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <SlaByOrders />
                 </React.Suspense>
               }
@@ -250,7 +335,11 @@ function App() {
             <Route
               path="/reports"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <ReportsTable />
                 </React.Suspense>
               }
@@ -259,7 +348,11 @@ function App() {
             <Route
               path="/discounts-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <DiscountsTable2 />
                 </React.Suspense>
               }
@@ -267,7 +360,11 @@ function App() {
             <Route
               path="/discounts-cards"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <DiscountsCards />
                 </React.Suspense>
               }
@@ -276,7 +373,11 @@ function App() {
             <Route
               path="/catalogue"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <CatalogueTable />
                 </React.Suspense>
               }
@@ -284,7 +385,11 @@ function App() {
             <Route
               path="/vendors-calendar"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <VendorsCalendarTable />
                 </React.Suspense>
               }
@@ -292,7 +397,11 @@ function App() {
             <Route
               path="/vendor-all-orders"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <VendorAllOrdersTable />
                 </React.Suspense>
               }
@@ -301,7 +410,11 @@ function App() {
             <Route
               path="/*"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense fallback={<>
+                
+                <Loader2 color={color} />
+                
+                </>}>
                   <Error />
                 </React.Suspense>
               }
