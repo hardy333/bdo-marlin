@@ -270,7 +270,7 @@ const SlaByOrders = () => {
 
   return (
     <>
-      <header className="all-orders__header sla-by-vendors__header">
+      <header className="all-orders__header sla-by-vendors__header sla-header">
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
@@ -289,12 +289,14 @@ const SlaByOrders = () => {
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu"/>
-           
+            <p className="avarage-sla sla-avg sla-avg-desktop">
+              ASL: <span>82%</span>
+            </p>
        
           </div>
           {/* Right */}
           <div className="all-orders__settings__options sla-settings">
-            <p className="avarage-sla sla-avg">
+            <p className="avarage-sla sla-avg sla-avg-mobile">
               ASL: <span>82%</span>
             </p>
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
@@ -416,7 +418,7 @@ const SlaByOrders = () => {
                 changeRowHeight();
               }}
               ref={rowHeightBtnRef}
-              className="all-orders__btn"
+              className="all-orders__btn sla-row-height-btn"
             >
               {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
               {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
@@ -428,6 +430,7 @@ const SlaByOrders = () => {
               className={classNames({
                 "all-orders__btn": true,
                 active: isFullScreen,
+                "sla-expand-btn": true
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}

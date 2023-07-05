@@ -59,6 +59,8 @@
 
 /* ------------ */
 /* ------------ */
+/* @media (max-width:600px){ */
+
 .sla-date{
   font-size: 14px !important;
   margin-right: auto;
@@ -98,4 +100,17 @@
 
 .sla-header .all-orders__settings{
   gap: 1rem !important;
+}
+
+
+@media (max-width: 600px){
+  .reports-header  .all-orders__settings__options{
+
+  }
+  .reports-header .sla-date{
+    margin-left: 0;
+    display: flex;
+    margin-right: auto;
+  }
+  
 }

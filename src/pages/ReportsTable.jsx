@@ -221,14 +221,14 @@ const ReportsTable = () => {
 
   return (
     <>
-      <header className="all-orders__header sla-header">
+      <header className="all-orders__header sla-header reports-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ fontSize: "18px" }}>სერვისის დონე</h4>
+            <h4 style={{ fontSize: "18px", width: "130px" }}>სერვისის დონე</h4>
             
           </div>
           {/* Right */}
