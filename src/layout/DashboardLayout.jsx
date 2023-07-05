@@ -5,7 +5,6 @@ import DashboardAsideLight from "../components/DashboardAsideLight";
 import { Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
 import messengerImg from "../assets/messenger.svg";
-import LazyLoader1 from "../components/LazyLoader1";
 
 const staticMainPathnames = ["/login", "/register"];
 
@@ -25,7 +24,6 @@ const DashboardLayout = ({ light = false }) => {
 
   return (
     <div className={`dashboard ${classN}`}>
-      <LazyLoader1 />
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>

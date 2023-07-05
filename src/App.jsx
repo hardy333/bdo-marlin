@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
@@ -67,19 +67,60 @@ const StableTable = React.lazy(() => import("./pages/StableTable"));
 const ExpandableTable = React.lazy(() => import("./pages/ExpandableTable"));
 
 import { QueryClientProvider, QueryClient } from "react-query";
+import LazyLoader1 from "./components/LazyLoader1";
+import Prog from "./components/Prog";
 
 const queryClient = new QueryClient();
 
+const ProgressChanger = ({ setProgress }) => {
+  useEffect(() => {
+    setProgress(10);
+    let num = 30;
+    const timer = setInterval(() => {
+      setProgress((curr) => {
+        if (curr >= 76) {
+          return curr;
+        }
+        return curr + num;
+      });
+      num -= 7;
+      if (num <= 0) {
+        num = 2;
+      }
+    }, 300);
+
+    console.log("Start prog");
+
+    return () => {
+      setProgress(100);
+      console.log("End prog");
+      clearInterval(timer);
+    };
+  }, []);
+
+  return null;
+};
+
 function App() {
+  const [progress, setProgress] = useState(0);
+
   return (
     <>
+      <Prog progress={progress} setProgress={setProgress} />
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route
               path="/"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Dash />
                 </React.Suspense>
               }
@@ -87,7 +128,15 @@ function App() {
             <Route
               path="/invoices-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <InvoicesTable />
                 </React.Suspense>
               }
@@ -95,7 +144,15 @@ function App() {
             <Route
               path="/employees"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Employees />
                 </React.Suspense>
               }
@@ -107,7 +164,15 @@ function App() {
             <Route
               path="/stable-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <StableTable />
                 </React.Suspense>
               }
@@ -115,7 +180,15 @@ function App() {
             <Route
               path="/expandable-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <ExpandableTable />
                 </React.Suspense>
               }
@@ -123,7 +196,15 @@ function App() {
             <Route
               path="/invoice-details"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <InvoiceDetailsTable />
                 </React.Suspense>
               }
@@ -132,7 +213,15 @@ function App() {
             <Route
               path="/invoices2"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Invoices2 />
                 </React.Suspense>
               }
@@ -141,7 +230,15 @@ function App() {
             <Route
               path="/vendors"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Vendors />
                 </React.Suspense>
               }
@@ -149,7 +246,15 @@ function App() {
             <Route
               path="/login"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Login />
                 </React.Suspense>
               }
@@ -157,7 +262,15 @@ function App() {
             <Route
               path="/register"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Register />
                 </React.Suspense>
               }
@@ -166,7 +279,15 @@ function App() {
             <Route
               path="/prices"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Prices />
                 </React.Suspense>
               }
@@ -175,7 +296,15 @@ function App() {
             <Route
               path="/order-details"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <OrderDetails />
                 </React.Suspense>
               }
@@ -184,7 +313,15 @@ function App() {
             <Route
               path="/all-orders-parent"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <AllOrdersParent />
                 </React.Suspense>
               }
@@ -192,7 +329,15 @@ function App() {
             <Route
               path="/logs"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <LogsTable />
                 </React.Suspense>
               }
@@ -201,7 +346,15 @@ function App() {
             <Route
               path="/contract"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Contract />
                 </React.Suspense>
               }
@@ -209,7 +362,15 @@ function App() {
             <Route
               path="/terms"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Terms />
                 </React.Suspense>
               }
@@ -218,7 +379,15 @@ function App() {
             <Route
               path="/sla-by-shops"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <SlaByShops />
                 </React.Suspense>
               }
@@ -226,7 +395,15 @@ function App() {
             <Route
               path="/sla-by-item"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <SlaByItem />
                 </React.Suspense>
               }
@@ -234,7 +411,15 @@ function App() {
             <Route
               path="/sla-by-category"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <SlaByCategory />
                 </React.Suspense>
               }
@@ -242,7 +427,15 @@ function App() {
             <Route
               path="/sla-by-orders"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <SlaByOrders />
                 </React.Suspense>
               }
@@ -250,7 +443,15 @@ function App() {
             <Route
               path="/reports"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <ReportsTable />
                 </React.Suspense>
               }
@@ -259,7 +460,15 @@ function App() {
             <Route
               path="/discounts-table"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <DiscountsTable2 />
                 </React.Suspense>
               }
@@ -267,7 +476,15 @@ function App() {
             <Route
               path="/discounts-cards"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <DiscountsCards />
                 </React.Suspense>
               }
@@ -276,7 +493,15 @@ function App() {
             <Route
               path="/catalogue"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <CatalogueTable />
                 </React.Suspense>
               }
@@ -284,7 +509,15 @@ function App() {
             <Route
               path="/vendors-calendar"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <VendorsCalendarTable />
                 </React.Suspense>
               }
@@ -292,7 +525,15 @@ function App() {
             <Route
               path="/vendor-all-orders"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <VendorAllOrdersTable />
                 </React.Suspense>
               }
@@ -301,7 +542,15 @@ function App() {
             <Route
               path="/*"
               element={
-                <React.Suspense fallback={<h1>Loading ...</h1>}>
+                <React.Suspense
+                  fallback={
+                    <>
+                      <ProgressChanger setProgress={setProgress} />
+
+                      <h1>Loading ...</h1>
+                    </>
+                  }
+                >
                   <Error />
                 </React.Suspense>
               }
