@@ -159,14 +159,19 @@ const CatalogueTable = () => {
       headerName: "წინა ფასი",
       cellRenderer: (params) => {
         const { value } = params;
+        const price = params.data.price
 
-        let newVal = value;
-        let up = false;
-        if (Math.random() - 0.33 < 0) {
-          newVal = value + 1;
-          up = true;
+        console.log(value, price)
+
+        let newVal = value
+        let randNam = Math.random()
+        if(randNam - 0.3 < 0){
+          newVal = value + 1
+        }else if(randNam - 0.6 < 0){
+          newVal = value - 1
+
         }
-
+        
         return (
           <div
             style={{ height: "100%", display: "flex" }}
@@ -174,9 +179,10 @@ const CatalogueTable = () => {
           >
             <span style={{ width: "50px" }}>{newVal + " " + "GEL"}</span>
             <TriangleSvg
-              fill={up ? "#FF3360" : "#6E0FF5"}
+              fill={newVal > price ? "#FF3360" : "#6E0FF5"}
               style={{
-                transform: up ? "rotate(180deg)" : "rotate(0deg)",
+                transform: newVal > price ? "rotate(180deg)" : "rotate(0deg)",
+                display: newVal === price ? "none": null
               }}
             />
           </div>
