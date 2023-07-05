@@ -56,6 +56,8 @@ import DiscountsTable2 from "./pages/DiscountsTable2";
 import StableTable from "./pages/StableTable";
 import ExpandableTable from "./pages/ExpandableTable";
 
+import ColorsPage  from "./pages/ColorsPage";
+
 import { QueryClientProvider, QueryClient } from "react-query";
 
 const queryClient = new QueryClient();
@@ -67,6 +69,7 @@ function App() {
         <Routes>
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
+            <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
