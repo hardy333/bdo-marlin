@@ -216,7 +216,7 @@ const ReportsTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   console.log({isSearchOpen})

@@ -297,22 +297,36 @@ const OrderDetails = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 10 }}>შეკვეთის დეტალები</h4>
-            <p className="discount-container">
-              მომწოდებელი: <span>{vendor}</span>
+            <h4 style={{ marginRight: 10 }}
+            className="text-center w-full sm:text-start sm:w-[220px] mb-4"
+            >შეკვეთის დეტალები</h4>
+            {/*  */}
+            <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-5 justify-center max-sm:w-full ">
+
+            <p className="">
+              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                მომწოდებელი: 
+              </span>
+              <span className="text-[14px] max-sm:bg-[#6E0FF533] max-sm:text-[#6E0FF5] justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{vendor}.</span>
             </p>
-            <p className="discount-container">
-              მაღაზია: <span>{shopAddress}</span>
+            <p className="">
+              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+              მაღაზია: 
+              </span>
+              <span className="text-[14px] max-sm:bg-[#6E0FF533] max-sm:text-[#6E0FF5] justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{shopAddress}.</span>
             </p>
-            <p className="discount-container">
-              თარიღი: <span>{date}</span>
+            <p className="">
+              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+              თარიღი:
+              </span>
+               <span className="text-[14px] max-sm:bg-[#6E0FF533] max-sm:text-[#6E0FF5] justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{date.split(" ")[0]}.</span>
             </p>
             <Menu
               className="pending-status-menu"
               menuButton={
                 <button
                   style={{ backgroundColor: statusBg, color: "#fff" }}
-                  className="btn btn-status-2"
+                  className="btn btn-status-2 mt-[-2px]"
                 >
                   {status}
                 </button>
@@ -325,6 +339,7 @@ const OrderDetails = () => {
               <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
               <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
             </Menu>
+            </div>
           </div>
 
           {isSmallDevice ? null : (

@@ -265,7 +265,7 @@ const SlaByOrders = () => {
 
   useRemoveId(gridApi, gridRef);
 
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
 
   return (
