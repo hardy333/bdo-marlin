@@ -105,12 +105,36 @@
 
 @media (max-width: 600px){
   .reports-header  .all-orders__settings__options{
+    position: relative;
+    display: flex;
+    justify-content: end;
 
   }
   .reports-header .sla-date{
     margin-left: 0;
     display: flex;
     margin-right: auto;
+  }
+
+ 
+  .sla-date{
+    height: 30px;
+    overflow: hidden;
+    transform: 0.3s;
+    opacity: 1;
+    width: 216px;
+    min-width: 216px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transition: 0.3s;
+
+  }
+  
+
+  .sla-date.hide{
+    opacity: 0;
   }
   
 }

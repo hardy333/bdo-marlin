@@ -124,6 +124,8 @@ const AllOrdersParent = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
+  console.log(isSearchOpen)
+  
   return (
     <>
       <header className="all-orders__header">

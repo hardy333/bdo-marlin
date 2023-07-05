@@ -6,12 +6,12 @@ import { DateRangePicker } from "react-date-range";
 import { format } from "date-fns";
 import { Menu, MenuItem } from "@szhsin/react-menu";
 
-const DatePickerBtn = ({ dateState, setDateState }) => {
+const DatePickerBtn = ({ dateState, setDateState, isSearchOpen = false }) => {
   return (
     <Menu
       className="date-menu"
       menuButton={
-        <button className="btn btn-date">
+        <button className={`btn btn-date ${isSearchOpen ? "hide" : ""}`}>
           {format(dateState[0].startDate, "MM.dd.yyyy")} -{" "}
           {format(dateState[0].endDate, "MM.dd.yyyy")}
         </button>

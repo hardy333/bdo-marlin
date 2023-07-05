@@ -217,7 +217,9 @@ const ReportsTable = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  console.log({isSearchOpen})
 
   return (
     <>
@@ -233,7 +235,7 @@ const ReportsTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-          <div className="flex items-center sla-date">
+          <div className={`flex items-center sla-date ${isSearchOpen ? "hide" : ""}`}>
               <span
                 style={{
                   fontWeight: "600",
@@ -247,6 +249,7 @@ const ReportsTable = () => {
               <DatePickerBtn
                 dateState={dateState}
                 setDateState={setDateState}
+                isSearchOpen={isSearchOpen}
               />
             </div>
             <TableSettings
@@ -258,6 +261,7 @@ const ReportsTable = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
+              setIsSearchOpen={setIsSearchOpen}
             />
           </div>
         </div>
