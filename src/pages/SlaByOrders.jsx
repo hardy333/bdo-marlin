@@ -23,6 +23,7 @@ import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 import "../styles/sla-by-vendors-table.css";
+import "../styles/sla.css";
 
 import Select from "react-select";
 
@@ -273,10 +274,13 @@ const SlaByOrders = () => {
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left sla-top"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4>სერვისის დონე</h4>
+            <h4 className="sla-heading">სერვისის დონე</h4>
+            <div className="sla-date">
+            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+            </div>
             <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
@@ -284,14 +288,15 @@ const SlaByOrders = () => {
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
-            <SlaMenu />
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
-            <p className="avarage-sla">
-              ASL: <span>82%</span>
-            </p>
+            <SlaMenu className="sla-menu"/>
+           
+       
           </div>
           {/* Right */}
-          <div className="all-orders__settings__options">
+          <div className="all-orders__settings__options sla-settings">
+            <p className="avarage-sla sla-avg">
+              ASL: <span>82%</span>
+            </p>
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
             {/* input filter */}
