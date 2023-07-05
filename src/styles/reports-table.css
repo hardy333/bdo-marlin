@@ -117,7 +117,7 @@
   }
 
  
-  .sla-date{
+  .reports-header .sla-date{
     height: 30px;
     overflow: hidden;
     transform: 0.3s;
@@ -137,4 +137,15 @@
     opacity: 0;
   }
   
+}
+
+.btn-date{
+
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  padding-left: 5px;
+}
+
+.btn-date::before{
+  display: none !important;
 }
