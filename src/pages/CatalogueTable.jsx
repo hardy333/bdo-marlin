@@ -49,7 +49,8 @@ import { fetchData } from "../utils/fetchData";
 import ExcelExportBtn from "../components/ExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import MobileCatalogueMenu from "../components/MobileCatalogueMenu";
-import {BiFoodMenu } from "react-icons/bi"
+import { BiFoodMenu } from "react-icons/bi";
+import CatalogueCards from "../components/CatalogueCards";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -159,19 +160,18 @@ const CatalogueTable = () => {
       headerName: "წინა ფასი",
       cellRenderer: (params) => {
         const { value } = params;
-        const price = params.data.price
+        const price = params.data.price;
 
-        console.log(value, price)
+        console.log(value, price);
 
-        let newVal = value
-        let randNam = Math.random()
-        if(randNam - 0.3 < 0){
-          newVal = value + 1
-        }else if(randNam - 0.6 < 0){
-          newVal = value - 1
-
+        let newVal = value;
+        let randNam = Math.random();
+        if (randNam - 0.3 < 0) {
+          newVal = value + 1;
+        } else if (randNam - 0.6 < 0) {
+          newVal = value - 1;
         }
-        
+
         return (
           <div
             style={{ height: "100%", display: "flex" }}
@@ -182,7 +182,7 @@ const CatalogueTable = () => {
               fill={newVal > price ? "#FF3360" : "#6E0FF5"}
               style={{
                 transform: newVal > price ? "rotate(180deg)" : "rotate(0deg)",
-                display: newVal === price ? "none": null
+                display: newVal === price ? "none" : null,
               }}
             />
           </div>
@@ -340,8 +340,8 @@ const CatalogueTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
   const [showCatalogue, setShowCatalogue] = useState(false);
-  const [cat, setCat] = useState("სასუსნავები")
-  const [prod, setProd] = useState("ჩიფსი")
+  const [cat, setCat] = useState("სასუსნავები");
+  const [prod, setProd] = useState("ჩიფსი");
 
   return (
     <>
@@ -357,14 +357,14 @@ const CatalogueTable = () => {
             className="order-details-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 className="heading">კატალოგი
+            <h4 className="heading">
+              კატალოგი
               <div className="heading-label-container">
-               <span className="label label-cat"> {cat}</span> 
-               <span className="label label-arrow"> - </span>  
-               <span className="label label-prod">{prod}</span>
+                <span className="label label-cat"> {cat}</span>
+                <span className="label label-arrow"> - </span>
+                <span className="label label-prod">{prod}</span>
               </div>
             </h4>
-          
 
             <div className="vendors-switch-container">
               <p className="catalogue-label">ჩემი პროდუქტები</p>
@@ -383,7 +383,7 @@ const CatalogueTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-          {isSmallDevice ? (
+            {isSmallDevice ? (
               <div className="mobile-cat-container">
                 <button onClick={() => setShowCatalogue(!showCatalogue)}>
                   <BiFoodMenu />
@@ -393,7 +393,12 @@ const CatalogueTable = () => {
                     showCatalogue ? "show" : "hide"
                   }`}
                 >
-                  <MobileCatalogueMenu setCat={setCat} setProd={setProd} setShowCatalogue={setShowCatalogue} setSubCatId={setSubCatId} />
+                  <MobileCatalogueMenu
+                    setCat={setCat}
+                    setProd={setProd}
+                    setShowCatalogue={setShowCatalogue}
+                    setSubCatId={setSubCatId}
+                  />
                 </div>
               </div>
             ) : null}
@@ -545,64 +550,68 @@ const CatalogueTable = () => {
           </div>
         )}
 
-        <div
-          id="marlin-table"
-          className="ag-theme-alpine ag-grid-example"
-          style={{ minHeight: 595, width: "100%", position: "relative" }}
-        >
-          <AgGridReact
-            ref={gridRef}
-            onGridReady={onGridReady}
-            rowData={rowData}
-            columnDefs={columnDefs}
-            defaultColDef={defaultColDef}
-            pagination={true}
-            components={components}
-            getRowHeight={() => {
-              if (rowHeightIndex === 0) {
-                return 25;
-              } else if (rowHeightIndex === 1) {
-                return 32;
-              } else if (rowHeightIndex === 2) {
-                return 37;
-              }
-            }}
-            paginationPageSize={pageSize}
-          ></AgGridReact>
-
-          {gridReady === true && (
-            <AgTablePag
-              gridRef={gridRef}
-              pageCount={Math.ceil(92 / pageSize)}
-            />
-          )}
-
-          <Menu
-            className="page-size-menu"
-            align="end"
-            menuButton={
-              <MenuButton className="page-size-btn">
-                <span>Rows per page</span>
-                <span className="btn">{pageSize}</span>
-              </MenuButton>
-            }
-            transition
+        {isSmallDevice ? (
+          <CatalogueCards data={rowData} />
+        ) : (
+          <div
+            id="marlin-table"
+            className="ag-theme-alpine ag-grid-example"
+            style={{ minHeight: 595, width: "100%", position: "relative" }}
           >
-            {pageSizes.map((size) => {
-              return (
-                <MenuItem
-                  key={size}
-                  onClick={() => {
-                    setPageSize(size);
-                  }}
-                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-                >
-                  {size}
-                </MenuItem>
-              );
-            })}
-          </Menu>
-        </div>
+            <AgGridReact
+              ref={gridRef}
+              onGridReady={onGridReady}
+              rowData={rowData}
+              columnDefs={columnDefs}
+              defaultColDef={defaultColDef}
+              pagination={true}
+              components={components}
+              getRowHeight={() => {
+                if (rowHeightIndex === 0) {
+                  return 25;
+                } else if (rowHeightIndex === 1) {
+                  return 32;
+                } else if (rowHeightIndex === 2) {
+                  return 37;
+                }
+              }}
+              paginationPageSize={pageSize}
+            ></AgGridReact>
+
+            {gridReady === true && (
+              <AgTablePag
+                gridRef={gridRef}
+                pageCount={Math.ceil(92 / pageSize)}
+              />
+            )}
+
+            <Menu
+              className="page-size-menu"
+              align="end"
+              menuButton={
+                <MenuButton className="page-size-btn">
+                  <span>Rows per page</span>
+                  <span className="btn">{pageSize}</span>
+                </MenuButton>
+              }
+              transition
+            >
+              {pageSizes.map((size) => {
+                return (
+                  <MenuItem
+                    key={size}
+                    onClick={() => {
+                      setPageSize(size);
+                    }}
+                    style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                  >
+                    {size}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </div>
+        )}
       </div>
     </>
   );
