@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/order-details-card.css";
 
-const SlaOrdersCards = ({ data }) => {
+const SlaShopsCards = ({ data }) => {
   if (!data) {
     return <h1>Loading ...</h1>;
     
@@ -12,18 +12,18 @@ const SlaOrdersCards = ({ data }) => {
     <>
       <section className="table-cards-container">
         {data.map((row, index) => {
-          const {  orderDate,  vendor, shop, orderNumber, slaByQuantity,slaByAmount, inTimeOrders } = row;
+          const {  orderDate, shop,  deliveredQuantity, orders, slaByQuantity,slaByAmount, inTimeOrders } = row;
           return (
             <article onClick={() => {
             }} key={index} className="table-card sla-orders-card">
               <header className="table-card-row">
                 <h3>
-                  <span style={{color: "#6E0FF5"}}>მომწოდებელი 1</span>
-                  <span className="date" >{orderDate}</span>
+                  <span style={{color: "#6E0FF5"}}>{orderDate}</span>
+                  <span className="date" >{shop}</span>
                 </h3>
                 <div className="box">
-                    <span>Order #: {orderNumber}</span>
-                    <span>Shop: {shop} </span>
+                    <span >Orders: <span className="font-normal">{orders}</span> </span>
+                    <span >Delivered: <span className="font-normal text-success">{deliveredQuantity} </span> </span>
                 </div>
               </header>
 
@@ -38,7 +38,7 @@ const SlaOrdersCards = ({ data }) => {
               </div>
               <div className="table-card-row">
                 <span>In time orders</span>
-                <span >{inTimeOrders} %</span>
+                <span className="text-primary">{inTimeOrders} %</span>
               </div>
             </article>
           );
@@ -48,4 +48,4 @@ const SlaOrdersCards = ({ data }) => {
   );
 };
 
-export default SlaOrdersCards;
+export default SlaShopsCards;

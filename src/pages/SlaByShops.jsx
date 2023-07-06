@@ -52,6 +52,9 @@ import { useLocation } from "react-router-dom";
 import SlaMenu from "../components/SlaMenu";
 import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import SlaOrdersCards from "../components/SlaOrdersCards";
+import SlaShopsCards from "../components/SlaShopsCards";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -263,16 +266,22 @@ const SlaByShops = () => {
 
   useRemoveId(gridApi, gridRef);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
+
+
   return (
     <>
-      <header className="all-orders__header sla-by-vendors__header">
+      <header className="all-orders__header sla-by-vendors__header sla-header">
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left sla-top"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4>სერვისის დონე</h4>
+            <h4 className="sla-heading">სერვისის დონე</h4>
+            <div className="sla-date">
+            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+            </div>
             <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
@@ -280,14 +289,16 @@ const SlaByShops = () => {
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
-            <SlaMenu />
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
-            <p className="avarage-sla">
+            <SlaMenu className="sla-menu"/>
+            <p className="avarage-sla sla-avg sla-avg-desktop">
               ASL: <span>82%</span>
             </p>
           </div>
           {/* Right */}
-          <div className="all-orders__settings__options">
+          <div className="all-orders__settings__options flex justify-end">
+          <p className="avarage-sla sla-avg sla-avg-mobile">
+              ASL: <span>82%</span>
+            </p>
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
             {/* input filter */}
@@ -427,57 +438,64 @@ const SlaByShops = () => {
           </div>
         </div>
       </header>
-      <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
 
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {
+        isSmallDevice ? <SlaShopsCards data={rowData}/> : (
+          <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+  
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+
+        )
+      }
+     
     </>
   );
 };
