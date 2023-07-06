@@ -39,7 +39,7 @@ const CatalogueCards = ({ data }) => {
               {/* 1 */}
               <div className="table-card-row">
                 <span>Product</span>
-                <span>{product} GEL</span>
+                <span  style={{maxWidth: "200px", overflow: "hidden",  textOverflow: "ellipsis", height: "30px", display: "block", whiteSpace:"nowrap" }}>{product} GEL</span>
               </div>
               {/* 2 */}
               <div className="table-card-row">
