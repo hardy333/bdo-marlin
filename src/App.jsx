@@ -59,6 +59,7 @@ import ExpandableTable from "./pages/ExpandableTable";
 import ColorsPage  from "./pages/ColorsPage";
 
 import { QueryClientProvider, QueryClient } from "react-query";
+import ExpandableTable2 from "./pages/ExpandableTable2";
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,7 @@ function App() {
             <Route path="/" element={<Dash />} />
             <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
+            <Route path="/expandable-table2" element={<ExpandableTable2 />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />

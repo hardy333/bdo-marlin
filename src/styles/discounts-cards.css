@@ -127,6 +127,7 @@
     grid-column: span 2;
     justify-self: center;
   }
+  
   .discount-cards-container {
     padding-left: 30px;
   }
@@ -136,8 +137,6 @@
     width: 100%;
     justify-content: center;
     margin-bottom: 1rem;
-
-
   }
 
   .discounts-date-picker .btn-date{
