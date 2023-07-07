@@ -130,4 +130,24 @@
   .discount-cards-container {
     padding-left: 30px;
   }
+
+  .discounts-date-picker{
+    grid-column: span 2;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+
+  }
+
+  .discounts-date-picker .btn-date{
+    margin-left: 0;
+  }
+
+  .discounts .toggle-switch{
+    grid-column: span 2;
+
+    
+  }
+
 }

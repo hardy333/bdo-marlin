@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import SearchSvg from "../components/svgs/SearchSvg";
 import "../styles/discounts-cards.css";
 
 import Select from "react-select";
 import DiscountCard from "../components/DiscountCard";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import { BsFillCalendarCheckFill } from "react-icons/bs";
+import DatePickerBtn from "../components/DatePickerBtn";
+import { addDays } from "date-fns";
 
 const options = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
@@ -52,6 +55,20 @@ const products = [
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
 
+  
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const [dateChanged, setDateChanged] = useState(false);
+  const datePicekerRef = useRef(null);
+
+  const [dateState, setDateState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 0),
+      key: "selection",
+      color: "#6E0FF5",
+    },
+  ]);
   return (
     <>
       <section className="discounts">
@@ -66,7 +83,7 @@ const DiscountsCards = () => {
             defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
           />
           <div className="vendors-switch-container ml-10">
-            <p>აქტიური</p>
+            <p className="">აქტიური</p>
             <div className="toggle-switch">
               <input
                 className="toggle-input"
@@ -77,8 +94,31 @@ const DiscountsCards = () => {
               />
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
-            <p>ყველა</p>
+            <p className="">ყველა</p>
           </div>
+
+            {/* Date Picker */}
+            <div className={`flex items-center sla-date ms-10 discounts-date-picker`}>
+                <span
+                  style={{
+                    fontWeight: "600",
+                    paddingRight: 10,
+                    display: "flex",
+                  }}
+                  className="calendar-span"
+                  onClick={() => datePicekerRef.current.click()}
+                >
+                  <BsFillCalendarCheckFill />
+                </span>
+                <DatePickerBtn
+                  datePicekerRef={datePicekerRef}
+                  dateChanged={dateChanged}
+                  setDateChanged={setDateChanged}
+                  dateState={dateState}
+                  setDateState={setDateState}
+                  isSearchOpen={isSearchOpen}
+                />
+              </div>
 
           <LazyExcelExportBtn />
 
