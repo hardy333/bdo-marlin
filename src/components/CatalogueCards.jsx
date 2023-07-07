@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/order-details-card.css";
 import { useNavigate } from "react-router-dom";
 import TriangleSvg from "./svgs/TriangleSvg";
+import Tippy from "@tippyjs/react";
 
 const CatalogueCards = ({ data }) => {
   if (!data) {
@@ -39,7 +40,25 @@ const CatalogueCards = ({ data }) => {
               {/* 1 */}
               <div className="table-card-row">
                 <span>Product</span>
-                <span  style={{maxWidth: "200px", overflow: "hidden",  textOverflow: "ellipsis", height: "30px", display: "block", whiteSpace:"nowrap" }}>{product} GEL</span>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="bottom"
+                  content={product}
+                >
+                  <span
+                    style={{
+                      maxWidth: "200px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      height: "30px",
+                      display: "block",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {product} GEL
+                  </span>
+                </Tippy>
               </div>
               {/* 2 */}
               <div className="table-card-row">

@@ -47,11 +47,15 @@ import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import vendorsArr from "../data/vendors-data";
 import useRemoveId from "../components/useRemoveId";
+import exportData from "../utils/exportData";
+import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
 import SlaMenu from "../components/SlaMenu";
+import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { fetchData } from "../utils/fetchData";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import SlaCategoryCards from "../components/SlaCategoryCards";
 
 const SlaByCategory = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -260,18 +264,49 @@ const SlaByCategory = () => {
     },
   ]);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
+
+
   useRemoveId(gridApi, gridRef);
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const [dateChanged, setDateChanged] = useState(false);
+  const datePicekerRef = useRef(null);
 
   return (
     <>
-      <header className="all-orders__header sla-by-vendors__header">
+      <header className="all-orders__header sla-by-vendors__header sla-header">
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left sla-top"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4>სერვისის დონე</h4>
+            <h4 className="sla-heading">სერვისის დონე</h4>
+            <div className="sla-date">
+              <div className={`flex items-center sla-date `}>
+                <span
+                  style={{
+                    fontWeight: "600",
+                    paddingRight: 10,
+                    display: "flex",
+                  }}
+                  className="calendar-span"
+                  onClick={() => datePicekerRef.current.click()}
+                >
+                  <BsFillCalendarCheckFill />
+                </span>
+                <DatePickerBtn
+                  datePicekerRef={datePicekerRef}
+                  dateChanged={dateChanged}
+                  setDateChanged={setDateChanged}
+                  dateState={dateState}
+                  setDateState={setDateState}
+                  isSearchOpen={isSearchOpen}
+                />
+              </div>
+            </div>
             <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
@@ -279,14 +314,16 @@ const SlaByCategory = () => {
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
-            <SlaMenu />
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
-            <p className="avarage-sla">
+            <SlaMenu className="sla-menu" />
+            <p className="avarage-sla sla-avg sla-avg-desktop">
               ASL: <span>82%</span>
             </p>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
+            <p className="avarage-sla sla-avg sla-avg-mobile">
+              ASL: <span>82%</span>
+            </p>
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
             {/* input filter */}
@@ -422,11 +459,18 @@ const SlaByCategory = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <LazyExcelExportBtn data={rowData} name="" />
+            <button
+              className="all-orders__btn excel-export-btn"
+              onClick={() => exportData(rowData)}
+            >
+              <ExcelExportSvg />
+            </button>
           </div>
         </div>
       </header>
-      <div
+      {
+        isSmallDevice ? <SlaCategoryCards data={rowData} /> : (
+          <div
         id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
         style={{ minHeight: 595, width: "100%" }}
@@ -477,6 +521,8 @@ const SlaByCategory = () => {
           })}
         </Menu>
       </div>
+        )
+      }
     </>
   );
 };

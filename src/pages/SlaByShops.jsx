@@ -53,8 +53,8 @@ import SlaMenu from "../components/SlaMenu";
 import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
-import SlaOrdersCards from "../components/SlaOrdersCards";
 import SlaShopsCards from "../components/SlaShopsCards";
+import { BsFillCalendarCheckFill } from "react-icons/bs";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -268,6 +268,8 @@ const SlaByShops = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
+  const [dateChanged, setDateChanged] = useState(false);
+  const datePicekerRef = useRef(null);
 
   return (
     <>
@@ -280,7 +282,26 @@ const SlaByShops = () => {
           >
             <h4 className="sla-heading">სერვისის დონე</h4>
             <div className="sla-date">
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+              <div className={`flex items-center sla-date `}>
+                <span
+                  style={{
+                    fontWeight: "600",
+                    paddingRight: 10,
+                    display: "flex",
+                  }}
+                  className="calendar-span"
+                  onClick={() => datePicekerRef.current.click()}
+                >
+                  <BsFillCalendarCheckFill />
+                </span>
+                <DatePickerBtn
+                  datePicekerRef={datePicekerRef}
+                  dateChanged={dateChanged}
+                  setDateChanged={setDateChanged}
+                  dateState={dateState}
+                  setDateState={setDateState}
+                />
+              </div>
             </div>
             <Select
               className="react-select-container sla-select"
@@ -289,14 +310,14 @@ const SlaByShops = () => {
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
-            <SlaMenu className="sla-menu"/>
+            <SlaMenu className="sla-menu" />
             <p className="avarage-sla sla-avg sla-avg-desktop">
               ASL: <span>82%</span>
             </p>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options flex justify-end">
-          <p className="avarage-sla sla-avg sla-avg-mobile">
+            <p className="avarage-sla sla-avg sla-avg-mobile">
               ASL: <span>82%</span>
             </p>
             <ExpandingInput onFilterTextChange={onFilterTextChange} />
@@ -439,9 +460,10 @@ const SlaByShops = () => {
         </div>
       </header>
 
-      {
-        isSmallDevice ? <SlaShopsCards data={rowData}/> : (
-          <div
+      {isSmallDevice ? (
+        <SlaShopsCards data={rowData} />
+      ) : (
+        <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
           style={{ minHeight: 595, width: "100%" }}
@@ -465,7 +487,7 @@ const SlaByShops = () => {
             }}
             paginationPageSize={pageSize}
           ></AgGridReact>
-  
+
           <Menu
             className="page-size-menu"
             align="end"
@@ -492,10 +514,7 @@ const SlaByShops = () => {
             })}
           </Menu>
         </div>
-
-        )
-      }
-     
+      )}
     </>
   );
 };

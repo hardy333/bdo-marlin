@@ -55,6 +55,7 @@ import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaOrdersCards from "../components/SlaOrdersCards";
+import { BsFillCalendarCheckFill } from "react-icons/bs";
 
 const SlaByOrders = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -87,7 +88,9 @@ const SlaByOrders = () => {
 
   const url = "https://10.0.0.202:5001/api/SLAByOrders";
 
-  const { isLoading, error, data } = useQuery("sla-by-orders-data", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("sla-by-orders-data", () =>
+    fetchData(url)
+  );
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -266,7 +269,10 @@ const SlaByOrders = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const [dateChanged, setDateChanged] = useState(false);
+  const datePicekerRef = useRef(null);
 
   return (
     <>
@@ -279,7 +285,27 @@ const SlaByOrders = () => {
           >
             <h4 className="sla-heading">სერვისის დონე</h4>
             <div className="sla-date">
-            <DatePickerBtn dateState={dateState} setDateState={setDateState} />
+              <div className={`flex items-center sla-date `}>
+                <span
+                  style={{
+                    fontWeight: "600",
+                    paddingRight: 10,
+                    display: "flex",
+                  }}
+                  className="calendar-span"
+                  onClick={() => datePicekerRef.current.click()}
+                >
+                  <BsFillCalendarCheckFill />
+                </span>
+                <DatePickerBtn
+                  datePicekerRef={datePicekerRef}
+                  dateChanged={dateChanged}
+                  setDateChanged={setDateChanged}
+                  dateState={dateState}
+                  setDateState={setDateState}
+                  isSearchOpen={isSearchOpen}
+                />
+              </div>
             </div>
             <Select
               className="react-select-container sla-select"
@@ -288,11 +314,10 @@ const SlaByOrders = () => {
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
-            <SlaMenu className="sla-menu"/>
+            <SlaMenu className="sla-menu" />
             <p className="avarage-sla sla-avg sla-avg-desktop">
               ASL: <span>82%</span>
             </p>
-       
           </div>
           {/* Right */}
           <div className="all-orders__settings__options sla-settings">
@@ -430,7 +455,7 @@ const SlaByOrders = () => {
               className={classNames({
                 "all-orders__btn": true,
                 active: isFullScreen,
-                "sla-expand-btn": true
+                "sla-expand-btn": true,
               })}
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
@@ -439,61 +464,61 @@ const SlaByOrders = () => {
           </div>
         </div>
       </header>
-      {
-        isSmallDevice ? <SlaOrdersCards data={rowData} /> : (
-          <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <SlaOrdersCards data={rowData} />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
-        )
-      }
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

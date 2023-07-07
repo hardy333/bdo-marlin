@@ -188,6 +188,7 @@ const ReportsTable = () => {
       color: "#6E0FF5",
     },
   ]);
+  const [dateChanged, setDateChanged] = useState(false)
 
   useEffect(() => {
     const x = document.querySelector(
@@ -219,7 +220,7 @@ const ReportsTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  console.log({isSearchOpen})
+  const datePicekerRef = useRef(null)
 
   return (
     <>
@@ -243,10 +244,14 @@ const ReportsTable = () => {
                   display: "flex",
                 }}
                 className="calendar-span"
+                onClick={() => datePicekerRef.current.click()}
               >
                 <BsFillCalendarCheckFill />
               </span>
               <DatePickerBtn
+              datePicekerRef={datePicekerRef}
+              dateChanged={dateChanged}
+              setDateChanged={setDateChanged}
                 dateState={dateState}
                 setDateState={setDateState}
                 isSearchOpen={isSearchOpen}

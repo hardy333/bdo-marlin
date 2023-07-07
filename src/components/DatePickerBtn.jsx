@@ -6,14 +6,30 @@ import { DateRangePicker } from "react-date-range";
 import { format } from "date-fns";
 import { Menu, MenuItem } from "@szhsin/react-menu";
 
-const DatePickerBtn = ({ dateState, setDateState, isSearchOpen = false }) => {
+const DatePickerBtn = ({
+  dateState,
+  datePicekerRef,
+  dateChanged,
+  setDateChanged,
+  setDateState,
+  isSearchOpen = false,
+}) => {
+  let resDate;
+  let dateStart = format(dateState[0].startDate, "MM.dd.yyyy");
+  let dateEnd = format(dateState[0].endDate, "MM.dd.yyyy");
+
+  if (dateStart !== dateEnd) {
+    resDate = dateStart + " - " + dateEnd;
+  } else {
+    resDate = dateStart;
+  }
+
   return (
     <Menu
       className="date-menu"
       menuButton={
-        <button className={`btn btn-date ${isSearchOpen ? "hide" : ""}`}>
-          {format(dateState[0].startDate, "MM.dd.yyyy")} -{" "}
-          {format(dateState[0].endDate, "MM.dd.yyyy")}
+        <button className={`btn btn-date `} ref={datePicekerRef}>
+          {dateChanged ? <>{resDate}</> : null}
         </button>
       }
       transition
@@ -25,7 +41,10 @@ const DatePickerBtn = ({ dateState, setDateState, isSearchOpen = false }) => {
       >
         <DateRangePicker
           dragSelectionEnabled
-          onChange={(item) => setDateState([item.selection])}
+          onChange={(item) => {
+            setDateState([item.selection]);
+            setDateChanged(true);
+          }}
           showSelectionPreview={true}
           moveRangeOnFirstSelection={false}
           months={1}
