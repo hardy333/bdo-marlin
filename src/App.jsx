@@ -18,6 +18,7 @@ import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
 import "./styles/lazy-loader-1.css";
+import "./styles/nprogress.css";
 
 // Hello
 
@@ -67,34 +68,17 @@ const StableTable = React.lazy(() => import("./pages/StableTable"));
 const ExpandableTable = React.lazy(() => import("./pages/ExpandableTable"));
 
 import { QueryClientProvider, QueryClient } from "react-query";
-import LazyLoader1 from "./components/LazyLoader1";
 import Prog from "./components/Prog";
+import NProgress  from "nprogress";
 
 const queryClient = new QueryClient();
 
 const ProgressChanger = ({ setProgress }) => {
   useEffect(() => {
-    setProgress(10);
-    let num = 30;
-    const timer = setInterval(() => {
-      setProgress((curr) => {
-        if (curr >= 76) {
-          return curr;
-        }
-        return curr + num;
-      });
-      num -= 7;
-      if (num <= 0) {
-        num = 2;
-      }
-    }, 300);
-
-    console.log("Start prog");
-
+    NProgress.start();
     return () => {
-      setProgress(100);
-      console.log("End prog");
-      clearInterval(timer);
+      NProgress.done();
+      
     };
   }, []);
 
