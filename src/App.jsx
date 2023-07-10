@@ -73,13 +73,16 @@ import NProgress  from "nprogress";
 
 const queryClient = new QueryClient();
 
-NProgress.configure({ easing: 'ease', speed: 800 });
+NProgress.configure({ minimum: 0.2 });
+NProgress.configure({ easing: 'ease', speed: 2000 });
 
 const ProgressChanger = ({ setProgress }) => {
   useEffect(() => {
     NProgress.start();
+    console.log("Hello start")
     return () => {
         NProgress.done();
+        console.log("Hello end")
 
       
     };
