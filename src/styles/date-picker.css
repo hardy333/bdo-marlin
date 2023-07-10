@@ -61,5 +61,30 @@ color: #211543;
 }
 
 .rdp-cell .rdp-button.rdp-day_selected{
+  border: 1px solid var(--color-primary-4);
+  background-color: var(--color-primary-4);
+  color: white;
+}
+
+.rdp-cell .rdp-button:hover{
   border: 1px solid var(--color-primary-4) ;
+
+}
+.rdp-day_today{
+  position: relative;
+}
+
+.rdp-day_today:before{
+  content: "";
+  position: absolute;
+
+  bottom: 2px;
+  left: 0;
+  width: 50%;
+  height: 1px;
+  background-color: #D0C7E8;
+  transform: translate(50%);
+
+  z-indeX: 999;
+
 }
