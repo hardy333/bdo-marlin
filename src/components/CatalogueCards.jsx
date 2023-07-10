@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/order-details-card.css";
-import { useNavigate } from "react-router-dom";
 import TriangleSvg from "./svgs/TriangleSvg";
 import Tippy from "@tippyjs/react";
 
@@ -13,7 +12,14 @@ const CatalogueCards = ({ data }) => {
     <>
       <section className="table-cards-container  w-full">
         {data.map((row, index) => {
-          const { status, price, barcode, product } = row;
+          const {
+            status,
+            price,
+            barcode,
+            product,
+            lastOrderPrice,
+            lastChangeDate,
+          } = row;
           return (
             <article
               onClick={() => {
@@ -29,12 +35,34 @@ const CatalogueCards = ({ data }) => {
                   </span>
                 </h3>
                 <span className="date">
-                  <TriangleSvg
-                    fill={"#6E0FF5"}
-                    style={{
-                      transform: true ? "rotate(180deg)" : "rotate(0deg)",
-                    }}
-                  />
+                  <Tippy
+                    className="tooltip-2"
+                    arrow={false}
+                    trigger="click"
+                    placement="top"
+                    content={
+                      <div className="catalogue-popup-content">
+                        <span>
+                          <span>Last Cahnge Date</span>
+                          <span>- {lastChangeDate.split("T")[0]}</span>
+                        </span>
+                        <br />
+                        <span>
+                          <span>Last price</span>
+                          <span>- {lastOrderPrice}</span>
+                        </span>
+                      </div>
+                    }
+                  >
+                    <span className="" style={{cursor: "pointer"}}>
+                      <TriangleSvg
+                        fill={"#6E0FF5"}
+                        style={{
+                          transform: true ? "rotate(180deg)" : "rotate(0deg)",
+                        }}
+                      />
+                    </span>
+                  </Tippy>
                 </span>
               </header>
               {/* 1 */}

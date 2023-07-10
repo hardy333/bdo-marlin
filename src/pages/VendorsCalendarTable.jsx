@@ -291,10 +291,13 @@ const VendorsCalendarTable = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
+
   const [showFilters, setShowFilters] = useFilterToggle();
   const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);
+
+  console.log(selected)
 
   return (
     <>
@@ -325,6 +328,8 @@ const VendorsCalendarTable = () => {
                       setSelected(x);
                       changeRowData();
                     }}
+                    showOutsideDays={true}
+
                   />
                 </div>
               </MenuItem>
@@ -460,6 +465,8 @@ const VendorsCalendarTable = () => {
                 setSelected(x);
                 changeRowData();
               }}
+                showOutsideDays={true}
+                enableOutsideDaysClick={false}
             />
           </div>
         </div>
