@@ -44,12 +44,11 @@ const CatalogueCards = ({ data }) => {
                       <div className="catalogue-popup-content">
                         <span>
                           <span>Last Cahnge Date</span>
-                          <span>- {lastChangeDate.split("T")[0]}</span>
+                          <span>{lastChangeDate.split("T")[0]}</span>
                         </span>
-                        <br />
                         <span>
                           <span>Last price</span>
-                          <span>- {lastOrderPrice}</span>
+                          <span>{lastOrderPrice}</span>
                         </span>
                       </div>
                     }

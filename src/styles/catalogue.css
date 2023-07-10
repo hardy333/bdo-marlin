@@ -92,11 +92,12 @@
 .catalogue-popup-content{
   display: flex;
   flex-direction: column;
-  gap:0;
+  gap:1rem;
   align-items: center;
   position: relative;
   cursor: pointer;
   z-index: 99999999999999;
+  width: 230px;
   
 }
 
