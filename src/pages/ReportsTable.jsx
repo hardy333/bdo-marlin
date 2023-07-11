@@ -29,7 +29,7 @@ import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import TableSettings from "../components/TableSettings";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
@@ -73,9 +73,14 @@ const ReportsTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const url = "https://10.0.0.202:5001/api/SLAByVendors";
+  const location = useLocation()
+  console.log(window.location)
+  
 
-  const { isLoading, error, data } = useQuery("reports-data", () => fetchData(url));
+  const url = "https://10.0.0.202:5001/api/SLAByVendors";
+  const url1 = window.location.origin + "/SLAByVendors.json"
+
+  const { isLoading, error, data } = useQuery("reports-data", () => fetchData(url1));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -84,7 +89,7 @@ const ReportsTable = () => {
     return null;
   });
 
-  console.log(data)
+  console.log({error})
   
   useEffect(() => {
     if (!data) return;
