@@ -150,6 +150,15 @@
   .sla-date.hide{
     opacity: 0;
   }
+
+  .reports-header h4{
+    width: 100% !important;
+    margin-right: 0;
+  }
+
+  .reports-header .expanding-input{
+    font-size: 16px;
+  }
   
 }
 
