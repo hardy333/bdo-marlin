@@ -29,15 +29,15 @@ const SlaOrdersCards = ({ data }) => {
 
               {/* ------------------------------------- */}
               <div className="table-card-row">
-                <span>SL by quantity</span>
+                <span className="label">SL by quantity</span>
                 <span>{slaByQuantity} %</span>
               </div>
               <div className="table-card-row">
-                <span>SL by amount</span>
+                <span className="label">SL by amount</span>
                 <span>{slaByAmount} %</span>
               </div>
               <div className="table-card-row">
-                <span>In time orders</span>
+                <span className="label">In time orders</span>
                 <span >{inTimeOrders} %</span>
               </div>
             </article>

@@ -130,6 +130,11 @@
   font-weight: 600;
 }
 
+.sla-orders-card .label{
+  font-weight: 600;
+
+}
+
 
 /* SLA General */
 /* SLA General */
@@ -138,5 +143,6 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 600;
 
 }
