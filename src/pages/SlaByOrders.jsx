@@ -84,9 +84,6 @@ const SlaByOrders = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-  const location = useLocation();
-
-  
 
   const url1 = window.location.origin + "/SLAByOrders.json"
   const url = "https://10.0.0.202:5001/api/SLAByOrders";

@@ -73,9 +73,6 @@ const ReportsTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const location = useLocation()
-  console.log(window.location)
-  
 
   const url1 = window.location.origin + "/SLAByVendors.json"
   const url = "https://10.0.0.202:5001/api/SLAByVendors";

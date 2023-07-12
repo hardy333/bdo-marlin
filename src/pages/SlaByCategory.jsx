@@ -84,11 +84,11 @@ const SlaByCategory = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-  const location = useLocation();
 
+  const url1 = window.location.origin + "/SLAByCategory.json"
   const url = "https://10.0.0.202:5001/api/SLAByCategory";
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url1));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
