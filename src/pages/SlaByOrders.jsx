@@ -86,10 +86,13 @@ const SlaByOrders = () => {
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const location = useLocation();
 
+  
+
+  const url1 = window.location.origin + "/SLAByOrders.json"
   const url = "https://10.0.0.202:5001/api/SLAByOrders";
 
   const { isLoading, error, data } = useQuery("sla-by-orders-data", () =>
-    fetchData(url)
+    fetchData(url1)
   );
 
   const [rowData, setRowData] = useState(() => {

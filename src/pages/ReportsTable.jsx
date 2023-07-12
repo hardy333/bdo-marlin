@@ -77,8 +77,8 @@ const ReportsTable = () => {
   console.log(window.location)
   
 
-  const url = "https://10.0.0.202:5001/api/SLAByVendors";
   const url1 = window.location.origin + "/SLAByVendors.json"
+  const url = "https://10.0.0.202:5001/api/SLAByVendors";
 
   const { isLoading, error, data } = useQuery("reports-data", () => fetchData(url1));
 
