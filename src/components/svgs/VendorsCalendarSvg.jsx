@@ -4,13 +4,13 @@ import React from "react";
   /* <style>.cls-1{fill:none;stroke:#1a1f3d;stroke-linecap:round;stroke-linejoin:round;stroke-width:5.69px;}.cls-2{fill:#1a1f3d;}</style> */
 }
 
-const VendorsCalendarSvg = () => {
+const VendorsCalendarSvg = ({cName = true}) => {
   return (
     <svg
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 59.88 65.69"
-      className="vendors-calendar-svg"
+      className={cName ? `vendors-calendar-svg` : null}
     >
       <defs></defs>
       <g id="Document">

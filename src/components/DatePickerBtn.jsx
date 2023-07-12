@@ -12,7 +12,6 @@ const DatePickerBtn = ({
   dateChanged,
   setDateChanged,
   setDateState,
-  isSearchOpen = false,
 }) => {
   let resDate;
   let dateStart = format(dateState[0].startDate, "MM.dd.yyyy");
