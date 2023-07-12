@@ -113,6 +113,18 @@
   font-weight: 600;
 }
 
+.reports-card .table-card-row .label svg{
+  fill: #6f0ff54b;
+  font-size: 17px;
+}
+.reports-card .table-card-row:first-of-type .label svg{
+  font-size: 15px;
+  width: 17px;
+}
+
+.reports-card .table-card-row:last-of-type .label svg{
+}
+
 /* Sla orders */
 .sla-orders-card h3{
   display: flex;
