@@ -18,7 +18,6 @@ import { AgGridReact } from "ag-grid-react";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
@@ -155,7 +154,7 @@ const CashBackTable = () => {
     },
     {
       name: "purchased",
-      showingName: "გადახდილი თანხა",
+      showingName: "შესყიდული",
 
       isShowing: true,
     },
@@ -167,7 +166,7 @@ const CashBackTable = () => {
     //   },
     {
       name: "stockBalance",
-      showingName: "მარაგი",
+      showingName: "ნაშთი",
 
       isShowing: true,
     },
@@ -204,7 +203,7 @@ const CashBackTable = () => {
       ],
     },
     {
-      headerName: "Result",
+      headerName: "აქციის შედეგები",
       children: [
         {
           field: "purchased",
@@ -342,38 +341,55 @@ const CashBackTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4 style={{ marginRight: 20 }} id="discunts">
-              Retro Bonuses
+              რეტრო ბონუსები
             </h4>
             {/* 1 */}
             <div className="info-group">
               <p className="discount-container">
-                Vendor :<span> GDM</span>
+                მომწოდებელი:<span> GDM.</span>
               </p>
               <p className="discount-container">
-                Condition :<span> From Purchase</span>
+                პირობა:<span> შეძენიდან. </span>
               </p>
             </div>
             {/* 2 */}
             <div className="info-group">
               <p className="discount-container">
-                Doc #:<span> 23120</span>
+                დოკ. #:<span> 23120.</span>
               </p>
               <p className="discount-container">
-                Cashback:<span> 7%</span>
+                ქეშბექი:<span> 7%.</span>
               </p>
             </div>
 
             {/* 3 */}
             <div className="info-group">
               <p className="discount-container">
-                Period: <span>1/10/2023 - 10/10/2023</span>
+                პერიოდი: <span>1/10/2023 - 10/10/2023.</span>
               </p>
               <p className="discount-container">
-                Sales Plan: <span>25,000GEL</span>
+                გაყიდვის გეგმა: <span>25,000GEL.</span>
               </p>
             </div>
             <div>
-                <p className="discount-conditions">Discount Conditions</p>
+            <Menu
+              className="pending-status-menu"
+              menuButton={
+                <button
+                  className="btn btn-status-2 mt-[-2px] discount-conditions"
+                >
+                  ფასდაკლების პირობები
+                </button>
+              }
+              direction="bottom"
+              align="center"
+              transition
+            >
+              <MenuItem>10-დან 1000-მდე, 5%</MenuItem>
+              <MenuItem>1001-დან 5000-მდე, 6%</MenuItem>
+              <MenuItem>5001-დან 10000-მდე, 7%</MenuItem>
+            </Menu>
+                {/* <p className="">ფასდაკლების პირობები</p> */}
             </div>
 
             {/* <ItemsMenu /> */}
