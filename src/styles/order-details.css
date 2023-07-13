@@ -52,6 +52,9 @@
   font-size: 12px;
 }
 
+
+
+
 @media (max-width: 600px) {
  .order-details-left{
   display: flex;
@@ -60,6 +63,10 @@
   gap: 0.5rem;
   width: 100%;
  }
+
+ .order-details-header .badge{
+  background-color: rgb(59 130 246 / 0.05) !important;
+}
 
  .all-orders__settings__options{
   margin-left: auto;
