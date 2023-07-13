@@ -53,6 +53,10 @@
 
 }
 
+.sla-header .report-child-menu-button{
+  min-width: 200px;
+}
+
 .report-child-menu-button svg{
   width: 15px;
   max-height: 15px;

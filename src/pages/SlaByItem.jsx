@@ -55,6 +55,7 @@ import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaItemsCards from "../components/SlaItemsCards";
+import DatePickerInput from "../components/DatePickerInput";
 
 const SlaByItem = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -83,12 +84,10 @@ const SlaByItem = () => {
   ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-  const location = useLocation();
-  
 
   const url1 = window.location.origin + "/SLAByProducts.json"
   const url = "https://10.0.0.202:5001/api/SLAByProducts";
-  
+
 
   const { isLoading, error, data } = useQuery("repoData", () => fetchData(url1));
 
@@ -289,24 +288,11 @@ const SlaByItem = () => {
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
                 <span
-                  style={{
-                    fontWeight: "600",
-                    paddingRight: 10,
-                    display: "flex",
-                  }}
+                
                   className="calendar-span"
-                  onClick={() => datePicekerRef.current.click()}
                 >
-                  <BsFillCalendarCheckFill />
+                  <DatePickerInput />
                 </span>
-                <DatePickerBtn
-                  datePicekerRef={datePicekerRef}
-                  dateChanged={dateChanged}
-                  setDateChanged={setDateChanged}
-                  dateState={dateState}
-                  setDateState={setDateState}
-                  isSearchOpen={isSearchOpen}
-                />
               </div>
             </div>
             <Select

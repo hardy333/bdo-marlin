@@ -19,6 +19,9 @@
   display: flex !important;
 }
 
+.sla-header .date-picker-input {
+    min-width: 200px !important;
+}
                 
                 
 .sla-header .szh-menu-button.date-picker-input {

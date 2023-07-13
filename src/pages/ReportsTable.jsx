@@ -67,7 +67,7 @@ const ReportsTable = () => {
     },
     {
       name: "inTimeOrders",
-      showingName: "დროულად",
+      showingName: "დროულობა",
       isShowing: true,
     },
   ]);
@@ -135,7 +135,7 @@ const ReportsTable = () => {
     },
     {
       field: "inTimeOrders",
-      headerName: "დროულად",
+      headerName: "დროულობა",
       minWidth: 250,
       cellRenderer: (params) => {
         const { value } = params;

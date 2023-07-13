@@ -55,6 +55,7 @@ import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaShopsCards from "../components/SlaShopsCards";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
+import DatePickerInput from "../components/DatePickerInput";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -284,23 +285,11 @@ const SlaByShops = () => {
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
                 <span
-                  style={{
-                    fontWeight: "600",
-                    paddingRight: 10,
-                    display: "flex",
-                  }}
+                 
                   className="calendar-span"
-                  onClick={() => datePicekerRef.current.click()}
                 >
-                  <BsFillCalendarCheckFill />
+                  <DatePickerInput />
                 </span>
-                <DatePickerBtn
-                  datePicekerRef={datePicekerRef}
-                  dateChanged={dateChanged}
-                  setDateChanged={setDateChanged}
-                  dateState={dateState}
-                  setDateState={setDateState}
-                />
               </div>
             </div>
             <Select

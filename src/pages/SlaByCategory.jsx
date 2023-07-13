@@ -56,6 +56,7 @@ import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaCategoryCards from "../components/SlaCategoryCards";
+import DatePickerInput from "../components/DatePickerInput";
 
 const SlaByCategory = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -287,24 +288,12 @@ const SlaByCategory = () => {
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
                 <span
-                  style={{
-                    fontWeight: "600",
-                    paddingRight: 10,
-                    display: "flex",
-                  }}
+                
                   className="calendar-span"
-                  onClick={() => datePicekerRef.current.click()}
                 >
-                  <BsFillCalendarCheckFill />
+                  <DatePickerInput />
                 </span>
-                <DatePickerBtn
-                  datePicekerRef={datePicekerRef}
-                  dateChanged={dateChanged}
-                  setDateChanged={setDateChanged}
-                  dateState={dateState}
-                  setDateState={setDateState}
-                  isSearchOpen={isSearchOpen}
-                />
+                
               </div>
             </div>
             <Select
