@@ -177,8 +177,8 @@ const ExpandableTable = () => {
     params.api.sizeColumnsToFit();
   };
 
-  // Expandable logic
-  // Expandable logic
+  // Expandable logic 11
+  // Expandable logic 11
 
   const renderSubTable = () => {
     data.forEach((obj, rowIndex) => {
@@ -217,7 +217,6 @@ const ExpandableTable = () => {
   // Second Actions 22
   // Second Actions 22
 
-  const openSecondTable = (targetSpan) => {};
 
   const isSecondOpen = useRef(false);
 
@@ -235,7 +234,7 @@ const ExpandableTable = () => {
 
       rowCells.forEach((rowCell) => {
         rowCell.style.height = "40px";
-        rowCell.style.overflow = "hidden";
+        // rowCell.style.overflow = "hidden";
       });
     } else {
       targetSpan.textContent = "-";
@@ -243,12 +242,11 @@ const ExpandableTable = () => {
 
       rowCells.forEach((rowCell) => {
         rowCell.style.height = "800px";
-        rowCell.style.overflow = "hidden";
+        // rowCell.style.overflow = "hidden";
       });
     }
 
     // return
-
     data.forEach((obj, index) => {
       const val1 = obj["Order #"];
       const val2 = obj["Order Address"];
@@ -256,8 +254,9 @@ const ExpandableTable = () => {
       const val4 = obj["In Time Orders"];
       const val5 = obj["Service Level"];
       const val6 = obj["ip_address"];
-
       const arr = [val1, val2, val3, val4, val5, val6];
+
+
 
       rowCells.forEach((cell, index) => {
         const newCell = document.createElement("DIV");
@@ -265,7 +264,7 @@ const ExpandableTable = () => {
         newCell.style.paddingLeft = "20px";
         if (index === 0) {
           newCell.innerHTML = `
-          <div class="plus-minus-span-wrapper" style="padding-left: 30px;" >
+          <div class="plus-minus-span-wrapper second-child-table-line" style="padding-left: 30px;" >
             ${arr[index]}
           </div>
           `;

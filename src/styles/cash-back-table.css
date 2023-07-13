@@ -1,0 +1,39 @@
+.cash-back-table  .react-select-container{
+    right: 50px;
+}
+
+.cash-back-table .ag-header-group-text{
+    padding-right: 40px;
+}
+
+.cash-back-header .order-details-left{
+    align-items: start;
+}
+
+.cash-back-header .discount-conditions{
+    color: #6E0FF5;
+    font-size: 14px;
+    border-radius: 15px;
+    background: rgba(110, 15, 245, 0.19);
+    padding: 3px 10px;
+
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4px;
+
+}
+
+.cash-back-header .info-group{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+
+.cash-back-header .info-group p{
+    text-align: start;
+}
