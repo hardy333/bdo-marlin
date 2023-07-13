@@ -1,5 +1,8 @@
 import React from "react";
 import "../styles/order-details-card.css";
+import SlaQuantitySvg from "./svgs/SlaQuantitySvg";
+import SlaAmountSvg from "./svgs/SlaAmountSvg";
+import SlaOrdersSvg from "./svgs/SlaOrdersSvg";
 
 const SlaItemsCards = ({ data }) => {
   if (!data) {
@@ -49,15 +52,21 @@ const SlaItemsCards = ({ data }) => {
 
               {/* ------------------------------------- */}
               <div className="table-card-row">
-                <span className="label">SL by quantity</span>
+                <span className="label">
+                    <SlaQuantitySvg />
+                    SL by quantity</span>
                 <span>{slaByQuantity} %</span>
               </div>
               <div className="table-card-row">
-                <span className="label">SL by amount</span>
+                <span className="label">
+                    <SlaAmountSvg />
+                    SL by amount</span>
                 <span>{slaByAmount} %</span>
               </div>
               <div className="table-card-row">
-                <span className="label">In time orders</span>
+                <span className="label">
+                    <SlaOrdersSvg />
+                    In time orders</span>
                 <span>{inTimeOrders} %</span>
               </div>
             </article>

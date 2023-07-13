@@ -34,6 +34,7 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
 import {BsFillCalendarCheckFill} from "react-icons/bs"
+import DatePickerInput from "../components/DatePickerInput";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -240,24 +241,11 @@ const ReportsTable = () => {
           <div className="all-orders__settings__options">
           <div className={`flex items-center sla-date ${isSearchOpen ? "hide" : ""}`}>
               <span
-                style={{
-                  fontWeight: "600",
-                  paddingRight: 10,
-                  display: "flex",
-                }}
-                className="calendar-span"
-                onClick={() => datePicekerRef.current.click()}
+                className="calendar-span "
               >
-                <BsFillCalendarCheckFill />
+                <DatePickerInput />
               </span>
-              <DatePickerBtn
-              datePicekerRef={datePicekerRef}
-              dateChanged={dateChanged}
-              setDateChanged={setDateChanged}
-                dateState={dateState}
-                setDateState={setDateState}
-                isSearchOpen={isSearchOpen}
-              />
+              
             </div>
             <TableSettings
             isSmallDevice={isSmallDevice}

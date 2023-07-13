@@ -16,6 +16,13 @@
   min-width: 215px !important;
   margin: 0;
   padding-left: 1rem !important;
+  display: flex !important;
+}
+
+                
+                
+.sla-header .szh-menu-button.date-picker-input {
+    display: flex !important;
 }
 
 .date-picker-input:hover {
