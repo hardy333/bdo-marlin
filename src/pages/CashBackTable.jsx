@@ -207,7 +207,7 @@ const CashBackTable = () => {
       children: [
         {
           field: "purchased",
-          headerName: "გადახდილი თანხა",
+          headerName: "შესყიდვები, თანხა",
           cellRenderer: (params) => {
             const { value } = params;
             return value + " GEL";

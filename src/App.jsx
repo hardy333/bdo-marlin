@@ -62,6 +62,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import ExpandableTable2 from "./pages/ExpandableTable2";
 import Test from "./pages/Test";
 import CashBackTable from "./pages/CashBackTable";
+import CategoriesTable from "./pages/CategoriesTable";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +100,7 @@ function App() {
             <Route path="/logs" element={<LogsTable />} />
 
             <Route path="/contract" element={<Contract />} />
+            <Route path="/categories" element={<CategoriesTable />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cash-back-table" element={<CashBackTable />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />

@@ -152,6 +152,7 @@ const ExpandableTable = () => {
     fetchData();
   }, []);
 
+
   const defaultColDef = useMemo(() => ({
     sortable: true,
     filter: false,
@@ -179,7 +180,6 @@ const ExpandableTable = () => {
 
   // Expandable logic 11
   // Expandable logic 11
-
   const renderSubTable = () => {
     data.forEach((obj, rowIndex) => {
       const val1 = obj["Order #"];
@@ -214,12 +214,13 @@ const ExpandableTable = () => {
     });
   };
 
-  // Second Actions 22
-  // Second Actions 22
+  const rowHeight = useRef(null)
 
 
   const isSecondOpen = useRef(false);
 
+  // Second Actions 22
+  // Second Actions 22
   const renderSecondTable = (targetSpan) => {
     const text = targetSpan.textContent;
 
@@ -227,6 +228,7 @@ const ExpandableTable = () => {
       targetSpan.parentElement.parentElement.getAttribute("data-index");
 
     const rowCells = document.querySelectorAll(`div[data-index='${rowIndex}']`);
+
 
     if (text === "-") {
       targetSpan.textContent = "+";
@@ -236,15 +238,26 @@ const ExpandableTable = () => {
         rowCell.style.height = "40px";
         // rowCell.style.overflow = "hidden";
       });
+      rowHeight.current =  null
+      removeSecondSubTable()
+      gridApi.resetRowHeights()
+      return
     } else {
       targetSpan.textContent = "-";
       isSecondOpen.current = true;
 
+      let newHeight = (data.length + 1)*40 
+
       rowCells.forEach((rowCell) => {
-        rowCell.style.height = "800px";
+        rowCell.style.height = newHeight + "px"
         // rowCell.style.overflow = "hidden";
       });
+      rowHeight.current = newHeight + 812
+      gridApi.resetRowHeights()
     }
+
+
+    console.log(data)
 
     // return
     data.forEach((obj, index) => {
@@ -262,6 +275,8 @@ const ExpandableTable = () => {
         const newCell = document.createElement("DIV");
         // newCell.style.border ="1px solid green";
         newCell.style.paddingLeft = "20px";
+        newCell.classList.add("second-sub-table-cell")
+
         if (index === 0) {
           newCell.innerHTML = `
           <div class="plus-minus-span-wrapper second-child-table-line" style="padding-left: 30px;" >
@@ -297,7 +312,6 @@ const ExpandableTable = () => {
       }
 
       if (target.classList.contains("plus-minus-span-2")) {
-        // openSecondTable(target)
         renderSecondTable(target);
         return;
       }
@@ -313,7 +327,12 @@ const ExpandableTable = () => {
         expandedRowId.current = null;
         row.querySelector(".plus-minus-span").textContent = "+";
         row.classList.remove("opened");
+
+        rowHeight.current = null
+        
+        removeFirstSubTable()
       } else {
+        // closePrevFirstSubTable(row)
         expandedRow.current = row;
         expandedRowId.current = rowId;
         row.querySelector(".plus-minus-span").innerHTML = "-";
@@ -330,6 +349,38 @@ const ExpandableTable = () => {
       tBody.removeEventListener("click", handleGridClick);
     };
   }, [gridApi]);
+
+
+  const removeFirstSubTable = () => {
+    const cols = document.querySelectorAll(".custom-col-container")
+    cols.forEach(col => col.innerHTML = "")
+  }
+
+  const removeSecondSubTable = () => {
+    const cells = document.querySelectorAll(".second-sub-table-cell")
+    cells.forEach(cell => cell.remove())
+    console.log(cells)
+  }
+
+
+  const closePrevFirstSubTable = (row) => {
+    if(!row) return
+    if(!expandedRow.current) return
+
+    expandedRow.current = null;
+    expandedRowId.current = null;
+    row.querySelector(".plus-minus-span").textContent = "+";
+    row.classList.remove("opened");
+    
+    removeFirstSubTable()
+    gridRef.current.api.resetRowHeights();
+  }
+    
+  const closePrevSecondSubTable = () => {
+
+
+  }
+
 
   return (
     <>
@@ -353,10 +404,13 @@ const ExpandableTable = () => {
             const { id } = params.node;
 
             if (id == expandedRowId.current) {
+              
               if (isSecondOpen.current) {
-                return 3800;
+                if(rowHeight.current){
+                  return rowHeight.current
+                }
               }
-              return 81.6 * 10 + 1;
+              return 812;
             }
           }}
         ></AgGridReact>
