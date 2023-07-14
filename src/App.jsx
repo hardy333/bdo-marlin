@@ -105,7 +105,7 @@ function App() {
             <Route path="/cash-back-table" element={<CashBackTable />} />
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />
-            <Route path="/sla-by-category" element={<SlaByCategory />} />
+            <Route path="/sla-by-category" element={<CategoriesTable />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/reports" element={<ReportsTable />} />
 
