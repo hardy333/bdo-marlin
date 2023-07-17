@@ -14,10 +14,11 @@ const SlaCategoryCards = ({ data }) => {
 
   // category, subCategory, subSubCategory
   const [showingComp, setShowingComp] = useState("category");
+  const [prevShowingComp, setPrevShowingComp] = useState("category")
 
   let comp = null;
 
-  const prevComp = useRef("category")
+  const prevComp = useRef("category");
 
   if (showingComp === "category") {
     comp = (
@@ -26,6 +27,7 @@ const SlaCategoryCards = ({ data }) => {
         index={showingComp}
         setShowingComp={setShowingComp}
         prevComp={prevComp}
+        setPrevShowingComp={setPrevShowingComp}
       />
     );
   } else if (showingComp === "subCategory") {
@@ -35,6 +37,8 @@ const SlaCategoryCards = ({ data }) => {
         setShowingComp={setShowingComp}
         index={showingComp}
         prevComp={prevComp}
+        setPrevShowingComp={setPrevShowingComp}
+        prevShowingComp={prevShowingComp}
 
       />
     );
@@ -45,7 +49,7 @@ const SlaCategoryCards = ({ data }) => {
         setShowingComp={setShowingComp}
         index={showingComp}
         prevComp={prevComp}
-
+        setPrevShowingComp={setPrevShowingComp}
       />
     );
   }
@@ -68,13 +72,13 @@ const SlaCategoryCards = ({ data }) => {
 };
 
 // 1
-const CategoryCards = ({ data, setShowingComp, prevComp }) => {
-    useEffect(() => {
-
-        return () => {
-            prevComp.current = "category"
-        }
-    },  [])
+const CategoryCards = ({ data, setShowingComp, prevComp,setPrevShowingComp }) => {
+  useEffect(() => {
+    return () => {
+      prevComp.current = "category";
+      console.log("112");
+    };
+  }, []);
   return (
     <motion.div
       initial={{
@@ -150,6 +154,8 @@ const CategoryCards = ({ data, setShowingComp, prevComp }) => {
             <p
               onClick={() => {
                 setShowingComp("subCategory");
+
+                setPrevShowingComp("category")
               }}
               className="text-[10px] d-inline justify-end ml-auto   text-end color hover:text-primary"
               style={{ cursor: "pointer" }}
@@ -164,18 +170,25 @@ const CategoryCards = ({ data, setShowingComp, prevComp }) => {
 };
 
 // 2
-const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) => {
-    useEffect(() => {
+const SubCategoryCards = ({
+  subData,
+  setShowingComp,
+  showingComp,
+  prevComp,
+  setPrevShowingComp,
+  prevShowingComp
+}) => {
+  console.log(prevComp.current === "category", "....");
+  useEffect(() => {
+    return () => {
+      prevComp.current = "subCategory";
+    };
+  }, []);
 
-        return () => {
-            prevComp.current = "subCategory"
-        }
-    },  [])
-    
   return (
     <motion.div
       initial={{
-        x: showingComp === "category" ? 100 : -100,
+        x: prevShowingComp === "category" ? 100 : -100,
       }}
       animate={{
         x: 0,
@@ -184,8 +197,7 @@ const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) =>
         // }
       }}
       exit={{
-        x: showingComp === "category" ? 100 : -100,
-
+        x: prevShowingComp === "category" ? -100 : 100,
       }}
       className="flex flex-col gap-5"
     >
@@ -255,6 +267,7 @@ const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) =>
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   setShowingComp("category");
+                  setPrevShowingComp("subCategory")
                 }}
               >
                 Back{" "}
@@ -265,6 +278,7 @@ const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) =>
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   setShowingComp("subSubCategory");
+                  setPrevShowingComp("subCategory")
                 }}
               >
                 See Products{" "}
@@ -278,13 +292,12 @@ const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) =>
 };
 
 // 3
-const SubSubCategoryCards = ({ subSubData, setShowingComp, prevComp }) => {
-    useEffect(() => {
-
-        return () => {
-            prevComp.current = "subSubCategory"
-        }
-    },  [])
+const SubSubCategoryCards = ({ subSubData, setShowingComp, prevComp,setPrevShowingComp }) => {
+  useEffect(() => {
+    return () => {
+      prevComp.current = "subSubCategory";
+    };
+  }, []);
   return (
     <motion.div
       initial={{
@@ -367,6 +380,7 @@ const SubSubCategoryCards = ({ subSubData, setShowingComp, prevComp }) => {
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   setShowingComp("subCategory");
+                  setPrevShowingComp("subSubCategory")
                 }}
               >
                 Back{" "}
