@@ -87,15 +87,11 @@
   border-bottom: 1px solid #d0c7e881;
 }
 
-.all-orders-card div.table-card-row:last-child{
-  border: none;
-}
-
 .table-card div.table-card-row{
   border-bottom: 1px solid #d0c7e881;
 }
 
-.table-card div.table-card-row:last-child{
+.table-card div.table-card-row:last-of-type{
   border: none;
 }
 
