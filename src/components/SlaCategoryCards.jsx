@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/order-details-card.css";
 import SlaQuantitySvg from "./svgs/SlaQuantitySvg";
 import SlaAmountSvg from "./svgs/SlaAmountSvg";
 import SlaOrdersSvg from "./svgs/SlaOrdersSvg";
 import { motion, AnimatePresence } from "framer-motion";
+
+const durationTime = 0.3;
 
 const SlaCategoryCards = ({ data }) => {
   if (!data) {
@@ -15,12 +17,15 @@ const SlaCategoryCards = ({ data }) => {
 
   let comp = null;
 
+  const prevComp = useRef("category")
+
   if (showingComp === "category") {
     comp = (
       <CategoryCards
         data={data}
         index={showingComp}
         setShowingComp={setShowingComp}
+        prevComp={prevComp}
       />
     );
   } else if (showingComp === "subCategory") {
@@ -29,21 +34,47 @@ const SlaCategoryCards = ({ data }) => {
         subData={data}
         setShowingComp={setShowingComp}
         index={showingComp}
+        prevComp={prevComp}
+
+      />
+    );
+  } else if (showingComp === "subSubCategory") {
+    comp = (
+      <SubSubCategoryCards
+        subSubData={data}
+        setShowingComp={setShowingComp}
+        index={showingComp}
+        prevComp={prevComp}
+
       />
     );
   }
 
   return (
     <>
-      <section className="table-cards-container">
-        <AnimatePresence initial={false}>{comp}</AnimatePresence>
+      <section
+        className="table-cards-container"
+        style={{ overflowX: "hidden", overflowY: "visible" }}
+      >
+        <AnimatePresence
+          // mode={"popLayout"}
+          initial={false}
+        >
+          {comp}
+        </AnimatePresence>
       </section>
     </>
   );
 };
 
 // 1
-const CategoryCards = ({ data, setShowingComp }) => {
+const CategoryCards = ({ data, setShowingComp, prevComp }) => {
+    useEffect(() => {
+
+        return () => {
+            prevComp.current = "category"
+        }
+    },  [])
   return (
     <motion.div
       initial={{
@@ -52,8 +83,9 @@ const CategoryCards = ({ data, setShowingComp }) => {
       }}
       animate={{
         x: 0,
-        transition:1
-
+        // transition:{
+        //     duration:  durationTime
+        // }
       }}
       exit={{
         x: -100,
@@ -132,19 +164,28 @@ const CategoryCards = ({ data, setShowingComp }) => {
 };
 
 // 2
-const SubCategoryCards = ({ subData, setShowingComp }) => {
+const SubCategoryCards = ({ subData, setShowingComp, showingComp, prevComp }) => {
+    useEffect(() => {
+
+        return () => {
+            prevComp.current = "subCategory"
+        }
+    },  [])
+    
   return (
     <motion.div
       initial={{
-        x: 100,
+        x: showingComp === "category" ? 100 : -100,
       }}
       animate={{
         x: 0,
-        transition:1
-
+        // transition:{
+        //     duration:  durationTime
+        // }
       }}
       exit={{
-        x: 100,
+        x: showingComp === "category" ? 100 : -100,
+
       }}
       className="flex flex-col gap-5"
     >
@@ -195,7 +236,12 @@ const SubCategoryCards = ({ subData, setShowingComp }) => {
               </span>
               <span>{slaByAmount} %</span>
             </div>
-            <div className="table-card-row">
+            <div
+              className="table-card-row border-b-0"
+              style={{
+                borderBottom: "none",
+              }}
+            >
               <span className="label">
                 <SlaOrdersSvg />
                 In time orders
@@ -205,18 +251,21 @@ const SubCategoryCards = ({ subData, setShowingComp }) => {
 
             <div className="flex justify-between">
               <p
-                className="text-[10px] d-inline justify-sart   text-end color hover:text-primary"
+                className="text-[10px] pl-1 d-inline justify-sart   text-end color hover:text-primary"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   setShowingComp("category");
                 }}
               >
-                See Products{" "}
+                Back{" "}
               </p>
 
               <p
                 className="text-[10px] d-inline justify-end ml-auto   text-end color hover:text-primary"
                 style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setShowingComp("subSubCategory");
+                }}
               >
                 See Products{" "}
               </p>
@@ -228,4 +277,105 @@ const SubCategoryCards = ({ subData, setShowingComp }) => {
   );
 };
 
+// 3
+const SubSubCategoryCards = ({ subSubData, setShowingComp, prevComp }) => {
+    useEffect(() => {
+
+        return () => {
+            prevComp.current = "subSubCategory"
+        }
+    },  [])
+  return (
+    <motion.div
+      initial={{
+        x: 100,
+      }}
+      animate={{
+        x: 0,
+        // transition:{
+        //     duration:  durationTime
+        // }
+      }}
+      exit={{
+        x: 100,
+      }}
+      className="flex flex-col gap-5"
+    >
+      {subSubData.map((row, index) => {
+        const {
+          productCategory,
+          orderedQuantity,
+          orderedAmount,
+          slaByQuantity,
+          slaByAmount,
+          inTimeOrders,
+        } = row;
+        return (
+          <article
+            onClick={() => {}}
+            key={index}
+            className="table-card sla-orders-card"
+          >
+            <header className="table-card-row">
+              <h3>
+                <span style={{ color: "#6E0FF5" }}>პროდუქტი 1. </span>
+                {/* <span className="date" >{orderDate}</span> */}
+              </h3>
+              <div className="box">
+                <span>
+                  Order Amount:
+                  <span className="font-normal ml-2">{orderedAmount} GEL.</span>
+                </span>
+                <span>
+                  Order Quantity:
+                  <span className="font-normal ml-2">{orderedQuantity}.</span>
+                </span>
+              </div>
+            </header>
+
+            {/* ------------------------------------- */}
+            <div className="table-card-row">
+              <span className="label">
+                <SlaQuantitySvg />
+                SL by quantity
+              </span>
+              <span>{slaByQuantity} %</span>
+            </div>
+            <div className="table-card-row">
+              <span className="label">
+                <SlaAmountSvg />
+                SL by amount
+              </span>
+              <span>{slaByAmount} %</span>
+            </div>
+            <div
+              className="table-card-row border-b-0"
+              style={{
+                borderBottom: "none",
+              }}
+            >
+              <span className="label">
+                <SlaOrdersSvg />
+                In time orders
+              </span>
+              <span>{inTimeOrders} %</span>
+            </div>
+
+            <div className="flex justify-start">
+              <p
+                className="text-[10px] pl-1 d-inline justify-sart   text-end color hover:text-primary"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setShowingComp("subCategory");
+                }}
+              >
+                Back{" "}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </motion.div>
+  );
+};
 export default SlaCategoryCards;

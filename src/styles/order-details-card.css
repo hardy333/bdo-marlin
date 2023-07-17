@@ -96,6 +96,8 @@
 }
 
 
+
+
 /* Reports */
 /* Reports */
 
@@ -112,7 +114,6 @@
 .reports-card .table-card-row .label svg{
   fill: #6f0ff54b;
   width: 15px;
-
 }
 
 .table-card-row .label svg{
@@ -122,9 +123,11 @@
 }
 
 .reports-card .table-card-row:first-of-type .label svg{
+
 }
 
 .reports-card .table-card-row:last-of-type .label svg{
+  
 }
 
 /* Sla orders */
