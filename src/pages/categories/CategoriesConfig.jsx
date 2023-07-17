@@ -3,7 +3,7 @@ export const categoriesHeaders = [
     name: "productCategory",
     showingName: "კატეგორია",
     isShowing: true,
-  },
+  },    
   {
     name: "orderedQuantity",
     showingName: "შეკვეთილი რაოდენობა",

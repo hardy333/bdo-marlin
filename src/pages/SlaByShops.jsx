@@ -444,7 +444,7 @@ const SlaByShops = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <LazyExcelExportBtn data={rowData} name="" />
+            <LazyExcelExportBtn data={rowData} name="sla-by-shop" />
           </div>
         </div>
       </header>

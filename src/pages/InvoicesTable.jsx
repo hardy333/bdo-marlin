@@ -416,7 +416,7 @@ const InvoicesTable = () => {
             >
               <FourDotsSvg fill="#D0C7E8" />
             </button>
-            <LazyExcelExportBtn data={rowData} name="sss" />
+            <LazyExcelExportBtn data={rowData} name="invoices" />
           </div>
         </div>
       </header>

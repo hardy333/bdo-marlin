@@ -448,7 +448,7 @@ const SlaByItem = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <LazyExcelExportBtn data={rowData} name="" />
+            <LazyExcelExportBtn data={rowData} name="sla-by-item" />
           </div>
         </div>
       </header>

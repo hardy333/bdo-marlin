@@ -232,7 +232,6 @@ const SlaByOrders = () => {
   // Row Height logic
   // Row Height logic
 
-  const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -246,14 +245,17 @@ const SlaByOrders = () => {
 
   const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
+  const rowHeightBtnRef = useRef(null);
+
 
   const changeRowHeight = () => {
     if (rowHeightIndex === 2) {
       setRowHeightIndex(0);
     } else {
       setRowHeightIndex((c) => c + 1);
-    }
+    } 
   };
+
   const gridRef = useRef(null);
 
   const [showFilters, setShowFilters] = useFilterToggle();
@@ -447,7 +449,7 @@ const SlaByOrders = () => {
             >
               {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
             </button>
-            <LazyExcelExportBtn data={rowData} name="" />
+            <LazyExcelExportBtn data={rowData} name="sla-by-orders" />
           </div>
         </div>
       </header>

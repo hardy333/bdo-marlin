@@ -458,7 +458,7 @@ const SlaByCategory = () => {
         </div>
       </header>
       {
-        isSmallDevice ? <SlaCategoryCards data={rowData} /> : (
+        isSmallDevice ? <SlaCategoryCards /> : (
           <div
         id="marlin-table"
         className="ag-theme-alpine ag-grid-example sla-colored-cell-table"

@@ -144,7 +144,7 @@ const LogsTable = () => {
               setIsSearchOpen={setIsSearchOpen}
               onFilterTextChange={onFilterTextChange}
             />
-            <LazyExcelExportBtn data={rowData} name="" />
+            <LazyExcelExportBtn data={rowData} name="logs" />
           </div>
         </div>
       </header>

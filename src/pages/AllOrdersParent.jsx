@@ -124,7 +124,6 @@ const AllOrdersParent = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
-  console.log(isSearchOpen)
   
   return (
     <>
@@ -155,6 +154,7 @@ const AllOrdersParent = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
             />
           </div>
         </div>

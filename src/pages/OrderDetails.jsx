@@ -482,7 +482,7 @@ const OrderDetails = () => {
               >
                 {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
               </button>
-              <LazyExcelExportBtn data={rowData} name="" />
+              <LazyExcelExportBtn data={rowData} name="order-details" />
             </div>
           )}
         </div>

@@ -25,6 +25,7 @@ const TableSettings = ({
   gridColumnApi,
   rowHeightIndex,
   setRowHeightIndex,
+  pageName = "data"
 }) => {
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -263,7 +264,7 @@ const TableSettings = ({
         placement="top"
         content="ექსელში ექსპორტი"
       >
-        <LazyExcelExportBtn data={rowData} name="" />
+        <LazyExcelExportBtn data={rowData} name={pageName} />
       </Tippy>
     </>
   );
