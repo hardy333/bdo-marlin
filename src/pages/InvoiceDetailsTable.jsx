@@ -42,7 +42,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import RowHeightBigSvg from "../components/RowHeightBigSvg";
 import ExpandingInput from "../components/ExpandingInput";
 import useFilterToggle from "../hooks/useFilterToggle";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 
 import ExcelExportBtn from "../components/ExcelExportBtn";
@@ -87,7 +87,7 @@ const InvoiceDetailsTable = () => {
     {
       field: "Order #",
       headerName: "შეკვეთის #",
-      hide: true
+      hide: true,
     },
     {
       field: "Barcode",
@@ -102,10 +102,10 @@ const InvoiceDetailsTable = () => {
       headerName: "რაოდენობა",
       cellRenderer: (params) => {
         let { value } = params;
-        if(!value){
-          value = Math.floor(Math.random() * 1000 + 20)
+        if (!value) {
+          value = Math.floor(Math.random() * 1000 + 20);
         }
-        return value 
+        return value;
       },
     },
     {
@@ -113,8 +113,8 @@ const InvoiceDetailsTable = () => {
       headerName: "შეკვეთის თანხა",
       cellRenderer: (params) => {
         let { value } = params;
-        if(!value){
-          value = Math.floor(Math.random() * 100 + 20)
+        if (!value) {
+          value = Math.floor(Math.random() * 100 + 20);
         }
         return value + " " + "GEL";
       },
@@ -122,7 +122,7 @@ const InvoiceDetailsTable = () => {
     {
       field: "Invoice Amount",
       headerName: "ინვოისის თანხა",
-     
+
       cellRenderer: (params) => {
         let { value } = params;
 
@@ -135,10 +135,11 @@ const InvoiceDetailsTable = () => {
         if (!value) value = 10;
         return (
           <span>
-            <span style={{color: newVal ? "#f55364" : ""}}>{newVal ? newVal : value} GEL </span> 
-            
+            <span style={{ color: newVal ? "#f55364" : "" }}>
+              {newVal ? newVal : value} GEL{" "}
+            </span>
           </span>
-        )
+        );
       },
     },
   ]);
@@ -299,7 +300,9 @@ const InvoiceDetailsTable = () => {
             <span>მომწოდებელი: {vendor}</span>
             <span>თარიღი: {date}</span>
             <span>Waybill: 9282034</span>
-            <span>დოკუმენტი #: 9282034</span>
+            <span className="hover:text-primary">
+              <Link to="/order-details">დოკუმენტი #: 9282034</Link>
+            </span>
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">

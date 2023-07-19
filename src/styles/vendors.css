@@ -24,11 +24,14 @@
 }
 
 .vendors-switch-container p{
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 14px;
   line-height: 24px;
 
   color: #211543;
+}
+.vendors-switch-container p:last-child{
+  margin-left: 10px;
 }
 
 
