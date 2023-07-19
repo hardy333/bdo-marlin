@@ -85,6 +85,7 @@ const CatalogueTable = () => {
       name: "lastChangeDate",
       showingName: "ცვლილების თარიღი ",
       isShowing: true,
+    
     },
     {
       name: "status",
@@ -192,6 +193,10 @@ const CatalogueTable = () => {
     {
       field: "lastChangeDate",
       headerName: "ცვლილების თარიღი",
+      cellRenderer: (params) => {
+        const {value} = params
+        return value.split("T")[0].split("-").reverse().join("/")
+      }
     },
     {
       field: "status",

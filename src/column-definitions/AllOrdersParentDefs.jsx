@@ -1,16 +1,17 @@
 const allOrdersParentDefs = [
-  {
-    field: "shop",
-    headerName: "მაღაზია",
-    hide: true, 
-    cellRenderer: (params) => {
-      const { value } = params;
-      return value;
-    },
-  },
+ 
   {
     field: "date",
     headerName: "თარიღი",
+    cellRenderer: (params) => {
+      const { value } = params;
+      return value.split(" ")[0].split("-").reverse().join("/");
+    },
+  },
+  {
+    field: "shop",
+    headerName: "მაღაზია",
+    // hide: true, 
     cellRenderer: (params) => {
       const { value } = params;
       return value;
@@ -38,7 +39,7 @@ const allOrdersParentDefs = [
     headerName: "გეგმიური მიწოდება",
     cellRenderer: (params) => {
       const { value } = params;
-      return "2023-06-10";
+      return "06/10/2023";
     },
   },
   {
