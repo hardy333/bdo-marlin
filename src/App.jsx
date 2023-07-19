@@ -63,6 +63,7 @@ import ExpandableTable2 from "./pages/ExpandableTable2";
 import Test from "./pages/Test";
 import CashBackTable from "./pages/CashBackTable";
 import CategoriesTable from "./pages/CategoriesTable";
+import MTable from "./pages/MTable";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ function App() {
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
             <Route path="/colors-page" element={<ColorsPage />} />
+            <Route path="/mtable" element={<MTable />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/expandable-table2" element={<ExpandableTable2 />} />
             <Route path="/employees" element={<Employees />} />

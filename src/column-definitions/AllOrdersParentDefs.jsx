@@ -2,6 +2,7 @@ const allOrdersParentDefs = [
   {
     field: "shop",
     headerName: "მაღაზია",
+    hide: true, 
     cellRenderer: (params) => {
       const { value } = params;
       return value;
@@ -99,6 +100,19 @@ const allOrdersParentDefs = [
           color: "#01C6B5",
         };
       }
+    },
+  },
+  {
+    field: "invoiceAmount",
+    headerName: "ინვოისის თანხა",
+
+    cellRenderer: (params) => {
+      let show = true
+      if(Math.random() - 0.4 < 0){
+        show = false
+      }
+      
+      return show ? Math.floor(Math.random() * 1060 + 40) + " GEL" :  "";
     },
   },
   {

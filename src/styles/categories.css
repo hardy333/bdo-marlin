@@ -161,3 +161,11 @@
 .section-2.open .section-3{
   pointer-events: all;
 }
+
+
+.categories-heading small{
+  color: red;
+  background: red;
+  border: 1px red solid;
+  
+}

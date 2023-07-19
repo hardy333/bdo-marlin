@@ -86,10 +86,12 @@ const SlaByCategory = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const url1 = window.location.origin + "/SLAByCategory.json"
+  const url1 = window.location.origin + "/SLAByCategory.json";
   const url = "https://10.0.0.202:5001/api/SLAByCategory";
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url1));
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    fetchData(url1)
+  );
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -267,7 +269,6 @@ const SlaByCategory = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
-
   useRemoveId(gridApi, gridRef);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -284,16 +285,15 @@ const SlaByCategory = () => {
             className="order-details-left sla-top"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4 className="sla-heading">სერვისის დონე</h4>
+            <h4 className="sla-heading categories-heading">
+              <span>სერვისის დონე</span>
+              <small>ქათმის ფილე</small>
+            </h4>
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
-                <span
-                
-                  className="calendar-span"
-                >
+                <span className="calendar-span">
                   <DatePickerInput />
                 </span>
-                
               </div>
             </div>
             <Select
@@ -457,61 +457,61 @@ const SlaByCategory = () => {
           </div>
         </div>
       </header>
-      {
-        isSmallDevice ? <SlaCategoryCards /> : (
-          <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <SlaCategoryCards />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
-        )
-      }
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

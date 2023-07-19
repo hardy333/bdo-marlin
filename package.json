@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/material": "^5.14.0",
     "@szhsin/react-menu": "^3.5.2",
     "@tanstack/react-table": "^8.7.9",
     "@tippyjs/react": "^4.2.6",
@@ -24,6 +28,7 @@
     "export-from-json": "^1.7.2",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.12.12",
+    "material-react-table": "^1.14.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-chartjs-2": "^5.2.0",

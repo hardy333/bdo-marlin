@@ -23,7 +23,6 @@ import d from "../assets/SLAByCategory.json";
 
 import vendorsArr from "../data/vendors-data";
 
-
 import {
   categoriesColumnDefs,
   categoriesHeaders,
@@ -54,8 +53,6 @@ const subD = [
   d.data[28],
   d.data[19],
 ];
-
-
 
 const CategoriesTable = () => {
   const [headerList, setHeaderList] = useState(categoriesHeaders);
@@ -104,7 +101,6 @@ const CategoriesTable = () => {
       gridColumnApi.setColumnVisible(header.name, true);
     });
   };
-
 
   //   const b = 201
   //   const c = 200
@@ -201,7 +197,7 @@ const CategoriesTable = () => {
         rowCell.style.height = newHeight + "px";
         // rowCell.style.overflow = "hidden";
       });
-      rowHeight.current = newHeight + (subD.length ) * 40 + 15;
+      rowHeight.current = newHeight + subD.length * 40 + 15;
       gridApi.resetRowHeights();
     }
 
@@ -236,7 +232,6 @@ const CategoriesTable = () => {
     });
   };
 
-
   const onFilterTextChange = (e) => {
     if (e.target.value === "") {
       setIsGlobalFilterEmpty(true);
@@ -246,7 +241,6 @@ const CategoriesTable = () => {
 
     gridApi.setQuickFilter(e.target.value);
   };
-
 
   const [gridReady, setGridReady] = useState(false);
   const gridRef = useRef(null);
@@ -325,7 +319,6 @@ const CategoriesTable = () => {
   const prevSubTableBtn1 = useRef(null);
   const prevSubTableBtn2 = useRef(null);
 
-
   //   ------------------------------ //
   //   ------------------------------ //
 
@@ -334,13 +327,10 @@ const CategoriesTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
-
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
-  
   const changeRowHeight = () => {
     if (rowHeightIndex === 2) {
       setRowHeightIndex(0);
@@ -348,24 +338,24 @@ const CategoriesTable = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
-  
-
+  const [pageLink, setPageLink] = useState(null)
 
   return (
     <>
-       <header className="all-orders__header sla-by-vendors__header sla-header">
+      <header className="all-orders__header sla-by-vendors__header sla-header">
         <div className="all-orders__settings sla-by-vendors__settings">
           {/* Left */}
           <div
             className="order-details-left sla-top"
             style={{ paddingLeft: "0", marginLeft: 0 }}
           >
-            <h4 className="sla-heading">სერვისის დონე</h4>
+            <h4 className="sla-heading categories-heading">
+              <span>სერვისის დონე</span>
+              <small>{pageLink}</small>
+            </h4>
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
-                <span
-                  className="calendar-span"
-                >
+                <span className="calendar-span">
                   <DatePickerInput />
                 </span>
               </div>
@@ -528,38 +518,36 @@ const CategoriesTable = () => {
         </div>
       </header>
 
-      {
-        isSmallDevice ? <SlaCategoryCards data={rowData} /> : (
-            <div
-        className="ag-theme-alpine stable-table expandable-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          suppressHorizontalScroll={true}
-          components={components}
-          getRowHeight={(params) => {
-            const { id } = params.node;
+      {isSmallDevice ? (
+        <SlaCategoryCards pageLink={pageLink} setPageLink={setPageLink} data={rowData} />
+      ) : (
+        <div
+          className="ag-theme-alpine stable-table expandable-table"
+          style={{ minHeight: 595, width: "100%" }}
+        >
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            suppressHorizontalScroll={true}
+            components={components}
+            getRowHeight={(params) => {
+              const { id } = params.node;
 
-            if (id == expandedRowId.current) {
-              if (isSecondOpen.current) {
-                if (rowHeight.current) {
-                  return rowHeight.current;
+              if (id == expandedRowId.current) {
+                if (isSecondOpen.current) {
+                  if (rowHeight.current) {
+                    return rowHeight.current;
+                  }
                 }
+                return (subD.length + 1) * 41.6;
               }
-              return (subD.length + 1) * 41.6;
-            }
-          }}
-        ></AgGridReact>
-      </div>
-
-        )
-      }
-      
+            }}
+          ></AgGridReact>
+        </div>
+      )}
     </>
   );
 };

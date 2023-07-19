@@ -262,7 +262,7 @@ const SubCategoryCards = ({
             </div>
 
             <div className="flex justify-between">
-              <p
+              {/* <p
                 className="text-[10px] pl-1 d-inline justify-sart   text-end color hover:text-primary"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -271,7 +271,7 @@ const SubCategoryCards = ({
                 }}
               >
                 Back{" "}
-              </p>
+              </p> */}
 
               <p
                 className="text-[10px] d-inline justify-end ml-auto   text-end color hover:text-primary"
