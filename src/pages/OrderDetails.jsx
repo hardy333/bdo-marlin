@@ -285,7 +285,7 @@ const OrderDetails = () => {
   return (
     <>
       <header className="all-orders__header order-details-header">
-        <div className="all-orders__settings">
+        <div className="all-orders__settings  height-[20px]">
           {/* Left */}
           <div
             className="order-details-left gap-2"
