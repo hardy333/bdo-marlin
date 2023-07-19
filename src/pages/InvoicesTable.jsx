@@ -129,7 +129,7 @@ const InvoicesTable = () => {
       },
     },
     {
-      field: "Amount",
+      field: "invoice Amount",
       headerName: "ინვოისის თანხა",
 
       cellRenderer: (params) => {
