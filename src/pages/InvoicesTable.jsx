@@ -99,10 +99,12 @@ const InvoicesTable = () => {
     {
       field: "Waybill #",
       headerName: "ზედნადები",
+
     },
     {
       field: "Documnet #",
-      headerName: "დოკუმენტის #",
+      headerName: "შეკვეთის #",
+
     },
     {
       field: "Vendor",
@@ -114,15 +116,38 @@ const InvoicesTable = () => {
     {
       field: "Shop",
       headerName: "მაღაზია",
+
     },
     {
       field: "Amount",
-      headerName: "რაოდენობა",
+      headerName: "შეკვეთის თანხა",
 
       cellRenderer: (params) => {
         let { value } = params;
         if (!value) value = 10;
         return value + " " + "GEL";
+      },
+    },
+    {
+      field: "Amount",
+      headerName: "ინვოისის თანხა",
+
+      cellRenderer: (params) => {
+        let { value } = params;
+
+        let newVal = null;
+
+        if (Math.random() - 0.5 < 0) {
+          newVal = Number(value) + Math.floor(Math.random() * 10 + 2);
+        }
+
+        if (!value) value = 10;
+        return (
+          <span>
+            <span style={{color: newVal ? "#f55364" : ""}}>{newVal ? newVal : value} GEL </span> 
+            
+          </span>
+        )
       },
     },
     {

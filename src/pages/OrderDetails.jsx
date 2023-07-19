@@ -277,6 +277,7 @@ const OrderDetails = () => {
   } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
   }
+  
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
@@ -325,6 +326,16 @@ const OrderDetails = () => {
                     {date.split(" ")[0]}.
                   </span>
                 </p>
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    მიწოდება:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                   02/08/2023.
+                  </span>
+                </p>
+                
+                
                 <Menu
                   className="pending-status-menu"
                   menuButton={
@@ -343,14 +354,7 @@ const OrderDetails = () => {
                   <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
                   <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
                 </Menu>
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    მიწოდება:
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                   02/08/2023.
-                  </span>
-                </p>
+             
 
               </div>
               {/* Bottom */}
