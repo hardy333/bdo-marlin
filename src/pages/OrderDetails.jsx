@@ -91,7 +91,9 @@ const OrderDetails = () => {
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery("order-details-data", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("order-details-data", () =>
+    fetchData(url)
+  );
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -265,13 +267,6 @@ const OrderDetails = () => {
   let status = searchParams.get("status") || "გაგზავნილია";
 
   let statusBg;
-  // if (status === "In Progress") {
-  //   statusBg = "#6E0FF5";
-  // } else if (status === "Delivered") {
-  //   statusBg = "#01C6B5";
-  // } else {
-  //   statusBg = "#FFC23C";
-  // }
 
   if (status === "გაგზავნილია") {
     statusBg = "#FFC23C";
@@ -287,58 +282,96 @@ const OrderDetails = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
-  
   return (
     <>
       <header className="all-orders__header order-details-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left gap-2"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 10 }}
-            className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
-            >შეკვეთის დეტალები</h4>
-            {/*  */}
-            <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-5 justify-center max-sm:w-full ">
-
-            <p className="">
-              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                მომწოდებელი: 
-              </span>
-              <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{vendor}.</span>
-            </p>
-            <p className="">
-              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-              მაღაზია: 
-              </span>
-              <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{shopAddress}.</span>
-            </p>
-            <p className="">
-              <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-              თარიღი:
-              </span>
-               <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">{date.split(" ")[0]}.</span>
-            </p>
-            <Menu
-              className="pending-status-menu"
-              menuButton={
-                <button
-                  style={{ backgroundColor: statusBg, color: "#fff" }}
-                  className="btn btn-status-2 mt-[-2px]"
-                >
-                  {status}
-                </button>
-              }
-              direction="bottom"
-              align="center"
-              transition
+            <h4
+              style={{ marginRight: 0 }}
+              className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
             >
-              <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
-            </Menu>
+              შეკვეთის დეტალები
+            </h4>
+            {/* Bottom + Top */}
+            <div className="">
+              {/* Top */}
+              <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-5 justify-center max-sm:w-full ">
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    მომწოდებელი:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                    {vendor}.
+                  </span>
+                </p>
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    მაღაზია:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                    {shopAddress}.
+                  </span>
+                </p>
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    თარიღი:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                    {date.split(" ")[0]}.
+                  </span>
+                </p>
+                <Menu
+                  className="pending-status-menu"
+                  menuButton={
+                    <button
+                      style={{ backgroundColor: statusBg, color: "#fff" }}
+                      className="btn btn-status-2 mt-[-2px]"
+                    >
+                      {status}
+                    </button>
+                  }
+                  direction="bottom"
+                  align="center"
+                  transition
+                >
+                  <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
+                  <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
+                  <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
+                </Menu>
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    მიწოდება:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                   02/08/2023.
+                  </span>
+                </p>
+
+              </div>
+              {/* Bottom */}
+              <div className="flex gap-6">
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    თანხა:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                    1578 GEL.
+                  </span>
+                </p>
+                <p className="">
+                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
+                    ინვოისის თანხა:
+                  </span>
+                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                    2039 GEL.
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
 
