@@ -51,7 +51,7 @@ const CatalogueCards = ({ data }) => {
                           <span>{lastOrderPrice}</span>
                         </span>
                       </div>
-                    }
+                    }   
                   >
                     <span className="" style={{cursor: "pointer"}}>
                       <TriangleSvg
@@ -78,7 +78,7 @@ const CatalogueCards = ({ data }) => {
                       maxWidth: "200px",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      height: "30px",
+                    //   height: "30px",
                       display: "block",
                       whiteSpace: "nowrap",
                     }}
