@@ -12,29 +12,29 @@ import CarSvg from "./svgs/service-level-svgs/CarSvg";
 const itemsList = [
   {
     svg: <HouseSvg />,
-    label: "Shop",
+    label: "მაღაზია",
     pathname: "/sla-by-shops"
   },
   {
     svg: <ItemSvg />,
-    label: "Item",
+    label: "პროდუქტი",
     pathname: "/sla-by-item"
 
   },
   {
     svg: <CategorySvg />,
-    label: "Category",
+    label: "კატეგორია",
     pathname: "/sla-by-category"
 
   },
   {
     svg: <BrandSvg />,
-    label: "Orders",
+    label: "შეკვეთები",
     pathname: "/sla-by-orders"
   },
   {
     svg: <CarSvg />,
-    label: "Vendor",
+    label: "მომწოდებელი",
     pathname: "/Reports"
   },
 ];
