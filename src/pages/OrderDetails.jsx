@@ -48,6 +48,9 @@ import { fetchData } from "../utils/fetchData";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import OrderDetailsCards from "../components/OrderDetailsCards";
+import VendorsCard from "./vendors/VendorsCard";
+import CarSvg from "../components/svgs/service-level-svgs/CarSvg";
+import VendorsCalendarSvg from "../components/svgs/VendorsCalendarSvg";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -277,7 +280,7 @@ const OrderDetails = () => {
   } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
   }
-  
+
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
@@ -289,8 +292,8 @@ const OrderDetails = () => {
         <div className="all-orders__settings  height-[20px]">
           {/* Left */}
           <div
-            className="order-details-left gap-2"
-            style={{ paddingLeft: "0", marginLeft: 10 }}
+            className="order-details-left gap-10"
+            style={{ paddingLeft: "0", marginLeft: 2 }}
           >
             <h4
               style={{ marginRight: 0 }}
@@ -301,34 +304,34 @@ const OrderDetails = () => {
             {/* Bottom + Top */}
             <div className="">
               {/* Top */}
-              <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-5 justify-center max-sm:w-full ">
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    მომწოდებელი:
+              <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-14 justify-center max-sm:w-full ">
+                <p className="flex gap:2 p">
+                  <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
+                    <img src="order-details/vendor.svg" alt="" />
                   </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                  <span className="badge font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                     {vendor}.
                   </span>
                 </p>
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    მაღაზია:
+                <p className="flex align-middle p">
+                  <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
+                  <img src="order-details/shop.svg" alt="" />
                   </span>
                   <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    {shopAddress}.
+                    {shopAddress}
                   </span>
                 </p>
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    თარიღი:
+                <p className="p">
+                  <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
+                  <img src="order-details/clock.svg" alt="" />
                   </span>
                   <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                     {date.split(" ")[0]}.
                   </span>
                 </p>
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    მიწოდება:
+                <p className="p">
+                  <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
+                  <img src="order-details/calendar.svg" alt="" />
                   </span>
                   <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                    02/08/2023.
@@ -358,18 +361,20 @@ const OrderDetails = () => {
 
               </div>
               {/* Bottom */}
-              <div className="flex gap-6">
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    თანხა:
+              <div className="flex gap-14">
+                <p className="p">
+                  <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
+
+                  <img src="order-details/money.svg" alt="" />
+                    
                   </span>
                   <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                     1578 GEL.
                   </span>
                 </p>
-                <p className="">
-                  <span className="hidden sm:inline font-bold text-[14px] pe-3 bg">
-                    ინვოისის თანხა:
+                <p className="p">
+                  <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
+                  <img src="order-details/document.svg" alt="" />
                   </span>
                   <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                     2039 GEL.

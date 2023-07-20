@@ -54,6 +54,32 @@
 
 
 
+.order-details-header p{
+  --img-size: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+
+}
+
+.order-details-header .icon-span{
+  width: var(--img-size);
+  height: var(--img-size);
+}
+.order-details-header .icon-span img{
+  width: var(--img-size);
+  height: var(--img-size);
+}
+
+.order-details-header .badge{
+  display: flex; 
+  flex-direction: column;
+  padding-top: 5px;
+
+}
+
 
 @media (max-width: 600px) {
  .order-details-left{
