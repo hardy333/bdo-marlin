@@ -298,49 +298,96 @@ const OrderDetails = () => {
           >
             <h4
               style={{ marginRight: 0 }}
-              className="text-center mb-auto w-full sm:text-start sm:w-[220px] mb-4 "
+              className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
             >
               შეკვეთის დეტალები
             </h4>
             {/* Bottom + Top */}
             <div className="">
               {/* Top */}
-              <div className="flex mb-3 max-[450px]:grid text-center grid-cols-2 items-center gap-14 justify-center max-sm:w-full ">
+              <div className="flex mb-3 max-[450px]:grid text-center grid-cols-2 items-start gap-14 justify-center max-sm:w-full ">
+                {/* 1 */}
+                <div className="">
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content="მომწოდებელი"
+                  >
+                    <p className="flex gap:2 p mb-2">
+                      <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
+                        <img src="order-details/vendor.svg" alt="" />
+                      </span>
+                      <span 
+                      style={{maxWidth: "120px"}}
+                      
+                      className="badge  text-start justify-start font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                        {vendor}.
+                      </span>
+                    </p>
+                  </Tippy>
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content="თანხა"
+                  >
+                    <p className="p">
+                      <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
+                        <img src="order-details/money.svg" alt="" />
+                      </span>
+                      <span 
+                      style={{maxWidth: "120px"}}
+                      className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                        1578 GEL.
+                      </span>
+                    </p>
+                  </Tippy>
+                </div>
+
+                {/* 2 */}
+                <div>
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={"მაღაზია: " + shopAddress}
+                  >
+                    <p className="flex align-middle p mb-2">
+                      <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
+                        <img src="order-details/shop.svg" alt="" />
+                      </span>
+                      <span
+                      style={{maxWidth: "120px", width: "120px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", display: "block"}}
+                       className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                        {shopAddress + "."}
+                      </span>
+                    </p>
+                  </Tippy>
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content="ინვოისის თანხა"
+                  >
+                    <p className="p">
+                      <span className="block icon-span font-bold text-[14px] pe-3 bg">
+                        <img src="order-details/document.svg" alt="" />
+                      </span>
+                      <span
+              
+                       className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                        2039 GEL.
+                      </span>
+                    </p>
+                  </Tippy>
+                </div>
+
                 <Tippy
                   className="tooltip-1"
                   arrow={false}
                   placement="top"
-                  content="მომწოდებელი"
-                >
-                  <p className="flex gap:2 p">
-                    <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
-                      <img src="order-details/vendor.svg" alt="" />
-                    </span>
-                    <span className="badge font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      {vendor}.
-                    </span>
-                  </p>
-                </Tippy>
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content="მაღაზია"
-                >
-                  <p className="flex align-middle p">
-                    <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
-                      <img src="order-details/shop.svg" alt="" />
-                    </span>
-                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      {shopAddress+"."}
-                    </span>
-                  </p>
-                </Tippy>
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content="თარიღი"
+                  content="შეკვეთის თარიღი"
                 >
                   <p className="p">
                     <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
@@ -355,7 +402,7 @@ const OrderDetails = () => {
                   className="tooltip-1"
                   arrow={false}
                   placement="top"
-                  content="მოწოდება"
+                  content="გეგმიური მოწოდების თარიღი"
                 >
                   <p className="p">
                     <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
@@ -387,38 +434,7 @@ const OrderDetails = () => {
                 </Menu>
               </div>
               {/* Bottom */}
-              <div className="flex gap-14">
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content="თანხა"
-                >
-                  <p className="p">
-                    <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
-                      <img src="order-details/money.svg" alt="" />
-                    </span>
-                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      1578 GEL.
-                    </span>
-                  </p>
-                </Tippy>
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content="ინვოისის თანხა"
-                >
-                  <p className="p">
-                    <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
-                      <img src="order-details/document.svg" alt="" />
-                    </span>
-                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      2039 GEL.
-                    </span>
-                  </p>
-                </Tippy>
-              </div>
+              <div className="flex gap-14"></div>
             </div>
           </div>
 
