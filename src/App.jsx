@@ -59,11 +59,11 @@ import ExpandableTable from "./pages/ExpandableTable";
 import ColorsPage  from "./pages/ColorsPage";
 
 import { QueryClientProvider, QueryClient } from "react-query";
-import ExpandableTable2 from "./pages/ExpandableTable2";
 import Test from "./pages/Test";
 import CashBackTable from "./pages/CashBackTable";
 import CategoriesTable from "./pages/CategoriesTable";
 import MTable from "./pages/MTable";
+import CategoriesTable2 from "./pages/CategoriesTable2";
 
 const queryClient = new QueryClient();
 
@@ -77,7 +77,6 @@ function App() {
             <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/mtable" element={<MTable />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
-            <Route path="/expandable-table2" element={<ExpandableTable2 />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />
@@ -108,6 +107,7 @@ function App() {
             <Route path="/sla-by-shops" element={<SlaByShops />} />
             <Route path="/sla-by-item" element={<SlaByItem />} />
             <Route path="/sla-by-category" element={<CategoriesTable />} />
+            <Route path="/sla-by-category2" element={<CategoriesTable2 />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/reports" element={<ReportsTable />} />
 

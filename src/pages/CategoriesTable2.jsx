@@ -12,6 +12,7 @@ import "../styles/global-filter-input.css";
 import "../styles/expandable-table.css";
 
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import d from "../assets/SLAByCategory.json";
 
 // css
 import "../styles/ag-grid.css";
@@ -19,14 +20,13 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import "../styles/stable-table.css";
 
 import Select from "react-select";
-import d from "../assets/SLAByCategory.json";
 
 import vendorsArr from "../data/vendors-data";
-
 import {
   categoriesColumnDefs,
   categoriesHeaders,
 } from "./categories/CategoriesConfig";
+
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import DatePickerInput from "../components/DatePickerInput";
@@ -42,27 +42,18 @@ import ExpandSvg from "../components/ExpandSvg";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import SlaCategoryCards from "../components/SlaCategoryCards";
 
-const subD = [
-  d.data[12],
-  d.data[32],
-  d.data[7],
-  d.data[6],
-  d.data[15],
-  d.data[16],
-  d.data[7],
-  d.data[28],
-  d.data[19],
-];
+import { MaterialReactTable } from "material-react-table";
+import "../styles/mui-table.css";
+import { createTheme, ThemeProvider, useTheme } from '@mui/material';
+
+import { allData, allExpData } from "./tableData";
 
 
 
 
-console.log(subD)
-
-localStorage.setItem("x", JSON.stringify(subD))
 
 
-const CategoriesTable = () => {
+const CategoriesTable2 = () => {
   const [headerList, setHeaderList] = useState(categoriesHeaders);
 
   const [gridApi, setGridApi] = useState(null);
@@ -130,115 +121,13 @@ const CategoriesTable = () => {
     params.api.sizeColumnsToFit();
   };
 
-  // Expandable logic 11
-  // Expandable logic 11
-  const renderSubTable = () => {
-    subD.forEach((obj, rowIndex) => {
-      const val1 = obj["productCategory"];
-      const val2 = obj["orderedQuantity"];
-      const val3 = obj["orderedAmount"];
-      const val4 = obj["slaByQuantity"];
-      const val5 = obj["slaByAmount"];
-
-      const arr = [val1, val2, val3, val4, val5];
-
-      const cells = expandedRow.current.querySelectorAll(".ag-cell");
-
-      cells.forEach((cell, index) => {
-        const columnContainer = cell.querySelector(".custom-col-container");
-
-        const newCell = document.createElement("DIV");
-        newCell.setAttribute("data-index", rowIndex);
-
-        if (index === 0) {
-          newCell.innerHTML = `
-          <div class="plus-minus-span-wrapper">
-            <span  class="plus-minus-span plus-minus-span-2" style="padding-right: 10px;">+</span> ${arr[index]}
-          </div>
-          `;
-        } else {
-          newCell.textContent = arr[index];
-        }
-
-        columnContainer.append(newCell);
-      });
-    });
-  };
+  
 
   const rowHeight = useRef(null);
 
   const isSecondOpen = useRef(false);
 
-  // Second Actions 22
-  // Second Actions 22
-  const renderSecondTable = (targetSpan) => {
-    const text = targetSpan.textContent;
-
-    const rowIndex =
-      targetSpan.parentElement.parentElement.getAttribute("data-index");
-
-    const rowCells = document.querySelectorAll(`div[data-index='${rowIndex}']`);
-
-    if (text === "-") {
-      targetSpan.textContent = "+";
-      isSecondOpen.current = false;
-
-      rowCells.forEach((rowCell) => {
-        rowCell.style.height = "40px";
-        // rowCell.style.overflow = "hidden";
-      });
-      rowHeight.current = null;
-      removeSecondSubTable();
-      gridApi.resetRowHeights();
-      return;
-    } else {
-      if (prevSubTableBtn2.current) {
-        prevSubTableBtn2.current.click();
-      }
-      prevSubTableBtn2.current = targetSpan;
-      targetSpan.textContent = "-";
-      isSecondOpen.current = true;
-
-      let newHeight = (subD.length + 1) * 40;
-
-      rowCells.forEach((rowCell) => {
-        rowCell.style.height = newHeight + "px";
-        // rowCell.style.overflow = "hidden";
-      });
-      rowHeight.current = newHeight + subD.length * 40 + 15;
-      gridApi.resetRowHeights();
-    }
-
-    // return
-    subD.forEach((obj, index) => {
-      const val1 = obj["productCategory"];
-      const val2 = obj["orderedQuantity"];
-      const val3 = obj["orderedAmount"];
-      const val4 = obj["slaByQuantity"];
-      const val5 = obj["slaByAmount"];
-
-      const arr = [val1, val2, val3, val4, val5];
-
-      rowCells.forEach((cell, index) => {
-        const newCell = document.createElement("DIV");
-        // newCell.style.border ="1px solid green";
-        newCell.style.paddingLeft = "20px";
-        newCell.classList.add("second-sub-table-cell");
-
-        if (index === 0) {
-          newCell.innerHTML = `
-          <div class="plus-minus-span-wrapper second-child-table-line" style="padding-left: 30px;" >
-            ${arr[index]}
-          </div>
-          `;
-        } else {
-          newCell.textContent = arr[index];
-        }
-
-        cell.append(newCell);
-      });
-    });
-  };
+  
 
   const onFilterTextChange = (e) => {
     if (e.target.value === "") {
@@ -252,80 +141,7 @@ const CategoriesTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
   const gridRef = useRef(null);
-  const expandedRow = useRef(null);
-  const expandedRowId = useRef(null);
 
-  // Click Logic
-  // Click Logic
-  useEffect(() => {
-    const tBody = document.querySelector(".expandable-table .ag-body");
-
-    if (!tBody) return;
-
-    const handleGridClick = (e) => {
-      const target = e.target;
-      if (!target.classList.contains("plus-minus-span")) {
-        return;
-      }
-
-      if (target.classList.contains("plus-minus-span-2")) {
-        renderSecondTable(target);
-        return;
-      }
-
-      const cell = target.closest(".ag-cell");
-      const row = target.closest(".ag-row");
-      const rowId = +row.getAttribute("row-id");
-
-      const colName = cell.getAttribute("col-id");
-
-      if (expandedRowId.current === rowId) {
-        expandedRow.current = null;
-        expandedRowId.current = null;
-        row.querySelector(".plus-minus-span").textContent = "+";
-        row.classList.remove("opened");
-
-        rowHeight.current = null;
-
-        removeFirstSubTable();
-      } else {
-        if (prevSubTableBtn1.current) {
-          prevSubTableBtn1.current.click();
-          console.log(prevSubTableBtn1.current);
-        }
-
-        prevSubTableBtn1.current = target;
-        // closePrevFirstSubTable(row)
-        expandedRow.current = row;
-        expandedRowId.current = rowId;
-        row.querySelector(".plus-minus-span").innerHTML = "-";
-        row.classList.add("opened");
-        renderSubTable();
-      }
-
-      gridRef.current.api.resetRowHeights();
-    };
-
-    tBody.addEventListener("click", handleGridClick);
-
-    return () => {
-      tBody.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi]);
-
-  const removeFirstSubTable = () => {
-    const cols = document.querySelectorAll(".custom-col-container");
-    cols.forEach((col) => (col.innerHTML = ""));
-  };
-
-  const removeSecondSubTable = () => {
-    const cells = document.querySelectorAll(".second-sub-table-cell");
-    cells.forEach((cell) => cell.remove());
-    console.log(cells);
-  };
-
-  const prevSubTableBtn1 = useRef(null);
-  const prevSubTableBtn2 = useRef(null);
 
   //   ------------------------------ //
   //   ------------------------------ //
@@ -347,6 +163,67 @@ const CategoriesTable = () => {
     }
   };
   const [pageLink, setPageLink] = useState(null)
+
+  
+  const columns = useMemo(
+    () => [
+     
+      {
+        accessorKey: "productCategory",
+        header: "კატეგორია",
+        
+      },
+      {
+        accessorKey: "orderedQuantity",
+        header: "შეკვეთილი რაოდენობა",
+       
+      },
+      {
+        accessorKey: "orderedAmount",
+        header: "შეკვეთის თანხა",
+        
+      },
+      {
+        accessorKey: "slaByQuantity",
+        header: "SL. რაოდენობით",
+        
+      },
+      {
+        accessorKey: "slaByAmount",
+        header: "SL. თანხით",
+      },
+      {
+        accessorKey: "inTimeOrders",
+        header: "დროულობა",
+      },
+    ],
+    []
+  );
+  const globalTheme = useTheme();
+
+  const tableTheme = useMemo(
+    () =>
+      createTheme({
+      
+      }),
+    [globalTheme]
+  );
+
+
+  const fontAwesomeIcons = {
+    // ArrowDownwardIcon: (props) => (
+    //   <span>+++</span>
+    // ),
+    // ArrowDownwardIcon: () => (
+    //   <span>++</span>
+    // ),
+    // ExpandMoreIcon: () => (
+    //   <span>+</span>
+    // ),
+    // ExpandLessIcon: () => {
+    //   <span>-</span>
+    // }
+  };
 
   return (
     <>
@@ -531,33 +408,38 @@ const CategoriesTable = () => {
       ) : (
         <div
           className="ag-theme-alpine stable-table expandable-table"
-          style={{ minHeight: 595, width: "100%" }}
+          style={{ minHeight: 595, width: "100%", padding: "2rem", paddingRight: "1rem", paddingBottom: "0.5rem", border: "1px solid transparent", background: "#fff", borderRadius: "15px" }}
         >
-          <AgGridReact
-            ref={gridRef}
-            onGridReady={onGridReady}
-            rowData={rowData}
-            columnDefs={columnDefs}
-            defaultColDef={defaultColDef}
-            suppressHorizontalScroll={true}
-            components={components}
-            getRowHeight={(params) => {
-              const { id } = params.node;
+          <ThemeProvider theme={tableTheme}>
+      <MaterialReactTable
+        columns={columns}
+        data={allExpData}
+        enableExpanding
+        getSubRows={(originalRow) => originalRow.subRows} //default, can customize
 
-              if (id == expandedRowId.current) {
-                if (isSecondOpen.current) {
-                  if (rowHeight.current) {
-                    return rowHeight.current;
-                  }
-                }
-                return (subD.length + 1) * 41.6;
-              }
-            }}
-          ></AgGridReact>
+        icons={fontAwesomeIcons}
+        enableSelectAll={false}
+        rowSelection={false}
+        enableMultiRowSelection={false}
+        enableRowActions={false}
+        enableRowSelection={false}
+        enableHiding={false}
+        enableColumnFilterModes={false}
+        enablePagination={false}
+        enableSorting={true}
+        enableColumnActions={false}
+        enableColumnFilters={false}
+        enableFullScreenToggle={false}
+        enableDensityToggle={false}
+        enableColumnOrdering={false}
+        enableGlobalFilter={false}
+        initialState={{ density: "comfortable" }}
+      />
+    </ThemeProvider>
         </div>
       )}
     </>
   );
 };
 
-export default CategoriesTable;
+export default CategoriesTable2;

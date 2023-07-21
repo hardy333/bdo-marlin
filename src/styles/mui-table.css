@@ -1,0 +1,77 @@
+
+/* Header */
+.css-1omuo8w-MuiToolbar-root{
+    display: none !important;
+}
+
+
+
+/* Footer  */
+.css-g2tram-MuiToolbar-root{
+    display: none !important;
+}
+
+
+/* Table */
+.css-80pr5n-MuiPaper-root{
+    background-color:  white !important;
+    box-shadow: none !important;
+    border-radius: 15px !important;
+    height: 100% !important;
+    overflow-y: scroll !important;
+
+}
+
+/* Heading */
+.Mui-TableHeadCell-Content-Wrapper{
+    font-size: 14px !important;
+    color: #211543 !important;
+
+}
+
+
+/* cell */
+.MuiTableCell-body{
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    color: #211543 !important;
+}
+
+
+
+/* Body */
+.css-1lmezb1-MuiTableBody-root{
+    
+}
+
+
+
+.MuiTableCell-body .Mui-disabled{
+    display: none !important;
+
+}
+
+/* Heading label */
+.Mui-TableHeadCell-Content-Labels{
+    width: 100%;
+}
+
+/* Head Tr */
+.MuiTableRow-head{
+    box-shadow: none !important;
+}
+
+button[aria-label="Expand all"]{
+    display: none;
+}
+
+/* Expand all button */
+.MuiTableCell-body .Mui-disabled{
+    display: none !important;
+
+}
+
+.css-1vp8cnp-MuiButtonBase-root-MuiIconButton-root{
+    display: none;
+}
