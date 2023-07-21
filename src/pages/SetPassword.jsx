@@ -7,9 +7,9 @@ const SetPassword = () => {
     <>
       <div className="login">
         <div className="login__container">
-          <h1>გამარჯობა ნიკა ლობჟანიძე!</h1>
+          <h1>გამარჯობა, ნიკა ლობჟანიძე!</h1>
           <p className="text-center mt-[-40px] mb-20">
-            შექმნი პაროლი შენი მომხმარებლისთვის.
+            შექმენი პაროლი შენი მომხმარებლისთვის
           </p>
 
           <form action="" className="login-form">
@@ -24,7 +24,7 @@ const SetPassword = () => {
               {/* 1 checkobx */}
               <p className="register-form__terms items-center justify-start">
                 <input type="checkbox" className="checkbox" />
-                <span>მე არ ვარ რობოტი.</span>
+                <span>მე არ ვარ რობოტი</span>
               </p>
               {/* 2 checkobx */}
               <p className="register-form__terms  mt-5">

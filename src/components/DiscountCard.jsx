@@ -15,7 +15,10 @@ const DiscountCard = ({ index, name, dis, isBonusCard }) => {
 
   return (
     <article className="discount-card"
-    style={{background: isBonusCard ? "rgba(111, 15, 245, 0.056)" : "#fff"}}
+    style={{background: isBonusCard ? "rgba(111, 15, 245, 0.056)" : "#fff",
+    border: isBonusCard ? null : "1px solid rgba(111, 15, 245, 0.106)"
+    
+  }}
     >
       <h2>{name} - {dis}%</h2>
       <h3>დოკუმენტი: #{Math.floor(Math.random()*2000+30330)}</h3>
