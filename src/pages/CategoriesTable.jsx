@@ -57,7 +57,7 @@ const subD = [
 
 
 
-console.log(subD)
+
 
 localStorage.setItem("x", JSON.stringify(subD))
 
@@ -348,6 +348,11 @@ const CategoriesTable = () => {
   };
   const [pageLink, setPageLink] = useState(null)
 
+  const [mobileSelectedCategory, setMobileSelectedCategory] = useState(null)
+  const [mobileSelectedSubCategory, setMobileSelectedSubCategory] = useState(null)
+
+  
+
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header sla-header">
@@ -527,7 +532,7 @@ const CategoriesTable = () => {
       </header>
 
       {isSmallDevice ? (
-        <SlaCategoryCards pageLink={pageLink} setPageLink={setPageLink} data={rowData} />
+        <SlaCategoryCards setMobileSelectedCategory={setMobileSelectedCategory} setMobileSelectedSubCategory={setMobileSelectedSubCategory} pageLink={pageLink} setPageLink={setPageLink} data={rowData} />
       ) : (
         <div
           className="ag-theme-alpine stable-table expandable-table"

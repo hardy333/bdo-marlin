@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const durationTime = 0.3;
 
-const SlaCategoryCards = ({ data }) => {
+const SlaCategoryCards = ({ data, pageLink, setPageLink, setMobileSelectedSubCategory, setMobileSelectedCategory }) => {
   if (!data) {
     return <h1>Loading ...</h1>;
   }
@@ -28,6 +28,8 @@ const SlaCategoryCards = ({ data }) => {
         setShowingComp={setShowingComp}
         prevComp={prevComp}
         setPrevShowingComp={setPrevShowingComp}
+        setPageLink={setPageLink}
+        setMobileSelectedCategory={setMobileSelectedCategory}
       />
     );
   } else if (showingComp === "subCategory") {
@@ -39,6 +41,9 @@ const SlaCategoryCards = ({ data }) => {
         prevComp={prevComp}
         setPrevShowingComp={setPrevShowingComp}
         prevShowingComp={prevShowingComp}
+        setPageLink={setPageLink}
+
+        setMobileSelectedSubCategory={setMobileSelectedSubCategory}
 
       />
     );
@@ -50,6 +55,8 @@ const SlaCategoryCards = ({ data }) => {
         index={showingComp}
         prevComp={prevComp}
         setPrevShowingComp={setPrevShowingComp}
+        setPageLink={setPageLink}
+
       />
     );
   }
@@ -72,7 +79,7 @@ const SlaCategoryCards = ({ data }) => {
 };
 
 // 1
-const CategoryCards = ({ data, setShowingComp, prevComp,setPrevShowingComp }) => {
+const CategoryCards = ({ data, setShowingComp, prevComp,setPrevShowingComp, setPageLink, setMobileSelectedCategory }) => {
   useEffect(() => {
     return () => {
       prevComp.current = "category";
@@ -107,9 +114,14 @@ const CategoryCards = ({ data, setShowingComp, prevComp,setPrevShowingComp }) =>
         } = row;
         return (
           <article
-            onClick={() => {}}
             key={index}
             className="table-card sla-orders-card"
+            onClick={() => {
+                setShowingComp("subCategory");
+                setPageLink(productCategory)
+
+                setPrevShowingComp("category")
+              }}
           >
             <header className="table-card-row">
               <h3>
@@ -154,6 +166,7 @@ const CategoryCards = ({ data, setShowingComp, prevComp,setPrevShowingComp }) =>
             <p
               onClick={() => {
                 setShowingComp("subCategory");
+                setPageLink(productCategory)
 
                 setPrevShowingComp("category")
               }}
@@ -176,7 +189,8 @@ const SubCategoryCards = ({
   showingComp,
   prevComp,
   setPrevShowingComp,
-  prevShowingComp
+  prevShowingComp,
+  setMobileSelectedSubCategory
 }) => {
   console.log(prevComp.current === "category", "....");
   useEffect(() => {
@@ -212,9 +226,12 @@ const SubCategoryCards = ({
         } = row;
         return (
           <article
-            onClick={() => {}}
             key={index}
             className="table-card sla-orders-card"
+            onClick={() => {
+                setShowingComp("subSubCategory");
+                setPrevShowingComp("subCategory")
+              }}
           >
             <header className="table-card-row">
               <h3>
