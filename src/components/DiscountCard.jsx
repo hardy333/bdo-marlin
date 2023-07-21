@@ -37,7 +37,12 @@ const DiscountCard = ({ index, name, dis, isBonusCard }) => {
 
       <button
         onClick={() => {
-          navigate("/discounts-table");
+          if(isBonusCard){
+
+            navigate("/cash-back-table");
+          }else{
+            navigate("/discounts-table");
+          }
         }}
         className="btn btn-success"
       >
