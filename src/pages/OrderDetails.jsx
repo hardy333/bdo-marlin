@@ -298,14 +298,14 @@ const OrderDetails = () => {
           >
             <h4
               style={{ marginRight: 0 }}
-              className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
+              className="text-center mb-auto w-full sm:text-start sm:w-[220px] mb-4 "
             >
               შეკვეთის დეტალები
             </h4>
             {/* Bottom + Top */}
             <div className="">
               {/* Top */}
-              <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-14 justify-center max-sm:w-full ">
+              <div className="flex mb-3 max-[450px]:grid text-center grid-cols-2 items-center gap-14 justify-center max-sm:w-full ">
                 <Tippy
                   className="tooltip-1"
                   arrow={false}
@@ -332,7 +332,7 @@ const OrderDetails = () => {
                       <img src="order-details/shop.svg" alt="" />
                     </span>
                     <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      {shopAddress}
+                      {shopAddress+"."}
                     </span>
                   </p>
                 </Tippy>
@@ -423,7 +423,7 @@ const OrderDetails = () => {
           </div>
 
           {isSmallDevice ? null : (
-            <div className="all-orders__settings__options">
+            <div className="all-orders__settings__options  self-start">
               <ExpandingInput onFilterTextChange={onFilterTextChange} />
 
               {/* input filter */}
@@ -433,7 +433,7 @@ const OrderDetails = () => {
                 }}
                 className={classNames({
                   "all-orders__btn-filter": true,
-                  "all-orders__btn": true,
+                  "all-orders__btn ": true,
                   active: showFilters,
                 })}
               >
