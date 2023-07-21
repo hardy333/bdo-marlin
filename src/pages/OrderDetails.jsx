@@ -358,8 +358,9 @@ const OrderDetails = () => {
                         <img src="order-details/shop.svg" alt="" />
                       </span>
                       <span
-                      style={{maxWidth: "120px", width: "120px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", display: "block"}}
-                       className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      style={{maxWidth: "120px", width: shopAddress.length*10 + "px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", display: "block", }}
+
+                       className="badge text-start text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                         {shopAddress + "."}
                       </span>
                     </p>
