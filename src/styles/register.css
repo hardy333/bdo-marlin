@@ -103,7 +103,8 @@
 /* Checkbox */
 /* Checkbox */
 
-.register input[type="checkbox"] {
+.register input[type="checkbox"],
+.checkbox {
   /* Add if not using autoprefixer */
   -webkit-appearance: none;
   /* Remove most all native input styles */
@@ -130,7 +131,8 @@
   outline: none;
 }
 
-.register input[type="checkbox"]::before {
+.register input[type="checkbox"]::before,
+.checkbox::before {
   content: '';
   background-color: transparent;
 
@@ -152,7 +154,8 @@
 
 }
 
-.register input[type="checkbox"]:checked::before {
+.register input[type="checkbox"]:checked::before,
+.checkbox:checked::before {
   transform: scale(1);
 }
 

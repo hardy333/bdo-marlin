@@ -20,17 +20,17 @@ const SetPassword = () => {
               placeholder="Repeat Password"
             />
             {/*  */}
-            <div className="mb-10 flex items-center flex-col">
+            <div className="mb-10 flex items-start  flex-col max-w-[230px] ms-auto me-auto">
               {/* 1 checkobx */}
-              <p className="register-form__terms">
-                <input type="checkbox" />
+              <p className="register-form__terms items-center justify-start">
+                <input type="checkbox" className="checkbox" />
                 <span>
                   I am not a robot.
                 </span>
               </p>
               {/* 2 checkobx */}
               <p className="register-form__terms">
-                <input type="checkbox" />
+                <input type="checkbox" className="checkbox" />
                 <span>
                   I accept{" "}
                   <a className="link login-link" href="#">

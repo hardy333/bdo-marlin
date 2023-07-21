@@ -6,7 +6,7 @@ import { Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
 import messengerImg from "../assets/messenger.svg";
 
-const staticMainPathnames = ["/login", "/register"];
+const staticMainPathnames = ["/login", "/register", "/set-password"];
 
 const DashboardLayout = ({ light = false }) => {
   const location = useLocation();
