@@ -51,6 +51,7 @@ import OrderDetailsCards from "../components/OrderDetailsCards";
 import VendorsCard from "./vendors/VendorsCard";
 import CarSvg from "../components/svgs/service-level-svgs/CarSvg";
 import VendorsCalendarSvg from "../components/svgs/VendorsCalendarSvg";
+import Tippy from "@tippyjs/react";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -305,40 +306,67 @@ const OrderDetails = () => {
             <div className="">
               {/* Top */}
               <div className="flex max-[450px]:grid text-center grid-cols-2 items-center gap-14 justify-center max-sm:w-full ">
-                <p className="flex gap:2 p">
-                  <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
-                    <img src="order-details/vendor.svg" alt="" />
-                  </span>
-                  <span className="badge font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    {vendor}.
-                  </span>
-                </p>
-                <p className="flex align-middle p">
-                  <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
-                  <img src="order-details/shop.svg" alt="" />
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    {shopAddress}
-                  </span>
-                </p>
-                <p className="p">
-                  <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
-                  <img src="order-details/clock.svg" alt="" />
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    {date.split(" ")[0]}.
-                  </span>
-                </p>
-                <p className="p">
-                  <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
-                  <img src="order-details/calendar.svg" alt="" />
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                   02/08/2023.
-                  </span>
-                </p>
-                
-                
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="მომწოდებელი"
+                >
+                  <p className="flex gap:2 p">
+                    <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
+                      <img src="order-details/vendor.svg" alt="" />
+                    </span>
+                    <span className="badge font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      {vendor}.
+                    </span>
+                  </p>
+                </Tippy>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="მაღაზია"
+                >
+                  <p className="flex align-middle p">
+                    <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
+                      <img src="order-details/shop.svg" alt="" />
+                    </span>
+                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      {shopAddress}
+                    </span>
+                  </p>
+                </Tippy>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="თარიღი"
+                >
+                  <p className="p">
+                    <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
+                      <img src="order-details/clock.svg" alt="" />
+                    </span>
+                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      {date.split(" ")[0]}.
+                    </span>
+                  </p>
+                </Tippy>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="მოწოდება"
+                >
+                  <p className="p">
+                    <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
+                      <img src="order-details/calendar.svg" alt="" />
+                    </span>
+                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      02/08/2023.
+                    </span>
+                  </p>
+                </Tippy>
+
                 <Menu
                   className="pending-status-menu"
                   menuButton={
@@ -357,29 +385,39 @@ const OrderDetails = () => {
                   <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
                   <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
                 </Menu>
-             
-
               </div>
               {/* Bottom */}
               <div className="flex gap-14">
-                <p className="p">
-                  <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
-
-                  <img src="order-details/money.svg" alt="" />
-                    
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    1578 GEL.
-                  </span>
-                </p>
-                <p className="p">
-                  <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
-                  <img src="order-details/document.svg" alt="" />
-                  </span>
-                  <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                    2039 GEL.
-                  </span>
-                </p>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="თანხა"
+                >
+                  <p className="p">
+                    <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
+                      <img src="order-details/money.svg" alt="" />
+                    </span>
+                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      1578 GEL.
+                    </span>
+                  </p>
+                </Tippy>
+                <Tippy
+                  className="tooltip-1"
+                  arrow={false}
+                  placement="top"
+                  content="ინვოისის თანხა"
+                >
+                  <p className="p">
+                    <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
+                      <img src="order-details/document.svg" alt="" />
+                    </span>
+                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      2039 GEL.
+                    </span>
+                  </p>
+                </Tippy>
               </div>
             </div>
           </div>
