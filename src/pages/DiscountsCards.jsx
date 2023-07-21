@@ -83,7 +83,7 @@ const DiscountsCards = () => {
             defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
           />
           <div className="vendors-switch-container ml-10">
-            <p className="" >აქტიური</p>
+            <p className="" >რეტრო ბონუსები</p>
             <div className="toggle-switch">
               <input
                 className="toggle-input"
@@ -94,7 +94,7 @@ const DiscountsCards = () => {
               />
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
-            <p className="">ყველა</p>
+            <p className="">ფასდაკლებები</p>
           </div>
 
           {/* Date Picker */}
