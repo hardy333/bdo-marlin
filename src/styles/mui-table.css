@@ -1,15 +1,21 @@
 
 /* Header */
 .css-1omuo8w-MuiToolbar-root{
-    display: none !important;
+    /* display: none !important; */
 }
 
 
+.expandable-table  > .MuiPaper-root > div:first-child{
+    display: none;
+}
+.expandable-table  > .MuiPaper-root > div:last-child{
+    display: none;
+}
 
 /* Footer  */
-.css-g2tram-MuiToolbar-root{
+/* .css-g2tram-MuiToolbar-root{
     display: none !important;
-}
+} */
 
 
 /* Table */
