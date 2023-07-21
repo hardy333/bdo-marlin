@@ -408,7 +408,7 @@ const CategoriesTable2 = () => {
       ) : (
         <div
           className="ag-theme-alpine stable-table expandable-table"
-          style={{ minHeight: 595, width: "100%", padding: "2rem", paddingRight: "1rem", paddingBottom: "0.5rem", border: "1px solid transparent", background: "#fff", borderRadius: "15px" }}
+          style={{ minHeight: 595, width: "100%", padding: "2rem", paddingRight: "1rem", paddingBottom: "0.5rem", paddingTop: "1rem", border: "1px solid transparent", background: "#fff", borderRadius: "15px" }}
         >
           <ThemeProvider theme={tableTheme}>
       <MaterialReactTable
