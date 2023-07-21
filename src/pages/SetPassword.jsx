@@ -7,34 +7,32 @@ const SetPassword = () => {
     <>
       <div className="login">
         <div className="login__container">
-          <h1>Hello User!</h1>
+          <h1>გამარჯობა ნიკა ლობჟანიძე!</h1>
           <p className="text-center mt-[-40px] mb-20">
-            Please create password to finalize creating you account
+            შექმნი პაროლი შენი მომხმარებლისთვის.
           </p>
 
           <form action="" className="login-form">
-            <input className="input" type="password" placeholder="Password" />
+            <input className="input" type="password" placeholder="პაროლი" />
             <input
               className="input"
               type="password"
-              placeholder="Repeat Password"
+              placeholder="გაიმეორე პაროლი"
             />
             {/*  */}
             <div className="mb-10 flex items-start  flex-col max-w-[230px] ms-auto me-auto">
               {/* 1 checkobx */}
               <p className="register-form__terms items-center justify-start">
                 <input type="checkbox" className="checkbox" />
-                <span>
-                  I am not a robot.
-                </span>
+                <span>მე არ ვარ რობოტი.</span>
               </p>
               {/* 2 checkobx */}
-              <p className="register-form__terms">
+              <p className="register-form__terms  mt-5">
                 <input type="checkbox" className="checkbox" />
                 <span>
-                  I accept{" "}
+                  ვეთანხმები{" "}
                   <a className="link login-link" href="#">
-                    terms and conditions
+                    წესებს და პირობებს
                   </a>
                 </span>
               </p>
@@ -43,9 +41,9 @@ const SetPassword = () => {
             <button className="btn btn-blue">Log in</button>
 
             <p className="login-form__login">
-              Olready have an account?{" "}
+              უკვე დარეგისტრირებული ხარ?{" "}
               <Link className="link login-link" to="/log-in">
-                Log In
+                შესვლა.
               </Link>
             </p>
           </form>
