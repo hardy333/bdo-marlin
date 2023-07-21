@@ -69,6 +69,11 @@ const DiscountsCards = () => {
       color: "#6E0FF5",
     },
   ]);
+
+
+  console.log(isChecked)
+  
+  
   return (
     <>
       <section className="discounts">
@@ -138,6 +143,7 @@ const DiscountsCards = () => {
                 name={obj.name}
                 dis={obj.dis}
                 index={index}
+                isBonusCard={isChecked === false}
               />
             );
           })}

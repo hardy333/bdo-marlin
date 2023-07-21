@@ -7,11 +7,16 @@ import NewSvg from "./svgs/NewSvg";
 import { useNavigate } from "react-router-dom";
 import CrystalSvg from "./svgs/CrystalSvg";
 
-const DiscountCard = ({ index, name, dis }) => {
+const DiscountCard = ({ index, name, dis, isBonusCard }) => {
   const navigate = useNavigate();
 
+
+  console.log(isBonusCard)
+
   return (
-    <article className="discount-card">
+    <article className="discount-card"
+    style={{background: isBonusCard ? "rgba(111, 15, 245, 0.056)" : "#fff"}}
+    >
       <h2>{name} - {dis}%</h2>
       <h3>დოკუმენტი: #{Math.floor(Math.random()*2000+30330)}</h3>
       {index > 3 ? (
