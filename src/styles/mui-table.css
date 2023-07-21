@@ -75,3 +75,10 @@ button[aria-label="Expand all"]{
 .css-1vp8cnp-MuiButtonBase-root-MuiIconButton-root{
     display: none;
 }
+
+/* Head Cell */
+.MuiTableCell-head{
+    padding: 1rem !important;
+    padding-bottom: 1.5rem !important;
+
+}
