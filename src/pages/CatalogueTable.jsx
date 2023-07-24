@@ -19,8 +19,6 @@ import "../styles/pending-status-menu.css";
 
 // images
 
-import classNames from "classnames";
-
 const pageSizes = [5, 10, 15, 20, 25, 30];
 import "../styles/catalogue.css";
 
@@ -30,69 +28,24 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-// import d from "../assets/CATALOGUE_MOCK_DATA.json";
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-
 import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";
 import useRemoveId from "../components/useRemoveId";
-import TriangleSvg from "../components/svgs/TriangleSvg";
 import { useQuery } from "react-query";
 import ProgressBar from "../components/ProgressBar";
 import { fetchData } from "../utils/fetchData";
-import ExcelExportBtn from "../components/ExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import MobileCatalogueMenu from "../components/MobileCatalogueMenu";
 import { BiFoodMenu } from "react-icons/bi";
 import CatalogueCards from "../components/CatalogueCards";
+import { CatalogueTableDefs, catalogueTableHeaderList } from "../column-definitions/CatalogueTableDefs";
+import TableSettings from "../components/TableSettings";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "barcode",
-      showingName: "ბარკოდი",
-      isShowing: true,
-    },
-    {
-      name: "product",
-      showingName: "პროდუქტი",
-      isShowing: true,
-    },
-    {
-      name: "unit",
-      showingName: "ერთეული",
-      isShowing: true,
-    },
-    {
-      name: "price",
-      showingName: "ფასი",
-      isShowing: true,
-    },
-    {
-      name: "lastOrderPrice",
-      showingName: "წინა ფასი",
-      isShowing: true,
-    },
-    {
-      name: "lastChangeDate",
-      showingName: "ცვლილების თარიღი ",
-      isShowing: true,
-    
-    },
-    {
-      name: "status",
-      showingName: "სტატუსი",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(catalogueTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [subCatId, setSubCatId] = useState(
@@ -124,105 +77,7 @@ const CatalogueTable = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  const [columnDefs] = useState([
-    {
-      field: "barcode",
-      headerName: "ბარკოდი",
-    },
-    {
-      field: "product",
-      headerName: "პროდუქტი",
-      minWidth: 200,
-
-      cellRenderer: (params) => {
-        const { value } = params;
-
-        return params.value;
-      },
-    },
-    {
-      field: "unit",
-      headerName: "ერთეული",
-      maxWidth: 150,
-    },
-    {
-      field: "price",
-      headerName: "ფასი",
-      maxWidth: 150,
-
-      cellRenderer: (params) => {
-        const { value } = params;
-
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "lastOrderPrice",
-      headerName: "წინა ფასი",
-      cellRenderer: (params) => {
-        const { value } = params;
-        const price = params.data.price;
-
-        console.log(value, price);
-
-        let newVal = value;
-        let randNam = Math.random();
-        if (randNam - 0.3 < 0) {
-          newVal = value + 1;
-        } else if (randNam - 0.6 < 0) {
-          newVal = value - 1;
-        }
-
-        return (
-          <div
-            style={{ height: "100%", display: "flex" }}
-            className="items-center  gap-4 pe-20"
-          >
-            <span style={{ width: "50px" }}>{newVal + " " + "GEL"}</span>
-            <TriangleSvg
-              fill={newVal > price ? "#FF3360" : "#6E0FF5"}
-              style={{
-                transform: newVal > price ? "rotate(180deg)" : "rotate(0deg)",
-                display: newVal === price ? "none" : null,
-              }}
-            />
-          </div>
-        );
-      },
-    },
-    {
-      field: "lastChangeDate",
-      headerName: "ცვლილების თარიღი",
-      cellRenderer: (params) => {
-        const {value} = params
-        return value.split("T")[0].split("-").reverse().join("/")
-      }
-    },
-    {
-      field: "status",
-      headerName: "სტატუსი",
-      cellRenderer: ({ value }) => {
-        let color = "";
-        if (value === "აქტიური") {
-          color = "#6E0FF5";
-        } else if (value === "გაუქმებული") {
-          color = "#FF3360";
-        } else if (value === "მიუწვდომელი") {
-          color = "#FFA23C";
-        }
-        return (
-          <div className="flex items-center" style={{ height: "100%" }}>
-            <button
-              style={{ color: color }}
-              className=" flex items-center px-2 rounded-3xl capitalize text-white p-0 text h-[16px] "
-            >
-              {value}
-            </button>
-          </div>
-        );
-      },
-    },
-  ]);
+  const [columnDefs] = useState(CatalogueTableDefs);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -355,7 +210,6 @@ const CatalogueTable = () => {
         style={{ position: "relative" }}
       >
         <ProgressBar show={isFetching} />
-
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -407,143 +261,17 @@ const CatalogueTable = () => {
                 </div>
               </div>
             ) : null}
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
-            </button>
-            {/* popup */}
-
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.showingName}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-                active: isFullScreen,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            <ExcelExportBtn data={rowData} name="catalogue" />
+               <TableSettings
+                isSmallDevice={isSmallDevice}
+                defHeaderList={catalogueTableHeaderList}
+                rowData={rowData}
+                gridApi={gridApi}
+                gridRef={gridRef}
+                gridColumnApi={gridColumnApi}
+                rowHeightIndex={rowHeightIndex}
+                setRowHeightIndex={setRowHeightIndex}
+                pageName="all-orders"
+              />
           </div>
         </div>
       </header>

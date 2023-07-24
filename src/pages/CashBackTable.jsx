@@ -50,6 +50,9 @@ import "../styles/discounts-table.css";
 import useRemoveId from "../components/useRemoveId";
 
 import ExcelExportBtn from "../components/ExcelExportBtn";
+import { CashBackTableDefs, cashBackTableHeaderList } from "../column-definitions/CashBackTableDefs";
+import TableSettings from "../components/TableSettings";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const shopsArr = [
   {
@@ -122,108 +125,13 @@ const shopsArr = [
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "barcode",
-      showingName: "ბარკოდი",
-      isShowing: true,
-    },
-    {
-      name: "product",
-      showingName: "პროდუქტი",
-
-      isShowing: true,
-    },
-    //   {
-    //     name: "minQuantity",
-    //     showingName: "მინ. რაოდენობა",
-
-    //     isShowing: true,
-    //   },
-    //   {
-    //     name: "maxQuantity",
-    //     showingName: "მიქს. რაოდენობა",
-
-    //     isShowing: true,
-    //   },
-    {
-      name: "bonus",
-      showingName: "ბონუსი",
-
-      isShowing: true,
-    },
-    {
-      name: "purchased",
-      showingName: "შესყიდული",
-
-      isShowing: true,
-    },
-    //   {
-    //     name: "sold",
-    //     showingName: "გაყიდული",
-
-    //     isShowing: true,
-    //   },
-    {
-      name: "stockBalance",
-      showingName: "ნაშთი",
-
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(cashBackTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
   const [rowData, setRowData] = useState(d);
 
-  const [columnDefs] = useState([
-    {
-      headerName: "",
-      children: [
-        {
-          field: "barcode",
-          headerName: "ბარკოდი",
-        },
-        {
-          field: "product",
-          headerName: "პროდუქტი",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value;
-          },
-        },
-        {
-          field: "bonus",
-          headerName: "ბონუსი",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " %";
-          },
-        },
-      ],
-    },
-    {
-      headerName: "აქციის შედეგები",
-      children: [
-        {
-          field: "purchased",
-          headerName: "შესყიდვები, თანხა",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value + " GEL";
-          },
-        },
-        {
-          field: "stockBalance",
-          headerName: "მარაგი",
-          cellRenderer: (params) => {
-            const { value } = params;
-            return value;
-          },
-        },
-      ],
-    },
-  ]);
+  const [columnDefs] = useState(CashBackTableDefs);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -330,6 +238,8 @@ const CashBackTable = () => {
   const [showFilters, setShowFilters] = useFilterToggle(true);
 
   useRemoveId(gridApi, gridRef);
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
+
 
   return (
     <>
@@ -396,143 +306,17 @@ const CashBackTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
-            </button>
-            {/* popup */}
-
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.showingName}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-                active: isFullScreen,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            <ExcelExportBtn data={rowData} name="discounts" />
+          <TableSettings
+              isSmallDevice={isSmallDevice}
+              defHeaderList={cashBackTableHeaderList}
+              rowData={rowData}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
+            />
           </div>
         </div>
       </header>

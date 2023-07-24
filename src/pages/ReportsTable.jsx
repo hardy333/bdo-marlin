@@ -35,42 +35,12 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import DatePickerInput from "../components/DatePickerInput";
+import { ReportsTableDefs, reportsTableHeaderList } from "../column-definitions/ReportsTableDefs";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "vendor",
-      showingName: "მომწოდებელი",
-      isShowing: true,
-    },
-    {
-      name: "orders",
-      showingName: "შეკვეთები",
-      isShowing: true,
-    },
-    {
-      name: "amount",
-      showingName: "შეკვეთის თანხა",
-      isShowing: true,
-    },
-    {
-      name: "slaByQuantity",
-      showingName: "SL რაოდენობით",
-      isShowing: true,
-    },
-    {
-      name: "slaByAmount",
-      showingName: "SL თანხით",
-      isShowing: true,
-    },
-    {
-      name: "inTimeOrders",
-      showingName: "დროულობა",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(reportsTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -97,53 +67,7 @@ const ReportsTable = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  const [columnDefs] = useState([
-    {
-      field: "vendor",
-      headerName: "მომწოდებელი",
-      cellRenderer: (params) => {
-        return params.value;
-      },
-    },
-    {
-      field: "orders",
-      headerName: "შეკვეთები",
-
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-    {
-      field: "amount",
-      headerName: "შეკვეთის თანხა",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "Gel";
-      },
-    },
-    {
-      field: "slaByQuantity",
-      headerName: "SL რაოდენობით",
-    },
-    {
-      field: "slaByAmount",
-      headerName: "SL თანხით",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "Gel";
-      },
-    },
-    {
-      field: "inTimeOrders",
-      headerName: "დროულობა",
-      minWidth: 250,
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "%";
-      },
-    },
-  ]);
+  const [columnDefs] = useState(ReportsTableDefs);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -250,7 +174,7 @@ const ReportsTable = () => {
             </div>
             <TableSettings
               isSmallDevice={isSmallDevice}
-              defHeaderList={headerList}
+              defHeaderList={reportsTableHeaderList}
               rowData={rowData}
               gridApi={gridApi}
               gridRef={gridRef}

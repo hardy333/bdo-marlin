@@ -52,41 +52,12 @@ import VendorsCard from "./vendors/VendorsCard";
 import CarSvg from "../components/svgs/service-level-svgs/CarSvg";
 import VendorsCalendarSvg from "../components/svgs/VendorsCalendarSvg";
 import Tippy from "@tippyjs/react";
+import TableSettings from "../components/TableSettings";
+import { OrderDetailsDefs, orderDetailsHeaderList } from "../column-definitions/OrderDetailsDefs";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "barcode",
-      showingName: "ბარკოდი",
-      isShowing: true,
-    },
-    {
-      name: "product",
-      showingName: "პროდუქტი",
-      isShowing: true,
-    },
-    {
-      name: "quantity",
-      showingName: "რაოდენობა",
-      isShowing: true,
-    },
-    {
-      name: "price",
-      showingName: "ფასი",
-      isShowing: true,
-    },
-    {
-      name: "amount",
-      showingName: "თანხა",
-      isShowing: true,
-    },
-    {
-      name: "reservedQuantity",
-      showingName: "დარეზერვებული",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(orderDetailsHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [searchParams] = useSearchParams();
@@ -113,52 +84,7 @@ const OrderDetails = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  const [columnDefs] = useState([
-    {
-      field: "barcode",
-      headerName: "ბარკოდები",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-    {
-      field: "product",
-      headerName: "პროდუქტი",
-    },
-    {
-      field: "quantity",
-      headerName: "რაოდენობა",
-    },
-    {
-      field: "price",
-      headerName: "ფასი",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "amount",
-      headerName: "თანხა",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "reservedQuantity",
-      headerName: "დარეზერვირებული ",
-      cellRenderer: (params) => {
-        const { value } = params;
-        let color = "";
-        if (params.data.redStatus) {
-          color = "red";
-        }
-        return <span style={{ color: color }}>{value}</span>;
-      },
-    },
-  ]);
+  const [columnDefs] = useState(OrderDetailsDefs);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -318,10 +244,10 @@ const OrderDetails = () => {
                       <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
                         <img src="order-details/vendor.svg" alt="" />
                       </span>
-                      <span 
-                      style={{maxWidth: "120px"}}
-                      
-                      className="badge  text-start justify-start font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      <span
+                        style={{ maxWidth: "120px" }}
+                        className="badge  text-start justify-start font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
+                      >
                         {vendor}.
                       </span>
                     </p>
@@ -336,9 +262,10 @@ const OrderDetails = () => {
                       <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
                         <img src="order-details/money.svg" alt="" />
                       </span>
-                      <span 
-                      style={{maxWidth: "120px"}}
-                      className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      <span
+                        style={{ maxWidth: "120px" }}
+                        className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
+                      >
                         1578 GEL.
                       </span>
                     </p>
@@ -358,9 +285,16 @@ const OrderDetails = () => {
                         <img src="order-details/shop.svg" alt="" />
                       </span>
                       <span
-                      style={{maxWidth: "120px", width: shopAddress.length*10 + "px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", display: "block", }}
-
-                       className="badge text-start text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                        style={{
+                          maxWidth: "120px",
+                          width: shopAddress.length * 10 + "px",
+                          overflow: "hidden",
+                          whiteSpace: "nowrap",
+                          textOverflow: "ellipsis",
+                          display: "block",
+                        }}
+                        className="badge text-start text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
+                      >
                         {shopAddress + "."}
                       </span>
                     </p>
@@ -375,9 +309,7 @@ const OrderDetails = () => {
                       <span className="block icon-span font-bold text-[14px] pe-3 bg">
                         <img src="order-details/document.svg" alt="" />
                       </span>
-                      <span
-              
-                       className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
+                      <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
                         2039 GEL.
                       </span>
                     </p>
@@ -442,145 +374,17 @@ const OrderDetails = () => {
 
           {isSmallDevice ? null : (
             <div className="all-orders__settings__options  self-start">
-              <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
-              {/* input filter */}
-              <button
-                onClick={() => {
-                  setShowFilters(!showFilters);
-                }}
-                className={classNames({
-                  "all-orders__btn-filter": true,
-                  "all-orders__btn ": true,
-                  active: showFilters,
-                })}
-              >
-                <svg
-                  id="Layer_3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 47.28 33.65"
-                >
-                  <defs></defs>
-                  <path
-                    className="cls-1"
-                    d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                  />
-                  <path
-                    className="cls-1"
-                    d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                  />
-                  <path
-                    className="cls-1"
-                    d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                  />
-                </svg>
-              </button>
-              {/* popup */}
-
-              <Menu
-                align="center"
-                direction="top"
-                menuButton={
-                  <MenuButton className="all-orders__btn ">
-                    <svg
-                      id="Layer_3"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 33.58 47.28"
-                    >
-                      <defs></defs>
-                      <path
-                        className="cls-1"
-                        d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                      />
-                      <path
-                        className="cls-1"
-                        d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                      />
-                      <path
-                        className="cls-1"
-                        d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                      />
-                    </svg>
-                  </MenuButton>
-                }
-                transition
-              >
-                <div className="column-toggle-popup">
-                  <header className="column-toggle-popup__header">
-                    <button
-                      className={classNames({
-                        btn: true,
-                        active: !headerList.every(
-                          (header) => !header.isShowing
-                        ),
-                      })}
-                      onClick={hideAllColumns}
-                    >
-                      Hide All
-                    </button>
-                    <button
-                      className={classNames({
-                        btn: true,
-                        active: headerList.some((header) => !header.isShowing),
-                      })}
-                      onClick={showAllColumns}
-                    >
-                      Show All
-                    </button>
-                  </header>
-                  {headerList.map((header) => (
-                    <MenuItem
-                      key={header.name}
-                      value={header.name}
-                      onClick={(e) => {
-                        // Stop the `onItemClick` of root menu component from firing
-                        // e.stopPropagation = true;
-                        // Keep the menu open after this menu item is clicked
-                        e.keepOpen = true;
-                      }}
-                    >
-                      <div className="switch">
-                        <input
-                          checked={header.isShowing}
-                          type="checkbox"
-                          id={header.name}
-                          className="switch__input"
-                          onChange={() => {
-                            toggleColumn(header.name);
-                          }}
-                        />
-                        <label htmlFor={header.name} className="switch__label">
-                          {header.showingName}
-                        </label>
-                      </div>
-                    </MenuItem>
-                  ))}
-                </div>
-              </Menu>
-              {/* Row height */}
-              <button
-                onClick={() => {
-                  gridRef.current.api.resetRowHeights();
-                  changeRowHeight();
-                }}
-                ref={rowHeightBtnRef}
-                className="all-orders__btn"
-              >
-                {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-                {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-                {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-              </button>
-              {/* expand */}
-              <button
-                onClick={() => setIsFullScreen(!isFullScreen)}
-                className={classNames({
-                  "all-orders__btn": true,
-                  active: isFullScreen,
-                })}
-              >
-                {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-              </button>
-              <LazyExcelExportBtn data={rowData} name="order-details" />
+              <TableSettings
+                isSmallDevice={isSmallDevice}
+                defHeaderList={orderDetailsHeaderList}
+                rowData={rowData}
+                gridApi={gridApi}
+                gridRef={gridRef}
+                gridColumnApi={gridColumnApi}
+                rowHeightIndex={rowHeightIndex}
+                setRowHeightIndex={setRowHeightIndex}
+                pageName="all-orders"
+              />
             </div>
           )}
         </div>

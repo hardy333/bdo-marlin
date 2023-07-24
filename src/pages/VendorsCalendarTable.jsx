@@ -75,32 +75,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import vendorsArr from "../data/vendors-data";
 import Tippy from "@tippyjs/react";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import { CalendarTableDefs, calendarTableHeaderList } from "../column-definitions/CalendarTableDefs";
+import TableSettings from "../components/TableSettings";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "Shop",
-      isShowing: true,
-    },
-    {
-      name: "Shop Address",
-      isShowing: true,
-    },
-    {
-      name: "Vendor",
-      isShowing: true,
-    },
-    {
-      name: "Brand",
-      isShowing: true,
-    },
-    {
-      name: "Dis Date",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(calendarTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -110,80 +92,7 @@ const VendorsCalendarTable = () => {
 
   const days = ["M", "T", "W", "T", "F", "S", "S"];
 
-  const [columnDefs] = useState([
-    {
-      field: "Shop",
-      headerName: "მაღაზია",
-      width: 120,
-      minWidth: 120,
-      maxWidth: 150,
-      cellRendererFramework: (params) => {
-        return <div>Shop{String(params.value).padStart(3, "0")}</div>;
-      },
-    },
-    {
-      field: "Shop Address",
-      headerName: "მისამართი",
-      maxWidth: 200,
-    },
-    {
-      field: "Vendor",
-      headerName: "მომწოდებელი",
-      maxWidth: 180,
-    },
-    {
-      field: "Brand",
-      headerName: "ბრენდი",
-      maxWidth: 180,
-    },
-    {
-      field: "Distributor's Date",
-      headerName: "მოწოდების თარიღი",
-      cellRendererFramework: (params) => {
-        const d1 = Math.floor(Math.random() * 6);
-        const d2 = Math.floor(Math.random() * 6);
-
-        let isTwo = false;
-        let tooltipText = "ყველ კვირა";
-
-        if (Math.random() - 0.5 > 0) {
-          isTwo = true;
-          tooltipText = "2 კვირაში ერთხელ";
-        }
-
-        return (
-          <div className="dis-date-container">
-            <div className="days-container">
-              {days.map((d, index) => (
-                <span
-                  key={d + index}
-                  style={{
-                    color: d1 === index || d2 == index ? "#211543" : "#AE9EDC",
-                  }}
-                >
-                  {d}
-                </span>
-              ))}
-            </div>
-            <Tippy
-              className="tooltip-1"
-              arrow={false}
-              placement="top"
-              content={tooltipText}
-            >
-              <div className="circle-container">
-                <span className={`circle active`}></span>
-                <span
-                  className={`circle ${isTwo ? "active stroked" : ""}`}
-                  style={{ display: isTwo ? "block" : "none" }}
-                ></span>
-              </div>
-            </Tippy>
-          </div>
-        );
-      },
-    },
-  ]);
+  const [columnDefs] = useState(CalendarTableDefs);
 
   const [rowDataLabel, setRowDataLabel] = useState("d1");
 
@@ -299,6 +208,9 @@ const VendorsCalendarTable = () => {
 
   console.log(selected)
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
+
   return (
     <>
       <header className="all-orders__header">
@@ -347,105 +259,17 @@ const VendorsCalendarTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <FilterSvg />
-            </button>
-            {/* popup */}
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <ColumnHideSvg />
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.name}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-
-            <LazyExcelExportBtn data={rowData} name="" />
+          <TableSettings
+                isSmallDevice={isSmallDevice}
+                defHeaderList={calendarTableHeaderList}
+                rowData={rowData}
+                gridApi={gridApi}
+                gridRef={gridRef}
+                gridColumnApi={gridColumnApi}
+                rowHeightIndex={rowHeightIndex}
+                setRowHeightIndex={setRowHeightIndex}
+                pageName="all-orders"
+              />
           </div>
         </div>
       </header>

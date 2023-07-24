@@ -26,7 +26,6 @@ import "../styles/sla-by-vendors-table.css";
 
 import Select from "react-select";
 
-import classNames from "classnames";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -35,53 +34,21 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-import useFilterToggle from "../hooks/useFilterToggle";
-import DatePickerBtn from "../components/DatePickerBtn";
-import { addDays } from "date-fns";
 import vendorsArr from "../data/vendors-data";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
-import { useLocation } from "react-router-dom";
 import SlaMenu from "../components/SlaMenu";
 import { fetchData } from "../utils/fetchData";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
-import { BsFillCalendarCheckFill } from "react-icons/bs";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaItemsCards from "../components/SlaItemsCards";
 import DatePickerInput from "../components/DatePickerInput";
+import TableSettings from "../components/TableSettings";
+import { SlaByItemsTableDefs, slaByitemsTableHeaderList } from "../column-definitions/SlaByItemsTableDefs";
 
 const SlaByItem = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "Vendors",
-      isShowing: true,
-    },
-    {
-      name: "Monthly Amount",
-      isShowing: true,
-    },
-    {
-      name: "Quantity Deviation",
-      isShowing: true,
-    },
-    {
-      name: "In Time Orders",
-      isShowing: true,
-    },
-    {
-      name: "Avarage Service Level",
-      isShowing: true,
-    },
-  ]);
+
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -105,55 +72,8 @@ const SlaByItem = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  const [columnDefs] = useState([
-    {
-      field: "product",
-      headerName: "პროდუქტი",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-    {
-      field: "orders",
-      headerName: "შეკვეთილი რაოდენობა",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-    {
-      field: "orderedQuantity",
-      headerName: "მოტანილი რაოდენობა",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-    {
-      field: "slaByQuantity",
-      headerName: "SL რაოდენობით",
-    },
-    {
-      field: "slaByAmount",
-      headerName: "SL თანხით",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " " + "%";
-      },
-    },
-    {
-      field: "inTimeOrders",
-      headerName: "დროულობა",
-      minWidth: 250,
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " %";
-      },
-    },
-  ]);
+  const [columnDefs] = useState(SlaByItemsTableDefs);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -184,42 +104,7 @@ const SlaByItem = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
-  };
+ 
 
   const components = useMemo(() => {
     return {
@@ -242,38 +127,19 @@ const SlaByItem = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
+
   const gridRef = useRef(null);
 
-  const [showFilters, setShowFilters] = useFilterToggle();
 
-  const [dateState, setDateState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 0),
-      key: "selection",
-      color: "#6E0FF5",
-    },
-  ]);
-
+ 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
   
   useRemoveId(gridApi, gridRef);
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const [dateChanged, setDateChanged] = useState(false);
-  const datePicekerRef = useRef(null);
 
   return (
     <>
@@ -313,142 +179,17 @@ const SlaByItem = () => {
             <p className="avarage-sla sla-avg sla-avg-mobile">
               ASL: <span>82%</span>
             </p>
-            <ExpandingInput onFilterTextChange={onFilterTextChange} />
-
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <svg
-                id="Layer_3"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 47.28 33.65"
-              >
-                <defs></defs>
-                <path
-                  className="cls-1"
-                  d="m44.44,5.68H2.84c-1.57,0-2.84-1.27-2.84-2.84S1.27,0,2.84,0h41.61c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m37.34,19.66H9.94c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h27.4c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-                <path
-                  className="cls-1"
-                  d="m30.24,33.65h-13.2c-1.57,0-2.84-1.27-2.84-2.84s1.27-2.84,2.84-2.84h13.2c1.57,0,2.84,1.27,2.84,2.84s-1.27,2.84-2.84,2.84Z"
-                />
-              </svg>
-            </button>
-            {/* popup */}
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.name}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-                active: isFullScreen,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            <LazyExcelExportBtn data={rowData} name="sla-by-item" />
+            <TableSettings
+              isSmallDevice={isSmallDevice}
+              defHeaderList={slaByitemsTableHeaderList}
+              rowData={rowData}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
+            />
           </div>
         </div>
       </header>

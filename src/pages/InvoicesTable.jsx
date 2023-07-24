@@ -22,7 +22,6 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/invoices-table.css";
 
-import classNames from "classnames";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -31,59 +30,22 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import ExpandingInput from "../components/ExpandingInput";
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import FilterSvg from "../components/FilterSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
+
 
 import d from "../assets/invoices.json";
-import FourDotsSvg from "../components/FourDotsSvg";
 import { useNavigate } from "react-router-dom";
-import useFilterToggle from "../hooks/useFilterToggle";
 import useRemoveId from "../components/useRemoveId";
-import vendorsArr from "../data/vendors-data";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
+import {
+  InvoicesTableDefs,
+  invoicesTableHeaderList,
+} from "../column-definitions/InvoicesTableDefs";
+import TableSettings from "../components/TableSettings";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isBigRow, setIsBigRow] = useState(true);
 
-  const [headerList, setHeaderList] = useState([
-    {
-      showingName: "თარიღი",
-      name: "Date",
-      isShowing: true,
-    },
-    {
-      showingName: "ზედნადები",
-      name: "Waybill #",
-      isShowing: true,
-    },
-    {
-      showingName: "დოკუმენტის #",
-      name: "Documnet #",
-      isShowing: true,
-    },
-    {
-      showingName: "მომწოდებელი",
-      name: "Vendor",
-      isShowing: true,
-    },
-    {
-      showingName: "მაღაზია",
-      name: "Shop",
-      isShowing: true,
-    },
-    {
-      showingName: "რაოდენობა",
-      name: "Amount",
-      isShowing: true,
-    },
-  ]);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -91,90 +53,10 @@ const InvoicesTable = () => {
 
   const gridRef = useRef(null);
 
-  const [columnDefs] = useState([
-    {
-      field: "Date",
-      headerName: "თარიღი",
-    },
-    {
-      field: "Waybill #",
-      headerName: "ზედნადები",
-
-    },
-    {
-      field: "Documnet #",
-      headerName: "შეკვეთის #",
-
-    },
-    {
-      field: "Vendor",
-      headerName: "მომწოდებელი",
-      cellRenderer: (params) => {
-        return vendorsArr[Math.floor(Math.random() * vendorsArr.length)].value;
-      },
-    },
-    {
-      field: "Shop",
-      headerName: "მაღაზია",
-
-    },
-    {
-      field: "Amount",
-      headerName: "შეკვეთის თანხა",
-
-      cellRenderer: (params) => {
-        let { value } = params;
-        if (!value) value = 10;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "invoice Amount",
-      headerName: "ინვოისის თანხა",
-
-      cellRenderer: (params) => {
-        let { value } = params;
-
-        let newVal = null;
-
-        if (Math.random() - 0.5 < 0) {
-          newVal = Number(value) + Math.floor(Math.random() * 10 + 2);
-        }
-
-        if (!value) value = 10;
-        return (
-          <span>
-            <span style={{color: newVal ? "#f55364" : ""}}>{newVal ? newVal : value} GEL </span> 
-            
-          </span>
-        )
-      },
-    },
-    {
-      field: "Status",
-      headerName: "სტატუსი",
-      hide: true,
-      cellRenderer: (params) => {
-        const { value } = params;
-        const x = Number(value);
-        if (!value || x % 2 === 0)
-          return (
-            <button className="invoices-table-status-btn invoices-table-status-btn--danger ">
-              To be paid
-            </button>
-          );
-        return (
-          <button className="invoices-table-status-btn invoices-table-status-btn--success">
-            Paid
-          </button>
-        );
-      },
-    },
-  ]);
+  const [columnDefs] = useState(InvoicesTableDefs);
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -205,43 +87,6 @@ const InvoicesTable = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
-  };
-
   const components = useMemo(() => {
     return {
       agColumnHeader: CustomHeaderCell,
@@ -262,15 +107,8 @@ const InvoicesTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
 
-  const [showFilters, setShowFilters] = useFilterToggle();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -297,6 +135,7 @@ const InvoicesTable = () => {
   useRemoveId(gridApi, gridRef);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
   return (
     <>
@@ -312,136 +151,17 @@ const InvoicesTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            {/* <img src={search} alt="" /> */}
-            <ExpandingInput
-              setIsSearchOpen={setIsSearchOpen}
-              onFilterTextChange={onFilterTextChange}
+            <TableSettings
+              isSmallDevice={isSmallDevice}
+              defHeaderList={invoicesTableHeaderList}
+              rowData={rowData}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
             />
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <FilterSvg />
-            </button>
-            {/* popup */}
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.showingName}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-                // active: isFullScreen,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
-            {/* Show Grid */}
-            <button
-              className="all-orders__btn"
-              onClick={() => {
-                navigate("/invoices2");
-              }}
-            >
-              <FourDotsSvg fill="#D0C7E8" />
-            </button>
-            <LazyExcelExportBtn data={rowData} name="invoices" />
           </div>
         </div>
       </header>

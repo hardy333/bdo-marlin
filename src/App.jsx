@@ -65,6 +65,7 @@ import CategoriesTable from "./pages/CategoriesTable";
 import MTable from "./pages/MTable";
 import CategoriesTable2 from "./pages/CategoriesTable2";
 import SetPassword from "./pages/SetPassword";
+import PasswordPage from "./pages/PasswordPage";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ function App() {
             <Route path="/" element={<Dash />} />
             <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/mtable" element={<MTable />} />
+            <Route path="/password-page" element={<PasswordPage />} />
             <Route path="/set-password" element={<SetPassword />} />
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/employees" element={<Employees />} />
