@@ -8,6 +8,7 @@ import DatePickerInput from "../components/DatePickerInput";
 import { AnimatePresence } from "framer-motion";
 
 import { v4 as uuidv4 } from 'uuid';
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const options = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
@@ -65,6 +66,8 @@ const DiscountsCards = () => {
   }else{
     cards = products
   }
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
   
   return (
     <>
@@ -80,7 +83,7 @@ const DiscountsCards = () => {
             defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
           />
           <div className="vendors-switch-container ml-10">
-            <p className="">რეტრო ბონუსები</p>
+            <p className="">{isSmallDevice ? "ბონუსები" : "რეტრო ბონუსები"}</p>
             <div className="toggle-switch">
               <input
                 className="toggle-input"
