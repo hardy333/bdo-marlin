@@ -1,14 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import SearchSvg from "../components/svgs/SearchSvg";
 import "../styles/discounts-cards.css";
 
 import Select from "react-select";
 import DiscountCard from "../components/DiscountCard";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
-import { BsFillCalendarCheckFill } from "react-icons/bs";
-import DatePickerBtn from "../components/DatePickerBtn";
-import { addDays } from "date-fns";
 import DatePickerInput from "../components/DatePickerInput";
+import { AnimatePresence } from "framer-motion";
+
+import { v4 as uuidv4 } from 'uuid';
 
 const options = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
@@ -34,45 +33,38 @@ const options = [
 ];
 
 const products = [
-  { dis: 25, name: "კონსერვი" },
-  { dis: 45, name: "ფქვილი" },
-  { dis: 20, name: "კვერცხი" },
-  { dis: 10, name: "ლიმონი" },
-  { dis: 30, name: "ბანანი" },
-  { dis: 20, name: "კივი" },
-  { dis: 10, name: "შოკოლადი" },
-  { dis: 5, name: "სათამაშოები" },
-  { dis: 30, name: " ჯაგრისი" },
-  { dis: 15, name: "ვანილი" },
-  { dis: 20, name: "კოქტეილები" },
-  { dis: 50, name: "ბლითი" },
-  { dis: 10, name: "ზეთისხილი" },
-  { dis: 10, name: "ძეხვი" },
-  { dis: 35, name: "არაჟანი" },
-  { dis: 10, name: "ზეთი" },
-  { dis: 50, name: "ნაყინი" },
+  { dis: 25, name: "კონსერვი", id: uuidv4() },
+  { dis: 45, name: "ფქვილი", id: uuidv4() },
+  { dis: 20, name: "კვერცხი", id: uuidv4() },
+  { dis: 10, name: "ლიმონი", id: uuidv4() },
+  { dis: 30, name: "ბანანი", id: uuidv4() },
+  { dis: 20, name: "კივი", id: uuidv4() },
+  { dis: 10, name: "შოკოლადი", id: uuidv4() },
+  { dis: 5, name: "სათამაშოები", id: uuidv4() },
+  { dis: 30, name: " ჯაგრისი", id: uuidv4() },
+  { dis: 15, name: "ვანილი", id: uuidv4() },
+  { dis: 20, name: "კოქტეილები", id: uuidv4() },
+  { dis: 50, name: "ბლითი", id: uuidv4() },
+  { dis: 10, name: "ზეთისხილი", id: uuidv4() },
+  { dis: 10, name: "ძეხვი", id: uuidv4() },
+  { dis: 35, name: "არაჟანი", id: uuidv4() },
+  { dis: 10, name: "ზეთი", id: uuidv4() },
+  { dis: 50, name: "ნაყინი", id: uuidv4() },
 ];
+
+const products2 = products
+  .map((prod) => ({ ...prod, dis: prod.dis + 5, id: uuidv4() }))
+  .sort(() => Math.random() - 0.5);
 
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  const [dateChanged, setDateChanged] = useState(false);
-  const datePicekerRef = useRef(null);
-
-  const [dateState, setDateState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 0),
-      key: "selection",
-      color: "#6E0FF5",
-    },
-  ]);
-
-
-  console.log(isChecked)
-  
+  let cards
+  if(isChecked){
+    cards = products2
+  }else{
+    cards = products
+  }
   
   return (
     <>
@@ -88,7 +80,7 @@ const DiscountsCards = () => {
             defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
           />
           <div className="vendors-switch-container ml-10">
-            <p className="" >რეტრო ბონუსები</p>
+            <p className="">რეტრო ბონუსები</p>
             <div className="toggle-switch">
               <input
                 className="toggle-input"
@@ -102,32 +94,6 @@ const DiscountsCards = () => {
             <p className="">ფასდაკლებები</p>
           </div>
 
-          {/* Date Picker */}
-          {/* <div
-            className={`flex items-center sla-date ms-10 discounts-date-picker`}
-          >
-            <span
-              style={{
-                fontWeight: "600",
-                paddingRight: 10,
-                display: "flex",
-              }}
-              className="calendar-span"
-              onClick={() => datePicekerRef.current.click()}
-            >
-              <BsFillCalendarCheckFill />
-            </span>
-            <DatePickerBtn
-              datePicekerRef={datePicekerRef}
-              dateChanged={dateChanged}
-              setDateChanged={setDateChanged}
-              dateState={dateState}
-              setDateState={setDateState}
-              isSearchOpen={isSearchOpen}
-            />
-          </div> */}
-
-
           <DatePickerInput />
           <div className="input-wrapper">
             <input type="text" className="input" />
@@ -136,17 +102,19 @@ const DiscountsCards = () => {
         </header>
 
         <div className="discount-cards-container">
-          {products.map((obj, index) => {
-            return (
-              <DiscountCard
-                key={index}
-                name={obj.name}
-                dis={obj.dis}
-                index={index}
-                isBonusCard={isChecked === false}
-              />
-            );
-          })}
+          <AnimatePresence mode="wait" initial={false}>
+            {cards.map((obj, index) => {
+              return (
+                <DiscountCard
+                  name={obj.name}
+                  dis={obj.dis}
+                  index={index}
+                  key={obj.id}
+                  isBonusCard={isChecked === false}
+                />
+              );
+            })}
+          </AnimatePresence>
         </div>
         <div className="employee-pag-container">
           <button>&larr;</button>

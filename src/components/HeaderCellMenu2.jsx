@@ -4,12 +4,12 @@ import "../styles/header-cell-menu-2.css";
 import dotsSvg2 from "../assets/dotsSvg2.svg";
 const filterStates = [
   {
-    label: "Equals",
-    value: "equals",
-  },
-  {
     label: "contains",
     value: "contains",
+  },
+  {
+    label: "Equals",
+    value: "equals",
   },
   {
     label: "Not Contains",
@@ -34,35 +34,31 @@ const HeaderCellMenu2 = ({ p }) => {
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
-  // const menuRef = useClickAway(() => {
-  //   setOpen(false);
-  // });
+  console.log({p});
 
   const handleFilter = (e) => {
     const val = e.target.value;
     setFilterValue(e.target.value);
     // p.onFloatingFilterChanged("contains", val);
-    // console.log(p);
     const x = p.onFloatingFilterChanged;
-    console.log(p);
-    // console.log(val);
+    console.log(x);
 
     const filterInsatnce = p.api.getFilterInstance(p.column.colId);
+
     filterInsatnce.setModel({
       filterType: "text",
-      // type: "startsWith",
-      // type: "endsWith",
-      // type: "contains",
-      // type: "notContains",
-      // type: "equals",
-      // type: "notEquals",
-      // type: "blank",/
-      // ---
-      type: filterState.value,
+      // type: "startsWith", // Works
+      // type: "endsWith", // Works
+      type: "contains", // Works 
+      // type: "notContains", // Works
+      // type: "equals", // Works
+      // type: "notEquals", 
+      // type: "blank",
+      // type: filterState.value,
       filter: val,
     });
 
-    p.api.onFilterChanged();
+    // p.api.onFilterChanged();
   };
 
   return (

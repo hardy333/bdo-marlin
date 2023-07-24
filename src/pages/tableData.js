@@ -11,6 +11,5 @@ let allExpData = x.map(obj => {
     return {...obj, subRows: obj.subRows.map(obj => ({...obj, subRows:[...subTableData]}))}
 })
 
-console.log(allExpData)
 
 export {allData, subTableData, allExpData}

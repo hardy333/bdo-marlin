@@ -10,6 +10,9 @@ const CustomHeaderCell = (props) => {
   const [sortingState, setSortingState] = useState(["none", "asc", "desc"]);
   const [sortingStateIndex, setSortingStateIndex] = useState(0);
 
+  console.log({props})
+  
+
   const handleSorting = (e) => {
     if (
       e.target.classList.contains("header-cell-menu-button-2") ||

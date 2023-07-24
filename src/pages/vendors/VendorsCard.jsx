@@ -23,9 +23,6 @@ const VendorsCard = ({
 
   const footerActive = (
     <div className="vendor-card-footer">
-      {/* <button className="btn btn-link">View Calendar</button>
-      <div className="vendor-card-hr"></div>
-      <button className="btn btn-link">View Catalogue</button> */}
       <Tippy
         className="tooltip-1"
         arrow={false}
