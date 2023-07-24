@@ -312,7 +312,7 @@ const OrderDetails = () => {
                     className="tooltip-1"
                     arrow={false}
                     placement="top"
-                    content="მომწოდებელი"
+                    content={`მომწოდებელი: ${vendor}`}
                   >
                     <p className="flex gap:2 p mb-2">
                       <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
@@ -330,7 +330,7 @@ const OrderDetails = () => {
                     className="tooltip-1"
                     arrow={false}
                     placement="top"
-                    content="თანხა"
+                    content={`თანხა: 1578 GEL`}
                   >
                     <p className="p">
                       <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
@@ -369,7 +369,7 @@ const OrderDetails = () => {
                     className="tooltip-1"
                     arrow={false}
                     placement="top"
-                    content="ინვოისის თანხა"
+                    content="ინვოისის თანხა: 2039 GEL"
                   >
                     <p className="p">
                       <span className="block icon-span font-bold text-[14px] pe-3 bg">
@@ -388,7 +388,8 @@ const OrderDetails = () => {
                   className="tooltip-1"
                   arrow={false}
                   placement="top"
-                  content="შეკვეთის თარიღი"
+                  content={`შეკვეთის თარიღი: 
+                  25/05/2023`}
                 >
                   <p className="p">
                     <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
@@ -403,7 +404,7 @@ const OrderDetails = () => {
                   className="tooltip-1"
                   arrow={false}
                   placement="top"
-                  content="გეგმიური მოწოდების თარიღი"
+                  content="გეგმიური მოწოდების თარიღი: 02/08/2023"
                 >
                   <p className="p">
                     <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
