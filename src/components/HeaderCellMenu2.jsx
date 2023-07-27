@@ -54,7 +54,6 @@ const HeaderCellMenu2 = ({ p }) => {
       // type: "notEquals", 
       // type: "blank",
       // type: filterState.value,
-
       type: filterState.value,
       filter: val,
     });
@@ -123,7 +122,7 @@ const HeaderCellMenu2 = ({ p }) => {
             <input type="number" placeholder="Max Value" />
           ) : null}
         </header>
-        <MenuItem>
+        {/* <MenuItem>
           <input type="checkbox" id="select-all" />
           <label htmlFor="select-all">Select All</label>
         </MenuItem>
@@ -146,7 +145,7 @@ const HeaderCellMenu2 = ({ p }) => {
         <MenuItem>
           <input type="checkbox" id="1989" />
           <label htmlFor="1989">1989</label>
-        </MenuItem>
+        </MenuItem> */}
       </Menu>
     </>
   );

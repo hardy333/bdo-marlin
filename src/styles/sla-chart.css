@@ -1,0 +1,60 @@
+.apexcharts-tooltip-title {
+  text-align: center;
+}
+
+.apexcharts-tooltip-series-group {
+  margin-bottom: -10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.apexcharts-tooltip {
+  background: #fff;
+  color: #211543;
+  box-shadow: 0px 0px 3px 5px rgba(208, 199, 232, 0.25);
+  padding-right: 20px;
+  border-radius: 20px !important;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  min-width: 150px;
+}
+
+.apexcharts-xaxistooltip.apexcharts-xaxistooltip-bottom {
+  display: none;
+}
+
+/* viwe more */
+/* viwe more */
+/* viwe more */
+
+.dash-top-chart-container{
+    position: relative;
+}
+
+
+
+.chart-view-more {
+  position: absolute;
+  color: #d0c7e8;   
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  bottom: 5px;
+  right: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chart-view-more:hover{
+    color:#211543;
+}
+
+
+.left-chart  .chart-view-more {
+    bottom: 2px;
+}
+    

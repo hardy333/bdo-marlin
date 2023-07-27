@@ -4,12 +4,9 @@ const allOrdersParentDefs = [
     field: "date",
     headerName: "თარიღი",
     cellRenderer: (params) => {
-
-      
       
       const { value } = params;
 
-      console.log(value, typeof value)
       return value.split(" ")[0].split("-").reverse().join("/");
     },
   },
@@ -34,9 +31,9 @@ const allOrdersParentDefs = [
   {
     field: "amount",
     headerName: "თანხა",
+    valueType: "number",
     cellRenderer: (params) => {
       const { value } = params;
-      console.log("Tanxa", value, typeof value)
       return value + " GEL";
     },
   },

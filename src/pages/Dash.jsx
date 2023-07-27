@@ -6,6 +6,10 @@ import ColumnCHart from "../components/ColumnCHart";
 import RightChartBubbles from "../components/RightChartBubbles";
 import CountUp from "react-countup";
 
+import {BsArrowRight} from "react-icons/bs"
+
+
+
 const Dash = () => {
   return (
     <>
@@ -117,22 +121,27 @@ const Dash = () => {
           {/* Header End */}
           <div className="main-dashboard-charts bg-transparent">
             <div className="top-chart-container gap-[20px]">
-              <div style={{width: "70%", background: "#fff", borderRadius: "inherit"}}>
+              <div className="dash-top-chart-container" style={{width: "70%", background: "#fff", borderRadius: "inherit", paddingBottom: "20px"}}>
                 <DashTopChart />
+                <span className="chart-view-more">View more <BsArrowRight /></span>
               </div>
-              <section className="right-chart" style={{background: "#fff", borderRadius: "inherit"}}>
+              <section className="right-chart relative pb-10" style={{background: "#fff", borderRadius: "inherit", paddingBottom: "20px"}}>
                 <h2>პრობლემური მომწოდებლები</h2>
                 <RightChartBubbles />
+                <span className="chart-view-more">View more  <BsArrowRight /> </span>
               </section>
             </div>
             <div className="bottom-chart-container">
-              <section className="left-chart">
+              <section className="left-chart relative">
                 <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
                 <ColumnCHart />
+                <span className="chart-view-more">View more <BsArrowRight /></span>
+
               </section>
-              <section className="left-chart">
+              <section className="left-chart relative">
                 <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
                 <ColumnCHart />
+                <span className="chart-view-more">View more<BsArrowRight /> </span>
               </section>
             </div>
           </div>

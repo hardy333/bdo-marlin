@@ -72,6 +72,11 @@ const options = {
       formatter: function (value) {
         return value + " %";
       },
+      style:{
+        colors: ["#D0C7E8"],
+        fontSize: '12px',
+        fontWeight: 500,
+      }
     },
     min: 0,
     max: 100,
@@ -81,7 +86,7 @@ const options = {
 
 const ColumnCHart = () => {
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={200} />
+    <ReactApexChart options={options} series={series} type="bar" height={180} />
   );
 };
 
