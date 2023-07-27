@@ -71,7 +71,7 @@ const Dash = () => {
             <CountUp
               useEasing={false}
               start={0}
-              end={324}
+              end={64}
               duration={0.5}
               delay={0}
             >
@@ -84,7 +84,7 @@ const Dash = () => {
             <CountUp
               useEasing={false}
               start={0}
-              end={4534}
+              end={84}
               duration={0.4}
               delay={0}
             >

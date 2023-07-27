@@ -77,7 +77,6 @@ const CatalogueTableDefs = [
       const { value } = params;
       const price = params.data.price;
 
-      console.log(value, price);
 
       let newVal = value;
       let randNam = Math.random();

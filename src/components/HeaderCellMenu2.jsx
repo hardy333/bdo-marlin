@@ -34,7 +34,7 @@ const HeaderCellMenu2 = ({ p }) => {
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
-  console.log({p})
+  console.log(p)
 
   const handleFilter = (e) => {
     const val = e.target.value;
@@ -62,7 +62,7 @@ const HeaderCellMenu2 = ({ p }) => {
     p.api.onFilterChanged();
   };
 
-  console.log(filterState)
+  // console.log(filterState)
 
   return (
     <>
