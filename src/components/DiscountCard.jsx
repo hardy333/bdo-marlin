@@ -19,14 +19,11 @@ const DiscountCard = ({ index, name, dis, isBonusCard }) => {
         y: 0,
       }}
       exit={{ 
-        opacity: 0,
+        opacity: 0, 
         y: -10,
       }}
-      className="discount-card"
-      style={{
-        background: isBonusCard ? "rgba(111, 15, 245, 0.056)" : "#fff",
-        border: isBonusCard ? null : "1px solid rgba(111, 15, 245, 0.106)",
-      }}
+      className={`discount-card ${isBonusCard ? "discount-card-bonus" : ""}`}
+      
     >
       <h2>
         {name} - {dis}%

@@ -56,7 +56,7 @@ import DiscountsTable2 from "./pages/DiscountsTable2";
 import StableTable from "./pages/StableTable";
 import ExpandableTable from "./pages/ExpandableTable";
 
-import ColorsPage  from "./pages/ColorsPage";
+import ColorsPage from "./pages/ColorsPage";
 
 import { QueryClientProvider, QueryClient } from "react-query";
 import Test from "./pages/Test";
@@ -74,12 +74,16 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/set-password" element={<SetPassword />} />
+
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
             <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/mtable" element={<MTable />} />
             <Route path="/password-page" element={<PasswordPage />} />
-            <Route path="/set-password" element={<SetPassword />} />
+
             <Route path="/invoices-table" element={<InvoicesTable />} />
             <Route path="/employees" element={<Employees />} />
             <Route path="/profile" element={<Profile />}>
@@ -94,8 +98,6 @@ function App() {
             <Route path="/invoices2" element={<Invoices2 />} />
 
             <Route path="/vendors" element={<Vendors />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
 
             <Route path="/prices" element={<Prices />} />
 

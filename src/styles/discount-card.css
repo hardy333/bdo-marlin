@@ -10,6 +10,23 @@
 
   min-height: 213px;
   overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.discount-card:hover{
+  border: 1px solid #2654D3;
+
+}
+
+
+.discount-card-bonus{
+
+}
+
+.discount-card-bonus:hover{
+  border: 1px solid #FF3360;
+
+
 }
 
 .discount-card h2{
@@ -18,10 +35,14 @@ font-size: 18px;
 line-height: 17px;
 font-size: 17px;
 
-color: #F55364;
+color: #2654D3;
 margin-bottom: 0.5rem;
 
 
+}
+
+.discount-card-bonus h2{
+  color: #FF3360;
 }
 
 .discount-card h3{
@@ -66,12 +87,24 @@ margin-bottom: 2px;
   border: none;
   margin-top: 2rem;
   background-color: transparent;
-  border: 1px solid #6E0FF5;
+  border: 1px solid #2654D3;
+  letter-spacing: 0.3px;
 }
 
 .discount-card .btn:hover{
-  background-color: #6E0FF5;
+  background-color: #2654D3;
   color: #fff;
+
+
+}
+
+.discount-card-bonus .btn{
+
+  border: 1px solid #FF3360;
+}
+
+.discount-card-bonus .btn:hover{
+  background-color: #FF3360;
 
 
 }
