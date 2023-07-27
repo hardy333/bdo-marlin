@@ -64,6 +64,34 @@ const Dash = () => {
         </div>
 
         <div className="main-dashboard-right">
+          <div className="header-container">
+          <div className="stat-card">
+            <h3>მაღაზიები</h3>
+
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={324}
+              duration={0.5}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
+            </CountUp>
+          </div>
+          <div className="stat-card">
+            <h3>ასორტიმენტი</h3>
+
+            <CountUp
+              useEasing={false}
+              start={0}
+              end={4534}
+              duration={0.4}
+              delay={0}
+            >
+              {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
+            </CountUp>
+          </div>
+
           <header
             className="main-dashboard-header"
             style={{ "--animate-duration": "300ms" }}
@@ -85,18 +113,26 @@ const Dash = () => {
               </h3>
             </div>
           </header>
+          </div>
+          {/* Header End */}
           <div className="main-dashboard-charts">
             <div className="top-chart-container">
-              <DashTopChart />
+              <div style={{width: "70%",}}>
+                <DashTopChart />
+              </div>
+              <section className="right-chart">
+                <h2>პრობლემური მომწოდებლები</h2>
+                <RightChartBubbles />
+              </section>
             </div>
             <div className="bottom-chart-container">
               <section className="left-chart">
                 <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
                 <ColumnCHart />
               </section>
-              <section className="right-chart">
-                <h2>პრობლემური მომწოდებლები</h2>
-                <RightChartBubbles />
+              <section className="left-chart">
+                <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
+                <ColumnCHart />
               </section>
             </div>
           </div>

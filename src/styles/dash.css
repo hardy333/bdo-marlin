@@ -6,6 +6,11 @@
   display: none;
 }
 
+
+.right-chart{
+  width: 30%;
+}
+
 .right-chart h2{
   padding: 1rem;
 }
