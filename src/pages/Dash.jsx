@@ -66,7 +66,7 @@ const Dash = () => {
         <div className="main-dashboard-right">
           <div className="header-container">
           <div className="stat-card">
-            <h3>მაღაზიები</h3>
+            <h3>ფასდაკლებები</h3>
 
             <CountUp
               useEasing={false}
@@ -79,7 +79,7 @@ const Dash = () => {
             </CountUp>
           </div>
           <div className="stat-card">
-            <h3>ასორტიმენტი</h3>
+            <h3>რეტრო ბონუსები</h3>
 
             <CountUp
               useEasing={false}
