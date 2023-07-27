@@ -25,7 +25,7 @@ const filterStates = [
   },
   {
     label: "Ends With",
-    value: "endsWidth",
+    value: "endsWith",
   },
 ];
 
@@ -34,6 +34,7 @@ const HeaderCellMenu2 = ({ p }) => {
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
+  console.log({p})
 
   const handleFilter = (e) => {
     const val = e.target.value;
@@ -47,17 +48,21 @@ const HeaderCellMenu2 = ({ p }) => {
       filterType: "text",
       // type: "startsWith", // Works
       // type: "endsWith", // Works
-      type: "contains", // Works 
+      // type: "contains", // Works 
       // type: "notContains", // Works
       // type: "equals", // Works
       // type: "notEquals", 
       // type: "blank",
       // type: filterState.value,
+
+      type: filterState.value,
       filter: val,
     });
 
-    // p.api.onFilterChanged();
+    p.api.onFilterChanged();
   };
+
+  console.log(filterState)
 
   return (
     <>
