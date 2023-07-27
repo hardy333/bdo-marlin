@@ -20,7 +20,7 @@ const options = {
   colors: colors,
   plotOptions: {
     bar: {
-      columnWidth: "15%",
+      columnWidth: "12%",
       distributed: true,
       borderRadius: 5,
     },
