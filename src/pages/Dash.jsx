@@ -115,12 +115,12 @@ const Dash = () => {
           </header>
           </div>
           {/* Header End */}
-          <div className="main-dashboard-charts">
-            <div className="top-chart-container">
-              <div style={{width: "70%",}}>
+          <div className="main-dashboard-charts bg-transparent">
+            <div className="top-chart-container gap-[20px]">
+              <div style={{width: "70%", background: "#fff", borderRadius: "inherit"}}>
                 <DashTopChart />
               </div>
-              <section className="right-chart">
+              <section className="right-chart" style={{background: "#fff", borderRadius: "inherit"}}>
                 <h2>პრობლემური მომწოდებლები</h2>
                 <RightChartBubbles />
               </section>
