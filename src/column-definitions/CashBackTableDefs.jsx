@@ -15,7 +15,7 @@ const CashBackTableDefs = [
           },
         },
         {
-          field: "bonus",
+          field: "retroPercent",
           headerName: "ბონუსი",
           cellRenderer: (params) => {
             const { value } = params;
@@ -40,7 +40,7 @@ const CashBackTableDefs = [
           headerName: "მარაგი",
           cellRenderer: (params) => {
             const { value } = params;
-            return value;
+            return undefined + ".";
           },
         },
       ],
@@ -74,7 +74,7 @@ const cashBackTableHeaderList = [
     //     isShowing: true,
     //   },
     {
-      name: "bonus",
+      name: "retroPercent",
       showingName: "ბონუსი",
 
       isShowing: true,

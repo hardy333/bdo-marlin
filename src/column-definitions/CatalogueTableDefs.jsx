@@ -1,3 +1,5 @@
+import TriangleSvg from "../components/svgs/TriangleSvg";
+
 const catalogueTableHeaderList = [
   {
     name: "barcode",

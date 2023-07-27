@@ -10,7 +10,6 @@ const CustomHeaderCell = (props) => {
   const [sortingState, setSortingState] = useState(["none", "asc", "desc"]);
   const [sortingStateIndex, setSortingStateIndex] = useState(0);
 
-  console.log({props})
   
 
   const handleSorting = (e) => {
@@ -50,6 +49,8 @@ const CustomHeaderCell = (props) => {
         hCell.classList.remove("desc");
       });
   };
+
+
 
   // useEffect(() => {
   //   const btn = document.querySelector(".header-cell-menu-button-2");

@@ -134,6 +134,8 @@ img{
   background-position: 50% 70%;
   background-size: contain;
 
+  display: none;
+
 
 
 }
@@ -149,7 +151,7 @@ img{
   display: none;
 }
 .dashboard--dash .btn-messenger{
-  display: block;
+  /* display: block; */
 }
 
 .btn-messenger::before{

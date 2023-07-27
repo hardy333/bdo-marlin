@@ -105,7 +105,7 @@ const discountTableHeaderList = [
       ],
     },
     {
-      headerName: "უკვე შეძენლი",
+      headerName: "უკვე შეძენილი",
       children: [
         {
           field: "Ordered Amount",

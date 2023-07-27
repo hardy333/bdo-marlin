@@ -79,7 +79,7 @@ const DashboardNavbar = () => {
 
           <Link to="/login" className="ring-link" style={{ marginRight: 10 }}>
             <img src={ring} alt="" />
-            <div className="ring-box">
+            {/* <div className="ring-box">
               <header>
                 <PlusSvg />
                 <HouseSvg />
@@ -94,7 +94,7 @@ const DashboardNavbar = () => {
                 <p>შეკვეთის თანხა:</p>
                 <p>413.5 GEL</p>
               </footer>
-            </div>
+            </div> */}
           </Link>
           <Link to="/login">
             <img src={arrow} alt="" />

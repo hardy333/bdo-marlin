@@ -53,6 +53,8 @@ import ExcelExportBtn from "../components/ExcelExportBtn";
 import { CashBackTableDefs, cashBackTableHeaderList } from "../column-definitions/CashBackTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { useQuery } from "react-query";
+import { fetchData } from "../utils/fetchData";
 
 const shopsArr = [
   {
@@ -129,11 +131,31 @@ const CashBackTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
 
   const [columnDefs] = useState(CashBackTableDefs);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+
+
+  const url = "https://10.0.0.202:5001/api/RetroBonus/M00001";
+
+  const { isLoading, error, data } = useQuery("all-orders-data", () => fetchData(url));
+
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+  }, [data, isLoading, error]);
+
+  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -165,42 +187,6 @@ const CashBackTable = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
-  };
 
   const components = useMemo(() => {
     return {

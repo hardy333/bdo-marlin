@@ -28,7 +28,6 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import useFilterToggle from "../hooks/useFilterToggle";
 import AgTablePag from "../components/AgTablePag";
 import CatalogueMenu from "../components/CatalogueMenu";
 import useRemoveId from "../components/useRemoveId";
@@ -79,7 +78,6 @@ const CatalogueTable = () => {
 
   const [columnDefs] = useState(CatalogueTableDefs);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -112,42 +110,6 @@ const CatalogueTable = () => {
     setGridReady(true);
   };
 
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
-  };
 
   const components = useMemo(() => {
     return {
@@ -181,15 +143,10 @@ const CatalogueTable = () => {
   };
   const gridRef = useRef(null);
 
-  const [showFilters, setShowFilters] = useFilterToggle();
   // --------//
   // --------//
   const [isHover, setIsHover] = useState(false);
-  const [isSectionHover, setIsSectionHover] = useState(false);
 
-  const disableHoverAsync = () => {
-    setIsHover(false);
-  };
 
   const [isChecked, setISChecked] = useState(false);
 
