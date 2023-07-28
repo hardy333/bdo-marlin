@@ -17,7 +17,7 @@ const filterStates = [
   },
   {
     label: "Not equal",
-    value: "notEquals",
+    value: "notEqual",
   },
   {
     label: "Starts With",

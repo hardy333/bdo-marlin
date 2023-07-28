@@ -14,7 +14,7 @@
 }
 
 .discount-card:hover{
-  border: 1px solid #2654D3;
+  border: 1px solid rgba(102, 195, 245, 1);
 
 }
 
@@ -24,7 +24,7 @@
 }
 
 .discount-card-bonus:hover{
-  border: 1px solid #FF3360;
+  border: 1px solid rgba(252, 142, 166, 1);
 
 
 }
