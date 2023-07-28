@@ -95,8 +95,8 @@ const CalendarTableDefs = [
             <div className="circle-container">
               <span className={`circle active`}></span>
               <span
-                className={`circle ${isTwo ? "active stroked" : ""}`}
-                style={{ display: isTwo ? "block" : "none" }}
+                className={`circle active ${isTwo ? " stroked" : ""}`}
+          
               ></span>
             </div>
           </Tippy>
