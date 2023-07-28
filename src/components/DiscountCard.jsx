@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 const DiscountCard = ({ index, name, dis, isBonusCard }) => {
   const navigate = useNavigate();
 
-  console.log(isBonusCard);
 
   return (
     <motion.article

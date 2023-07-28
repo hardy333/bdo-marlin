@@ -29,32 +29,43 @@ const filterStates = [
   },
 ];
 
+const numberFilterStates = [
+  {
+    label: "greaterThanOrEqual",
+    value: "greaterThanOrEqual",
+  },
+];
+
 const HeaderCellMenu2 = ({ p }) => {
   const [filterState, setFilterState] = useState(filterStates[0]);
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
-  console.log(p)
-
   const handleFilter = (e) => {
-    const val = e.target.value;
+    const val = Number(e.target.value);
     setFilterValue(e.target.value);
     // p.onFloatingFilterChanged("contains", val);
     const x = p.onFloatingFilterChanged;
 
     const filterInsatnce = p.api.getFilterInstance(p.column.colId);
 
+    console.log(val, typeof val);
+
     filterInsatnce.setModel({
-      filterType: "text",
+      // filterType: "number",
       // type: "startsWith", // Works
       // type: "endsWith", // Works
-      // type: "contains", // Works 
+      // type: "contains", // Works
       // type: "notContains", // Works
       // type: "equals", // Works
-      // type: "notEquals", 
+      // type: "notEquals",
       // type: "blank",
       // type: filterState.value,
-      type: filterState.value,
+      // type: "lessThan",
+      // filter: val,
+
+      filterType: "number",
+      type: "lessThan",
       filter: val,
     });
 

@@ -1,11 +1,10 @@
 const allOrdersParentDefs = [
- 
   {
     field: "date",
     headerName: "თარიღი",
     cellRenderer: (params) => {
-      
       const { value } = params;
+      console.log("split value: ", value);
 
       return value.split(" ")[0].split("-").reverse().join("/");
     },
@@ -13,13 +12,12 @@ const allOrdersParentDefs = [
   {
     field: "shop",
     headerName: "მაღაზია",
-    // hide: true, 
+    // hide: true,
     cellRenderer: (params) => {
       const { value } = params;
       return value;
     },
   },
-
   {
     field: "vendor",
     headerName: "მომწოდებელი",
@@ -63,8 +61,8 @@ const allOrdersParentDefs = [
         color = "#6E0FF5";
       } else if (value === "დადასტურებულია") {
         color = "#FF7BA7";
-      }else if (value === "გასაგზავნია"){
-        color = "#f55364"
+      } else if (value === "გასაგზავნია") {
+        color = "#f55364";
       }
 
       return (
@@ -111,12 +109,12 @@ const allOrdersParentDefs = [
     headerName: "ინვოისის თანხა",
 
     cellRenderer: (params) => {
-      let show = true
-      if(Math.random() - 0.4 < 0){
-        show = false
+      let show = true;
+      if (Math.random() - 0.4 < 0) {
+        show = false;
       }
-      
-      return show ? Math.floor(Math.random() * 1060 + 40) + " GEL" :  "";
+
+      return show ? Math.floor(Math.random() * 1060 + 40) + " GEL" : "";
     },
   },
   {
@@ -136,52 +134,43 @@ const allOrdersParentDefs = [
 ];
 
 export const allOrdersParentHeaderList = [
-    {
-      name: "shop",
-      showingName: "მაღაზია",
-      isShowing: true
+  {
+    name: "shop",
+    showingName: "მაღაზია",
+    isShowing: true,
+  },
+  {
+    name: "date",
+    showingName: "თარიღი",
+    isShowing: true,
+  },
 
-    },
-    {
-      name: "date",
-      showingName: "თარიღი",
-      isShowing: true
+  {
+    name: "vendor",
+    showingName: "მომწოდებელი",
+    isShowing: true,
+  },
+  {
+    name: "amount",
+    showingName: "თანხა",
+    isShowing: true,
+  },
+  {
+    name: "scheduled",
+    showingName: "გეგმიური მიწოდება",
+    isShowing: true,
+  },
+  {
+    name: "status",
+    showingName: "სტატუსი",
+    isShowing: true,
+  },
 
-    },
-
-    {
-      name: "vendor",
-      showingName: "მომწოდებელი",
-      isShowing: true
-
-    },
-    {
-      name: "amount",
-      showingName: "თანხა",
-      isShowing: true
-
-    },
-    {
-      name: "scheduled",
-      showingName: "გეგმიური მიწოდება",
-      isShowing: true
-
-    },
-    {
-      name: "status",
-      showingName: "სტატუსი",
-      isShowing: true
-
-      },
-
-    {
-      name: "serviceLevel",
-      showingName: "სერვისის დონე",
-      isShowing: true
-      
-    },
-   
-  ]
-
+  {
+    name: "serviceLevel",
+    showingName: "სერვისის დონე",
+    isShowing: true,
+  },
+];
 
 export default allOrdersParentDefs;

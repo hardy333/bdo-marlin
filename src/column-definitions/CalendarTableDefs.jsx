@@ -6,22 +6,27 @@ const days = ["M", "T", "W", "T", "F", "S", "S"];
 const calendarTableHeaderList = [
   {
     name: "Shop",
+    showingName: "მაღაზია",
     isShowing: true,
   },
   {
     name: "Shop Address",
+    showingName: "მისამართი",
     isShowing: true,
   },
   {
     name: "Vendor",
+    showingName: "მომწოდებელი",
     isShowing: true,
   },
   {
     name: "Brand",
+    showingName: "ბრენდი",
     isShowing: true,
   },
   {
-    name: "Dis Date",
+    name: "Distributor's Date",
+    showingName: "მოწოდების თარიღი",
     isShowing: true,
   },
 ];

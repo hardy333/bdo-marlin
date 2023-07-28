@@ -23,8 +23,6 @@ import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 
-import classNames from "classnames";
-
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
@@ -33,31 +31,22 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-import useFilterToggle from "../hooks/useFilterToggle";
 import { useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import OrderDetailsCards from "../components/OrderDetailsCards";
-import VendorsCard from "./vendors/VendorsCard";
-import CarSvg from "../components/svgs/service-level-svgs/CarSvg";
-import VendorsCalendarSvg from "../components/svgs/VendorsCalendarSvg";
 import Tippy from "@tippyjs/react";
 import TableSettings from "../components/TableSettings";
-import { OrderDetailsDefs, orderDetailsHeaderList } from "../column-definitions/OrderDetailsDefs";
+import {
+  OrderDetailsDefs,
+  orderDetailsHeaderList,
+} from "../column-definitions/OrderDetailsDefs";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(orderDetailsHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [searchParams] = useSearchParams();
@@ -86,8 +75,6 @@ const OrderDetails = () => {
 
   const [columnDefs] = useState(OrderDetailsDefs);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
   useEffect(() => {
     if (isFullScreen) {
       document.body.classList.add("dashboard-main-fullscreen");
@@ -104,6 +91,7 @@ const OrderDetails = () => {
       minWidth: 150,
       floatingFilter: true,
       suppressMovable: true,
+      filterParams: { newNumberFilter: true },
       floatingFilterComponent: CustomInput,
     }),
     []
@@ -116,43 +104,6 @@ const OrderDetails = () => {
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
     setGridReady(true);
-  };
-
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
   };
 
   const components = useMemo(() => {
@@ -176,19 +127,9 @@ const OrderDetails = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
   const gridRef = useRef(null);
-
-  const [showFilters, setShowFilters] = useFilterToggle();
 
   // URL info
   let date = searchParams.get("date") || "01/30/2023";

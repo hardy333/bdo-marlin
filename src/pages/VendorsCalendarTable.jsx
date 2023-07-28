@@ -126,7 +126,6 @@ const VendorsCalendarTable = () => {
     }),
     []
   );
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
   // EVents
   // EVents
@@ -134,43 +133,6 @@ const VendorsCalendarTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-  };
-
-  const onFilterTextChange = (e) => {
-    if (e.target.value === "") {
-      setIsGlobalFilterEmpty(true);
-    } else {
-      setIsGlobalFilterEmpty(false);
-    }
-
-    gridApi.setQuickFilter(e.target.value);
-  };
-
-  const toggleColumn = (name) => {
-    const newHeaderList = headerList.map((header) =>
-      header.name !== name
-        ? header
-        : { ...header, isShowing: !header.isShowing }
-    );
-    const currHeader = headerList.find((header) => header.name === name);
-    setHeaderList(newHeaderList);
-    gridColumnApi.setColumnVisible(name, !currHeader.isShowing);
-  };
-
-  const hideAllColumns = () => {
-    setHeaderList(
-      headerList.map((header) => ({ ...header, isShowing: false }))
-    );
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, false);
-    });
-  };
-
-  const showAllColumns = () => {
-    setHeaderList(headerList.map((header) => ({ ...header, isShowing: true })));
-    headerList.forEach((header) => {
-      gridColumnApi.setColumnVisible(header.name, true);
-    });
   };
 
   const components = useMemo(() => {
@@ -201,7 +163,6 @@ const VendorsCalendarTable = () => {
     }
   };
 
-  const [showFilters, setShowFilters] = useFilterToggle();
   const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);

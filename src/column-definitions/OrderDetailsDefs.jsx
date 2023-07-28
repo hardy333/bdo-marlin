@@ -14,18 +14,22 @@ const OrderDetailsDefs = [
   {
     field: "quantity",
     headerName: "რაოდენობა",
+    filterParams: { newNumberFilter: true },
   },
   {
     field: "price",
     headerName: "ფასი",
+    filterParams: { newNumberFilter: true },
     cellRenderer: (params) => {
       const { value } = params;
       return value + " " + "GEL";
+
     },
   },
   {
     field: "amount",
     headerName: "თანხა",
+    filterParams: { newNumberFilter: true },
     cellRenderer: (params) => {
       const { value } = params;
       return value + " " + "GEL";
