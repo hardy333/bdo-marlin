@@ -87,6 +87,7 @@ const HeaderCellMenu2 = ({ p }) => {
         onItemClick={(e) => {
           e.keepOpen = true;
         }}
+        align="center"
       >
         <header id="header-header-x">
           <button
