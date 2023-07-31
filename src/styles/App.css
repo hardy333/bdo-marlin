@@ -209,8 +209,7 @@ img {
     border-radius: 0;
     left: 0;
     transform: translate(-110%, 0);
-    min-height: 100vh;
-    max-height: 100vh;
+    max-height: calc(100vh - 150px);
     overflow-y: auto;
   }
 
