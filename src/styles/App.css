@@ -210,7 +210,7 @@ img {
     left: 0;
     transform: translate(-110%, 0);
     /* max-height: calc(100vh - 150px); */
-    height: 669px;
+    height: 100vh;
     overflow-y: auto;
   }
 

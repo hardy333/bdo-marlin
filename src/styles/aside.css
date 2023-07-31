@@ -1,6 +1,5 @@
 .dashboard-aside {
   background-color: var(--bg-aside);
-  /* min-height: 580px; */
   max-height: calc(100vh - 40px);
   width: var(--sidebar-width);
 
