@@ -209,7 +209,8 @@ img {
     border-radius: 0;
     left: 0;
     transform: translate(-110%, 0);
-    max-height: calc(100vh - 150px);
+    /* max-height: calc(100vh - 150px); */
+    height: 669px;
     overflow-y: auto;
   }
 
