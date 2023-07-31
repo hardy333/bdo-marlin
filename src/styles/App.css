@@ -209,9 +209,10 @@ img {
     border-radius: 0;
     left: 0;
     transform: translate(-110%, 0);
-    /* max-height: calc(100vh - 150px); */
-    height: 100vh;
     overflow-y: auto;
+    height: unset;
+    max-height: unset;
+    
   }
 
   .dashboard-aside.responsive .aside-btn {
