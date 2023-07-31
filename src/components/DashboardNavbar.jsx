@@ -22,7 +22,16 @@ const DashboardNavbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  console.log(pathname)
+
+  let isContract = false;
+  
+  if(pathname === "/contract"){
+    isContract = true
+  }
+
   const isStartingPage = startingPages.includes(pathname);
+
   const backArrow = (
     <img
       onClick={() => navigate(-1)}
@@ -46,7 +55,7 @@ const DashboardNavbar = () => {
 
   return (
     <header
-      className="dashboard-navbar"
+      className={`dashboard-navbar ${isContract ? "dashboard-navbar-fixed" : ""}`}
       style={{ height: "63px", flexShrink: 0 }}
     >
       <button className="sidebar-menu-btn" onClick={toggleSidebar}>

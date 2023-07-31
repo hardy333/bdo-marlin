@@ -1,0 +1,122 @@
+/* body:has(.contract){
+    scroll-padding-top: 290px;
+} */
+
+.dashboard:has(.contract){
+    scroll-padding-top: 80px;
+}
+
+
+body{
+   overflow: hidden !important;
+   
+}
+
+
+.contract{
+
+    --top-fixed-position: 80px;
+}
+
+.contract h1{
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+
+}
+
+.contract-main{
+    display: flex;
+
+
+}
+
+.contract-headings{
+    min-width: 300px;
+    /* padding-top: 10px; */
+
+
+}
+
+.contract-headings__list{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* padding-top: 20px; */
+    border-right: 1px solid #efefef;
+    padding-right: 20px;
+    height: 570px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+
+    position: sticky;
+    top: 80px;
+    /* border: 1px solid black; */
+    /* box-shadow: inset 0px 10px 1px -1px rgba(249, 248, 252, 1);
+    box-shadow: inset 0px 10px 10px 0px rgba(255, 0, 0, 0.366);
+    box-shadow: inset 0px 20px 0px 0px red; */
+    z-index: 1; 
+    /* padding-top: 30px; */
+
+}
+.contract-headings__list::before{
+    content: "";
+    position: fixed;
+    display: block;
+    top: 0px;
+    left: 10px;
+    width: 100%;
+    height:0px;
+    z-index: 2;
+    background-color: green;
+    /* box-shadow:  20px 0px 3px 25px rgba(249, 248, 252, 1); */
+
+    display: none;
+    /* box-shadow:  0px 0px 10px 10px red; */
+    /* transform: translate(0, 100%); */
+
+
+}
+
+
+
+.contract-headings__list-item{
+    display: flex;
+    gap: 2rem;
+    cursor: pointer;
+    padding-left: 45px;
+    border-left: 2px solid transparent;
+    font-size: 14px;
+    color:#2a1f4ba7;
+
+}
+
+.contract-headings__list-item:hover{
+    border-color: rgb(110, 15, 245);
+    color: var(--color-text-1);
+}
+
+.contract-headings__list-item.active{
+    border-color: rgb(110, 15, 245);
+    color: var(--color-text-1);
+}
+
+/* .contract-headings__list-item:first-of-type{
+    border-color: rgb(110, 15, 245);
+    color: var(--color-text-1);
+} */
+
+.contract-text{
+    padding-left: 30px;
+    position: sticky !important;
+    top: 80px;
+    padding-bottom: 20px;
+    /* height: 600px; */
+    /* overflow-y: auto; */
+    /* border: 1px solid  black; */
+}
+
+.contract-text__heading:first-of-type{
+    margin-top: 0 !important;
+}
