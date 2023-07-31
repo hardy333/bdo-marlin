@@ -46,7 +46,8 @@ const Contract = () => {
                     style={{
                       fontSize: "18px",
                       fontWeight: 500,
-                      marginTop: "20px",
+                      marginTop: "30px",
+                      marginBottom: "10px"
                     }}
                     id={line}
                     className="contract-text__heading"
