@@ -15,7 +15,7 @@ body {
 }
 
 .contract h1 {
-  text-align: center;
+  text-align: start;
   font-size: 20px;
   margin-bottom: 3rem;
   margin-top: 2rem;

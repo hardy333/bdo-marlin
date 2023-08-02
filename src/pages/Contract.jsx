@@ -27,7 +27,7 @@ const Contract = () => {
   return (
     <>
       <section className="contract">
-        <h1>კონტრაქტის გვერდი {window.innerHeight}</h1>
+        <h1>კონტრაქტის გვერდი </h1>
         <main className="contract-main">
           <div className="contract-headings">
             <ul className="contract-headings__list">
