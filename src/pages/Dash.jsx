@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/main-dashboard.css";
 import "../styles/dash.css";
 import DashTopChart from "../components/DashTopChart";
@@ -6,11 +6,12 @@ import ColumnCHart from "../components/ColumnCHart";
 import RightChartBubbles from "../components/RightChartBubbles";
 import CountUp from "react-countup";
 
-import {BsArrowRight} from "react-icons/bs"
-
-
+import { BsArrowRight } from "react-icons/bs";
+import CategoriesChart from "../components/CategoriesChart";
 
 const Dash = () => {
+  const [isChecked, setISChecked] = useState(false);
+
   return (
     <>
       <section className="main-dashboard">
@@ -69,81 +70,132 @@ const Dash = () => {
 
         <div className="main-dashboard-right">
           <div className="header-container">
-          <div className="stat-card">
-            <h3>ფასდაკლებები</h3>
-
-            <CountUp
-              useEasing={false}
-              start={0}
-              end={64}
-              duration={0.5}
-              delay={0}
+            <header
+              className="main-dashboard-header"
+              style={{ "--animate-duration": "300ms" }}
             >
-              {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
-            </CountUp>
-          </div>
-          <div className="stat-card">
-            <h3>რეტრო ბონუსები</h3>
+              <div>
+                <h2 className="animate__fadeInDown animate__animated">
+                  გაგზავნილი შეკვეთები
+                </h2>
+                <h3 className="animate__fadeInUp animate__animated">
+                  124,765.88 GEL
+                </h3>
+              </div>
+              <div>
+                <h2 className="animate__fadeInDown animate__animated">
+                  შეკვეთები გზაში
+                </h2>
+                <h3 className="animate__fadeInUp animate__animated">
+                  65,540.50 GEL
+                </h3>
+              </div>
+            </header>
+            <div className="stat-card">
+              <h3>ფასდაკლებები</h3>
 
-            <CountUp
-              useEasing={false}
-              start={0}
-              end={84}
-              duration={0.4}
-              delay={0}
-            >
-              {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
-            </CountUp>
-          </div>
+              <CountUp
+                useEasing={false}
+                start={0}
+                end={64}
+                duration={0.5}
+                delay={0}
+              >
+                {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
+              </CountUp>
+            </div>
+            <div className="stat-card">
+              <h3>რეტრო ბონუსები</h3>
 
-          <header
-            className="main-dashboard-header"
-            style={{ "--animate-duration": "300ms" }}
-          >
-            <div>
-              <h2 className="animate__fadeInDown animate__animated">
-                გაგზავნილი შეკვეთები
-              </h2>
-              <h3 className="animate__fadeInUp animate__animated">
-                124,765.88 GEL
-              </h3>
+              <CountUp
+                useEasing={false}
+                start={0}
+                end={84}
+                duration={0.4}
+                delay={0}
+              >
+                {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
+              </CountUp>
             </div>
-            <div>
-              <h2 className="animate__fadeInDown animate__animated">
-                შეკვეთები გზაში
-              </h2>
-              <h3 className="animate__fadeInUp animate__animated">
-                65,540.50 GEL
-              </h3>
-            </div>
-          </header>
           </div>
           {/* Header End */}
-          <div className="main-dashboard-charts bg-transparent">
-            <div className="top-chart-container gap-[20px]">
-              <div className="dash-top-chart-container" style={{width: "70%", background: "#fff", borderRadius: "inherit", paddingBottom: "20px"}}>
-                <DashTopChart />
-                <span className="chart-view-more">View more <BsArrowRight /></span>
-              </div>
-              <section className="right-chart relative pb-10" style={{background: "#fff", borderRadius: "inherit", paddingBottom: "20px"}}>
-                <h2>პრობლემური მომწოდებლები</h2>
-                <RightChartBubbles />
-                <span className="chart-view-more">View more  <BsArrowRight /> </span>
-              </section>
-            </div>
-            <div className="bottom-chart-container">
-              <section className="left-chart relative">
-                <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
-                <ColumnCHart />
-                <span className="chart-view-more">View more <BsArrowRight /></span>
+          <div className="main-dashboard-charts bg-transparent flex flex-row">
+            {/* Middle */}
 
-              </section>
-              <section className="left-chart relative">
-                <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
-                <ColumnCHart />
-                <span className="chart-view-more">View more<BsArrowRight /> </span>
-              </section>
-            </div>
+            <section className="w-[80%] flex flex-col gap-[0px]">
+              <div className="vendors-switch-container">
+                <p className="catalogue-label">მოტაინს სიზუსტე</p>
+                <div className="toggle-switch">
+                  <input
+                    className="toggle-input"
+                    checked={isChecked}
+                    onChange={() => setISChecked(!isChecked)}
+                    id="toggle"
+                    type="checkbox"
+                  />
+                  <label className="toggle-label"  htmlFor="toggle"></label>
+                </div>
+                <p className="catalogue-label">დროული მოტანა</p>
+              </div>
+              <div className="top-chart-container gap-[20px] mb-[18px]">
+                <div
+                  className="dash-top-chart-container"
+                  style={{
+                    width: "100%",
+                    background: "#fff",
+                    borderRadius: "inherit",
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <DashTopChart />
+                  <span className="chart-view-more">
+                    View more <BsArrowRight />
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom */}
+              <div className="bottom-chart-container">
+                <section
+                  className="left-chart relative "
+                  style={{ width: "55%" }}
+                >
+                  <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
+                  <ColumnCHart />
+                  <span className="chart-view-more">
+                    View more <BsArrowRight />
+                  </span>
+                </section>
+                <section
+                  className="right-chart relative pb-10"
+                  style={{
+                    background: "#fff",
+                    borderRadius: "inherit",
+                    paddingBottom: "20px",
+                    width: "45%",
+                  }}
+                >
+                  <h2>პრობლემური მომწოდებლები</h2>
+                  <RightChartBubbles />
+                  <span className="chart-view-more">
+                    View more <BsArrowRight />{" "}
+                  </span>
+                </section>
+              </div>
+            </section>
+            <section
+              className="w-[30%] relative "
+              style={{
+                background: "#fff",
+                padding: "20px",
+                borderRadius: "15px",
+              }}
+            >
+              <CategoriesChart />
+              <span className="chart-view-more">
+                View more <BsArrowRight />{" "}
+              </span>
+            </section>
           </div>
         </div>
       </section>

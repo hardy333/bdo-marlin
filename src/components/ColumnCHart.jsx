@@ -1,6 +1,6 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-const colors = ["#2654D3", "#812EF9", "#F29757", "#FF7BA7", "#FF3360"];
+const colors = ["rgba(64, 106, 255, 1)", "rgba(64, 106, 255, 1)", "rgba(64, 106, 255, 1)", "rgba(64, 106, 255, 1)", "rgba(64, 106, 255, 1)"];
 
 const series = [
   {

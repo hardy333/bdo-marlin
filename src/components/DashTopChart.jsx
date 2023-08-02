@@ -214,7 +214,7 @@ const DashTopChart = ({ dataA = "a2", dataB = "b2" }) => {
       options={options}
       series={series}
       type="line"
-      height={215}
+      height={200}
       width={"100%"}
     />
   );
