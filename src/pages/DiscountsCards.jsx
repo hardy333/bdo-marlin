@@ -82,7 +82,7 @@ const DiscountsCards = () => {
             options={options}
             defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
           />
-          <div className="vendors-switch-container ml-10">
+          {/* <div className="vendors-switch-container ml-10">
             <p className="">{isSmallDevice ? "ბონუსები" : "რეტრო ბონუსები"}</p>
             <div className="toggle-switch">
               <input
@@ -95,7 +95,7 @@ const DiscountsCards = () => {
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
             <p className="">ფასდაკლებები</p>
-          </div>
+          </div> */}
 
           <DatePickerInput />
           <div className="input-wrapper">
