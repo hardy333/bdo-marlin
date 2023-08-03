@@ -290,6 +290,7 @@ const CashBackTable = () => {
 
             {/* <ItemsMenu /> */}
           </div>
+          
           {/* Right */}
           <div className="all-orders__settings__options">
           <TableSettings

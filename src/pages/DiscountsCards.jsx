@@ -74,7 +74,7 @@ const DiscountsCards = () => {
       <section className="discounts">
         <header className="discounts-header">
           {/* 1 */}
-          <h1>ფასდაკლებები</h1>
+          <h1>რეტრო ბონუსები</h1>
 
           <Select
             className="react-select-container"
