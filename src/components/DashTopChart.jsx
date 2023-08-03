@@ -20,20 +20,23 @@ const tooltip = {
   style: {
     fontSize: "12px",
     fontFamily: undefined,
-    color: "red",
   },
   onDatasetHover: {
     highlightDataSeries: false,
   },
   x: {
     format: "dd MMM",
+    show: true,
+    // formatter: (x) => {
+    //   return x + " %";
+    // },
   },
   y: {
     formatter: (x) => {
       return x + " %";
     },
     title: {
-      formatter: (seriesName) => seriesName + ":",
+      formatter: (seriesName) => seriesName + ":   ",
     },
   },
   z: {
@@ -105,6 +108,9 @@ const options = {
     // size: 4
   },
   xaxis: {
+    crosshairs: {
+      show: false
+    },
     axisBorder: {
       show: false,
       color: "#78909C",
