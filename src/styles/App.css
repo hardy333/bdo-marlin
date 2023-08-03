@@ -83,7 +83,7 @@ body.body-sidebar-open {
 
 #root {
   margin: 0px;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   padding: 0px;
 }
 
@@ -212,7 +212,7 @@ img {
     overflow-y: auto;
     height: unset;
     max-height: unset;
-    
+
   }
 
   .dashboard-aside.responsive .aside-btn {
