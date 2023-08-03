@@ -91,38 +91,39 @@ const Dash = () => {
                 </h3>
               </div>
             </header>
-            <div className="stat-card">
-              <h3>ფასდაკლებები</h3>
+            <div className="two-stats-container">
+              <div className="stat-card  w-[15%]">
+                <h3>ფასდაკლებები</h3>
+                <CountUp
+                  useEasing={false}
+                  start={0}
+                  end={64}
+                  duration={0.5}
+                  delay={0}
+                >
+                  {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
+                </CountUp>
+              </div>
+              <div className="stat-card ">
+                <h3>რეტრო ბონუსები</h3>
 
-              <CountUp
-                useEasing={false}
-                start={0}
-                end={64}
-                duration={0.5}
-                delay={0}
-              >
-                {({ countUpRef }) => <h2 ref={countUpRef}>324</h2>}
-              </CountUp>
-            </div>
-            <div className="stat-card">
-              <h3>რეტრო ბონუსები</h3>
-
-              <CountUp
-                useEasing={false}
-                start={0}
-                end={84}
-                duration={0.4}
-                delay={0}
-              >
-                {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
-              </CountUp>
+                <CountUp
+                  useEasing={false}
+                  start={0}
+                  end={84}
+                  duration={0.4}
+                  delay={0}
+                >
+                  {({ countUpRef }) => <h2 ref={countUpRef}>4534</h2>}
+                </CountUp>
+              </div>
             </div>
           </div>
           {/* Header End */}
           <div className="main-dashboard-charts bg-transparent flex flex-row">
             {/* Middle */}
 
-            <section className="w-[80%] flex flex-col gap-[0px]">
+            <section className="flex flex-col gap-[0px]">
               <div className="vendors-switch-container">
                 <p className="catalogue-label">მოტაინს სიზუსტე</p>
                 <div className="toggle-switch">
@@ -133,7 +134,7 @@ const Dash = () => {
                     id="toggle"
                     type="checkbox"
                   />
-                  <label className="toggle-label"  htmlFor="toggle"></label>
+                  <label className="toggle-label" htmlFor="toggle"></label>
                 </div>
                 <p className="catalogue-label">დროული მოტანა</p>
               </div>
@@ -184,7 +185,7 @@ const Dash = () => {
               </div>
             </section>
             <section
-              className="w-[30%] relative "
+              className="relative "
               style={{
                 background: "#fff",
                 padding: "20px",

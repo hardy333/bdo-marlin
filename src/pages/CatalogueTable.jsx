@@ -181,14 +181,6 @@ const CatalogueTable = () => {
                 <span className="label label-prod">{prod}</span>
               </div>
             </h4>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-            <h1>djkhdkj</h1>
-
             <div className="vendors-switch-container">
               <p className="catalogue-label">ჩემი პროდუქტები</p>
               <div className="toggle-switch">
