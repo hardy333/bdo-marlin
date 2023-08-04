@@ -288,6 +288,10 @@
     width: 300px;
     justify-self: center;
   }
+
+  .vendors .ms-auto{
+    margin-right: auto !important;
+  }
   
 }
 
