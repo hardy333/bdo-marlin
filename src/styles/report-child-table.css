@@ -106,12 +106,14 @@
   align-items: center;  
   gap: 1rem;
   padding: 10px;
-  color: #D0C7E8;
+  color: #1c1238;
+  font-weight: 500 !important;
+  font-size: 13px;
 }
 
 .report-child-menu .szh-menu__item.selected{
-  color: rgb(26, 31, 61);
-  color: #674AB7;
+  color: rgb(110, 15, 245);
+
 
 }
 
@@ -123,13 +125,11 @@
 
 .report-child-menu .szh-menu__item--hover{
   background-color: #fff;
-  color: rgba(26, 31, 61, 0.578);
-  color: #8D78C9;
+  color: rgb(110, 15, 245);
 }
 
 .report-child-menu .szh-menu__item--hover svg{
-  fill: rgba(26, 31, 61, 0.578);
-  fill: #8D78C9;
+  fill: rgb(110, 15, 245);
 }
 
 .report-child-menu .szh-menu__item.selected svg{

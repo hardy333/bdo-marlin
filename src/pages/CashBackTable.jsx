@@ -264,7 +264,7 @@ const CashBackTable = () => {
                 პერიოდი: <span>1/10/2023 - 10/10/2023.</span>
               </p>
               <p className="discount-container">
-                გაყიდვის გეგმა: <span>25,000GEL.</span>
+                 გეგმა: <span>25,000GEL.</span>
               </p>
             </div>
             <div>
@@ -290,7 +290,7 @@ const CashBackTable = () => {
 
             {/* <ItemsMenu /> */}
           </div>
-          
+
           {/* Right */}
           <div className="all-orders__settings__options">
           <TableSettings

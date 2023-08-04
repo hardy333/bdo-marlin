@@ -161,14 +161,18 @@ box-shadow: none !important;
 
 }
 .react-select__option--is-focused{
-  background-color: #d0c7e820 !important;
-
-
+  /* background-color: #d0c7e820 !important; */
+  background-color:  transparent !important;
+  color:rgb(110, 15, 245) !important;
 
 }
 
 .react-select__option--is-selected{
   background-color: #d0c7e85b !important;
-  color: black !important;
+  background-color:  transparent !important;
+
+  /* color: black !important; */
+  color:rgb(110, 15, 245) !important;
+
 
 }
