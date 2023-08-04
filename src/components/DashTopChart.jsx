@@ -57,6 +57,8 @@ const tooltip = {
   },
 };
 
+
+
 const options = {
   chart: {
     height: "100%",
@@ -101,8 +103,10 @@ const options = {
     style: {
       fontFamily: "DejaVu Sans",
       fontWeight: 700,
-      fontSize: "16px",
+      fontSize: window.innerWidth > 500 ? "16px" : "14px"
     },
+
+
   },
   markers: {
     // size: 4
