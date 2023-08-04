@@ -1,6 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 import "../styles/sla-chart.css";
+
 const tooltip = {
   enabled: true,
   enabledOnSeries: undefined,
@@ -57,8 +58,6 @@ const tooltip = {
   },
 };
 
-
-
 const options = {
   chart: {
     height: "100%",
@@ -103,17 +102,15 @@ const options = {
     style: {
       fontFamily: "DejaVu Sans",
       fontWeight: 700,
-      fontSize: window.innerWidth > 500 ? "16px" : "14px"
+      fontSize: "16px"
     },
-
-
   },
   markers: {
     // size: 4
   },
   xaxis: {
     crosshairs: {
-      show: false
+      show: false,
     },
     axisBorder: {
       show: false,
@@ -192,6 +189,19 @@ const options = {
   //   text: "Average High & Low Temperature",
   //   align: "right",
   // },
+
+  responsive: [
+    {
+      breakpoint: 600,
+      options: {
+        title: {
+          style: {
+            fontSize: "14px",
+          },
+        },
+      },
+    },
+  ],
 };
 
 const A = {
