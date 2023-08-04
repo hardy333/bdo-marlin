@@ -202,9 +202,15 @@
   font-weight: 700;
 }
 
+.dashboard--dash  .sidebar-menu-btn{
+  margin-right: auto;
+}
+
+
 @media (max-width: 700px) {
   .main-dashboard {
     flex-direction: column;
+    padding-bottom: 50px;
   }
 
   .main-dashboard-stats{
@@ -214,7 +220,88 @@
   }
 
   .header-container{
-    display: grid;
+    display: flex !important;
+    flex-direction: column;
 
   }
+
+  .main-dashboard-header{
+    order: 1;
+  }
+
+  .main-dashboard-header h2{
+
+    font-size: 20px;
+  }
+
+  .main-dashboard-header h3{
+    font-size: 22px;
+
+  }
+
+  .two-stats-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    order: 2;
+  }
+
+  .two-stats-container .stat-card{
+    width: 150px;
+  }
+
+  .main-dashboard-charts{
+    display: flex !important;
+    flex-direction: column !important;
+
+  }
+
+  .bottom-chart-container{
+    display: flex;
+    flex-direction: column;
+    height: unset;
+
+  }
+
+  .bottom-chart-container .left-chart {
+    margin: auto;
+    width: 450px !important;
+    max-width: 100%;
+
+  }
+
+  .bottom-chart-container .right-chart{
+    margin: auto;
+    width: 450px !important;
+    max-width: 100%;
+
+  }
+
+  .categories-chart-container{
+    max-width: 100% !important;
+    width: 450px;
+    margin-inline: auto;
+  }
+
+
+  .vendors-switch-container{
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+  }
+}
+
+
+@media (max-width: 500px){
+  .main-dashboard-header h2{
+
+    font-size: 16px;
+  }
+
+  .main-dashboard-header h3{
+    font-size: 18px;
+
+  }
+
 }

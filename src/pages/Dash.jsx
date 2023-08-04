@@ -185,7 +185,7 @@ const Dash = () => {
               </div>
             </section>
             <section
-              className="relative "
+              className="relative categories-chart-container"
               style={{
                 background: "#fff",
                 padding: "20px",
