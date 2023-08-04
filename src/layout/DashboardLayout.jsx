@@ -21,9 +21,10 @@ const DashboardLayout = ({ light = false }) => {
   if (pathname === "/") {
     classN = "dashboard--dash";
   }
+  const pageName = pathname.slice(1)
 
   return (
-    <div className={`dashboard ${classN}`}>
+    <div className={`dashboard ${classN} ${pageName}-page`}>
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>

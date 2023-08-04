@@ -22,7 +22,6 @@ const DashboardNavbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  console.log(pathname)
 
   let isContract = false;
   
