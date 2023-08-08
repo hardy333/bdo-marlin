@@ -103,7 +103,7 @@ const options = {
       fontWeight: 700,
       fontSize: "16px",
       fill: "rgb(42, 31, 75)",
-      color: "#211543",
+      color: "red",
     },
   },
   markers: {
