@@ -207,7 +207,6 @@
   order: 2;
   padding-top: 0;
   padding-bottom: 0;
-
   display: none;
 }
 
@@ -248,6 +247,7 @@
     flex-direction: column;
 
   }
+
 
   .main-dashboard-header{
     order: 1;
@@ -298,9 +298,11 @@
   }
 
   .bottom-chart-container .right-chart{
+    min-height: 240px !important;
     margin: auto;
     width: 450px !important;
     max-width: 100%;
+    border: 1px solid red;
 
   }
 
