@@ -374,7 +374,7 @@ const VendorAllOrdersTable = () => {
           >
             <span className={`${isSearchOpen ? "hide" : ""}`}>
               ყველა შეკვეთა:
-              <span style={{ color: "#6E0FF5" }}>მომწოდებელი 1</span>
+              <span style={{ color: "#6E0FF5" }}> მომწოდებელი 1</span>
             </span>
           </div>
           {/* Right */}
