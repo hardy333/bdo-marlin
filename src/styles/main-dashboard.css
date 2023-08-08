@@ -219,6 +219,7 @@
   font-weight: 700;
   padding-top: 3px;
   position: absolute;
+  padding-left: 10px;
   top: 10px;
   left: 0;
   z-index: 999;
@@ -226,6 +227,10 @@
   font-size: 16px;
 }
 @media (max-width: 700px) {
+  .main-dashboard{
+    padding-inline: 10px;
+  }
+  
   .main-dashboard .navigation-wrapper {
     order: 2;
     padding-top: 0;
@@ -240,6 +245,7 @@
 
   .apexcharts-legend {
     display: flex;
+    right: -5px !important;
   }
 
   .dash-top-chart-container__label {
