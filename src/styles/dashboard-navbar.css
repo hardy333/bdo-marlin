@@ -39,9 +39,20 @@
   opacity: 1;
 }
 
-.gdm-container{
-  position: relative;
-  z-index: 999;
+
+.navbar-links-container{
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links-container img{
+  margin: 0 !important;
+}
+
+
+.log-out-img{
+  display: block;
+  width: 40px !important;
 }
 
 /* Ring */
@@ -124,4 +135,6 @@
   font-size: 12px;
   line-height: 15px;
   color: #01C6B5;
+
+
 }
