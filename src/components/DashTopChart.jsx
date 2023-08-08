@@ -98,11 +98,12 @@ const options = {
     align: "left",
     offsetY: 10,
     offsetX: 8,
-
     style: {
       fontFamily: "DejaVu Sans",
       fontWeight: 700,
-      fontSize: "16px"
+      fontSize: "16px",
+      fill: "rgb(42, 31, 75)",
+      color: "#211543",
     },
   },
   markers: {
@@ -197,6 +198,8 @@ const options = {
         title: {
           style: {
             fontSize: "14px",
+            fill: "rgb(42, 31, 75)",
+            color: "rgb(42, 31, 75)",
           },
         },
       },

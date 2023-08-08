@@ -129,7 +129,7 @@ const DashboardAside = ({
               }
             >
               <img src={percentSvg} alt="" />
-              <span className="aside-label">ფასდაკლებები</span>
+              <span className="aside-label">ბონუსები</span>
             </NavLink>
           </li>
           <li onClick={handleLinkClick}>
