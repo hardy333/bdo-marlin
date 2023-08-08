@@ -158,7 +158,7 @@ const Dash = () => {
               {/* Bottom */}
               <div className="bottom-chart-container">
                 <section
-                  className="left-chart relative "
+                  className="left-chart relative pb-4"
                   style={{ width: "55%" }}
                 >
                   <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>
@@ -168,11 +168,11 @@ const Dash = () => {
                   </span>
                 </section>
                 <section
-                  className="right-chart relative pb-10"
+                  className="right-chart relative "
                   style={{
                     background: "#fff",
                     borderRadius: "inherit",
-                    paddingBottom: "20px",
+                    paddingBottom: "25px",
                     width: "45%",
                   }}
                 >
@@ -189,6 +189,7 @@ const Dash = () => {
               style={{
                 background: "#fff",
                 padding: "20px",
+                paddingBottom: "25px",
                 borderRadius: "15px",
               }}
             >

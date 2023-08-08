@@ -103,7 +103,7 @@ const options = {
       fontWeight: 700,
       fontSize: "16px",
       fill: "rgb(42, 31, 75)",
-      color: "red",
+      color: "yellow",
     },
   },
   markers: {
@@ -198,8 +198,8 @@ const options = {
         title: {
           style: {
             fontSize: "14px",
-            fill: "rgb(42, 31, 75)",
-            color: "red",
+            // fill: "rgb(42, 31, 75)",
+            color: "green",
           },
         },
       },
