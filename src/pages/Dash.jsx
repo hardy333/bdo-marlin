@@ -8,6 +8,7 @@ import CountUp from "react-countup";
 
 import { BsArrowRight } from "react-icons/bs";
 import CategoriesChart from "../components/CategoriesChart";
+import StatsCardSlider from "../components/StatsCardSlider";
 
 const Dash = () => {
   const [isChecked, setISChecked] = useState(false);
@@ -91,6 +92,7 @@ const Dash = () => {
                 </h3>
               </div>
             </header>
+            <StatsCardSlider />
             <div className="two-stats-container">
               <div className="stat-card  w-[15%]">
                 <h3>ფასდაკლებები</h3>

@@ -1,0 +1,42 @@
+.stats-card-slider-container {
+  display: flex;
+}
+
+.stats-card-slider-container .stat-card {
+  width: 150px !important;
+  padding: 1.5rem;
+  cursor: pointer;
+}
+
+.navigation-wrapper {
+  /* background-color: rgba(0, 0, 0, 0.474); */
+  position: relative;
+  padding: 30px;
+}
+
+/* Arrow */
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  -webkit-transform: translateY(-50%) scale(0.8);;
+  fill: #211543;
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: 0px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 0px;
+}
+
+.arrow--disabled {
+  /* fill: rgba(255, 255, 255, 0.5); */
+  fill:  #AEBDC5;
+}

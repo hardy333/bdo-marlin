@@ -72,7 +72,7 @@ const DashboardAside = ({
         <img src={asideBtn} alt="" />
       </button>
       <div className="dashboard-aside-container">
-        <Link to="/" className="marlin-logo-container">
+        <Link to="/" className="marlin-logo-container" onClick={handleLinkClick}>
           {/* <img draggable="false" className="logo-img" src={logo} alt="" /> */}
           <svg
             id="Layer_1"

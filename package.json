@@ -28,6 +28,7 @@
     "export-from-json": "^1.7.2",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.12.12",
+    "keen-slider": "^6.8.6",
     "material-react-table": "^1.14.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",

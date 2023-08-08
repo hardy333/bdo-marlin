@@ -203,16 +203,34 @@
   margin-right: auto;
 }
 
+.main-dashboard .navigation-wrapper {
+  order: 2;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  display: none;
+}
+
 
 @media (max-width: 700px) {
+  .main-dashboard .navigation-wrapper {
+    order: 2;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
+  }
+  
   .main-dashboard {
     flex-direction: column;
     padding-bottom: 50px;
   }
 
+
+
   .main-dashboard-stats{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    display: none;
   }
 
   .main-dashboard-stats .stat-card:nth-child(2n+1){
@@ -252,6 +270,7 @@
     display: flex;
     /* justify-items: center; */
     order: 2;
+    display: none;
   }
 
   .two-stats-container .stat-card{

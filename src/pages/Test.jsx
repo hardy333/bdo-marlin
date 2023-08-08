@@ -1,6 +1,6 @@
 import React from "react";
 import "react-day-picker/dist/style.css";
-import DatePickerInput from "../components/DatePickerInput";
+import StatsCardSlider from "../components/StatsCardSlider";
 
 
 const Test = () => {
@@ -8,8 +8,7 @@ const Test = () => {
 
   return (
     <div>
-      <h2>Hello</h2>
-        <DatePickerInput />
+      <StatsCardSlider />
     </div>
   );
 };
