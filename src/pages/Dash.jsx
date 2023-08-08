@@ -150,6 +150,7 @@ const Dash = () => {
                     paddingBottom: "20px",
                   }}
                 >
+                  <h2 className="dash-top-chart-container__label">ზოგადი სერვისის დონის დინამიკა</h2>
                   <DashTopChart />
                   <span className="chart-view-more">
                     View more <BsArrowRight />

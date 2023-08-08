@@ -94,7 +94,7 @@ const options = {
     // offsetX: -5,
   },
   title: {
-    text: "ზოგადი სერვისის დონის დინამიკა",
+    text: " . ",
     align: "left",
     offsetY: 10,
     offsetX: 8,
@@ -102,8 +102,8 @@ const options = {
       fontFamily: "DejaVu Sans",
       fontWeight: 700,
       fontSize: "16px",
-      fill: "rgb(42, 31, 75)",
-      color: "yellow",
+      fill: "white",
+      color: "white",
     },
   },
   markers: {
@@ -198,8 +198,7 @@ const options = {
         title: {
           style: {
             fontSize: "14px",
-            // fill: "rgb(42, 31, 75)",
-            color: "green",
+            color: "white",
           },
         },
       },

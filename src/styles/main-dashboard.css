@@ -45,7 +45,7 @@
   /* display: none; */
 }
 
-.two-stats-container{
+.two-stats-container {
   display: flex;
   gap: 2rem;
   /* width: 27%; */
@@ -53,8 +53,7 @@
   /* display: none; */
 }
 
-
-.two-stats-container .stat-card{
+.two-stats-container .stat-card {
   width: 100%;
 }
 
@@ -149,12 +148,11 @@
   gap: 2rem;
 }
 
-.main-dashboard-charts > section:first-child{
+.main-dashboard-charts > section:first-child {
   grid-column: span 13;
-
 }
 
-.main-dashboard-charts > section:nth-child(2){
+.main-dashboard-charts > section:nth-child(2) {
   grid-column: span 5;
 }
 
@@ -199,7 +197,7 @@
   font-weight: 700;
 }
 
-.dashboard--dash  .sidebar-menu-btn{
+.dashboard--dash .sidebar-menu-btn {
   margin-right: auto;
 }
 
@@ -210,7 +208,23 @@
   display: none;
 }
 
+.dash-top-chart-container {
+  position: relative;
+}
 
+.dash-top-chart-container__label {
+  line-height: 19px;
+  color: #211543;
+  padding-left: 20px;
+  font-weight: 700;
+  padding-top: 3px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 999;
+
+  font-size: 16px;
+}
 @media (max-width: 700px) {
   .main-dashboard .navigation-wrapper {
     order: 2;
@@ -218,52 +232,52 @@
     padding-bottom: 0;
     display: block;
   }
-  
+
   .main-dashboard {
     flex-direction: column;
     padding-bottom: 50px;
   }
 
+  .apexcharts-legend {
+    display: flex;
+  }
 
+  .dash-top-chart-container__label {
+    font-size: 14px;
+  }
 
-  .main-dashboard-stats{
+  .main-dashboard-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
     display: none;
   }
 
-  .main-dashboard-stats .stat-card:nth-child(2n+1){
+  .main-dashboard-stats .stat-card:nth-child(2n + 1) {
     justify-self: start;
-
   }
 
-  .main-dashboard-stats .stat-card:nth-child(2n){
+  .main-dashboard-stats .stat-card:nth-child(2n) {
     justify-self: end;
-
   }
 
-  .header-container{
+  .header-container {
     display: flex !important;
     flex-direction: column;
-
   }
 
-
-  .main-dashboard-header{
+  .main-dashboard-header {
     order: 1;
   }
 
-  .main-dashboard-header h2{
-
+  .main-dashboard-header h2 {
     font-size: 20px;
   }
 
-  .main-dashboard-header h3{
+  .main-dashboard-header h3 {
     font-size: 22px;
-
   }
 
-  .two-stats-container{
+  .two-stats-container {
     /* display: grid; */
     /* grid-template-columns: 1fr 1fr; */
     justify-content: space-between;
@@ -273,84 +287,70 @@
     display: none;
   }
 
-  .two-stats-container .stat-card{
+  .two-stats-container .stat-card {
     width: 150px;
   }
 
-  .main-dashboard-charts{
+  .main-dashboard-charts {
     display: flex !important;
     flex-direction: column !important;
-
   }
 
-  .bottom-chart-container{
+  .bottom-chart-container {
     display: flex;
     flex-direction: column;
     height: unset;
-
   }
 
   .bottom-chart-container .left-chart {
     margin: auto;
     width: 450px !important;
     max-width: 100%;
-
   }
 
-  .bottom-chart-container .right-chart{
+  .bottom-chart-container .right-chart {
     min-height: 240px !important;
     margin: auto;
     width: 450px !important;
     max-width: 100%;
-    border: 1px solid red;
-
   }
 
   .bottom-chart-container .right-chart h2,
-  .bottom-chart-container .left-chart h2{
+  .bottom-chart-container .left-chart h2 {
     font-size: 14px;
-
   }
 
-
-  .categories-chart-container{
+  .categories-chart-container {
     max-width: 100% !important;
     width: 450px;
     margin-inline: auto;
   }
 
-  .categories-chart-container h2{
+  .categories-chart-container h2 {
     font-size: 14px !important;
   }
 
-
-  .vendors-switch-container{
+  .vendors-switch-container {
     display: block;
     margin-left: auto !important;
     margin-right: auto !important;
-
   }
 }
 
-
-@media (max-width: 500px){
+@media (max-width: 500px) {
   .main-dashboard-header {
     padding: 10px;
     padding-inline: 15px;
     height: 100px;
-
   }
-  
-  .main-dashboard-header h2{
 
+  .main-dashboard-header h2 {
     font-size: 16px;
   }
 
-  .main-dashboard-header h3{
+  .main-dashboard-header h3 {
     font-size: 18px;
     padding: 0;
     height: unset;
-
   }
-
 }
