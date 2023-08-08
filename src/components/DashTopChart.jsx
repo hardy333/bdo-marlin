@@ -199,7 +199,7 @@ const options = {
           style: {
             fontSize: "14px",
             fill: "rgb(42, 31, 75)",
-            color: "rgb(42, 31, 75)",
+            color: "red",
           },
         },
       },
