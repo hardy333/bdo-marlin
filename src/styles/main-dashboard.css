@@ -235,7 +235,7 @@
   position: absolute;
   padding-left: 10px;
   top: 10px;
-  left: 0;
+  left: 10px;
   z-index: 999;
 
   font-size: 16px;
@@ -353,8 +353,32 @@
 
   .vendors-switch-container {
     display: block;
-    /* margin-left: auto !important; */
+    margin-left: auto !important;
     margin-right: auto !important;
+  }
+
+  .top-chart-container .apexcharts-legend{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 0 !important;
+    border: 0;
+    overflow: hidden;
+    /* background-color: red; */
+    top: 5px !important;
+    right: 5px !important;
+    gap: 5px !important;
+  }
+
+  .top-chart-container .apexcharts-legend-series{
+    margin: 0 !important;
+    margin-bottom: 0;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    border: 0;
+
   }
 }
 
@@ -374,4 +398,21 @@
     padding: 0;
     height: unset;
   }
+}
+
+
+@media (max-width: 389px){
+  .right-chart-buttons .right {
+    justify-content: start;
+    padding-top: 20px;
+  }
+
+  .right-chart-buttons .right ul{
+    margin-top: 0;
+    margin-bottom: auto;
+  }
+
+  .right-chart-buttons .c-small-li {
+    font-size: 14px;
+  } 
 }
