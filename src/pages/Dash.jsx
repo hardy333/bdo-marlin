@@ -138,7 +138,7 @@ const Dash = () => {
                   />
                   <label className="toggle-label" htmlFor="toggle"></label>
                 </div>
-                <p className="catalogue-label">დროული მოტანა</p>
+                <p className="catalogue-label ml-0" style={{marginLeft: "0px"}}>დროული მოტანა</p>
               </div>
               <div className="top-chart-container gap-[20px] mb-[18px]">
                 <div
