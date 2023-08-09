@@ -84,10 +84,10 @@ const Dash = () => {
                 </h3>
               </div>
               <div>
-                <h2 className="animate__fadeInDown animate__animated">
+                <h2 className="animate__fadeInDown animate__animated text-end">
                   შეკვეთები გზაში
                 </h2>
-                <h3 className="animate__fadeInUp animate__animated">
+                <h3 className="animate__fadeInUp animate__animated text-end">
                   65,540.50 GEL
                 </h3>
               </div>
