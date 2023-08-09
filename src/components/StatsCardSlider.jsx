@@ -8,7 +8,7 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
 const statsData = [
   {
-    name: "მაღაზიები",
+    name: "მაღაზიები123",
     value: 324,
   },
   {
