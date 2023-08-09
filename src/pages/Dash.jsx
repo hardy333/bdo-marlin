@@ -92,7 +92,6 @@ const Dash = () => {
                 </h3>
               </div>
             </header>
-            <StatsCardSlider />
             <div className="two-stats-container">
               <div className="stat-card  w-[15%]">
                 <h3>ფასდაკლებები</h3>
@@ -120,7 +119,9 @@ const Dash = () => {
                 </CountUp>
               </div>
             </div>
+            <StatsCardSlider />
           </div>
+
           {/* Header End */}
           <div className="main-dashboard-charts bg-transparent flex flex-row">
             {/* Middle */}
@@ -138,7 +139,12 @@ const Dash = () => {
                   />
                   <label className="toggle-label" htmlFor="toggle"></label>
                 </div>
-                <p className="catalogue-label ml-0" style={{marginLeft: "0px"}}>დროული მოტანა</p>
+                <p
+                  className="catalogue-label ml-0"
+                  style={{ marginLeft: "0px" }}
+                >
+                  დროული მოტანა
+                </p>
               </div>
               <div className="top-chart-container gap-[20px] mb-[18px]">
                 <div
@@ -150,7 +156,9 @@ const Dash = () => {
                     paddingBottom: "20px",
                   }}
                 >
-                  <h2 className="dash-top-chart-container__label">ზოგადი სერვისის დონის დინამიკა</h2>
+                  <h2 className="dash-top-chart-container__label">
+                    ზოგადი სერვისის დონის დინამიკა
+                  </h2>
                   <DashTopChart />
                   <span className="chart-view-more">
                     View more <BsArrowRight />
