@@ -67,6 +67,22 @@ const options = {
     toolbar: {
       show: true,
     },
+    zoom: {
+      enabled: false,
+      type: "x",
+      autoScaleYaxis: false,
+      zoomedArea: {
+        fill: {
+          color: "#90CAF9",
+          opacity: 0.4,
+        },
+        stroke: {
+          color: "#0D47A1",
+          opacity: 0.4,
+          width: 1,
+        },
+      },
+    },
   },
   zoom: {
     enabled: false,

@@ -169,7 +169,7 @@ const Dash = () => {
               {/* Bottom */}
               <div className="bottom-chart-container">
                 <section
-                  className="left-chart relative pb-4"
+                  className="left-chart relative pb-4 marlin-column-chart"
                   style={{ width: "55%" }}
                 >
                   <h2>სერვისის დონე: ტოპ 5 მომწოდებელი</h2>

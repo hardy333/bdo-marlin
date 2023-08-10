@@ -1,0 +1,45 @@
+.marlin-column-chart .apexcharts-tooltip{
+  background-color: #fff;
+  background: #fff;
+  color: #211543;
+  box-shadow: 0px 2px 3px 2px rgba(208, 199, 232, 0.25);
+  padding-right: 20px;
+  border-radius: 20px !important;
+  padding-left: 15px;
+  padding-bottom: 10px;
+  min-width: 90px;
+
+}
+
+.marlin-column-chart .apexcharts-tooltip-title{
+
+}
+
+
+.marlin-column-chart .apexcharts-tooltip-series-group{
+
+}
+
+
+.marlin-column-chart .apexcharts-tooltip-marker{
+  /* colored dot */
+
+}
+
+/* Text after colored dot */
+
+.marlin-column-chart .apexcharts-tooltip-text{
+
+}
+
+.marlin-column-chart .apexcharts-tooltip-y-group{
+
+}
+
+.marlin-column-chart .apexcharts-tooltip-text-goals-label{
+
+}
+
+.marlin-column-chart .apexcharts-tooltip-text-goals-value{
+
+}
