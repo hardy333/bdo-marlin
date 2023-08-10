@@ -17,6 +17,7 @@ import "./styles/date-picker.css";
 import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
+import "./styles/info-badge.css";
 
 import Employees from "./pages/Employees";
 import Dash from "./pages/Dash";

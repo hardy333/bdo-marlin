@@ -1,0 +1,46 @@
+.info-badge {
+  display: inline;
+  display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+
+.info-badge img{
+  width: 17.5px;
+}
+
+.info-badge-text{
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  padding-top: 5px;
+
+}
+
+.info-badge-text__date{
+  max-width: 190px;
+  /* background-color: red; */
+}
+
+@media (max-width: 600px){
+  
+  .info-badge-mobile{
+    font-size: 14px;
+    background-color: hsla(217, 91%, 60%, 0.051)!important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 5px;
+    padding: 5px 7.5px;
+    color: #6E0FF5 !important;
+
+  }
+
+
+  
+}

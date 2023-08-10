@@ -164,7 +164,7 @@ const OrderDetails = () => {
             style={{ paddingLeft: "0", marginLeft: 2 }}
           >
             <h4
-              style={{ marginRight: 0 }}
+              style={{ marginRight: 0, marginBottom: "auto" }}
               className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
             >
               შეკვეთის დეტალები
@@ -181,7 +181,7 @@ const OrderDetails = () => {
                     placement="top"
                     content={`მომწოდებელი: ${vendor}`}
                   >
-                    <p className="flex gap:2 p mb-2">
+                    <p className="flex  p mb-2">
                       <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
                         <img src="order-details/vendor.svg" alt="" />
                       </span>

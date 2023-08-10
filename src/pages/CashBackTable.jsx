@@ -50,7 +50,10 @@ import "../styles/discounts-table.css";
 import useRemoveId from "../components/useRemoveId";
 
 import ExcelExportBtn from "../components/ExcelExportBtn";
-import { CashBackTableDefs, cashBackTableHeaderList } from "../column-definitions/CashBackTableDefs";
+import {
+  CashBackTableDefs,
+  cashBackTableHeaderList,
+} from "../column-definitions/CashBackTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
@@ -131,15 +134,13 @@ const CashBackTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-
   const [columnDefs] = useState(CashBackTableDefs);
-
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
-
 
   const url = "https://10.0.0.202:5001/api/RetroBonus/M00001";
 
-  const { isLoading, error, data } = useQuery("all-orders-data", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("all-orders-data", () =>
+    fetchData(url)
+  );
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -154,8 +155,6 @@ const CashBackTable = () => {
     if (error) return;
     setRowData(data.data);
   }, [data, isLoading, error]);
-
-  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -187,7 +186,6 @@ const CashBackTable = () => {
     gridRef.current.api.resetRowHeights();
   };
 
-
   const components = useMemo(() => {
     return {
       agColumnHeader: CustomHeaderCell,
@@ -196,7 +194,6 @@ const CashBackTable = () => {
 
   // Row Height logic
   // Row Height logic
-
   const rowHeightBtnRef = useRef(null);
 
   useEffect(() => {
@@ -209,7 +206,6 @@ const CashBackTable = () => {
     };
   }, []);
 
-  const [rowHeightsArr, setRowHeightsArr] = ["small", "medium", "big"];
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const changeRowHeight = () => {
@@ -226,54 +222,57 @@ const CashBackTable = () => {
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
-
   return (
     <>
       <header className="all-orders__header cash-back-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left cash-back-table-header-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4 style={{ marginRight: 20 }} id="discunts">
               რეტრო ბონუსები
             </h4>
-            {/* 1 */}
-            <div className="info-group">
-              <p className="discount-container">
-                მომწოდებელი:<span> GDM.</span>
+            <section className="info-badge-container">
+              {/* 1 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> GDM.</span>
               </p>
-              <p className="discount-container">
-                პირობა:<span> შეძენიდან. </span>
+              {/* 2 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> შეძენიდან.</span>
               </p>
-            </div>
-            {/* 2 */}
-            <div className="info-group">
-              <p className="discount-container">
-                დოკ. #:<span> 23120.</span>
-              </p>
-              <p className="discount-container">
-                ქეშბექი:<span> 7%.</span>
-              </p>
-            </div>
+              {/* 3 */}
 
-            {/* 3 */}
-            <div className="info-group">
-              <p className="discount-container">
-                პერიოდი: <span>1/10/2023 - 10/10/2023.</span>
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text info-badge-text__date">
+                  1/10/2023 - 10/10/2023.
+                </span>
               </p>
-              <p className="discount-container">
-                 გეგმა: <span>25,000GEL.</span>
+              {/* 4 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> 23120.</span>
               </p>
-            </div>
-            <div>
+              {/* 5 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text">25,000GEL.</span>
+              </p>
+              {/* 6 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> 7%.</span>
+              </p>
+            </section>
             <Menu
               className="pending-status-menu"
               menuButton={
-                <button
-                  className="btn btn-status-2 mt-[-2px] discount-conditions"
-                >
+                <button className="btn btn-status-2 mt-[-2px] discount-conditions">
                   ფასდაკლების პირობები
                 </button>
               }
@@ -285,15 +284,11 @@ const CashBackTable = () => {
               <MenuItem>1001-დან 5000-მდე, 6%</MenuItem>
               <MenuItem>5001-დან 10000-მდე, 7%</MenuItem>
             </Menu>
-                {/* <p className="">ფასდაკლების პირობები</p> */}
-            </div>
-
-            {/* <ItemsMenu /> */}
           </div>
 
           {/* Right */}
-          <div className="all-orders__settings__options">
-          <TableSettings
+          <div className="all-orders__settings__options self-start">
+            <TableSettings
               isSmallDevice={isSmallDevice}
               defHeaderList={cashBackTableHeaderList}
               rowData={rowData}
