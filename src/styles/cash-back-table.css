@@ -106,14 +106,14 @@
     }
 }
 
-@media (max-width: 380px){
-    .cash-back-header h4{
-
-    }
+@media (max-width: 400px){
 
     .cash-back-header .btn-status-2{
         font-size: 11px !important;
+        letter-spacing: 0.5px;
+        
     }
 
 
 }
+
