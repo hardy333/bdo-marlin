@@ -1,11 +1,9 @@
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import ReactDOM from "react-dom/client";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -25,8 +23,6 @@ import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 import "../styles/cash-back-table.css";
 
-import classNames from "classnames";
-
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
@@ -35,21 +31,11 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import "../styles/discounts-table-2.css";
-
-import d from "../assets/cashBack.json";
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import ExpandingInput from "../components/ExpandingInput";
-import useFilterToggle from "../hooks/useFilterToggle";
 import Select from "react-select";
 
 import "../styles/discounts-table.css";
 import useRemoveId from "../components/useRemoveId";
 
-import ExcelExportBtn from "../components/ExcelExportBtn";
 import {
   CashBackTableDefs,
   cashBackTableHeaderList,
@@ -58,6 +44,10 @@ import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import {BsCashCoin} from "react-icons/bs"
+import {FaHandshake} from "react-icons/fa"
+import {FaRegNewspaper} from "react-icons/fa"
+import {RiMoneyDollarBoxLine} from "react-icons/ri"
 
 const shopsArr = [
   {
@@ -130,7 +120,6 @@ const shopsArr = [
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(cashBackTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -208,16 +197,9 @@ const CashBackTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
+ 
   const gridRef = useRef(null);
 
-  const [showFilters, setShowFilters] = useFilterToggle(true);
 
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
@@ -242,30 +224,31 @@ const CashBackTable = () => {
               </p>
               {/* 2 */}
               <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
+                <FaHandshake/>
                 <span className="info-badge-text"> შეძენიდან.</span>
               </p>
               {/* 3 */}
-
               <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
+                <img src="order-details/calendar.svg" alt="" />
                 <span className="info-badge-text info-badge-text__date">
                   1/10/2023 - 10/10/2023.
                 </span>
               </p>
               {/* 4 */}
               <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
+                {/* <img src="order-details/vendor.svg" alt="" /> */}
+                <FaRegNewspaper />
                 <span className="info-badge-text"> 23120.</span>
               </p>
               {/* 5 */}
               <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
+                <RiMoneyDollarBoxLine/>
                 <span className="info-badge-text">25,000GEL.</span>
               </p>
               {/* 6 */}
               <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
+                {/* <img src="order-details/vendor.svg" alt="" /> */}
+                <BsCashCoin/>
                 <span className="info-badge-text"> 7%.</span>
               </p>
             </section>

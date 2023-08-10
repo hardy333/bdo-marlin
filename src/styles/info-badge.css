@@ -9,6 +9,13 @@
 
 .info-badge img{
   width: 17.5px;
+  height: 25px;
+}
+
+.info-badge svg{
+  fill: #6E0FF5;
+  width: 17.5px;
+  height: 25px;
 }
 
 .info-badge-text{
