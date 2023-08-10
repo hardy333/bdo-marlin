@@ -1,119 +1,108 @@
-.cash-back-table  .react-select-container{
-    right: 50px;
+.cash-back-table .react-select-container {
+  right: 50px;
 }
 
-.cash-back-table .ag-header-group-text{
-    padding-right: 40px;
+.cash-back-table .ag-header-group-text {
+  padding-right: 40px;
 }
 
-.cash-back-header .order-details-left{
-    align-items: start;
+.cash-back-header .order-details-left {
+  align-items: start;
 }
 
-.cash-back-header .discount-conditions{
-    color: #6E0FF5 !important;
-    font-size: 14px;
-    border-radius: 15px;
-    background: rgba(110, 15, 245, 0.19) !important;
-    padding: 3px 10px;
+.cash-back-header .discount-conditions {
+  color: #6e0ff5 !important;
+  font-size: 14px;
+  border-radius: 15px;
+  background: rgba(110, 15, 245, 0.19) !important;
+  padding: 3px 10px;
 
-    /* font-weight: 600; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 4px;
-    cursor: pointer;
-
-
+  /* font-weight: 600; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+  cursor: pointer;
 }
 
-.cash-back-header .info-group{
-    display: flex;
+.cash-back-header .info-group {
+  display: flex;
 
-    flex-direction: column;
-    justify-content: start;
-    margin-right: 20px;
-
+  flex-direction: column;
+  justify-content: start;
+  margin-right: 20px;
 }
 
-
-.cash-back-header .info-group p{
-    text-align: start;
+.cash-back-header .info-group p {
+  text-align: start;
 }
-
-
 
 /* Badge Container */
 /* Badge Container */
 /* Badge Container */
 
-.cash-back-header .info-badge-container{
+.cash-back-table-header-left {
+  gap: 4rem;
+}
+
+.cash-back-header .info-badge-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 3rem;
+  row-gap: 8px;
+}
+
+.cash-back-header .info-badge-container .info-badge {
+  width: 100% !important;
+  justify-content: start;
+}
+
+@media (max-width: 600px) {
+  .cash-back-table-header-left {
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    column-gap: 3rem;
-    row-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+  }
+
+  .cash-back-header h4 {
+    order: 0;
+    grid-column: 1/2;
+    margin-right: 0 !important;
+    font-size: 18px;
+  }
+
+  .cash-back-header .btn-status-2 {
+    order: 1;
+    grid-column: 2/3;
+    justify-self: end;
+  }
+
+  .cash-back-table-header-left .info-badge-container {
+    order: 2;
+    grid-column: 1/3;
+  }
 }
 
-.cash-back-header .info-badge-container .info-badge{
-    width: 100% !important;
-    justify-content: start;
+@media (max-width: 500px) {
+  .cash-back-table-header-left {
+    margin-left: 0 !important;
+  }
+
+  .cash-back-header .info-badge-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .cash-back-header .info-badge {
+  }
+
+  .cash-back-header .info-badge-text {
+  }
 }
 
-@media (max-width: 600px){
-    .cash-back-table-header-left{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 2rem;
-    }
-
-    .cash-back-header h4{
-        order: 0;
-        grid-column: 1/2;
-        margin-right: 0 !important;
-        font-size: 18px;
-    }
-
-    .cash-back-header .btn-status-2{
-        order: 1;
-        grid-column: 2/3;
-        justify-self: end;
-    }
-
-    .cash-back-table-header-left .info-badge-container{
-        order: 2;
-        grid-column: 1/3;
-    }
+@media (max-width: 400px) {
+  .cash-back-header .btn-status-2 {
+    font-size: 11px !important;
+    letter-spacing: 0.5px;
+  }
 }
-
-@media (max-width: 500px){
-
-    .cash-back-table-header-left{
-        margin-left: 0 !important;
-    }
-
-    .cash-back-header .info-badge-container{
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 5px;
-    }
-
-
-    .cash-back-header .info-badge{
-
-    }
-
-    .cash-back-header .info-badge-text{
- 
-    }
-}
-
-@media (max-width: 400px){
-
-    .cash-back-header .btn-status-2{
-        font-size: 11px !important;
-        letter-spacing: 0.5px;
-        
-    }
-
-
-}
-
