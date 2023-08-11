@@ -58,7 +58,7 @@ const OrderDetails = () => {
     
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery("order-details-data", () =>
+  const { isLoading, error, data } = useQuery(["order-details-data", orderID], () =>
     fetchData(url)
   );
 
