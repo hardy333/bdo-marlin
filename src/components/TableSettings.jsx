@@ -25,7 +25,8 @@ const TableSettings = ({
   gridColumnApi,
   rowHeightIndex,
   setRowHeightIndex,
-  pageName = "data"
+  pageName = "data",
+  isLargeHeader = false
 }) => {
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -89,7 +90,7 @@ const TableSettings = ({
     });
   };
 
-  const [showFilters, setShowFilters] = useFilterToggle();
+  const [showFilters, setShowFilters] = useFilterToggle(isLargeHeader);
 
   const changeRowHeight = () => {
     if (rowHeightIndex === 2) {

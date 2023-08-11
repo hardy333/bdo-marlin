@@ -307,8 +307,9 @@ const CashBackTable = () => {
           </div>
 
           {/* Right */}
-          <div className="all-orders__settings__options self-start">
+          <div className="all-orders__settings__options self-start cash-back-table">
             <TableSettings
+              isLargeHeader={true}
               isSmallDevice={isSmallDevice}
               defHeaderList={cashBackTableHeaderList}
               rowData={rowData}
