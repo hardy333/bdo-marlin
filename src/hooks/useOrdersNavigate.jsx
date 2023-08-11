@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
+  
+  
   useEffect(() => {
     const x = document.querySelector(
       ".all-orders-parent .ag-center-cols-container"
@@ -29,9 +31,16 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           .querySelector(".ag-cell[col-id='vendor'] span")
           .getAttribute("data-order-id");
 
-        navigate(
-          `/order-details?shop=${shop}&date=${date}&vendor=${vendor}&status=${status}&orderID=${orderID}`
-        );
+
+          const urlParams = new URLSearchParams()
+          urlParams.append("shop", shop )
+          urlParams.append("date", date )
+          urlParams.append("vendor", vendor )
+          urlParams.append("status", status )
+          urlParams.append("orderID", orderID )
+
+
+        navigate("/order-details?" + urlParams.toString())
       }
 
       const prevOpenedCell = document.querySelector(
