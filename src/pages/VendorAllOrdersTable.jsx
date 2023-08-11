@@ -364,7 +364,7 @@ const VendorAllOrdersTable = () => {
 
   return (
     <>
-      <header className="all-orders__header">
+      <header className="all-orders__header vendor-all-orders">
         <div className="all-orders__arrow-container"></div>
         <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
@@ -372,9 +372,11 @@ const VendorAllOrdersTable = () => {
             className="all-orders__gdm-container"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span className={`${isSearchOpen ? "hide" : ""}`}>
+            <span className={`${isSearchOpen ? "hide" : ""} heading`}>
+              <span className="heading__left">
               ყველა შეკვეთა:
-              <span style={{ color: "#6E0FF5" }}> მომწოდებელი 1</span>
+              </span>
+              <span  className="heading__right" style={{ color: "#6E0FF5" }}> მომწოდებელი 1</span>
             </span>
           </div>
           {/* Right */}

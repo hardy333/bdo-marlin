@@ -71,3 +71,39 @@
 .ag-cell--opened{
   padding-top: 10px;
 }
+
+@media (max-width: 500px){
+  .vendor-all-orders .all-orders__settings {
+    height: unset !important;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  
+  .vendor-all-orders .heading{
+    /* display: flex;
+    flex-direction: column;
+    gap: 4rem; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+
+  }
+
+  .vendor-all-orders .heading__left{
+    font-size: 18px;
+
+  }
+
+  .vendor-all-orders .heading__right{
+    margin-left: 0 !important;
+    display: block;
+    margin-right: auto;
+    font-size: 14px;
+
+  }
+
+}
