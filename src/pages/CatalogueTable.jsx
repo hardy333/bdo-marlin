@@ -16,6 +16,7 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
+import "../styles/catalogue-table.css"
 
 // images
 
@@ -44,7 +45,6 @@ import TableSettings from "../components/TableSettings";
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(catalogueTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [subCatId, setSubCatId] = useState(
@@ -170,7 +170,7 @@ const CatalogueTable = () => {
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="order-details-left"
+            className="order-details-left catalogue-header-top"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <h4 className="heading">

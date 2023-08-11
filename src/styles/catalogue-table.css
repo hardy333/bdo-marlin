@@ -1,0 +1,33 @@
+body{
+}
+
+
+@media (max-width: 500px){
+    .catalogue-header{
+
+    }
+
+    .catalogue-header .all-orders__settings{
+        gap: 1rem;
+    }
+    
+    .catalogue-header-top{
+        display: flex;
+        gap: 1rem !important;
+    }
+
+    .catalogue-header .vendors-switch-container{
+        margin-left: 0 !important;
+    }
+
+    .catalogue-header .vendors-switch-container p:nth-last-of-type(1){
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 380px){
+    .catalogue-header .vendors-switch-container p{
+        font-size: 14px !important;
+    }
+    
+}
