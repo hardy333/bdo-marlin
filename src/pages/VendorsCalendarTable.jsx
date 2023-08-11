@@ -78,6 +78,7 @@ import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { CalendarTableDefs, calendarTableHeaderList } from "../column-definitions/CalendarTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import DatePickerInput from "../components/DatePickerInput";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -174,40 +175,21 @@ const VendorsCalendarTable = () => {
 
   return (
     <>
-      <header className="all-orders__header">
+      <header className="all-orders__header calendar-table-header ">
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="all-orders__gdm-container  order-details-left"
+            className="all-orders__gdm-container  order-details-left "
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span className="me-8">მომწოდებლების კალენდარი</span>
-            {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
-            <button></button>
-            <Menu
-              className="vendor-calendar-menu"
-              menuButton={
-                <button className="vendor-calendar-btn">
-                  <FaCalendarAlt />
-                </button>
-              }
-            >
-              <MenuItem>
-                <div className=" date-picker-wrapper">
-                  <DayPicker
-                    mode="single"
-                    selected={selected}
-                    onSelect={(x) => {
-                      setSelected(x);
-                      changeRowData();
-                    }}
-                    showOutsideDays={true}
+            <span className="me-8 heading">მომწოდებლების კალენდარი</span>
+          
+          <DatePickerInput />
 
-                  />
-                </div>
-              </MenuItem>
-            </Menu>
-            <Select
+          </div>
+          {/* Right */}
+          <div className="all-orders__settings__options">
+          <Select
               className="react-select-container"
               classNamePrefix="react-select"
               options={vendorsArr}
@@ -217,9 +199,6 @@ const VendorsCalendarTable = () => {
                 changeRowData();
               }}
             />
-          </div>
-          {/* Right */}
-          <div className="all-orders__settings__options">
           <TableSettings
                 isSmallDevice={isSmallDevice}
                 defHeaderList={calendarTableHeaderList}

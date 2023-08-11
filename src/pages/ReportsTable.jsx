@@ -108,16 +108,7 @@ const ReportsTable = () => {
 
   const gridRef = useRef(null);
 
-  const [dateState, setDateState] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 5),
-      key: "selection",
-      color: "#6E0FF5",
-    },
-  ]);
-  const [dateChanged, setDateChanged] = useState(false);
-
+  
   useEffect(() => {
     const x = document.querySelector(
       ".sla-all-table .ag-center-cols-container"

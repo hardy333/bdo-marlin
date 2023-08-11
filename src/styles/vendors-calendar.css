@@ -85,4 +85,29 @@
     margin-left: 0rem;
     margin-bottom: 1rem;
   }
+
+
+  .calendar-table-header .order-details-left{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem !important;
+
+  }
+  
+  .calendar-table-header .heading{
+    font-size: 16px;
+    margin-right: 0 !important;
+  }
+
+  .calendar-table-header .all-orders__settings__options{
+    width: 100%;
+    margin-left: 0 !important;
+
+  }
+
+  .calendar-table-header .react-select-container{
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+  
 }
