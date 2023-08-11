@@ -38,7 +38,10 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 
 import { invoicesTableHeaderList } from "../column-definitions/InvoicesTableDefs";
-import { InvoiceDetailsTableDefs, invoiceDetailsTableHeaderList } from "../column-definitions/InvoiceDetailsTableDefs";
+import {
+  InvoiceDetailsTableDefs,
+  invoiceDetailsTableHeaderList,
+} from "../column-definitions/InvoiceDetailsTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 
@@ -110,7 +113,6 @@ const InvoiceDetailsTable = () => {
 
   const gridRef = useRef(null);
 
-
   // URL info
   const [searchParams] = useSearchParams();
   let date = searchParams.get("date") || "01/30/2023";
@@ -152,31 +154,59 @@ const InvoiceDetailsTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
-
   return (
     <>
-      <header className="all-orders__header">
+      <header className="all-orders__header invoice-details-header">
         <div className="all-orders__settings">
           {/* Left */}
           <div
-            className="order-details-left gap-5"
+            className="order-details-left invoice-details-left gap-5"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 10 }}>ინვოისის დეტალები</h4>
-            <span>მომწოდებელი: {vendor}</span>
-            <span>თარიღი: {date}</span>
-            <span>ზედნადების #: 9282034</span>
-            <span className="">
-              <Link to="/order-details">ინვოისის #: 9282034</Link>
-            </span>
-            <span className="hover:text-primary">
-              <Link to="/order-details">შეკვეთის #: 92829000</Link>
-            </span>
-            <span className="block">გადახდის ვადა: {date}</span>
+            <h4 style={{ marginRight: 10, marginBottom: "auto" }}>
+              ინვოისის დეტალები
+            </h4>
+            <section className="info-badge-container">
+              {/* 1 */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> GDM.</span>
+              </p>
+              {/* 2  invoisis #  */}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text">92829000</span>
+              </p>
+              {/* 3 zednadebis #*/}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text info-badge-text__date">
+                  #: 9282034
+                </span>
+              </p>
+              {/* 4 shekvetis #*/}
+              <p
+                className="info-badge info-badge-mobile info-badge-link"
+                onClick={() => navigate("/order-details")}
+              >
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text"> 9282034</span>
+              </p>
+              {/* 5  tarigi*/}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text">01/30/2023 </span>
+              </p>
+              {/* 6 gadaxdis vada*/}
+              <p className="info-badge info-badge-mobile">
+                <img src="order-details/vendor.svg" alt="" />
+                <span className="info-badge-text">01/30/2023</span>
+              </p>
+            </section>
           </div>
           {/* Right */}
-          <div className="all-orders__settings__options">
-          <TableSettings
+          <div className="all-orders__settings__options mb-auto">
+            <TableSettings
               isSmallDevice={isSmallDevice}
               defHeaderList={invoiceDetailsTableHeaderList}
               rowData={rowData}
