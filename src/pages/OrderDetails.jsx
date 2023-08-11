@@ -39,6 +39,7 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import OrderDetailsCards from "../components/OrderDetailsCards";
 import Tippy from "@tippyjs/react";
+
 import TableSettings from "../components/TableSettings";
 import {
   OrderDetailsDefs,
@@ -53,12 +54,9 @@ const OrderDetails = () => {
   const orderID =
     searchParams.get("orderID") || "f0ce0829-044b-11ee-8123-005056b5a0aa";
 
-    console.log(searchParams.get("orderID"))
-    
-    
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery(["order-details-data", orderID], () =>
+  const { isLoading, error, data } = useQuery("order-details-data", () =>
     fetchData(url)
   );
 
@@ -161,159 +159,112 @@ const OrderDetails = () => {
     <>
       <header className="all-orders__header order-details-header">
         <div className="all-orders__settings  height-[20px]">
-          {/* Left */}
           <div
             className="order-details-left gap-10"
             style={{ paddingLeft: "0", marginLeft: 2 }}
           >
             <h4
               style={{ marginRight: 0, marginBottom: "auto" }}
-              className="text-center w-full sm:text-start sm:w-[220px] mb-4 "
+              className="  sm:text-start mb-4 "
             >
               შეკვეთის დეტალები
             </h4>
-            {/* Bottom + Top */}
-            <div className="">
-              {/* Top */}
-              <div className="flex mb-3 max-[450px]:grid text-center grid-cols-2 items-start gap-14 justify-center max-sm:w-full ">
-                {/* 1 */}
-                <div className="">
-                  <Tippy
-                    className="tooltip-1"
-                    arrow={false}
-                    placement="top"
-                    content={`მომწოდებელი: ${vendor}`}
-                  >
-                    <p className="flex  p mb-2">
-                      <span className="icon-span hidden sm:flex items-center font-bold text-[14px] pe-3 bg w-[25px] h-[25px]">
-                        <img src="order-details/vendor.svg" alt="" />
-                      </span>
-                      <span
-                        style={{ maxWidth: "120px" }}
-                        className="badge  text-start justify-start font-sans align-middle text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
-                      >
-                        {vendor}.
-                      </span>
-                    </p>
-                  </Tippy>
-                  <Tippy
-                    className="tooltip-1"
-                    arrow={false}
-                    placement="top"
-                    content={`თანხა: 1578 GEL`}
-                  >
-                    <p className="p">
-                      <span className="hidden icon-span sm:inline font-bold text-[14px] pe-3 bg">
-                        <img src="order-details/money.svg" alt="" />
-                      </span>
-                      <span
-                        style={{ maxWidth: "120px" }}
-                        className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
-                      >
-                        1578 GEL.
-                      </span>
-                    </p>
-                  </Tippy>
-                </div>
-
-                {/* 2 */}
-                <div>
-                  <Tippy
-                    className="tooltip-1"
-                    arrow={false}
-                    placement="top"
-                    content={"მაღაზია: " + shopAddress}
-                  >
-                    <p className="flex align-middle p mb-2">
-                      <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
-                        <img src="order-details/shop.svg" alt="" />
-                      </span>
-                      <span
-                        style={{
-                          maxWidth: "120px",
-                          width: shopAddress.length * 10 + "px",
-                          overflow: "hidden",
-                          whiteSpace: "nowrap",
-                          textOverflow: "ellipsis",
-                          display: "block",
-                        }}
-                        className="badge text-start text-[14px] max-sm:bg-primary/10 max-sm:text-primary  max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium"
-                      >
-                        {shopAddress + "."}
-                      </span>
-                    </p>
-                  </Tippy>
-                  <Tippy
-                    className="tooltip-1"
-                    arrow={false}
-                    placement="top"
-                    content="ინვოისის თანხა: 2039 GEL"
-                  >
-                    <p className="p">
-                      <span className="block icon-span font-bold text-[14px] pe-3 bg">
-                        <img src="order-details/document.svg" alt="" />
-                      </span>
-                      <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                        2039 GEL.
-                      </span>
-                    </p>
-                  </Tippy>
-                </div>
-
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content={`შეკვეთის თარიღი: 
+            <section className="info-badge-container">
+              {/* 1 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`მომწოდებელი: ${vendor}`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> GDM.</span>
+                </p>
+              </Tippy>
+              {/* 2 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={"მაღაზია: " + shopAddress}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/shop.svg" alt="" />
+                  <span className="info-badge-text"> რუსთაველი 01.</span>
+                </p>
+              </Tippy>
+              {/* 3 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის თარიღი: 
                   25/05/2023`}
-                >
-                  <p className="p">
-                    <span className="icon-span flex w-[25px] h-[25px]  font-bold text-[14px] pe-3 bg">
-                      <img src="order-details/clock.svg" alt="" />
-                    </span>
-                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      {date.split(" ")[0]}.
-                    </span>
-                  </p>
-                </Tippy>
-                <Tippy
-                  className="tooltip-1"
-                  arrow={false}
-                  placement="top"
-                  content="გეგმიური მოწოდების თარიღი: 02/08/2023"
-                >
-                  <p className="p">
-                    <span className="icon-span hidden sm:inline font-bold text-[14px] pe-3 bg">
-                      <img src="order-details/calendar.svg" alt="" />
-                    </span>
-                    <span className="badge text-[14px] max-sm:bg-primary/10 max-sm:text-primary justify-center max-sm:rounded-lg max-sm:p-1 max-sm:flex max-sm:items-center max-sm:pt-2 max-sm:ps-3 max-sm:pe-2 max-sm:text-[12px] max-sm:font-medium">
-                      02/08/2023.
-                    </span>
-                  </p>
-                </Tippy>
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/clock.svg" alt="" />
+                  <span className="info-badge-text"> 02/08/2023.</span>
+                </p>
+              </Tippy>
+              {/* 4 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="გეგმიური მოწოდების თარიღი: 02/08/2023"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/calendar.svg" alt="" />
+                  <span className="info-badge-text info-badge-text__date">
+                    01/30/2023.
+                  </span>
+                </p>
+              </Tippy>
 
-                <Menu
-                  className="pending-status-menu"
-                  menuButton={
-                    <button
-                      style={{ backgroundColor: statusBg, color: "#fff" }}
-                      className="btn btn-status-2 mt-[-2px]"
-                    >
-                      {status}
-                    </button>
-                  }
-                  direction="bottom"
-                  align="center"
-                  transition
+              {/* 5 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`თანხა: 1578 GEL`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/money.svg" alt="" />
+                  <span className="info-badge-text">1578 GEL.</span>
+                </p>
+              </Tippy>
+              {/* 6 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="ინვოისის თანხა: 2039 GEL"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/document.svg" alt="" />
+                  <span className="info-badge-text">2039 GEL.</span>
+                </p>
+              </Tippy>
+            </section>
+            <Menu
+              className="pending-status-menu"
+              menuButton={
+                <button
+                  style={{ backgroundColor: statusBg, color: "#fff" }}
+                  className="btn btn-status-2 mt-[-2px] mb-auto"
                 >
-                  <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
-                  <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
-                  <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
-                </Menu>
-              </div>
-              {/* Bottom */}
-              <div className="flex gap-14"></div>
-            </div>
+                  {status}
+                </button>
+              }
+              direction="bottom"
+              align="center"
+              transition
+            >
+              <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
+              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
+            </Menu>
           </div>
 
           {isSmallDevice ? null : (
