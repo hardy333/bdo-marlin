@@ -189,7 +189,7 @@ const InvoiceDetailsTable = () => {
                 content={`ინვოისის #: 92829000`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  <img src="/invoices-badge-icons/invoice.svg" alt="" />
                   <span className="info-badge-text">92829000</span>
                 </p>
               </Tippy>
@@ -201,7 +201,7 @@ const InvoiceDetailsTable = () => {
                 content={`ზედნადების #: 9282034`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  <img src="invoices-badge-icons/waybill.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
                     #: 9282034
                   </span>
@@ -218,7 +218,7 @@ const InvoiceDetailsTable = () => {
                   className="info-badge info-badge-mobile info-badge-link"
                   onClick={() => navigate("/order-details")}
                 >
-                  <img src="order-details/vendor.svg" alt="" />
+                  <img src="invoices-badge-icons/order.svg" alt="" />
                   <span className="info-badge-text"> 9282034</span>
                 </p>
               </Tippy>
@@ -231,7 +231,7 @@ const InvoiceDetailsTable = () => {
                   25/05/2023`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  <img src="order-details/calendar.svg" alt="" />
                   <span className="info-badge-text">01/30/2023 </span>
                 </p>
               </Tippy>
@@ -244,7 +244,7 @@ const InvoiceDetailsTable = () => {
                 01/30/2023`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  <img src="invoices-badge-icons/gadaxdis-vada-2.svg" alt="" />
                   <span className="info-badge-text">01/30/2023</span>
                 </p>
               </Tippy>

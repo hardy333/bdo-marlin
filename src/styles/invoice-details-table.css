@@ -43,6 +43,11 @@
 }
 
 @media (max-width: 600px) {
+.info-badge-link:hover {
+  text-decoration: underline;
+}
+  
+  
   .invoice-details-left {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

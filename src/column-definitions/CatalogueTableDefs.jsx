@@ -64,7 +64,7 @@ const CatalogueTableDefs = [
     headerName: "ფასი",
     maxWidth: 150,
 
-    cellRenderer: (params) => {
+    cellRenderer: (params) => { 
       const { value } = params;
       if(!value){
         return null
@@ -74,7 +74,7 @@ const CatalogueTableDefs = [
     },
   },
   {
-    field: "lastOrderPrice",
+    field: "lastPrice",
     headerName: "წინა ფასი",
     cellRenderer: (params) => {
       const { value } = params;

@@ -4,6 +4,8 @@ const allOrdersParentDefs = [
     headerName: "თარიღი",
     cellRenderer: (params) => {
       const { value } = params;
+
+      if(!value) return ""
       console.log("split value: ", value);
 
       return value.split(" ")[0].split("-").reverse().join("/");
