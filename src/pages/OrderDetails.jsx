@@ -39,6 +39,7 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import OrderDetailsCards from "../components/OrderDetailsCards";
 import Tippy from "@tippyjs/react";
+
 import TableSettings from "../components/TableSettings";
 import {
   OrderDetailsDefs,
@@ -170,37 +171,81 @@ const OrderDetails = () => {
             </h4>
             <section className="info-badge-container">
               {/* 1 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> GDM.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`მომწოდებელი: ${vendor}`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> GDM.</span>
+                </p>
+              </Tippy>
               {/* 2 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> რუსთაველი 01.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={"მაღაზია: " + shopAddress}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> რუსთაველი 01.</span>
+                </p>
+              </Tippy>
               {/* 3 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text info-badge-text__date">
-                  01/30/2023.
-                </span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის თარიღი: 
+                  25/05/2023`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> 02/08/2023.</span>
+                </p>
+              </Tippy>
               {/* 4 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> 02/08/2023.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="გეგმიური მოწოდების თარიღი: 02/08/2023"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text info-badge-text__date">
+                    01/30/2023.
+                  </span>
+                </p>
+              </Tippy>
+
               {/* 5 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text">1578 GEL.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`თანხა: 1578 GEL`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text">1578 GEL.</span>
+                </p>
+              </Tippy>
               {/* 6 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text">2039 GEL.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="ინვოისის თანხა: 2039 GEL"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text">2039 GEL.</span>
+                </p>
+              </Tippy>
             </section>
             <Menu
               className="pending-status-menu"
