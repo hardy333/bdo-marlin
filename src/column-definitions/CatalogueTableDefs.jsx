@@ -66,6 +66,9 @@ const CatalogueTableDefs = [
 
     cellRenderer: (params) => {
       const { value } = params;
+      if(!value){
+        return null
+      }
 
       return value + " " + "GEL";
     },
@@ -75,6 +78,11 @@ const CatalogueTableDefs = [
     headerName: "წინა ფასი",
     cellRenderer: (params) => {
       const { value } = params;
+
+      if(!value){
+        return null
+      }
+      
       const price = params.data.price;
 
 
@@ -108,6 +116,11 @@ const CatalogueTableDefs = [
     headerName: "ცვლილების თარიღი",
     cellRenderer: (params) => {
       const { value } = params;
+
+      if(!value){
+        return null
+      }
+
       return value.split("T")[0].split("-").reverse().join("/");
     },
   },

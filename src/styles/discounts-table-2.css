@@ -41,8 +41,8 @@
 
 .doscounts-table-select{
     position: absolute !important;
-    top: 15px;
-    right: 20px;
+    top: 18px;
+    right: 2px;
     z-index: 9999;
     width: 180px;
     border: 1px solid black;
