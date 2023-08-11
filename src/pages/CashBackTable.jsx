@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
@@ -44,10 +39,12 @@ import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
-import {BsCashCoin} from "react-icons/bs"
-import {FaHandshake} from "react-icons/fa"
-import {FaRegNewspaper} from "react-icons/fa"
-import {RiMoneyDollarBoxLine} from "react-icons/ri"
+import { BsCashCoin } from "react-icons/bs";
+import { FaHandshake } from "react-icons/fa";
+import { FaRegNewspaper } from "react-icons/fa";
+import { RiMoneyDollarBoxLine } from "react-icons/ri";
+
+import Tippy from "@tippyjs/react";
 
 const shopsArr = [
   {
@@ -197,9 +194,7 @@ const CashBackTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
- 
   const gridRef = useRef(null);
-
 
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
@@ -217,40 +212,82 @@ const CashBackTable = () => {
               რეტრო ბონუსები
             </h4>
             <section className="info-badge-container">
-              {/* 1 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> GDM.</span>
-              </p>
-              {/* 2 */}
-              <p className="info-badge info-badge-mobile">
-                <FaHandshake/>
-                <span className="info-badge-text"> შეძენიდან.</span>
-              </p>
+              {/* 1 მომწოდებელი */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`მომწოდებელი: GDM`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> GDM.</span>
+                </p>
+              </Tippy>
+              {/* 2 პირობა */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="პირობა: შეძენიდან"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <FaHandshake />
+                  <span className="info-badge-text"> შეძენიდან.</span>
+                </p>
+              </Tippy>
               {/* 3 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/calendar.svg" alt="" />
-                <span className="info-badge-text info-badge-text__date">
-                  1/10/2023 - 10/10/2023.
-                </span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="პერიოდი: 1/10/2023 - 10/10/2023"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/calendar.svg" alt="" />
+                  <span className="info-badge-text info-badge-text__date">
+                    1/10/2023 - 10/10/2023.
+                  </span>
+                </p>
+              </Tippy>
               {/* 4 */}
-              <p className="info-badge info-badge-mobile">
-                {/* <img src="order-details/vendor.svg" alt="" /> */}
-                <FaRegNewspaper />
-                <span className="info-badge-text"> 23120.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="დოკუმენტის #: 23120"
+              >
+                <p className="info-badge info-badge-mobile">
+                  {/* <img src="order-details/vendor.svg" alt="" /> */}
+                  <FaRegNewspaper />
+                  <span className="info-badge-text"> 23120.</span>
+                </p>
+              </Tippy>
               {/* 5 */}
-              <p className="info-badge info-badge-mobile">
-                <RiMoneyDollarBoxLine/>
-                <span className="info-badge-text">25,000GEL.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="გეგმა: 25,000GEL"
+              >
+                <p className="info-badge info-badge-mobile">
+                  <RiMoneyDollarBoxLine />
+                  <span className="info-badge-text">25,000GEL.</span>
+                </p>
+              </Tippy>
               {/* 6 */}
-              <p className="info-badge info-badge-mobile">
-                {/* <img src="order-details/vendor.svg" alt="" /> */}
-                <BsCashCoin/>
-                <span className="info-badge-text"> 7%.</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content="ქეშბექი: 7%"
+              >
+                <p className="info-badge info-badge-mobile">
+                  {/* <img src="order-details/vendor.svg" alt="" /> */}
+                  <BsCashCoin />
+                  <span className="info-badge-text"> 7%.</span>
+                </p>
+              </Tippy>
             </section>
             <Menu
               className="pending-status-menu"

@@ -44,6 +44,7 @@ import {
 } from "../column-definitions/InvoiceDetailsTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import Tippy from "@tippyjs/react";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -168,40 +169,85 @@ const InvoiceDetailsTable = () => {
             </h4>
             <section className="info-badge-container">
               {/* 1 */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> GDM.</span>
-              </p>
-              {/* 2  invoisis #  */}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text">92829000</span>
-              </p>
-              {/* 3 zednadebis #*/}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text info-badge-text__date">
-                  #: 9282034
-                </span>
-              </p>
-              {/* 4 shekvetis #*/}
-              <p
-                className="info-badge info-badge-mobile info-badge-link"
-                onClick={() => navigate("/order-details")}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`მომწოდებელი: 
+                  GDM`}
               >
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text"> 9282034</span>
-              </p>
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> GDM.</span>
+                </p>
+              </Tippy>
+              {/* 2  invoisis #  */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`ინვოისის #: 92829000`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text">92829000</span>
+                </p>
+              </Tippy>
+              {/* 3 zednadebis #*/}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`ზედნადების #: 9282034`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text info-badge-text__date">
+                    #: 9282034
+                  </span>
+                </p>
+              </Tippy>
+              {/* 4 shekvetis #*/}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის #: 9282034`}
+              >
+                <p
+                  className="info-badge info-badge-mobile info-badge-link"
+                  onClick={() => navigate("/order-details")}
+                >
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text"> 9282034</span>
+                </p>
+              </Tippy>
               {/* 5  tarigi*/}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text">01/30/2023 </span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის თარიღი: 
+                  25/05/2023`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text">01/30/2023 </span>
+                </p>
+              </Tippy>
               {/* 6 gadaxdis vada*/}
-              <p className="info-badge info-badge-mobile">
-                <img src="order-details/vendor.svg" alt="" />
-                <span className="info-badge-text">01/30/2023</span>
-              </p>
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`გადახდის ვადა: 
+                01/30/2023`}
+              >
+                <p className="info-badge info-badge-mobile">
+                  <img src="order-details/vendor.svg" alt="" />
+                  <span className="info-badge-text">01/30/2023</span>
+                </p>
+              </Tippy>
             </section>
           </div>
           {/* Right */}
