@@ -124,6 +124,8 @@
   display: none;
 }
 
+
+
 @media (max-width: 1000px) {
   .discounts-header {
     display: grid;
@@ -146,137 +148,94 @@
 }
 
 @media (max-width: 600px) {
+
+  .discounts{
+    padding-top: 0px;
+    
+  }
+
+  .discount-cards-container{
+    padding-right: 0 !important;
+    justify-items: center;
+    gap: 1rem;
+
+  }
+
+  .discount-card{
+    width: 100%;
+  }
+  
   .discounts-header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    position: static !important;
+    height: unset;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin-right: 0 !important;
     padding-right: 0;
-    padding-inline: 0.5rem;
     
   }
-  
 
-  .discounts-header h1 {
-    justify-self: center;
-    /* margin-bottom: 20px; */
-    align-items: center;
-    display: flex;
-    height: 100%;
-
-    grid-column: 1/2;
-    grid-row: 0 / 1;
-    font-size: 18px;
-    width: 100%;
-    margin: 0;
-    max-width: 100%;
-  }
-
-  .discounts-header .react-select-container {
-    justify-self: center;
-    grid-column: 2/3;
-    grid-row: 0 / 1;
-    width: 100% !important;
-    max-width: unset !important;
-    min-width: unset !important;
-
-  }
-
-  .discounts .vendors-switch-container {
-    grid-column: 1/ 2;
-    justify-self: center;
-    justify-self: start;
-    max-width: 100%;
-    margin: 0;
-
-  }
-
-  .discounts .excel-export-btn {
-    display: none;
-
-
-  }
-
+  /* 1 */
   .discounts-header .input-wrapper {
-    grid-column: 2 / 3;
-    justify-self: center;
-    width: 100%;
-    max-width: 240px;
-    width: 100%  !important;
-    max-width: 100%;
-    min-width: 100%;
+    width: 100% !important;
+    margin-right: 0 !important;
+    max-width: unset !important;
 
+ 
+  }
+
+  .discounts-header .input-wrapper input{
+    width: 100% !important;
 
   }
   
-  .discount-cards-container {
-    padding-left: 30px;
-  }
 
-  .discounts-date-picker{
-    grid-column: span 2;
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 1rem;
-    max-width: 240px;
-
-  }
-
-  .discounts-date-picker .btn-date{
-    margin-left: 0;
-  }
-
-  .discounts .toggle-switch{
-    grid-column: span 2;
+  /* 2 */
+  .discounts-header h1 {
 
     
   }
 
-  
-  .discounts .date-picker-input{
-    margin-right: 0;
-    width: 100%;
+
+  /* 3 */
+  .discounts-header .react-select-container {
+    grid-column: span 1;
+    width: 100% !important;
+
+
 
   }
 
-  .discounts .vendors-switch-container > p{
-    font-size: 14px !important;
+  /* 4 */
+  .discounts-header .date-picker-input{
+    /* justify-self: start; */
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
     
 
   }
-
+ 
 
   
-  .discounts .vendors-switch-container > .toggle-switch{
-
-    margin: 0 5px;
-    
-
-  }
-
 }
 
 
-@media (max-width: 460px) {
 
-  
-  .discounts-header .react-select-container {
-    max-width: 200px
-  }
-
-
-  .discounts-header .input-wrapper {
-  
-    max-width: 200px
-
-
+@media (max-width: 400px) {
+  .discounts-header h1 {
+    font-size: 18px;
   }
   
+}
 
-  .discounts-date-picker{
- 
-    max-width: 200px
-
+@media (max-width: 380px) {
+  .discounts-header h1 {
+    font-size: 16px;
   }
-
-
+  
 }

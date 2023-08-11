@@ -11,6 +11,7 @@
   min-height: 213px;
   overflow: hidden;
   border: 1px solid transparent;
+  max-width: 250px;
 }
 
 .discount-card:hover{
