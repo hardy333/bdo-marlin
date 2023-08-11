@@ -1,89 +1,66 @@
 const InvoiceDetailsTableDefs =[
+  
     {
-      field: "Order #",
-      headerName: "შეკვეთის #",
-      hide: true,
-    },
-    {
-      field: "Barcode",
+      field: "barcode",
       headerName: "ბარკოდი",
     },
     {
-      field: "Product",
+      field: "product",
       headerName: "პროდუქტი",
     },
     {
-      field: "Quantity",
+      field: "invoiceQuantity",
       headerName: "რაოდენობა",
       cellRenderer: (params) => {
         let { value } = params;
-        if (!value) {
-          value = Math.floor(Math.random() * 1000 + 20);
-        }
         return value;
       },
     },
     {
-      field: "Order Amount",
+      field: "orderAmount",
       headerName: "შეკვეთის თანხა",
       cellRenderer: (params) => {
         let { value } = params;
-        if (!value) {
-          value = Math.floor(Math.random() * 100 + 20);
-        }
         return value + " " + "GEL";
       },
     },
     {
-      field: "Invoice Amount",
+      field: "invoiceAmount",
       headerName: "ინვოისის თანხა",
-
       cellRenderer: (params) => {
         let { value } = params;
-
-        let newVal = null;
-
-        if (Math.random() - 0.5 < 0) {
-          newVal = Number(value) + Math.floor(Math.random() * 10 + 2);
-        }
-
-        if (!value) value = 10;
-        return (
-          <span>
-            <span style={{ color: newVal ? "#f55364" : "" }}>
-              {newVal ? newVal : value} GEL{" "}
-            </span>
-          </span>
-        );
+       
+        return value + " " + "GEL";
       },
     },
   ]
 
 
 const invoiceDetailsTableHeaderList = [
+  
     {
-      name: "Order #",
-      showingName: "შეკვეთის #",
-      isShowing: true,
-    },
-    {
-      name: "Barcode",
+      name: "barcode",
       showingName: "ბარკოდი",
 
       isShowing: true,
     },
     {
-      name: "Product",
+      name: "product",
       isShowing: true,
       showingName: "პროდუქტი",
     },
     {
-      name: "Quantity",
+      name: "invoiceQuantity",
       isShowing: true,
       showingName: "რაოდენობა",
     },
     {
-      name: "Invoice Amount",
+      name: "orderAmount",
+      isShowing: true,
+      showingName: "შეკვეთის თანხა",
+    },
+    {
+      name: "invoiceAmount",
       isShowing: true,
       showingName: "ინვოისის თანხა",
     },

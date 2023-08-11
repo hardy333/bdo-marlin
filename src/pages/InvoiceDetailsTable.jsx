@@ -45,19 +45,45 @@ import {
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import Tippy from "@tippyjs/react";
+import { useQuery } from "react-query";
+import { fetchData } from "../utils/fetchData";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(invoicesTableHeaderList);
+
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
-
   const [columnDefs] = useState(InvoiceDetailsTableDefs);
 
-  const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
+  const [searchParams] = useSearchParams();
+  const  invoiceID =
+    searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
+
+
+    const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/"+invoiceID
+
+    const { isLoading, error, data } = useQuery("invoice-details", () => fetchData(url));
+  
+    const [rowData, setRowData] = useState(() => {
+      if (data || data?.data) {
+        return data.data;
+      }
+      return null;
+    });
+  
+    console.log(rowData)
+  
+    useEffect(() => {
+      if (!data) return;
+      if (isLoading) return;
+      if (error) return;
+      setRowData(data.data);
+    }, [data, isLoading, error]);
+  
+  
+  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -114,42 +140,11 @@ const InvoiceDetailsTable = () => {
 
   const gridRef = useRef(null);
 
-  // URL info
-  const [searchParams] = useSearchParams();
-  let date = searchParams.get("date") || "01/30/2023";
-  let shop = searchParams.get("shop") || "SPAR001";
-  let shopAddress = searchParams.get("shopAddress") || "Rustaveli 01.";
-  let vendor = searchParams.get("vendor") || "GDM";
-  let status = searchParams.get("status") || "Pending";
 
-  let statusBg;
-  if (status === "In Progress") {
-    statusBg = "#6E0FF5";
-  } else if (status === "Delivered") {
-    statusBg = "#01C6B5";
-  } else {
-    statusBg = "#FFC23C";
-  }
 
   const [gridReady, setGridReady] = useState(false);
 
-  useEffect(() => {
-    const x = document.querySelector(".ag-center-cols-container");
 
-    if (!x) return;
-
-    const handleGridClick = (e) => {
-      const t = e.target;
-
-      navigate(`/order-details`);
-    };
-
-    x.addEventListener("click", handleGridClick);
-
-    return () => {
-      x.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi, gridRef]);
 
   const navigate = useNavigate();
 

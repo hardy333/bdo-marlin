@@ -41,6 +41,10 @@ import {
 } from "../column-definitions/InvoicesTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { useQuery } from "react-query";
+import { fetchData } from "../utils/fetchData";
+import useOrdersNavigate from "../hooks/useOrdersNavigate";
+import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -49,7 +53,6 @@ const InvoicesTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d);
 
   const gridRef = useRef(null);
 
@@ -57,6 +60,28 @@ const InvoicesTable = () => {
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
+  const url = "https://10.0.0.202:5001/api/INVFront/M00001"
+  const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
+
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
+
+  console.log(rowData)
+
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+  }, [data, isLoading, error]);
+
+  
+  
+  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -109,33 +134,15 @@ const InvoicesTable = () => {
 
 
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const x = document.querySelector(
-      ".invoices-table .ag-center-cols-container"
-    );
-
-    if (!x) return;
-
-    const handleGridClick = (e) => {
-      const t = e.target;
-      const row = t.closest(".ag-row");
-
-      navigate(`/invoice-details`);
-    };
-
-    x.addEventListener("click", handleGridClick);
-
-    return () => {
-      x.removeEventListener("click", handleGridClick);
-    };
-  }, [gridApi, gridRef]);
 
   useRemoveId(gridApi, gridRef);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
+
+
+ useInvoiceNavigate()
+  
 
   return (
     <>

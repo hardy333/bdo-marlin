@@ -1,123 +1,90 @@
 import vendorsArr from "../data/vendors-data";
 
-
 const InvoicesTableDefs = [
-    {
-      field: "Date",
-      headerName: "თარიღი",
+  {
+    field: "date",
+    headerName: "თარიღი",
+    cellRenderer: (params) => {
+      let { value, data } = params;
+      console.log({params})
+      if (!value) return "";
+      return <span id="invoice-id-span" data-invoice-id={data.invoiceID}>sss{value.split("T")[0]}</span>;
     },
-    {
-      field: "Waybill #",
-      headerName: "ზედნადები",
+  },
+  {
+    field: "waybillNumber",
+    headerName: "ზედნადები",
+  },
+  {
+    field: "orderID",
+    headerName: "შეკვეთის #",
+  },
+  {
+    field: "vendor",
+    headerName: "მომწოდებელი",
+  },
+  {
+    field: "shop",
+    headerName: "მაღაზია",
+  },
+  {
+    field: "orderAmount",
+    headerName: "შეკვეთის თანხა",
 
+    cellRenderer: (params) => {
+      let { value } = params;
+      if (!value) return "";
+      return value + " " + "GEL";
     },
-    {
-      field: "Documnet #",
-      headerName: "შეკვეთის #",
-
+  },
+  {
+    field: "invoiceAmount",
+    headerName: "ინვოისის თანხა",
+    cellRenderer: (params) => {
+      let { value } = params;
+      if (!value) return "";
+      return value + " " + "GEL";
     },
-    {
-      field: "Vendor",
-      headerName: "მომწოდებელი",
-      cellRenderer: (params) => {
-        return vendorsArr[Math.floor(Math.random() * vendorsArr.length)].value;
-      },
-    },
-    {
-      field: "Shop",
-      headerName: "მაღაზია",
-
-    },
-    {
-      field: "Amount",
-      headerName: "შეკვეთის თანხა",
-
-      cellRenderer: (params) => {
-        let { value } = params;
-        if (!value) value = 10;
-        return value + " " + "GEL";
-      },
-    },
-    {
-      field: "invoice Amount",
-      headerName: "ინვოისის თანხა",
-
-      cellRenderer: (params) => {
-        let { value } = params;
-
-        let newVal = null;
-
-        if (Math.random() - 0.5 < 0) {
-          newVal = Number(value) + Math.floor(Math.random() * 10 + 2);
-        }
-
-        if (!value) value = 10;
-        return (
-          <span>
-            <span style={{color: newVal ? "#f55364" : ""}}>{newVal ? newVal : value} GEL </span> 
-            
-          </span>
-        )
-      },
-    },
-    {
-      field: "Status",
-      headerName: "სტატუსი",
-      hide: true,
-      cellRenderer: (params) => {
-        const { value } = params;
-        const x = Number(value);
-        if (!value || x % 2 === 0)
-          return (
-            <button className="invoices-table-status-btn invoices-table-status-btn--danger ">
-              To be paid
-            </button>
-          );
-        return (
-          <button className="invoices-table-status-btn invoices-table-status-btn--success">
-            Paid
-          </button>
-        );
-      },
-    },
-  ]
-
+  },
+];
 
 const invoicesTableHeaderList = [
-    {
-      showingName: "თარიღი",
-      name: "Date",
-      isShowing: true,
-    },
-    {
-      showingName: "ზედნადები",
-      name: "Waybill #",
-      isShowing: true,
-    },
-    {
-      showingName: "დოკუმენტის #",
-      name: "Documnet #",
-      isShowing: true,
-    },
-    {
-      showingName: "მომწოდებელი",
-      name: "Vendor",
-      isShowing: true,
-    },
-    {
-      showingName: "მაღაზია",
-      name: "Shop",
-      isShowing: true,
-    },
-    {
-      showingName: "რაოდენობა",
-      name: "Amount",
-      isShowing: true,
-    },
-  ]
+  {
+    showingName: "თარიღი",
+    name: "date",
+    isShowing: true,
+  },
+  {
+    showingName: "ზედნადები",
+    name: "waybillNumber",
+    isShowing: true,
+  },
+  {
+    showingName: "შეკვეთის #",
+    name: "orderID",
+    isShowing: true,
+  },
+  {
+    showingName: "მომწოდებელი",
+    name: "vendor",
+    isShowing: true,
+  },
+  {
+    showingName: "მაღაზია",
+    name: "shop",
+    isShowing: true,
+  },
+  {
+    showingName: "შეკვეთის თანხა",
+    name: "orderAmount",
+    isShowing: true,
+  },
 
+  {
+    showingName: "ინვოისის თანხა",
+    name: "invoiceAmount",
+    isShowing: true,
+  },
+];
 
-export {
-    invoicesTableHeaderList, 
-    InvoicesTableDefs
-}
+export { invoicesTableHeaderList, InvoicesTableDefs };
