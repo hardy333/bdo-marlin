@@ -122,11 +122,17 @@ const CashBackTable = () => {
 
   const [columnDefs] = useState(CashBackTableDefs);
 
-  const url = "https://10.0.0.202:5001/api/RetroBonus/M00001";
 
-  const { isLoading, error, data } = useQuery("all-orders-data", () =>
+  const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055"
+  const retroBonusID = "19ac6fd7-7f9e-11e8-80ef-005056b569bf"
+  
+  
+  const url = "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/"+shopID + "/" + retroBonusID;
+
+  const { isLoading, error, data } = useQuery("retro-bonus-details", () =>
     fetchData(url)
   );
+
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -134,6 +140,9 @@ const CashBackTable = () => {
     }
     return null;
   });
+
+  console.log(rowData)
+
 
   useEffect(() => {
     if (!data) return;
