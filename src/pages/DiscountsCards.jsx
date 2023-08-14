@@ -9,6 +9,8 @@ import { AnimatePresence } from "framer-motion";
 
 import { v4 as uuidv4 } from 'uuid';
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { useQuery } from "react-query";
+import { fetchData } from "../utils/fetchData";
 
 const options = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
@@ -70,6 +72,10 @@ const products2 = products
 
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
+  const url = "https://10.0.0.202:5001/api/RBFront/M00001/D00001"
+  const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
+
+  console.log(data)
 
   let cards
   if(isChecked){
@@ -77,7 +83,6 @@ const DiscountsCards = () => {
   }else{
     cards = products
   }
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
   
   return (
@@ -117,14 +122,17 @@ const DiscountsCards = () => {
 
         <div className="discount-cards-container">
           <AnimatePresence mode="wait" initial={false}>
-            {cards.map((obj, index) => {
+            {data?.data.map((obj, index) => {
               return (
                 <DiscountCard
-                  name={obj.name}
-                  dis={obj.dis}
                   index={index}
                   key={obj.id}
+                  status={obj.status}
+                  retroPercent={obj.retroPercent}
+                  startDate={obj.startDate}
+                  documentNo={obj.documentNo}
                   isBonusCard={isChecked === false}
+                  retroBonusID={obj.retroBonusID}
                 />
               );
             })}

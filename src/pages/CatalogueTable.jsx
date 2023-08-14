@@ -50,6 +50,7 @@ const CatalogueTable = () => {
   const [subCatId, setSubCatId] = useState(
     "e1307628-f308-11ed-8120-005056b5a0aa"
   );
+  console.log({subCatId})
 
   const url = `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
 
@@ -77,6 +78,9 @@ const CatalogueTable = () => {
   }, [data, isLoading, error]);
 
   const [columnDefs] = useState(CatalogueTableDefs);
+
+
+  console.log(rowData)
 
 
   useEffect(() => {
@@ -134,13 +138,7 @@ const CatalogueTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
+
   const gridRef = useRef(null);
 
   // --------//

@@ -5,14 +5,14 @@
 }
 
 .info-badge img {
-  width: 17.5px;
-  height: 25px;
+  /* width: 17.5px; */
+  height: 18px;
 }
 
 .info-badge svg {
   fill: #6e0ff5;
-  width: 17.5px;
-  height: 25px;
+  /* width: 17.5px; */
+  height: 18px;
 }
 
 .info-badge-text {

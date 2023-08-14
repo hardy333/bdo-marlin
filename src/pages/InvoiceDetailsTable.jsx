@@ -61,6 +61,13 @@ const InvoiceDetailsTable = () => {
   const  invoiceID =
     searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
 
+    const waybillNumber = searchParams.get("waybillNumber")
+    const orderNumber = searchParams.get("orderNumber")
+    const invoiceNumber = searchParams.get("invoiceNumber")
+
+    const vendor = searchParams.get("vendor")
+    const date = searchParams.get("date")
+
 
     const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/"+invoiceID
 
@@ -173,7 +180,7 @@ const InvoiceDetailsTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/vendor.svg" alt="" />
-                  <span className="info-badge-text"> GDM.</span>
+                  <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
               {/* 2  invoisis #  */}
@@ -185,7 +192,7 @@ const InvoiceDetailsTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="/invoices-badge-icons/invoice.svg" alt="" />
-                  <span className="info-badge-text">92829000</span>
+                  <span className="info-badge-text">#: {invoiceNumber}</span>
                 </p>
               </Tippy>
               {/* 3 zednadebis #*/}
@@ -193,12 +200,12 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`ზედნადების #: 9282034`}
+                content={`ზედნადების #: ${waybillNumber}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="invoices-badge-icons/waybill.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
-                    #: 9282034
+                    #: {waybillNumber}
                   </span>
                 </p>
               </Tippy>
@@ -214,7 +221,7 @@ const InvoiceDetailsTable = () => {
                   onClick={() => navigate("/order-details")}
                 >
                   <img src="invoices-badge-icons/order.svg" alt="" />
-                  <span className="info-badge-text"> 9282034</span>
+                  <span className="info-badge-text">#: {orderNumber}</span>
                 </p>
               </Tippy>
               {/* 5  tarigi*/}
@@ -227,7 +234,7 @@ const InvoiceDetailsTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
-                  <span className="info-badge-text">01/30/2023 </span>
+                  <span className="info-badge-text">{date?.split("T")[0]} </span>
                 </p>
               </Tippy>
               {/* 6 gadaxdis vada*/}

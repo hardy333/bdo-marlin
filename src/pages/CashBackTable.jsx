@@ -45,6 +45,7 @@ import { FaRegNewspaper } from "react-icons/fa";
 import { RiMoneyDollarBoxLine } from "react-icons/ri";
 
 import Tippy from "@tippyjs/react";
+import { useSearchParams } from "react-router-dom";
 
 const shopsArr = [
   {
@@ -122,9 +123,10 @@ const CashBackTable = () => {
 
   const [columnDefs] = useState(CashBackTableDefs);
 
-
+  const [searchParams] = useSearchParams();
+  const  retroBonusID =
+    searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
   const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055"
-  const retroBonusID = "19ac6fd7-7f9e-11e8-80ef-005056b569bf"
   
   
   const url = "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/"+shopID + "/" + retroBonusID;

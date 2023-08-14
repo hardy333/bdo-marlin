@@ -6,7 +6,7 @@ import CrystalSvg from "./svgs/CrystalSvg";
 
 import { motion } from "framer-motion";
 
-const DiscountCard = ({ index, name, dis, isBonusCard }) => {
+const DiscountCard = ({ index, retroBonusID, retroPercent, status, startDate, documentNo, isBonusCard }) => {
   const navigate = useNavigate();
 
 
@@ -25,9 +25,12 @@ const DiscountCard = ({ index, name, dis, isBonusCard }) => {
       
     >
       <h2>
-        {name} - {dis}%
+        <span style={{color: "#211543" }}>
+        {/* {documentNo}  */}
+        </span>
+         <span className=" block mb-3" style={{width: "100%", textAlign: "center" }}>  {retroPercent}%</span> 
       </h2>
-      <h3>დოკუმენტი: #{Math.floor(Math.random() * 2000 + 30330)}</h3>
+      <h3 className="" style={{}}>დოკუმენტი: #{documentNo}</h3>
       {index > 3 ? (
         <></>
       ) : (
@@ -36,18 +39,22 @@ const DiscountCard = ({ index, name, dis, isBonusCard }) => {
         </div>
       )}
 
-      <div className="discount-card__body">
-        <h4>
+      <div className="discount-card__body ">
+        <h4 className="mb-5  pb-2">
           <VendorsCalendarSvg />
-          {Math.random() - 0.4 > 0 ? "აქტიურია" : "არააქტიურია"}
+          {status}
         </h4>
-        <p>1/02/2023 - 10/02/2023</p>
+        <p>{startDate?.split("T")[0]} - present</p>
       </div>
 
       <button
         onClick={() => {
           if (isBonusCard) {
-            navigate("/cash-back-table");
+
+            const urlParams = new URLSearchParams();
+            urlParams.append("retroBonusID", retroBonusID);
+            navigate("/cash-back-table?" + urlParams.toString());
+            
           } else {
             navigate("/discounts-table");
           }

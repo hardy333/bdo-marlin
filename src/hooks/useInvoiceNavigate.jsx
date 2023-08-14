@@ -12,9 +12,16 @@ const useInvoiceNavigate = () => {
       const cell = e.target;
       const row = cell.closest(".ag-row");
       const invoiceIdSpan = row.querySelector("#invoice-id-span")
-      console.log(invoiceIdSpan)
       
-      const invoiceID = invoiceIdSpan.getAttribute("data-invoice-id")
+      const invoiceID = invoiceIdSpan.getAttribute("data-invoiceID")
+
+      const waybillNumber = invoiceIdSpan.getAttribute("data-waybillNumber")
+      const orderNumber = invoiceIdSpan.getAttribute("data-orderNumber")
+      const invoiceNumber = invoiceIdSpan.getAttribute("data-invoiceNumber")
+
+      const vendor = invoiceIdSpan.getAttribute("data-vendor")
+      const date = invoiceIdSpan.getAttribute("data-date")
+
 
 
       //  for navigation
@@ -30,11 +37,11 @@ const useInvoiceNavigate = () => {
     //     .getAttribute("data-order-id");
 
       const urlParams = new URLSearchParams();
-    //   urlParams.append("shop", shop);
-    //   urlParams.append("date", date);
-    //   urlParams.append("vendor", vendor);
-    //   urlParams.append("status", status);
-    //   urlParams.append("orderID", orderID);
+      urlParams.append("waybillNumber", waybillNumber);
+      urlParams.append("orderNumber", orderNumber);
+      urlParams.append("invoiceNumber", invoiceNumber);
+      urlParams.append("date", date);
+      urlParams.append("vendor", vendor);
       urlParams.append("invoiceID", invoiceID);
 
       navigate("/invoice-details?" + urlParams.toString());

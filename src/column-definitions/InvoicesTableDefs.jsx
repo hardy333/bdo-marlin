@@ -8,7 +8,14 @@ const InvoicesTableDefs = [
       let { value, data } = params;
       console.log({params})
       if (!value) return "";
-      return <span id="invoice-id-span" data-invoice-id={data.invoiceID}>sss{value.split("T")[0]}</span>;
+      return <span id="invoice-id-span" 
+      data-orderID={data.orderID} 
+      data-orderNumber={data.orderNumber} data-waybillNumber={data.waybillNumber} 
+      data-invoiceNumber={data.invoiceNumber}
+      data-vendor={data.vendor} 
+      data-date={data.date}
+      data-invoiceID={data.invoiceID}
+      >{value.split("T")[0]}</span>;
     },
   },
   {
