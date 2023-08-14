@@ -54,7 +54,7 @@ const DiscountCard = ({ index, retroBonusID, retroPercent, status, startDate, do
             const urlParams = new URLSearchParams();
             urlParams.append("retroBonusID", retroBonusID);
             navigate("/cash-back-table?" + urlParams.toString());
-            
+
           } else {
             navigate("/discounts-table");
           }

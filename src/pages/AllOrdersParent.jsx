@@ -91,6 +91,8 @@ const AllOrdersParent = () => {
 
   useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
 
+  console.log(rowData)
+  
   // EVents
   // EVents
   const onGridReady = (params) => {

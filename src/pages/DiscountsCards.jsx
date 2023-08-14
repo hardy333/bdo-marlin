@@ -123,10 +123,10 @@ const DiscountsCards = () => {
         <div className="discount-cards-container">
           <AnimatePresence mode="wait" initial={false}>
             {data?.data.map((obj, index) => {
+              console.log(obj)
               return (
                 <DiscountCard
-                  index={index}
-                  key={obj.id}
+                  key={obj.retroBonusID}
                   status={obj.status}
                   retroPercent={obj.retroPercent}
                   startDate={obj.startDate}

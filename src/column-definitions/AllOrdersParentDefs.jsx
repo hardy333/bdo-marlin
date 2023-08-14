@@ -110,12 +110,10 @@ const allOrdersParentDefs = [
     headerName: "ინვოისის თანხა",
 
     cellRenderer: (params) => {
-      let show = true;
-      if (Math.random() - 0.4 < 0) {
-        show = false;
-      }
+      const { value } = params;
+      
 
-      return show ? Math.floor(Math.random() * 1060 + 40) + " GEL" : "";
+      return value ? value + "GEL" : ""; 
     },
   },
   {
@@ -123,15 +121,10 @@ const allOrdersParentDefs = [
     headerName: "სერვისის დონე",
     cellRenderer: (params) => {
       const { value } = params;
-      return Math.floor(Math.random() * 60 + 40) + "%";
+      return value ? value + "%" : ""; 
     },
   },
-  {
-    field: "orderID",
-    headerName: "orderID",
-    show: false,
-    hide: true,
-  },
+ 
 ];
 
 export const allOrdersParentHeaderList = [
