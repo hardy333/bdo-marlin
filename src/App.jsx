@@ -68,12 +68,10 @@ import CategoriesTable2 from "./pages/CategoriesTable2";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
 import AuthElement from "./components/AuthElement";
-import { useAuthContext } from "./hooks/useAuthContext";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const { user } = useAuthContext()
 
   return (
     <>

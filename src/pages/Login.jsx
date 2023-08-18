@@ -28,8 +28,8 @@ const Login = () => {
 
           <form action="" className="login-form" onSubmit={handleSubmit}>
            <span className={`login-error ${error && "active"}`}>პაროლი ან მეილი არასწორია.</span> 
-            <input className="input" type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <input required className="input" type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input required className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <small className="ml-auto ">
               <a href="" className="login-link">
                 დაგავიწყდათ პაროლი?
