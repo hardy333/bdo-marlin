@@ -12,7 +12,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 
-const options = [
+const vendors = [
   { value: "მომწოდებელი 1", label: "მომწოდებელი 1" },
   { value: "მომწოდებელი 2", label: "მომწოდებელი 2" },
   { value: "მომწოდებელი 3 ", label: "მომწოდებელი 3 " },
@@ -74,6 +74,7 @@ const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
   const url = "https://10.0.0.202:5001/api/RBFront/M00001/D00001"
   const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
+  const [selectedVendor, setSelectedVendor] = useState(vendors[0])
 
   console.log(data)
 
@@ -84,6 +85,14 @@ const DiscountsCards = () => {
     cards = products
   }
 
+
+  const handleVendorChange = (x) => {
+
+    setSelectedVendor(x)
+
+  }
+  
+  
   
   return (
     <>
@@ -93,10 +102,11 @@ const DiscountsCards = () => {
           <h1>რეტრო ბონუსები</h1>
 
           <Select
+            onChange={handleVendorChange}
             className="react-select-container"
             classNamePrefix="react-select"
-            options={options}
-            defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            options={vendors}
+            defaultValue={vendors[0]}
           />
           {/* <div className="vendors-switch-container ml-10">
             <p className="">{isSmallDevice ? "ბონუსები" : "რეტრო ბონუსები"}</p>
@@ -126,6 +136,8 @@ const DiscountsCards = () => {
               console.log(obj)
               return (
                 <DiscountCard
+                condition={obj.condition}
+                planAmount={obj.planAmount}
                   key={obj.retroBonusID}
                   status={obj.status}
                   retroPercent={obj.retroPercent}
@@ -133,6 +145,7 @@ const DiscountsCards = () => {
                   documentNo={obj.documentNo}
                   isBonusCard={isChecked === false}
                   retroBonusID={obj.retroBonusID}
+                  selectedVendor={selectedVendor}
                 />
               );
             })}

@@ -128,6 +128,15 @@ const CashBackTable = () => {
     searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
   const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055"
   
+  const  documentNo = searchParams.get("documentNo")
+  const  startDate = searchParams.get("startDate")
+  const  endDate = searchParams.get("endDate")
+  const  vendor = searchParams.get("vendor")
+
+  const  condition = searchParams.get("condition")
+  const  planAmount = searchParams.get("planAmount")
+
+  
   
   const url = "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/"+shopID + "/" + retroBonusID;
 
@@ -210,6 +219,10 @@ const CashBackTable = () => {
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
+
+  console.log(planAmount)
+  
+
   return (
     <>
       <header className="all-orders__header cash-back-header">
@@ -228,11 +241,11 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`მომწოდებელი: GDM`}
+                content={`მომწოდებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/vendor.svg" alt="" />
-                  <span className="info-badge-text"> GDM.</span>
+                  <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
               {/* 2 პირობა */}
@@ -240,11 +253,11 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="პირობა: შეძენიდან"
+                content={`პირობა: ${condition}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <FaHandshake />
-                  <span className="info-badge-text"> შეძენიდან.</span>
+                  <span className="info-badge-text"> {condition}</span>
                 </p>
               </Tippy>
               {/* 3 */}
@@ -252,12 +265,12 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="პერიოდი: 1/10/2023 - 10/10/2023"
+                content={`პერიოდი: ${startDate?.split("T")[0]} - ${endDate || "განუსაზღვრელი"} `}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
-                    1/10/2023 - 10/10/2023.
+                    {startDate?.split("T")[0]} - {endDate || "განუსაზღვრელი"}
                   </span>
                 </p>
               </Tippy>
@@ -266,12 +279,12 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="დოკუმენტის #: 23120"
+                content={`დოკუმენტის #:  ${documentNo}`}
               >
                 <p className="info-badge info-badge-mobile">
                   {/* <img src="order-details/vendor.svg" alt="" /> */}
                   <FaRegNewspaper />
-                  <span className="info-badge-text"> 23120.</span>
+                  <span className="info-badge-text">#: {documentNo}</span>
                 </p>
               </Tippy>
               {/* 5 */}
@@ -279,11 +292,11 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="გეგმა: 25,000GEL"
+                content={`გეგმა: ${planAmount === "undefined" ?   "განუსაზღვრელი" : planAmount + " GEL"} `}
               >
                 <p className="info-badge info-badge-mobile">
                   <RiMoneyDollarBoxLine />
-                  <span className="info-badge-text">25,000GEL.</span>
+                  <span className="info-badge-text">{planAmount === "undefined" ?   "განუსაზღვრელი" : planAmount + " GEL"} </span>
                 </p>
               </Tippy>
               {/* 6 */}
@@ -296,7 +309,7 @@ const CashBackTable = () => {
                 <p className="info-badge info-badge-mobile">
                   {/* <img src="order-details/vendor.svg" alt="" /> */}
                   <BsCashCoin />
-                  <span className="info-badge-text"> 7%.</span>
+                  <span className="info-badge-text"> 7%</span>
                 </p>
               </Tippy>
             </section>

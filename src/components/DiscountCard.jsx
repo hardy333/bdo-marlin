@@ -6,7 +6,7 @@ import CrystalSvg from "./svgs/CrystalSvg";
 
 import { motion } from "framer-motion";
 
-const DiscountCard = ({ index, retroBonusID, retroPercent, status, startDate, documentNo, isBonusCard }) => {
+const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID, retroPercent, status, startDate, documentNo, isBonusCard }) => {
   const navigate = useNavigate();
 
 
@@ -53,6 +53,12 @@ const DiscountCard = ({ index, retroBonusID, retroPercent, status, startDate, do
 
             const urlParams = new URLSearchParams();
             urlParams.append("retroBonusID", retroBonusID);
+            urlParams.append("documentNo", documentNo);
+            urlParams.append("startDate", startDate);
+            urlParams.append("vendor", selectedVendor.value);
+            urlParams.append("planAmount", planAmount);
+            urlParams.append("condition", condition);
+
             navigate("/cash-back-table?" + urlParams.toString());
 
           } else {

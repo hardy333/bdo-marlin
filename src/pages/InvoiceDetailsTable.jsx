@@ -65,6 +65,7 @@ const InvoiceDetailsTable = () => {
     const orderNumber = searchParams.get("orderNumber")
     const invoiceNumber = searchParams.get("invoiceNumber")
 
+
     const vendor = searchParams.get("vendor")
     const date = searchParams.get("date")
 
@@ -175,8 +176,7 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`მომწოდებელი: 
-                  GDM`}
+                content={`მომწოდებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/vendor.svg" alt="" />
@@ -188,7 +188,7 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`ინვოისის #: 92829000`}
+                content={`ინვოისის #: ${invoiceNumber}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="/invoices-badge-icons/invoice.svg" alt="" />
@@ -200,12 +200,12 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`ზედნადების #: ${waybillNumber}`}
+                content={`ზედნადების #: ${waybillNumber || "Unknown"}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="invoices-badge-icons/waybill.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
-                    #: {waybillNumber}
+                    #: {waybillNumber || "Unknown"}
                   </span>
                 </p>
               </Tippy>
@@ -229,8 +229,7 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`შეკვეთის თარიღი: 
-                  25/05/2023`}
+                content={`შეკვეთის თარიღი: ${date?.split("T")[0]}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
@@ -245,7 +244,7 @@ const InvoiceDetailsTable = () => {
                 content={`გადახდის ვადა: 
                 01/30/2023`}
               >
-                <p className="info-badge info-badge-mobile">
+                <p style={{display: "none"}} className="info-badge info-badge-mobile">
                   <img src="invoices-badge-icons/gadaxdis-vada-2.svg" alt="" />
                   <span className="info-badge-text">01/30/2023</span>
                 </p>
