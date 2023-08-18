@@ -103,16 +103,19 @@ const TableSettings = ({
   return (
     <>
       {/* Expand Input */}
+     
       <ExpandingInput
+      useTippy={true}
         setIsSearchOpen={setIsSearchOpen}
         onFilterTextChange={onFilterTextChange}
       />
+    
       {/* input filter */}
       <Tippy
         className="tooltip-1"
         arrow={false}
         placement="top"
-        content="ფილტრაცია"
+        content="სვეტების ფილტრაცია"
       >
         <button
           onClick={() => {

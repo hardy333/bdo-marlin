@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/expanding-input.css";
 import classNames from "classnames";
+import Tippy from "@tippyjs/react";
 
-const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
+const ExpandingInput = ({
+  onFilterTextChange,
+  useTippy = false,
+  setIsSearchOpen,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef();
   const inputRef = useRef();
@@ -24,7 +29,7 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
     };
   }, []);
 
-  return (
+  const Content = (
     <div
       className={classNames({
         "expanding-input-wrapper": true,
@@ -32,8 +37,8 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
       })}
       ref={wrapperRef}
       onClick={() => {
-        if(setIsSearchOpen){
-          setIsSearchOpen(true)
+        if (setIsSearchOpen) {
+          setIsSearchOpen(true);
         }
       }}
     >
@@ -43,6 +48,7 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
         type="text"
         onChange={onFilterTextChange}
       />
+
       <svg
         onClick={() => {
           setIsOpen(true);
@@ -87,6 +93,23 @@ const ExpandingInput = ({ onFilterTextChange, setIsSearchOpen }) => {
         />
       </svg>
     </div>
+  );
+
+  return (
+    <>
+      {useTippy ? (
+        <Tippy
+          className="tooltip-1"
+          arrow={false}
+          placement="top"
+          content="სრული ფილტრაცია"
+        >
+          {Content}
+        </Tippy>
+      ) : (
+        Content
+      )}
+    </>
   );
 };
 

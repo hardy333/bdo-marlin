@@ -329,7 +329,7 @@ const CashBackTable = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
-              pageName="all-orders"
+              pageName="retro-bonuses"
             />
           </div>
         </div>
