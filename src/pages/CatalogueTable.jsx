@@ -17,6 +17,8 @@ import "../styles/global-filter-input.css";
 import "../styles/order-details.css";
 import "../styles/pending-status-menu.css";
 import "../styles/catalogue-table.css"
+import Select from "react-select";
+
 
 // images
 
@@ -41,6 +43,7 @@ import { BiFoodMenu } from "react-icons/bi";
 import CatalogueCards from "../components/CatalogueCards";
 import { CatalogueTableDefs, catalogueTableHeaderList } from "../column-definitions/CatalogueTableDefs";
 import TableSettings from "../components/TableSettings";
+import vendorsArr from "../data/vendors-data";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -157,6 +160,21 @@ const CatalogueTable = () => {
   const [showCatalogue, setShowCatalogue] = useState(false);
   const [cat, setCat] = useState("სასუსნავები");
   const [prod, setProd] = useState("ჩიფსი");
+  const [selectedVendor, setSelectedVendor] = useState(() => {
+    const res = window.localStorage.getItem("catalogue-selected-vendor")
+    if(res){
+      return JSON.parse(res)
+    }else {
+      return vendorsArr[0]
+    }
+  })
+  
+  const handleVendorChange = (vendor) => {
+    window.localStorage.setItem("catalogue-selected-vendor", JSON.stringify(vendor))
+    setSelectedVendor(vendor)
+
+  }
+  
 
   return (
     <>
@@ -193,6 +211,13 @@ const CatalogueTable = () => {
               </div>
               <p className="catalogue-label">ყველა პროდუქტი</p>
             </div>
+            <Select
+            onChange={handleVendorChange}
+              className="react-select-container catalogue-select"
+              classNamePrefix="react-select"
+              options={vendorsArr}
+              defaultValue={selectedVendor}
+            />
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
