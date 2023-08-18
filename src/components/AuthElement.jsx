@@ -4,9 +4,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const AuthElement = () => {
   const { user } = useAuthContext()
-  const navigate = useNavigate()
-
-  console.log("authElement", user)
 
   let ResComponent =  null
 
@@ -20,7 +17,6 @@ const AuthElement = () => {
     
   return (
     <>
-      <div>AuthElement</div>
       {ResComponent}
     </>
   );
