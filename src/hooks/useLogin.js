@@ -14,7 +14,6 @@ export const useLogin = () => {
     setError(null)
 
 
-    console.log(email, password)
     const response = await fetch('https://10.0.0.202:5001/api/Auth/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},

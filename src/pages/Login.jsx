@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Login = () => {
 
@@ -12,9 +13,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await login(email, password)
+    await login(email, password)
 
+  }
 
+  const { user } = useAuthContext()
+  const navigate = useNavigate()
+
+  if(user){
+    navigate("/")
   }
 
   

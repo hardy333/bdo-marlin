@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, Outlet, useNavigate } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+
 const AuthElement = () => {
   const { user } = useAuthContext()
 
