@@ -4,10 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import "./styles/index.css"
+import { AuthContextProvider } from "./context/authContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <BrowserRouter>
+  <AuthContextProvider>
     <div
       className="aside-overlay"
       onClick={() => {
@@ -15,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       }}
     ></div>
     <App />
+  </AuthContextProvider>
   </BrowserRouter>
   // </React.StrictMode>
 );

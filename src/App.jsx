@@ -67,10 +67,14 @@ import MTable from "./pages/MTable";
 import CategoriesTable2 from "./pages/CategoriesTable2";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
+import AuthElement from "./components/AuthElement";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const queryClient = new QueryClient();
 
 function App() {
+  const { user } = useAuthContext()
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -79,6 +83,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/set-password" element={<SetPassword />} />
 
+
+    <Route element={<AuthElement />}>
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dash />} />
             <Route path="/colors-page" element={<ColorsPage />} />
@@ -117,7 +123,6 @@ function App() {
             <Route path="/sla-by-category2" element={<CategoriesTable2 />} />
             <Route path="/sla-by-orders" element={<SlaByOrders />} />
             <Route path="/reports" element={<ReportsTable />} />
-
             <Route path="/discounts-table" element={<DiscountsTable2 />} />
             <Route path="/discounts-cards" element={<DiscountsCards />} />
 
@@ -133,6 +138,8 @@ function App() {
 
             <Route path="/*" element={<Error />} />
           </Route>
+    </Route>
+
         </Routes>
       </QueryClientProvider>
     </>

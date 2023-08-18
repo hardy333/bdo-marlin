@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/login.css";
 import { Link } from "react-router-dom";
+import { useLogin } from "../hooks/useLogin";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Login = () => {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const {login, error, isLoading} = useLogin()
+  const { user } = useAuthContext()
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const res = await login(email, password)
+    console.log(res)
+
+    console.log({user})
+
+  }
+
+  
+  
   return (
     <>
       <div className="login">
         <div className="login__container">
           <h1>Welcome Again!</h1>
 
-          <form action="" className="login-form">
-            <input className="input" type="email" placeholder="E-mail" />
-            <input className="input" type="password" placeholder="Password" />
+
+          <form action="" className="login-form" onSubmit={handleSubmit}>
+           <span className={`login-error ${error && "active"}`}>პაროლი ან მეილი არასწორია.</span> 
+            <input className="input" type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <small className="ml-auto ">
               <a href="" className="login-link">
-                Forgot password?
+                დაგავიწყდათ პაროლი?
               </a>
             </small>
-            <button className="btn btn-blue">Log in</button>
+            <button type="submit" className="btn btn-blue" >შესვლა</button>
             <p className="login-form__login">
-              Do not have an account?{" "}
+              არ გაქვთ ექაუნთი?{" "}
               <Link className="link login-link" to="/register">
-                Register
+                დარეგისტრირდით
               </Link>
             </p>
           </form>

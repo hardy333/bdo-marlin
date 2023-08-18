@@ -16,6 +16,7 @@ import { BiMenu } from "react-icons/bi";
 import "../styles/dashboard-navbar.css";
 import PlusSvg from "./svgs/PlusSvg";
 import HouseSvg from "./svgs/service-level-svgs/HouseSvg";
+import { useLogout } from "../hooks/useLogout";
 
 const startingPages = ["/login", "/register"];
 
@@ -52,6 +53,12 @@ const DashboardNavbar = () => {
     document.body.classList.remove("body-sidebar-responsive-close");
   };
 
+  const {logout} = useLogout()
+
+  const handleLogout = () => {
+    logout()
+  }
+
   return (
     <header
       className={`dashboard-navbar ${
@@ -82,10 +89,10 @@ const DashboardNavbar = () => {
             <Link to="/login">
               <img src={ring} alt="" />
             </Link>
-            <Link to="">
+            <span onClick={handleLogout}>
               {/* <img src={LogOut} alt="" className="log-out-img" /> */}
               <LogOutSvg2 />
-            </Link>
+            </span>
           </div>
         </>
       )}
