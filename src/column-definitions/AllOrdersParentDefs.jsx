@@ -41,7 +41,7 @@ const allOrdersParentDefs = [
     headerName: "გეგმიური მიწოდება",
     cellRenderer: (params) => {
       const { value } = params;
-      return "06/10/2023";
+      return value;
     },
   },
   {
