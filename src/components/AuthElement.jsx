@@ -3,22 +3,19 @@ import { Navigate, Outlet, useNavigate } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
-const AuthElement = () => {
+const AuthElement = ({children}) => {
   const { user } = useAuthContext()
 
-  let ResComponent =  null
+  console.log("Auth Elemen user", user)
 
   if(!user){
     
-    ResComponent = <Navigate to="/login"  />
-  }else{
-      
-      ResComponent = <Outlet />
+    return <Navigate to="/login"  />
   }
-    
+
   return (
     <>
-      {ResComponent}
+      {children}
     </>
   );
 };

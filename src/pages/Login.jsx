@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -18,10 +18,13 @@ const Login = () => {
   }
 
   const { user } = useAuthContext()
-  const navigate = useNavigate()
+
+
+  console.log("user from login", user)
 
   if(user){
-    navigate("/")
+    console.log("123")
+    return <Navigate to="/"/>
   }
 
   

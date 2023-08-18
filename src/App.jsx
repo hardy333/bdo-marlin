@@ -71,78 +71,301 @@ import AuthElement from "./components/AuthElement";
 
 const queryClient = new QueryClient();
 
-function App() {  
-
-
-
+function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/set-password" element={<SetPassword />} />
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/set-password" element={<SetPassword />} />
 
+        <Route element={<DashboardLayout />}>
+          <Route
+            path="/"
+            element={
+              <AuthElement>
+                <Dash />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/colors-page"
+            element={
+              <AuthElement>
+                <ColorsPage />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/mtable"
+            element={
+              <AuthElement>
+                <MTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/password-page"
+            element={
+              <AuthElement>
+                <PasswordPage />{" "}
+              </AuthElement>
+            }
+          />
 
-    <Route element={<AuthElement />}>
-          <Route element={<DashboardLayout />}>
-            <Route path="/" element={<Dash />} />
-            <Route path="/colors-page" element={<ColorsPage />} />
-            <Route path="/mtable" element={<MTable />} />
-            <Route path="/password-page" element={<PasswordPage />} />
-
-            <Route path="/invoices-table" element={<InvoicesTable />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/profile" element={<Profile />}>
-              <Route index element={<ProfileForm />} />
-              <Route path="change-password" element={<PasswordForm />} />
-            </Route>
-            <Route path="/stable-table" element={<StableTable />} />
-            <Route path="/expandable-table" element={<ExpandableTable />} />
-            <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
-            <Route path="/test" element={<Test />} />
-
-            <Route path="/invoices2" element={<Invoices2 />} />
-
-            <Route path="/vendors" element={<Vendors />} />
-
-            <Route path="/prices" element={<Prices />} />
-
-            <Route path="/order-details" element={<OrderDetails />} />
-
-            <Route path="/all-orders-parent" element={<AllOrdersParent />} />
-            <Route path="/logs" element={<LogsTable />} />
-
-            <Route path="/contract" element={<Contract />} />
-            <Route path="/categories" element={<CategoriesTable />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/cash-back-table" element={<CashBackTable />} />
-            <Route path="/sla-by-shops" element={<SlaByShops />} />
-            <Route path="/sla-by-item" element={<SlaByItem />} />
-            <Route path="/sla-by-category" element={<CategoriesTable />} />
-            <Route path="/sla-by-category2" element={<CategoriesTable2 />} />
-            <Route path="/sla-by-orders" element={<SlaByOrders />} />
-            <Route path="/reports" element={<ReportsTable />} />
-            <Route path="/discounts-table" element={<DiscountsTable2 />} />
-            <Route path="/discounts-cards" element={<DiscountsCards />} />
-
-            <Route path="/catalogue" element={<CatalogueTable />} />
+          <Route
+            path="/invoices-table"
+            element={
+              <AuthElement>
+                <InvoicesTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/employees"
+            element={
+              <AuthElement>
+                <Employees />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <AuthElement>
+                <Profile />{" "}
+              </AuthElement>
+            }
+          >
             <Route
-              path="/vendors-calendar"
-              element={<VendorsCalendarTable />}
+              index
+              element={
+                <AuthElement>
+                  <ProfileForm />{" "}
+                </AuthElement>
+              }
             />
             <Route
-              path="/vendor-all-orders"
-              element={<VendorAllOrdersTable />}
+              path="change-password"
+              element={
+                <AuthElement>
+                  <PasswordForm />{" "}
+                </AuthElement>
+              }
             />
-
-            <Route path="/*" element={<Error />} />
           </Route>
-    </Route>
+          <Route
+            path="/stable-table"
+            element={
+              <AuthElement>
+                <StableTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/expandable-table"
+            element={
+              <AuthElement>
+                <ExpandableTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/invoice-details"
+            element={
+              <AuthElement>
+                <InvoiceDetailsTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <AuthElement>
+                <Test />{" "}
+              </AuthElement>
+            }
+          />
 
-        </Routes>
-      </QueryClientProvider>
-    </>
+          <Route
+            path="/invoices2"
+            element={
+              <AuthElement>
+                <Invoices2 />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/vendors"
+            element={
+              <AuthElement>
+                <Vendors />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/prices"
+            element={
+              <AuthElement>
+                <Prices />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/order-details"
+            element={
+              <AuthElement>
+                <OrderDetails />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/all-orders-parent"
+            element={
+              <AuthElement>
+                <AllOrdersParent />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/logs"
+            element={
+              <AuthElement>
+                <LogsTable />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/contract"
+            element={
+              <AuthElement>
+                <Contract />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              <AuthElement>
+                <CategoriesTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <AuthElement>
+                <Terms />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/cash-back-table"
+            element={
+              <AuthElement>
+                <CashBackTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/sla-by-shops"
+            element={
+              <AuthElement>
+                <SlaByShops />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/sla-by-item"
+            element={
+              <AuthElement>
+                <SlaByItem />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/sla-by-category"
+            element={
+              <AuthElement>
+                <CategoriesTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/sla-by-category2"
+            element={
+              <AuthElement>
+                <CategoriesTable2 />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/sla-by-orders"
+            element={
+              <AuthElement>
+                <SlaByOrders />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <AuthElement>
+                <ReportsTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/discounts-table"
+            element={
+              <AuthElement>
+                <DiscountsTable2 />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/discounts-cards"
+            element={
+              <AuthElement>
+                <DiscountsCards />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route
+            path="/catalogue"
+            element={
+              <AuthElement>
+                <CatalogueTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/vendors-calendar"
+            element={
+              <AuthElement>
+                <VendorsCalendarTable />{" "}
+              </AuthElement>
+            }
+          />
+          <Route
+            path="/vendor-all-orders"
+            element={
+              <AuthElement>
+                <VendorAllOrdersTable />{" "}
+              </AuthElement>
+            }
+          />
+
+          <Route path="/*" element={<Error />} />
+        </Route>
+      </Routes>
+    </QueryClientProvider>
   );
 }
 
