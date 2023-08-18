@@ -84,7 +84,7 @@ const Vendors = () => {
               })}
           </AnimatePresence>
         </div>
-        <div className="employee-pag-container">
+        <div className="employee-pag-container hidden">
           <button>&larr;</button>
           <button className="active">1</button>
           {/* <button>2</button>

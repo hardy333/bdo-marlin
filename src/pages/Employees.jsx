@@ -42,19 +42,6 @@ const namesArr = [
     status: "ბიზნეს ანალიტიკოსი",
     name: "რამაზი თავდგერიძე",
   },
-  { access: "ყველა ობიექტი", status: "ადმინისტრატორი", name: "ნიკა ჩადუნელი" },
-  { access: "ყველა ობიექტი", status: "ადმინისტრატორი", name: "ოთარ ხუჯაძე" },
-  {
-    access: "ყველა ობიექტი",
-    status: "ბიზნეს ანალიტიკოსი",
-    name: "დავით საგინაშვილი",
-  },
-  { access: "მაღაზია #3", status: "მაღაზიის მენეჯერი", name: "ზაალ მხეიძე" },
-  {
-    access: "ყველა ობიექტი",
-    status: "ადმინისტრატორი",
-    name: "სტეფანე ოჩიაშვილი",
-  },
   {
     access: "მაღაზია #4",
     status: "მაღაზიის მენეჯერი",
@@ -131,7 +118,7 @@ const Employees = () => {
           })}
         </LayoutGroup>
       </div>
-      <div className="employee-pag-container">
+      <div className="employee-pag-container hidden bg-red-200">
         <button>&larr;</button>
         <button className="active">1</button>
         <button>&rarr;</button>
