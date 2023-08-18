@@ -134,9 +134,12 @@ const OrderDetails = () => {
 
   // URL info
   let date = searchParams.get("date") || "01/30/2023";
+  let scheduledDate = searchParams.get("scheduledDate") || "01/30/2023";
   let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
   let vendor = searchParams.get("vendor") || "GDM";
   let status = searchParams.get("status") || "გაგზავნილია";
+  let amount = searchParams.get("amount") || "308.4 GEL";
+  let invoiceAmount = searchParams.get("invoiceAmount") || "";
 
   let statusBg;
 
@@ -150,7 +153,7 @@ const OrderDetails = () => {
     statusBg = "#FF7BA7";
   }
 
-  
+
 
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
@@ -181,7 +184,7 @@ const OrderDetails = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/vendor.svg" alt="" />
-                  <span className="info-badge-text"> GDM.</span>
+                  <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
               {/* 2 */}
@@ -193,7 +196,7 @@ const OrderDetails = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/shop.svg" alt="" />
-                  <span className="info-badge-text"> რუსთაველი 01.</span>
+                  <span className="info-badge-text"> {shopAddress}</span>
                 </p>
               </Tippy>
               {/* 3 */}
@@ -201,12 +204,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`შეკვეთის თარიღი: 
-                  25/05/2023`}
+                content={`შეკვეთის თარიღი: ${date}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/clock.svg" alt="" />
-                  <span className="info-badge-text"> 02/08/2023.</span>
+                  <span className="info-badge-text"> {date}</span>
                 </p>
               </Tippy>
               {/* 4 */}
@@ -214,12 +216,12 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="გეგმიური მოწოდების თარიღი: 02/08/2023"
+                content={`გეგმიური მოწოდების თარიღი: ${scheduledDate}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
-                    01/30/2023.
+                    {scheduledDate}
                   </span>
                 </p>
               </Tippy>
@@ -229,11 +231,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`თანხა: 1578 GEL`}
+                content={`თანხა: ${amount}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/money.svg" alt="" />
-                  <span className="info-badge-text">1578 GEL.</span>
+                  <span className="info-badge-text">{amount}</span>
                 </p>
               </Tippy>
               {/* 6 */}
@@ -241,11 +243,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="ინვოისის თანხა: 2039 GEL"
+                content={`ინვოისის თანხა: ${invoiceAmount}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/document.svg" alt="" />
-                  <span className="info-badge-text">2039 GEL.</span>
+                  <span className="info-badge-text">{invoiceAmount}</span>
                 </p>
               </Tippy>
             </section>

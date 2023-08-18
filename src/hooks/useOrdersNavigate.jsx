@@ -22,10 +22,13 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
         //  for navigation
         const shop = row.querySelector(".ag-cell[col-id='shop']").innerText;
         const date = row.querySelector(".ag-cell[col-id='date']").innerText;
+        const scheduledDate = row.querySelector(".ag-cell[col-id='scheduled']").innerText;
         const status = row.querySelector(
           ".ag-cell[col-id='status'] .ag-cell-status-value"
         ).innerText;
         const vendor = row.querySelector(".ag-cell[col-id='vendor']").innerText;
+        const amount = row.querySelector(".ag-cell[col-id='amount']").innerText;
+        const invoiceAmount = row.querySelector(".ag-cell[col-id='invoiceAmount']").innerText;
 
         const orderID = row
           .querySelector(".ag-cell[col-id='vendor'] span")
@@ -35,9 +38,12 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           const urlParams = new URLSearchParams()
           urlParams.append("shop", shop )
           urlParams.append("date", date )
+          urlParams.append("scheduledDate", scheduledDate )
           urlParams.append("vendor", vendor )
           urlParams.append("status", status )
           urlParams.append("orderID", orderID )
+          urlParams.append("amount", amount )
+          urlParams.append("invoiceAmount", invoiceAmount )
 
 
         navigate("/order-details?" + urlParams.toString())
