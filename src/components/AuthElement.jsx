@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Outlet, useNavigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
@@ -16,7 +16,7 @@ const AuthElement = ({children}) => {
   
   return (
     <>
-      {children}
+      <Outlet />
     </>
   );
 };
