@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const AllOrdersCards = ({ data }) => {
   if (!data) {
     // return <h1>Loading ...</h1>;
-    console.log("Hell");
     data = [
       {
         shop: "SPAR001",
@@ -45,11 +44,29 @@ const AllOrdersCards = ({ data }) => {
 
   const navigate = useNavigate();
 
+
+  const navigateToOrderDetails = (row) => {
+    const { shop, date, orderID, vendor, amount,scheduled, serviceLevel, status } = row;
+
+    const urlParams = new URLSearchParams()
+    urlParams.append("shop", shop )
+    urlParams.append("date", date )
+    urlParams.append("scheduledDate", scheduled )
+    urlParams.append("vendor", vendor )
+    urlParams.append("status", status )
+    urlParams.append("orderID", orderID )
+    urlParams.append("amount", amount )
+    urlParams.append("invoiceAmount", amount )
+
+
+  navigate("/order-details?" + urlParams.toString())
+  }
+  
   return (
     <>
       <section className="table-cards-container">
         {data.map((row, index) => {
-          const { shop, date, vendor, amount, serviceLevel, status } = row;
+          const { shop, date, orderID, vendor, amount, serviceLevel, status } = row;
           let color = "";
 
           if (status === "გაგზავნილია") {
@@ -66,9 +83,7 @@ const AllOrdersCards = ({ data }) => {
 
           return (
             <article
-              onClick={() => {
-                navigate("/order-details");
-              }}
+              onClick={() => navigateToOrderDetails(row)}
               key={index}
               className="table-card all-orders-card"
               style={{ borderLeft: `4px solid ${color}` }}

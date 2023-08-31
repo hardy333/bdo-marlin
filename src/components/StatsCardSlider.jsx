@@ -40,7 +40,6 @@ const StatsCardSlider = () => {
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     slideChanged(slider) {
-      console.log(slider.track.details);
       setCurrentSlide(slider.track.details.rel);
     },
     slides: {
@@ -52,7 +51,6 @@ const StatsCardSlider = () => {
     },
   });
 
-  console.log(sliderRef.current);
   return (
     <div className="navigation-wrapper ">
       <div className="stats-card-slider-container keen-slider" ref={sliderRef}>

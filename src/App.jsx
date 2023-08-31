@@ -68,6 +68,7 @@ import CategoriesTable2 from "./pages/CategoriesTable2";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
 import AuthElement from "./components/AuthElement";
+import Landing from "./pages/landing/Landing";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/set-password" element={<SetPassword />} />
+        <Route path="landing" element={<Landing />}/>
 
         <Route element={<DashboardLayout />}>
           <Route
