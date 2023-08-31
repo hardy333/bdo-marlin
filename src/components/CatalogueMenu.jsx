@@ -19,11 +19,15 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   const [subCategorySearchValue, setSubCategorySearchValue] = useState("");
 
   // Events
-  const handleMouseOver = (e) => {
+  const handleMouseMove = (e) => {
     if (e.target.classList.contains("category-li")) {
+      console.log(e.target)
+      console.log("c target", e.currentTarget)
+      
       const span = e.target.querySelector(".category-name");
       const cat = span.getAttribute("data-value");
       setSelectedCategory(cat);
+      
     }
   };
 
@@ -142,7 +146,7 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
           />
           <SearchSvg />
         </div>
-        <ul onMouseMove={handleMouseOver}>
+        <ul onMouseMove={handleMouseMove}>
           {resArr
             ?.filter((catObj) => catObj.name.includes(categorySearchValue))
             .map((catObj, i) => (
