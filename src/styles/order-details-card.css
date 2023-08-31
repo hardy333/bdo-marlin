@@ -75,6 +75,14 @@
   color:  #FF3360;
 }
 
+.order-details-card .table-card-row span:nth-child(2){
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: end;
+}
+
 
 /* All Orders Card */
 /* All Orders Card */

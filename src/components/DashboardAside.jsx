@@ -72,7 +72,11 @@ const DashboardAside = ({
         <img src={asideBtn} alt="" />
       </button>
       <div className="dashboard-aside-container">
-        <Link to="/" className="marlin-logo-container" onClick={handleLinkClick}>
+        <Link
+          to="/"
+          className="marlin-logo-container"
+          onClick={handleLinkClick}
+        >
           {/* <img draggable="false" className="logo-img" src={logo} alt="" /> */}
           <svg
             id="Layer_1"
@@ -94,129 +98,131 @@ const DashboardAside = ({
           />
           {/* <span className="aside-label">Marlin</span> */}
         </Link>
-        <ul ref={linkListRef} className="dashboard-aside__list">
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/vendors"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img
-                className="dashboard-aside__list__vendor"
-                src={vendors}
-                alt=""
-              />
-              <span className="aside-label">მომწოდებლები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/all-orders-parent"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={orders} alt="" />
-              <span className="aside-label">შეკვეთები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/discounts-cards"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={percentSvg} alt="" />
-              <span className="aside-label">ბონუსები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/catalogue"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={catalog} alt="" />
-              <span className="aside-label">კატალოგი</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/employees"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={employees} alt="" />
-              <span className="aside-label">თანამშრომლები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/invoices-table"
-              className={({ isActive, isPending }) =>
-                selected
-                  ? "active"
-                  : isPending
-                  ? "pending"
-                  : isActive
-                  ? "active"
-                  : ""
-              }
-            >
-              <img src={invoices} alt="" />
-              <span className="aside-label">ინვოისები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick}>
-            <NavLink
-              to="/Reports"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={reportSvg} alt="" />
-              <span className="aside-label">რეპორტები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick} className="aside-settings">
-            <NavLink
-              to="/logs"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={settings} alt="" />
-              <span className="aside-label">სეთინგები</span>
-            </NavLink>
-          </li>
-          {/*  */}
-          <li onClick={handleLinkClick} className="aside-terms">
-            <NavLink
-              to="/terms"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={conditions} alt="" />
-              <span className="aside-label">პირობები</span>
-            </NavLink>
-          </li>
-          <li onClick={handleLinkClick} className="aside-paper">
-            <NavLink
-              to="/contract"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              <img src={contract} alt="" />
-              <span className="aside-label">კონტრაქტი</span>
-            </NavLink>
-          </li>
-        </ul>
+        <div className="dashboard-aside__list-wrapper">
+          <ul ref={linkListRef} className="dashboard-aside__list">
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/vendors"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img
+                  className="dashboard-aside__list__vendor"
+                  src={vendors}
+                  alt=""
+                />
+                <span className="aside-label">მომწოდებლები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/all-orders-parent"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={orders} alt="" />
+                <span className="aside-label">შეკვეთები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/discounts-cards"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={percentSvg} alt="" />
+                <span className="aside-label">ბონუსები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/catalogue"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={catalog} alt="" />
+                <span className="aside-label">კატალოგი</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/employees"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={employees} alt="" />
+                <span className="aside-label">თანამშრომლები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/invoices-table"
+                className={({ isActive, isPending }) =>
+                  selected
+                    ? "active"
+                    : isPending
+                    ? "pending"
+                    : isActive
+                    ? "active"
+                    : ""
+                }
+              >
+                <img src={invoices} alt="" />
+                <span className="aside-label">ინვოისები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick}>
+              <NavLink
+                to="/Reports"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={reportSvg} alt="" />
+                <span className="aside-label">რეპორტები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick} className="aside-settings">
+              <NavLink
+                to="/logs"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={settings} alt="" />
+                <span className="aside-label">სეთინგები</span>
+              </NavLink>
+            </li>
+            {/*  */}
+            <li onClick={handleLinkClick} className="aside-terms">
+              <NavLink
+                to="/terms"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={conditions} alt="" />
+                <span className="aside-label">პირობები</span>
+              </NavLink>
+            </li>
+            <li onClick={handleLinkClick} className="aside-paper">
+              <NavLink
+                to="/contract"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <img src={contract} alt="" />
+                <span className="aside-label">კონტრაქტი</span>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </aside>
   );

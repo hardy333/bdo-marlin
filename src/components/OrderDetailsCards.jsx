@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/order-details-card.css";
-import { useEffect } from "react";
+import Tippy from "@tippyjs/react";
+
+
 
 const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
   if (!data) {
@@ -36,7 +38,14 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
               </div>
               <div className="table-card-row">
                 <span>Product</span>
+                <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`${product}`}
+              >
                 <span>{product}</span>
+                </Tippy>
               </div>
               <div className="table-card-row">
                 <span>Amount</span>

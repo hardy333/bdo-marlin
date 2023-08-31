@@ -58,6 +58,8 @@ const AllOrdersParent = () => {
     return null;
   });
 
+  console.log(data)
+
   useEffect(() => {
     if (!data) return;
     if (isLoading) return;
@@ -127,6 +129,8 @@ const AllOrdersParent = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
   
+  console.log(data)
+  
   return (
     <>
       <header className="all-orders__header">
@@ -173,7 +177,7 @@ const AllOrdersParent = () => {
             ref={gridRef}
             getRowHeight={getRowHeight}
             onGridReady={onGridReady}
-            rowData={rowData}
+            rowData={data?.data}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
