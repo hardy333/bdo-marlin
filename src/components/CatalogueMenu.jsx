@@ -167,7 +167,7 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
         </ul>
         <div className="catalogue-menu-footer">
           <p>
-            View full structure <MdKeyboardArrowRight />
+            View full structure... <MdKeyboardArrowRight />
           </p>
         </div>
       </section>
