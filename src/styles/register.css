@@ -1,5 +1,6 @@
 .register{
   padding-top: 3rem;
+  padding-inline: 1rem;
 }
 
 .register h1{
@@ -194,3 +195,11 @@
   
 }
   
+
+@media (max-width: 500px){
+
+
+  .register{
+    padding-top: 3rem;
+  }
+}
