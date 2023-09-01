@@ -50,6 +50,7 @@
   align-items: center;
   gap: 10px;
   font-weight: 500;
+  color: #2a1f4b;
 
 }
 
@@ -60,6 +61,7 @@
 .report-child-menu-button svg{
   width: 15px;
   max-height: 15px;
+  fill: #d0c7e8;
 }
 
 .report-child-menu-button:hover{

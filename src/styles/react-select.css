@@ -33,6 +33,7 @@
   height: 14px;
   background-image: url(../assets/vendor-car.svg);
   background-repeat: no-repeat;
+  
 
 
 }
@@ -52,6 +53,8 @@ box-shadow: none !important;
 /* Arrow Svg */
 .react-select__control svg{
   transition: transform 0.3s ease;
+  fill: #d0c7e8;
+
 }
 
 
@@ -76,7 +79,7 @@ box-shadow: none !important;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
-  color: #211543;
+  color: #2a1f4b !important;
 }
 
 /* Right  */
