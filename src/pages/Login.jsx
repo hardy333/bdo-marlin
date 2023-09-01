@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/login.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -27,6 +27,11 @@ const Login = () => {
     return <Navigate to="/"/>
   }
 
+
+
+  useEffect(() => {
+    document.body.style.minHeight = "0px";
+  }, [])
   
   
   return (

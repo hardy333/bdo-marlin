@@ -131,7 +131,7 @@ const DiscountsCards = () => {
         </header>
 
         <div className="discount-cards-container">
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence  initial={false}>
             {data?.data.map((obj, index) => {
               console.log(obj)
               return (
