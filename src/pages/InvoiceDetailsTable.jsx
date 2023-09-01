@@ -47,6 +47,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import Tippy from "@tippyjs/react";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import InvoiceDetailsCards from "../components/InvoiceDetailsCards";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -58,40 +59,37 @@ const InvoiceDetailsTable = () => {
   const [columnDefs] = useState(InvoiceDetailsTableDefs);
 
   const [searchParams] = useSearchParams();
-  const  invoiceID =
+  const invoiceID =
     searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
 
-    const waybillNumber = searchParams.get("waybillNumber")
-    const orderNumber = searchParams.get("orderNumber")
-    const invoiceNumber = searchParams.get("invoiceNumber")
+  const waybillNumber = searchParams.get("waybillNumber");
+  const orderNumber = searchParams.get("orderNumber");
+  const invoiceNumber = searchParams.get("invoiceNumber");
 
+  const vendor = searchParams.get("vendor");
+  const date = searchParams.get("date");
 
-    const vendor = searchParams.get("vendor")
-    const date = searchParams.get("date")
+  const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/" + invoiceID;
 
+  const { isLoading, error, data } = useQuery("invoice-details", () =>
+    fetchData(url)
+  );
 
-    const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/"+invoiceID
+  const [rowData, setRowData] = useState(() => {
+    if (data || data?.data) {
+      return data.data;
+    }
+    return null;
+  });
 
-    const { isLoading, error, data } = useQuery("invoice-details", () => fetchData(url));
-  
-    const [rowData, setRowData] = useState(() => {
-      if (data || data?.data) {
-        return data.data;
-      }
-      return null;
-    });
-  
-    console.log(rowData)
-  
-    useEffect(() => {
-      if (!data) return;
-      if (isLoading) return;
-      if (error) return;
-      setRowData(data.data);
-    }, [data, isLoading, error]);
-  
-  
-  
+  console.log(rowData);
+
+  useEffect(() => {
+    if (!data) return;
+    if (isLoading) return;
+    if (error) return;
+    setRowData(data.data);
+  }, [data, isLoading, error]);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -148,11 +146,7 @@ const InvoiceDetailsTable = () => {
 
   const gridRef = useRef(null);
 
-
-
   const [gridReady, setGridReady] = useState(false);
-
-
 
   const navigate = useNavigate();
 
@@ -233,7 +227,9 @@ const InvoiceDetailsTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
-                  <span className="info-badge-text">{date?.split("T")[0]} </span>
+                  <span className="info-badge-text">
+                    {date?.split("T")[0]}{" "}
+                  </span>
                 </p>
               </Tippy>
               {/* 6 gadaxdis vada*/}
@@ -244,7 +240,10 @@ const InvoiceDetailsTable = () => {
                 content={`გადახდის ვადა: 
                 01/30/2023`}
               >
-                <p style={{display: "none"}} className="info-badge info-badge-mobile">
+                <p
+                  style={{ display: "none" }}
+                  className="info-badge info-badge-mobile"
+                >
                   <img src="invoices-badge-icons/gadaxdis-vada-2.svg" alt="" />
                   <span className="info-badge-text">01/30/2023</span>
                 </p>
@@ -267,62 +266,69 @@ const InvoiceDetailsTable = () => {
           </div>
         </div>
       </header>
-      <div
-        className="ag-theme-alpine ag-grid-example invoice-details-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
 
-        {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={67} />}
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <InvoiceDetailsCards data={rowData} />
+      ) : (
+        <div
+          className="ag-theme-alpine ag-grid-example invoice-details-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            // enableRangeSelection={true}
+            // copyHeadersToClipboard={true}
+            // rowSelection={"multiple"}
+            // paginationAutoPageSize={true}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          {gridReady === true && (
+            <AgTablePag gridRef={gridRef} pageCount={67} />
+          )}
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

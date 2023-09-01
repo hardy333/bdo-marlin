@@ -129,7 +129,6 @@ const AllOrdersParent = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
   
-  console.log(data)
   
   return (
     <>
