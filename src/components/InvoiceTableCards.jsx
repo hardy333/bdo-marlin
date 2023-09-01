@@ -83,19 +83,19 @@ const InvoiceTableCards = ({ data }) => {
               </div>
               <div className="table-card-row">
                 <span>მომწოდებელი</span>
-                <span>{vendor} GEL</span>
+                <span>{vendor} </span>
               </div>
               <div className="table-card-row">
                 <span>თარიღი</span>
-                  <span   >{date}</span>
+                  <span   >{date?.split("T")[0]}</span>
               </div>
               <div className="table-card-row">
                 <span>შეკვეთის თანხა </span>
-                  <span   >{orderAmount}</span>
+                  <span   >{orderAmount}  GEL</span>
               </div>
               <div className="table-card-row">
                 <span>ინვოისის თანხა</span>
-                  <span   >{invoiceAmount}</span>
+                  <span   >{invoiceAmount}  GEL</span>
               </div>
           
             </article>

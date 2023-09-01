@@ -50,36 +50,34 @@ const InvoiceDetailsCards = ({ data }) => {
       <section className="table-cards-container">
         {data.map((row, index) => {
 
-          const { shop, orderAmount, invoiceAmount, date, vendor} = row;
-
-          console.log(row)
+          const { product, orderAmount, invoiceAmount, invoiceQuantity, orderQuantity} = row;
           
           
           return (
             <article
               key={index}
               className="table-card all-orders-card"
-              style={{ borderLeft: `1px solid rgb(255, 51, 96) ` }}
+              style={{ borderLeft: `1px solid  ` }}
             >
               <div className="table-card-row">
-                <span>მაღაზია</span>
-                <span>{shop}</span>
+                <span>პროდუქტი</span>
+                <span>{product}</span>
               </div>
               <div className="table-card-row">
-                <span>მომწოდებელი</span>
-                <span>{vendor} GEL</span>
-              </div>
-              <div className="table-card-row">
-                <span>თარიღი</span>
-                  <span   >{date}</span>
-              </div>
-              <div className="table-card-row">
-                <span>შეკვეთის თანხა </span>
-                  <span   >{orderAmount}</span>
+                <span>შეკვეთის თანხა</span>
+                <span>{orderAmount} GEL</span>
               </div>
               <div className="table-card-row">
                 <span>ინვოისის თანხა</span>
-                  <span   >{invoiceAmount}</span>
+                  <span  >{invoiceAmount} GEL</span>
+              </div>
+              <div className="table-card-row">
+                <span>ინვოისის რაოდეონბა </span>
+                  <span   >{invoiceQuantity}</span>
+              </div>
+              <div className="table-card-row">
+                <span>შეკვეთის რაოდენობა </span>
+                  <span>{orderQuantity}</span>
               </div>
           
             </article>
