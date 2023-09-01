@@ -12,15 +12,15 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: -10 }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      exit={{ 
-        opacity: 0, 
-        y: -10,
-      }}
+      // initial={{ opacity: 0, y: -10 }}
+      // animate={{
+      //   opacity: 1,
+      //   y: 0,
+      // }}
+      // exit={{ 
+      //   opacity: 0, 
+      //   y: -10,
+      // }}
       className={`discount-card ${isBonusCard ? "discount-card-bonus" : ""}`}
       
     >
@@ -30,7 +30,7 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
         </span>
          <span className=" block mb-3" style={{width: "100%", textAlign: "center" }}>  {retroPercent}%</span> 
       </h2>
-      <h3 className="" style={{}}>დოკუმენტი: #{documentNo}</h3>
+      <h3 className="" style={{textAlign: "center"}}>დოკუმენტი: #{documentNo}</h3>
       {index > 3 ? (
         <></>
       ) : (
@@ -39,7 +39,7 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
         </div>
       )}
 
-      <div className="discount-card__body ">
+      <div className="discount-card__body flex flex-col items-center ">
         <h4 className="mb-5  pb-2">
           <VendorsCalendarSvg />
           {status}

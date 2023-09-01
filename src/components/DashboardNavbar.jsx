@@ -89,7 +89,7 @@ const DashboardNavbar = () => {
             <Link to="/login">
               <img src={ring} alt="" />
             </Link>
-            <span onClick={handleLogout}>
+            <span onClick={handleLogout} style={{cursor: "pointer"}}>
               {/* <img src={LogOut} alt="" className="log-out-img" /> */}
               <LogOutSvg2 />
             </span>
