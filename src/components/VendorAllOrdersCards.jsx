@@ -69,7 +69,7 @@ const VendorAllOrdersCards = ({ data }) => {
             <article
               key={index}
               className="table-card all-orders-card"
-              style={{ borderLeft: `4px solid ${color}` }}
+              style={{ borderLeft: `2px solid ${color}` }}
             >
               
               <div className="table-card-row">

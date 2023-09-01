@@ -31,7 +31,7 @@ const CatalogueCards = ({ data }) => {
               <header className="table-card-row">
                 <h3>
                   <span>
-                    barcode: <span className="font-normal">{barcode}</span>
+                    ბარკოდი: <span className="font-normal">{barcode}</span>
                   </span>
                 </h3>
                 <span className="date">
@@ -43,11 +43,11 @@ const CatalogueCards = ({ data }) => {
                     content={
                       <div className="catalogue-popup-content">
                         <span>
-                          <span>Last Cahnge Date</span>
+                          <span>წინა ცვლილების თარიღი:</span>
                           <span>{lastChangeDate?.split("T")[0]}</span>
                         </span>
                         <span>
-                          <span>Last price</span>
+                          <span>წინა ფასი:</span>
                           <span>{lastOrderPrice}</span>
                         </span>
                       </div>
@@ -66,7 +66,7 @@ const CatalogueCards = ({ data }) => {
               </header>
               {/* 1 */}
               <div className="table-card-row">
-                <span>Product</span>
+                <span>პროდუქტი</span>
                 <Tippy
                   className="tooltip-1"
                   arrow={false}
@@ -89,12 +89,12 @@ const CatalogueCards = ({ data }) => {
               </div>
               {/* 2 */}
               <div className="table-card-row">
-                <span>Price</span>
+                <span>ფასი</span>
                 <span>{price}</span>
               </div>
               {/* 3 */}
               <div className="table-card-row">
-                <span>Status</span>
+                <span>სტატუსი</span>
                 <span className="text-primary">{status}</span>
               </div>
             </article>

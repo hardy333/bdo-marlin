@@ -95,15 +95,15 @@ const AllOrdersCards = ({ data }) => {
                 <span className="date">{date}</span>
               </header>
               <div className="table-card-row">
-                <span>Shop</span>
+                <span>მაღაზია</span>
                 <span>{shop}</span>
               </div>
               <div className="table-card-row">
-                <span>Amount</span>
+                <span>თანხა</span>
                 <span>{amount} GEL</span>
               </div>
               <div className="table-card-row">
-                <span>Status</span>
+                <span>სტატუსი</span>
                 <Tippy
                   className="tooltip-1"
                   arrow={false}
@@ -114,7 +114,7 @@ const AllOrdersCards = ({ data }) => {
                 </Tippy>
               </div>
               <div className="table-card-row">
-                <span>Service Level</span>
+                <span>სერვისის დონე</span>
                 <span className={`danger`}>{serviceLevel} %</span>
               </div>
             </article>
