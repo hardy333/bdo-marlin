@@ -75,10 +75,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import vendorsArr from "../data/vendors-data";
 import Tippy from "@tippyjs/react";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
-import { CalendarTableDefs, calendarTableHeaderList } from "../column-definitions/CalendarTableDefs";
+import {
+  CalendarTableDefs,
+  calendarTableHeaderList,
+} from "../column-definitions/CalendarTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import DatePickerInput from "../components/DatePickerInput";
+import CalendartableCards from "../components/CalendarTableCards";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -168,10 +172,9 @@ const VendorsCalendarTable = () => {
 
   useRemoveId(gridApi, gridRef);
 
-  console.log(selected)
+  console.log(selected);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
-
 
   return (
     <>
@@ -183,13 +186,12 @@ const VendorsCalendarTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <span className="me-8 heading">მომწოდებლების კალენდარი</span>
-          
-          <DatePickerInput />
 
+            <DatePickerInput />
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-          <Select
+            <Select
               className="react-select-container"
               classNamePrefix="react-select"
               options={vendorsArr}
@@ -199,17 +201,17 @@ const VendorsCalendarTable = () => {
                 changeRowData();
               }}
             />
-          <TableSettings
-                isSmallDevice={isSmallDevice}
-                defHeaderList={calendarTableHeaderList}
-                rowData={rowData}
-                gridApi={gridApi}
-                gridRef={gridRef}
-                gridColumnApi={gridColumnApi}
-                rowHeightIndex={rowHeightIndex}
-                setRowHeightIndex={setRowHeightIndex}
-                pageName="all-orders"
-              />
+            <TableSettings
+              isSmallDevice={isSmallDevice}
+              defHeaderList={calendarTableHeaderList}
+              rowData={rowData}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
+            />
           </div>
         </div>
       </header>
@@ -229,64 +231,68 @@ const VendorsCalendarTable = () => {
                 setSelected(x);
                 changeRowData();
               }}
-                showOutsideDays={true}
-                enableOutsideDaysClick={false}
+              showOutsideDays={true}
+              enableOutsideDaysClick={false}
             />
           </div>
         </div>
 
-        <div
-          id="marlin-table"
-          className="ag-theme-alpine ag-grid-example "
-          style={{ minHeight: 595, width: "100%" }}
-        >
-          <AgGridReact
-            ref={gridRef}
-            getRowHeight={() => {
-              if (rowHeightIndex === 0) {
-                return 25;
-              } else if (rowHeightIndex === 1) {
-                return 32;
-              } else if (rowHeightIndex === 2) {
-                return 37;
-              }
-            }}
-            onGridReady={onGridReady}
-            rowData={rowData}
-            columnDefs={columnDefs}
-            defaultColDef={defaultColDef}
-            pagination={true}
-            components={components}
-            paginationPageSize={pageSize}
-            suppressHorizontalScroll={true}
-          ></AgGridReact>
-
-          <Menu
-            className="page-size-menu"
-            align="end"
-            menuButton={
-              <MenuButton className="page-size-btn">
-                <span>Rows per page</span>
-                <span className="btn">{pageSize}</span>
-              </MenuButton>
-            }
-            transition
+        {isSmallDevice ? (
+          <CalendartableCards data={rowData} />
+        ) : (
+          <div
+            id="marlin-table"
+            className="ag-theme-alpine ag-grid-example "
+            style={{ minHeight: 595, width: "100%" }}
           >
-            {pageSizes.map((size) => {
-              return (
-                <MenuItem
-                  key={size}
-                  onClick={() => {
-                    setPageSize(size);
-                  }}
-                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-                >
-                  {size}
-                </MenuItem>
-              );
-            })}
-          </Menu>
-        </div>
+            <AgGridReact
+              ref={gridRef}
+              getRowHeight={() => {
+                if (rowHeightIndex === 0) {
+                  return 25;
+                } else if (rowHeightIndex === 1) {
+                  return 32;
+                } else if (rowHeightIndex === 2) {
+                  return 37;
+                }
+              }}
+              onGridReady={onGridReady}
+              rowData={rowData}
+              columnDefs={columnDefs}
+              defaultColDef={defaultColDef}
+              pagination={true}
+              components={components}
+              paginationPageSize={pageSize}
+              suppressHorizontalScroll={true}
+            ></AgGridReact>
+
+            <Menu
+              className="page-size-menu"
+              align="end"
+              menuButton={
+                <MenuButton className="page-size-btn">
+                  <span>Rows per page</span>
+                  <span className="btn">{pageSize}</span>
+                </MenuButton>
+              }
+              transition
+            >
+              {pageSizes.map((size) => {
+                return (
+                  <MenuItem
+                    key={size}
+                    onClick={() => {
+                      setPageSize(size);
+                    }}
+                    style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                  >
+                    {size}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 .login{
   padding-top: 10rem;
+  padding-inline: 2rem;
 
 }
 
@@ -103,4 +104,12 @@
 
 .login-error.active{
   opacity: 1;
+}
+
+
+@media (max-width: 500px){
+  .login{
+    padding-top: 5rem;
+  
+  }
 }

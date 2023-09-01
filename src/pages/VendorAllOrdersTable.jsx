@@ -46,6 +46,8 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import { useMediaQuery } from "@uidotdev/usehooks";
+import VendorAllOrdersCards from "../components/VendorAllOrdersCards";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -362,6 +364,9 @@ const VendorAllOrdersTable = () => {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
+
   return (
     <>
       <header className="all-orders__header vendor-all-orders">
@@ -504,6 +509,13 @@ const VendorAllOrdersTable = () => {
           </div>
         </div>
       </header>
+      {
+        isSmallDevice ? (
+          <VendorAllOrdersCards data={rowData}/>
+
+        ) : (
+
+    
       <div
         className="ag-theme-alpine ag-grid-example  vendors-all-orders-table "
         style={{ minHeight: 595, width: "100%" }}
@@ -545,7 +557,8 @@ const VendorAllOrdersTable = () => {
             );
           })}
         </Menu>
-      </div>
+      </div>)
+        }
     </>
   );
 };

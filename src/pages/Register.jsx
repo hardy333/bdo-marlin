@@ -50,6 +50,10 @@ const Register = () => {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    document.body.style.minHeight = "0px";
+  }, [])
+
   return (
     <>
       <div className="register">

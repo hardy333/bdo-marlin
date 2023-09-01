@@ -128,18 +128,27 @@
 
 @media (max-width: 400px) {
   .sla-top {
+    row-gap: 20px !important;
   }
 
   .sla-top .sla-date {
-    max-width: 200px !important;
-    min-width: 100px !important;
-    width: 150px !important;
+    width: 100%;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+
+
   }
 
+  .sla-top .calendar-span{
+    width: 100%;
+  }
+  
   .sla-top .date-picker-input {
-    width: 120px !important;
-    min-width: 100px;
-    max-width: 150px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    font-size: 12px !important;
   }
 
   .sla-top div:last-of-type {
@@ -147,7 +156,7 @@
 
   .sla-top .report-child-menu-button {
     max-width: 200px !important;
-    min-width: 100px !important;
+    /* min-width: 100px !important; */
     width: 100% !important;
     max-width: 100% !important;
   }

@@ -46,6 +46,7 @@ import { RiMoneyDollarBoxLine } from "react-icons/ri";
 
 import Tippy from "@tippyjs/react";
 import { useSearchParams } from "react-router-dom";
+import BonusTableCards from "../components/BonusTableCards";
 
 const shopsArr = [
   {
@@ -124,26 +125,27 @@ const CashBackTable = () => {
   const [columnDefs] = useState(CashBackTableDefs);
 
   const [searchParams] = useSearchParams();
-  const  retroBonusID =
+  const retroBonusID =
     searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
-  const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055"
-  
-  const  documentNo = searchParams.get("documentNo")
-  const  startDate = searchParams.get("startDate")
-  const  endDate = searchParams.get("endDate")
-  const  vendor = searchParams.get("vendor")
+  const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055";
 
-  const  condition = searchParams.get("condition")
-  const  planAmount = searchParams.get("planAmount")
+  const documentNo = searchParams.get("documentNo");
+  const startDate = searchParams.get("startDate");
+  const endDate = searchParams.get("endDate");
+  const vendor = searchParams.get("vendor");
 
-  
-  
-  const url = "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/"+shopID + "/" + retroBonusID;
+  const condition = searchParams.get("condition");
+  const planAmount = searchParams.get("planAmount");
+
+  const url =
+    "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/" +
+    shopID +
+    "/" +
+    retroBonusID;
 
   const { isLoading, error, data } = useQuery("retro-bonus-details", () =>
     fetchData(url)
   );
-
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -152,8 +154,7 @@ const CashBackTable = () => {
     return null;
   });
 
-  console.log(rowData)
-
+  console.log(rowData);
 
   useEffect(() => {
     if (!data) return;
@@ -219,9 +220,7 @@ const CashBackTable = () => {
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
-
-  console.log(planAmount)
-  
+  console.log(planAmount);
 
   return (
     <>
@@ -265,7 +264,9 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`პერიოდი: ${startDate?.split("T")[0]} - ${endDate || "განუსაზღვრელი"} `}
+                content={`პერიოდი: ${startDate?.split("T")[0]} - ${
+                  endDate || "განუსაზღვრელი"
+                } `}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
@@ -292,11 +293,19 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`გეგმა: ${planAmount === "undefined" ?   "განუსაზღვრელი" : planAmount + " GEL"} `}
+                content={`გეგმა: ${
+                  planAmount === "undefined"
+                    ? "განუსაზღვრელი"
+                    : planAmount + " GEL"
+                } `}
               >
                 <p className="info-badge info-badge-mobile">
                   <RiMoneyDollarBoxLine />
-                  <span className="info-badge-text">{planAmount === "undefined" ?   "განუსაზღვრელი" : planAmount + " GEL"} </span>
+                  <span className="info-badge-text">
+                    {planAmount === "undefined"
+                      ? "განუსაზღვრელი"
+                      : planAmount + " GEL"}{" "}
+                  </span>
                 </p>
               </Tippy>
               {/* 6 */}
@@ -347,70 +356,74 @@ const CashBackTable = () => {
           </div>
         </div>
       </header>
-      <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example  discounts-table discounts-table-with-groups cash-back-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <Select
-          className="react-select-container sla-select doscounts-table-select"
-          classNamePrefix="react-select"
-          options={shopsArr}
-          defaultValue={{
-            value: "ბათუმი, ზუბალაშვილის N3",
-            label: "ბათუმი, ზუბალაშვილის N3",
-          }}
-        />
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <BonusTableCards data={rowData} />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example  discounts-table discounts-table-with-groups cash-back-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <Select
+            className="react-select-container sla-select doscounts-table-select"
+            classNamePrefix="react-select"
+            options={shopsArr}
+            defaultValue={{
+              value: "ბათუმი, ზუბალაშვილის N3",
+              label: "ბათუმი, ზუბალაშვილის N3",
+            }}
+          />
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            // enableRangeSelection={true}
+            // copyHeadersToClipboard={true}
+            // rowSelection={"multiple"}
+            // paginationAutoPageSize={true}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

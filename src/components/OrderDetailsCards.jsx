@@ -33,11 +33,11 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
           return (
             <article key={index} className="table-card order-details-card">
               <div className="table-card-row">
-                <span>Barcode</span>
+                <span>ბარკოდი</span>
                 <span>{barcode}</span>
               </div>
               <div className="table-card-row">
-                <span>Product</span>
+                <span>პროდუქტი</span>
                 <Tippy
                 className="tooltip-1"
                 arrow={false}
@@ -48,19 +48,19 @@ const OrderDetailsCards = ({ data, date, status, statusBg, vendor }) => {
                 </Tippy>
               </div>
               <div className="table-card-row">
-                <span>Amount</span>
-                <span>{amount}</span>
+                <span>თანხა</span>
+                <span>{amount} GEL</span>
               </div>
               <div className="table-card-row">
-                <span>Price</span>
-                <span>{price}</span>
+                <span>ფასი</span>
+                <span>{price} GEL</span>
               </div>
               <div className="table-card-row">
-                <span>Quantity</span>
+                <span>რაოდენობა</span>
                 <span>{quantity}</span>
               </div>
               <div className="table-card-row">
-                <span>Reserved</span>
+                <span>დარეზერვებული</span>
                 <span className={`danger`}>{reservedQuantity}</span>
               </div>
             </article>

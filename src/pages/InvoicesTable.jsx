@@ -22,7 +22,6 @@ import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
 import "../styles/invoices-table.css";
 
-
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
@@ -30,7 +29,6 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-
 
 import d from "../assets/invoices.json";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +43,7 @@ import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
+import InvoiceTableCards from "../components/InvoiceTableCards";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -53,14 +52,13 @@ const InvoicesTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-
   const gridRef = useRef(null);
 
   const [columnDefs] = useState(InvoicesTableDefs);
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
-  const url = "https://10.0.0.202:5001/api/INVFront/M00001"
+  const url = "https://10.0.0.202:5001/api/INVFront/M00001";
   const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
@@ -70,7 +68,6 @@ const InvoicesTable = () => {
     return null;
   });
 
-  console.log(rowData)
 
   useEffect(() => {
     if (!data) return;
@@ -78,10 +75,6 @@ const InvoicesTable = () => {
     if (error) return;
     setRowData(data.data);
   }, [data, isLoading, error]);
-
-  
-  
-  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -132,17 +125,12 @@ const InvoicesTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-
-
-
   useRemoveId(gridApi, gridRef);
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
-
- useInvoiceNavigate()
-  
+  useInvoiceNavigate();
 
   return (
     <>
@@ -172,64 +160,68 @@ const InvoicesTable = () => {
           </div>
         </div>
       </header>
-      <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example invoices-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          // gridOptions={{ rowHeight: 32 }}
-          ref={gridRef}
-          // animateRows={true}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          // rowStyle={{ maxHeight: "20px", height: "10px" }}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          // enableRangeSelection={true}
-          // copyHeadersToClipboard={true}
-          // rowSelection={"multiple"}
-          // paginationAutoPageSize={true}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <InvoiceTableCards data={rowData} />
+      ) : (
+        <div
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example invoices-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>
+          <AgGridReact
+            // gridOptions={{ rowHeight: 32 }}
+            ref={gridRef}
+            // animateRows={true}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            // rowStyle={{ maxHeight: "20px", height: "10px" }}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            // enableRangeSelection={true}
+            // copyHeadersToClipboard={true}
+            // rowSelection={"multiple"}
+            // paginationAutoPageSize={true}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

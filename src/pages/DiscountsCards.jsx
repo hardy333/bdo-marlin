@@ -131,7 +131,6 @@ const DiscountsCards = () => {
         </header>
 
         <div className="discount-cards-container">
-          <AnimatePresence mode="wait" initial={false}>
             {data?.data.map((obj, index) => {
               console.log(obj)
               return (
@@ -149,7 +148,6 @@ const DiscountsCards = () => {
                 />
               );
             })}
-          </AnimatePresence>
         </div>
         <div className="employee-pag-container">
           <button>&larr;</button>

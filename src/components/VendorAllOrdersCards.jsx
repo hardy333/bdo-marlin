@@ -1,9 +1,8 @@
 import React from "react";
 import "../styles/order-details-card.css";
 import Tippy from "@tippyjs/react";
-import { useNavigate } from "react-router-dom";
 
-const AllOrdersCards = ({ data }) => {
+const VendorAllOrdersCards = ({ data }) => {
   if (!data) {
     // return <h1>Loading ...</h1>;
     data = [
@@ -42,31 +41,15 @@ const AllOrdersCards = ({ data }) => {
     ];
   }
 
-  const navigate = useNavigate();
 
 
-  const navigateToOrderDetails = (row) => {
-    const { shop, date, orderID, vendor, amount,scheduled, serviceLevel, status } = row;
 
-    const urlParams = new URLSearchParams()
-    urlParams.append("shop", shop )
-    urlParams.append("date", date )
-    urlParams.append("scheduledDate", scheduled )
-    urlParams.append("vendor", vendor )
-    urlParams.append("status", status )
-    urlParams.append("orderID", orderID )
-    urlParams.append("amount", amount )
-    urlParams.append("invoiceAmount", amount )
-
-
-  navigate("/order-details?" + urlParams.toString())
-  }
   
   return (
     <>
       <section className="table-cards-container">
         {data.map((row, index) => {
-          const { shop, date, orderID, vendor, amount, serviceLevel, status } = row;
+          const { shop, amount, scheduled, status} = row;
           let color = "";
 
           if (status === "გაგზავნილია") {
@@ -80,42 +63,37 @@ const AllOrdersCards = ({ data }) => {
           } else if (status === "გასაგზავნია") {
             color = "#f55364";
           }
+          
 
           return (
             <article
-              onClick={() => navigateToOrderDetails(row)}
               key={index}
               className="table-card all-orders-card"
               style={{ borderLeft: `2px solid ${color}` }}
             >
-              <header className="table-card-row">
-                <h3>
-                  <span>{vendor}</span>
-                </h3>
-                <span className="date">{date}</span>
-              </header>
+              
               <div className="table-card-row">
-                <span>მაღაზია</span>
+                <span>Shop</span>
                 <span>{shop}</span>
               </div>
               <div className="table-card-row">
-                <span>თანხა</span>
+                <span>Amount</span>
                 <span>{amount} GEL</span>
               </div>
               <div className="table-card-row">
-                <span>სტატუსი</span>
+                <span>Status</span>
                 <Tippy
                   className="tooltip-1"
                   arrow={false}
                   placement="left"
                   content="delevered"
                 >
-                  <span style={{ color: color }}>{status}</span>
+                  <span  style={{ color: color }} >{status}</span>
                 </Tippy>
               </div>
               <div className="table-card-row">
-                <span>სერვისის დონე</span>
-                <span className={`danger`}>{serviceLevel} %</span>
+                <span>scheduled</span>
+                <span className={`danger`}>{scheduled}</span>
               </div>
             </article>
           );
@@ -125,4 +103,4 @@ const AllOrdersCards = ({ data }) => {
   );
 };
 
-export default AllOrdersCards;
+export default VendorAllOrdersCards;
