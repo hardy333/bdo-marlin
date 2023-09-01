@@ -60,8 +60,8 @@ const InvoiceDetailsCards = ({ data }) => {
               style={{ borderLeft: `1px solid  ` }}
             >
               <div className="table-card-row">
-                <span>პროდუქტი</span>
-                <span>{product}</span>
+                <span style={{fontWeight: "700"}}>პროდუქტი</span>
+                <span style={{fontWeight: "700"}}>{product}</span>
               </div>
               <div className="table-card-row">
                 <span>შეკვეთის თანხა</span>

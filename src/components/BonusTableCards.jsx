@@ -67,7 +67,7 @@ const BonusTableCards = ({ data }) => {
               </div>
               <div className="table-card-row">
                 <span>ბონუსი</span>
-                <span>{retroPercent} GEL</span>
+                <span>{retroPercent} %</span>
               </div>
               <div className="table-card-row">
                 <span>ბარკოდი</span>
