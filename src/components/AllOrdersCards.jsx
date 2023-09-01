@@ -86,7 +86,7 @@ const AllOrdersCards = ({ data }) => {
               onClick={() => navigateToOrderDetails(row)}
               key={index}
               className="table-card all-orders-card"
-              style={{ borderLeft: `4px solid ${color}` }}
+              style={{ borderLeft: `2px solid ${color}` }}
             >
               <header className="table-card-row">
                 <h3>
