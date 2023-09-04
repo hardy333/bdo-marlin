@@ -29,6 +29,18 @@
 
 }
 
+.dashboard-aside:hover ::-webkit-scrollbar-thumb{
+	background-color: #ad9dbbbe;
+  transition: all 0.3s ease;
+
+
+}
+.dashboard-aside ::-webkit-scrollbar-thumb{
+	background-color: #ad9dbb00;
+
+
+}
+
 .dashboard-aside ::-webkit-scrollbar-track{
   background-color: #1c1238 !important;
   border-radius: none !important;
