@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchSvg from "../components/svgs/SearchSvg";
 import "../styles/discounts-cards.css";
 
@@ -66,29 +66,35 @@ const products = [
   { dis: 50, name: "ნაყინი", id: uuidv4() },
 ];
 
-const products2 = products
-  .map((prod) => ({ ...prod, dis: prod.dis + 5, id: uuidv4() }))
-  .sort(() => Math.random() - 0.5);
+const url = "https://10.0.0.202:5001/api/RBFront/M00001/D00001"
+const vendorsUrl = "https://10.0.0.202:5001/api/Accounts"
+
 
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
-  const url = "https://10.0.0.202:5001/api/RBFront/M00001/D00001"
   const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
-  const [selectedVendor, setSelectedVendor] = useState(vendors[0])
+  const [selectedVendor,setSelectedVendor ] = useState(null)
 
-  console.log(data)
 
-  let cards
-  if(isChecked){
-    cards = products2
-  }else{
-    cards = products
-  }
+  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors", () => fetchData(vendorsUrl));
 
+
+
+  const vendors = vendorsData?.data.filter(account => account.supplier).map(acc => ({value: acc.name, label: acc.name }))
+
+  console.log("ss", vendors, selectedVendor)
+
+  useEffect(() => {
+    if(!vendors || !vendorsData) return
+    setSelectedVendor(vendors[0])
+
+  },[vendorsData])
 
   const handleVendorChange = (x) => {
 
     setSelectedVendor(x)
+
+    console.log({x})
 
   }
   
@@ -106,7 +112,10 @@ const DiscountsCards = () => {
             className="react-select-container"
             classNamePrefix="react-select"
             options={vendors}
-            defaultValue={vendors[0]}
+            value={selectedVendor}
+            defaultValue={selectedVendor}
+            defaultMenuIsOpen={false}
+             
           />
           {/* <div className="vendors-switch-container ml-10">
             <p className="">{isSmallDevice ? "ბონუსები" : "რეტრო ბონუსები"}</p>
@@ -132,7 +141,6 @@ const DiscountsCards = () => {
 
         <div className="discount-cards-container">
             {data?.data.map((obj, index) => {
-              console.log(obj)
               return (
                 <DiscountCard
                 condition={obj.condition}
