@@ -56,8 +56,11 @@ const OrderDetails = () => {
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery("order-details-data", () =>
-    fetchData(url)
+  const { isLoading, error, data } = useQuery(
+    {
+      queryKey: ["order-details-data", orderID],
+      queryFn: () => fetchData(url)
+    }
   );
 
   const [rowData, setRowData] = useState(() => {
@@ -77,7 +80,6 @@ const OrderDetails = () => {
   const [columnDefs] = useState(OrderDetailsDefs);
 
 
-  console.log(data.data[0])
   
   
 
