@@ -21,8 +21,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   // Events
   const handleMouseMove = (e) => {
     if (e.target.classList.contains("category-li")) {
-      console.log(e.target)
-      console.log("c target", e.currentTarget)
       
       const span = e.target.querySelector(".category-name");
       const cat = span.getAttribute("data-value");
@@ -43,8 +41,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
     setIsOutsideWrapper(true);
     setSelectedProduct(name);
 
-    // console.log(resArr)
-    // console.log(selectedCategory)
 
     const id = resArr
       .find((obj) => obj.name === selectedCategory)

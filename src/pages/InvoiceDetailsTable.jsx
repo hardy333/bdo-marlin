@@ -71,9 +71,11 @@ const InvoiceDetailsTable = () => {
 
   const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/" + invoiceID;
 
-  const { isLoading, error, data } = useQuery("invoice-details", () =>
-    fetchData(url)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["invoice-details", invoiceID],
+    queryFn: () => fetchData(url),
+  });
+
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -82,7 +84,7 @@ const InvoiceDetailsTable = () => {
     return null;
   });
 
-  console.log(rowData);
+
 
   useEffect(() => {
     if (!data) return;

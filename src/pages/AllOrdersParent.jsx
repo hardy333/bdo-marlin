@@ -58,7 +58,6 @@ const AllOrdersParent = () => {
     return null;
   });
 
-  console.log(data)
 
   useEffect(() => {
     if (!data) return;

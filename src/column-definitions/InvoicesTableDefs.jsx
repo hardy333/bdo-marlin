@@ -6,7 +6,6 @@ const InvoicesTableDefs = [
     headerName: "თარიღი",
     cellRenderer: (params) => {
       let { value, data } = params;
-      console.log({params})
       if (!value) return "";
       return <span id="invoice-id-span" 
       data-orderID={data.orderID} 

@@ -76,6 +76,11 @@ const OrderDetails = () => {
 
   const [columnDefs] = useState(OrderDetailsDefs);
 
+
+  console.log(data.data[0])
+  
+  
+
   useEffect(() => {
     if (isFullScreen) {
       document.body.classList.add("dashboard-main-fullscreen");
