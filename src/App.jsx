@@ -63,7 +63,6 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import Test from "./pages/Test";
 import CashBackTable from "./pages/CashBackTable";
 import CategoriesTable from "./pages/CategoriesTable";
-import MTable from "./pages/MTable";
 import CategoriesTable2 from "./pages/CategoriesTable2";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
@@ -93,12 +92,6 @@ function App() {
               path="/colors-page"
               element={
                   <ColorsPage />
-              }
-            />
-            <Route
-              path="/mtable"
-              element={
-                  <MTable />
               }
             />
             <Route
