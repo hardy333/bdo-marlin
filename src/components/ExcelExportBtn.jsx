@@ -17,7 +17,7 @@ const ExcelExportBtn = ({ data, name = "data" }) => {
     >
       <ExcelExportSvg />
     </button>
-    </Tippy>
+     </Tippy>
   );
 };
 

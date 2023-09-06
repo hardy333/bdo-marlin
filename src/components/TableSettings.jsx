@@ -262,14 +262,14 @@ const TableSettings = ({
           {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
         </button>
       </Tippy>
-      <Tippy
+      {/* <Tippy
         className="tooltip-1"
         arrow={false}
         placement="top"
         content="ექსელში ექსპორტი"
-      >
+      > */}
         <LazyExcelExportBtn data={rowData} name={pageName} />
-      </Tippy>
+      {/* </Tippy> */}
     </>
   );
 };
