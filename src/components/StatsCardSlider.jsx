@@ -81,7 +81,6 @@ export default StatsCardSlider;
 
 function Arrow(props) {
   const disabeld = props.disabled ? " arrow--disabled" : "";
-  console.log("Arrow");
   return (
     <>
       {props.left && (

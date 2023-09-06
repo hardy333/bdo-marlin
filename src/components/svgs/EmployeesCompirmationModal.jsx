@@ -17,6 +17,7 @@ const EmployeesCompirmationModal = ({
       className="employees-modal  employee-delete-modal"
       overlayClassName="employees-modal-overlay employee-delete-modal-overlay"
       closeTimeoutMS={300}
+      ariaHideApp={false}
     >
       <button
         onClick={() => setCompirmationModalOpen(false)}

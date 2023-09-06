@@ -11,6 +11,8 @@ const useInvoiceNavigate = () => {
     const handleGridClick = (e) => {
       const cell = e.target;
       const row = cell.closest(".ag-row");
+      if(!row) return
+      
       const invoiceIdSpan = row.querySelector("#invoice-id-span")
       
       const invoiceID = invoiceIdSpan.getAttribute("data-invoiceID")

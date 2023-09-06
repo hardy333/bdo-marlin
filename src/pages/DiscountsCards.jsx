@@ -82,7 +82,6 @@ const DiscountsCards = () => {
 
   const vendors = vendorsData?.data.filter(account => account.supplier).map(acc => ({value: acc.name, label: acc.name }))
 
-  console.log("ss", vendors, selectedVendor)
 
   useEffect(() => {
     if(!vendors || !vendorsData) return
@@ -91,10 +90,8 @@ const DiscountsCards = () => {
   },[vendorsData])
 
   const handleVendorChange = (x) => {
-
     setSelectedVendor(x)
 
-    console.log({x})
 
   }
   

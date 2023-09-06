@@ -146,33 +146,13 @@ const VendorsCalendarTable = () => {
     };
   }, []);
 
-  const rowHeightBtnRef = useRef(null);
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
-    }, 500);
-
-    return () => {
-      clearTimeout(t);
-    };
-  }, []);
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
-
-  const changeRowHeight = () => {
-    if (rowHeightIndex === 2) {
-      setRowHeightIndex(0);
-    } else {
-      setRowHeightIndex((c) => c + 1);
-    }
-  };
 
   const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);
 
-  console.log(selected);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
@@ -197,7 +177,6 @@ const VendorsCalendarTable = () => {
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
               onChange={() => {
-                console.log("Select changes");
                 changeRowData();
               }}
             />

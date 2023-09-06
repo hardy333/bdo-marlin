@@ -113,18 +113,9 @@ const SlaByOrders = () => {
   // Row Height logic
 
 
-  useEffect(() => {
-    const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
-    }, 500);
 
-    return () => {
-      clearTimeout(t);
-    };
-  }, []);
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
-  const rowHeightBtnRef = useRef(null);
 
   const gridRef = useRef(null);
 

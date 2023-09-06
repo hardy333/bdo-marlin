@@ -13,6 +13,7 @@ const VendorsModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
       className="employees-modal vendors-modal"
       overlayClassName="employees-modal-overlay"
       closeTimeoutMS={300}
+      ariaHideApp={false}
     >
       <button onClick={() => setIsOpen(false)} className="vendors-modal__btn">
         <CloseModalSvg />

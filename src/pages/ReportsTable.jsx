@@ -58,7 +58,6 @@ const ReportsTable = () => {
     return null;
   });
 
-  console.log({ error });
 
   useEffect(() => {
     if (!data) return;

@@ -90,7 +90,6 @@ const VendorAllOrdersTable = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
-  console.log(data);
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -366,7 +365,6 @@ const VendorAllOrdersTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
-
   return (
     <>
       <header className="all-orders__header vendor-all-orders">
@@ -378,10 +376,11 @@ const VendorAllOrdersTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <span className={`${isSearchOpen ? "hide" : ""} heading`}>
-              <span className="heading__left">
-              ყველა შეკვეთა:
+              <span className="heading__left">ყველა შეკვეთა:</span>
+              <span className="heading__right" style={{ color: "#6E0FF5" }}>
+                {" "}
+                მომწოდებელი 1
               </span>
-              <span  className="heading__right" style={{ color: "#6E0FF5" }}> მომწოდებელი 1</span>
             </span>
           </div>
           {/* Right */}
@@ -509,56 +508,52 @@ const VendorAllOrdersTable = () => {
           </div>
         </div>
       </header>
-      {
-        isSmallDevice ? (
-          <VendorAllOrdersCards data={rowData}/>
-
-        ) : (
-
-    
-      <div
-        className="ag-theme-alpine ag-grid-example  vendors-all-orders-table "
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          getRowHeight={getRowHeight}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+      {isSmallDevice ? (
+        <VendorAllOrdersCards data={rowData} />
+      ) : (
+        <div
+          className="ag-theme-alpine ag-grid-example  vendors-all-orders-table "
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
-      </div>)
-        }
+          <AgGridReact
+            ref={gridRef}
+            getRowHeight={getRowHeight}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
+
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+        </div>
+      )}
     </>
   );
 };

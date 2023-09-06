@@ -132,17 +132,6 @@ const InvoiceDetailsTable = () => {
   // Row Height logic
   // Row Height logic
 
-  const rowHeightBtnRef = useRef(null);
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      rowHeightBtnRef.current.click();
-    }, 500);
-
-    return () => {
-      clearTimeout(t);
-    };
-  }, []);
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 

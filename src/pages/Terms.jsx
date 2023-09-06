@@ -18,7 +18,7 @@ const Terms = () => {
             <ul className="terms__list">
               {
                 termsData.map((term, index) => {
-                  return <li onClick={() => setSelectedTerm(term)} className={`terms__list-item ${selectedTerm.q === term.q ? "active" : ""}`} key={term.q}>
+                  return <li key={index} onClick={() => setSelectedTerm(term)} className={`terms__list-item ${selectedTerm.q === term.q ? "active" : ""}`} key={term.q}>
                     <span className="terms__list-item__number">{index + 1}</span>
                     <span className="terms__list-item__q">{term.q}</span>
                   </li>
@@ -27,7 +27,7 @@ const Terms = () => {
             </ul>
           </div>
           <div className="terms__right">
-              {selectedTerm.a.split("\n").map(pText=> <p>{pText}</p>) }
+              {selectedTerm.a.split("\n").map((pText,i)=> <p key={i}>{pText}</p>) }
             
           </div>
         </main>
