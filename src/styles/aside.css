@@ -30,11 +30,11 @@
 }
 
 .dashboard-aside:hover ::-webkit-scrollbar-thumb{
-	background-color: #ad9dbbbe;
+	background-color: #ede9f096;
   transition: all 0.3s ease;
 
-
 }
+
 .dashboard-aside ::-webkit-scrollbar-thumb{
 	background-color: #ad9dbb00;
 
@@ -51,7 +51,6 @@
   background-color: #1c1238 !important;
 
 }
-
 
 
 
@@ -79,7 +78,7 @@
 }
 
 .dashboard-aside__list-wrapper{
-  padding-top: 30px;
+  padding-top: 40px;
   /* background-color: blue; */
   /* border: 2px solid red; */
   width: 100%;
@@ -252,11 +251,12 @@
 
 .dashboard-aside__list__vendor {
   display: block;
-  transform: translate(0, 5px);
+  transform: translate(0, 2px);
+  /* background-color: red; */
 }
 
 .dashboard-aside__list__vendor + span {
-  transform: translate(0, 5px);
+  transform: translate(0, 2px);
 }
 
 .dashboard-aside__list li:hover img{
