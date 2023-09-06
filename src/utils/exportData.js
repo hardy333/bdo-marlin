@@ -1,4 +1,3 @@
-
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 
@@ -8,7 +7,7 @@ const fileType =
 // Desired file extesion
 const fileExtension = ".xlsx";
 
-const exportData = (data, fName = "excelData") => {
+export const exportData = (data, fName = "excelData") => {
   //  1)
   // const xls = new xlsExport(data);
   // xls.exportToXLS("all-orders-gdm.xls");
@@ -37,6 +36,5 @@ const exportData = (data, fName = "excelData") => {
   
 };
 
-export default exportData;
 
 

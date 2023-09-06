@@ -15,7 +15,7 @@ import "../styles/global-filter-input.css";
 
 // css
 import "../styles/ag-grid.css";
-import fetch_XLSX_DATA from "../utils/getData";
+// import fetch_XLSX_DATA from "../utils/getData";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import "../styles/stable-table.css";
@@ -91,15 +91,15 @@ const StableTable = () => {
     },
   ]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetch_XLSX_DATA();
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const data = await fetch_XLSX_DATA();
 
-      setRowData(data["By item"]);
-    }
+  //     setRowData(data["By item"]);
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const defaultColDef = useMemo(() => ({
     sortable: true,

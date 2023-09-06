@@ -9,11 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
-    "@mui/icons-material": "^5.14.0",
-    "@mui/material": "^5.14.0",
     "@szhsin/react-menu": "^3.5.2",
     "@tanstack/react-table": "^8.7.9",
     "@tippyjs/react": "^4.2.6",
@@ -22,17 +18,14 @@
     "ag-grid-react": "^29.3.5",
     "apexcharts": "^3.39.0",
     "axios": "^1.4.0",
-    "chart.js": "^4.3.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
-    "export-from-json": "^1.7.2",
     "file-saver": "^2.0.5",
+    "FileSaver": "^0.10.0",
     "framer-motion": "^10.12.12",
     "keen-slider": "^6.8.6",
-    "material-react-table": "^1.14.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
-    "react-chartjs-2": "^5.2.0",
     "react-countup": "^6.4.2",
     "react-date-range": "^1.4.0",
     "react-day-picker": "^8.7.1",
@@ -46,7 +39,6 @@
     "react-toastify": "^9.1.2",
     "react-tooltip": "^5.10.5",
     "uuid": "^9.0.0",
-    "xlsexport": "^1.5.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

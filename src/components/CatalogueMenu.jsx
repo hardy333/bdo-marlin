@@ -62,6 +62,8 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
     fetchData(url)
   );
 
+  console.log(data)
+
   const resArr = useMemo(() => {
     if (!data) return;
     const { data: catData } = data;

@@ -47,7 +47,7 @@ import DatePickerBtn from "../components/DatePickerBtn";
 import { addDays } from "date-fns";
 import vendorsArr from "../data/vendors-data";
 import useRemoveId from "../components/useRemoveId";
-import exportData from "../utils/exportData";
+// import exportData from "../utils/exportData";
 import ExcelExportSvg from "../components/svgs/service-level-svgs/ExcelExportSvg";
 import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
@@ -450,7 +450,7 @@ const SlaByCategory = () => {
             </button>
             <button
               className="all-orders__btn excel-export-btn"
-              onClick={() => exportData(rowData)}
+              // onClick={() => exportData(rowData)}
             >
               <ExcelExportSvg />
             </button>

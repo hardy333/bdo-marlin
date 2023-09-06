@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/scrollbars.css";
 import "./styles/aside.css";
@@ -20,54 +20,64 @@ import "./styles/switch.css";
 import "./styles/info-badge.css";
 
 import Employees from "./pages/Employees";
-import Dash from "./pages/Dash";
+// import Dash from "./pages/Dash";
+const Dash = React.lazy(() => import("./pages/Dash"));
 
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
 import Vendors from "./pages/vendors/Vendors";
-import Invoices2 from "./pages/Invoices2";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Prices from "./pages/Prices";
 import ProfileForm from "./components/ProfileForm";
 import PasswordForm from "./components/PasswordForm";
-import OrderDetails from "./pages/OrderDetails";
 import Terms from "./pages/Terms";
-import AllOrdersParent from "./pages/AllOrdersParent";
-import LogsTable from "./pages/LogsTable";
-import ReportsTable from "./pages/ReportsTable";
-import CatalogueTable from "./pages/CatalogueTable";
 
 import Contract from "./pages/Contract";
-import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
 import DiscountsCards from "./pages/DiscountsCards";
-import VendorsCalendarTable from "./pages/VendorsCalendarTable";
-import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
 
 import DashboardLayout from "./layout/DashboardLayout";
-import InvoicesTable from "./pages/InvoicesTable";
 
-import SlaByShops from "./pages/SlaByShops";
-import SlaByItem from "./pages/SlaByItem";
-import SlaByOrders from "./pages/SlaByOrders";
-import SlaByCategory from "./pages/SlaByCategory";
-import DiscountsTable2 from "./pages/DiscountsTable2";
+// import SlaByCategory from "./pages/SlaByCategory";
+// import CategoriesTable2 from "./pages/CategoriesTable2";
 
-import StableTable from "./pages/StableTable";
-import ExpandableTable from "./pages/ExpandableTable";
+// import ExpandableTable from "./pages/ExpandableTable";
 
 import ColorsPage from "./pages/ColorsPage";
 
 import { QueryClientProvider, QueryClient } from "react-query";
-import Test from "./pages/Test";
-import CashBackTable from "./pages/CashBackTable";
-import CategoriesTable from "./pages/CategoriesTable";
-import CategoriesTable2 from "./pages/CategoriesTable2";
+// import Test from "./pages/Test";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
 import AuthElement from "./components/AuthElement";
 import Landing from "./pages/landing/Landing";
+
+// Table Pages Start
+const VendorsCalendarTable = React.lazy(() =>
+  import("./pages/VendorsCalendarTable")
+);
+const InvoiceDetailsTable = React.lazy(() =>
+  import("./pages/InvoiceDetailsTable")
+);
+const VendorAllOrdersTable = React.lazy(() =>
+  import("./pages/VendorAllOrdersTable")
+);
+const AllOrdersParent = React.lazy(() => import("./pages/AllOrdersParent"));
+const LogsTable = React.lazy(() => import("./pages/LogsTable"));
+const ReportsTable = React.lazy(() => import("./pages/ReportsTable"));
+const CatalogueTable = React.lazy(() => import("./pages/CatalogueTable"));
+const OrderDetails = React.lazy(() => import("./pages/OrderDetails"));
+const Invoices2 = React.lazy(() => import("./pages/Invoices2"));
+const CashBackTable = React.lazy(() => import("./pages/CashBackTable"));
+const CategoriesTable = React.lazy(() => import("./pages/CategoriesTable"));
+const DiscountsTable2 = React.lazy(() => import("./pages/DiscountsTable2"));
+const StableTable = React.lazy(() => import("./pages/StableTable"));
+const InvoicesTable = React.lazy(() => import("./pages/InvoicesTable"));
+const SlaByShops = React.lazy(() => import("./pages/SlaByShops"));
+const SlaByItem = React.lazy(() => import("./pages/SlaByItem"));
+const SlaByOrders = React.lazy(() => import("./pages/SlaByOrders"));
+// Table Pages END
 
 const queryClient = new QueryClient();
 
@@ -85,215 +95,69 @@ function App() {
             <Route
               path="/"
               element={
+                <Suspense fallback={<p>Loading...</p>}>
                   <Dash />
-              }
-            />
-            <Route
-              path="/colors-page"
-              element={
-                  <ColorsPage />
-              }
-            />
-            <Route
-              path="/password-page"
-              element={
-                  <PasswordPage />
+                </Suspense>
               }
             />
 
+            {/* Table Pages   */}
             <Route
-              path="/invoices-table"
               element={
-                  <InvoicesTable />
-              }
-            />
-            <Route
-              path="/employees"
-              element={
-                  <Employees />
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                  <Profile />
+                <Suspense fallback={<p>Loading, Loading...</p>}>
+                  <Outlet />
+                </Suspense>
               }
             >
+              <Route path="/invoices-table" element={<InvoicesTable />} />
+              <Route path="/stable-table" element={<StableTable />} />
               <Route
-                index
-                element={
-                    <ProfileForm />
-                }
+                path="/invoice-details"
+                element={<InvoiceDetailsTable />}
+              />
+              <Route path="/invoices2" element={<Invoices2 />} />
+              <Route path="/order-details" element={<OrderDetails />} />
+              <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+              <Route path="/logs" element={<LogsTable />} />
+              <Route path="/categories" element={<CategoriesTable />} />
+              <Route path="/cash-back-table" element={<CashBackTable />} />
+              <Route path="/sla-by-shops" element={<SlaByShops />} />
+              <Route path="/sla-by-item" element={<SlaByItem />} />
+              <Route path="/sla-by-category" element={<CategoriesTable />} />
+              <Route path="/sla-by-orders" element={<SlaByOrders />} />
+              <Route path="/reports" element={<ReportsTable />} />
+              <Route path="/discounts-table" element={<DiscountsTable2 />} />
+              <Route path="/catalogue" element={<CatalogueTable />} />
+              <Route
+                path="/vendors-calendar"
+                element={<VendorsCalendarTable />}
               />
               <Route
-                path="change-password"
-                element={
-                    <PasswordForm />
-                }
+                path="/vendor-all-orders"
+                element={<VendorAllOrdersTable />}
               />
             </Route>
-            <Route
-              path="/stable-table"
-              element={
-                  <StableTable />
-              }
-            />
-            <Route
-              path="/expandable-table"
-              element={
-                  <ExpandableTable />
-              }
-            />
-            <Route
-              path="/invoice-details"
-              element={
-                  <InvoiceDetailsTable />
-              }
-            />
-            <Route
-              path="/test"
-              element={
-                  <Test />
-              }
-            />
 
-            <Route
-              path="/invoices2"
-              element={
-                  <Invoices2 />
-              }
-            />
+            {/* Table Pages End */}
 
-            <Route
-              path="/vendors"
-              element={
-                  <Vendors />
-              }
-            />
-
-            <Route
-              path="/prices"
-              element={
-                  <Prices />
-              }
-            />
-
-            <Route
-              path="/order-details"
-              element={
-                  <OrderDetails />
-              }
-            />
-
-            <Route
-              path="/all-orders-parent"
-              element={
-                  <AllOrdersParent />
-              }
-            />
-            <Route
-              path="/logs"
-              element={
-                  <LogsTable />
-              }
-            />
-
-            <Route
-              path="/contract"
-              element={
-                  <Contract />
-              }
-            />
-            <Route
-              path="/categories"
-              element={
-                  <CategoriesTable />
-              }
-            />
-            <Route
-              path="/terms"
-              element={
-                  <Terms />
-              }
-            />
-            <Route
-              path="/cash-back-table"
-              element={
-                  <CashBackTable />
-              }
-            />
-            <Route
-              path="/sla-by-shops"
-              element={
-                  <SlaByShops />
-              }
-            />
-            <Route
-              path="/sla-by-item"
-              element={
-                  <SlaByItem />
-              }
-            />
-            <Route
-              path="/sla-by-category"
-              element={
-                  <CategoriesTable />
-              }
-            />
-            <Route
-              path="/sla-by-category2"
-              element={
-                  <CategoriesTable2 />
-              }
-            />
-            <Route
-              path="/sla-by-orders"
-              element={
-                  <SlaByOrders />
-              }
-            />
-            <Route
-              path="/reports"
-              element={
-                  <ReportsTable />
-              }
-            />
-            <Route
-              path="/discounts-table"
-              element={
-                  <DiscountsTable2 />
-              }
-            />
-            <Route
-              path="/discounts-cards"
-              element={
-                  <DiscountsCards />
-              }
-            />
-
-            <Route
-              path="/catalogue"
-              element={
-                  <CatalogueTable />
-              }
-            />
-            <Route
-              path="/vendors-calendar"
-              element={
-                  <VendorsCalendarTable />
-              }
-            />
-            <Route
-              path="/vendor-all-orders"
-              element={
-                  <VendorAllOrdersTable />
-              }
-            />
+            <Route path="/employees" element={<Employees />} />
+            <Route path="/colors-page" element={<ColorsPage />} />
+            <Route path="/password-page" element={<PasswordPage />} />
+            <Route path="/discounts-cards" element={<DiscountsCards />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/contract" element={<Contract />} />
+            <Route path="/prices" element={<Prices />} />
+            <Route path="/profile" element={<Profile />}>
+              <Route index element={<ProfileForm />} />
+              <Route path="change-password" element={<PasswordForm />} />
+            </Route>
+            <Route path="/vendors" element={<Vendors />} />
 
             <Route path="/*" element={<Error />} />
-          </Route> {/* Dashboard Layout End */}
-          
-        </Route>{/* Auth Element End */}
+          </Route>{" "}
+          {/* Dashboard Layout End */}
+        </Route>
+        {/* Auth Element End */}
       </Routes>
     </QueryClientProvider>
   );

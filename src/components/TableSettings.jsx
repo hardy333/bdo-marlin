@@ -26,7 +26,7 @@ const TableSettings = ({
   rowHeightIndex,
   setRowHeightIndex,
   pageName = "data",
-  isLargeHeader = false
+  isLargeHeader = false,
 }) => {
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -103,13 +103,13 @@ const TableSettings = ({
   return (
     <>
       {/* Expand Input */}
-     
+
       <ExpandingInput
-      useTippy={true}
+        useTippy={true}
         setIsSearchOpen={setIsSearchOpen}
         onFilterTextChange={onFilterTextChange}
       />
-    
+
       {/* input filter */}
       <Tippy
         className="tooltip-1"
@@ -126,7 +126,7 @@ const TableSettings = ({
             "all-orders__btn": true,
             active: showFilters,
           })}
-          style={{display: isSmallDevice ?  "none" : ""}}
+          style={{ display: isSmallDevice ? "none" : "" }}
         >
           <FilterSvg />
         </button>
@@ -137,10 +137,10 @@ const TableSettings = ({
         align="center"
         direction="top"
         menuButton={
-          <MenuButton 
-          style={{display: isSmallDevice ?  "none" : ""}}
-
-          className="all-orders__btn ">
+          <MenuButton
+            style={{ display: isSmallDevice ? "none" : "" }}
+            className="all-orders__btn "
+          >
             <Tippy
               className="tooltip-1"
               arrow={false}
@@ -174,7 +174,6 @@ const TableSettings = ({
         <div className="column-toggle-popup">
           <header className="column-toggle-popup__header">
             <button
-
               className={classNames({
                 btn: true,
                 active: !headerList.every((header) => !header.isShowing),
@@ -230,8 +229,7 @@ const TableSettings = ({
         content="სტრიქონების სიმაღლე"
       >
         <button
-          style={{display: isSmallDevice ?  "none" : ""}}
-
+          style={{ display: isSmallDevice ? "none" : "" }}
           onClick={() => {
             gridRef.current?.api.resetRowHeights();
             changeRowHeight();
@@ -252,8 +250,7 @@ const TableSettings = ({
         content="გადიდება"
       >
         <button
-          style={{display: isSmallDevice ?  "none" : ""}}
-
+          style={{ display: isSmallDevice ? "none" : "" }}
           onClick={() => setIsFullScreen(!isFullScreen)}
           className={classNames({
             "all-orders__btn": true,
@@ -262,14 +259,8 @@ const TableSettings = ({
           {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
         </button>
       </Tippy>
-      {/* <Tippy
-        className="tooltip-1"
-        arrow={false}
-        placement="top"
-        content="ექსელში ექსპორტი"
-      > */}
-        <LazyExcelExportBtn data={rowData} name={pageName} />
-      {/* </Tippy> */}
+
+      <LazyExcelExportBtn data={rowData} name={pageName} />
     </>
   );
 };
