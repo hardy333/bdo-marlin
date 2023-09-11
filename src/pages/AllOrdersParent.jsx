@@ -39,9 +39,12 @@ import AllOrdersCards from "../components/AllOrdersCards";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import useCopyTable from "../hooks/useCopyTable";
 import useLocalStorage from "../hooks/useLocalStorage";
+import AgTablePag from "../components/AgTablePag";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useLocalStorage("all-orders-table-page-size", 15);
+  const [pageCount, setPageCount] = useState(1)
+
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
@@ -213,6 +216,8 @@ const AllOrdersParent = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
         </div>
       )}
     </>

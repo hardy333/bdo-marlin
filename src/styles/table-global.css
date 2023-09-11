@@ -1,5 +1,24 @@
+/* AG Table Element */
+.ag-paging-panel{
+  outline: 1px solid red;
+  position: relative;
+
+}
+
+/* Custom Element */
 .pag-container{
-  display: none;
+  /* display: none; */
+  background-color: brown;
+}
+
+
+
+.pag-container ul{
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
