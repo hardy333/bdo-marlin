@@ -349,7 +349,7 @@ const OrderDetails = () => {
           ></AgGridReact>
 
           {gridReady === true && (
-            <AgTablePag gridRef={gridRef} pageCount={67} />
+            <AgTablePag gridRef={gridRef} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />
           )}
 
           <Menu

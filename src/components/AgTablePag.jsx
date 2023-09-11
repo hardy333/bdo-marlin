@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom/client";
 import ReactPaginate from "react-paginate";
 import { createPortal } from "react-dom";
+import "../styles/pag-test.css"
+
 
 const AgTablePag = ({ gridRef, pageCount }) => {
   const changePage = (event) => {

@@ -217,7 +217,7 @@ const AllOrdersParent = () => {
             })}
           </Menu>
 
-          {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={4} />}
+          {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />}
         </div>
       )}
     </>

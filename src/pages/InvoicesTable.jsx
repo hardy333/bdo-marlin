@@ -30,8 +30,6 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/invoices.json";
-import { useNavigate } from "react-router-dom";
 import useRemoveId from "../components/useRemoveId";
 import {
   InvoicesTableDefs,
@@ -113,7 +111,6 @@ const InvoicesTable = () => {
     };
   }, []);
 
-  
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
