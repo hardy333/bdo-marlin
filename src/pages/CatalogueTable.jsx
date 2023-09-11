@@ -61,7 +61,6 @@ const CatalogueTable = () => {
     () => fetchData(url)
   );
 
-  console.log({error})
   
   
   useEffect(() => {
