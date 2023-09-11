@@ -134,7 +134,7 @@ const OrderDetails = () => {
   let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
   let vendor = searchParams.get("vendor") || "GDM";
   let status = searchParams.get("status") || "გაგზავნილია";
-  let amount = searchParams.get("amount") || "308.4 GEL";
+  let amount = searchParams.get("amount") || 308.4;
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
 
 
@@ -220,11 +220,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`შეკვეთის თარიღი: ${date}`}
+                content={`შეკვეთის თარიღი: ${date?.split("T")[0]}`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/clock.svg" alt="" />
-                  <span className="info-badge-text"> {date}</span>
+                  <span className="info-badge-text"> {date?.split("T")[0]}</span>
                 </p>
               </Tippy>
               {/* 4 */}
@@ -247,11 +247,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`თანხა: ${amount}`}
+                content={`თანხა: ${amount} GEL`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/money.svg" alt="" />
-                  <span className="info-badge-text">{amount}</span>
+                  <span className="info-badge-text">{amount} GEL</span>
                 </p>
               </Tippy>
               {/* 6 */}
@@ -259,11 +259,11 @@ const OrderDetails = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`ინვოისის თანხა: ${invoiceAmount}`}
+                content={`ინვოისის თანხა: ${invoiceAmount} GEL`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/document.svg" alt="" />
-                  <span className="info-badge-text">{invoiceAmount}</span>
+                  <span className="info-badge-text">{invoiceAmount} GEL</span>
                 </p>
               </Tippy>
             </section>

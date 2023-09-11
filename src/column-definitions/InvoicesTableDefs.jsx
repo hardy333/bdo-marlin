@@ -7,13 +7,24 @@ const InvoicesTableDefs = [
     cellRenderer: (params) => {
       let { value, data } = params;
       if (!value) return "";
+
+      console.log(data, "ss")
       return <span id="invoice-id-span" 
-      data-orderID={data.orderID} 
-      data-orderNumber={data.orderNumber} data-waybillNumber={data.waybillNumber} 
-      data-invoiceNumber={data.invoiceNumber}
+      data-order-id={data.orderID} 
+      data-order-number={data.orderNumber} 
+
+      data-waybill-number={data.waybillNumber} 
+
+      data-invoice-number={data.invoiceNumber}
+      data-invoice-amount={data.invoiceAmount}
+      data-invoice-id={data.invoiceID}
+
+      data-amount={data.orderAmount} 
       data-vendor={data.vendor} 
+      data-shop={data.shop} 
+
       data-date={data.date}
-      data-invoiceID={data.invoiceID}
+
       >{value.split("T")[0]}</span>;
     },
   },

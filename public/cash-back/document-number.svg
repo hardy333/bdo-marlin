@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.39 45.29">
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="m38.97,11.77l-.85-.83L29.88,2.89c-1.82-1.78-4.23-2.76-6.78-2.76h-13.23C7.23.13,5.07,2.28,5.07,4.92v35.58c0,2.64,2.15,4.79,4.8,4.79h12.72c1.01-.04,1.8-.87,1.8-1.88,0-.9-.62-1.65-1.46-1.84h-13.06c-.59,0-1.08-.48-1.08-1.07V4.92c0-.59.49-1.07,1.08-1.07h13.07v10.3c0,2.09,1.71,3.8,3.8,3.8h11.43v5.61c.18.85.94,1.49,1.85,1.49,1.02,0,1.83-.79,1.88-1.8v-4.56c0-2.59-1.07-5.13-2.93-6.93Zm-12.27,2.38V5.09c.2.15.4.29.58.46l8.84,8.63-9.41-.02Z" fill="#6e0ff5" stroke-width="0"/>
+  </g>
+  <g id="Layer_3" data-name="Layer 3">
+    <g>
+      <line x1="32.17" y1="26.92" x2="29.04" y2="42.57" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="37.11" y1="26.92" x2="33.98" y2="42.57" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="27.45" y1="32.05" x2="39.42" y2="32.05" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="26.82" y1="37.51" x2="38.78" y2="37.51" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

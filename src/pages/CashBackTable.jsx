@@ -240,7 +240,8 @@ const CashBackTable = () => {
                 content={`პირობა: ${condition}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <FaHandshake />
+                  {/* <FaHandshake /> */}
+                  <img src="cash-back/shetanxmebis-piroba.svg" alt="" />
                   <span className="info-badge-text"> {condition}</span>
                 </p>
               </Tippy>
@@ -269,7 +270,8 @@ const CashBackTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   {/* <img src="order-details/vendor.svg" alt="" /> */}
-                  <FaRegNewspaper />
+                  <img src="cash-back/document-number.svg" alt="" />
+
                   <span className="info-badge-text">#: {documentNo}</span>
                 </p>
               </Tippy>
@@ -285,7 +287,8 @@ const CashBackTable = () => {
                 } `}
               >
                 <p className="info-badge info-badge-mobile">
-                  <RiMoneyDollarBoxLine />
+                  <img src="cash-back/gegma.svg" alt="" />
+
                   <span className="info-badge-text">
                     {planAmount === "undefined"
                       ? "განუსაზღვრელი"
@@ -301,8 +304,8 @@ const CashBackTable = () => {
                 content="ქეშბექი: 7%"
               >
                 <p className="info-badge info-badge-mobile">
-                  {/* <img src="order-details/vendor.svg" alt="" /> */}
-                  <BsCashCoin />
+                  <img src="cash-back/cashback.svg" alt="" />
+
                   <span className="info-badge-text"> 7%</span>
                 </p>
               </Tippy>

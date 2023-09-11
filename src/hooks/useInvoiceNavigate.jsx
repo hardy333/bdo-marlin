@@ -15,13 +15,18 @@ const useInvoiceNavigate = () => {
       
       const invoiceIdSpan = row.querySelector("#invoice-id-span")
       
-      const invoiceID = invoiceIdSpan.getAttribute("data-invoiceID")
+      const invoiceID = invoiceIdSpan.getAttribute("data-invoice-id")
 
-      const waybillNumber = invoiceIdSpan.getAttribute("data-waybillNumber")
-      const orderNumber = invoiceIdSpan.getAttribute("data-orderNumber")
-      const invoiceNumber = invoiceIdSpan.getAttribute("data-invoiceNumber")
+      const waybillNumber = invoiceIdSpan.getAttribute("data-waybill-number")
+      const orderNumber = invoiceIdSpan.getAttribute("data-order-number")
+      const orderID = invoiceIdSpan.getAttribute("data-order-id")
+
+      const invoiceNumber = invoiceIdSpan.getAttribute("data-invoice-number")
+      const invoiceAmount = invoiceIdSpan.getAttribute("data-invoice-amount")
+      const amount = invoiceIdSpan.getAttribute("data-amount")
 
       const vendor = invoiceIdSpan.getAttribute("data-vendor")
+      const shop = invoiceIdSpan.getAttribute("data-shop")
       const date = invoiceIdSpan.getAttribute("data-date")
 
 
@@ -41,10 +46,14 @@ const useInvoiceNavigate = () => {
       const urlParams = new URLSearchParams();
       urlParams.append("waybillNumber", waybillNumber);
       urlParams.append("orderNumber", orderNumber);
-      urlParams.append("invoiceNumber", invoiceNumber);
+      urlParams.append("orderID", orderID);
       urlParams.append("date", date);
       urlParams.append("vendor", vendor);
+      urlParams.append("shop", shop);
+      urlParams.append("invoiceNumber", invoiceNumber);
       urlParams.append("invoiceID", invoiceID);
+      urlParams.append("invoiceAmount", invoiceAmount);
+      urlParams.append("amount", amount);
 
       navigate("/invoice-details?" + urlParams.toString());
     };

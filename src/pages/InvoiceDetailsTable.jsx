@@ -59,14 +59,17 @@ const InvoiceDetailsTable = () => {
   const [columnDefs] = useState(InvoiceDetailsTableDefs);
 
   const [searchParams] = useSearchParams();
-  const invoiceID =
-    searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
+  const invoiceID = searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
 
   const waybillNumber = searchParams.get("waybillNumber");
   const orderNumber = searchParams.get("orderNumber");
-  const invoiceNumber = searchParams.get("invoiceNumber");
 
+  const invoiceNumber = searchParams.get("invoiceNumber");
+  const invoiceAmount = searchParams.get("invoiceAmount");
+  const orderID = searchParams.get("orderID");
+  const amount = searchParams.get("amount");
   const vendor = searchParams.get("vendor");
+  const shop = searchParams.get("shop");
   const date = searchParams.get("date");
 
   const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/" + invoiceID;
@@ -132,7 +135,6 @@ const InvoiceDetailsTable = () => {
   // Row Height logic
   // Row Height logic
 
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const gridRef = useRef(null);
@@ -143,6 +145,8 @@ const InvoiceDetailsTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
+  console.log(data?.data)
+  
   return (
     <>
       <header className="all-orders__header invoice-details-header">
@@ -199,11 +203,31 @@ const InvoiceDetailsTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`შეკვეთის #: 9282034`}
+                content={`შეკვეთის #: ${orderNumber}`}
               >
                 <p
                   className="info-badge info-badge-mobile info-badge-link"
-                  onClick={() => navigate("/order-details")}
+                  onClick={() => {
+
+
+                    
+                    const urlParams = new URLSearchParams();
+                    urlParams.append("waybillNumber", waybillNumber);
+                    urlParams.append("orderNumber", orderNumber);
+                    urlParams.append("orderID", orderID);
+                    urlParams.append("date", date);
+                    urlParams.append("vendor", vendor);
+                    urlParams.append("shop", shop);
+                    urlParams.append("invoiceNumber", invoiceNumber);
+                    urlParams.append("invoiceID", invoiceID);
+                    urlParams.append("invoiceAmount", invoiceAmount);
+                    urlParams.append("amount", amount);
+                    urlParams.append("status", "რეალიზებულია");
+
+                    navigate("/order-details?" + urlParams.toString())
+                    
+                    
+                  }}
                 >
                   <img src="invoices-badge-icons/order.svg" alt="" />
                   <span className="info-badge-text">#: {orderNumber}</span>

@@ -111,6 +111,8 @@ const InvoicesTable = () => {
     };
   }, []);
 
+  console.log(data?.data)
+  
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 

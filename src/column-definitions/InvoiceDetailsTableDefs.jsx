@@ -29,8 +29,9 @@ const InvoiceDetailsTableDefs =[
       headerName: "ინვოისის თანხა",
       cellRenderer: (params) => {
         let { value } = params;
+        const {redStatus} = params.data
        
-        return value + " " + "GEL";
+        return <span style={{color: redStatus ? "#f55364": "" }}>{value + " GEL"} </span>;
       },
     },
   ]
