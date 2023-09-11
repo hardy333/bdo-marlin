@@ -304,7 +304,7 @@ const CashBackTable = () => {
                 content="ქეშბექი: 7%"
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="cash-back/cashback.svg" alt="" />
+                  <img src="cash-back/cashback.svg" alt="" style={{height: "22px"}} />
 
                   <span className="info-badge-text"> 7%</span>
                 </p>
