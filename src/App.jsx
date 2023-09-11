@@ -82,10 +82,13 @@ function App() {
 
   const { user } = useAuthContext()
 
-  var decoded = jwt_decode(user.token);
+  if(user?.token){
 
-  console.log("decoded: ", decoded)
-  
+    var decoded = jwt_decode(user?.token);
+    
+    console.log("decoded: ", decoded)
+  }
+
 
 
 

@@ -38,9 +38,10 @@ import AllOrdersCards from "../components/AllOrdersCards";
 
 import { useMediaQuery } from "@uidotdev/usehooks";
 import useCopyTable from "../hooks/useCopyTable";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const AllOrdersParent = () => {
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, setPageSize] = useLocalStorage("all-orders-table-page-size", 15);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
