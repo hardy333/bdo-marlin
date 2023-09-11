@@ -31,7 +31,7 @@ const DatePickerInput = () => {
     <Menu
       className="date-menu"
       menuButton={
-        <MenuButton className={` btn-date  date-picker-input`}>
+        <MenuButton className={` btn-date  date-picker-input  ${dateChanged ? "date-changed" : null}`}>
           <span className="svg-span">
             <svg
               xmlns="http://www.w3.org/2000/svg"

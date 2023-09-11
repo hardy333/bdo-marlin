@@ -1,3 +1,6 @@
+
+
+
 .vendors-calendar__left{
   width: 320px;
   margin-right: 3rem;
@@ -95,7 +98,7 @@
   }
   
   .calendar-table-header .heading{
-    font-size: 16px;
+    font-size: 16px !important;
     margin-right: 0 !important;
   }
 

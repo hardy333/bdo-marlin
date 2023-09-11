@@ -137,6 +137,7 @@ const OrderDetails = () => {
   let amount = searchParams.get("amount") || "308.4 GEL";
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
 
+
   let statusBg;
 
   if (status === "გაგზავნილია") {
@@ -148,6 +149,14 @@ const OrderDetails = () => {
   } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
   }
+
+  useEffect(() => {
+
+    // console.log("status != რეალიზებულია", status == "რეალიზებულია")
+
+    gridColumnApi?.setColumnVisible("reservedQuantity", status != "რეალიზებულია");
+  },[])
+
 
 
 

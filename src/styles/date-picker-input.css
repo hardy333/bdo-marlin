@@ -13,6 +13,7 @@
   justify-content: flex-start;
   gap: 1rem;
   padding: 0.5rem 1rem;
+  padding-bottom: 0.5rem !important;
   min-width: 215px !important;
   margin: 0;
   padding-left: 1rem !important;
@@ -56,10 +57,23 @@
   fill: #6e0ff5;
 }
 
+
+
+.date-picker-input.date-changed .svg-span svg path {
+  fill: #6e0ff5;
+}
+
+
+
+
+
+
 .date-picker-input .date-span {
   padding-top: 5px;
   margin: 0 auto;
-  color: #d0c7e8;
+  /* color: #d0c7e8; */
+  color: #211543;
+
 }
 
 .date-picker-input .date-span.black {

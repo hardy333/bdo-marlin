@@ -20,8 +20,8 @@ import "./styles/switch.css";
 import "./styles/info-badge.css";
 
 import Employees from "./pages/Employees";
-// import Dash from "./pages/Dash";
-const Dash = React.lazy(() => import("./pages/Dash"));
+import Dash from "./pages/Dash";
+// const Dash = React.lazy(() => import("./pages/Dash"));
 
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
@@ -54,29 +54,23 @@ import AuthElement from "./components/AuthElement";
 import Landing from "./pages/landing/Landing";
 
 // Table Pages Start
-const VendorsCalendarTable = React.lazy(() =>
-  import("./pages/VendorsCalendarTable")
-);
-const InvoiceDetailsTable = React.lazy(() =>
-  import("./pages/InvoiceDetailsTable")
-);
-const VendorAllOrdersTable = React.lazy(() =>
-  import("./pages/VendorAllOrdersTable")
-);
-const AllOrdersParent = React.lazy(() => import("./pages/AllOrdersParent"));
-const LogsTable = React.lazy(() => import("./pages/LogsTable"));
-const ReportsTable = React.lazy(() => import("./pages/ReportsTable"));
-const CatalogueTable = React.lazy(() => import("./pages/CatalogueTable"));
-const OrderDetails = React.lazy(() => import("./pages/OrderDetails"));
-const Invoices2 = React.lazy(() => import("./pages/Invoices2"));
-const CashBackTable = React.lazy(() => import("./pages/CashBackTable"));
-const CategoriesTable = React.lazy(() => import("./pages/CategoriesTable"));
-const DiscountsTable2 = React.lazy(() => import("./pages/DiscountsTable2"));
-const StableTable = React.lazy(() => import("./pages/StableTable"));
-const InvoicesTable = React.lazy(() => import("./pages/InvoicesTable"));
-const SlaByShops = React.lazy(() => import("./pages/SlaByShops"));
-const SlaByItem = React.lazy(() => import("./pages/SlaByItem"));
-const SlaByOrders = React.lazy(() => import("./pages/SlaByOrders"));
+import VendorsCalendarTable from "./pages/VendorsCalendarTable";
+import InvoiceDetailsTable from "./pages/InvoiceDetailsTable";
+import VendorAllOrdersTable from "./pages/VendorAllOrdersTable";
+import AllOrdersParent from "./pages/AllOrdersParent";
+import LogsTable from "./pages/LogsTable";
+import ReportsTable from "./pages/ReportsTable";
+import CatalogueTable from "./pages/CatalogueTable";
+import OrderDetails from "./pages/OrderDetails";
+import Invoices2 from "./pages/Invoices2";
+import CashBackTable from "./pages/CashBackTable";
+import CategoriesTable from "./pages/CategoriesTable";
+import DiscountsTable2 from "./pages/DiscountsTable2";
+import StableTable from "./pages/StableTable";
+import InvoicesTable from "./pages/InvoicesTable";
+import SlaByShops from "./pages/SlaByShops";
+import SlaByItem from "./pages/SlaByItem";
+import SlaByOrders from "./pages/SlaByOrders";
 // Table Pages END
 
 const queryClient = new QueryClient();
@@ -95,20 +89,18 @@ function App() {
             <Route
               path="/"
               element={
-                <Suspense fallback={<p>Loading...</p>}>
                   <Dash />
-                </Suspense>
               }
             />
 
             {/* Table Pages   */}
-            <Route
+            {/* <Route
               element={
                 <Suspense fallback={<p>Loading, Loading...</p>}>
                   <Outlet />
                 </Suspense>
               }
-            >
+            > */}
               <Route path="/invoices-table" element={<InvoicesTable />} />
               <Route path="/stable-table" element={<StableTable />} />
               <Route
@@ -136,8 +128,7 @@ function App() {
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
-            </Route>
-
+            {/* </Route> */}
             {/* Table Pages End */}
 
             <Route path="/employees" element={<Employees />} />

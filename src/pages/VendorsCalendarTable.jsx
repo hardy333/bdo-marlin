@@ -10,6 +10,7 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "../styles/ag-table-scrollbar.css";
 
+
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
@@ -23,8 +24,8 @@ import "../styles/global-filter-input.css";
 
 import "../styles/all-orders-parent.css";
 import "../styles/vendors-calendar.css";
+import "../styles/vendors-calendar-table.css"
 
-import classNames from "classnames";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -33,15 +34,7 @@ import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import ExpandingInput from "../components/ExpandingInput";
-import ReverseExpandSvg from "../components/ReverseExpandSvg";
-import ExpandSvg from "../components/ExpandSvg";
-import ColumnHideSvg from "../components/ColumnHideSvg";
-import FilterSvg from "../components/FilterSvg";
-import RowHeightBigSvg from "../components/RowHeightBigSvg";
-import RowHeightSmallSvg from "../components/RowHeightSmallSvg";
-import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
-import useFilterToggle from "../hooks/useFilterToggle";
+
 
 import d1 from "../assets/vendors-calendar-1.json";
 import d2 from "../assets/vendors-calendar-2.json";
@@ -70,11 +63,8 @@ const options = [
   { value: "Svaneti", label: "Svaneti" },
 ];
 
-import { FaCalendarAlt } from "react-icons/fa";
 
 import vendorsArr from "../data/vendors-data";
-import Tippy from "@tippyjs/react";
-import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import {
   CalendarTableDefs,
   calendarTableHeaderList,
@@ -158,7 +148,7 @@ const VendorsCalendarTable = () => {
 
   return (
     <>
-      <header className="all-orders__header calendar-table-header ">
+      <header className="all-orders__header calendar-table-header vendors-calendar-header ">
         <div className="all-orders__settings">
           {/* Left */}
           <div
