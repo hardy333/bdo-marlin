@@ -36,6 +36,7 @@ import ReportsCards from "./ReportsCards";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import DatePickerInput from "../components/DatePickerInput";
 import { ReportsTableDefs, reportsTableHeaderList } from "../column-definitions/ReportsTableDefs";
+import useCopyTable from "../hooks/useCopyTable";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -95,6 +96,7 @@ const ReportsTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const components = useMemo(() => {
@@ -138,7 +140,9 @@ const ReportsTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const datePicekerRef = useRef(null);
+  const [gridReady, setGridReady] = useState(false);
+
+  useCopyTable(gridReady)
 
   return (
     <>
@@ -182,7 +186,7 @@ const ReportsTable = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example sla-all-table sla-colored-cell-table"
+          className="ag-theme-alpine ag-grid-example sla-all-table sla-colored-cell-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

@@ -44,6 +44,7 @@ import SlaItemsCards from "../components/SlaItemsCards";
 import DatePickerInput from "../components/DatePickerInput";
 import TableSettings from "../components/TableSettings";
 import { SlaByItemsTableDefs, slaByitemsTableHeaderList } from "../column-definitions/SlaByItemsTableDefs";
+import useCopyTable from "../hooks/useCopyTable";
 
 const SlaByItem = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -102,6 +103,8 @@ const SlaByItem = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+
+    setGridReady(true)
   };
 
  
@@ -128,6 +131,11 @@ const SlaByItem = () => {
 
   
   useRemoveId(gridApi, gridRef);
+
+
+  const [gridReady, setGridReady] = useState(false);
+  useCopyTable(gridReady)
+
 
 
 
@@ -187,7 +195,7 @@ const SlaByItem = () => {
       isSmallDevice ? <SlaItemsCards data={rowData}/> : (
         <div
         id="marlin-table"
-        className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+        className="ag-theme-alpine ag-grid-example sla-colored-cell-table copy-paste-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

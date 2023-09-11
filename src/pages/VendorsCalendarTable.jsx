@@ -73,6 +73,7 @@ import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import DatePickerInput from "../components/DatePickerInput";
 import CalendartableCards from "../components/CalendarTableCards";
+import useCopyTable from "../hooks/useCopyTable";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -128,6 +129,7 @@ const VendorsCalendarTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const components = useMemo(() => {
@@ -146,6 +148,10 @@ const VendorsCalendarTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
+
+  const [gridReady, setGridReady] = useState(false);
+
+  useCopyTable(gridReady)
   return (
     <>
       <header className="all-orders__header calendar-table-header vendors-calendar-header ">
@@ -211,7 +217,7 @@ const VendorsCalendarTable = () => {
         ) : (
           <div
             id="marlin-table"
-            className="ag-theme-alpine ag-grid-example "
+            className="ag-theme-alpine ag-grid-example copy-paste-table "
             style={{ minHeight: 595, width: "100%" }}
           >
             <AgGridReact

@@ -45,7 +45,13 @@
 
 .all-orders-parent  .ag-cell{
   background-color: white;
+  
 }
+
+.all-orders-parent .ag-cell-focus{
+  border: 1px solid transparent !important;
+}
+
 
 @media (max-width: 600px){
   .all-orders__settings{

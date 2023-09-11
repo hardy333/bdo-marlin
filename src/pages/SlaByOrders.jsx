@@ -44,6 +44,7 @@ import SlaOrdersCards from "../components/SlaOrdersCards";
 import DatePickerInput from "../components/DatePickerInput";
 import { SlaByOrdersTableDefs, slaByOrdersTableHeaderList } from "../column-definitions/SlaByOrdersTableDefs";
 import TableSettings from "../components/TableSettings";
+import useCopyTable from "../hooks/useCopyTable";
 
 const SlaByOrders = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -101,6 +102,7 @@ const SlaByOrders = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const components = useMemo(() => {
@@ -123,6 +125,10 @@ const SlaByOrders = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
+
+
+  const [gridReady, setGridReady] = useState(false);
+  useCopyTable(gridReady)
 
 
   return (
@@ -157,7 +163,7 @@ const SlaByOrders = () => {
             </p>
           </div>
           {/* Right */}
-          <div className="all-orders__settings__options sla-settings">
+          <div className="all-orders__settings__options sla-settings ">
             <p className="avarage-sla sla-avg sla-avg-mobile">
               ASL: <span>82%</span>
             </p>
@@ -180,7 +186,7 @@ const SlaByOrders = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

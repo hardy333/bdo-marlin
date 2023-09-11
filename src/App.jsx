@@ -18,6 +18,7 @@ import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
 import "./styles/info-badge.css";
+import "./styles/copy-paste-table.css"
 
 import Employees from "./pages/Employees";
 import Dash from "./pages/Dash";
@@ -71,11 +72,25 @@ import InvoicesTable from "./pages/InvoicesTable";
 import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
+import { useAuthContext } from "./hooks/useAuthContext";
 // Table Pages END
+import jwt_decode from "jwt-decode";
 
 const queryClient = new QueryClient();
 
 function App() {
+
+  const { user } = useAuthContext()
+
+  var decoded = jwt_decode(user.token);
+
+  console.log("decoded: ", decoded)
+  
+
+
+
+  
+  
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
@@ -94,13 +109,6 @@ function App() {
             />
 
             {/* Table Pages   */}
-            {/* <Route
-              element={
-                <Suspense fallback={<p>Loading, Loading...</p>}>
-                  <Outlet />
-                </Suspense>
-              }
-            > */}
               <Route path="/invoices-table" element={<InvoicesTable />} />
               <Route path="/stable-table" element={<StableTable />} />
               <Route
@@ -128,9 +136,7 @@ function App() {
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
-            {/* </Route> */}
             {/* Table Pages End */}
-
             <Route path="/employees" element={<Employees />} />
             <Route path="/colors-page" element={<ColorsPage />} />
             <Route path="/password-page" element={<PasswordPage />} />
@@ -145,7 +151,7 @@ function App() {
             <Route path="/vendors" element={<Vendors />} />
 
             <Route path="/*" element={<Error />} />
-          </Route>{" "}
+          </Route>
           {/* Dashboard Layout End */}
         </Route>
         {/* Auth Element End */}

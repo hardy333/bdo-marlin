@@ -44,6 +44,7 @@ import SlaShopsCards from "../components/SlaShopsCards";
 import DatePickerInput from "../components/DatePickerInput";
 import { SlaByShopsTableDefs, slaShopsTableHeaderList } from "../column-definitions/SlaByShopsTableDefs";
 import TableSettings from "../components/TableSettings";
+import useCopyTable from "../hooks/useCopyTable";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -100,6 +101,7 @@ const SlaByShops = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
 
@@ -122,7 +124,9 @@ const SlaByShops = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
+  const [gridReady, setGridReady] = useState(false);
 
+  useCopyTable(gridReady)
 
   return (
     <>
@@ -181,7 +185,7 @@ const SlaByShops = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example sla-colored-cell-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

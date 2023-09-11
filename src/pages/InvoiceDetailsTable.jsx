@@ -48,6 +48,7 @@ import Tippy from "@tippyjs/react";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import InvoiceDetailsCards from "../components/InvoiceDetailsCards";
+import useCopyTable from "../hooks/useCopyTable";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -145,7 +146,9 @@ const InvoiceDetailsTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
-  console.log(data?.data)
+
+  useCopyTable(gridReady)
+
   
   return (
     <>
@@ -208,8 +211,6 @@ const InvoiceDetailsTable = () => {
                 <p
                   className="info-badge info-badge-mobile info-badge-link"
                   onClick={() => {
-
-
                     
                     const urlParams = new URLSearchParams();
                     urlParams.append("waybillNumber", waybillNumber);
@@ -286,7 +287,7 @@ const InvoiceDetailsTable = () => {
         <InvoiceDetailsCards data={rowData} />
       ) : (
         <div
-          className="ag-theme-alpine ag-grid-example invoice-details-table"
+          className="ag-theme-alpine ag-grid-example invoice-details-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

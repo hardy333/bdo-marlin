@@ -30,6 +30,12 @@
   box-shadow: none !important;
 }
 
+/* Experimentation */
+
+.stable-table .ag-cell{
+}
+
+
 
 
 /* scrollbar */
@@ -46,10 +52,9 @@
 
 
 .cell-copy-paste-active{
-  background-color: #a078d747 !important;
+  background-color: #a078d726 !important;
   box-shadow: none !important;
   outline: none !important;
-  border: none !important;
 
 }
 

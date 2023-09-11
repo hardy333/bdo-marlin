@@ -45,6 +45,7 @@ import {
   OrderDetailsDefs,
   orderDetailsHeaderList,
 } from "../column-definitions/OrderDetailsDefs";
+import useCopyTable from "../hooks/useCopyTable";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -151,6 +152,8 @@ const OrderDetails = () => {
     statusBg = "#FF7BA7";
   }else if (status === "რეალიზებულია"){
     statusBg = "#01c6b5"
+  }else if (status === "გასაგზავნია") {
+    statusBg = "#f55364";
   }
 
 
@@ -175,6 +178,8 @@ const OrderDetails = () => {
     
   },[gridColumnApi, gridApi, gridReady])
 
+
+  useCopyTable(gridReady)
   
 
   return (
@@ -316,7 +321,7 @@ const OrderDetails = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example order-details-table"
+          className="ag-theme-alpine ag-grid-example order-details-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

@@ -44,6 +44,7 @@ import CatalogueCards from "../components/CatalogueCards";
 import { CatalogueTableDefs, catalogueTableHeaderList } from "../column-definitions/CatalogueTableDefs";
 import TableSettings from "../components/TableSettings";
 import vendorsArr from "../data/vendors-data";
+import useCopyTable from "../hooks/useCopyTable";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -165,6 +166,8 @@ const CatalogueTable = () => {
   }
   
 
+useCopyTable(gridReady)  
+
   return (
     <>
       <header
@@ -256,7 +259,7 @@ const CatalogueTable = () => {
         ) : (
           <div
             id="marlin-table"
-            className="ag-theme-alpine ag-grid-example"
+            className="ag-theme-alpine ag-grid-example copy-paste-table"
             style={{ minHeight: 595, width: "100%", position: "relative" }}
           >
             <AgGridReact

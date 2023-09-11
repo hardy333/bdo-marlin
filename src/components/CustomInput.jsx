@@ -9,12 +9,14 @@ const CustomInput = forwardRef((props, ref) => {
   useEffect(() => {
     onInputBoxChanged(text);
   }, [text]);
+  
 
   const onInputBoxChanged = (val) => {
     props.parentFilterInstance((instance) => {
       instance.onFloatingFilterChanged("contains", val);
     });
   };
+
 
   return (
     <>

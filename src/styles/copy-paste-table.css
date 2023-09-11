@@ -1,0 +1,23 @@
+.ag-row-hover:not(.ag-full-width-row)::before, .ag-row-hover.ag-full-width-row.ag-row-group::before {
+    content: "";
+    background-color: transparent !important;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+
+}
+
+.ag-cell-focus{
+    border: 1px solid transparent !important;
+    /* border: 1px solid red !important; */
+}
+
+.ag-cell{
+    border: 1px solid transparent !important;
+
+
+}

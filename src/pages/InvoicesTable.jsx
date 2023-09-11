@@ -44,6 +44,7 @@ import { fetchData } from "../utils/fetchData";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
 import InvoiceTableCards from "../components/InvoiceTableCards";
+import useCopyTable from "../hooks/useCopyTable";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -103,6 +104,7 @@ const InvoicesTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const components = useMemo(() => {
@@ -119,8 +121,10 @@ const InvoicesTable = () => {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
+  const [gridReady, setGridReady] = useState(false);
 
   useInvoiceNavigate();
+  useCopyTable(gridReady)
 
   return (
     <>
@@ -155,7 +159,7 @@ const InvoicesTable = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example invoices-table"
+          className="ag-theme-alpine ag-grid-example invoices-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

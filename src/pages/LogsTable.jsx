@@ -30,6 +30,7 @@ import "../styles/logs.css";
 import useFilterToggle from "../hooks/useFilterToggle";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { LogsTableDefs } from "../column-definitions/LogsTableDefs";
+import useCopyTable from "../hooks/useCopyTable";
 
 const LogsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -85,10 +86,17 @@ const LogsTable = () => {
 
   const onGridReady = (params) => {
     setGridApi(params.api);
+    setGridReady(true);
+
   };
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [gridReady, setGridReady] = useState(false);
 
+
+  useCopyTable(gridReady)
+  
+  
   return (
     <>
       <header className="all-orders__header">
@@ -112,7 +120,7 @@ const LogsTable = () => {
         </div>
       </header>
       <div
-        className="ag-theme-alpine ag-grid-example"
+        className="ag-theme-alpine ag-grid-example copy-paste-table"
         style={{ minHeight: 595, width: "100%" }}
       >
         <AgGridReact

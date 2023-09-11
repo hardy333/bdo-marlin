@@ -47,6 +47,7 @@ import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import Tippy from "@tippyjs/react";
 import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../components/BonusTableCards";
+import useCopyTable from "../hooks/useCopyTable";
 
 const shopsArr = [
   {
@@ -190,6 +191,7 @@ const CashBackTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const components = useMemo(() => {
@@ -206,6 +208,8 @@ const CashBackTable = () => {
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
+  const [gridReady, setGridReady] = useState(false);
+  useCopyTable(gridReady)
 
   return (
     <>
@@ -349,7 +353,7 @@ const CashBackTable = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example  discounts-table discounts-table-with-groups cash-back-table"
+          className="ag-theme-alpine ag-grid-example  discounts-table discounts-table-with-groups cash-back-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <Select

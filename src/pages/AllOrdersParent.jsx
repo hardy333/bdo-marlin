@@ -37,6 +37,7 @@ import { fetchData } from "../utils/fetchData";
 import AllOrdersCards from "../components/AllOrdersCards";
 
 import { useMediaQuery } from "@uidotdev/usehooks";
+import useCopyTable from "../hooks/useCopyTable";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -99,6 +100,7 @@ const AllOrdersParent = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   useEffect(() => {
@@ -127,6 +129,9 @@ const AllOrdersParent = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
+  const [gridReady, setGridReady] = useState(false);
+
+  useCopyTable(gridReady)
   
   
   return (
@@ -168,7 +173,7 @@ const AllOrdersParent = () => {
       ) : (
         <div
           id="marlin-table"
-          className="ag-theme-alpine ag-grid-example all-orders-parent"
+          className="ag-theme-alpine ag-grid-example all-orders-parent copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact
