@@ -152,12 +152,6 @@ const OrderDetails = () => {
     statusBg = "#01c6b5"
   }
 
-  useEffect(() => {
-
-    // console.log("status != რეალიზებულია", status == "რეალიზებულია")
-
-    gridColumnApi?.setColumnVisible("reservedQuantity", status != "რეალიზებულია");
-  },[])
 
 
 
@@ -169,6 +163,18 @@ const OrderDetails = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
+
+  useEffect(() => {
+    if(status == "რეალიზებულია"){
+      gridColumnApi?.setColumnVisible("reservedQuantity", false);
+
+    }
+
+    
+  },[gridColumnApi, gridApi, gridReady])
+
+  
 
   return (
     <>
