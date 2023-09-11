@@ -5,7 +5,6 @@ let exportData1;
 
 const getX = async () => {
   const { exportData } = await import("../utils/exportData");
-  console.log(exportData);
 
   exportData1 = exportData;
 };

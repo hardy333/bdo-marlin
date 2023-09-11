@@ -138,6 +138,7 @@ const OrderDetails = () => {
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
 
 
+
   let statusBg;
 
   if (status === "გაგზავნილია") {

@@ -19,87 +19,36 @@ import "../styles/ag-grid.css";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import "../styles/stable-table.css";
+import { useQuery } from "react-query";
+import { OrderDetailsDefs, orderDetailsHeaderList } from "../column-definitions/OrderDetailsDefs";
+import { useSearchParams } from "react-router-dom";
+import { fetchData } from "../utils/fetchData";
 
 const StableTable = () => {
-  const [pageSize, setPageSize] = useState(15);
-  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const [headerList, setHeaderList] = useState([
-    {
-      name: "Number",
-      isShowing: true,
-    },
-    {
-      name: "Item",
-      isShowing: true,
-    },
-    {
-      name: "Ordered",
-      isShowing: true,
-    },
-    {
-      name: "Delivered",
-      isShowing: true,
-    },
-    {
-      name: "In time",
-      isShowing: true,
-    },
-    {
-      name: "Service Level",
-      isShowing: true,
-    },
-  ]);
+  const [headerList, setHeaderList] = useState(orderDetailsHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(null);
+  const [searchParams] = useSearchParams();
 
-  const [columnDefs] = useState([
-    {
-      field: "Number",
-    },
-    {
-      field: "Item",
-    },
-    {
-      field: "Ordered",
-      cellStyle: (params) => ({ color: +params.value > 800 ? "" : "#F55364" }),
-    },
-    {
-      field: "Delivered",
-    },
-    {
-      field: "In time",
-      cellStyle: (params) => {
-        if (params.value === "Yes") {
-          return {
-            color: "#FFC23C",
-            fontWeight: 600,
-          };
-        } else {
-          return {
-            color: "#6E0FF5",
-            fontWeight: 600,
-          };
-        }
-      },
-    },
-    {
-      field: "Service level",
-      minWidth: 150,
-    },
-  ]);
+  const orderID =
+  searchParams.get("orderID") || "6670e89b-306f-11ee-8123-005056b5a0aa";
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const data = await fetch_XLSX_DATA();
+  const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  //     setRowData(data["By item"]);
-  //   }
+  const { isLoading, error, data } = useQuery(
+    {
+      queryKey: ["stable-table", orderID],
+      queryFn: () => fetchData(url)
+    }
+  );
 
-  //   fetchData();
-  // }, []);
+  console.log(data)
+
+
+  const [columnDefs] = useState(OrderDetailsDefs);
+
 
   const defaultColDef = useMemo(() => ({
     sortable: true,
@@ -172,16 +121,7 @@ const StableTable = () => {
       colorCells(x2, y2, x1, y1);
     }
 
-    // if(y1 <= y2 && x1 <= x2){
-    //   colorCells(x1,y1,x2,y2)
-    // }else if(y1 > y2 && x1 <= x2){
-    //   colorCells(x2,y2, x1, y1)
-    // }else if(y1 <= y2 && x1 > x2){
-    //   colorCells(x1,y2, x2, y1)
-
-    // }else if(y1 > y2 && x1 > x2){
-    //   colorCells(x2,y2, x1, y1)
-    // }
+   
   };
 
   const tBodyMouseUp = (e) => {
@@ -322,7 +262,7 @@ const StableTable = () => {
       >
         <AgGridReact
           onGridReady={onGridReady}
-          rowData={rowData}
+          rowData={data?.data}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           suppressHorizontalScroll={true}

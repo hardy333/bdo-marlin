@@ -27,7 +27,7 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           ".ag-cell[col-id='status'] .ag-cell-status-value"
         ).innerText;
         const vendor = row.querySelector(".ag-cell[col-id='vendor']").innerText;
-        const amount = row.querySelector(".ag-cell[col-id='amount']").innerText;
+        const amount = row.querySelector(".ag-cell[col-id='amount']").innerText.replace("GEL", "");
         const invoiceAmount = row.querySelector(".ag-cell[col-id='invoiceAmount']").innerText;
 
         const orderID = row
@@ -44,6 +44,7 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           urlParams.append("orderID", orderID )
           urlParams.append("amount", amount )
           urlParams.append("invoiceAmount", invoiceAmount )
+
 
 
         navigate("/order-details?" + urlParams.toString())
