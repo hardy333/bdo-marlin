@@ -148,6 +148,8 @@ const OrderDetails = () => {
     statusBg = "#6E0FF5";
   } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
+  }else if (status === "რეალიზებულია"){
+    statusBg = "#01c6b5"
   }
 
   useEffect(() => {
@@ -156,6 +158,7 @@ const OrderDetails = () => {
 
     gridColumnApi?.setColumnVisible("reservedQuantity", status != "რეალიზებულია");
   },[])
+
 
 
 
@@ -262,7 +265,7 @@ const OrderDetails = () => {
               className="pending-status-menu"
               menuButton={
                 <button
-                  style={{ backgroundColor: statusBg, color: "#fff" }}
+                  style={{ backgroundColor: statusBg + "36", color: statusBg }}
                   className="btn btn-status-2 mt-[-2px] mb-auto"
                 >
                   {status}

@@ -34,11 +34,13 @@
   border-color: transparent !important;
   outline: none !important;
   box-shadow: none !important;
+  
 }
 
+
 .btn-status-2 {
-  background-color: #ffc23c36 !important;
-  color: #ffa23c !important;
+  /* background-color: #ffc23c36; */
+  /* color: hwb(31 24% 0%); */
   border-radius: 5px !important;
   letter-spacing: 0.7px;
   font-weight: 700px;

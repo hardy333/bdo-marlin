@@ -66,6 +66,9 @@ const allOrdersParentDefs = [
         color = "#f55364";
       }
 
+      console.log(value, color)
+
+
       return (
         <>
           <span
