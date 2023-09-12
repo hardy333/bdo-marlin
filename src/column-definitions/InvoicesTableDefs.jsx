@@ -8,6 +8,8 @@ const InvoicesTableDefs = [
       let { value, data } = params;
       if (!value) return "";
 
+      console.log(value)
+
       return <span id="invoice-id-span" 
       data-order-id={data.orderID} 
       data-order-number={data.orderNumber} 
@@ -24,7 +26,7 @@ const InvoicesTableDefs = [
 
       data-date={data.date}
 
-      >{value.split("T")[0]}</span>;
+      >{value.split("T")[0].split("-").reverse().join("/")}</span>;
     },
   },
   {

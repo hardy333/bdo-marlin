@@ -34,7 +34,7 @@ color: #211543;
 
 
 
-  color: #211543;
+  color: #211543 !important;
 
 }
 
@@ -69,6 +69,9 @@ color: #211543;
 
 }
 
+.rdp-day_outside{
+  color: #21154379 !important;
+}
 /* .rdp-cell button.rdp-button:hover::before{
   position: absolute;
   content: "";

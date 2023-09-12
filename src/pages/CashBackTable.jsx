@@ -137,6 +137,7 @@ const CashBackTable = () => {
 
   const condition = searchParams.get("condition");
   const planAmount = searchParams.get("planAmount");
+  const retroPercent = searchParams.get("retroPercent");
 
   const url =
     "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/" +
@@ -255,13 +256,13 @@ const CashBackTable = () => {
                 arrow={false}
                 placement="top"
                 content={`პერიოდი: ${startDate?.split("T")[0]} - ${
-                  endDate || "განუსაზღვრელი"
+                  endDate || "განუსაზღვრელია"
                 } `}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/calendar.svg" alt="" />
                   <span className="info-badge-text info-badge-text__date">
-                    {startDate?.split("T")[0]} - {endDate || "განუსაზღვრელი"}
+                    {startDate?.split("T")[0]} - {endDate || "განუსაზღვრელია"}
                   </span>
                 </p>
               </Tippy>
@@ -305,12 +306,12 @@ const CashBackTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content="ქეშბექი: 7%"
+                content={`ქეშბექი: ${retroPercent}%`}
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="cash-back/cashback.svg" alt="" style={{height: "22px"}} />
 
-                  <span className="info-badge-text"> 7%</span>
+                  <span className="info-badge-text"> {retroPercent} %</span>
                 </p>
               </Tippy>
             </section>

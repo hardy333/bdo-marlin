@@ -85,7 +85,8 @@ const vendorAllOrdersColDefs = allOrdersParentColumns.map((obj) => {
       headerName: "გეგმიური მიწოდება",
       cellRenderer: (params) => {
         const { value } = params;
-        return value;
+        if(!value) return ""
+        return value.split(" ")[0].split("-").reverse().join("/");
       },
     };
   }

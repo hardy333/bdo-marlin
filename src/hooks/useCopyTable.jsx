@@ -154,6 +154,13 @@ const useCopyTable = (gridReady) => {
       }
 
       let cellText = cell.textContent;
+      const statusCell = cell.querySelector(".ag-cell-status-value")
+
+      if(statusCell){
+        cellText = statusCell.textContent
+      }
+      
+      
       let newText = "";
 
       if (prevColIndex && colIndex <= prevColIndex) {

@@ -48,6 +48,7 @@ import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import VendorAllOrdersCards from "../components/VendorAllOrdersCards";
+import useCopyTable from "../hooks/useCopyTable";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -127,7 +128,8 @@ const VendorAllOrdersTable = () => {
       headerName: "გეგმიური მიწოდება",
       cellRenderer: (params) => {
         const { value } = params;
-        return value;
+        if(!value) return ""
+        return value.split(" ")[0].split("-").reverse().join("/");
       },
     },
 
@@ -192,7 +194,7 @@ const VendorAllOrdersTable = () => {
       headerName: "სერვისის დონე",
       cellRenderer: (params) => {
         const { value } = params;
-        return Math.floor(Math.random() * 60 + 40) + "%";
+        return value
       },
     },
   ]);
@@ -227,6 +229,7 @@ const VendorAllOrdersTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
+    setGridReady(true)
   };
 
   const onFilterTextChange = (e) => {
@@ -364,6 +367,10 @@ const VendorAllOrdersTable = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
+  const [gridReady, setGridReady] = useState(false);
+
+  useCopyTable(gridReady)
 
   return (
     <>
@@ -512,7 +519,7 @@ const VendorAllOrdersTable = () => {
         <VendorAllOrdersCards data={rowData} />
       ) : (
         <div
-          className="ag-theme-alpine ag-grid-example  vendors-all-orders-table "
+          className="ag-theme-alpine ag-grid-example  vendors-all-orders-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

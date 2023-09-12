@@ -41,7 +41,8 @@ const allOrdersParentDefs = [
     headerName: "გეგმიური მიწოდება",
     cellRenderer: (params) => {
       const { value } = params;
-      return value;
+      if(!value) return ""
+      return value.split(" ")[0].split("-").reverse().join("/");
     },
   },
   {
@@ -65,7 +66,6 @@ const allOrdersParentDefs = [
       } else if (value === "გასაგზავნია") {
         color = "#f55364";
       }
-
 
 
       return (

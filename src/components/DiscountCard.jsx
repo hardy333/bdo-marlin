@@ -58,7 +58,7 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
             urlParams.append("vendor", selectedVendor.value);
             urlParams.append("planAmount", planAmount);
             urlParams.append("condition", condition);
-
+            urlParams.append("retroPercent", retroPercent);
             navigate("/cash-back-table?" + urlParams.toString());
 
           } else {

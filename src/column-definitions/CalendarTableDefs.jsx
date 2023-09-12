@@ -65,7 +65,7 @@ const CalendarTableDefs = [
       const d2 = Math.floor(Math.random() * 6);
 
       let isTwo = false;
-      let tooltipText = "ყველ კვირა";
+      let tooltipText = "ყოველ კვირა";
 
       if (Math.random() - 0.5 > 0) {
         isTwo = true;
