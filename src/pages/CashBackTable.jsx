@@ -48,6 +48,7 @@ import Tippy from "@tippyjs/react";
 import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../components/BonusTableCards";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const shopsArr = [
   {
@@ -415,6 +416,13 @@ const CashBackTable = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && (
+              <AgTablePag
+                gridRef={gridRef}
+                pageCount={Math.ceil(rowData?.length / pageSize)}
+              />
+            )}
         </div>
       )}
     </>

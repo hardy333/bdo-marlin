@@ -285,7 +285,7 @@ useCopyTable(gridReady)
             {gridReady === true && (
               <AgTablePag
                 gridRef={gridRef}
-                pageCount={Math.ceil(92 / pageSize)}
+                pageCount={Math.ceil(rowData?.length / pageSize)}
               />
             )}
 

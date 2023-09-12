@@ -31,6 +31,7 @@ import useFilterToggle from "../hooks/useFilterToggle";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { LogsTableDefs } from "../column-definitions/LogsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const LogsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -160,6 +161,12 @@ const LogsTable = () => {
             );
           })}
         </Menu>
+        {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
       </div>
     </>
   );

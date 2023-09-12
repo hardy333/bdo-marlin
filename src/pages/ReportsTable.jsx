@@ -37,6 +37,7 @@ import { BsFillCalendarCheckFill } from "react-icons/bs";
 import DatePickerInput from "../components/DatePickerInput";
 import { ReportsTableDefs, reportsTableHeaderList } from "../column-definitions/ReportsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const ReportsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -234,6 +235,13 @@ const ReportsTable = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
         </div>
       )}
     </>

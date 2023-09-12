@@ -60,7 +60,8 @@ const InvoiceDetailsTable = () => {
   const [columnDefs] = useState(InvoiceDetailsTableDefs);
 
   const [searchParams] = useSearchParams();
-  const invoiceID = searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
+  const invoiceID =
+    searchParams.get("invoiceID") || "de4d21f9-3531-11ee-8123-005056b5a0aa";
 
   const waybillNumber = searchParams.get("waybillNumber");
   const orderNumber = searchParams.get("orderNumber");
@@ -80,15 +81,12 @@ const InvoiceDetailsTable = () => {
     queryFn: () => fetchData(url),
   });
 
-
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
     }
     return null;
   });
-
-
 
   useEffect(() => {
     if (!data) return;
@@ -146,10 +144,8 @@ const InvoiceDetailsTable = () => {
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
+  useCopyTable(gridReady);
 
-  useCopyTable(gridReady)
-
-  
   return (
     <>
       <header className="all-orders__header invoice-details-header">
@@ -211,7 +207,6 @@ const InvoiceDetailsTable = () => {
                 <p
                   className="info-badge info-badge-mobile info-badge-link"
                   onClick={() => {
-                    
                     const urlParams = new URLSearchParams();
                     urlParams.append("waybillNumber", waybillNumber);
                     urlParams.append("orderNumber", orderNumber);
@@ -225,9 +220,7 @@ const InvoiceDetailsTable = () => {
                     urlParams.append("amount", amount);
                     urlParams.append("status", "რეალიზებულია");
 
-                    navigate("/order-details?" + urlParams.toString())
-                    
-                    
+                    navigate("/order-details?" + urlParams.toString());
                   }}
                 >
                   <img src="invoices-badge-icons/order.svg" alt="" />
@@ -315,7 +308,10 @@ const InvoiceDetailsTable = () => {
           ></AgGridReact>
 
           {gridReady === true && (
-            <AgTablePag gridRef={gridRef} pageCount={67} />
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
           )}
 
           <Menu

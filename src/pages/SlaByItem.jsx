@@ -45,6 +45,7 @@ import DatePickerInput from "../components/DatePickerInput";
 import TableSettings from "../components/TableSettings";
 import { SlaByItemsTableDefs, slaByitemsTableHeaderList } from "../column-definitions/SlaByItemsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const SlaByItem = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -243,6 +244,13 @@ const SlaByItem = () => {
             );
           })}
         </Menu>
+
+        {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
       </div>
       )
      }

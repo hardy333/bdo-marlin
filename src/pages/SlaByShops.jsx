@@ -45,6 +45,7 @@ import DatePickerInput from "../components/DatePickerInput";
 import { SlaByShopsTableDefs, slaShopsTableHeaderList } from "../column-definitions/SlaByShopsTableDefs";
 import TableSettings from "../components/TableSettings";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -233,6 +234,13 @@ const SlaByShops = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
         </div>
       )}
     </>

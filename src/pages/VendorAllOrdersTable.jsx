@@ -50,6 +50,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import VendorAllOrdersCards from "../components/VendorAllOrdersCards";
 import useCopyTable from "../hooks/useCopyTable";
 import useVendorOrdersNavigate from "../hooks/useVendorOrdersNavigate";
+import AgTablePag from "../components/AgTablePag";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -112,13 +113,17 @@ const VendorAllOrdersTable = () => {
       headerName: "მაღაზია",
       cellRenderer: (params) => {
         const { value } = params;
-        return <span
-        
-        // data-invoice-number={data.invoiceNumber}
-        data-invoice-amount={params.data.invoiceAmount}
-        data-date={params.data.date}
-        // data-invoice-id={data.invoiceID}
-        data-order-id={params.data.orderID}>{value}</span>;
+        return (
+          <span
+            // data-invoice-number={data.invoiceNumber}
+            data-invoice-amount={params.data.invoiceAmount}
+            data-date={params.data.date}
+            // data-invoice-id={data.invoiceID}
+            data-order-id={params.data.orderID}
+          >
+            {value}
+          </span>
+        );
       },
     },
     {
@@ -332,7 +337,6 @@ const VendorAllOrdersTable = () => {
 
   useCopyTable(gridReady);
 
-
   return (
     <>
       <header className="all-orders__header vendor-all-orders">
@@ -520,6 +524,13 @@ const VendorAllOrdersTable = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && (
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
         </div>
       )}
     </>

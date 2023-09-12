@@ -43,6 +43,7 @@ import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
 import InvoiceTableCards from "../components/InvoiceTableCards";
 import useCopyTable from "../hooks/useCopyTable";
+import AgTablePag from "../components/AgTablePag";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -211,6 +212,13 @@ const InvoicesTable = () => {
               );
             })}
           </Menu>
+
+          {gridReady === true && (
+              <AgTablePag
+                gridRef={gridRef}
+                pageCount={Math.ceil(rowData?.length / pageSize)}
+              />
+            )}
         </div>
       )}
     </>
