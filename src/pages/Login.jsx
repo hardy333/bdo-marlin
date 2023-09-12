@@ -20,10 +20,8 @@ const Login = () => {
   const { user } = useAuthContext()
 
 
-  console.log("user from login", user)
 
   if(user){
-    console.log("123")
     return <Navigate to="/"/>
   }
 

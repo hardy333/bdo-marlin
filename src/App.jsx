@@ -86,7 +86,6 @@ function App() {
 
     var decoded = jwt_decode(user?.token);
     
-    console.log("decoded: ", decoded)
   }
 
 

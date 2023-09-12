@@ -8,7 +8,6 @@ const InvoicesTableDefs = [
       let { value, data } = params;
       if (!value) return "";
 
-      console.log(value)
 
       return <span id="invoice-id-span" 
       data-order-id={data.orderID} 

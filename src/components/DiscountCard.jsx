@@ -4,33 +4,38 @@ import VendorsCalendarSvg from "./svgs/VendorsCalendarSvg";
 import { useNavigate } from "react-router-dom";
 import CrystalSvg from "./svgs/CrystalSvg";
 
-import { motion } from "framer-motion";
 
-const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID, retroPercent, status, startDate, documentNo, isBonusCard }) => {
+const DiscountCard = ({
+  planAmount,
+  condition,
+  selectedVendor,
+  index,
+  retroBonusID,
+  retroPercent,
+  status,
+  startDate,
+  documentNo,
+  isBonusCard,
+}) => {
   const navigate = useNavigate();
 
-
   return (
-    <motion.article
-      // initial={{ opacity: 0, y: -10 }}
-      // animate={{
-      //   opacity: 1,
-      //   y: 0,
-      // }}
-      // exit={{ 
-      //   opacity: 0, 
-      //   y: -10,
-      // }}
+    <article
       className={`discount-card ${isBonusCard ? "discount-card-bonus" : ""}`}
-      
     >
       <h2>
-        <span style={{color: "#211543" }}>
-        {/* {documentNo}  */}
+        <span style={{ color: "#211543" }}>{/* {documentNo}  */}</span>
+        <span
+          className=" block mb-3"
+          style={{ width: "100%", textAlign: "center" }}
+        >
+          {" "}
+          {retroPercent}%
         </span>
-         <span className=" block mb-3" style={{width: "100%", textAlign: "center" }}>  {retroPercent}%</span> 
       </h2>
-      <h3 className="" style={{textAlign: "center"}}>დოკუმენტი: #{documentNo}</h3>
+      <h3 className="" style={{ textAlign: "center" }}>
+        დოკუმენტი: #{documentNo}
+      </h3>
       {index > 3 ? (
         <></>
       ) : (
@@ -50,7 +55,6 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
       <button
         onClick={() => {
           if (isBonusCard) {
-
             const urlParams = new URLSearchParams();
             urlParams.append("retroBonusID", retroBonusID);
             urlParams.append("documentNo", documentNo);
@@ -60,7 +64,6 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
             urlParams.append("condition", condition);
             urlParams.append("retroPercent", retroPercent);
             navigate("/cash-back-table?" + urlParams.toString());
-
           } else {
             navigate("/discounts-table");
           }
@@ -69,7 +72,7 @@ const DiscountCard = ({planAmount, condition, selectedVendor,index, retroBonusID
       >
         ნახე პროდუქცია
       </button>
-    </motion.article>
+    </article>
   );
 };
 
