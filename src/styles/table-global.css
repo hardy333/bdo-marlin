@@ -30,3 +30,8 @@ svg{
 .ag-cell-focus{
   border-color: transparent !important;
 }
+
+.ag-overlay-loading-center{
+  display: none !important;
+}
+
