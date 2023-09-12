@@ -96,7 +96,7 @@ const useCopyTable = (gridReady) => {
   }, [gridReady]);
 
   const keyDown = (e) => {
-    console.log(e.code, e.key, e.ctrlKey, e.code === "KeyC");
+    // console.log(e.code, e.key, e.ctrlKey, e.code === "KeyC");
     if (e.code === "KeyC" && e.ctrlKey) {
       copyToClop();
       flashCells();
@@ -173,9 +173,9 @@ const useCopyTable = (gridReady) => {
 
       text += newText;
 
-      console.log(text);
+    //   console.log(text);
 
-      console.log(colIndex, prevColIndex);
+    //   console.log(colIndex, prevColIndex);
 
       prevColIndex = Number(colIndex);
     });

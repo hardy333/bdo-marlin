@@ -38,7 +38,7 @@ const Login = () => {
     <>
       <div className="login">
         <div className="login__container">
-          <h1>Welcome Again!</h1>
+          <h1>Welcome !</h1>
 
 
           <form action="" className="login-form" onSubmit={handleSubmit}>

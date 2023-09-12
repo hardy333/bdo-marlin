@@ -180,6 +180,7 @@ const OrderDetails = () => {
 
 
   useCopyTable(gridReady)
+
   
 
   return (
@@ -267,9 +268,9 @@ const OrderDetails = () => {
                 placement="top"
                 content={`ინვოისის თანხა: ${invoiceAmount} GEL`}
               >
-                <p className="info-badge info-badge-mobile">
+                <p style={{display: !invoiceAmount ? "none" : ""}} className="info-badge info-badge-mobile">
                   <img src="order-details/document.svg" alt="" />
-                  <span className="info-badge-text">{invoiceAmount} GEL</span>
+                  <span className="info-badge-text">{invoiceAmount || "NaN"} GEL</span>
                 </p>
               </Tippy>
             </section>

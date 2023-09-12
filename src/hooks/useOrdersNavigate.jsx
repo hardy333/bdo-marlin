@@ -15,6 +15,10 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
       const cell = e.target;
       const row = cell.closest(".ag-row");
 
+      if(!row) return
+      console.log("ROW", row, )
+      console.log("Cell", cell, )
+
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
 
@@ -28,7 +32,7 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
         ).innerText;
         const vendor = row.querySelector(".ag-cell[col-id='vendor']").innerText;
         const amount = row.querySelector(".ag-cell[col-id='amount']").innerText.replace("GEL", "");
-        const invoiceAmount = row.querySelector(".ag-cell[col-id='invoiceAmount']").innerText;
+        const invoiceAmount = row.querySelector(".ag-cell[col-id='invoiceAmount']").innerText.replace("GEL", "");
 
         const orderID = row
           .querySelector(".ag-cell[col-id='vendor'] span")

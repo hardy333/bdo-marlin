@@ -115,7 +115,7 @@ const allOrdersParentDefs = [
       const { value } = params;
       
 
-      return value ? value + "GEL" : ""; 
+      return value ? value + " GEL" : ""; 
     },
   },
   {

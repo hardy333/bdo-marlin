@@ -49,6 +49,7 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import VendorAllOrdersCards from "../components/VendorAllOrdersCards";
 import useCopyTable from "../hooks/useCopyTable";
+import useVendorOrdersNavigate from "../hooks/useVendorOrdersNavigate";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -91,7 +92,6 @@ const VendorAllOrdersTable = () => {
 
   const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
-
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -112,7 +112,13 @@ const VendorAllOrdersTable = () => {
       headerName: "მაღაზია",
       cellRenderer: (params) => {
         const { value } = params;
-        return value;
+        return <span
+        
+        // data-invoice-number={data.invoiceNumber}
+        data-invoice-amount={params.data.invoiceAmount}
+        data-date={params.data.date}
+        // data-invoice-id={data.invoiceID}
+        data-order-id={params.data.orderID}>{value}</span>;
       },
     },
     {
@@ -128,7 +134,7 @@ const VendorAllOrdersTable = () => {
       headerName: "გეგმიური მიწოდება",
       cellRenderer: (params) => {
         const { value } = params;
-        if(!value) return ""
+        if (!value) return "";
         return value.split(" ")[0].split("-").reverse().join("/");
       },
     },
@@ -194,7 +200,7 @@ const VendorAllOrdersTable = () => {
       headerName: "სერვისის დონე",
       cellRenderer: (params) => {
         const { value } = params;
-        return value
+        return value;
       },
     },
   ]);
@@ -229,7 +235,7 @@ const VendorAllOrdersTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const onFilterTextChange = (e) => {
@@ -302,53 +308,7 @@ const VendorAllOrdersTable = () => {
   // Status Click
   const [openedRowId, setOpenedRowId] = useState(null);
 
-  useEffect(() => {
-    const tableElem = document.querySelector(
-      ".vendors-all-orders-table .ag-center-cols-container"
-    );
-
-    if (!tableElem) return;
-
-    const handleClick = (e) => {
-      const cell = e.target;
-      const row = e.target.parentElement;
-
-      const colName = cell.getAttribute("col-id");
-      const rowId = +row.getAttribute("row-id");
-
-      if (colName !== "status") {
-        navigate(`/order-details`);
-      }
-
-      const prevOpenedCell = document.querySelector(
-        ".vendors-all-orders-table .ag-cell--opened"
-      );
-
-      if (prevOpenedCell) {
-        prevOpenedCell.classList.remove("ag-cell--opened");
-      }
-
-      if (prevOpenedCell !== cell) {
-        cell.classList.add("ag-cell--opened");
-      }
-
-      setOpenedRowId((currOpenedRowId) => {
-        if (currOpenedRowId === rowId) {
-          return null;
-        } else {
-          return rowId;
-        }
-      });
-    };
-
-    tableElem.addEventListener("click", handleClick);
-
-    return () => {
-      tableElem.removeEventListener("click", handleClick);
-    };
-  }, [gridApi, gridRef]);
-
-  const navigate = useNavigate();
+  useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -370,7 +330,8 @@ const VendorAllOrdersTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
+
 
   return (
     <>
