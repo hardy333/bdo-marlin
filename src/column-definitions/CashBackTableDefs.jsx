@@ -1,4 +1,8 @@
-const CashBackTableDefs = [
+const getCashBackTableDefs = (isShowingBonuses ) => {
+  console.log(isShowingBonuses, isShowingBonuses ? false : true )
+  
+
+return [
     {
       headerName: "",
       children: [
@@ -17,8 +21,11 @@ const CashBackTableDefs = [
         {
           field: "retroPercent",
           headerName: "ბონუსი",
+          hide: isShowingBonuses ? false : true, 
           cellRenderer: (params) => {
             const { value } = params;
+
+            console.log("bonus value", value)
             return value + " %";
           },
         },
@@ -46,6 +53,8 @@ const CashBackTableDefs = [
       ],
     },
   ]
+
+}
 
 
 
@@ -103,5 +112,5 @@ const cashBackTableHeaderList = [
 
 export {
     cashBackTableHeaderList, 
-    CashBackTableDefs
+    getCashBackTableDefs
 }

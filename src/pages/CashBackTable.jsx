@@ -32,18 +32,13 @@ import "../styles/discounts-table.css";
 import useRemoveId from "../components/useRemoveId";
 
 import {
-  CashBackTableDefs,
+  getCashBackTableDefs,
   cashBackTableHeaderList,
 } from "../column-definitions/CashBackTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
-import { BsCashCoin } from "react-icons/bs";
-import { FaHandshake } from "react-icons/fa";
-import { FaRegNewspaper } from "react-icons/fa";
-import { RiMoneyDollarBoxLine } from "react-icons/ri";
-
 import Tippy from "@tippyjs/react";
 import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../components/BonusTableCards";
@@ -124,7 +119,7 @@ const CashBackTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [columnDefs] = useState(CashBackTableDefs);
+
 
   const [searchParams] = useSearchParams();
   const retroBonusID =
@@ -146,9 +141,10 @@ const CashBackTable = () => {
     "/" +
     retroBonusID;
 
-  const { isLoading, error, data } = useQuery("retro-bonus-details", () =>
-    fetchData(url)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["retro-bonus-details", retroBonusID],
+    queryFn: () => fetchData(url),
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -156,6 +152,9 @@ const CashBackTable = () => {
     }
     return null;
   });
+
+  const [columnDefs] = useState(getCashBackTableDefs(data?.data[0].retroPercent));
+
 
 
   useEffect(() => {
@@ -172,6 +171,9 @@ const CashBackTable = () => {
       document.body.classList.remove("dashboard-main-fullscreen");
     }
   }, [isFullScreen]);
+
+
+
 
   const defaultColDef = useMemo(
     () => ({
@@ -193,7 +195,7 @@ const CashBackTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const components = useMemo(() => {
@@ -201,7 +203,6 @@ const CashBackTable = () => {
       agColumnHeader: CustomHeaderCell,
     };
   }, []);
-
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
@@ -211,7 +212,7 @@ const CashBackTable = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
 
   const [gridReady, setGridReady] = useState(false);
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
 
   return (
     <>
@@ -310,7 +311,11 @@ const CashBackTable = () => {
                 content={`ქეშბექი: ${retroPercent}%`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="cash-back/cashback.svg" alt="" style={{height: "22px"}} />
+                  <img
+                    src="cash-back/cashback.svg"
+                    alt=""
+                    style={{ height: "22px" }}
+                  />
 
                   <span className="info-badge-text"> {retroPercent} %</span>
                 </p>
@@ -418,11 +423,11 @@ const CashBackTable = () => {
           </Menu>
 
           {gridReady === true && (
-              <AgTablePag
-                gridRef={gridRef}
-                pageCount={Math.ceil(rowData?.length / pageSize)}
-              />
-            )}
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
         </div>
       )}
     </>
