@@ -29,6 +29,7 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           ".ag-cell[col-id='status'] .ag-cell-status-value"
         ).innerText;
         const vendor = row.querySelector(".ag-cell[col-id='vendor']").innerText;
+        const orderNumber = row.querySelector(".ag-cell[col-id='number']").innerText;
         const amount = row.querySelector(".ag-cell[col-id='amount']").innerText.replace("GEL", "");
         const invoiceAmount = row.querySelector(".ag-cell[col-id='invoiceAmount']").innerText.replace("GEL", "");
 
@@ -46,6 +47,7 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
           urlParams.append("orderID", orderID )
           urlParams.append("amount", amount )
           urlParams.append("invoiceAmount", invoiceAmount )
+          urlParams.append("orderNumber", orderNumber )
 
 
 

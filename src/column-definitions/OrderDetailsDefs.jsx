@@ -1,5 +1,6 @@
 const getOrderDetailsDefs = (orderStatus) => {
   return [
+   
     {
       field: "barcode",
       headerName: "ბარკოდები",

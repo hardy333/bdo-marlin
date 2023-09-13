@@ -57,12 +57,10 @@ const OrderDetails = () => {
 
   const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
 
-  const { isLoading, error, data } = useQuery(
-    {
-      queryKey: ["order-details-data", orderID],
-      queryFn: () => fetchData(url)
-    }
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["order-details-data", orderID],
+    queryFn: () => fetchData(url),
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -78,7 +76,6 @@ const OrderDetails = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  
   // URL info
   let date = searchParams.get("date") || "01/30/2023";
   let scheduledDate = searchParams.get("scheduledDate") || "01/30/2023";
@@ -87,8 +84,7 @@ const OrderDetails = () => {
   let status = searchParams.get("status") || "გაგზავნილია";
   let amount = searchParams.get("amount") || 308.4;
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
-
-
+  let orderNumber = searchParams.get("orderNumber") || "";
 
   let statusBg;
 
@@ -100,20 +96,13 @@ const OrderDetails = () => {
     statusBg = "#6E0FF5";
   } else if (status === "დადასტურებულია") {
     statusBg = "#FF7BA7";
-  }else if (status === "რეალიზებულია"){
-    statusBg = "#01c6b5"
-  }else if (status === "გასაგზავნია") {
+  } else if (status === "რეალიზებულია") {
+    statusBg = "#01c6b5";
+  } else if (status === "გასაგზავნია") {
     statusBg = "#f55364";
   }
 
-  
-  
-
   const [columnDefs] = useState(getOrderDetailsDefs(status));
-
-
-  
-  
 
   useEffect(() => {
     if (isFullScreen) {
@@ -155,23 +144,14 @@ const OrderDetails = () => {
   // Row Height logic
   // Row Height logic
 
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const gridRef = useRef(null);
 
-
-
-
-
-
-  
-  
   const [gridReady, setGridReady] = useState(false);
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
-
 
   // useEffect(() => {
   //   if(status == "რეალიზებულია"){
@@ -179,13 +159,9 @@ const OrderDetails = () => {
 
   //   }
 
-    
   // },[gridColumnApi, gridApi, gridReady])
 
-
-  useCopyTable(gridReady)
-
-  
+  useCopyTable(gridReady);
 
   return (
     <>
@@ -235,7 +211,10 @@ const OrderDetails = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   <img src="order-details/clock.svg" alt="" />
-                  <span className="info-badge-text"> {date?.split("T")[0]}</span>
+                  <span className="info-badge-text">
+                    {" "}
+                    {date?.split("T")[0]}
+                  </span>
                 </p>
               </Tippy>
               {/* 4 */}
@@ -272,9 +251,29 @@ const OrderDetails = () => {
                 placement="top"
                 content={`ინვოისის თანხა: ${invoiceAmount} GEL`}
               >
-                <p style={{display: !invoiceAmount ? "none" : ""}} className="info-badge info-badge-mobile">
+                <p
+                  style={{ display: !invoiceAmount ? "none" : "" }}
+                  className="info-badge info-badge-mobile"
+                >
                   <img src="order-details/document.svg" alt="" />
-                  <span className="info-badge-text">{invoiceAmount || "NaN"} GEL</span>
+                  <span className="info-badge-text">
+                    {invoiceAmount || "NaN"} GEL
+                  </span>
+                </p>
+              </Tippy>
+
+              {/* 7 */}
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის #: ${orderNumber}`}
+              >
+                <p
+                  className="info-badge info-badge-mobile info-badge-link"
+                >
+                  <img src="invoices-badge-icons/order.svg" alt="" />
+                  <span className="info-badge-text">#: {orderNumber}</span>
                 </p>
               </Tippy>
             </section>
@@ -354,7 +353,10 @@ const OrderDetails = () => {
           ></AgGridReact>
 
           {gridReady === true && (
-            <AgTablePag gridRef={gridRef} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={rowData ? Math.ceil(rowData.length / pageSize) : 1}
+            />
           )}
 
           <Menu
