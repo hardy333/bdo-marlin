@@ -233,6 +233,20 @@ const OrderDetails = () => {
               </Tippy>
 
               {/* 5 */}
+
+              <Tippy
+                className="tooltip-1"
+                arrow={false}
+                placement="top"
+                content={`შეკვეთის #: ${orderNumber}`}
+              >
+                <p className="info-badge info-badge-mobile info-badge-link">
+                  <img src="invoices-badge-icons/order.svg" alt="" />
+                  <span className="info-badge-text">#: {orderNumber}</span>
+                </p>
+              </Tippy>
+              {/* 6 */}
+
               <Tippy
                 className="tooltip-1"
                 arrow={false}
@@ -244,7 +258,7 @@ const OrderDetails = () => {
                   <span className="info-badge-text">{amount} GEL</span>
                 </p>
               </Tippy>
-              {/* 6 */}
+              {/* 7 */}
               <Tippy
                 className="tooltip-1"
                 arrow={false}
@@ -259,21 +273,6 @@ const OrderDetails = () => {
                   <span className="info-badge-text">
                     {invoiceAmount || "NaN"} GEL
                   </span>
-                </p>
-              </Tippy>
-
-              {/* 7 */}
-              <Tippy
-                className="tooltip-1"
-                arrow={false}
-                placement="top"
-                content={`შეკვეთის #: ${orderNumber}`}
-              >
-                <p
-                  className="info-badge info-badge-mobile info-badge-link"
-                >
-                  <img src="invoices-badge-icons/order.svg" alt="" />
-                  <span className="info-badge-text">#: {orderNumber}</span>
                 </p>
               </Tippy>
             </section>
