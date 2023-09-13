@@ -23,6 +23,7 @@ import reportSvg from "../assets/reports.svg";
 import percentSvg from "../assets/percent.svg";
 
 import { Link, NavLink } from "react-router-dom";
+import { ReportsSvg } from "./svgs/SidebarIcons";
 
 const DashboardAside = ({
   selected = false,
@@ -181,7 +182,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={reportSvg} alt="" />
+                {/* <img src={reportSvg} alt="" /> */}
+                <ReportsSvg />
                 <span className="aside-label">რეპორტები</span>
               </NavLink>
             </li>
