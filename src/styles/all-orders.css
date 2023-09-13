@@ -11,6 +11,15 @@
 
 }
 
+.all-orders-parent-page .ag-header-cell[col-id="vendor"] .cell-inner-span{
+    /* border: 1px solid red; */
+    width: 70px;
+}
+.all-orders-parent-page .ag-header-cell[col-id="invoiceAmount"] .cell-inner-span{
+    /* border: 1px solid red; */
+    width: 70px;
+}
+
 .all-orders__arrow-container{
     display: flex;
     align-items: center;
