@@ -23,6 +23,7 @@ import { OrderDetailsDefs, orderDetailsHeaderList } from "../column-definitions/
 import { useSearchParams } from "react-router-dom";
 import { fetchData } from "../utils/fetchData";
 import useCopyTable from "../hooks/useCopyTable";
+import SampleComp from "../components/svgs/SidebarIcons";
 
 const StableTable = () => {
   const [headerList, setHeaderList] = useState(orderDetailsHeaderList);
@@ -79,6 +80,7 @@ const StableTable = () => {
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
+        <SampleComp />
       </header>
       <div
         className="ag-theme-alpine stable-table copy-paste-table"

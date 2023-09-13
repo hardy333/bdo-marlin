@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "../assets/icons/Marlin Logo.png";
 // import catalog from "../assets/icons/menu-icons/catalog.png";
 // import customer from "../assets/icons/menu-icons/customer.png";
 // import invoice from "../assets/icons/menu-icons/invoice.png";
@@ -10,7 +9,6 @@ import logo from "../assets/icons/Marlin Logo.png";
 // import terms from "../assets/icons/menu-icons/terms-and-conditions.png";
 
 // News Images
-import carPink from "../assets/navbar/car-pink.svg";
 import catalog from "../assets/navbar/catalog.svg";
 import conditions from "../assets/navbar/conditions.svg";
 import contract from "../assets/navbar/contract.svg";
@@ -19,12 +17,12 @@ import invoices from "../assets/navbar/invoices.svg";
 import orders from "../assets/navbar/orders.svg";
 import settings from "../assets/navbar/s.svg";
 import vendors from "../assets/navbar/vendors.svg";
-import togoText from "../assets/navbar/marlin-logo-with-text.svg";
 import marlinText from "../assets/navbar/marlin-text.svg";
-import { Link, NavLink } from "react-router-dom";
 import asideBtn from "../assets/aside-btn.svg";
 import reportSvg from "../assets/reports.svg";
 import percentSvg from "../assets/percent.svg";
+
+import { Link, NavLink } from "react-router-dom";
 
 const DashboardAside = ({
   selected = false,

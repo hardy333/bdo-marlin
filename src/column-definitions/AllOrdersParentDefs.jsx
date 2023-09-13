@@ -1,5 +1,15 @@
 const allOrdersParentDefs = [
   {
+    field: "number",
+    headerName: "ნომერი",
+    cellRenderer: (params) => {
+      const { value } = params;
+      if(!value) return ""
+
+      return value
+    },
+  },
+  {
     field: "date",
     headerName: "თარიღი",
     cellRenderer: (params) => {
@@ -22,6 +32,8 @@ const allOrdersParentDefs = [
   {
     field: "vendor",
     headerName: "მომწოდებელი",
+    maxWidth: 110,
+
     cellRenderer: (params) => {
       const { value } = params;
       return <span data-order-id={params.data.orderID}>{value}</span>;
@@ -110,6 +122,7 @@ const allOrdersParentDefs = [
   {
     field: "invoiceAmount",
     headerName: "ინვოისის თანხა",
+    maxWidth: 110,
 
     cellRenderer: (params) => {
       const { value } = params;

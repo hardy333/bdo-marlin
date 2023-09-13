@@ -16,8 +16,6 @@ const useOrdersNavigate = (gridApi, gridRef,setOpenedRowId) => {
       const row = cell.closest(".ag-row");
 
       if(!row) return
-      console.log("ROW", row, )
-      console.log("Cell", cell, )
 
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
