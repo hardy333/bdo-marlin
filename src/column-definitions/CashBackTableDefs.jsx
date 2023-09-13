@@ -1,5 +1,4 @@
 const getCashBackTableDefs = (isShowingBonuses ) => {
-  console.log(isShowingBonuses, isShowingBonuses ? false : true )
   
 
 return [

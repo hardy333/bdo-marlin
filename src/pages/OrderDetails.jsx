@@ -42,7 +42,7 @@ import Tippy from "@tippyjs/react";
 
 import TableSettings from "../components/TableSettings";
 import {
-  OrderDetailsDefs,
+  getOrderDetailsDefs,
   orderDetailsHeaderList,
 } from "../column-definitions/OrderDetailsDefs";
 import useCopyTable from "../hooks/useCopyTable";
@@ -78,7 +78,38 @@ const OrderDetails = () => {
     setRowData(data.data);
   }, [data, isLoading, error]);
 
-  const [columnDefs] = useState(OrderDetailsDefs);
+  
+  // URL info
+  let date = searchParams.get("date") || "01/30/2023";
+  let scheduledDate = searchParams.get("scheduledDate") || "01/30/2023";
+  let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
+  let vendor = searchParams.get("vendor") || "GDM";
+  let status = searchParams.get("status") || "გაგზავნილია";
+  let amount = searchParams.get("amount") || 308.4;
+  let invoiceAmount = searchParams.get("invoiceAmount") || "";
+
+
+
+  let statusBg;
+
+  if (status === "გაგზავნილია") {
+    statusBg = "#FFC23C";
+  } else if (status === "მიწოდებულია") {
+    statusBg = "#01C6B5";
+  } else if (status === "პროცესშია") {
+    statusBg = "#6E0FF5";
+  } else if (status === "დადასტურებულია") {
+    statusBg = "#FF7BA7";
+  }else if (status === "რეალიზებულია"){
+    statusBg = "#01c6b5"
+  }else if (status === "გასაგზავნია") {
+    statusBg = "#f55364";
+  }
+
+  
+  
+
+  const [columnDefs] = useState(getOrderDetailsDefs(status));
 
 
   
@@ -129,33 +160,6 @@ const OrderDetails = () => {
 
   const gridRef = useRef(null);
 
-  // URL info
-  let date = searchParams.get("date") || "01/30/2023";
-  let scheduledDate = searchParams.get("scheduledDate") || "01/30/2023";
-  let shopAddress = searchParams.get("shop") || "რუსთაველი 01.";
-  let vendor = searchParams.get("vendor") || "GDM";
-  let status = searchParams.get("status") || "გაგზავნილია";
-  let amount = searchParams.get("amount") || 308.4;
-  let invoiceAmount = searchParams.get("invoiceAmount") || "";
-
-
-
-  let statusBg;
-
-  if (status === "გაგზავნილია") {
-    statusBg = "#FFC23C";
-  } else if (status === "მიწოდებულია") {
-    statusBg = "#01C6B5";
-  } else if (status === "პროცესშია") {
-    statusBg = "#6E0FF5";
-  } else if (status === "დადასტურებულია") {
-    statusBg = "#FF7BA7";
-  }else if (status === "რეალიზებულია"){
-    statusBg = "#01c6b5"
-  }else if (status === "გასაგზავნია") {
-    statusBg = "#f55364";
-  }
-
 
 
 
@@ -169,14 +173,14 @@ const OrderDetails = () => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
 
-  useEffect(() => {
-    if(status == "რეალიზებულია"){
-      gridColumnApi?.setColumnVisible("reservedQuantity", false);
+  // useEffect(() => {
+  //   if(status == "რეალიზებულია"){
+  //     gridColumnApi?.setColumnVisible("reservedQuantity", false);
 
-    }
+  //   }
 
     
-  },[gridColumnApi, gridApi, gridReady])
+  // },[gridColumnApi, gridApi, gridReady])
 
 
   useCopyTable(gridReady)
