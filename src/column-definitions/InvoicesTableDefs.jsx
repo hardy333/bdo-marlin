@@ -33,8 +33,12 @@ const InvoicesTableDefs = [
     headerName: "ზედნადები",
   },
   {
-    field: "orderID",
+    field: "orderNumber",
     headerName: "შეკვეთის #",
+  },
+  {
+    field: "invoiceNumber",
+    headerName: "ინვოისის #",
   },
   {
     field: "vendor",

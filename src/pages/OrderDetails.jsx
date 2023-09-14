@@ -69,6 +69,8 @@ const OrderDetails = () => {
     return null;
   });
 
+  console.log(data?.data)
+
   useEffect(() => {
     if (!data) return;
     if (isLoading) return;

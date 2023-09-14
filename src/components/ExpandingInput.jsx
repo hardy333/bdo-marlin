@@ -14,7 +14,7 @@ const ExpandingInput = ({
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (inputRef.current.value.length > 0) return;
+      if (inputRef.current?.value.length > 0) return;
       if (wrapperRef.current.contains(e.target)) return;
       setIsOpen(false);
       if (setIsSearchOpen) {

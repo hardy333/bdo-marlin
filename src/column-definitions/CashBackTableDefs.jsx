@@ -34,19 +34,19 @@ return [
       headerName: "აქციის შედეგები",
       children: [
         {
-          field: "purchased",
+          field: "purchaseAmount",
           headerName: "შესყიდვები, თანხა",
           cellRenderer: (params) => {
             const { value } = params;
-            return value + " GEL";
+            return value
           },
         },
         {
-          field: "stockBalance",
+          field: "stock",
           headerName: "მარაგი",
           cellRenderer: (params) => {
             const { value } = params;
-            return undefined + ".";
+            return value
           },
         },
       ],

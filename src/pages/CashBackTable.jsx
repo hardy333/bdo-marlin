@@ -113,6 +113,9 @@ const shopsArr = [
   },
 ];
 
+const shopsUrl = "https://10.0.0.202:5001/api/Shops?page=1&pageSize=520"
+
+
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -124,7 +127,6 @@ const CashBackTable = () => {
   const [searchParams] = useSearchParams();
   const retroBonusID =
     searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
-  const shopID = "3639a8cd-4df3-4f6a-801a-8f1ffce2a055";
 
   const documentNo = searchParams.get("documentNo");
   const startDate = searchParams.get("startDate");
@@ -135,14 +137,30 @@ const CashBackTable = () => {
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
-  const url =
-    "https://10.0.0.202:5001/api/RetroBonusDetsilsFront/" +
-    shopID +
-    "/" +
-    retroBonusID;
+  const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("retro-bonus-table-shops", () => fetchData(shopsUrl));
+  const [selectedShop,setSelectedShop ] = useState(null)
+
+  const handleShopChange = (x) => {
+    setSelectedShop(x)
+
+
+
+  }
+
+
+  useEffect(() => {
+    if(!shopsData) return
+    if(selectedShop) return 
+    const shop = shopsData?.data.filter(obj => obj.shopID === "866c4bf5-5bd7-4183-a3c3-ab3b1ecd5b6a")[0]
+    setSelectedShop({value: shop.name, label: shop.name, shopID: shop.shopID })
+
+  },[shopsData])
+
+  
+  const url = `https://10.0.0.202:5001/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["retro-bonus-details", retroBonusID],
+    queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
   });
 
@@ -214,6 +232,9 @@ const CashBackTable = () => {
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
+
+
+  
   return (
     <>
       <header className="all-orders__header cash-back-header">
@@ -366,11 +387,11 @@ const CashBackTable = () => {
           <Select
             className="react-select-container sla-select doscounts-table-select"
             classNamePrefix="react-select"
-            options={shopsArr}
-            defaultValue={{
-              value: "ბათუმი, ზუბალაშვილის N3",
-              label: "ბათუმი, ზუბალაშვილის N3",
-            }}
+            options={shopsData?.data.map(shopObj => ({value: shopObj.name, label: shopObj.name, shopID: shopObj.shopID }))}
+            onChange={handleShopChange}
+            value={selectedShop}
+            defaultValue={selectedShop}
+           
           />
           <AgGridReact
             ref={gridRef}
