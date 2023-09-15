@@ -32,7 +32,11 @@ const VendorsCard = ({
         <button
           className="vendor-card__btn"
           onClick={() => {
-            navigate("/vendor-all-orders");
+          const urlParams = new URLSearchParams();
+            urlParams.append("vendor", vendorName);
+
+
+            navigate(`/vendor-all-orders?` + urlParams.toString());
           }}
         >
           {/* <img src={shoppingBag} alt="" /> */}
@@ -48,7 +52,10 @@ const VendorsCard = ({
         <button
           className="vendor-card__btn"
           onClick={() => {
-            navigate("/catalogue");
+            const urlParams = new URLSearchParams();
+            urlParams.append("vendor", vendorName);
+
+            navigate("/catalogue?"+ urlParams.toString());
           }}
         >
           {/* <img src={catalogue} alt="" /> */}
@@ -65,7 +72,10 @@ const VendorsCard = ({
         <button
           className="vendor-card__btn"
           onClick={() => {
-            navigate("/vendors-calendar");
+            const urlParams = new URLSearchParams();
+            urlParams.append("vendor", vendorName);
+
+            navigate("/vendors-calendar?"+ urlParams.toString());
           }}
         >
           {/* <img src={calendar} alt="" /> */}

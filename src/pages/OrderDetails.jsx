@@ -46,11 +46,19 @@ import {
   orderDetailsHeaderList,
 } from "../column-definitions/OrderDetailsDefs";
 import useCopyTable from "../hooks/useCopyTable";
+import useUrlStorageState from "../hooks/useUrlStorageState";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
+
+
+  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0)
+
+  
+  
+  
   const [searchParams] = useSearchParams();
   const orderID =
     searchParams.get("orderID") || "f0ce0829-044b-11ee-8123-005056b5a0aa";
@@ -356,6 +364,8 @@ const OrderDetails = () => {
           {gridReady === true && (
             <AgTablePag
               gridRef={gridRef}
+              setTablePage={setTablePage}
+              tablePage={tablePage}
               pageCount={rowData ? Math.ceil(rowData.length / pageSize) : 1}
             />
           )}

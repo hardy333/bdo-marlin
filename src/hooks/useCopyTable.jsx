@@ -14,9 +14,11 @@ const useCopyTable = (gridReady) => {
     clearColoredCells();
     const cell = e.target.closest(".ag-cell");
     const row = e.target.closest(".ag-row");
+    if (!cell || !row) return;
+
+    
     cell.classList.add("cell-copy-paste-active");
 
-    if (!cell || !row) return;
 
     startCellRef.current = cell;
 

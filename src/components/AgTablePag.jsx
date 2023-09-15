@@ -4,14 +4,12 @@ import { createPortal } from "react-dom";
 import "../styles/pag-test.css"
 
 
-const AgTablePag = ({ gridRef, pageCount }) => {
+const AgTablePag = ({ gridRef, pageCount, tablePage, setTablePage }) => {
   const changePage = (event) => {
     gridRef.current.api.paginationGoToPage(event.selected);
+    setTablePage && setTablePage(Number(event.selected))
   };
 
-  useEffect(() => {
-    const x = document.querySelector(".ag-paging-panel");
-  }, []);
 
   if (document.querySelector(".ag-paging-panel")) {
     return createPortal(
@@ -25,6 +23,7 @@ const AgTablePag = ({ gridRef, pageCount }) => {
           pageRangeDisplayed={2}
           renderOnZeroPageCount={null}
           marginPagesDisplayed={2}
+          initialPage={Number(tablePage || 0)}
         />
       </div>,
       document.querySelector(".ag-paging-panel")

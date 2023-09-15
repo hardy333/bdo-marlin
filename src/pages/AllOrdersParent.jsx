@@ -1,5 +1,6 @@
 import React, {
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -40,12 +41,15 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import useCopyTable from "../hooks/useCopyTable";
 import useLocalStorage from "../hooks/useLocalStorage";
 import AgTablePag from "../components/AgTablePag";
+import useUrlStorageState from "../hooks/useUrlStorageState";
 
 
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useLocalStorage("all-orders-table-page-size", 15);
-  const [pageCount, setPageCount] = useState(1)
+
+  const [count, setCount] = useUrlStorageState("all-orders-page-count", 20)
+  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0)
 
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
@@ -110,13 +114,28 @@ const AllOrdersParent = () => {
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
     setGridReady(true)
+
+
   };
 
   useEffect(() => {
     if (!gridRef.current) return;
     if (!gridApi) return;
     gridRef.current.api.resetRowHeights();
+
   }, [openedRowId, gridRef, gridApi]);
+
+  // useEffect(() => {
+  //   if(!rowData) return
+  //   gridRef.current?.api?.paginationGoToPage(tablePage);
+  //   console.log(rowData, "ss")
+
+  // }, [rowData])
+  // useLayoutEffect(() => {
+  //   if(!rowData) return
+  //     gridRef.current?.api?.paginationGoToPage(tablePage);
+  //     console.log(rowData, "ss")
+  // }, [rowData])
 
   useRemoveId(gridApi, gridRef);
 
@@ -141,6 +160,14 @@ const AllOrdersParent = () => {
   const [gridReady, setGridReady] = useState(false);
 
   useCopyTable(gridReady)
+
+  // gridRef.current?.api?.paginationGoToPage(1);
+
+  // function onFirstDataRendered(params) {
+  //   console.log(params, "params")
+  //   params.api.paginationGoToPage(4);
+  // }
+
   
   
   return (
@@ -160,6 +187,7 @@ const AllOrdersParent = () => {
               ყველა შეკვეთა
             </span>
             {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
+            <button onClick={() => setCount(count + 1)}>{count}</button>
           </div>
           <div className="all-orders__settings__options">
             <TableSettings
@@ -173,6 +201,8 @@ const AllOrdersParent = () => {
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
               pageName="all-orders"
+              // paginationGoToPage={2}
+              // paginationGoTo={2}
             />
           </div>
         </div>
@@ -222,7 +252,7 @@ const AllOrdersParent = () => {
             })}
           </Menu>
 
-          {gridReady === true && <AgTablePag gridRef={gridRef} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />}
+          {gridReady === true && <AgTablePag gridRef={gridRef} tablePage={tablePage} setTablePage={setTablePage} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />}
         </div>
       )}
     </>
