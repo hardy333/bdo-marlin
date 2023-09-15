@@ -49,6 +49,25 @@ const getOrderDetailsDefs = (orderStatus) => {
         return <span style={{ color: color }}>{value}</span>;
       },
     },
+    {
+      field: "invoiceAmount",
+      headerName: "ინვოისის თანხა",
+      hide: orderStatus === "რეალიზებულია" ? false : true,
+      cellRenderer: (params) => {
+        const { value } = params;
+        if(!value) return ""
+        return value + " GEL"
+      },
+    },
+    {
+      field: "invoiceQuantity",
+      headerName: "ინვოისის რაოდენობა",
+      hide: orderStatus === "რეალიზებულია" ? false : true,
+      cellRenderer: (params) => {
+        const { value } = params;
+        return value;
+      },
+    },
   ];
 };
 
