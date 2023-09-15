@@ -9,15 +9,13 @@ import "../../styles/vendors-modal.css";
 import "../../styles/employees.css";
 
 import VendorsModal from "../../components/VendorsModal";
+import { useQuery } from "react-query";
+import { fetchData } from "../../utils/fetchData";
 
-import { vendorsData } from "./vendorsData";
+const vendorsUrl = "https://10.0.0.202:5001/api/Accounts"
+
 
 const Vendors = () => {
-  const [vendorArr, setVendorArr] = useState([
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
-  ]);
-
   const [isChecked, setISChecked] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -29,6 +27,11 @@ const Vendors = () => {
     console.log("Open modal");
     setIsOpen(true);
   }
+
+  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors-cards", () => fetchData(vendorsUrl));
+
+  console.log(vendorsData?.data)
+  
 
   return (
     <>
@@ -60,7 +63,7 @@ const Vendors = () => {
 
         <div className="vendors-card-container">
           <AnimatePresence initial={false}>
-            {vendorsData
+            {/* {vendorsData
               .filter((vendorObj) =>
                 isChecked ? true : vendorObj.status === "active"
               )
@@ -81,29 +84,23 @@ const Vendors = () => {
                     index={index}
                   />
                 );
-              })}
+              })} */}
+
+              {
+                vendorsData?.data.filter(vendorObj => vendorObj.supplier).map((vendorObj, index) => {
+                  return   <VendorsCard
+                  openModal={openModal}
+                  vendorName={vendorObj.name}
+                  key={index}
+                  index={index}
+                  variant="active"
+
+                />
+                })
+              }
           </AnimatePresence>
         </div>
-        <div className="employee-pag-container hidden">
-          <button>&larr;</button>
-          <button className="active">1</button>
-          {/* <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button> */}
-          <button>&rarr;</button>
-
-          <div className="employees-page-info">
-            <p>
-              1-
-              {
-                vendorArr.filter((num) => (isChecked ? true : num === 1)).length
-              }{" "}
-              of{" "}
-              {vendorArr.filter((num) => (isChecked ? true : num === 1)).length}
-            </p>
-          </div>
-        </div>
+       
 
         <VendorsModal
           setIsOpen={setIsOpen}
