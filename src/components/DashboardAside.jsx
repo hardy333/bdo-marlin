@@ -23,7 +23,7 @@ import reportSvg from "../assets/reports.svg";
 import percentSvg from "../assets/percent.svg";
 
 import { Link, NavLink } from "react-router-dom";
-import { AsideBtnSvg, CatalogSvg, ContractSvg, EmployeesSvg, InvoicesSvg, OrdersSvg, ReportsSvg, RetroBonusSvg, SettingsSvg, TermsAndServicesSvg } from "./svgs/SidebarIcons";
+import { AsideBtnSvg, CatalogSvg, ContractSvg, EmployeesSvg, InvoicesSvg, OrdersSvg, ReportsSvg, RetroBonusSvg, SettingsSvg, TermsAndServicesSvg, VendorsSvg } from "./svgs/SidebarIcons";
 
 const DashboardAside = ({
   selected = false,
@@ -107,11 +107,12 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img
+                {/* <img
                   className="dashboard-aside__list__vendor"
                   src={vendors}
                   alt=""
-                />
+                /> */}
+                <VendorsSvg />
                 <span className="aside-label">მომწოდებლები</span>
               </NavLink>
             </li>
