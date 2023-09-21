@@ -186,8 +186,6 @@ const AllOrdersParent = () => {
             <span className={`${isSearchOpen ? "hide" : ""}`}>
               ყველა შეკვეთა
             </span>
-            {/* <span style={{ color: "#6E0FF5" }}>GDM</span> */}
-            <button onClick={() => setCount(count + 1)}>{count}</button>
           </div>
           <div className="all-orders__settings__options">
             <TableSettings

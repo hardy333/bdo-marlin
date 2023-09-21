@@ -23,7 +23,7 @@ import reportSvg from "../assets/reports.svg";
 import percentSvg from "../assets/percent.svg";
 
 import { Link, NavLink } from "react-router-dom";
-import { ReportsSvg } from "./svgs/SidebarIcons";
+import { AsideBtnSvg, CatalogSvg, ContractSvg, EmployeesSvg, InvoicesSvg, OrdersSvg, ReportsSvg, RetroBonusSvg, SettingsSvg, TermsAndServicesSvg } from "./svgs/SidebarIcons";
 
 const DashboardAside = ({
   selected = false,
@@ -68,7 +68,8 @@ const DashboardAside = ({
       }`}
     >
       <button onClick={toggleBodyClass} className="aside-btn">
-        <img src={asideBtn} alt="" />
+        {/* <img src={asideBtn} alt="" /> */}
+        <AsideBtnSvg />
       </button>
       <div className="dashboard-aside-container">
         <Link
@@ -121,7 +122,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={orders} alt="" />
+                {/* <img src={orders} alt="" /> */}
+                <OrdersSvg />
                 <span className="aside-label">შეკვეთები</span>
               </NavLink>
             </li>
@@ -132,7 +134,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={percentSvg} alt="" />
+                {/* <img src={percentSvg} alt="" /> */}
+                <RetroBonusSvg />
                 <span className="aside-label">ბონუსები</span>
               </NavLink>
             </li>
@@ -143,7 +146,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={catalog} alt="" />
+                {/* <img src={catalog} alt="" /> */}
+                <CatalogSvg />
                 <span className="aside-label">კატალოგი</span>
               </NavLink>
             </li>
@@ -154,7 +158,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={employees} alt="" />
+                {/* <img src={employees} alt="" /> */}
+                <EmployeesSvg />
                 <span className="aside-label">თანამშრომლები</span>
               </NavLink>
             </li>
@@ -171,7 +176,8 @@ const DashboardAside = ({
                     : ""
                 }
               >
-                <img src={invoices} alt="" />
+                {/* <img src={invoices} alt="" /> */}
+                <InvoicesSvg />
                 <span className="aside-label">ინვოისები</span>
               </NavLink>
             </li>
@@ -194,7 +200,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={settings} alt="" />
+                {/* <img src={settings} alt="" /> */}
+                <SettingsSvg />
                 <span className="aside-label">სეთინგები</span>
               </NavLink>
             </li>
@@ -206,7 +213,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={conditions} alt="" />
+                {/* <img src={conditions} alt="" /> */}
+                <TermsAndServicesSvg />
                 <span className="aside-label">პირობები</span>
               </NavLink>
             </li>
@@ -217,7 +225,8 @@ const DashboardAside = ({
                   isPending ? "pending" : isActive ? "active" : ""
                 }
               >
-                <img src={contract} alt="" />
+                {/* <img src={contract} alt="" /> */}
+                <ContractSvg />
                 <span className="aside-label">კონტრაქტი</span>
               </NavLink>
             </li>

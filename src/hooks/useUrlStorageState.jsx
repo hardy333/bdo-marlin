@@ -18,16 +18,7 @@ const useUrlStorageState = (key, initialValue) => {
         //     x.append(key, value)
         // }) 
         const searchParams  = new URLSearchParams(window.location.search) 
-        const has = searchParams.has(key)
-        if(has){
-            searchParams.set(key, value)
-        }else{
-        searchParams.append(key, value)
-
-        }
-
-        console.log(searchParams.toString(), "dlkjdl")
-
+        searchParams.set(key, value)
         window.history.pushState(null, "", "?"+searchParams.toString())
         
     }, [value, setValue])

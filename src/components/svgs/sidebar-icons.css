@@ -1,0 +1,37 @@
+
+
+.sidebar-orders-svg .cls-1,
+.sidebar-orders-svg .cls-2,
+.sidebar-orders-svg .cls-3 {
+  opacity: 0.8;
+}
+.sidebar-orders-svg .cls-1,
+.sidebar-orders-svg .cls-3 {
+  fill: #6e0ff5;
+}
+.sidebar-orders-svg .cls-4 {
+  stroke-linejoin: round;
+  stroke-width: 1.97px;
+}
+.sidebar-orders-svg .cls-4,
+.sidebar-orders-svg .cls-5 {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+}
+.sidebar-orders-svg .cls-6 {
+  isolation: isolate;
+}
+.sidebar-orders-svg .cls-2 {
+  fill: #fff;
+}
+.sidebar-orders-svg .cls-7 {
+  opacity: 0.82;
+}
+.sidebar-orders-svg .cls-5 {
+  stroke-miterlimit: 10;
+  stroke-width: 2.98px;
+}
+.sidebar-orders-svg .cls-3 {
+  mix-blend-mode: multiply;
+}

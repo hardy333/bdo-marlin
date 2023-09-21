@@ -302,13 +302,17 @@
 }
 
 
-.aside-btn img {
+.aside-btn img ,
+.aside-btn svg{
   transition:  var(--sidebar-open-animation-duration) ease-in-out;
   transform: rotate(0deg);
+  width: 32px;
+  height: 32px;
 }
 
 
-.body-sidebar-open .aside-btn img {
+.body-sidebar-open .aside-btn img ,
+.body-sidebar-open .aside-btn svg{
   transform: rotate(180deg);
 
 
