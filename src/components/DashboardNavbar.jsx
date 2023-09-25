@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import ring from "../assets/navbar/ring.svg";
 import user from "../assets/navbar/user.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -45,11 +44,11 @@ const DashboardNavbar = () => {
     document.body.classList.remove("body-sidebar-responsive-close");
   };
 
-  const {logout} = useLogout()
+  const { logout } = useLogout();
 
   const handleLogout = () => {
-    logout()
-  }
+    logout();
+  };
 
   return (
     <header
@@ -76,12 +75,14 @@ const DashboardNavbar = () => {
         <>
           <div className="navbar-links-container">
             <Link to="/profile">
-              <img src={user} alt="" />
+              {/* <img src={user} alt="" /> */}
+              <UserSvg />
             </Link>
-            <Link to="/login">
-              <img src={ring} alt="" />
+            <Link to="/">
+              {/* <img src={ring} alt="" /> */}
+              <RingSvg />
             </Link>
-            <span onClick={handleLogout} style={{cursor: "pointer"}}>
+            <span onClick={handleLogout} style={{ cursor: "pointer" }}>
               {/* <img src={LogOut} alt="" className="log-out-img" /> */}
               <LogOutSvg2 />
             </span>
@@ -93,6 +94,64 @@ const DashboardNavbar = () => {
 };
 
 export default DashboardNavbar;
+
+
+
+const RingSvg = () => {
+  return (
+    <>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" className="navbar-ring-icon">
+        <g class="cls-1" isolation="isolate">
+          <g id="Layer_3">
+            <g class="cls-3" mixBlendMode="multiply" opacity="0.8">
+              <path
+                class="cls-2"
+                fill="#ff7ba7"
+                d="m37.74,59.5h-17.34c-1.2,0-2.18-.98-2.18-2.18s.98-2.18,2.18-2.18h17.34c1.2,0,2.18.98,2.18,2.18s-.98,2.18-2.18,2.18Z"
+              />
+            </g>
+            <path
+              class="cls-4"
+              fill="#6e0ff5"
+              d="m52.97,42.02c0,3.97-3.19,7.2-7.2,7.2H12.35c-1.99,0-3.79-.82-5.07-2.13-1.31-1.28-2.13-3.08-2.13-5.07,0-2.85,1.63-5.29,4-6.46,1.63-.8,2.59-2.52,2.59-4.33,0-3.34,0-7.78,0-7.78,0-9.57,7.76-17.3,17.33-17.3,4.79,0,9.11,1.95,12.26,5.07,3.12,3.12,5.07,7.44,5.07,12.23,0,0,0,4.6,0,7.95,0,1.81,1.08,3.39,2.69,4.22.66.34,1.25.77,1.77,1.29,1.28,1.31,2.09,3.08,2.09,5.1Z"
+            />
+            <g className="cls-3" mixBlendMode="multiply" opacity="0.8">
+                
+              <circle className="cls-2" fill="#ff7ba7" cx="40.76" cy="14.58" r="14.08" />
+            </g>
+                
+            <g className="cls-3"  mixBlendMode="multiply" opacity="0.8">
+              <circle className="cls-2" fill="#ff7ba7" cx="40.76" cy="14.58" r="9.39" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </>
+  );
+};
+
+const UserSvg = () => {
+  return (
+    <>
+      <svg id="Layer_3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+        <defs></defs>
+        <circle class="cls-3" fill="#6e0ff5" cx="30" cy="30" r="29" />
+        <g class="cls-2" opacity="0.97">
+          <path
+            class="cls-1"
+            fill="#ffffff"
+            d="m45.88,40.35v2.21c0,3.45-2.79,6.24-6.24,6.24h-19.28c-3.45,0-6.24-2.8-6.24-6.24v-2.21c0-3.78,1.68-7.17,4.34-9.45,1.27-1.09,3.12-1.03,4.42.02,1.94,1.57,4.42,2.52,7.11,2.52s5.17-.94,7.11-2.51c1.3-1.05,3.16-1.11,4.42-.02,2.66,2.28,4.34,5.67,4.34,9.45Z"
+          />
+          <path
+            class="cls-1"
+            fill="#ffffff"
+            d="m39.27,20.24c0,2.62-1.09,4.99-2.84,6.67-1.66,1.61-3.94,2.6-6.44,2.6s-4.77-.99-6.43-2.6c-1.76-1.68-2.85-4.05-2.85-6.67,0-5.12,4.17-9.28,9.28-9.28s9.28,4.16,9.28,9.28Z"
+          />
+        </g>
+      </svg>
+    </>
+  );
+};
 
 const LogOutSvg2 = () => {
   return (

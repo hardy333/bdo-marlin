@@ -43,7 +43,6 @@
 }
 
 .navbar-links-container svg {
-  width: 40px;
   height: 100%;
 }
 
@@ -132,6 +131,9 @@
 
 /* Log out svg 2 */
 
+.log-out-svg-2{
+  width: 40px !important;
+}
 
 .log-out-svg-2 .cls-1 {
   isolation: isolate;
@@ -145,4 +147,18 @@
 }
 .log-out-svg-2 .cls-4 {
   fill: #6e0ff5;
+}
+
+
+
+.navbar-ring-icon .cls-1{isolation:isolate;}
+.navbar-ring-icon .cls-2{fill:#ff7ba7;}
+.navbar-ring-icon .cls-3{mix-blend-mode:multiply;opacity:.8;}
+.navbar-ring-icon .cls-4{fill:#6e0ff5;}
+
+
+/* Svg Ocons */
+.dashboard-navbar svg {
+  width: 3.3rem;
+  cursor: pointer;
 }
