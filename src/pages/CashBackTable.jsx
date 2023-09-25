@@ -44,6 +44,7 @@ import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../components/BonusTableCards";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
+import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 
 const shopsArr = [
   {
@@ -256,7 +257,8 @@ const CashBackTable = () => {
                 content={`მომწოდებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  {/* <img src="order-details/vendor.svg" alt="" /> */}
+                  <VendorSvg />
                   <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
@@ -268,8 +270,9 @@ const CashBackTable = () => {
                 content={`პირობა: ${condition}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  {/* <FaHandshake /> */}
-                  <img src="cash-back/shetanxmebis-piroba.svg" alt="" />
+                  {/* <FaHandshake /> */} 
+                  {/* <img src="cash-back/shetanxmebis-piroba.svg" alt="" /> */}
+                  <ShetanxmebisPirobaSvg />
                   <span className="info-badge-text"> {condition}</span>
                 </p>
               </Tippy>
@@ -283,7 +286,8 @@ const CashBackTable = () => {
                 } `}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/calendar.svg" alt="" />
+                  {/* <img src="order-details/calendar.svg" alt="" /> */}
+                  <ScheduleDateSvg />
                   <span className="info-badge-text info-badge-text__date">
                     {startDate?.split("T")[0]} - {endDate || "განუსაზღვრელია"}
                   </span>
@@ -298,7 +302,8 @@ const CashBackTable = () => {
               >
                 <p className="info-badge info-badge-mobile">
                   {/* <img src="order-details/vendor.svg" alt="" /> */}
-                  <img src="cash-back/document-number.svg" alt="" />
+                  {/* <img src="cash-back/document-number.svg" alt="" /> */}
+                  <DocumentNumberSvg />
 
                   <span className="info-badge-text">#: {documentNo}</span>
                 </p>
@@ -315,8 +320,8 @@ const CashBackTable = () => {
                 } `}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="cash-back/gegma.svg" alt="" />
-
+                  {/* <img src="cash-back/gegma.svg" alt="" /> */}
+                  <GegmaAmountSvg />
                   <span className="info-badge-text">
                     {planAmount === "undefined"
                       ? "განუსაზღვრელი"

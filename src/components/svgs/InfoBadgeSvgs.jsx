@@ -272,6 +272,8 @@ export const DocumentSvg = () => {
 
 // Order Details Svg's End
 
+
+// Invoice Details Icons Start
 export const InvoiceNumberSvg = () => {
   return <>
 <svg id="Isolation_Mode" data-name="Isolation Mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.39 45.29">
@@ -294,3 +296,74 @@ export const WaybillNumberSvg = () => {
 </svg>
   </>;
 };
+// Invoice Details Icons END
+
+
+
+// Cash back Table Icons Start
+export const ShetanxmebisPirobaSvg = () => {
+    return <>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.05 45.29">
+  <g>
+    <line id="Stroke-2" x1="27.33" y1="21.13" x2="12.86" y2="21.13" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    <line id="Stroke-2-2" data-name="Stroke-2" x1="24.89" y1="28.7" x2="12.86" y2="28.7" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    <line id="Stroke-3" x1="19.07" y1="13.57" x2="12.9" y2="13.57" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    <path id="Stroke-4" d="m39.03,9.21c-.09-.36-.2-.71-.33-1.05-1.39-3.7-4.69-5.95-9.3-5.95H12.3c-6.14.05-9.94,4.08-9.94,10.24v20.45c0,6.19,3.83,10.24,10.02,10.24h4.89" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+  </g>
+  <path d="m42.09,17.82c-.33-.35-.75-.63-.99-.78l-.04-.02c-.32-.19-.68-.33-1.07-.41-1.61-.37-3.17.35-4.07,1.89-.36.6-2.45,4.23-4.75,8.21-1.6,2.77-3.14,5.44-3.81,6.61l-.47.79c-.62,1.04-1.25,2.12-1.86,3.19-.18.29-.27.54-.28.79-.1,1.51-.19,3.04-.28,4.55v.24c-.02.14-.02.28-.02.42v.19c0,.35.06.86.56,1.17.04.04.1.08.16.1l.06.02c.18.09.36.13.55.13.3,0,.56-.12.75-.23.05-.03.11-.06.18-.1.12-.06.24-.13.35-.21l1.09-.72c.97-.64,1.95-1.28,2.93-1.93.21-.15.38-.35.53-.62.52-.89,1.03-1.79,1.53-2.67l.76-1.34c.67-1.17,2.24-3.87,3.85-6.65l.07-.13c2.12-3.65,4.31-7.43,4.65-8.04.88-1.55.73-3.26-.39-4.47Zm-13.87,21.97c.18.12.33.25.45.4l-.17.1c-.4.23-.8.47-1.21.7,0-.54,0-1.06,0-1.58.26.04.5.13.74.28l.18.1Zm9.62-14.72l-3.69,6.38c-1.28,2.21-2.54,4.4-3.8,6.58-.09-.06-.19-.11-.28-.17l-.18-.11c-.18-.11-.36-.22-.54-.33l-.36-.21-.18-.08h0c-.16-.08-.32-.17-.48-.26l2.65-4.58c1.61-2.77,3.22-5.57,4.85-8.38.11.06.23.13.34.19.21.12.42.24.61.35l.09.08h.05c.19.11.39.22.58.33l.35.2Zm1.2-2.47c-.3-.16-.59-.31-.8-.43l-.98-.61.18-.32c.27-.48.56-.98.81-1.49.14-.29.39-.42.56-.48.34-.11.71-.06.92.05l.14.07c.19.12.44.42.51.78.04.18.05.46-.13.73-.34.51-.65,1.03-.99,1.61l-.09.15-.13-.07Z" fill="#6e0ff5" stroke-width="0"/>
+</svg>
+    
+    </>;
+  };
+export const DocumentNumberSvg = () => {
+    return <>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.39 45.29">
+  <g id="Layer_1" data-name="Layer 1">
+    <path d="m38.97,11.77l-.85-.83L29.88,2.89c-1.82-1.78-4.23-2.76-6.78-2.76h-13.23C7.23.13,5.07,2.28,5.07,4.92v35.58c0,2.64,2.15,4.79,4.8,4.79h12.72c1.01-.04,1.8-.87,1.8-1.88,0-.9-.62-1.65-1.46-1.84h-13.06c-.59,0-1.08-.48-1.08-1.07V4.92c0-.59.49-1.07,1.08-1.07h13.07v10.3c0,2.09,1.71,3.8,3.8,3.8h11.43v5.61c.18.85.94,1.49,1.85,1.49,1.02,0,1.83-.79,1.88-1.8v-4.56c0-2.59-1.07-5.13-2.93-6.93Zm-12.27,2.38V5.09c.2.15.4.29.58.46l8.84,8.63-9.41-.02Z" fill="#6e0ff5" stroke-width="0"/>
+  </g>
+  <g id="Layer_3" data-name="Layer 3">
+    <g>
+      <line x1="32.17" y1="26.92" x2="29.04" y2="42.57" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="37.11" y1="26.92" x2="33.98" y2="42.57" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="27.45" y1="32.05" x2="39.42" y2="32.05" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="26.82" y1="37.51" x2="38.78" y2="37.51" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>
+    
+    </>;
+  };
+export const GegmaAmountSvg = () => {
+    return <>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.39 45.29">
+  <path id="Stroke-4" d="m31.2,2.2H14.11c-6.14.05-9.93,4.08-9.93,10.24v20.44c0,6.19,3.83,10.24,10.01,10.24h17.09c6.13-.04,9.93-4.07,9.93-10.23V12.44c0-6.19-3.83-10.24-10.02-10.24Z" fill="none" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.32"/>
+  <g id="Iconly_Two-tone_Document" data-name="Iconly Two-tone Document">
+    <g id="Document">
+      <line id="Stroke-1" x1="32.48" y1="14.17" x2="20.99" y2="14.17" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    </g>
+  </g>
+  <g id="Iconly_Two-tone_Document-2" data-name="Iconly Two-tone Document">
+    <g id="Document-2" data-name="Document">
+      <line id="Stroke-1-2" data-name="Stroke-1" x1="32.48" y1="23.65" x2="21.04" y2="23.65" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    </g>
+  </g>
+  <rect x="10" y="20.72" width="5.84" height="5.86" rx="1.16" ry="1.16" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <rect x="10" y="11.24" width="5.84" height="5.86" rx="1.16" ry="1.16" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <g id="Iconly_Two-tone_Document-3" data-name="Iconly Two-tone Document">
+    <g id="Document-3" data-name="Document">
+      <line id="Stroke-1-3" data-name="Stroke-1" x1="32.48" y1="33.12" x2="20.99" y2="33.12" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.38"/>
+    </g>
+  </g>
+  <polyline points="10.45 32.88 12.48 35.19 15.42 31.12" fill="none" isolation="isolate" opacity=".99" stroke="#6e0ff5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>
+    
+    </>;
+  };
+export const CashBackPercentSvg = () => {
+    return <>djhdk123</>;
+  };
+
+
+// Cash back Table Icons END
+
+
