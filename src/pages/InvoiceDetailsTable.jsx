@@ -49,6 +49,7 @@ import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import InvoiceDetailsCards from "../components/InvoiceDetailsCards";
 import useCopyTable from "../hooks/useCopyTable";
+import { InvoiceNumberSvg, OrderDateSvg, OrderNumberSvg, VendorSvg, WaybillNumberSvg } from "../components/svgs/InfoBadgeSvgs";
 
 const InvoiceDetailsTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -167,7 +168,8 @@ const InvoiceDetailsTable = () => {
                 content={`მომწოდებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  {/* <img src="order-details/vendor.svg" alt="" /> */}
+                  <VendorSvg />
                   <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
@@ -179,7 +181,8 @@ const InvoiceDetailsTable = () => {
                 content={`ინვოისის #: ${invoiceNumber}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="/invoices-badge-icons/invoice.svg" alt="" />
+                  {/* <img src="/invoices-badge-icons/invoice.svg" alt="" /> */}
+                  <InvoiceNumberSvg />
                   <span className="info-badge-text">#: {invoiceNumber}</span>
                 </p>
               </Tippy>
@@ -191,7 +194,8 @@ const InvoiceDetailsTable = () => {
                 content={`ზედნადების #: ${waybillNumber || "Unknown"}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="invoices-badge-icons/waybill.svg" alt="" />
+                  {/* <img src="invoices-badge-icons/waybill.svg" alt="" /> */}
+                  <WaybillNumberSvg />
                   <span className="info-badge-text info-badge-text__date">
                     #: {waybillNumber || "Unknown"}
                   </span>
@@ -223,7 +227,8 @@ const InvoiceDetailsTable = () => {
                     navigate("/order-details?" + urlParams.toString());
                   }}
                 >
-                  <img src="invoices-badge-icons/order.svg" alt="" />
+                  {/* <img src="invoices-badge-icons/order.svg" alt="" /> */}
+                  <OrderNumberSvg />
                   <span className="info-badge-text">#: {orderNumber}</span>
                 </p>
               </Tippy>
@@ -235,7 +240,8 @@ const InvoiceDetailsTable = () => {
                 content={`შეკვეთის თარიღი: ${date?.split("T")[0]}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/calendar.svg" alt="" />
+                  {/* <img src="order-details/calendar.svg" alt="" /> */}
+                  <OrderDateSvg />
                   <span className="info-badge-text">
                     {date?.split("T")[0]}{" "}
                   </span>
