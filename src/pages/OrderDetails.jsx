@@ -47,6 +47,7 @@ import {
 } from "../column-definitions/OrderDetailsDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import useUrlStorageState from "../hooks/useUrlStorageState";
+import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg, SampleSvg, ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -196,7 +197,8 @@ const OrderDetails = () => {
                 content={`მომწოდებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/vendor.svg" alt="" />
+                  {/* <img src="order-details/vendor.svg" alt="" /> */}
+                  <VendorSvg />
                   <span className="info-badge-text"> {vendor}</span>
                 </p>
               </Tippy>
@@ -208,7 +210,8 @@ const OrderDetails = () => {
                 content={"მაღაზია: " + shopAddress}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/shop.svg" alt="" />
+                  {/* <img src="order-details/shop.svg" alt="" /> */}
+                  <ShopSvg />
                   <span className="info-badge-text"> {shopAddress}</span>
                 </p>
               </Tippy>
@@ -220,7 +223,8 @@ const OrderDetails = () => {
                 content={`შეკვეთის თარიღი: ${date?.split("T")[0]}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/clock.svg" alt="" />
+                  {/* <img src="order-details/clock.svg" alt="" /> */}
+                  <OrderDateSvg />
                   <span className="info-badge-text">
                     {" "}
                     {date?.split("T")[0]}
@@ -235,7 +239,8 @@ const OrderDetails = () => {
                 content={`გეგმიური მოწოდების თარიღი: ${scheduledDate}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/calendar.svg" alt="" />
+                  {/* <img src="order-details/calendar.svg" alt="" /> */}
+                  <ScheduleDateSvg />
                   <span className="info-badge-text info-badge-text__date">
                     {scheduledDate}
                   </span>
@@ -251,7 +256,8 @@ const OrderDetails = () => {
                 content={`შეკვეთის #: ${orderNumber}`}
               >
                 <p className="info-badge info-badge-mobile info-badge-link">
-                  <img src="invoices-badge-icons/order.svg" alt="" />
+                  {/* <img src="invoices-badge-icons/order.svg" alt="" /> */}
+                  <OrderNumberSvg />
                   <span className="info-badge-text">#: {orderNumber}</span>
                 </p>
               </Tippy>
@@ -264,7 +270,8 @@ const OrderDetails = () => {
                 content={`თანხა: ${amount} GEL`}
               >
                 <p className="info-badge info-badge-mobile">
-                  <img src="order-details/money.svg" alt="" />
+                  {/* <img src="order-details/money.svg" alt="" /> */}
+                  <AmountSvg />
                   <span className="info-badge-text">{amount} GEL</span>
                 </p>
               </Tippy>
@@ -279,7 +286,8 @@ const OrderDetails = () => {
                   style={{ display: !invoiceAmount ? "none" : "" }}
                   className="info-badge info-badge-mobile"
                 >
-                  <img src="order-details/document.svg" alt="" />
+                  {/* <img src="order-details/document.svg" alt="" /> */}
+                  <DocumentSvg />
                   <span className="info-badge-text">
                     {invoiceAmount || "NaN"} GEL
                   </span>
