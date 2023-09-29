@@ -19,7 +19,7 @@ const useUrlStorageState = (key, initialValue) => {
         // }) 
         const searchParams  = new URLSearchParams(window.location.search) 
         searchParams.set(key, value)
-        window.history.pushState(null, "", "?"+searchParams.toString())
+        window.history.replaceState(null, "", "?"+searchParams.toString())
         
     }, [value, setValue])
 
