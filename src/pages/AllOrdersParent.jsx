@@ -46,9 +46,7 @@ import useUrlStorageState from "../hooks/useUrlStorageState";
 
 
 const AllOrdersParent = () => {
-  const [pageSize, setPageSize] = useLocalStorage("all-orders-table-page-size", 15);
-
-  const [count, setCount] = useUrlStorageState("all-orders-page-count", 20)
+  const [pageSize, setPageSize] = useUrlStorageState("page-size", 15);
   const [tablePage, setTablePage] = useUrlStorageState("table-page", 0)
 
   const [gridApi, setGridApi] = useState(null);
@@ -168,6 +166,7 @@ const AllOrdersParent = () => {
   //   params.api.paginationGoToPage(4);
   // }
 
+  console.log(tablePage)
   
   
   return (
@@ -241,6 +240,7 @@ const AllOrdersParent = () => {
                   key={size}
                   onClick={() => {
                     setPageSize(size);
+                    setTablePage(0)
                   }}
                   style={{ color: pageSize === size ? "#1A1F3D" : "" }}
                 >

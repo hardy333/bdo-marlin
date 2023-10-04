@@ -1,5 +1,4 @@
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -47,7 +46,7 @@ import {
 } from "../column-definitions/OrderDetailsDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import useUrlStorageState from "../hooks/useUrlStorageState";
-import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg, SampleSvg, ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
+import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg,  ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -78,7 +77,6 @@ const OrderDetails = () => {
     return null;
   });
 
-  console.log(data?.data)
 
   useEffect(() => {
     if (!data) return;

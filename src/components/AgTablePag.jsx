@@ -5,6 +5,7 @@ import "../styles/pag-test.css"
 
 
 const AgTablePag = ({ gridRef, pageCount, tablePage, setTablePage }) => {
+
   const changePage = (event) => {
     gridRef.current.api.paginationGoToPage(event.selected);
     setTablePage && setTablePage(Number(event.selected))
@@ -24,6 +25,9 @@ const AgTablePag = ({ gridRef, pageCount, tablePage, setTablePage }) => {
           renderOnZeroPageCount={null}
           marginPagesDisplayed={2}
           initialPage={Number(tablePage || 0)}
+          // needed when tablePage changes independent to reactPaginate 
+          forcePage={tablePage || 0}
+          
         />
       </div>,
       document.querySelector(".ag-paging-panel")

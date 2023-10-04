@@ -38,7 +38,6 @@ const DiscountsCards = () => {
   }
   
 
-  console.log(data)
   
   
   return (
