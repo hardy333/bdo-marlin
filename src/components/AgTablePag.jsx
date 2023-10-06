@@ -9,7 +9,10 @@ const AgTablePag = ({ gridRef, pageCount, tablePage, setTablePage }) => {
   const changePage = (event) => {
     gridRef.current.api.paginationGoToPage(event.selected);
     setTablePage && setTablePage(Number(event.selected))
+
+    // console.log("in Change page function", tablePage, {pageCount})
   };
+
 
 
   if (document.querySelector(".ag-paging-panel")) {
@@ -24,7 +27,7 @@ const AgTablePag = ({ gridRef, pageCount, tablePage, setTablePage }) => {
           pageRangeDisplayed={2}
           renderOnZeroPageCount={null}
           marginPagesDisplayed={2}
-          initialPage={Number(tablePage || 0)}
+          initialPage={Number(tablePage > pageCount ? 0 : tablePage)}
           // needed when tablePage changes independent to reactPaginate 
           forcePage={tablePage || 0}
           

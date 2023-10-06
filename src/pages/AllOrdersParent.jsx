@@ -1,6 +1,5 @@
 import React, {
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -36,10 +35,8 @@ import allOrdersParentDefs, {
 } from "../column-definitions/AllOrdersParentDefs";
 import { fetchData } from "../utils/fetchData";
 import AllOrdersCards from "../components/AllOrdersCards";
-
 import { useMediaQuery } from "@uidotdev/usehooks";
 import useCopyTable from "../hooks/useCopyTable";
-import useLocalStorage from "../hooks/useLocalStorage";
 import AgTablePag from "../components/AgTablePag";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 
@@ -69,7 +66,6 @@ const AllOrdersParent = () => {
 
 
 
-  
 
   useEffect(() => {
     if (!data) return;
@@ -123,17 +119,6 @@ const AllOrdersParent = () => {
 
   }, [openedRowId, gridRef, gridApi]);
 
-  // useEffect(() => {
-  //   if(!rowData) return
-  //   gridRef.current?.api?.paginationGoToPage(tablePage);
-  //   console.log(rowData, "ss")
-
-  // }, [rowData])
-  // useLayoutEffect(() => {
-  //   if(!rowData) return
-  //     gridRef.current?.api?.paginationGoToPage(tablePage);
-  //     console.log(rowData, "ss")
-  // }, [rowData])
 
   useRemoveId(gridApi, gridRef);
 
@@ -159,14 +144,6 @@ const AllOrdersParent = () => {
 
   useCopyTable(gridReady)
 
-  // gridRef.current?.api?.paginationGoToPage(1);
-
-  // function onFirstDataRendered(params) {
-  //   console.log(params, "params")
-  //   params.api.paginationGoToPage(4);
-  // }
-
-  console.log(tablePage)
   
   
   return (
@@ -174,7 +151,6 @@ const AllOrdersParent = () => {
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
         <div
-        // style={{width: isSmallDevice ?  "300px" : "", marginInline: "auto"}}
 
          className="all-orders__settings settings-container-responsive">
           {/* Left */}
@@ -188,7 +164,7 @@ const AllOrdersParent = () => {
           </div>
           <div className="all-orders__settings__options">
             <TableSettings
-            isSmallDevice={isSmallDevice}
+              isSmallDevice={isSmallDevice}
               setIsSearchOpen={setIsSearchOpen}
               defHeaderList={allOrdersParentHeaderList}
               rowData={rowData}
@@ -250,7 +226,7 @@ const AllOrdersParent = () => {
             })}
           </Menu>
 
-          {gridReady === true && <AgTablePag gridRef={gridRef} tablePage={tablePage} setTablePage={setTablePage} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} />}
+          {(gridReady === true && rowData) ?  <AgTablePag gridRef={gridRef} tablePage={tablePage} setTablePage={setTablePage} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} /> : null}
         </div>
       )}
     </>

@@ -6,6 +6,10 @@ const useUrlStorageState = (key, initialValue) => {
     const [value, setValue] = useState(() => {
         let savedValue = searchParams.get(key)
         if(savedValue){
+            console.log("Initial val type", typeof initialValue)
+            if(typeof initialValue === "number"){
+                return Number(savedValue)
+            }
             return savedValue
         }else{
             return initialValue

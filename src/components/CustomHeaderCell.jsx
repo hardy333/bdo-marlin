@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/custom-header-cell.css";
 import downIcon from "../assets/marlin-icons/down-arrow.png";
 import classNames from "classnames";
 import HeaderCellMenu2 from "./HeaderCellMenu2";
 import Tippy from "@tippyjs/react";
+import useUrlStorageState from "../hooks/useUrlStorageState";
 
 const CustomHeaderCell = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
   const [sortingState, setSortingState] = useState(["none", "asc", "desc"]);
-  const [sortingStateIndex, setSortingStateIndex] = useState(0);
+  const [sortingStateIndex, setSortingStateIndex] = useUrlStorageState(
+    `all-orders-${props.column.colId}-sorting-index`,
+    0
+  );
 
-  
+  console.log({ sortingStateIndex });
+  console.log("Table Heading", props);
 
   const handleSorting = (e) => {
     if (
-      e.target.classList.contains("header-cell-menu-button-2") ||
-      e.target.tagName === "IMG"
+      e?.target?.classList?.contains("header-cell-menu-button-2") ||
+      e?.target?.tagName === "IMG"
     ) {
       return;
     }
@@ -41,26 +45,33 @@ const CustomHeaderCell = (props) => {
     }
   };
 
-  const disableAllColumnsSorting = () => {
-    document
-      .querySelectorAll(".custom-header-cell-container")
-      .forEach((hCell) => {
-        hCell.classList.remove("asc");
-        hCell.classList.remove("desc");
-      });
-  };
+  useEffect(() => {
+    if (sortingStateIndex > 0) {
+      let newIndex = sortingStateIndex;
 
+      const currSortingState = sortingState[newIndex];
 
+      if (currSortingState === null) {
+        props.columnApi.applyColumnState({
+          defaultState: { sort: null },
+        });
+      } else {
+        props.columnApi.applyColumnState({
+          state: [{ colId: props.column.colId, sort: currSortingState }],
+          defaultState: { sort: null },
+        });
+      }
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   const btn = document.querySelector(".header-cell-menu-button-2");
-
-  //   if (!btn) return;
-  //   btn.addEventListener("click", (e) => {
-  //     e.stopPropagation();
-  //     console.log(e, "Click");
-  //   });
-  // }, []);
+  // const disableAllColumnsSorting = () => {
+  //   document
+  //     .querySelectorAll(".custom-header-cell-container")
+  //     .forEach((hCell) => {
+  //       hCell.classList.remove("asc");
+  //       hCell.classList.remove("desc");
+  //     });
+  // };
 
   return (
     <div
