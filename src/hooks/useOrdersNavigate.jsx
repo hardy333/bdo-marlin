@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-
-
 const statusColors = {
-  "გაგზავნილია":"#FFC23C",
-  "მიწოდებულია":"#01C6B5",
-  "პროცესშია":"#6E0FF5",
-  "დადასტურებულია":"#FF7BA7",
-  "გასაგზავნია":"#f55364",
-}
+  გაგზავნილია: "#FFC23C",
+  მიწოდებულია: "#01C6B5",
+  პროცესშია: "#6E0FF5",
+  დადასტურებულია: "#FF7BA7",
+  გასაგზავნია: "#f55364",
+};
 
 // if (value === "გაგზავნილია") {
 //   color = "#FFC23C";
@@ -24,69 +22,73 @@ const statusColors = {
 //   color = "#f55364";
 // }
 
-
-let orderId = ""
-const statusUrlBase = "https://10.0.0.202:5001/api/StatusResultFront/" 
+let orderId = "";
+const statusUrlBase = "https://10.0.0.202:5001/api/StatusResultFront/";
 
 const fetchStatusDetails = () => {
-  console.log(orderId)
-  return fetch(statusUrlBase + orderId).then(res => res.json())
-    
-}
+  console.log(orderId);
+  return fetch(statusUrlBase + orderId).then((res) => res.json());
+};
 
+const closeStatusCell = () => {};
+
+const openStatusCell = () => {};
+
+const navigateToDetailsPage = () => {};
 
 const useOrdersNavigate = (gridApi, gridRef, setOpenedRowId) => {
-  const {data: statusData, isLoading:statusIsLoading, isFetching: statusIsFetching, refetch: refetchStatus } = useQuery( {
-    querykey:["all-orders-status"],
+  const {
+    data: statusData,
+    isLoading: statusIsLoading,
+    isFetching: statusIsFetching,
+    refetch: refetchStatus,
+  } = useQuery({
+    querykey: ["all-orders-status"],
     queryFn: fetchStatusDetails,
     enabled: false,
-    cacheTime: 0
-  })
-  
-  
-  const fetchStatusAndRender =  async (cell, id) => {
+    cacheTime: 0,
+  });
+
+  const fetchStatusAndRender = async (cell, id) => {
     const statusContainer = cell.querySelector(".status-container");
-    if(!statusContainer) return
+    if (!statusContainer) return;
     // statusContainer.innerHTML = statusLoadingElement;
 
-    orderId = id
-    statusContainer.innerHTML = ""
-    const status = await refetchStatus()
-    console.log(status.data.data)
+    orderId = id;
+    statusContainer.innerHTML = "";
+    const status = await refetchStatus();
+    console.log(status.data.data);
 
-    let statusCellInfo = ""
-    
-    status.data.data.forEach(obj => {
-      console.log(obj.statusName)
-      statusCellInfo += `<li data-id="sss" style="color:${statusColors[obj.statusName]} !important;">${obj.statusName} - ${obj.date?.split("T")[0]?.split("-").reverse().join("/")}</li>`
-    })
+    let statusCellInfo = "";
 
+    status.data.data.forEach((obj) => {
+      console.log(obj.statusName);
+      statusCellInfo += `<li data-id="sss" style="color:${
+        statusColors[obj.statusName]
+      } !important;">${obj.statusName} - ${obj.date
+        ?.split("T")[0]
+        ?.split("-")
+        .reverse()
+        .join("/")} </li>`;
+    });
 
-    statusContainer.innerHTML = `<ul>${statusCellInfo}</ul>`
+    statusContainer.innerHTML = `<ul>${statusCellInfo}</ul>`;
   };
 
-
-
-  
-
-
-  
-
-  
-  
-  
   useEffect(() => {
     const x = document.querySelector(
       ".all-orders-parent .ag-center-cols-container"
     );
 
-     if (!x) return;
-
-
+    if (!x) return;
 
     const handleGridClick = (e) => {
-      if(!e.target.classList.contains("ag-cell")){
-        return
+      if (!e.target.classList.contains("ag-cell")) {
+        const cell = e.target.closest(".ag-cell");
+
+        cell.classList.remove("ag-cell--opened");
+        setOpenedRowId(null);
+        return;
       }
       const cell = e.target;
       const row = cell.closest(".ag-row");
@@ -95,7 +97,6 @@ const useOrdersNavigate = (gridApi, gridRef, setOpenedRowId) => {
 
       const colName = cell.getAttribute("col-id");
       const rowId = +row.getAttribute("row-id");
-
 
       if (colName !== "status") {
         //  for navigation
@@ -149,8 +150,8 @@ const useOrdersNavigate = (gridApi, gridRef, setOpenedRowId) => {
       }
 
       const orderID = row
-          .querySelector(".ag-cell[col-id='vendor'] span")
-          .getAttribute("data-order-id");
+        .querySelector(".ag-cell[col-id='vendor'] span")
+        .getAttribute("data-order-id");
 
       fetchStatusAndRender(cell, orderID);
 
