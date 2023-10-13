@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ProfileForm = () => {
+
+  const [inputs, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    number: "",
+    email: ""
+  })
+
+  const onChnage = (e) => {
+    setInputs({...inputs, [e.target.name]: e.target.value})
+
+
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+  }
+  
+  
   return (
     <form className="profile-form">
       {/* 1 */}
