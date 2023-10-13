@@ -13,8 +13,9 @@ const CustomHeaderCell = (props) => {
     0
   );
 
-  console.log({ sortingStateIndex });
-  console.log("Table Heading", props);
+
+  
+
 
   const handleSorting = (e) => {
     if (
@@ -64,6 +65,8 @@ const CustomHeaderCell = (props) => {
     }
   }, []);
 
+
+
   // const disableAllColumnsSorting = () => {
   //   document
   //     .querySelectorAll(".custom-header-cell-container")
@@ -72,6 +75,8 @@ const CustomHeaderCell = (props) => {
   //       hCell.classList.remove("desc");
   //     });
   // };
+
+
 
   return (
     <div

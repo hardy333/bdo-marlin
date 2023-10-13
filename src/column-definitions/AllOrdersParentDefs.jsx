@@ -90,7 +90,8 @@ const allOrdersParentDefs = [
           </span>
           <div
             className="status-container"
-            style={{ pointerEvents: "none", "--status-color": color }}
+            style={{"--status-color": color }}
+            
           >
             <ul>
               <li style={{ color }}>{value}</li>
