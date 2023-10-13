@@ -12,6 +12,8 @@ const Profile = () => {
   const slashIndex = pathname.lastIndexOf("/");
   const param = pathname.slice(slashIndex);
 
+  
+  
   return (
     <>
       <section className="profile">
@@ -22,7 +24,6 @@ const Profile = () => {
           <div className="profile-card">
             <header className="profile-card-header">
               <div className="profile-card-img-container">
-                {/* <img src={user} alt="user" /> */}
                 <UserSvg />
               </div>
             </header>
@@ -52,14 +53,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          {/* Illustration */}
-          {/* <div className="illustration-container">
-            {param === "/profile" ? (
-              <img loading="eager" src={illustration1} alt="" />
-            ) : (
-              <img loading="eager" src={illustration2} alt="" />
-            )}
-          </div> */}
+        
         </section>
       </section>
     </>

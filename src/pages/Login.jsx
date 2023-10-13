@@ -30,6 +30,9 @@ const Login = () => {
   useEffect(() => {
     document.body.style.minHeight = "0px";
   }, [])
+
+  console.log({isLoading})
+  console.log({error})
   
   
   return (
@@ -48,7 +51,11 @@ const Login = () => {
                 დაგავიწყდათ პაროლი?
               </a>
             </small>
-            <button type="submit" className="btn btn-blue" >შესვლა</button>
+            <button type="submit" disabled={isLoading} className="btn btn-blue" >
+              {
+                isLoading ? <div className="login-btn-loading-spiner"></div> : "შესვლა"
+              }
+            </button>
             <p className="login-form__login">
               არ გაქვთ ექაუნთი?{" "}
               <Link className="link login-link" to="/register">

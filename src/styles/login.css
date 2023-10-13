@@ -69,7 +69,8 @@
   border: 1px solid var(--color-primary-4);
   color: var(--color-primary-4); */
 
-  background-color: #360083;
+  background-color: rgb(100, 15, 220);
+  ;
 
 }
 
@@ -104,6 +105,24 @@
 
 .login-error.active{
   opacity: 1;
+}
+
+.login-btn-loading-spiner{
+  --size: 20px;
+  width: var(--size);
+  height: var(--size);
+  background-color: transparent;
+  border-bottom: 2px solid white;
+  border-left: 2px solid white;
+  border-radius: 100%;
+  animation: btn-spiner 0.8s linear infinite;
+}
+
+@keyframes  btn-spiner{
+  100%{
+    transform: rotate(360deg)
+  }
+  
 }
 
 
