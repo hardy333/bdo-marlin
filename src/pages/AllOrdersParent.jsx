@@ -53,7 +53,7 @@ const AllOrdersParent = () => {
 
   const gridRef = useRef(null);
 
-  const url = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
+  const url = "https://api.marlin.ge/api/OrdersByAccountFront/R00001";
 
   const { isLoading, error, data } = useQuery("all-orders-data", () => fetchData(url));
 
@@ -108,8 +108,6 @@ const AllOrdersParent = () => {
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
     setGridReady(true)
-
-
   };
 
   useEffect(() => {

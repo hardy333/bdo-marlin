@@ -47,6 +47,11 @@ import {
 import useCopyTable from "../hooks/useCopyTable";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg,  ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
+
+
+
+
+
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -94,6 +99,7 @@ const OrderDetails = () => {
   let amount = searchParams.get("amount") || 308.4;
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
   let orderNumber = searchParams.get("orderNumber") || "";
+
 
   let statusBg;
 
