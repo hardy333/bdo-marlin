@@ -13,7 +13,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await fetch("https://10.0.0.202:5001/api/Auth/login", {
+      const response = await fetch("https://api.marlin.ge/api/Auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: email, password: password }),
