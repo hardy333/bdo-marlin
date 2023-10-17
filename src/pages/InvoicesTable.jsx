@@ -58,7 +58,7 @@ const InvoicesTable = () => {
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
 
-  const url = "https://10.0.0.202:5001/api/INVFront/M00001";
+  const url = "https://api.marlin.ge/api/INVFront/R00001";
   const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
