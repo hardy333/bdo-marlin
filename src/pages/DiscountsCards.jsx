@@ -10,8 +10,8 @@ import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 
 
-const url = "https://10.0.0.202:5001/api/RBFront/M00001/D00001"
-const vendorsUrl = "https://10.0.0.202:5001/api/Accounts"
+const url = "https://api.marlin.ge/api/RBFront/R00001/D00001"
+const vendorsUrl = "https://api.marlin.ge/api/Accounts"
 
 
 const DiscountsCards = () => {
