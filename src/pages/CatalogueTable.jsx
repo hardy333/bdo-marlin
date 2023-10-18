@@ -55,7 +55,7 @@ const CatalogueTable = () => {
     "e1307628-f308-11ed-8120-005056b5a0aa"
   );
 
-  const url = `https://10.0.0.202:5001/api/CatalogueFront/M00001/${subCatId}`;
+  const url = `https://api.marlin.ge/api/CatalogueFront/R00001/${subCatId}`;
 
   const { isLoading, error, data, refetch, isFetching } = useQuery(
     ["catalogueTableData", subCatId],

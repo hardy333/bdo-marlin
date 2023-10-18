@@ -24,6 +24,7 @@ const DiscountsCards = () => {
 
   const vendors = vendorsData?.data.filter(account => account.supplier).map(acc => ({value: acc.name, label: acc.name }))
 
+  
 
   useEffect(() => {
     if(!vendors || !vendorsData) return
