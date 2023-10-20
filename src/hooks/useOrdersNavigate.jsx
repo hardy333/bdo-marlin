@@ -23,7 +23,7 @@ const statusColors = {
 // }
 
 let orderId = "";
-const statusUrlBase = "https://10.0.0.202:5001/api/StatusResultFront/";
+const statusUrlBase = "https://api.marlin.ge/api/StatusResultFront/";
 
 const fetchStatusDetails = () => {
   console.log(orderId);

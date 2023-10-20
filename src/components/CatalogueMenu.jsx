@@ -56,7 +56,7 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   // ------------------------ //
 
   const url =
-    "https://10.0.0.202:5001/api/ProductCategories?page=1&pageSize=352";
+    "https://api.marlin.ge/api/ProductCategories?page=1&pageSize=352";
 
   const { isLoading, error, data } = useQuery("catalogueMenuData", () =>
     fetchData(url)
