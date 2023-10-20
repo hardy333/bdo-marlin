@@ -75,7 +75,7 @@ const InvoiceDetailsTable = () => {
   const shop = searchParams.get("shop");
   const date = searchParams.get("date");
 
-  const url = "https://10.0.0.202:5001/api/InvoiceDetailsFront/" + invoiceID;
+  const url = "https://api.marlin.ge/api/InvoiceDetailsFront/" + invoiceID;
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["invoice-details", invoiceID],

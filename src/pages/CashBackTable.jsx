@@ -114,7 +114,7 @@ const shopsArr = [
   },
 ];
 
-const shopsUrl = "https://10.0.0.202:5001/api/Shops?page=1&pageSize=520"
+const shopsUrl = "https://api.marlin.ge/api/Shops?page=1&pageSize=520"
 
 
 const CashBackTable = () => {
@@ -149,6 +149,8 @@ const CashBackTable = () => {
   }
 
 
+  
+
   useEffect(() => {
     if(!shopsData) return
     if(selectedShop) return 
@@ -158,7 +160,7 @@ const CashBackTable = () => {
   },[shopsData])
 
   
-  const url = `https://10.0.0.202:5001/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
+  const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
@@ -171,6 +173,10 @@ const CashBackTable = () => {
     }
     return null;
   });
+
+  
+  console.log(shopsData, "shop data")
+  console.log(data, "table data")
 
   const [columnDefs] = useState(getCashBackTableDefs(data?.data[0].retroPercent));
 
@@ -190,6 +196,8 @@ const CashBackTable = () => {
       document.body.classList.remove("dashboard-main-fullscreen");
     }
   }, [isFullScreen]);
+
+
 
 
 

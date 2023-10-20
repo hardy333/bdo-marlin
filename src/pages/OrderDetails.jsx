@@ -68,7 +68,7 @@ const OrderDetails = () => {
   const orderID =
     searchParams.get("orderID") || "f0ce0829-044b-11ee-8123-005056b5a0aa";
 
-  const url = `https://10.0.0.202:5001/api/OrderDetailsFront/${orderID}`;
+  const url = `https://api.marlin.ge/api/OrderDetailsFront/${orderID}`;
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["order-details-data", orderID],

@@ -12,7 +12,7 @@ import VendorsModal from "../../components/VendorsModal";
 import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
 
-const vendorsUrl = "https://10.0.0.202:5001/api/Accounts"
+const vendorsUrl = "https://api.marlin.ge/api/Accounts"
 
 
 const Vendors = () => {
@@ -94,6 +94,7 @@ const Vendors = () => {
                   key={index}
                   index={index}
                   variant="active"
+                    
 
                 />
                 })
