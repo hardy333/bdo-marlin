@@ -18,6 +18,7 @@ const VendorsCard = ({
   index,
   openModal,
   vendorName,
+  productsCount
 }) => {
   const navigate = useNavigate();
 
@@ -136,7 +137,7 @@ const VendorsCard = ({
         </div>
       </div>
       <p className="vendor-card-products">
-        {Math.floor(Math.random() * 300 + 100)} პროდუქტი
+        {productsCount} პროდუქტი
       </p>
       <div className="vendor-card-bottom">
         {variant === "disabled" ? footerDisabled : footerActive}

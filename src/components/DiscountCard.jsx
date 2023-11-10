@@ -59,7 +59,7 @@ const DiscountCard = ({
             urlParams.append("retroBonusID", retroBonusID);
             urlParams.append("documentNo", documentNo);
             urlParams.append("startDate", startDate);
-            urlParams.append("vendor", selectedVendor.value);
+            urlParams.append("vendor", selectedVendor?.value);
             urlParams.append("planAmount", planAmount);
             urlParams.append("condition", condition);
             urlParams.append("retroPercent", retroPercent);

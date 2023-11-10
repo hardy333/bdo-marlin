@@ -1,14 +1,17 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, } from "react";
 
 export const AuthContext = createContext();
 
 const x = window.localStorage.getItem("user");
 
-let res = null;
+let user = null;
+
 if (x) {
-  res = JSON.parse(x);
+  user = JSON.parse(x);
 }
 
+
+console.log("authontext user", x, user)
 
 
 
@@ -24,14 +27,16 @@ export const authReducer = (state, action) => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, {user: res});
+  const [state, dispatch] = useReducer(authReducer, {user});
+
+  console.log("autontext state", state)
 
   
   
 
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{  ...state, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

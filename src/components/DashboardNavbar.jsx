@@ -48,6 +48,7 @@ const DashboardNavbar = () => {
 
   const handleLogout = () => {
     logout();
+    navigate("/login")
   };
 
   return (

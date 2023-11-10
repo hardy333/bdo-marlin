@@ -19,6 +19,8 @@ const Login = () => {
 
   const { user } = useAuthContext()
 
+  console.log("Login user", user)
+
 
 
   if(user){
@@ -31,8 +33,6 @@ const Login = () => {
     document.body.style.minHeight = "0px";
   }, [])
 
-  console.log({isLoading})
-  console.log({error})
   
   
   return (

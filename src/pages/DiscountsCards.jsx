@@ -9,9 +9,10 @@ import DatePickerInput from "../components/DatePickerInput";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 
-
+// R00001 უნდა განისაზღვროს დალოგინების დროს. 
+// D00001 განისაზღვრება სელექთ მენიუს დახმარებით. 
 const url = "https://api.marlin.ge/api/RBFront/R00001/D00001"
-const vendorsUrl = "https://api.marlin.ge/api/Accounts"
+const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
 
 const DiscountsCards = () => {
@@ -38,6 +39,7 @@ const DiscountsCards = () => {
 
   }
   
+  console.log({selectedVendor})
 
   
   
@@ -58,6 +60,7 @@ const DiscountsCards = () => {
             defaultMenuIsOpen={false}
              
           />
+
 
           <DatePickerInput />
           <div className="input-wrapper">

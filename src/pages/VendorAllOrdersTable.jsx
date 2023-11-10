@@ -43,7 +43,7 @@ import RowHeightMediumSvg from "../components/RowHeightMediumSvg";
 import useFilterToggle from "../hooks/useFilterToggle";
 
 // import d from "../assets/ALL_ORDERS_PARENT_MOCK_DATA .json";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
@@ -337,6 +337,11 @@ const VendorAllOrdersTable = () => {
 
   useCopyTable(gridReady);
 
+  const [searchParams] = useSearchParams();
+
+  let vendor = searchParams.get("vendor") || 308.4;
+
+
   return (
     <>
       <header className="all-orders__header vendor-all-orders">
@@ -351,7 +356,7 @@ const VendorAllOrdersTable = () => {
               <span className="heading__left">ყველა შეკვეთა:</span>
               <span className="heading__right" style={{ color: "#6E0FF5" }}>
                 {" "}
-                მომწოდებელი 1
+                {vendor}
               </span>
             </span>
           </div>

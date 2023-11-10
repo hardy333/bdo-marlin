@@ -61,8 +61,8 @@ const CatalogueTable = () => {
     ["catalogueTableData", subCatId],
     () => fetchData(url)
   );
-
   
+    
   
   useEffect(() => {
     refetch();

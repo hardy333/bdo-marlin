@@ -39,6 +39,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 import useUrlStorageState from "../hooks/useUrlStorageState";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 
@@ -51,9 +52,12 @@ const AllOrdersParent = () => {
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
   const [openedRowId, setOpenedRowId] = useState(null);
 
+
   const gridRef = useRef(null);
 
-  const url = "https://api.marlin.ge/api/OrdersByAccountFront/R00001";
+  const { user } = useAuthContext()
+  
+  const url = "https://api.marlin.ge/api/OrdersByAccountFront/" + user.decodedToken.AccountID;
 
   const { isLoading, error, data } = useQuery("all-orders-data", () => fetchData(url));
 

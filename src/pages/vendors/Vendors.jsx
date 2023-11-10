@@ -12,7 +12,7 @@ import VendorsModal from "../../components/VendorsModal";
 import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
 
-const vendorsUrl = "https://api.marlin.ge/api/Accounts"
+const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
 
 const Vendors = () => {
@@ -63,37 +63,17 @@ const Vendors = () => {
 
         <div className="vendors-card-container">
           <AnimatePresence initial={false}>
-            {/* {vendorsData
-              .filter((vendorObj) =>
-                isChecked ? true : vendorObj.status === "active"
-              )
-              .map((vendorObj, index) => {
-                return vendorObj.status === "active" ? (
-                  <VendorsCard
-                    openModal={openModal}
-                    key={index}
-                    index={index}
-                    variant="active"
-                    vendorName={vendorObj.name}
-                  />
-                ) : (
-                  <VendorsCard
-                    openModal={openModal}
-                    vendorName={vendorObj.name}
-                    key={index}
-                    index={index}
-                  />
-                );
-              })} */}
-
               {
                 vendorsData?.data.filter(vendorObj => vendorObj.supplier).map((vendorObj, index) => {
+                  console.log(vendorObj.productsCount)
+                  
                   return   <VendorsCard
                   openModal={openModal}
                   vendorName={vendorObj.name}
                   key={index}
                   index={index}
                   variant="active"
+                  productsCount={vendorObj.productsCount}
                     
 
                 />

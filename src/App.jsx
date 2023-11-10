@@ -73,26 +73,21 @@ import SlaByShops from "./pages/SlaByShops";
 import SlaByItem from "./pages/SlaByItem";
 import SlaByOrders from "./pages/SlaByOrders";
 import { useAuthContext } from "./hooks/useAuthContext";
+import Retailers from "./vendorPages/retailers/Retailers";
+import VendorAllOrders from "./vendorPages/allOrders/VendorAllOrders";
+import RetroBonuses from "./vendorPages/retroBonuses/RetroBonuses";
 // Table Pages END
-import jwt_decode from "jwt-decode";
 
 const queryClient = new QueryClient();
 
 function App() {
-
   const { user } = useAuthContext()
 
-  if(user?.token){
-
-    var decoded = jwt_decode(user?.token);
-    
-  }
 
 
 
 
-  
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
@@ -153,6 +148,13 @@ function App() {
             <Route path="/vendors" element={<Vendors />} />
 
             <Route path="/*" element={<Error />} />
+            {/* Vendors */}
+            {/* Vendors */}
+            {/* Vendors */}
+
+            <Route path="/retailers" element={<Retailers />}/>
+            <Route path="/vendor-all-orders-vendor" element={<VendorAllOrders  />}/>
+            <Route path="/retro-bonuses" element={<RetroBonuses />}/>
           </Route>
           {/* Dashboard Layout End */}
         </Route>

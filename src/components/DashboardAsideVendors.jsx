@@ -1,13 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import catalog from "../assets/icons/menu-icons/catalog.png";
-// import customer from "../assets/icons/menu-icons/customer.png";
-// import invoice from "../assets/icons/menu-icons/invoice.png";
-// import paper from "../assets/icons/menu-icons/paper.png";
-// import settings from "../assets/icons/menu-icons/settings.png";
-// import shoppingbag from "../assets/icons/menu-icons/shopping-bag.png";
-// import team from "../assets/icons/menu-icons/team-management.png";
-// import terms from "../assets/icons/menu-icons/terms-and-conditions.png";
-
 // News Images
 import marlinText from "../assets/navbar/marlin-text.svg";
 
@@ -15,7 +6,7 @@ import marlinText from "../assets/navbar/marlin-text.svg";
 import { Link, NavLink } from "react-router-dom";
 import { AsideBtnSvg, CatalogSvg, ContractSvg, EmployeesSvg, InvoicesSvg, OrdersSvg, ReportsSvg, RetroBonusSvg, SettingsSvg, TermsAndServicesSvg, VendorsSvg } from "./svgs/SidebarIcons";
 
-const DashboardAside = ({
+const DashboardAsideVendors = ({
   selected = false,
   left = true,
   responsive = true,
@@ -92,7 +83,7 @@ const DashboardAside = ({
           <ul ref={linkListRef} className="dashboard-aside__list">
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/vendors"
+                to="/retailers"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
@@ -103,12 +94,12 @@ const DashboardAside = ({
                   alt=""
                 /> */}
                 <VendorsSvg />
-                <span className="aside-label">მომწოდებლები</span>
+                <span className="aside-label">რითეილერები</span>
               </NavLink>
             </li>
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/all-orders-parent"
+                to="/vendor-all-orders"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
@@ -120,7 +111,7 @@ const DashboardAside = ({
             </li>
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/discounts-cards"
+                to="/vendor-retro-bonuses"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
@@ -132,7 +123,7 @@ const DashboardAside = ({
             </li>
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/catalogue"
+                to="/vendor-catalogue"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }
@@ -228,4 +219,4 @@ const DashboardAside = ({
   );
 };
 
-export default DashboardAside;
+export default DashboardAsideVendors;

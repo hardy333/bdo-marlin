@@ -3,9 +3,12 @@ import { Navigate, Outlet } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
-const AuthElement = ({children}) => {
+
+const AuthElement = () => {
   const { user } = useAuthContext()
 
+  console.log("protected", user)
+  
 
   if(!user){
     

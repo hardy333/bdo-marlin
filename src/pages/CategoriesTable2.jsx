@@ -51,8 +51,6 @@ import { allData, allExpData } from "./tableData";
 
 
 
-
-
 const CategoriesTable2 = () => {
   const [headerList, setHeaderList] = useState(categoriesHeaders);
 
