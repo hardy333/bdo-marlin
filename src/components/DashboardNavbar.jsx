@@ -1,19 +1,20 @@
 import React from "react";
 
-import ring from "../assets/navbar/ring.svg";
-import user from "../assets/navbar/user.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowBack from "../assets/back-arrow.svg";
 import { BiMenu } from "react-icons/bi";
 
 import "../styles/dashboard-navbar.css";
 import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const startingPages = ["/login", "/register"];
 
 const DashboardNavbar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
+  const {user} = useAuthContext()
 
   let isContract = false;
 
@@ -78,6 +79,10 @@ const DashboardNavbar = () => {
             <Link to="/profile">
               {/* <img src={user} alt="" /> */}
               <UserSvg />
+              <span style={{background: "", fontFamily: "Inter", paddingLeft: "5px"}}>
+
+              {user.decodedToken.FirstName}
+              </span>
             </Link>
             <Link to="/">
               {/* <img src={ring} alt="" /> */}

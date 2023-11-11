@@ -1,28 +1,11 @@
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
 
-// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
-// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
-
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
-
-// css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
-import "../styles/invoice-details-table.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -32,12 +15,10 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d from "../assets/invoice-details.json";
 
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import {  useNavigate, useSearchParams } from "react-router-dom";
 import AgTablePag from "../components/AgTablePag";
 
-import { invoicesTableHeaderList } from "../column-definitions/InvoicesTableDefs";
 import {
   InvoiceDetailsTableDefs,
   invoiceDetailsTableHeaderList,

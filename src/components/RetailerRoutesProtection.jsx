@@ -6,9 +6,6 @@ const RetailerRoutesProtection = () => {
 
     const { user } = useAuthContext()
 
-  console.log("protected", user)
-  
-  console.log("..", user.decodedToken.IsRetail !== "True")
 
   if(user.decodedToken.IsRetail !== "True"){
     return <Navigate to="/"  />

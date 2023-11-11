@@ -4,25 +4,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
 
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
-
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
-
-// css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
-
-const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
 import "../styles/ag-grid.css";
@@ -48,9 +33,7 @@ import useCopyTable from "../hooks/useCopyTable";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg,  ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 
-
-
-
+const pageSizes = [5, 10, 15, 20, 25, 30];
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -167,14 +150,6 @@ const OrderDetails = () => {
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
-
-  // useEffect(() => {
-  //   if(status == "რეალიზებულია"){
-  //     gridColumnApi?.setColumnVisible("reservedQuantity", false);
-
-  //   }
-
-  // },[gridColumnApi, gridApi, gridReady])
 
   useCopyTable(gridReady);
 
@@ -366,10 +341,6 @@ const OrderDetails = () => {
                 return 37;
               }
             }}
-            // enableRangeSelection={true}
-            // copyHeadersToClipboard={true}
-            // rowSelection={"multiple"}
-            // paginationAutoPageSize={true}
             paginationPageSize={pageSize}
           ></AgGridReact>
 

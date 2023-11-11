@@ -33,11 +33,12 @@ body {
   /* font-family: "BPG Nateli", sans-serif !important; */
 
   /* font-family: 'Inter'; */
-  font-family: "DejaVu Sans", sans-serif !important;
+  font-family: "DejaVu Sans", sans-serif;
 
   position: relative;
 
   background-color: #f9f8fc;
+  color: var(--color-text-1);
 }
 
 .parag {
@@ -74,8 +75,10 @@ span,
 label,
 input,
 input::placeholder {
-  font-family: "DejaVu Sans", sans-serif !important;
+  font-family: "DejaVu Sans", sans-serif ;
 }
+
+
 
 body.body-sidebar-open {
   --sidebar-width: 190px;

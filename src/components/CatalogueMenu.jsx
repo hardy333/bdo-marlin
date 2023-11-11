@@ -12,9 +12,9 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
   const [selectedProduct, setSelectedProduct] = useState("ჩიფსი");
-  // ....
+  // .... 
   const [isOutsideWrapper, setIsOutsideWrapper] = useState(true);
-  // Search values
+  // Search values 
   const [categorySearchValue, setCategorySearchValue] = useState("");
   const [subCategorySearchValue, setSubCategorySearchValue] = useState("");
 
@@ -99,12 +99,7 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
     return resArr;
   }, [data]);
 
-  // const [rowData, setRowData] = useState(() => {
-  //   if (data || data?.data) {
-  //     return data.data;
-  //   }
-  //   return null;
-  // });
+ 
 
   // ------------------------ //
 

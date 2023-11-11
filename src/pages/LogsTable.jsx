@@ -1,19 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
 
-// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
-// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
-
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
-
-// css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -24,9 +11,7 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import ExpandingInput from "../components/ExpandingInput";
 
-import "../styles/logs.css";
 
-// import d from "../assets/LOGS_MOCK_DATA.json";
 import useFilterToggle from "../hooks/useFilterToggle";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import { LogsTableDefs } from "../column-definitions/LogsTableDefs";

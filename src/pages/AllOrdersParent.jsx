@@ -4,25 +4,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
+
+
 
 import { AgGridReact } from "ag-grid-react";
 
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
-
 // css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/all-orders-parent.css";
-
-const pageSizes = [5, 10, 15, 20, 25, 30];
-
-// css
-import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -41,6 +28,7 @@ import AgTablePag from "../components/AgTablePag";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+const pageSizes = [5, 10, 15, 20, 25, 30];
 
 
 const AllOrdersParent = () => {

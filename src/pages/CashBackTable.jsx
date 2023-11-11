@@ -1,34 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-material.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
-
-// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
-// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
-
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/slide.css";
-// css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
-import "../styles/cash-back-table.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
-import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
-import "../styles/discounts-table-2.css";
 import Select from "react-select";
 
-import "../styles/discounts-table.css";
 import useRemoveId from "../components/useRemoveId";
 
 import {
@@ -46,76 +27,7 @@ import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 
-const shopsArr = [
-  {
-    value: "  აბაშა",
-    label: "  აბაშა",
-  },
-
-  {
-    value: "ამბროლაური, ჭრებალო #163",
-    label: "ამბროლაური, ჭრებალო #163",
-  },
-  {
-    value: "ბათუმი, ბრწყინავლე 42",
-    label: "ბათუმი, ბრწყინავლე 42",
-  },
-  {
-    value: "ბათუმი, გორგასალის 1",
-    label: "ბათუმი, გორგასალის 1",
-  },
-  {
-    value: "ბათუმი, ზუბალაშვილის N3",
-    label: "ბათუმი, ზუბალაშვილის N3",
-  },
-  {
-    value: "ბაკურაინი #161",
-    label: "ბაკურაინი #161",
-  },
-  {
-    value: "ბათუმი, ლერმონტო",
-    label: "ბათუმი, ლერმონტო",
-  },
-  {
-    value: "გურჯაანი, ბაკურციხე",
-    label: "გურჯაანი, ბაკურციხე",
-  },
-  {
-    value: "ზუგდიდი, გამსახურდიას 38",
-    label: "ზუგდიდი, გამსახურდიას 38",
-  },
-  {
-    value: "ზესტაფონი, სვირი 2",
-    label: "ზესტაფონი, სვირი 2",
-  },
-  {
-    value: "გორი",
-    label: "გორი",
-  },
-  {
-    value: "ვანი",
-    label: "ვანი",
-  },
-  {
-    value: "ზუგდიდი, სანაპიროს 10",
-    label: "ზუგდიდი, სანაპიროს 10",
-  },
-  {
-    value: "ქუთაისი 11",
-    label: "ქუთაისი 11",
-  },
-  {
-    value: "ბაღდათი, წერეთლის 18",
-    label: "ბაღდათი, წერეთლის 18",
-  },
-  {
-    value: "ამბროლაური, კოსტავას 6",
-    label: "ამბროლაური, კოსტავას 6",
-  },
-];
-
 const shopsUrl = "https://api.marlin.ge/api/Shops?page=1&pageSize=520"
-
 
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -144,12 +56,8 @@ const CashBackTable = () => {
   const handleShopChange = (x) => {
     setSelectedShop(x)
 
-
-
   }
 
-
-  
 
   useEffect(() => {
     if(!shopsData) return
@@ -174,9 +82,6 @@ const CashBackTable = () => {
     return null;
   });
 
-  
-  console.log(shopsData, "shop data")
-  console.log(data, "table data")
 
   const [columnDefs] = useState(getCashBackTableDefs(data?.data[0].retroPercent));
 
@@ -196,9 +101,6 @@ const CashBackTable = () => {
       document.body.classList.remove("dashboard-main-fullscreen");
     }
   }, [isFullScreen]);
-
-
-
 
 
 
@@ -240,7 +142,6 @@ const CashBackTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
-
 
 
   
