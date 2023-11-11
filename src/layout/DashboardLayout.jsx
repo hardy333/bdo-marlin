@@ -5,6 +5,8 @@ import DashboardAsideLight from "../components/DashboardAsideLight";
 import { Outlet } from "react-router";
 import { useLocation } from "react-router-dom";
 import messengerImg from "../assets/messenger.svg";
+import { useAuthContext } from "../hooks/useAuthContext";
+import DashboardAsideVendors from "../components/DashboardAsideVendors";
 
 const staticMainPathnames = ["/login", "/register", "/set-password"];
 
@@ -23,12 +25,14 @@ const DashboardLayout = ({ light = false }) => {
   }
   const pageName = pathname.slice(1)
 
+  const {user} = useAuthContext()
+
   return (
     <div className={`dashboard ${classN} ${pageName}-page`}>
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>
-      {light ? <DashboardAsideLight left={true} /> : <DashboardAside />}
+      {user.decodedToken.IsRetail === "True" ?  <DashboardAside /> : <DashboardAsideVendors />}
       <DashboardNavbar />
       <main className={`dashboard-main ${staticMain ? "static" : ""}`}>
         <Outlet />

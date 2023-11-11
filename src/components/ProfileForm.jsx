@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProfileForm = () => {
+  const {user } = useAuthContext()
 
   const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: user.decodedToken.FirstName,
+    lastName: user.decodedToken.LastName,
     number: "",
-    email: ""
+    email: user.decodedToken.Email
   })
+
+  console.log(user)
 
   const onChnage = (e) => {
     setInputs({...inputs, [e.target.name]: e.target.value})
@@ -31,6 +35,7 @@ const ProfileForm = () => {
           type="text"
           id="name"
           placeholder="თქვენი სახელი"
+          value={inputs.firstName}
         />
       </div>
       {/* 2 */}
@@ -41,6 +46,7 @@ const ProfileForm = () => {
           type="text"
           id="surname"
           placeholder="თქვენი გვარი"
+          value={inputs.lastName}
         />
       </div>
       {/* 3 */}
@@ -51,7 +57,7 @@ const ProfileForm = () => {
       {/* 4 */}
       <div className="form-control">
         <label htmlFor="email">მეილი</label>
-        <input className="input" type="text" placeholder="თქვენი მეილი" />
+        <input className="input" type="text" placeholder="თქვენი მეილი" value={inputs.email} />
       </div>
       <button className="btn btn-success">განახლება</button>
     </form>

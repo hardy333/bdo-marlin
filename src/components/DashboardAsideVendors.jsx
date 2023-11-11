@@ -99,7 +99,7 @@ const DashboardAsideVendors = ({
             </li>
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/vendor-all-orders"
+                to="/vendor-all-orders-vendor"
                 className={({ isActive, isPending }) =>
                   isPending ? "pending" : isActive ? "active" : ""
                 }

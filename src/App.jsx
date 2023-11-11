@@ -18,7 +18,7 @@ import "./styles/floating-filter.css";
 import "./styles/table-global.css";
 import "./styles/switch.css";
 import "./styles/info-badge.css";
-import "./styles/copy-paste-table.css"
+import "./styles/copy-paste-table.css";
 
 import Employees from "./pages/Employees";
 import Dash from "./pages/Dash";
@@ -76,17 +76,14 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Retailers from "./vendorPages/retailers/Retailers";
 import VendorAllOrders from "./vendorPages/allOrders/VendorAllOrders";
 import RetroBonuses from "./vendorPages/retroBonuses/RetroBonuses";
+import RetailerRoutesProtection from "./components/RetailerRoutesProtection";
+import SupplierRoutesProtection from "./components/SupplierRoutesProtection";
 // Table Pages END
 
 const queryClient = new QueryClient();
 
 function App() {
-  const { user } = useAuthContext()
-
-
-
-
-
+  const { user } = useAuthContext();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -98,14 +95,18 @@ function App() {
 
         <Route element={<AuthElement />}>
           <Route element={<DashboardLayout />}>
-            <Route
-              path="/"
-              element={
-                  <Dash />
-              }
-            />
+            {/* Non Protected Routes Start */}
+            <Route path="/" element={<Dash />} />
+            <Route path="/profile" element={<Profile />}>
+              <Route index element={<ProfileForm />} />
+              <Route path="change-password" element={<PasswordForm />} />
+            </Route>
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/contract" element={<Contract />} />
+            {/* Non Protected Routes End */}
 
-            {/* Table Pages   */}
+            <Route element={<RetailerRoutesProtection />}>
+              {/* Table Pages   */}
               <Route path="/invoices-table" element={<InvoicesTable />} />
               <Route path="/stable-table" element={<StableTable />} />
               <Route
@@ -133,28 +134,31 @@ function App() {
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
-            {/* Table Pages End */}
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/colors-page" element={<ColorsPage />} />
-            <Route path="/password-page" element={<PasswordPage />} />
-            <Route path="/discounts-cards" element={<DiscountsCards />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/contract" element={<Contract />} />
-            <Route path="/prices" element={<Prices />} />
-            <Route path="/profile" element={<Profile />}>
-              <Route index element={<ProfileForm />} />
-              <Route path="change-password" element={<PasswordForm />} />
+              {/* Table Pages End */}
+              <Route path="/employees" element={<Employees />} />
+              <Route path="/colors-page" element={<ColorsPage />} />
+              <Route path="/password-page" element={<PasswordPage />} />
+              <Route path="/discounts-cards" element={<DiscountsCards />} />
+
+              <Route path="/prices" element={<Prices />} />
+
+              <Route path="/vendors" element={<Vendors />} />
             </Route>
-            <Route path="/vendors" element={<Vendors />} />
+            {/* Retailer protected route end  */}
 
             <Route path="/*" element={<Error />} />
             {/* Vendors */}
             {/* Vendors */}
             {/* Vendors */}
 
-            <Route path="/retailers" element={<Retailers />}/>
-            <Route path="/vendor-all-orders-vendor" element={<VendorAllOrders  />}/>
-            <Route path="/retro-bonuses" element={<RetroBonuses />}/>
+            <Route element={<SupplierRoutesProtection />}>
+              <Route path="/retailers" element={<Retailers />} />
+              <Route
+                path="/vendor-all-orders-vendor"
+                element={<VendorAllOrders />}
+              />
+              <Route path="/retro-bonuses" element={<RetroBonuses />} />
+            </Route>
           </Route>
           {/* Dashboard Layout End */}
         </Route>
