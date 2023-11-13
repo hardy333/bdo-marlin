@@ -161,7 +161,7 @@ const CatalogueTable = () => {
 
   const [selectedVendor, setSelectedVendor] = useState(null);
 
-  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
+  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFrontss";
   const {
     isLoading: vendorsIsLoading,
     error: vendorsError,
