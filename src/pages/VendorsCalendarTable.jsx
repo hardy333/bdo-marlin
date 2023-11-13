@@ -5,11 +5,26 @@ import React, {
   useRef,
   useState,
 } from "react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import "../styles/ag-table-scrollbar.css";
 
+
+// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
+// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
 
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 
+// css
+import "../styles/all-orders.css";
+import "../styles/global-filter-input.css";
 
+import "../styles/all-orders-parent.css";
+import "../styles/vendors-calendar.css";
+import "../styles/vendors-calendar-table.css"
 
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
@@ -27,6 +42,26 @@ import d2 from "../assets/vendors-calendar-2.json";
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
+
+const vendors = [
+  "Orbita",
+  "Kant",
+  "Diplomat",
+  "Vest Inv.",
+  "Magako",
+  "GDM",
+  "Svaneti",
+];
+
+const options = [
+  { value: "Orbita", label: "Orbita" },
+  { value: "Kant", label: "Kant" },
+  { value: "Ready Meals", label: "Ready Meals" },
+  { value: "Diplomat", label: "Diplomat" },
+  { value: "Vest Inv", label: "Vest Inv." },
+  { value: "Magako", label: "Magako" },
+  { value: "Svaneti", label: "Svaneti" },
+];
 
 
 import vendorsArr from "../data/vendors-data";

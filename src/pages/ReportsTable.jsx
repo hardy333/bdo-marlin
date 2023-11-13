@@ -1,7 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import "../styles/ag-table-scrollbar.css";
 
 import { AgGridReact } from "ag-grid-react";
 
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
+// css
+import "../styles/all-orders.css";
+import "../styles/global-filter-input.css";
+import "../styles/order-details.css";
+import "../styles/pending-status-menu.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -12,6 +24,8 @@ import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 import "../styles/reports-table.css";
 
+import DatePickerBtn from "../components/DatePickerBtn";
+import { addDays } from "date-fns";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import TableSettings from "../components/TableSettings";
@@ -19,7 +33,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
-
+import { BsFillCalendarCheckFill } from "react-icons/bs";
 import DatePickerInput from "../components/DatePickerInput";
 import { ReportsTableDefs, reportsTableHeaderList } from "../column-definitions/ReportsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";

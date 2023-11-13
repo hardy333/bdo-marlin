@@ -8,21 +8,18 @@ import DatePickerInput from "../components/DatePickerInput";
 
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 // R00001 უნდა განისაზღვროს დალოგინების დროს. 
 // D00001 განისაზღვრება სელექთ მენიუს დახმარებით. 
+const url = "https://api.marlin.ge/api/RBFront/R00001/D00001"
 const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
 
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
-  const {user} = useAuthContext()
-
-  const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/D00001`
-
   const { isLoading, error, data } = useQuery("retro-bonus-cards-data", () => fetchData(url));
   const [selectedVendor,setSelectedVendor ] = useState(null)
+
 
   const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors", () => fetchData(vendorsUrl));
 
@@ -42,6 +39,7 @@ const DiscountsCards = () => {
 
   }
   
+  console.log({selectedVendor})
 
   
   

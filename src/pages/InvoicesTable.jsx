@@ -5,10 +5,27 @@ import React, {
   useRef,
   useState,
 } from "react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import "../styles/ag-table-scrollbar.css";
 
+// import "ag-grid-community/styles/ag-theme-alpine-dark.css";
+// import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
 
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
+
 // css
+import "../styles/all-orders.css";
+import "../styles/global-filter-input.css";
+import "../styles/invoices-table.css";
+
+const pageSizes = [5, 10, 15, 20, 25, 30];
+
+// css
+import "../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
@@ -22,13 +39,11 @@ import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import useOrdersNavigate from "../hooks/useOrdersNavigate";
 import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
 import InvoiceTableCards from "../components/InvoiceTableCards";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
-
-const pageSizes = [5, 10, 15, 20, 25, 30];
-
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);

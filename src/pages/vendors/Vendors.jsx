@@ -24,11 +24,13 @@ const Vendors = () => {
   }
 
   function openModal() {
+    console.log("Open modal");
     setIsOpen(true);
   }
 
   const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors-cards", () => fetchData(vendorsUrl));
 
+  console.log(vendorsData?.data)
   
 
   return (
@@ -36,6 +38,7 @@ const Vendors = () => {
       <section className="vendors">
         <header className="vendors-header justify-start">
           {/* 1 */}
+          <h4 className="text-[18px] font-semibold me-10">მომწოდებლები</h4>
           <div className="vendors-switch-container ">
             <p className="font-normal text-[14px]">ჩემი ვენდორები</p>
             <div className="toggle-switch me-auto">
@@ -62,6 +65,7 @@ const Vendors = () => {
           <AnimatePresence initial={false}>
               {
                 vendorsData?.data.filter(vendorObj => vendorObj.supplier).map((vendorObj, index) => {
+                  console.log(vendorObj.productsCount)
                   
                   return   <VendorsCard
                   openModal={openModal}
@@ -70,6 +74,8 @@ const Vendors = () => {
                   index={index}
                   variant="active"
                   productsCount={vendorObj.productsCount}
+                    
+
                 />
                 })
               }

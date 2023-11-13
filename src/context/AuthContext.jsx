@@ -11,6 +11,7 @@ if (x) {
 }
 
 
+console.log("authontext user", x, user)
 
 
 
@@ -27,6 +28,8 @@ export const authReducer = (state, action) => {
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {user});
+
+  console.log("autontext state", state)
 
   
   

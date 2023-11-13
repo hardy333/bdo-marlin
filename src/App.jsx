@@ -66,6 +66,7 @@ import OrderDetails from "./pages/OrderDetails";
 import Invoices2 from "./pages/Invoices2";
 import CashBackTable from "./pages/CashBackTable";
 import CategoriesTable from "./pages/CategoriesTable";
+import DiscountsTable2 from "./pages/DiscountsTable2";
 import StableTable from "./pages/StableTable";
 import InvoicesTable from "./pages/InvoicesTable";
 import SlaByShops from "./pages/SlaByShops";
@@ -102,16 +103,6 @@ function App() {
             </Route>
             <Route path="/terms" element={<Terms />} />
             <Route path="/contract" element={<Contract />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/logs" element={<LogsTable />} />
-
-            {/* Sla-pages */}
-            <Route path="/sla-by-shops" element={<SlaByShops />} />
-            <Route path="/sla-by-item" element={<SlaByItem />} />
-            <Route path="/sla-by-category" element={<CategoriesTable />} />
-            <Route path="/sla-by-orders" element={<SlaByOrders />} />
-            <Route path="/reports" element={<ReportsTable />} />
-
             {/* Non Protected Routes End */}
 
             <Route element={<RetailerRoutesProtection />}>
@@ -125,9 +116,15 @@ function App() {
               <Route path="/invoices2" element={<Invoices2 />} />
               <Route path="/order-details" element={<OrderDetails />} />
               <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+              <Route path="/logs" element={<LogsTable />} />
               <Route path="/categories" element={<CategoriesTable />} />
               <Route path="/cash-back-table" element={<CashBackTable />} />
-
+              <Route path="/sla-by-shops" element={<SlaByShops />} />
+              <Route path="/sla-by-item" element={<SlaByItem />} />
+              <Route path="/sla-by-category" element={<CategoriesTable />} />
+              <Route path="/sla-by-orders" element={<SlaByOrders />} />
+              <Route path="/reports" element={<ReportsTable />} />
+              <Route path="/discounts-table" element={<DiscountsTable2 />} />
               <Route path="/catalogue" element={<CatalogueTable />} />
               <Route
                 path="/vendors-calendar"
@@ -137,6 +134,8 @@ function App() {
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
+              {/* Table Pages End */}
+              <Route path="/employees" element={<Employees />} />
               <Route path="/colors-page" element={<ColorsPage />} />
               <Route path="/password-page" element={<PasswordPage />} />
               <Route path="/discounts-cards" element={<DiscountsCards />} />
