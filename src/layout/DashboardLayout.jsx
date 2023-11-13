@@ -32,7 +32,7 @@ const DashboardLayout = ({ light = false }) => {
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>
-      {user.decodedToken.IsRetail === "True" ?  <DashboardAside /> : <DashboardAsideVendors />}
+      {user.decodedToken.IsRetail === "1" ?  <DashboardAside /> : <DashboardAsideVendors />}
       <DashboardNavbar />
       <main className={`dashboard-main ${staticMain ? "static" : ""}`}>
         <Outlet />

@@ -10,7 +10,7 @@ const RetailerRoutesProtection = () => {
   
   console.log("..", user.decodedToken.IsRetail !== "True")
 
-  if(user.decodedToken.IsRetail !== "True"){
+  if(user.decodedToken.IsRetail === "0"){
     return <Navigate to="/"  />
   }
 

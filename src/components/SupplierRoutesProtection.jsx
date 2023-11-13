@@ -8,7 +8,7 @@ const SupplierRoutesProtection = () => {
     console.log("protected", user)
     
   
-    if(user.decodedToken.IsRetail === "True"){
+    if(user.decodedToken.IsRetail === "1"){
       return <Navigate to="/"  />
     }
   
