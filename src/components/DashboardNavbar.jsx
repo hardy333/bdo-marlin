@@ -8,6 +8,7 @@ import { BiMenu } from "react-icons/bi";
 
 import "../styles/dashboard-navbar.css";
 import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const startingPages = ["/login", "/register"];
 
@@ -51,6 +52,8 @@ const DashboardNavbar = () => {
     navigate("/login")
   };
 
+  const {user} = useAuthContext()
+
   return (
     <header
       className={`dashboard-navbar ${
@@ -78,6 +81,7 @@ const DashboardNavbar = () => {
             <Link to="/profile">
               {/* <img src={user} alt="" /> */}
               <UserSvg />
+              <span style={{paddingLeft: "10px", fontFamily: "Inter"}}>{user.decodedToken.FirstName}</span>
             </Link>
             <Link to="/">
               {/* <img src={ring} alt="" /> */}

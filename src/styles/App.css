@@ -33,7 +33,7 @@ body {
   /* font-family: "BPG Nateli", sans-serif !important; */
 
   /* font-family: 'Inter'; */
-  font-family: "DejaVu Sans", sans-serif !important;
+  font-family: "DejaVu Sans", sans-serif ;
 
   position: relative;
 
@@ -42,7 +42,7 @@ body {
 
 .parag {
   color: red;
-  font-family: "DejaVu Sans", sans-serif !important;
+  font-family: "DejaVu Sans", sans-serif ;
   font-size: 26px;
 }
 
@@ -74,7 +74,7 @@ span,
 label,
 input,
 input::placeholder {
-  font-family: "DejaVu Sans", sans-serif !important;
+  font-family: "DejaVu Sans", sans-serif ;
 }
 
 body.body-sidebar-open {
