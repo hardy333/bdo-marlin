@@ -5,7 +5,6 @@ import { Navigate, Outlet } from 'react-router-dom'
 const SupplierRoutesProtection = () => {
     const { user } = useAuthContext()
 
-    console.log("protected", user)
     
   
     if(user.decodedToken.IsRetail === "1"){

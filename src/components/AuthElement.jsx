@@ -7,7 +7,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 const AuthElement = () => {
   const { user } = useAuthContext()
 
-  console.log("protected", user)
   
 
   if(!user){
