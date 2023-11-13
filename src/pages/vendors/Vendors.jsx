@@ -38,7 +38,6 @@ const Vendors = () => {
       <section className="vendors">
         <header className="vendors-header justify-start">
           {/* 1 */}
-          <h4 className="text-[18px] font-semibold me-10">მომწოდებლები</h4>
           <div className="vendors-switch-container ">
             <p className="font-normal text-[14px]">ჩემი ვენდორები</p>
             <div className="toggle-switch me-auto">

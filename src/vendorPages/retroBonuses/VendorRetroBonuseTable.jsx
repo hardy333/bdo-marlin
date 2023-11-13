@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
+import "../../styles/ag-table-scrollbar.css";
 
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
@@ -12,44 +12,44 @@ import { AgGridReact } from "ag-grid-react";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 // css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
-import "../styles/cash-back-table.css";
+import "../../styles/all-orders.css";
+import "../../styles/global-filter-input.css";
+import "../../styles/order-details.css";
+import "../../styles/pending-status-menu.css";
+import "../../styles/cash-back-table.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
-import "../styles/ag-grid.css";
+import "../../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import CustomHeaderCell from "../components/CustomHeaderCell";
-import CustomInput from "../components/CustomInput";
-import "../styles/discounts-table-2.css";
+import CustomHeaderCell from "../../components/CustomHeaderCell";
+import CustomInput from "../../components/CustomInput";
+import "../../styles/discounts-table-2.css";
 import Select from "react-select";
 
-import "../styles/discounts-table.css";
-import useRemoveId from "../components/useRemoveId";
+import "../../styles/discounts-table.css";
+import useRemoveId from "../../components/useRemoveId";
 
 import {
   getCashBackTableDefs,
   cashBackTableHeaderList,
-} from "../column-definitions/CashBackTableDefs";
-import TableSettings from "../components/TableSettings";
+} from "../../column-definitions/CashBackTableDefs";
+import TableSettings from "../../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
-import { fetchData } from "../utils/fetchData";
+import { fetchData } from "../../utils/fetchData";
 import Tippy from "@tippyjs/react";
 import { useSearchParams } from "react-router-dom";
-import BonusTableCards from "../components/BonusTableCards";
-import useCopyTable from "../hooks/useCopyTable";
-import AgTablePag from "../components/AgTablePag";
-import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
+import BonusTableCards from "../../components/BonusTableCards";
+import useCopyTable from "../../hooks/useCopyTable";
+import AgTablePag from "../../components/AgTablePag";
+import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../../components/svgs/InfoBadgeSvgs";
 
 const shopsUrl = "https://api.marlin.ge/api/Shops?page=1&pageSize=520"
 
 
-const CashBackTable = () => {
+const VendorRetroBonusTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridApi, setGridApi] = useState(null);
@@ -70,7 +70,7 @@ const CashBackTable = () => {
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
-  const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("retro-bonus-table-shops", () => fetchData(shopsUrl));
+  const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("vendor-retro-bonus-table-shops", () => fetchData(shopsUrl));
   const [selectedShop,setSelectedShop ] = useState(null)
 
   const handleShopChange = (x) => {
@@ -95,7 +95,7 @@ const CashBackTable = () => {
   const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
+    queryKey: ["vendor-retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
   });
 
@@ -400,4 +400,4 @@ const CashBackTable = () => {
   );
 };
 
-export default CashBackTable;
+export default VendorRetroBonusTable;

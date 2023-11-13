@@ -78,6 +78,8 @@ import VendorAllOrders from "./vendorPages/allOrders/VendorAllOrders";
 import RetroBonuses from "./vendorPages/retroBonuses/RetroBonuses";
 import RetailerRoutesProtection from "./components/RetailerRoutesProtection";
 import SupplierRoutesProtection from "./components/SupplierRoutesProtection";
+import VendorRetroBonusTable from "./vendorPages/retroBonuses/VendorRetroBonuseTable";
+import VendorOrderDetails from "./vendorPages/orderDetails/VendorOrderDetails";
 // Table Pages END
 
 const queryClient = new QueryClient();
@@ -103,6 +105,17 @@ function App() {
             </Route>
             <Route path="/terms" element={<Terms />} />
             <Route path="/contract" element={<Contract />} />
+            <Route path="/sla-by-shops" element={<SlaByShops />} />
+            <Route path="/sla-by-item" element={<SlaByItem />} />
+            <Route path="/sla-by-category" element={<CategoriesTable />} />
+            <Route path="/sla-by-orders" element={<SlaByOrders />} />
+            <Route path="/reports" element={<ReportsTable />} />
+            <Route path="/logs" element={<LogsTable />} />
+            <Route
+                path="/vendors-calendar"
+                element={<VendorsCalendarTable />}
+              />
+              <Route path="/employees" element={<Employees />} />
             {/* Non Protected Routes End */}
 
             <Route element={<RetailerRoutesProtection />}>
@@ -116,26 +129,17 @@ function App() {
               <Route path="/invoices2" element={<Invoices2 />} />
               <Route path="/order-details" element={<OrderDetails />} />
               <Route path="/all-orders-parent" element={<AllOrdersParent />} />
-              <Route path="/logs" element={<LogsTable />} />
               <Route path="/categories" element={<CategoriesTable />} />
               <Route path="/cash-back-table" element={<CashBackTable />} />
-              <Route path="/sla-by-shops" element={<SlaByShops />} />
-              <Route path="/sla-by-item" element={<SlaByItem />} />
-              <Route path="/sla-by-category" element={<CategoriesTable />} />
-              <Route path="/sla-by-orders" element={<SlaByOrders />} />
-              <Route path="/reports" element={<ReportsTable />} />
+
               <Route path="/discounts-table" element={<DiscountsTable2 />} />
               <Route path="/catalogue" element={<CatalogueTable />} />
-              <Route
-                path="/vendors-calendar"
-                element={<VendorsCalendarTable />}
-              />
+            
               <Route
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
               {/* Table Pages End */}
-              <Route path="/employees" element={<Employees />} />
               <Route path="/colors-page" element={<ColorsPage />} />
               <Route path="/password-page" element={<PasswordPage />} />
               <Route path="/discounts-cards" element={<DiscountsCards />} />
@@ -157,7 +161,9 @@ function App() {
                 path="/vendor-all-orders-vendor"
                 element={<VendorAllOrders />}
               />
-              <Route path="/retro-bonuses" element={<RetroBonuses />} />
+              <Route path="vendor-order-details" element={<VendorOrderDetails />}/>
+              <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
+              <Route path="/vendor-retro-bonuse-table" element={<VendorRetroBonusTable />} />
             </Route>
           </Route>
           {/* Dashboard Layout End */}
