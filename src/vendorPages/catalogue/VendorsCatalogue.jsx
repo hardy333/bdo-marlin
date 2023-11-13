@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "../styles/ag-table-scrollbar.css";
+import "../../styles/ag-table-scrollbar.css";
 
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
@@ -12,44 +12,44 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
 // css
-import "../styles/all-orders.css";
-import "../styles/global-filter-input.css";
-import "../styles/order-details.css";
-import "../styles/pending-status-menu.css";
-import "../styles/catalogue-table.css";
+import "../../styles/all-orders.css";
+import "../../styles/global-filter-input.css";
+import "../../styles/order-details.css";
+import "../../styles/pending-status-menu.css";
+import "../../styles/catalogue-table.css";
 import Select from "react-select";
 
 // images
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
-import "../styles/catalogue.css";
+import "../../styles/catalogue.css";
 
 // css
-import "../styles/ag-grid.css";
+import "../../styles/ag-grid.css";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
-import CustomHeaderCell from "../components/CustomHeaderCell";
-import CustomInput from "../components/CustomInput";
+import CustomHeaderCell from "../../components/CustomHeaderCell";
+import CustomInput from "../../components/CustomInput";
 
-import AgTablePag from "../components/AgTablePag";
-import CatalogueMenu from "../components/CatalogueMenu";
-import useRemoveId from "../components/useRemoveId";
+import AgTablePag from "../../components/AgTablePag";
+import CatalogueMenu from "../../components/CatalogueMenu";
+import useRemoveId from "../../components/useRemoveId";
 import { useQuery } from "react-query";
-import ProgressBar from "../components/ProgressBar";
-import { fetchData } from "../utils/fetchData";
+import ProgressBar from "../../components/ProgressBar";
+import { fetchData } from "../../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
-import MobileCatalogueMenu from "../components/MobileCatalogueMenu";
+import MobileCatalogueMenu from "../../components/MobileCatalogueMenu";
 import { BiFoodMenu } from "react-icons/bi";
-import CatalogueCards from "../components/CatalogueCards";
+import CatalogueCards from "../../components/CatalogueCards";
 import {
   CatalogueTableDefs,
   catalogueTableHeaderList,
-} from "../column-definitions/CatalogueTableDefs";
-import TableSettings from "../components/TableSettings";
-import vendorsArr from "../data/vendors-data";
-import useCopyTable from "../hooks/useCopyTable";
-import { useAuthContext } from "../hooks/useAuthContext";
+} from "../../column-definitions/CatalogueTableDefs";
+import TableSettings from "../../components/TableSettings";
+import vendorsArr from "../../data/vendors-data";
+import useCopyTable from "../../hooks/useCopyTable";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
-const CatalogueTable = () => {
+const VendorsCatalogue = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridApi, setGridApi] = useState(null);
@@ -171,7 +171,7 @@ const CatalogueTable = () => {
     queryFn: () => fetchData(vendorsUrl),
   });
   const vendors = vendorsData?.data
-    .filter((account) => account.isVendor)
+    .filter((account) => account.isRetail)
     .map((acc) => ({
       value: acc.name,
       label: acc.name,
@@ -342,4 +342,4 @@ const CatalogueTable = () => {
   );
 };
 
-export default CatalogueTable;
+export default VendorsCatalogue;

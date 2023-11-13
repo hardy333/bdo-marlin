@@ -26,7 +26,7 @@ const ProfileForm = () => {
   
   
   return (
-    <form className="profile-form">
+    <form onSubmit={onSubmit} className="profile-form">
       {/* 1 */}
       <div className="form-control">
         <label htmlFor="name">სახელი</label>

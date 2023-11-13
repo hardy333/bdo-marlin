@@ -194,7 +194,7 @@ const VendorRetroBonusTable = () => {
                 className="tooltip-1"
                 arrow={false}
                 placement="top"
-                content={`მომწოდებელი: ${vendor}`}
+                content={`მომხმარებელი: ${vendor}`}
               >
                 <p className="info-badge info-badge-mobile">
                   {/* <img src="order-details/vendor.svg" alt="" /> */}

@@ -147,7 +147,7 @@ const DashboardAsideVendors = ({
             </li>
             <li onClick={handleLinkClick}>
               <NavLink
-                to="/invoices-table"
+                to="/vendor-invoices"
                 className={({ isActive, isPending }) =>
                   selected
                     ? "active"

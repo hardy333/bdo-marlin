@@ -11,6 +11,7 @@ import "../../styles/employees.css";
 import VendorsModal from "../../components/VendorsModal";
 import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
+import VendorVendorsCard from "../../pages/vendors/VendorVendorsCard";
 
 const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
@@ -66,7 +67,7 @@ const Retailers = () => {
                 vendorsData?.data.filter(vendorObj => vendorObj.isRetail).map((vendorObj, index) => {
                   console.log(vendorObj.productsCount)
                   
-                  return   <VendorsCard
+                  return   <VendorVendorsCard
                   openModal={openModal}
                   vendorName={vendorObj.name}
                   key={index}

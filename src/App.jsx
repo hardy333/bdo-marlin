@@ -80,6 +80,9 @@ import RetailerRoutesProtection from "./components/RetailerRoutesProtection";
 import SupplierRoutesProtection from "./components/SupplierRoutesProtection";
 import VendorRetroBonusTable from "./vendorPages/retroBonuses/VendorRetroBonuseTable";
 import VendorOrderDetails from "./vendorPages/orderDetails/VendorOrderDetails";
+import VendorInvoices from "./vendorPages/invoices/VendorInvoices";
+import VendorsCatalogue from "./vendorPages/catalogue/VendorsCatalogue";
+import CalendarTableForVendor from "./vendorPages/calendarTable/CalendarTableForVendor";
 // Table Pages END
 
 const queryClient = new QueryClient();
@@ -163,6 +166,9 @@ function App() {
               />
               <Route path="vendor-order-details" element={<VendorOrderDetails />}/>
               <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
+              <Route path="/vendor-invoices" element={<VendorInvoices />} />
+              <Route path="/vendor-catalogue" element={<VendorsCatalogue />} />
+              <Route path="/calendar-table-for-vendor" element={<CalendarTableForVendor />} />
               <Route path="/vendor-retro-bonuse-table" element={<VendorRetroBonusTable />} />
             </Route>
           </Route>
