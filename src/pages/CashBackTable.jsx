@@ -109,8 +109,9 @@ const CashBackTable = () => {
   
   console.log(shopsData, "shop data")
   console.log(data, "table data")
+  console.log({selectedShop})
 
-  const [columnDefs] = useState(getCashBackTableDefs(data?.data[0].retroPercent));
+  const [columnDefs] = useState(getCashBackTableDefs(data?.data && data?.data[0].retroPercent));
 
 
 
