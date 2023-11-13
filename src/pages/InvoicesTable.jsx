@@ -44,6 +44,7 @@ import useInvoiceNavigate from "../hooks/useInvoiceNavigate";
 import InvoiceTableCards from "../components/InvoiceTableCards";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const InvoicesTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -57,8 +58,9 @@ const InvoicesTable = () => {
   const [columnDefs] = useState(InvoicesTableDefs);
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
+  const {user} = useAuthContext()
 
-  const url = "https://api.marlin.ge/api/INVFront/R00001";
+  const url = "https://api.marlin.ge/api/INVFront/" + user.decodedToken.AccountID;
   const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {

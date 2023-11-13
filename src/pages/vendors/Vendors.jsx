@@ -64,7 +64,7 @@ const Vendors = () => {
         <div className="vendors-card-container">
           <AnimatePresence initial={false}>
               {
-                vendorsData?.data.filter(vendorObj => vendorObj.supplier).map((vendorObj, index) => {
+                vendorsData?.data.filter(vendorObj => vendorObj.isVendor).map((vendorObj, index) => {
                   console.log(vendorObj.productsCount)
                   
                   return   <VendorsCard

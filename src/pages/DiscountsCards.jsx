@@ -8,27 +8,32 @@ import DatePickerInput from "../components/DatePickerInput";
 
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // R00001 უნდა განისაზღვროს დალოგინების დროს. 
 // D00001 განისაზღვრება სელექთ მენიუს დახმარებით. 
-const url = "https://api.marlin.ge/api/RBFront/R00001/D00001"
-const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
+
 
 
 const DiscountsCards = () => {
   const [isChecked, setISChecked] = useState(false);
-  const { isLoading, error, data } = useQuery("retro-bonus-cards-data", () => fetchData(url));
   const [selectedVendor,setSelectedVendor ] = useState(null)
 
 
-  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors", () => fetchData(vendorsUrl));
+  const {user} = useAuthContext()
+  const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`;
+  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
-  const vendors = vendorsData?.data.filter(account => account.supplier).map(acc => ({value: acc.name, label: acc.name }))
+  const { isLoading, error, data } = useQuery({queryKey: ["retro-bonus-cards-data",  selectedVendor?.accountID], queryFn: () => fetchData(url)});
+  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery({queryKey: ["vendors"], queryFn: () => fetchData(vendorsUrl)});
+
+  const vendors = vendorsData?.data.filter(account => account.isVendor).map(acc => ({value: acc.name, label: acc.name, accountID: acc.accountID }))
 
   
 
   useEffect(() => {
     if(!vendors || !vendorsData) return
+    if(selectedVendor) return
     setSelectedVendor(vendors[0])
 
   },[vendorsData])

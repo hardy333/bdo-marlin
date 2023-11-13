@@ -45,6 +45,7 @@ import { CatalogueTableDefs, catalogueTableHeaderList } from "../column-definiti
 import TableSettings from "../components/TableSettings";
 import vendorsArr from "../data/vendors-data";
 import useCopyTable from "../hooks/useCopyTable";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -55,7 +56,9 @@ const CatalogueTable = () => {
     "e1307628-f308-11ed-8120-005056b5a0aa"
   );
 
-  const url = `https://api.marlin.ge/api/CatalogueFront/R00001/${subCatId}`;
+  const {user} = useAuthContext()
+  
+  const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
 
   const { isLoading, error, data, refetch, isFetching } = useQuery(
     ["catalogueTableData", subCatId],
@@ -139,7 +142,7 @@ const CatalogueTable = () => {
   const [isHover, setIsHover] = useState(false);
 
 
-  const [isChecked, setISChecked] = useState(false);
+  const [isMyProducts, setIsMyProducts] = useState(true);
 
   const [gridReady, setGridReady] = useState(false);
 
@@ -164,6 +167,8 @@ const CatalogueTable = () => {
     setSelectedVendor(vendor)
 
   }
+  
+  console.log({isMyProducts})
   
 
 useCopyTable(gridReady)  
@@ -194,8 +199,8 @@ useCopyTable(gridReady)
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
-                  checked={isChecked}
-                  onChange={() => setISChecked(!isChecked)}
+                  checked={!isMyProducts}
+                  onChange={() => setIsMyProducts(!isMyProducts)}
                   id="toggle"
                   type="checkbox"
                 />
@@ -250,7 +255,7 @@ useCopyTable(gridReady)
         {/* Categories */}
         {isSmallDevice ? null : (
           <div className="catalogue-menu-container">
-            <CatalogueMenu setSubCatId={setSubCatId} />
+            <CatalogueMenu user={user} isMyProducts={isMyProducts} setSubCatId={setSubCatId} />
           </div>
         )}
 

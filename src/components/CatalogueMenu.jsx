@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import { useMemo } from "react";
 import { fetchData } from "../utils/fetchData";
 
-const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
+const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
   const [selectedProduct, setSelectedProduct] = useState("ჩიფსი");
@@ -99,6 +99,8 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
     return resArr;
   }, [data]);
 
+  console.log(resArr)
+
   // const [rowData, setRowData] = useState(() => {
   //   if (data || data?.data) {
   //     return data.data;
@@ -107,6 +109,8 @@ const CatalogueMenu = ({ changeAllData, setSubCatId }) => {
   // });
 
   // ------------------------ //
+
+  console.log({user, isMyProducts})
 
   let arrLeft = [];
   let arrRight = [];

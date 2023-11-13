@@ -43,25 +43,6 @@ import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
 
-const vendors = [
-  "Orbita",
-  "Kant",
-  "Diplomat",
-  "Vest Inv.",
-  "Magako",
-  "GDM",
-  "Svaneti",
-];
-
-const options = [
-  { value: "Orbita", label: "Orbita" },
-  { value: "Kant", label: "Kant" },
-  { value: "Ready Meals", label: "Ready Meals" },
-  { value: "Diplomat", label: "Diplomat" },
-  { value: "Vest Inv", label: "Vest Inv." },
-  { value: "Magako", label: "Magako" },
-  { value: "Svaneti", label: "Svaneti" },
-];
 
 
 import vendorsArr from "../data/vendors-data";

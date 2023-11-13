@@ -26,8 +26,14 @@ let orderId = "";
 const statusUrlBase = "https://api.marlin.ge/api/StatusResultFront/";
 
 const fetchStatusDetails = () => {
+  const user = JSON.parse(window.localStorage.getItem("user"))
+
+  
   console.log(orderId);
-  return fetch(statusUrlBase + orderId).then((res) => res.json());
+  return fetch(statusUrlBase + orderId, {
+    headers: {'Authorization': `bearer ${user.token}`},
+
+  }).then((res) => res.json());
 };
 
 const closeStatusCell = () => {};
