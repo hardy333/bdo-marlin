@@ -97,6 +97,7 @@ const VendorRetroBonusTable = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["vendor-retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
+    enabled: Boolean(selectedShop?.shopID)
   });
 
   const [rowData, setRowData] = useState(() => {

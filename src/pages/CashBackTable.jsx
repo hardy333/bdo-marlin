@@ -97,6 +97,8 @@ const CashBackTable = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
+    enabled: Boolean(selectedShop?.shopID)
+    
   });
 
   const [rowData, setRowData] = useState(() => {
