@@ -155,7 +155,6 @@ const CatalogueTable = () => {
     setSelectedVendor(vendor);
   };
 
-  console.log({ isMyProducts });
 
   useCopyTable(gridReady);
 

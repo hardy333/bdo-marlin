@@ -99,7 +99,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
     return resArr;
   }, [data]);
 
-  console.log(resArr)
 
   // const [rowData, setRowData] = useState(() => {
   //   if (data || data?.data) {
@@ -110,7 +109,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
   // ------------------------ //
 
-  console.log({user, isMyProducts})
 
   let arrLeft = [];
   let arrRight = [];

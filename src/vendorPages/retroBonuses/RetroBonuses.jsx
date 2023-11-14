@@ -42,8 +42,6 @@ const RetroBonuses = () => {
     setSelectedVendor(x)
   }
   
-  console.log(selectedVendor)
-  console.log(data)
 
   
   
