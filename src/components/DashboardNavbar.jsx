@@ -1,7 +1,5 @@
 import React from "react";
 
-import ring from "../assets/navbar/ring.svg";
-import user from "../assets/navbar/user.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import arrowBack from "../assets/back-arrow.svg";
 import { BiMenu } from "react-icons/bi";

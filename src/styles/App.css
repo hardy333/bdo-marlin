@@ -100,11 +100,11 @@ img {
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   /* dashboard navbar and dashboar-main will use this padding */
   --right-adge-padding: 4rem;
 
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* 63 is navbar Height */
   /* padding-top: 63px; */
 
