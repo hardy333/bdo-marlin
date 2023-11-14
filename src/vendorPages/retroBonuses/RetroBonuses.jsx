@@ -21,7 +21,7 @@ const RetroBonuses = () => {
   const {user} = useAuthContext()
 
 
-  const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`;
+  const url = `https://api.marlin.ge/api/RBFront/${selectedVendor?.accountID}/${user.decodedToken.AccountID}`;
   const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
   const { isLoading, error, data } = useQuery({queryKey: ["vendor-retro-bonus-cards-data",  selectedVendor?.accountID], queryFn: () => fetchData(url), enabled: Boolean(selectedVendor?.accountID)});

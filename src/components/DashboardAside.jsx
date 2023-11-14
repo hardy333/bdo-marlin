@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 // import catalog from "../assets/icons/menu-icons/catalog.png";
 // import customer from "../assets/icons/menu-icons/customer.png";
-// import invoice from "../assets/icons/menu-icons/invoice.png";
+import invoice from "../assets/icons/menu-icons/invoice.png";
 // import paper from "../assets/icons/menu-icons/paper.png";
 // import settings from "../assets/icons/menu-icons/settings.png";
 // import shoppingbag from "../assets/icons/menu-icons/shopping-bag.png";
@@ -167,7 +167,7 @@ const DashboardAside = ({
                     : ""
                 }
               >
-                {/* <img src={invoices} alt="" /> */}
+                {/* <img src={invoice} alt="" /> */}
                 <InvoicesSvg />
                 <span className="aside-label">ინვოისები</span>
               </NavLink>
