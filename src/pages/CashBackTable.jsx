@@ -46,6 +46,7 @@ import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
 import { useAuthContext } from "../hooks/useAuthContext";
+import ProgressBar from "../components/ProgressBar";
 
 
 
@@ -99,7 +100,7 @@ const CashBackTable = () => {
   
   const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
     enabled: Boolean(selectedShop?.shopID)
@@ -112,6 +113,7 @@ const CashBackTable = () => {
     }
     return null;
   });
+
 
   
   console.log(shopsData, "shop data")
@@ -186,7 +188,9 @@ const CashBackTable = () => {
   
   return (
     <>
-      <header className="all-orders__header cash-back-header">
+      <header className="all-orders__header cash-back-header" style={{position: "relative"}}>
+      <ProgressBar show={isFetching} />
+
         <div className="all-orders__settings">
           {/* Left */}
           <div

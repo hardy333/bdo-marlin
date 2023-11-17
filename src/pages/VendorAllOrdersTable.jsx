@@ -52,6 +52,7 @@ import useCopyTable from "../hooks/useCopyTable";
 import useVendorOrdersNavigate from "../hooks/useVendorOrdersNavigate";
 import AgTablePag from "../components/AgTablePag";
 import { useAuthContext } from "../hooks/useAuthContext";
+import useOrdersNavigate from "../hooks/useOrdersNavigate";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -190,9 +191,9 @@ const VendorAllOrdersTable = () => {
             <div className="status-container" style={{ pointerEvents: "none" }}>
               <ul>
                 <li style={{ color }}>{value}</li>
-                <li>Something 11:06, 2/10/2023</li>
-                <li>Received 11:06, 2/10/2023</li>
-                <li>Sent 11:06, 2/10/2023</li>
+                <li>პროცესშია 11:06, 2/10/2023</li>
+                <li>მიღებულია 11:06, 2/10/2023</li>
+                <li>მიწოდებულია 11:06, 2/10/2023</li>
               </ul>
             </div>
           </>
@@ -329,6 +330,8 @@ const VendorAllOrdersTable = () => {
   const [openedRowId, setOpenedRowId] = useState(null);
 
   useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
+  // useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
+
 
   useEffect(() => {
     if (!gridRef.current) return;
