@@ -72,7 +72,14 @@ const VendorRetroBonusTable = () => {
   const retroPercent = searchParams.get("retroPercent");
 
   const { user } = useAuthContext()
-  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`
+  // user.decodedToken.AccountID
+
+  let accId = "R00001"
+  if(vendor === "Foodmart"){
+    accId = "R00002"
+  }
+
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${accId}`
 
   const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("vendor-retro-bonus-table-shops", () => fetchData(shopsUrl));
   const [selectedShop,setSelectedShop ] = useState(null)
@@ -113,6 +120,7 @@ const VendorRetroBonusTable = () => {
 
   
   console.log(shopsData, "shop data")
+  console.log({selectedShop})
   console.log(data, "table data")
 
   const [columnDefs] = useState(getCashBackTableDefs(data?.data && data?.data[0].retroPercent));

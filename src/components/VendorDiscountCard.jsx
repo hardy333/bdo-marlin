@@ -23,7 +23,7 @@ const VendorDiscountCard = ({
     <article
       className={`discount-card ${false ? "discount-card-bonus" : ""}`}
     >
-      <h2>
+      <h2 style={{display: retroPercent ? "" : "none"}}>
         <span style={{ color: "#211543" }}>{/* {documentNo}  */}</span>
         <span
           className=" block mb-3"
@@ -33,7 +33,7 @@ const VendorDiscountCard = ({
           {retroPercent}%
         </span>
       </h2>
-      <h3 className="" style={{ textAlign: "center" }}>
+      <h3 className="" style={{ textAlign: "center", paddingTop:"10px" }}>
         დოკუმენტი: #{documentNo}
       </h3>
       {index > 3 ? (
