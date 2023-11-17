@@ -50,23 +50,23 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             {/* <img src={personsImg} alt="" /> */}
             <PeopleSvg />
           </div>
-          <h2>ადმინისტრატორი</h2>
+          <h2>Administrator</h2>
           <ul>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>store's performance</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Staff management</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Handling customers</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Collaborating with other</span>
             </li>
           </ul>
         </div>
@@ -76,23 +76,23 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             <PeopleSvg />
             {/* <img src={personsImg} alt="" /> */}
           </div>
-          <h2>ანალიტიკოსი</h2>
+          <h2>Analyticos</h2>
           <ul>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Managing stock levels</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Conducting regular stock</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Analyzing sales </span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Analyzing prices</span>
             </li>
           </ul>
         </div>
@@ -102,23 +102,23 @@ const EmployeesMainModal = ({ modalIsOpen, closeModal, setIsOpen }) => {
             {/* <img src={personsImg} alt="" /> */}
             <PeopleSvg />
           </div>
-          <h2>მაღაზიის მენეჯერი</h2>
+          <h2>store Manager</h2>
           <ul>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Implementing and maintaining</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>ollaborating, marketing</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Updating signage and pricing</span>
             </li>
             <li>
               <PersonCheckSvg />
-              <span>Blaa bla bla bla</span>
+              <span>Monitoring and replenishing</span>
             </li>
           </ul>
         </div>
