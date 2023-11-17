@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 
-const useCopyTable = (gridReady) => {
+
+
+
+const useCopyTable = (gridReady, toast) => {
     
   // Table Copy STARt
   // Copy paste
@@ -140,6 +143,10 @@ const useCopyTable = (gridReady) => {
         cell.classList.remove("cell-flash");
       });
     }, 10);
+
+    toast.success("მონაცემების კოპირება", {
+      position: "top-right"
+    })
   };
 
   const generateCopyText = () => {

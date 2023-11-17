@@ -35,6 +35,9 @@ import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 import { useAuthContext } from "../hooks/useAuthContext";
+import ProgressBar from "../components/ProgressBar";
+
+import toast, { Toaster } from "react-hot-toast";
 
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useUrlStorageState("page-size", 15);
@@ -49,23 +52,19 @@ const AllOrdersParent = () => {
 
   const { user } = useAuthContext();
 
+  const oldUrl = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
+
   const url =
     "https://api.marlin.ge/api/RetailOrdersByAccountFront/" +
     user.decodedToken.AccountID;
 
   const { isLoading, error, data } = useQuery({
     queryKey: "r-all-orders-data",
-    queryFn: () => fetchData(url),
+    queryFn: () => fetchData(oldUrl),
 
-    onSuccess: (s) => {
-      console.log({s})
-
-    },
-    onError: (e) => {
-      console.log({e})
-    },
+    onSuccess: (s) => {},
+    onError: (e) => {},
     retry: 1,
-
   });
 
   const [rowData, setRowData] = useState(() => {
@@ -74,8 +73,6 @@ const AllOrdersParent = () => {
     }
     return null;
   });
-
-  console.log({ data });
 
   useEffect(() => {
     if (!data) return;
@@ -145,12 +142,20 @@ const AllOrdersParent = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady);
+  useCopyTable(gridReady, toast);
+
+  console.log(data);
+  console.log(rowData);
+
+  console.log({ isLoading });
 
   return (
     <>
-      <header className="all-orders__header">
+      <header className="all-orders__header" style={{ position: "relative" }}>
+        <ProgressBar show={isLoading} />
+        <Toaster />
         <div className="all-orders__arrow-container"></div>
+
         <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
@@ -191,7 +196,7 @@ const AllOrdersParent = () => {
             ref={gridRef}
             getRowHeight={getRowHeight}
             onGridReady={onGridReady}
-            rowData={data?.data}
+            rowData={rowData?.data}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
@@ -230,7 +235,7 @@ const AllOrdersParent = () => {
               gridRef={gridRef}
               tablePage={tablePage}
               setTablePage={setTablePage}
-              pageCount={rowData ? Math.ceil(rowData.length / pageSize) : 1}
+              pageCount={rowData ? Math.ceil(rowData?.length / pageSize) : 1}
             />
           ) : null}
         </div>

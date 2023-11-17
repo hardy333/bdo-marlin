@@ -190,8 +190,14 @@ img {
   height: 200px;
 }
 
+.error-load-page-link{
+  max-width: 300px;
+  margin-inline: auto;
+}
+
 .error-load-page-link:hover{
   text-decoration: underline;
+
 
 }
 
