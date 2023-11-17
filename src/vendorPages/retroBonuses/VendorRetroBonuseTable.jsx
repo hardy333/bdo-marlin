@@ -119,9 +119,9 @@ const VendorRetroBonusTable = () => {
   });
 
   
-  console.log(shopsData, "shop data")
-  console.log({selectedShop})
-  console.log(data, "table data")
+  // console.log(shopsData, "shop data")
+  // console.log({selectedShop})
+  console.log(data, "table data", rowData)
 
   const [columnDefs] = useState(getCashBackTableDefs(data?.data && data?.data[0].retroPercent));
 

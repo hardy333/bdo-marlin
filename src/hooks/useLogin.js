@@ -22,7 +22,6 @@ export const useLogin = () => {
 
       const token = await response.json();
 
-      console.log({token, response})
 
       if (!response.ok) {
         throw new Error(` status: ${response.status}, statustext: ${response.statusText}`);

@@ -19,7 +19,6 @@ const Login = () => {
 
   const { user } = useAuthContext()
 
-  console.log("Login user", user)
 
 
 

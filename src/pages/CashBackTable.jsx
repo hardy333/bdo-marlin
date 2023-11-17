@@ -92,7 +92,11 @@ const CashBackTable = () => {
     queryKey: "retro-bonus-table-shops",
     queryFn: () => fetchData(shopsUrl),
     onSuccess: (data) => {
-      handleShopChange(data[0]);
+      handleShopChange({
+        value: data[0].name,
+        label: data[0].name,
+        shopID: data[0].shopID,
+      });
     },
     // refetchOnWindowFocus: false
   });
@@ -123,12 +127,8 @@ const CashBackTable = () => {
   });
 
   const handleShopChange = (shopObj) => {
-    const newShop = {
-      value: shopObj.name,
-      label: shopObj.name,
-      shopID: shopObj.shopID,
-    };
-    setSelectedShop(newShop);
+  
+    setSelectedShop(shopObj);
   };
 
   const [columnDefs] = useState(
@@ -175,7 +175,9 @@ const CashBackTable = () => {
   useCopyTable(gridReady);
 
 
-  useTimerToast(tableData, tableDataIsLoading, toast)
+  useTimerToast( tableDataIsLoading, toast)
+
+  console.log({selectedShop})
 
 
   return (

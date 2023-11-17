@@ -10,41 +10,58 @@ import { fetchData } from "../../utils/fetchData";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import VendorDiscountCard from "../../components/VendorDiscountCard";
 
-// R00001 უნდა განისაზღვროს დალოგინების დროს. 
-// D00001 განისაზღვრება სელექთ მენიუს დახმარებით. 
-
-
+// R00001 უნდა განისაზღვროს დალოგინების დროს.
+// D00001 განისაზღვრება სელექთ მენიუს დახმარებით.
 
 const RetroBonuses = () => {
   const [isChecked, setISChecked] = useState(false);
-  const [selectedVendor,setSelectedVendor ] = useState(null)
-  const {user} = useAuthContext()
-
+  const [selectedVendor, setSelectedVendor] = useState(null);
+  const { user } = useAuthContext();
 
   const url = `https://api.marlin.ge/api/RBFront/${selectedVendor?.accountID}/${user.decodedToken.AccountID}`;
-  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
+  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
 
-  const { isLoading, error, data } = useQuery({queryKey: ["vendor-retro-bonus-cards-data",  selectedVendor?.accountID], queryFn: () => fetchData(url), enabled: Boolean(selectedVendor?.accountID)});
-  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery({queryKey: ["retailers"], queryFn: () => fetchData(vendorsUrl)});
+  //   Cards Data fetch
+  //   Cards Data fetch
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["vendor-retro-bonus-cards-data", selectedVendor?.accountID],
+    queryFn: () => fetchData(url),
+    enabled: Boolean(selectedVendor?.accountID),
+  });
 
-  const vendors = vendorsData?.data.filter(account => account.isRetail).map(acc => ({value: acc.name, label: acc.name, accountID: acc.accountID }))
+  //   Retailers data fetch
+  //   Retailers data fetch
+  const {
+    isLoading: vendorsIsLoading,
+    error: vendorsError,
+    data: vendorsData,
+  } = useQuery({
+    queryKey: ["retailers"],
+    queryFn: () => fetchData(vendorsUrl),
+  });
 
-  
+  const vendors = vendorsData?.data
+    .filter((account) => account.isRetail)
+    .map((acc) => ({
+      value: acc.name,
+      label: acc.name,
+      accountID: acc.accountID,
+    }));
 
   useEffect(() => {
-    if(!vendors || !vendorsData) return
-    if(selectedVendor) return
-    setSelectedVendor(vendors[0])
-
-  },[vendorsData])
+    if (!vendors || !vendorsData) return;
+    if (selectedVendor) return;
+    setSelectedVendor(vendors[0]);
+  }, [vendorsData]);
 
   const handleVendorChange = (x) => {
-    setSelectedVendor(x)
-  }
-  
+    setSelectedVendor(x);
+  };
 
-  
-  
+
+  console.log({data})
+  console.log({selectedVendor})
+
   return (
     <>
       <section className="discounts">
@@ -60,9 +77,7 @@ const RetroBonuses = () => {
             value={selectedVendor}
             defaultValue={selectedVendor}
             defaultMenuIsOpen={false}
-             
           />
-
 
           <DatePickerInput />
           <div className="input-wrapper">
@@ -72,22 +87,22 @@ const RetroBonuses = () => {
         </header>
 
         <div className="discount-cards-container">
-            {data?.data.map((obj, index) => {
-              return (
-                <VendorDiscountCard
+          {data?.data.map((obj, index) => {
+            return (
+              <VendorDiscountCard
                 condition={obj.condition}
                 planAmount={obj.planAmount}
-                  key={obj.retroBonusID}
-                  status={obj.status}
-                  retroPercent={obj.retroPercent}
-                  startDate={obj.startDate}
-                  documentNo={obj.documentNo}
-                  isBonusCard={isChecked === false}
-                  retroBonusID={obj.retroBonusID}
-                  selectedVendor={selectedVendor}
-                />
-              );
-            })}
+                key={obj.retroBonusID}
+                status={obj.status}
+                retroPercent={obj.retroPercent}
+                startDate={obj.startDate}
+                documentNo={obj.documentNo}
+                isBonusCard={isChecked === false}
+                retroBonusID={obj.retroBonusID}
+                selectedVendor={selectedVendor}
+              />
+            );
+          })}
         </div>
       </section>
     </>

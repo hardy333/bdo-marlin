@@ -24,7 +24,7 @@ const DiscountsCards = () => {
   const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`;
   const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
-  const { isLoading, error, data, refetch } = useQuery({queryKey: ["r-retro-bonus-cards-data-for-retailers",  selectedVendor?.accountID], queryFn: () => fetchData(url), enabled: Boolean(selectedVendor?.accountID)});
+  const { isLoading, error, data, refetch } = useQuery({queryKey: [`${user.decodedToken.AccountID}-r-retro-bonus-cards-data-for-retailers`,  selectedVendor?.accountID], queryFn: () => fetchData(url), enabled: Boolean(selectedVendor?.accountID)});
   const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery({queryKey: ["r-vendors"], queryFn: () => fetchData(vendorsUrl)});
 
   const vendors = vendorsData?.data.filter(account => account.isVendor).map(acc => ({value: acc.name, label: acc.name, accountID: acc.accountID }))

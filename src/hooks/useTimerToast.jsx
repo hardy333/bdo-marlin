@@ -7,7 +7,7 @@ import { useStopwatch } from 'react-timer-hook';
 
 
 
-const useTimerToast = (tableData, tableDataIsLoading, toast) => {
+const useTimerToast = (tableDataIsLoading, toast) => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
     
@@ -29,6 +29,7 @@ const useTimerToast = (tableData, tableDataIsLoading, toast) => {
 
   useEffect(() => {
     if (!tableDataIsLoading) return;
+    stopwatchReset()
     stopwatchStart();
     console.log("show is loading")
   }, [tableDataIsLoading]);
@@ -45,11 +46,11 @@ const useTimerToast = (tableData, tableDataIsLoading, toast) => {
       setToastId(x);
     }
   }, [seconds]);
-  console.log({isRunning, seconds})
+//   console.log({isRunning, seconds})
 
 
   useEffect(() => {
-    if(!tableData) return
+    if(tableDataIsLoading) return
     if(!isRunning) return
     if(seconds >= 3){
 
@@ -58,8 +59,9 @@ const useTimerToast = (tableData, tableDataIsLoading, toast) => {
             id: toastId
         })
     }
+    stopwatchReset()
     stopwatchPause()
-  }, [tableData])
+  }, [tableDataIsLoading])
 
 
   
