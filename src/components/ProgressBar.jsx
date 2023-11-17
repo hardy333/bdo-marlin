@@ -4,25 +4,51 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const ProgressBar = ({ show }) => {
-  const [timesUp, setTimesUp] = useState(false);
+  const [timerRunning, setTimerRunning] = useState(show);
 
   useEffect(() => {
-    if (show === false && timesUp === true) return;
-    setTimesUp(false);
+    if(!show) return
 
-    const time = setTimeout(() => {
-      setTimesUp(true);
+    const timmer = setTimeout(() => {
+      setTimerRunning(false);
     }, 300);
 
     return () => {
-      clearTimeout(time);
+      clearTimeout(timmer);
     };
   }, [show]);
+
+  let progressBarIsShowing 
+
+
+  if(timerRunning){
+    progressBarIsShowing = true
+  }
+
+  if(show){
+    progressBarIsShowing = true
+  }
+
+  if(show === false && timerRunning === false){
+    progressBarIsShowing = false
+  }
+
+
+  useEffect(() => {
+    console.log("progress bar mount")
+    
+
+    return () => {
+      console.log("progress bar un mount")
+    }
+  },[])
+
+  // console.log({progressBarIsShowing})
 
   return (
     <div
       className="progress-bar"
-      style={{ display: show || !timesUp ? "" : "none" }}
+      style={{ display: progressBarIsShowing ? "" : "none" }}
     >
       <span></span>
     </div>

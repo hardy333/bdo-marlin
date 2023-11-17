@@ -44,11 +44,15 @@ import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../components/BonusTableCards";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
-import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
+import {
+  DocumentNumberSvg,
+  GegmaAmountSvg,
+  ScheduleDateSvg,
+  ShetanxmebisPirobaSvg,
+  VendorSvg,
+} from "../components/svgs/InfoBadgeSvgs";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProgressBar from "../components/ProgressBar";
-
-
 
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -56,80 +60,81 @@ const CashBackTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-
-
   const [searchParams] = useSearchParams();
   const retroBonusID =
-  searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
+    searchParams.get("retroBonusID") || "19ac6fd7-7f9e-11e8-80ef-005056b569bf";
 
   const documentNo = searchParams.get("documentNo");
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");
   const vendor = searchParams.get("vendor");
-  
+
   const condition = searchParams.get("condition");
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
-  const { user } = useAuthContext()
 
-  
-  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`
+  const { user } = useAuthContext();
 
-  const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("retro-bonus-table-shops", () => fetchData(shopsUrl));
-  const [selectedShop,setSelectedShop ] = useState(null)
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`;
 
-  const handleShopChange = (x) => {
-    setSelectedShop(x)
-
-
-
-  }
-
-
-  console.log(shopsData)
-
-  useEffect(() => {
-    if(!shopsData) return
-    if(selectedShop) return 
-    const shop = shopsData?.filter(obj => obj.shopID === "866c4bf5-5bd7-4183-a3c3-ab3b1ecd5b6a")[0]
-    setSelectedShop({value: shop.name, label: shop.name, shopID: shop.shopID })
-
-  },[shopsData])
-
-  
-  const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
-
-  const { isLoading, error, data, isFetching } = useQuery({
-    queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
-    queryFn: () => fetchData(url),
-    enabled: Boolean(selectedShop?.shopID)
+  // Shops Fetch
+  // Shops Fetch
+  const {
+    isLoading: shopsIsLoading,
+    error: shopsError,
+    data: shopsData,
+  } = useQuery({
+    queryKey: "retro-bonus-table-shops",
+    queryFn: () => fetchData(shopsUrl),
+    onSuccess: (data) => {
+      handleShopChange(data[0]);
+      console.log("on success")
+    },
+    // refetchOnWindowFocus: false
     
   });
 
-  const [rowData, setRowData] = useState(() => {
-    if (data || data?.data) {
-      return data.data;
+  const [selectedShop, setSelectedShop] = useState(() => {
+    if(!shopsData) return null
+    return {
+      value: shopsData[0].name,
+      label: shopsData[0].name,
+      shopID: shopsData[0].shopID,
     }
-    return null;
   });
 
 
-  
-  console.log(shopsData, "shop data")
-  console.log(data, "table data")
-  console.log({selectedShop})
+  const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`;
 
-  const [columnDefs] = useState(getCashBackTableDefs(data?.data && data?.data[0].retroPercent));
+  // Table Fetch
+  // Table Fetch
+  const {
+    isLoading: tableDataIsLoading,
+    error: tableDataError,
+    data: tableData,
+    isFetching: tableDataIsFetching,
+  } = useQuery({
+    queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
+    queryFn: () => fetchData(url),
+    enabled: Boolean(selectedShop?.shopID),
+    refetchOnWindowFocus: false
+  });
 
 
+  const handleShopChange = (shopObj) => {
+ 
+    const newShop = {
+      value: shopObj.name,
+      label: shopObj.name,
+      shopID: shopObj.shopID,
+    };
+    setSelectedShop(newShop);
+  };
 
-  useEffect(() => {
-    if (!data) return;
-    if (isLoading) return;
-    if (error) return;
-    setRowData(data.data);
-  }, [data, isLoading, error]);
+  const [columnDefs] = useState(
+    getCashBackTableDefs(tableData?.data && tableData?.data[0].retroPercent)
+  );
 
   useEffect(() => {
     if (isFullScreen) {
@@ -138,11 +143,6 @@ const CashBackTable = () => {
       document.body.classList.remove("dashboard-main-fullscreen");
     }
   }, [isFullScreen]);
-
-
-
-
-
 
   const defaultColDef = useMemo(
     () => ({
@@ -157,39 +157,39 @@ const CashBackTable = () => {
     }),
     []
   );
-
-  // EVents
-  // EVents
   const onGridReady = (params) => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
     setGridReady(true);
   };
-
   const components = useMemo(() => {
     return {
       agColumnHeader: CustomHeaderCell,
     };
   }, []);
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
-
   const gridRef = useRef(null);
-
   useRemoveId(gridApi, gridRef);
   const isSmallDevice = useMediaQuery("only screen and (max-width : 610px)");
-
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
+  // console.log({
+  //   tableDataIsLoading,
+  //   shopsIsLoading,
+  //   both: tableDataIsLoading || shopsIsLoading,
+  // });
 
+  console.log({shopsData})
 
-  
   return (
     <>
-      <header className="all-orders__header cash-back-header" style={{position: "relative"}}>
-      <ProgressBar show={isFetching} />
+      <header
+        className="all-orders__header cash-back-header"
+        style={{ position: "relative" }}
+      >
+        <ProgressBar show={tableDataIsLoading || shopsIsLoading} />
 
         <div className="all-orders__settings">
           {/* Left */}
@@ -222,7 +222,7 @@ const CashBackTable = () => {
                 content={`პირობა: ${condition}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  {/* <FaHandshake /> */} 
+                  {/* <FaHandshake /> */}
                   {/* <img src="cash-back/shetanxmebis-piroba.svg" alt="" /> */}
                   <ShetanxmebisPirobaSvg />
                   <span className="info-badge-text"> {condition}</span>
@@ -322,7 +322,7 @@ const CashBackTable = () => {
               isLargeHeader={true}
               isSmallDevice={isSmallDevice}
               defHeaderList={cashBackTableHeaderList}
-              rowData={rowData}
+              rowData={tableData?.data}
               gridApi={gridApi}
               gridRef={gridRef}
               gridColumnApi={gridColumnApi}
@@ -334,7 +334,7 @@ const CashBackTable = () => {
         </div>
       </header>
       {isSmallDevice ? (
-        <BonusTableCards data={rowData} />
+        <BonusTableCards data={tableData?.data} />
       ) : (
         <div
           id="marlin-table"
@@ -344,16 +344,19 @@ const CashBackTable = () => {
           <Select
             className="react-select-container sla-select doscounts-table-select"
             classNamePrefix="react-select"
-            options={shopsData?.map(shopObj => ({value: shopObj.name, label: shopObj.name, shopID: shopObj.shopID }))}
+            options={shopsData?.slice(0,10)?.map((shopObj) => ({
+              value: shopObj.name,
+              label: shopObj.name,
+              shopID: shopObj.shopID,
+            }))}
             onChange={handleShopChange}
             value={selectedShop}
             defaultValue={selectedShop}
-           
           />
           <AgGridReact
             ref={gridRef}
             onGridReady={onGridReady}
-            rowData={rowData}
+            rowData={tableData?.data}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
@@ -403,7 +406,7 @@ const CashBackTable = () => {
           {gridReady === true && (
             <AgTablePag
               gridRef={gridRef}
-              pageCount={Math.ceil(rowData?.length / pageSize)}
+              pageCount={Math.ceil(tableData?.data?.length / pageSize)}
             />
           )}
         </div>
