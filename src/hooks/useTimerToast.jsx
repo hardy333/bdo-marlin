@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@uidotdev/usehooks';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -7,6 +8,8 @@ import { useStopwatch } from 'react-timer-hook';
 
 
 const useTimerToast = (tableData, tableDataIsLoading, toast) => {
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
+
     
   const {
     totalSeconds,
@@ -33,7 +36,7 @@ const useTimerToast = (tableData, tableDataIsLoading, toast) => {
   useEffect(() => {
     if (seconds === 3) {
       const x = toast.loading("Data is loading, please wait...", {
-        position: 'bottom-right',
+        position: isSmallDevice ? "bottom-center": 'bottom-right',
 
         style:{
             minWidth: '300px',
@@ -42,14 +45,19 @@ const useTimerToast = (tableData, tableDataIsLoading, toast) => {
       setToastId(x);
     }
   }, [seconds]);
+  console.log({isRunning, seconds})
 
 
   useEffect(() => {
     if(!tableData) return
     if(!isRunning) return
-    toast.success("Data was loaded", {
-      id: toastId
-    })
+    if(seconds >= 3){
+
+        toast.success("Data was loaded", {
+            position: isSmallDevice ? "bottom-center": 'bottom-right',
+            id: toastId
+        })
+    }
     stopwatchPause()
   }, [tableData])
 
