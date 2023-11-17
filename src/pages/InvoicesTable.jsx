@@ -61,7 +61,7 @@ const InvoicesTable = () => {
   const {user} = useAuthContext()
 
   const url = "https://api.marlin.ge/api/INVFront/" + user.decodedToken.AccountID;
-  const { isLoading, error, data } = useQuery("invoices", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("r-invoices", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

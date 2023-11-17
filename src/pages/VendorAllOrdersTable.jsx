@@ -107,7 +107,7 @@ const VendorAllOrdersTable = () => {
   const url =
     `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("r-repoData", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

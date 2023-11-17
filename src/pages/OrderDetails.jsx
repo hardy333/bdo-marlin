@@ -71,7 +71,7 @@ const OrderDetails = () => {
   const url = `https://api.marlin.ge/api/OrderDetailsFront/${orderID}`;
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["order-details-data", orderID],
+    queryKey: ["r-order-details-data", orderID],
     queryFn: () => fetchData(url),
   });
 

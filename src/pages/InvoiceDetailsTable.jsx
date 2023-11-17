@@ -78,7 +78,7 @@ const InvoiceDetailsTable = () => {
   const url = "https://api.marlin.ge/api/InvoiceDetailsFront/" + invoiceID;
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["invoice-details", invoiceID],
+    queryKey: ["r-invoice-details", invoiceID],
     queryFn: () => fetchData(url),
   });
 

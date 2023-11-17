@@ -27,7 +27,7 @@ const Vendors = () => {
     setIsOpen(true);
   }
 
-  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors-cards", () => fetchData(vendorsUrl));
+  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("r-vendors-cards", () => fetchData(vendorsUrl));
 
   console.log(vendorsData)
 

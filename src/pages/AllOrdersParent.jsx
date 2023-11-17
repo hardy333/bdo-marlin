@@ -59,7 +59,7 @@ const AllOrdersParent = () => {
   
   const url = "https://api.marlin.ge/api/RetailOrdersByAccountFront/" + user.decodedToken.AccountID;
 
-  const { isLoading, error, data } = useQuery("all-orders-data", () => fetchData(url));
+  const { isLoading, error, data } = useQuery("r-all-orders-data", () => fetchData(url));
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

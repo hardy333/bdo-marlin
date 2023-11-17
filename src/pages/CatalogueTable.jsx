@@ -63,7 +63,7 @@ const CatalogueTable = () => {
   const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
 
   const { isLoading, error, data, refetch, isFetching } = useQuery(
-    ["catalogueTableData", subCatId],
+    ["r-catalogueTableData", subCatId],
     () => fetchData(url)
   );
 
