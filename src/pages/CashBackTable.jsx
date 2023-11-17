@@ -53,6 +53,11 @@ import {
 } from "../components/svgs/InfoBadgeSvgs";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProgressBar from "../components/ProgressBar";
+import { useStopwatch } from "react-timer-hook";
+import useTimerToast from "../hooks/useTimerToast";
+
+import toast, { Toaster } from "react-hot-toast";
+
 
 const CashBackTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -73,7 +78,6 @@ const CashBackTable = () => {
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
-
   const { user } = useAuthContext();
 
   const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`;
@@ -89,21 +93,18 @@ const CashBackTable = () => {
     queryFn: () => fetchData(shopsUrl),
     onSuccess: (data) => {
       handleShopChange(data[0]);
-      console.log("on success")
     },
     // refetchOnWindowFocus: false
-    
   });
 
   const [selectedShop, setSelectedShop] = useState(() => {
-    if(!shopsData) return null
+    if (!shopsData) return null;
     return {
       value: shopsData[0].name,
       label: shopsData[0].name,
       shopID: shopsData[0].shopID,
-    }
+    };
   });
-
 
   const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`;
 
@@ -118,12 +119,10 @@ const CashBackTable = () => {
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
     queryFn: () => fetchData(url),
     enabled: Boolean(selectedShop?.shopID),
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
   });
 
-
   const handleShopChange = (shopObj) => {
- 
     const newShop = {
       value: shopObj.name,
       label: shopObj.name,
@@ -175,13 +174,9 @@ const CashBackTable = () => {
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
-  // console.log({
-  //   tableDataIsLoading,
-  //   shopsIsLoading,
-  //   both: tableDataIsLoading || shopsIsLoading,
-  // });
 
-  console.log({shopsData})
+  useTimerToast(tableData, tableDataIsLoading, toast)
+
 
   return (
     <>
@@ -191,13 +186,22 @@ const CashBackTable = () => {
       >
         <ProgressBar show={tableDataIsLoading || shopsIsLoading} />
 
+        <Toaster /> 
         <div className="all-orders__settings">
           {/* Left */}
           <div
             className="order-details-left cash-back-table-header-left"
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <h4 style={{ marginRight: 20 }} id="discunts">
+            <h4
+              onClick={() => {
+                toast.success("This worked", {
+                  id: toastId,
+                });
+              }}
+              style={{ marginRight: 20 }}
+              id="discunts"
+            >
               რეტრო ბონუსები
             </h4>
             <section className="info-badge-container">
@@ -344,7 +348,7 @@ const CashBackTable = () => {
           <Select
             className="react-select-container sla-select doscounts-table-select"
             classNamePrefix="react-select"
-            options={shopsData?.slice(0,10)?.map((shopObj) => ({
+            options={shopsData?.slice(0, 10)?.map((shopObj) => ({
               value: shopObj.name,
               label: shopObj.name,
               shopID: shopObj.shopID,

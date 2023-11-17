@@ -24,7 +24,7 @@ return [
           cellRenderer: (params) => {
             const { value } = params;
 
-            console.log("bonus value", value)
+            // console.log("bonus value", value)
             return value + " %";
           },
         },

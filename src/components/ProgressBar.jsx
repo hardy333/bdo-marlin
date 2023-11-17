@@ -34,14 +34,14 @@ const ProgressBar = ({ show }) => {
   }
 
 
-  useEffect(() => {
-    console.log("progress bar mount")
+  // useEffect(() => {
+  //   console.log("progress bar mount")
     
 
-    return () => {
-      console.log("progress bar un mount")
-    }
-  },[])
+  //   return () => {
+  //     console.log("progress bar un mount")
+  //   }
+  // },[])
 
   // console.log({progressBarIsShowing})
 
