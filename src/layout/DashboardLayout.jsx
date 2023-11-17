@@ -28,7 +28,7 @@ const DashboardLayout = ({ light = false }) => {
   const {user} = useAuthContext()
 
   return (
-    <div className={`dashboard ${classN} ${pageName}-page`}>
+    <div className={`dashboard ${classN} ${pageName}-page ${pageName === "vendor-all-orders-vendor" ? "all-orders-parent-page" : ""}`}>
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>

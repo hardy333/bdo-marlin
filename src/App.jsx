@@ -119,6 +119,8 @@ function App() {
                 element={<VendorsCalendarTable />}
               />
               <Route path="/employees" element={<Employees />} />
+              <Route path="/order-details" element={<OrderDetails />} />
+
             {/* Non Protected Routes End */}
 
             <Route element={<RetailerRoutesProtection />}>
@@ -130,7 +132,6 @@ function App() {
                 element={<InvoiceDetailsTable />}
               />
               <Route path="/invoices2" element={<Invoices2 />} />
-              <Route path="/order-details" element={<OrderDetails />} />
               <Route path="/all-orders-parent" element={<AllOrdersParent />} />
               <Route path="/categories" element={<CategoriesTable />} />
               <Route path="/cash-back-table" element={<CashBackTable />} />
