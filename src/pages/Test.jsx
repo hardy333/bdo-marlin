@@ -1,14 +1,76 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import "react-day-picker/dist/style.css";
-import StatsCardSlider from "../components/StatsCardSlider";
+import { useStopwatch } from "react-timer-hook";
 
+export const getDataFetch = (url) => {
+
+  const user = JSON.parse(window.localStorage.getItem("user"))
+
+  return fetch(url, {
+      headers: {'Authorization': `bearer ${user.token}`},
+  
+  }).then(res => {
+    console.log(res)
+    if(!res.ok){
+      throw new Error("errrrrrrrrror")
+    }
+
+    console.log(111)
+
+    return res.json()
+  })
+}
+
+
+export const getDataAxios = (url) => {
+
+  const user = JSON.parse(window.localStorage.getItem("user"))
+
+  return axios.get(url, {
+      headers: {'Authorization': `bearer ${user.token}`},
+  
+  })
+}
+
+const url = "https://api.marlin.ge/api/AccountDataFront"
 
 const Test = () => {
+  
+  const handleFetch = async () => {
+    try{
+      const x = await getDataFetch(url)
+      console.log(x)
+
+    }catch(err){
+      console.log(err)
+
+    }
+ 
+
+  }
+
+  const handleAxios = async () => {
+    try{
+      const x = await getDataAxios(url)
+      console.log(x)
+
+    }catch(err){
+      console.log(err)
+
+    }
+   
+
+  }
 
 
   return (
     <div>
-      <StatsCardSlider />
+      <button style={{border: "1px solid red", padding: "10px", margin: "10px"}} onClick={() => handleAxios()}>axios get</button>
+      <button style={{border: "1px solid red", padding: "10px", margin: "10px"}} onClick={() => handleFetch()}>fetch get</button>
+      
     </div>
   );
 };

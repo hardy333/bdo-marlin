@@ -48,7 +48,7 @@ import DashboardLayout from "./layout/DashboardLayout";
 import ColorsPage from "./pages/ColorsPage";
 
 import { QueryClientProvider, QueryClient } from "react-query";
-// import Test from "./pages/Test";
+import Test from "./pages/Test";
 import SetPassword from "./pages/SetPassword";
 import PasswordPage from "./pages/PasswordPage";
 import AuthElement from "./components/AuthElement";
@@ -101,6 +101,7 @@ function App() {
         <Route element={<AuthElement />}>
           <Route element={<DashboardLayout />}>
             {/* Non Protected Routes Start */}
+            <Route path="test" element={<Test/ >}/>
             <Route path="/" element={<Dash />} />
             <Route path="/profile" element={<Profile />}>
               <Route index element={<ProfileForm />} />

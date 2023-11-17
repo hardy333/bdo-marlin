@@ -56,6 +56,7 @@ const VendorAllOrders = () => {
   const gridRef = useRef(null);
 
   const { user } = useAuthContext()
+  console.log(111)
   
   const url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`
 
@@ -67,6 +68,9 @@ const VendorAllOrders = () => {
     }
     return null;
   });
+
+
+  console.log({data})
 
 
 

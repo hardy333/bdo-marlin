@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -41,25 +36,37 @@ import AgTablePag from "../components/AgTablePag";
 import useUrlStorageState from "../hooks/useUrlStorageState";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-
-
 const AllOrdersParent = () => {
   const [pageSize, setPageSize] = useUrlStorageState("page-size", 15);
-  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0)
+  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0);
 
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
   const [openedRowId, setOpenedRowId] = useState(null);
 
-
   const gridRef = useRef(null);
 
-  const { user } = useAuthContext()
-  
-  const url = "https://api.marlin.ge/api/RetailOrdersByAccountFront/" + user.decodedToken.AccountID;
+  const { user } = useAuthContext();
 
-  const { isLoading, error, data } = useQuery("r-all-orders-data", () => fetchData(url));
+  const url =
+    "https://api.marlin.ge/api/RetailOrdersByAccountFront/" +
+    user.decodedToken.AccountID;
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: "r-all-orders-data",
+    queryFn: () => fetchData(url),
+
+    onSuccess: (s) => {
+      console.log({s})
+
+    },
+    onError: (e) => {
+      console.log({e})
+    },
+    retry: 1,
+
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -68,8 +75,7 @@ const AllOrdersParent = () => {
     return null;
   });
 
-
-
+  console.log({ data });
 
   useEffect(() => {
     if (!data) return;
@@ -77,8 +83,6 @@ const AllOrdersParent = () => {
     if (error) return;
     setRowData(data.data);
   }, [data, isLoading, error]);
-
-
 
   const [columnDefs] = useState(allOrdersParentDefs);
 
@@ -104,23 +108,20 @@ const AllOrdersParent = () => {
 
   useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
 
-  
   // EVents
   // EVents
   const onGridReady = (params) => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   useEffect(() => {
     if (!gridRef.current) return;
     if (!gridApi) return;
     gridRef.current.api.resetRowHeights();
-
   }, [openedRowId, gridRef, gridApi]);
-
 
   useRemoveId(gridApi, gridRef);
 
@@ -144,17 +145,13 @@ const AllOrdersParent = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
 
-  
-  
   return (
     <>
       <header className="all-orders__header">
         <div className="all-orders__arrow-container"></div>
-        <div
-
-         className="all-orders__settings settings-container-responsive">
+        <div className="all-orders__settings settings-container-responsive">
           {/* Left */}
           <div
             className="all-orders__gdm-container"
@@ -218,7 +215,7 @@ const AllOrdersParent = () => {
                   key={size}
                   onClick={() => {
                     setPageSize(size);
-                    setTablePage(0)
+                    setTablePage(0);
                   }}
                   style={{ color: pageSize === size ? "#1A1F3D" : "" }}
                 >
@@ -228,7 +225,14 @@ const AllOrdersParent = () => {
             })}
           </Menu>
 
-          {(gridReady === true && rowData) ?  <AgTablePag gridRef={gridRef} tablePage={tablePage} setTablePage={setTablePage} pageCount={rowData ? Math.ceil(rowData.length/pageSize) : 1} /> : null}
+          {gridReady === true && rowData ? (
+            <AgTablePag
+              gridRef={gridRef}
+              tablePage={tablePage}
+              setTablePage={setTablePage}
+              pageCount={rowData ? Math.ceil(rowData.length / pageSize) : 1}
+            />
+          ) : null}
         </div>
       )}
     </>
