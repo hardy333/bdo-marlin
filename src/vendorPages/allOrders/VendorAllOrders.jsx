@@ -57,7 +57,7 @@ const VendorAllOrders = () => {
 
   const { user } = useAuthContext()
   
-  const url = "https://api.marlin.ge/api/OrdersByAccountFront/" + user.decodedToken.AccountID;
+  const url = "https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/R00001/D00002" + user.decodedToken.AccountID;
 
   const { isLoading, error, data } = useQuery("vendors-all-orders-data", () => fetchData(url));
 

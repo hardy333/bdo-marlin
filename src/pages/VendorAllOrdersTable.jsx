@@ -51,6 +51,7 @@ import VendorAllOrdersCards from "../components/VendorAllOrdersCards";
 import useCopyTable from "../hooks/useCopyTable";
 import useVendorOrdersNavigate from "../hooks/useVendorOrdersNavigate";
 import AgTablePag from "../components/AgTablePag";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -87,9 +88,23 @@ const VendorAllOrdersTable = () => {
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
   const gridRef = useRef(null);
+  const {user} = useAuthContext()
+  const [searchParams] = useSearchParams();
+
+  
+  
+  let vendor = searchParams.get("vendor") || "";
+
+  let vendorID  = "D00002"
+  if(vendor === "GDM"){
+    vendorID = "D00002"
+  }else if(vendor === "ნიცა"){
+    vendorID = "D00003"
+  }
+
 
   const url =
-    "https://10.0.0.202:5001/api/OrdersByAccountAndVendorFront/M00001/D00002";
+    `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
 
   const { isLoading, error, data } = useQuery("repoData", () => fetchData(url));
 
@@ -337,9 +352,7 @@ const VendorAllOrdersTable = () => {
 
   useCopyTable(gridReady);
 
-  const [searchParams] = useSearchParams();
 
-  let vendor = searchParams.get("vendor") || 308.4;
 
 
   return (
