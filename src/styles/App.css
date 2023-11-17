@@ -190,6 +190,13 @@ img {
   height: 200px;
 }
 
+.error-load-page-link:hover{
+  text-decoration: underline;
+
+}
+
+
+
 @media (max-width: 900px) {
   .sidebar-menu-btn {
     display: block !important;
@@ -520,3 +527,4 @@ input[type="radio"] + label {
     padding-inline: 5px;
   }
 }
+

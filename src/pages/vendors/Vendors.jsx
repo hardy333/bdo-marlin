@@ -11,9 +11,9 @@ import "../../styles/employees.css";
 import VendorsModal from "../../components/VendorsModal";
 import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
+import ProgressBar from "../../components/ProgressBar";
 
-const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
-
+const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
 
 const Vendors = () => {
   const [isChecked, setISChecked] = useState(false);
@@ -27,14 +27,32 @@ const Vendors = () => {
     setIsOpen(true);
   }
 
-  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("r-vendors-cards", () => fetchData(vendorsUrl));
+  const {
+    isLoading: vendorsIsLoading,
+    isError: isVendorsError,
+    error: vendorsError,
+    data: vendorsData,
+  } = useQuery({
+    queryKey: "r-vendors-cards",
+    queryFn: () => fetchData(vendorsUrl),
+    onSuccess: () => {
 
-  console.log(vendorsData)
+    },
+    onError: (err) => {
+      console.log({err})
+
+    },
+    retry: 1
+  });
+
+  console.log({vendorsError});
 
   return (
     <>
       <section className="vendors">
-        <header className="vendors-header justify-start">
+        <header className="vendors-header justify-start" style={{position: "relative"}}>
+        <ProgressBar show={vendorsIsLoading} />
+
           {/* 1 */}
           <h4 className="text-[18px] font-semibold me-10">მომწოდებლები</h4>
           <div className="vendors-switch-container ">
@@ -49,7 +67,7 @@ const Vendors = () => {
               />
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
-            <p  className="font-normal text-[14px]">ყველა ვენდორი</p>
+            <p className="font-normal text-[14px]">ყველა ვენდორი</p>
           </div>
           <div className="ms-auto">
             <div className="input-wrapper">
@@ -58,8 +76,15 @@ const Vendors = () => {
             </div>
           </div>
         </header>
+        { isVendorsError? (
+          <p style={{ paddingTop: "100px", textAlign: "center"}}>
+             მონაცემების ჩატვირთვა ვერ მოხდა, გთხოვ სცადეთ მოგვიანებით.
+             <span className="error-load-page-link" onClick={() => window.location.reload()} style={{display: "block", color: "var(--color-primary-4)", cursor: "pointer"}}>ან ჩატვირთეთ აპლიკაცია თავიდან.</span>
+          </p>
+        ) : null}
 
         <div className="vendors-card-container">
+ 
           <AnimatePresence initial={false}>
             {/* {vendorsData
               .filter((vendorObj) =>
@@ -84,23 +109,22 @@ const Vendors = () => {
                 );
               })} */}
 
-              {
-                vendorsData?.data.filter(vendorObj => vendorObj.isVendor).map((vendorObj, index) => {
-                  return   <VendorsCard
-                  openModal={openModal}
-                  vendorName={vendorObj.name}
-                  key={index}
-                  index={index}
-                  variant="active"
-                  productsCount={vendorObj.productsCount}
-                    
-
-                />
-                })
-              }
+            {vendorsData?.data
+              .filter((vendorObj) => vendorObj.isVendor)
+              .map((vendorObj, index) => {
+                return (
+                  <VendorsCard
+                    openModal={openModal}
+                    vendorName={vendorObj.name}
+                    key={index}
+                    index={index}
+                    variant="active"
+                    productsCount={vendorObj.productsCount}
+                  />
+                );
+              })}
           </AnimatePresence>
         </div>
-       
 
         <VendorsModal
           setIsOpen={setIsOpen}
