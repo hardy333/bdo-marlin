@@ -12,7 +12,7 @@ import VendorsModal from "../../components/VendorsModal";
 import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
 
-const vendorsUrl = "https://api.marlin.ge/api/Accounts"
+const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
 
 
 const Vendors = () => {
@@ -29,7 +29,7 @@ const Vendors = () => {
 
   const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors-cards", () => fetchData(vendorsUrl));
 
-  
+  console.log(vendorsData)
 
   return (
     <>
@@ -85,13 +85,14 @@ const Vendors = () => {
               })} */}
 
               {
-                vendorsData?.data.filter(vendorObj => vendorObj.supplier).map((vendorObj, index) => {
+                vendorsData?.data.filter(vendorObj => vendorObj.isVendor).map((vendorObj, index) => {
                   return   <VendorsCard
                   openModal={openModal}
                   vendorName={vendorObj.name}
                   key={index}
                   index={index}
                   variant="active"
+                  productsCount={vendorObj.productsCount}
                     
 
                 />

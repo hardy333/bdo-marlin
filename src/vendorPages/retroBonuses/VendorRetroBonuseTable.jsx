@@ -45,8 +45,8 @@ import BonusTableCards from "../../components/BonusTableCards";
 import useCopyTable from "../../hooks/useCopyTable";
 import AgTablePag from "../../components/AgTablePag";
 import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../../components/svgs/InfoBadgeSvgs";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
-const shopsUrl = "https://api.marlin.ge/api/Shops?page=1&pageSize=520"
 
 
 const VendorRetroBonusTable = () => {
@@ -70,6 +70,9 @@ const VendorRetroBonusTable = () => {
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
+  const { user } = useAuthContext()
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`
+
   const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("vendor-retro-bonus-table-shops", () => fetchData(shopsUrl));
   const [selectedShop,setSelectedShop ] = useState(null)
 
@@ -86,7 +89,7 @@ const VendorRetroBonusTable = () => {
   useEffect(() => {
     if(!shopsData) return
     if(selectedShop) return 
-    const shop = shopsData?.data.filter(obj => obj.shopID === "866c4bf5-5bd7-4183-a3c3-ab3b1ecd5b6a")[0]
+    const shop = shopsData[0]
     setSelectedShop({value: shop.name, label: shop.name, shopID: shop.shopID })
 
   },[shopsData])
@@ -333,7 +336,7 @@ const VendorRetroBonusTable = () => {
           <Select
             className="react-select-container sla-select doscounts-table-select"
             classNamePrefix="react-select"
-            options={shopsData?.data.map(shopObj => ({value: shopObj.name, label: shopObj.name, shopID: shopObj.shopID }))}
+            options={shopsData?.map(shopObj => ({value: shopObj.name, label: shopObj.name, shopID: shopObj.shopID }))}
             onChange={handleShopChange}
             value={selectedShop}
             defaultValue={selectedShop}
