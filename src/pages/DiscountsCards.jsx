@@ -19,7 +19,10 @@ const DiscountsCards = () => {
   const [selectedVendor, setSelectedVendor] = useState(null);
 
   const { user } = useAuthContext();
+
+  const oldUrl = `https://10.0.0.202:5001/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`
   const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`;
+  const oldVendorsUrl = `https://10.0.0.202:5001/api/AccountDataFront`
   const vendorsUrl = "https://api.marlin.g";
 
   const {
@@ -33,13 +36,20 @@ const DiscountsCards = () => {
       `${user.decodedToken.AccountID}-r-retro-bonus-cards-data-for-retailers`,
       selectedVendor?.accountID,
     ],
-    queryFn: () => fetchData(url),
+    queryFn: () => fetchData(oldUrl),
     enabled: Boolean(selectedVendor?.accountID),
     onError: (err) => {
       console.log({ err });
     },
     onSuccess: (x) => {
       console.log({ x });
+    },
+    select: (data) => {
+
+      console.log("s", data)
+      
+      return data.data.data
+      
     },
     retry: 1,
   });
@@ -51,20 +61,21 @@ const DiscountsCards = () => {
     data: vendorsData,
   } = useQuery({
     queryKey: ["r-vendors"],
-    queryFn: () => fetchData(vendorsUrl),
+    queryFn: () => fetchData(oldVendorsUrl),
     onError: (err) => {
-      console.log({ err });
     },
     onSuccess: (x) => {
-      console.log({ x });
+    },
+    select: (data) => {
+
+      return data.data.data.map(acc => ({...acc, isVendor: acc.supplier, isRetail: acc.buyer}))
     },
     retry: 1,
   });
 
-  console.log({ vendorsError });
+  console.log({ data });
 
-  const vendors = vendorsData?.data
-    .filter((account) => account.isVendor)
+  const vendors = vendorsData?.filter((account) => account.isVendor)
     .map((acc) => ({
       value: acc.name,
       label: acc.name,
@@ -120,7 +131,7 @@ const DiscountsCards = () => {
         ) : null}
 
         <div className="discount-cards-container">
-          {data?.data.map((obj, index) => {
+          {data?.map((obj, index) => {
             return (
               <DiscountCard
                 condition={obj.condition}
