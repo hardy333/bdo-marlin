@@ -144,10 +144,9 @@ const AllOrdersParent = () => {
 
   useCopyTable(gridReady, toast);
 
-  console.log(data);
-  console.log(rowData);
 
-  console.log({ isLoading });
+
+  // console.log({ isLoading });
 
   return (
     <>

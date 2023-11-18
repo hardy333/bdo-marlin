@@ -39,14 +39,11 @@ const DiscountsCards = () => {
     queryFn: () => fetchData(oldUrl),
     enabled: Boolean(selectedVendor?.accountID),
     onError: (err) => {
-      console.log({ err });
     },
     onSuccess: (x) => {
-      console.log({ x });
     },
     select: (data) => {
 
-      console.log("s", data)
       
       return data.data.data
       
@@ -73,7 +70,6 @@ const DiscountsCards = () => {
     retry: 1,
   });
 
-  console.log({ data });
 
   const vendors = vendorsData?.filter((account) => account.isVendor)
     .map((acc) => ({
@@ -130,7 +126,7 @@ const DiscountsCards = () => {
           </p>
         ) : null}
 
-        <div className="discount-cards-container">
+        <div className="discount-cards-container" style={{opacity: bonusesIsLoading ? 0.6: 1}}>
           {data?.map((obj, index) => {
             return (
               <DiscountCard

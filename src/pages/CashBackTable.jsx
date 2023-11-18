@@ -82,7 +82,10 @@ const CashBackTable = () => {
 
   const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`;
 
+  const oldShopsUrl = `https://10.0.0.202:5001/api/Shops?page=1&pageSize=262`
+
   // Shops Fetch
+  
   // Shops Fetch
   const {
     isLoading: shopsIsLoading,
@@ -90,7 +93,7 @@ const CashBackTable = () => {
     data: shopsData,
   } = useQuery({
     queryKey: "retro-bonus-table-shops",
-    queryFn: () => fetchData(shopsUrl),
+    queryFn: () => fetchData(oldShopsUrl),
     onSuccess: (data) => {
       handleShopChange({
         value: data[0].name,
@@ -98,6 +101,9 @@ const CashBackTable = () => {
         shopID: data[0].shopID,
       });
     },
+    select: (data) => {
+      return data.data.data
+    }
     // refetchOnWindowFocus: false
   });
 
@@ -111,6 +117,7 @@ const CashBackTable = () => {
   });
 
   const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`;
+  const oldUrl = `https://10.0.0.202:5001/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
 
   // Table Fetch
   // Table Fetch
@@ -121,7 +128,7 @@ const CashBackTable = () => {
     isFetching: tableDataIsFetching,
   } = useQuery({
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
-    queryFn: () => fetchData(url),
+    queryFn: () => fetchData(oldUrl),
     enabled: Boolean(selectedShop?.shopID),
     refetchOnWindowFocus: false,
   });
@@ -178,6 +185,8 @@ const CashBackTable = () => {
   useTimerToast( tableDataIsLoading, toast)
 
   console.log({selectedShop})
+
+  console.log({tableData})
 
 
   return (

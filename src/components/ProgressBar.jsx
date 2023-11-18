@@ -4,44 +4,31 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const ProgressBar = ({ show }) => {
-  const [timerRunning, setTimerRunning] = useState(show);
+  const [timerRunning, setTimerRunning] = useState(false);
 
   useEffect(() => {
     if(!show) return
 
-    const timmer = setTimeout(() => {
-      setTimerRunning(false);
-    }, 300);
+    setTimerRunning(true)
 
-    return () => {
-      clearTimeout(timmer);
-    };
+    setTimeout(() => {
+      setTimerRunning(false);
+    }, 2000);
+
+   
   }, [show]);
 
-  let progressBarIsShowing 
+  let progressBarIsShowing  = false
 
 
-  if(timerRunning){
+
+  if(show === true || timerRunning === true){
     progressBarIsShowing = true
   }
 
-  if(show){
-    progressBarIsShowing = true
-  }
-
-  if(show === false && timerRunning === false){
-    progressBarIsShowing = false
-  }
+  // console.log({progressBarIsShowing, timerRunning, show})
 
 
-  // useEffect(() => {
-  //   console.log("progress bar mount")
-    
-
-  //   return () => {
-  //     console.log("progress bar un mount")
-  //   }
-  // },[])
 
   // console.log({progressBarIsShowing})
 
