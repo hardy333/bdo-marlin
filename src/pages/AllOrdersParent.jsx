@@ -60,7 +60,7 @@ const AllOrdersParent = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: "r-all-orders-data",
-    queryFn: () => fetchData(oldUrl),
+    queryFn: () => fetchData(url),
 
     onSuccess: (s) => {},
     onError: (e) => {},
