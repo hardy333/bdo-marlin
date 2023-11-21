@@ -59,13 +59,20 @@ const VendorsCatalogue = () => {
   );
 
   const { user } = useAuthContext();
-//   user.decodedToken.AccountID
+  
 
-  const url = `https://api.marlin.ge/api/CatalogueFront/${"R00001"}/${subCatId}`;
+  const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
 
   const { isLoading, error, data, refetch, isFetching } = useQuery(
-    ["catalogueTableData", subCatId],
-    () => fetchData(url)
+    {
+
+     queryKey: ["catalogueTableData", subCatId],
+      queryFn: () => fetchData(url),
+      select: (data) => {
+        return data.data
+      }
+      
+    }
   );
 
   useEffect(() => {
@@ -170,6 +177,9 @@ const VendorsCatalogue = () => {
   } = useQuery({
     queryKey: ["retailers"],
     queryFn: () => fetchData(vendorsUrl),
+    select: (data) => {
+      return data.data
+    }
   });
   const vendors = vendorsData?.data
     .filter((account) => account.isRetail)
