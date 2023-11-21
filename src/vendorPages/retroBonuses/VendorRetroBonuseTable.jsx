@@ -44,19 +44,22 @@ import { useSearchParams } from "react-router-dom";
 import BonusTableCards from "../../components/BonusTableCards";
 import useCopyTable from "../../hooks/useCopyTable";
 import AgTablePag from "../../components/AgTablePag";
-import { DocumentNumberSvg, GegmaAmountSvg, OrderDateSvg, ScheduleDateSvg, ShetanxmebisPirobaSvg, VendorSvg } from "../../components/svgs/InfoBadgeSvgs";
+import {
+  DocumentNumberSvg,
+  GegmaAmountSvg,
+  OrderDateSvg,
+  ScheduleDateSvg,
+  ShetanxmebisPirobaSvg,
+  VendorSvg,
+} from "../../components/svgs/InfoBadgeSvgs";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import ProgressBar from "../../components/ProgressBar";
-
-
 
 const VendorRetroBonusTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-
-
 
   const [searchParams] = useSearchParams();
   const retroBonusID =
@@ -71,44 +74,57 @@ const VendorRetroBonusTable = () => {
   const planAmount = searchParams.get("planAmount");
   const retroPercent = searchParams.get("retroPercent");
 
-  const { user } = useAuthContext()
+  const { user } = useAuthContext();
   // user.decodedToken.AccountID
 
-  let accId = "R00001"
-  if(vendor === "Foodmart"){
-    accId = "R00002"
+  let accId = "R00001";
+  if (vendor === "Foodmart") {
+    accId = "R00002";
   }
 
-  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${accId}`
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${accId}`;
 
-  const { isLoading: shopsIsLoading, error: shopsError, data: shopsData } = useQuery("vendor-retro-bonus-table-shops", () => fetchData(shopsUrl));
-  const [selectedShop,setSelectedShop ] = useState(null)
+  const {
+    isLoading: shopsIsLoading,
+    error: shopsError,
+    data: shopsData,
+  } = useQuery({
+    queryKey: "vendor-retro-bonus-table-shops",
+    queryFn: () => fetchData(shopsUrl),
+    select: (data) => {
+      return data.data
+    }
+  });
+  const [selectedShop, setSelectedShop] = useState(null);
 
   const handleShopChange = (x) => {
-    setSelectedShop(x)
-
-
-
-  }
-
-
-  
+    setSelectedShop(x);
+  };
 
   useEffect(() => {
-    if(!shopsData) return
-    if(selectedShop) return 
-    const shop = shopsData[0]
-    setSelectedShop({value: shop.name, label: shop.name, shopID: shop.shopID })
+    if (!shopsData) return;
+    if (selectedShop) return;
+    const shop = shopsData[0];
+    setSelectedShop({
+      value: shop.name,
+      label: shop.name,
+      shopID: shop.shopID,
+    });
+  }, [shopsData]);
 
-  },[shopsData])
-
-  
-  const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`
+  const url = `https://api.marlin.ge/api/RetroBonusDetsilsFront/${selectedShop?.shopID}/${retroBonusID}`;
 
   const { isLoading, error, data, isFetching } = useQuery({
-    queryKey: ["vendor-retro-bonus-details", retroBonusID, selectedShop?.shopID],
+    queryKey: [
+      "vendor-retro-bonus-details",
+      retroBonusID,
+      selectedShop?.shopID,
+    ],
     queryFn: () => fetchData(url),
-    enabled: Boolean(selectedShop?.shopID)
+    enabled: Boolean(selectedShop?.shopID),
+    select: (data) => {
+      return data.data;
+    },
   });
 
   const [rowData, setRowData] = useState(() => {
@@ -118,14 +134,13 @@ const VendorRetroBonusTable = () => {
     return null;
   });
 
-  
   // console.log(shopsData, "shop data")
   // console.log({selectedShop})
-  console.log(data, "table data", rowData)
+  console.log(data, "table data", rowData);
 
-  const [columnDefs] = useState(getCashBackTableDefs(data?.data && data?.data[0].retroPercent));
-
-
+  const [columnDefs] = useState(
+    getCashBackTableDefs(data?.data && data?.data[0]?.retroPercent)
+  );
 
   useEffect(() => {
     if (!data) return;
@@ -141,11 +156,6 @@ const VendorRetroBonusTable = () => {
       document.body.classList.remove("dashboard-main-fullscreen");
     }
   }, [isFullScreen]);
-
-
-
-
-
 
   const defaultColDef = useMemo(
     () => ({
@@ -186,13 +196,13 @@ const VendorRetroBonusTable = () => {
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
-
-
-  
   return (
     <>
-      <header className="all-orders__header cash-back-header" style={{position: "relative"}}>
-      <ProgressBar show={isFetching} />
+      <header
+        className="all-orders__header cash-back-header"
+        style={{ position: "relative" }}
+      >
+        <ProgressBar show={isFetching} />
 
         <div className="all-orders__settings">
           {/* Left */}
@@ -225,7 +235,7 @@ const VendorRetroBonusTable = () => {
                 content={`პირობა: ${condition}`}
               >
                 <p className="info-badge info-badge-mobile">
-                  {/* <FaHandshake /> */} 
+                  {/* <FaHandshake /> */}
                   {/* <img src="cash-back/shetanxmebis-piroba.svg" alt="" /> */}
                   <ShetanxmebisPirobaSvg />
                   <span className="info-badge-text"> {condition}</span>
@@ -347,11 +357,14 @@ const VendorRetroBonusTable = () => {
           <Select
             className="react-select-container sla-select doscounts-table-select"
             classNamePrefix="react-select"
-            options={shopsData?.map(shopObj => ({value: shopObj.name, label: shopObj.name, shopID: shopObj.shopID }))}
+            options={shopsData?.map((shopObj) => ({
+              value: shopObj.name,
+              label: shopObj.name,
+              shopID: shopObj.shopID,
+            }))}
             onChange={handleShopChange}
             value={selectedShop}
             defaultValue={selectedShop}
-           
           />
           <AgGridReact
             ref={gridRef}
