@@ -56,8 +56,8 @@ const VendorAllOrders = () => {
     querykey: "vendors-all-orders-data",
     queryFn: () => fetchData(url),
     select:(data) => {
-      data.data
-    }
+      return data.data
+    },
   });
 
   const [rowData, setRowData] = useState(() => {

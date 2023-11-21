@@ -75,14 +75,11 @@ const VendorRetroBonusTable = () => {
   const retroPercent = searchParams.get("retroPercent");
 
   const { user } = useAuthContext();
-  // user.decodedToken.AccountID
+  
 
-  let accId = "R00001";
-  if (vendor === "Foodmart") {
-    accId = "R00002";
-  }
 
-  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${accId}`;
+
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`;
 
   const {
     isLoading: shopsIsLoading,
@@ -127,6 +124,7 @@ const VendorRetroBonusTable = () => {
     },
   });
 
+
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
@@ -134,9 +132,7 @@ const VendorRetroBonusTable = () => {
     return null;
   });
 
-  // console.log(shopsData, "shop data")
-  // console.log({selectedShop})
-  console.log(data, "table data", rowData);
+ 
 
   const [columnDefs] = useState(
     getCashBackTableDefs(data?.data && data?.data[0]?.retroPercent)
@@ -195,6 +191,10 @@ const VendorRetroBonusTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
+
+
+  console.log({isFetching})
+
 
   return (
     <>

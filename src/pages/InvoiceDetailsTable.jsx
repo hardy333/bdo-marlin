@@ -150,6 +150,7 @@ const InvoiceDetailsTable = () => {
 
   useCopyTable(gridReady);
 
+
   return (
     <>
       <header className="all-orders__header invoice-details-header">
