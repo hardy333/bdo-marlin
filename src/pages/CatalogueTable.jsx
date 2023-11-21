@@ -69,7 +69,6 @@ const CatalogueTable = () => {
     queryKey: ["r-catalogueTableData", subCatId],
     queryFn: () => fetchData(url),
     select: (data) => {
-      console.log("sss", data);
       return data.data;
     },
     retry: 0
@@ -86,8 +85,6 @@ const CatalogueTable = () => {
     return null;
   });
 
-  console.log(data);
-  console.log(rowData);
 
   useEffect(() => {
     if (!data) return;
@@ -194,7 +191,6 @@ const CatalogueTable = () => {
     if (selectedVendor) return;
     setSelectedVendor(vendors[0]);
   }, [vendorsData]);
-  console.log({isFetching})
 
   return (
     <>

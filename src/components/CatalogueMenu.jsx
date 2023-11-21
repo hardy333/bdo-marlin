@@ -7,6 +7,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useQuery } from "react-query";
 import { useMemo } from "react";
 import { fetchData } from "../utils/fetchData";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // Selected category, sub category
@@ -41,9 +42,10 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
     const id = resArr
       .find((obj) => obj.name === selectedCategory)
-      .children.find((obj) => obj.name === name).categoryid;
+      .children.find((obj) => obj.name === name).categoryID;
 
     setSubCatId(id);
+    console.log({id})
 
     if (changeAllData) {
       changeAllData();
@@ -52,16 +54,21 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
   // ------------------------ //
 
-  const url = "https://api.marlin.ge/api/ProductCategories?page=1&pageSize=506";
+  
+  const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${user.decodedToken.AccountID}`;
 
   const { isLoading, error, data } = useQuery({
     queryKey: "catalogueMenuData",
     queryFn: () => fetchData(url),
     select: (data) =>{
-      return data.data
+      // console.log("ss", data)
+      
+      return data
 
     }
   });
+
+  // console.log({data})
 
   const resArr = useMemo(() => {
     if (!data) return;
@@ -69,16 +76,17 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
     const resObj = {};
     const resArr = [];
 
+    // console.log({catData})
+
     catData.forEach((obj) => {
-      if (obj.name === "ჩიფსი") {
-      }
+      
       if (obj.parentFolder === "") {
-        resObj[obj.categoryid] = obj;
-        resObj[obj.categoryid].children = [];
+        resObj[obj.categoryID] = obj;
+        resObj[obj.categoryID].children = [];``
       } else {
         if (!resObj[obj.parentFolder]) {
           const parentObj = catData.find(
-            (obj) => obj.categoryId === obj.parentFolder
+            (obj) => obj.categoryID === obj.parentFolder
           );
           if (parentObj) {
             resObj[obj.parentFolder] = parentObj;
@@ -107,6 +115,8 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // });
 
   // ------------------------ //
+
+  console.log({resArr})
 
   let arrLeft = [];
   let arrRight = [];
