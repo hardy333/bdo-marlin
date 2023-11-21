@@ -25,12 +25,19 @@ const DiscountsCards = () => {
   const oldVendorsUrl = `https://10.0.0.202:5001/api/AccountDataFront`
   const vendorsUrl = "https://api.marlin.g";
 
+  // Cards data
+  // Cards data
   const {
     isLoading: bonusesIsLoading,
     error: bonusesError,
     isError: isBonusesError,
+    isFetching: bonusesIsFetching,
     data,
     refetch,
+    isPlaceholderData,
+    isRefetching,
+    isPreviousData,
+    ...x
   } = useQuery({
     queryKey: [
       `${user.decodedToken.AccountID}-r-retro-bonus-cards-data-for-retailers`,
@@ -49,8 +56,16 @@ const DiscountsCards = () => {
       
     },
     retry: 1,
+    keepPreviousData: true
   });
 
+  // console.log(x)
+
+  console.log({  isPreviousData})
+
+
+  // Accounts data
+  // Accounts data
   const {
     isLoading: vendorsIsLoading,
     error: vendorsError,
@@ -91,7 +106,8 @@ const DiscountsCards = () => {
 
   return (
     <>
-      <section className="discounts">
+      <section className="discounts" style={{position: "relative"}}>
+        <ProgressBar  show={isPreviousData}/>
         <header className="discounts-header" >
 
 
@@ -126,7 +142,7 @@ const DiscountsCards = () => {
           </p>
         ) : null}
 
-        <div className="discount-cards-container" style={{opacity: bonusesIsLoading ? 0.6: 1}}>
+        <div className="discount-cards-container" style={{opacity: isPreviousData ? 0.6: 1}}>
           {data?.map((obj, index) => {
             return (
               <DiscountCard

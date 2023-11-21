@@ -21,11 +21,9 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // Events
   const handleMouseMove = (e) => {
     if (e.target.classList.contains("category-li")) {
-      
       const span = e.target.querySelector(".category-name");
       const cat = span.getAttribute("data-value");
       setSelectedCategory(cat);
-      
     }
   };
 
@@ -41,7 +39,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
     setIsOutsideWrapper(true);
     setSelectedProduct(name);
 
-
     const id = resArr
       .find((obj) => obj.name === selectedCategory)
       .children.find((obj) => obj.name === name).categoryid;
@@ -55,13 +52,16 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
   // ------------------------ //
 
-  const url =
-    "https://api.marlin.ge/api/ProductCategories?page=1&pageSize=352";
+  const url = "https://api.marlin.ge/api/ProductCategories?page=1&pageSize=352";
 
-  const { isLoading, error, data } = useQuery("catalogueMenuData", () =>
-    fetchData(url)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: "catalogueMenuData",
+    queryFn: () => fetchData(url),
+    select: (data) =>{
+      return data.data
 
+    }
+  });
 
   const resArr = useMemo(() => {
     if (!data) return;
@@ -99,7 +99,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
     return resArr;
   }, [data]);
 
-
   // const [rowData, setRowData] = useState(() => {
   //   if (data || data?.data) {
   //     return data.data;
@@ -108,7 +107,6 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // });
 
   // ------------------------ //
-
 
   let arrLeft = [];
   let arrRight = [];

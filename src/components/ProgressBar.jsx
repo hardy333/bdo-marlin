@@ -13,7 +13,7 @@ const ProgressBar = ({ show }) => {
 
     setTimeout(() => {
       setTimerRunning(false);
-    }, 2000);
+    }, 300);
 
    
   }, [show]);

@@ -54,18 +54,25 @@ const CatalogueTable = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
-  const [subCatId, setSubCatId] = useState(
-    "e1307628-f308-11ed-8120-005056b5a0aa"
-  );
-
   const { user } = useAuthContext();
+  const [subCatId, setSubCatId] = useState(() => {
+    const foodmrtID = "30f31189-8851-11e4-8f6e-b083fec0b293";
+    const dailyId = "e1307628-f308-11ed-8120-005056b5a0aa";
+    return user.decodedToken.AccountID === "R00001" ? dailyId : foodmrtID;
+  });
 
   const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
+  const url1 =
+    "https://api.marlin.ge/api/CatalogueFront/R00002/30f31189-8851-11e4-8f6e-b083fec0b293";
 
-  const { isLoading, error, data, refetch, isFetching } = useQuery(
-    ["r-catalogueTableData", subCatId],
-    () => fetchData(url)
-  );
+  const { isLoading, error, data, refetch, isFetching } = useQuery({
+    queryKey: ["r-catalogueTableData", subCatId],
+    queryFn: () => fetchData(url),
+    select: (data) => {
+      console.log("sss", data);
+      return data.data;
+    },
+  });
 
   useEffect(() => {
     refetch();
@@ -77,6 +84,9 @@ const CatalogueTable = () => {
     }
     return null;
   });
+
+  console.log(data);
+  console.log(rowData);
 
   useEffect(() => {
     if (!data) return;
@@ -155,7 +165,6 @@ const CatalogueTable = () => {
     setSelectedVendor(vendor);
   };
 
-
   useCopyTable(gridReady);
 
   const [selectedVendor, setSelectedVendor] = useState(null);
@@ -168,6 +177,9 @@ const CatalogueTable = () => {
   } = useQuery({
     queryKey: ["retailers"],
     queryFn: () => fetchData(vendorsUrl),
+    select: (data) => {
+      return data.data;
+    },
   });
   const vendors = vendorsData?.data
     .filter((account) => account.isVendor)
