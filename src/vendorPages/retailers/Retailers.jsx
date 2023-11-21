@@ -13,8 +13,7 @@ import { useQuery } from "react-query";
 import { fetchData } from "../../utils/fetchData";
 import VendorVendorsCard from "../../pages/vendors/VendorVendorsCard";
 
-const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
-
+const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
 
 const Retailers = () => {
   const [isChecked, setISChecked] = useState(false);
@@ -29,10 +28,19 @@ const Retailers = () => {
     setIsOpen(true);
   }
 
-  const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery("vendors-cards", () => fetchData(vendorsUrl));
+  const {
+    isLoading: vendorsIsLoading,
+    error: vendorsError,
+    data: vendorsData,
+  } = useQuery({
+    queryKey: "vendors-cards",
+    queryFn: () => fetchData(vendorsUrl),
+    select: (data) => {
+      return data.data
+    }
+  });
 
-  console.log(vendorsData?.data)
-  
+  console.log(vendorsData?.data);
 
   return (
     <>
@@ -51,7 +59,7 @@ const Retailers = () => {
               />
               <label className="toggle-label" htmlFor="toggle"></label>
             </div>
-            <p  className="font-normal text-[14px]">ყველა რითეილერი</p>
+            <p className="font-normal text-[14px]">ყველა რითეილერი</p>
           </div>
           <div className="ms-auto">
             <div className="input-wrapper">
@@ -63,25 +71,24 @@ const Retailers = () => {
 
         <div className="vendors-card-container">
           <AnimatePresence initial={false}>
-              {
-                vendorsData?.data.filter(vendorObj => vendorObj.isRetail).map((vendorObj, index) => {
-                  console.log(vendorObj.productsCount)
-                  
-                  return   <VendorVendorsCard
-                  openModal={openModal}
-                  vendorName={vendorObj.name}
-                  key={index}
-                  index={index}
-                  variant="active"
-                  productsCount={vendorObj.productsCount}
-                    
+            {vendorsData?.data
+              .filter((vendorObj) => vendorObj.isRetail)
+              .map((vendorObj, index) => {
+                console.log(vendorObj.productsCount);
 
-                />
-                })
-              }
+                return (
+                  <VendorVendorsCard
+                    openModal={openModal}
+                    vendorName={vendorObj.name}
+                    key={index}
+                    index={index}
+                    variant="active"
+                    productsCount={vendorObj.productsCount}
+                  />
+                );
+              })}
           </AnimatePresence>
         </div>
-       
 
         <VendorsModal
           setIsOpen={setIsOpen}

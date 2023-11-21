@@ -42,6 +42,9 @@ const Vendors = () => {
       console.log({err})
 
     },
+    select: (data) => {
+      return data.data
+    },
     retry: 1
   });
 
