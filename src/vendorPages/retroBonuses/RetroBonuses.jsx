@@ -27,6 +27,9 @@ const RetroBonuses = () => {
     queryKey: ["vendor-retro-bonus-cards-data", selectedVendor?.accountID],
     queryFn: () => fetchData(url),
     enabled: Boolean(selectedVendor?.accountID),
+    select: (data) => {
+      return data.data
+    }
   });
 
   //   Retailers data fetch
@@ -38,6 +41,9 @@ const RetroBonuses = () => {
   } = useQuery({
     queryKey: ["retailers"],
     queryFn: () => fetchData(vendorsUrl),
+    select: (data) => {
+      return data.data
+    }
   });
 
   const vendors = vendorsData?.data
