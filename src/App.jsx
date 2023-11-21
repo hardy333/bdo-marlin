@@ -83,6 +83,7 @@ import VendorOrderDetails from "./vendorPages/orderDetails/VendorOrderDetails";
 import VendorInvoices from "./vendorPages/invoices/VendorInvoices";
 import VendorsCatalogue from "./vendorPages/catalogue/VendorsCatalogue";
 import CalendarTableForVendor from "./vendorPages/calendarTable/CalendarTableForVendor";
+import { Toaster } from "react-hot-toast";
 // Table Pages END
 
 const queryClient = new QueryClient();
@@ -92,6 +93,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

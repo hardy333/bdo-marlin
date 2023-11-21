@@ -57,7 +57,7 @@ const CatalogueTable = () => {
   const { user } = useAuthContext();
   const [subCatId, setSubCatId] = useState(() => {
     const foodmrtID = "30f31189-8851-11e4-8f6e-b083fec0b293";
-    const dailyId = "e1307628-f308-11ed-8120-005056b5a0aa";
+    const dailyId = "f079fc40-9a59-11e5-80bc-000c295e18a3";
     return user.decodedToken.AccountID === "R00001" ? dailyId : foodmrtID;
   });
 
@@ -72,6 +72,7 @@ const CatalogueTable = () => {
       console.log("sss", data);
       return data.data;
     },
+    retry: 0
   });
 
   useEffect(() => {
@@ -193,6 +194,7 @@ const CatalogueTable = () => {
     if (selectedVendor) return;
     setSelectedVendor(vendors[0]);
   }, [vendorsData]);
+  console.log({isFetching})
 
   return (
     <>
