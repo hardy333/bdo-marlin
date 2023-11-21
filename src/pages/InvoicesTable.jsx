@@ -58,10 +58,17 @@ const InvoicesTable = () => {
   const [columnDefs] = useState(InvoicesTableDefs);
 
   const [showingFloatingFilter, setShowingFloatingFilter] = useState(true);
-  const {user} = useAuthContext()
+  const { user } = useAuthContext();
 
-  const url = "https://api.marlin.ge/api/INVFront/" + user.decodedToken.AccountID;
-  const { isLoading, error, data } = useQuery("r-invoices", () => fetchData(url));
+  const url =
+    "https://api.marlin.ge/api/INVFront/" + user.decodedToken.AccountID;
+  const { isLoading, error, data } = useQuery({
+    queryKey: "r-invoices",
+    queryFn: () => fetchData(url),
+    select:(data) => {
+      return data.data
+    }
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -70,6 +77,7 @@ const InvoicesTable = () => {
     return null;
   });
 
+  console.log({ rowData });
 
   useEffect(() => {
     if (!data) return;
@@ -105,7 +113,7 @@ const InvoicesTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const components = useMemo(() => {
@@ -113,7 +121,6 @@ const InvoicesTable = () => {
       agColumnHeader: CustomHeaderCell,
     };
   }, []);
-
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
@@ -124,7 +131,7 @@ const InvoicesTable = () => {
   const [gridReady, setGridReady] = useState(false);
 
   useInvoiceNavigate();
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
 
   return (
     <>
@@ -137,7 +144,6 @@ const InvoicesTable = () => {
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <span className={`${isSearchOpen ? "hide" : ""}`}>ინვოისები</span>
-
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -217,11 +223,11 @@ const InvoicesTable = () => {
           </Menu>
 
           {gridReady === true && (
-              <AgTablePag
-                gridRef={gridRef}
-                pageCount={Math.ceil(rowData?.length / pageSize)}
-              />
-            )}
+            <AgTablePag
+              gridRef={gridRef}
+              pageCount={Math.ceil(rowData?.length / pageSize)}
+            />
+          )}
         </div>
       )}
     </>

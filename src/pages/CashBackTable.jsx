@@ -93,7 +93,7 @@ const CashBackTable = () => {
     data: shopsData,
   } = useQuery({
     queryKey: "retro-bonus-table-shops",
-    queryFn: () => fetchData(oldShopsUrl),
+    queryFn: () => fetchData(shopsUrl),
     onSuccess: (data) => {
       handleShopChange({
         value: data[0].name,
@@ -102,10 +102,11 @@ const CashBackTable = () => {
       });
     },
     select: (data) => {
-      return data.data.data
+      return data.data
     }
     // refetchOnWindowFocus: false
   });
+  
 
   const [selectedShop, setSelectedShop] = useState(() => {
     if (!shopsData) return null;
@@ -128,10 +129,16 @@ const CashBackTable = () => {
     isFetching: tableDataIsFetching,
   } = useQuery({
     queryKey: ["retro-bonus-details", retroBonusID, selectedShop?.shopID],
-    queryFn: () => fetchData(oldUrl),
+    queryFn: () => fetchData(url),
     enabled: Boolean(selectedShop?.shopID),
     refetchOnWindowFocus: false,
+    select: (data) => {
+      return data.data
+    }
   });
+
+
+  console.log({tableData})
 
   const handleShopChange = (shopObj) => {
   
@@ -139,7 +146,7 @@ const CashBackTable = () => {
   };
 
   const [columnDefs] = useState(
-    getCashBackTableDefs(tableData?.data && tableData?.data[0].retroPercent)
+    getCashBackTableDefs(tableData?.data && tableData?.data[0]?.retroPercent)
   );
 
   useEffect(() => {

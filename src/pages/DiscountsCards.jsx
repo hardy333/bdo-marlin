@@ -23,7 +23,7 @@ const DiscountsCards = () => {
   const oldUrl = `https://10.0.0.202:5001/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`
   const url = `https://api.marlin.ge/api/RBFront/${user.decodedToken.AccountID}/${selectedVendor?.accountID}`;
   const oldVendorsUrl = `https://10.0.0.202:5001/api/AccountDataFront`
-  const vendorsUrl = "https://api.marlin.g";
+  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
 
   // Cards data
   // Cards data
@@ -43,7 +43,7 @@ const DiscountsCards = () => {
       `${user.decodedToken.AccountID}-r-retro-bonus-cards-data-for-retailers`,
       selectedVendor?.accountID,
     ],
-    queryFn: () => fetchData(oldUrl),
+    queryFn: () => fetchData(url),
     enabled: Boolean(selectedVendor?.accountID),
     onError: (err) => {
     },
@@ -73,14 +73,15 @@ const DiscountsCards = () => {
     data: vendorsData,
   } = useQuery({
     queryKey: ["r-vendors"],
-    queryFn: () => fetchData(oldVendorsUrl),
+    queryFn: () => fetchData(vendorsUrl),
     onError: (err) => {
     },
     onSuccess: (x) => {
     },
     select: (data) => {
+      console.log("acc", data)
 
-      return data.data.data.map(acc => ({...acc, isVendor: acc.supplier, isRetail: acc.buyer}))
+      return data.data.data.map(acc => ({...acc, isVendor: acc.isVendor, isRetail: acc.isRetail}))
     },
     retry: 1,
   });
