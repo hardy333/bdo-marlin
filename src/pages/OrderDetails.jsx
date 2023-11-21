@@ -73,6 +73,9 @@ const OrderDetails = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["r-order-details-data", orderID],
     queryFn: () => fetchData(url),
+    select: (data) => {
+      return data.data
+    }
   });
 
   const [rowData, setRowData] = useState(() => {

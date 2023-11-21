@@ -80,6 +80,9 @@ const InvoiceDetailsTable = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["r-invoice-details", invoiceID],
     queryFn: () => fetchData(url),
+    select: (data) => {
+      return data.data
+    }
   });
 
   const [rowData, setRowData] = useState(() => {

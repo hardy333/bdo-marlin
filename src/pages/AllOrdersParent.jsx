@@ -148,11 +148,14 @@ const AllOrdersParent = () => {
 
   // console.log({ isLoading });
 
+  console.log({rowData})
+  console.log("page count", Math.ceil(rowData?.length / pageSize))
+
   return (
     <>
       <header className="all-orders__header" style={{ position: "relative" }}>
         <ProgressBar show={isLoading} />
-        <Toaster />
+        
         <div className="all-orders__arrow-container"></div>
 
         <div className="all-orders__settings settings-container-responsive">
@@ -234,7 +237,7 @@ const AllOrdersParent = () => {
               gridRef={gridRef}
               tablePage={tablePage}
               setTablePage={setTablePage}
-              pageCount={rowData ? Math.ceil(rowData?.length / pageSize) : 1}
+              pageCount={rowData ? Math.ceil(rowData?.data?.length / pageSize) : 1}
             />
           ) : null}
         </div>
