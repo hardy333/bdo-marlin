@@ -163,7 +163,7 @@ const VendorsCatalogue = () => {
     setSelectedVendor(vendor);
   };
 
-  console.log({ isMyProducts });
+  // console.log({ isMyProducts });
 
   useCopyTable(gridReady);
 
