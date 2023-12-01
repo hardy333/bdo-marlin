@@ -192,6 +192,8 @@ const CatalogueTable = () => {
     setSelectedVendor(vendors[0]);
   }, [vendorsData]);
 
+  console.log({vendors})
+
   return (
     <>
       <header
@@ -214,7 +216,7 @@ const CatalogueTable = () => {
               </div>
             </h4>
             <div className="vendors-switch-container">
-              <p className="catalogue-label">ჩემი პროდუქტები</p>
+              <p className="catalogue-label">ჩემი კატეგორიები</p>
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
@@ -225,17 +227,23 @@ const CatalogueTable = () => {
                 />
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
-              <p className="catalogue-label">ყველა პროდუქტი</p>
+              <p className="catalogue-label">მომწოდებლების კატეგორიები</p>
             </div>
-            <Select
-              onChange={handleVendorChange}
-              className="react-select-container"
-              classNamePrefix="react-select"
-              options={vendors}
-              value={selectedVendor}
-              defaultValue={selectedVendor}
-              defaultMenuIsOpen={false}
-            />
+            {
+              isMyProducts ? null : (
+                <Select
+                onChange={handleVendorChange}
+                className="react-select-container"
+                classNamePrefix="react-select"
+                options={vendors}
+                value={selectedVendor}
+                defaultValue={selectedVendor}
+                defaultMenuIsOpen={false}
+              />
+
+              )
+            }
+           
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
