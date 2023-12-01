@@ -56,7 +56,18 @@ const SlaByShops = () => {
   const url1 = window.location.origin + "/SLAByShops.json"
   const url = "https://10.0.0.202:5001/api/SLAByShops";
 
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url1));
+  const { isLoading, error, data } = useQuery(
+    {
+      queryKey: "sla-by-shop",
+      queryFn: () => fetchData(url1),
+      select: (data) => {
+        return data.data;
+      },
+      
+      
+    }
+    
+  );
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {

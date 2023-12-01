@@ -138,9 +138,14 @@ import { fetchData } from "../../utils/fetchData";
 
 
   const [selectedVendor,setSelectedVendor ] = useState(null)
+  
   const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront"
+
   const { isLoading: vendorsIsLoading, error: vendorsError, data: vendorsData} = useQuery({queryKey: ["retailers"], queryFn: () => fetchData(vendorsUrl)});
-  const vendors = vendorsData?.data.filter(account => account.isRetail).map(acc => ({value: acc.name, label: acc.name, accountID: acc.accountID }))
+  console.log({vendorsData})
+  
+  const vendors = vendorsData?.data?.data.filter(account => account.isRetail).map(acc => ({value: acc.name, label: acc.name, accountID: acc.accountID }))
+
   useEffect(() => {
     if(!vendors || !vendorsData) return
     if(selectedVendor) return

@@ -56,8 +56,13 @@ const SlaByOrders = () => {
   const url1 = window.location.origin + "/SLAByOrders.json"
   const url = "https://10.0.0.202:5001/api/SLAByOrders";
 
-  const { isLoading, error, data } = useQuery("sla-by-orders-data", () =>
-    fetchData(url1)
+  const { isLoading, error, data } = useQuery({
+     queryKey: "sla-by-items",
+    queryFn: () => fetchData(url1),
+    select: (data) => {
+      return data.data;
+    },
+  }
   );
 
   const [rowData, setRowData] = useState(() => {

@@ -26,7 +26,6 @@ import "../styles/sla-by-vendors-table.css";
 
 import Select from "react-select";
 
-
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
 // css
@@ -43,7 +42,10 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaItemsCards from "../components/SlaItemsCards";
 import DatePickerInput from "../components/DatePickerInput";
 import TableSettings from "../components/TableSettings";
-import { SlaByItemsTableDefs, slaByitemsTableHeaderList } from "../column-definitions/SlaByItemsTableDefs";
+import {
+  SlaByItemsTableDefs,
+  slaByitemsTableHeaderList,
+} from "../column-definitions/SlaByItemsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 
@@ -54,11 +56,16 @@ const SlaByItem = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const url1 = window.location.origin + "/SLAByProducts.json"
+  const url1 = window.location.origin + "/SLAByProducts.json";
   const url = "https://10.0.0.202:5001/api/SLAByProducts";
 
-
-  const { isLoading, error, data } = useQuery("repoData", () => fetchData(url1));
+  const { isLoading, error, data } = useQuery({
+    queryKey: "sla-by-items",
+    queryFn: () => fetchData(url1),
+    select: (data) => {
+      return data.data;
+    },
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -75,7 +82,6 @@ const SlaByItem = () => {
   }, [data, isLoading, error]);
 
   const [columnDefs] = useState(SlaByItemsTableDefs);
-
 
   useEffect(() => {
     if (isFullScreen) {
@@ -105,10 +111,8 @@ const SlaByItem = () => {
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
 
-    setGridReady(true)
+    setGridReady(true);
   };
-
- 
 
   const components = useMemo(() => {
     return {
@@ -119,26 +123,16 @@ const SlaByItem = () => {
   // Row Height logic
   // Row Height logic
 
-
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
-
 
   const gridRef = useRef(null);
 
-
- 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
-  
   useRemoveId(gridApi, gridRef);
 
-
   const [gridReady, setGridReady] = useState(false);
-  useCopyTable(gridReady)
-
-
-
+  useCopyTable(gridReady);
 
   return (
     <>
@@ -152,10 +146,7 @@ const SlaByItem = () => {
             <h4 className="sla-heading">სერვისის დონე</h4>
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
-                <span
-                
-                  className="calendar-span"
-                >
+                <span className="calendar-span">
                   <DatePickerInput />
                 </span>
               </div>
@@ -192,68 +183,68 @@ const SlaByItem = () => {
           </div>
         </div>
       </header>
-     {
-      isSmallDevice ? <SlaItemsCards data={rowData}/> : (
+      {isSmallDevice ? (
+        <SlaItemsCards data={rowData} />
+      ) : (
         <div
-        id="marlin-table"
-        className="ag-theme-alpine ag-grid-example sla-colored-cell-table copy-paste-table"
-        style={{ minHeight: 595, width: "100%" }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          onGridReady={onGridReady}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          pagination={true}
-          components={components}
-          getRowHeight={() => {
-            if (rowHeightIndex === 0) {
-              return 25;
-            } else if (rowHeightIndex === 1) {
-              return 32;
-            } else if (rowHeightIndex === 2) {
-              return 37;
-            }
-          }}
-          paginationPageSize={pageSize}
-        ></AgGridReact>
-
-        <Menu
-          className="page-size-menu"
-          align="end"
-          menuButton={
-            <MenuButton className="page-size-btn">
-              <span>Rows per page</span>
-              <span className="btn">{pageSize}</span>
-            </MenuButton>
-          }
-          transition
+          id="marlin-table"
+          className="ag-theme-alpine ag-grid-example sla-colored-cell-table copy-paste-table"
+          style={{ minHeight: 595, width: "100%" }}
         >
-          {pageSizes.map((size) => {
-            return (
-              <MenuItem
-                key={size}
-                onClick={() => {
-                  setPageSize(size);
-                }}
-                style={{ color: pageSize === size ? "#1A1F3D" : "" }}
-              >
-                {size}
-              </MenuItem>
-            );
-          })}
-        </Menu>
+          <AgGridReact
+            ref={gridRef}
+            onGridReady={onGridReady}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            getRowHeight={() => {
+              if (rowHeightIndex === 0) {
+                return 25;
+              } else if (rowHeightIndex === 1) {
+                return 32;
+              } else if (rowHeightIndex === 2) {
+                return 37;
+              }
+            }}
+            paginationPageSize={pageSize}
+          ></AgGridReact>
 
-        {gridReady === true && (
+          <Menu
+            className="page-size-menu"
+            align="end"
+            menuButton={
+              <MenuButton className="page-size-btn">
+                <span>Rows per page</span>
+                <span className="btn">{pageSize}</span>
+              </MenuButton>
+            }
+            transition
+          >
+            {pageSizes.map((size) => {
+              return (
+                <MenuItem
+                  key={size}
+                  onClick={() => {
+                    setPageSize(size);
+                  }}
+                  style={{ color: pageSize === size ? "#1A1F3D" : "" }}
+                >
+                  {size}
+                </MenuItem>
+              );
+            })}
+          </Menu>
+
+          {gridReady === true && (
             <AgTablePag
               gridRef={gridRef}
               pageCount={Math.ceil(rowData?.length / pageSize)}
             />
           )}
-      </div>
-      )
-     }
+        </div>
+      )}
     </>
   );
 };

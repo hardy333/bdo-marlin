@@ -35,7 +35,10 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import ReportsCards from "./ReportsCards";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
 import DatePickerInput from "../components/DatePickerInput";
-import { ReportsTableDefs, reportsTableHeaderList } from "../column-definitions/ReportsTableDefs";
+import {
+  ReportsTableDefs,
+  reportsTableHeaderList,
+} from "../column-definitions/ReportsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
 
@@ -49,9 +52,15 @@ const ReportsTable = () => {
   const url1 = window.location.origin + "/SLAByVendors.json";
   const url = "https://10.0.0.202:5001/api/SLAByVendors";
 
-  const { isLoading, error, data } = useQuery("reports-data", () =>
-    fetchData(url1)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: "reports-data",
+    queryFn: () => fetchData(url1),
+    select: (data) => {
+      return data.data
+    }
+  });
+
+  console.log({ data });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -59,7 +68,6 @@ const ReportsTable = () => {
     }
     return null;
   });
-
 
   useEffect(() => {
     if (!data) return;
@@ -97,7 +105,7 @@ const ReportsTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const components = useMemo(() => {
@@ -110,7 +118,6 @@ const ReportsTable = () => {
 
   const gridRef = useRef(null);
 
-  
   useEffect(() => {
     const x = document.querySelector(
       ".sla-all-table .ag-center-cols-container"
@@ -143,7 +150,7 @@ const ReportsTable = () => {
 
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
 
   return (
     <>

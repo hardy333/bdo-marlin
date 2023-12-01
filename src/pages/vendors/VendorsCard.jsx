@@ -12,6 +12,7 @@ import VendorsCalendarSvg from "../../components/svgs/VendorsCalendarSvg";
 import VendorsCatalogueSvg from "../../components/svgs/VendorsCatalogueSvg";
 import VendorsShopSvg from "../../components/svgs/VendorsShopSvg";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const VendorsCard = ({
   variant = "disabled",
@@ -21,6 +22,8 @@ const VendorsCard = ({
   productsCount
 }) => {
   const navigate = useNavigate();
+  const {user} = useAuthContext()
+  console.log({user})
 
   const footerActive = (
     <div className="vendor-card-footer">
@@ -35,9 +38,15 @@ const VendorsCard = ({
           onClick={() => {
           const urlParams = new URLSearchParams();
             urlParams.append("vendor", vendorName);
+            if(user.decodedToken.IsRetail === "1"){
+              
+              navigate(`/all-orders-parent?` + urlParams.toString());
+            }else{
+              navigate(`/vendor-all-orders?` + urlParams.toString());
+              
 
+            }
 
-            navigate(`/vendor-all-orders?` + urlParams.toString());
           }}
         >
           {/* <img src={shoppingBag} alt="" /> */}
