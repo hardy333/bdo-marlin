@@ -155,7 +155,7 @@ const VendorInvoices = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
-              pageName="all-orders"
+              pageName="invoices"
             />
           </div>
         </div>

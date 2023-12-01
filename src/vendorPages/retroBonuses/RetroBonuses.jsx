@@ -65,8 +65,6 @@ const RetroBonuses = () => {
   };
 
 
-  console.log({data})
-  console.log({selectedVendor})
 
   return (
     <>

@@ -332,7 +332,7 @@ const OrderDetails = () => {
                 gridColumnApi={gridColumnApi}
                 rowHeightIndex={rowHeightIndex}
                 setRowHeightIndex={setRowHeightIndex}
-                pageName="all-orders"
+                pageName="order-details"
               />
             </div>
           )}

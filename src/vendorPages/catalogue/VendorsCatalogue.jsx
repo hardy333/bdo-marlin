@@ -269,7 +269,7 @@ const VendorsCatalogue = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
-              pageName="all-orders"
+              pageName="catalogue"
             />
           </div>
         </div>

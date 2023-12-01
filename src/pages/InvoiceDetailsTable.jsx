@@ -280,7 +280,7 @@ const InvoiceDetailsTable = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
-              pageName="all-orders"
+              pageName="invoice-details"
             />
           </div>
         </div>
