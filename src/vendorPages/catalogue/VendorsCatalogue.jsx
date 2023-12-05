@@ -48,6 +48,7 @@ import TableSettings from "../../components/TableSettings";
 import vendorsArr from "../../data/vendors-data";
 import useCopyTable from "../../hooks/useCopyTable";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import NewCatMenu from "../../components/NewCatMenu";
 
 const VendorsCatalogue = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -59,21 +60,29 @@ const VendorsCatalogue = () => {
   );
 
   const { user } = useAuthContext();
-  
+  const [selectedVendor, setSelectedVendor] = useState(null);
 
-  const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
+  const [isMyProducts, setIsMyProducts] = useState(true);
 
-  const { isLoading, error, data, refetch, isFetching } = useQuery(
-    {
+  const url = `https://api.marlin.ge/api/CatalogueFront/${
+    isMyProducts ? user.decodedToken.AccountID : selectedVendor.accountID
+  }/${subCatId}`;
 
-     queryKey: ["catalogueTableData", subCatId],
-      queryFn: () => fetchData(url),
-      select: (data) => {
-        return data.data
-      }
-      
-    }
-  );
+  const { isLoading, error, data, refetch, isFetching } = useQuery({
+    queryKey: ["catalogueTableData", subCatId],
+    queryFn: () => fetchData(url),
+    select: (data) => {
+      return data.data;
+    },
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [selectedVendor, isMyProducts]);
+
+  useEffect(() => {
+    refetch();
+  }, [subCatId]);
 
   useEffect(() => {
     refetch();
@@ -143,8 +152,6 @@ const VendorsCatalogue = () => {
   // --------//
   const [isHover, setIsHover] = useState(false);
 
-  const [isMyProducts, setIsMyProducts] = useState(true);
-
   const [gridReady, setGridReady] = useState(false);
 
   useRemoveId(gridApi, gridRef);
@@ -167,8 +174,6 @@ const VendorsCatalogue = () => {
 
   useCopyTable(gridReady);
 
-  const [selectedVendor, setSelectedVendor] = useState(null);
-
   const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
   const {
     isLoading: vendorsIsLoading,
@@ -178,8 +183,8 @@ const VendorsCatalogue = () => {
     queryKey: ["retailers"],
     queryFn: () => fetchData(vendorsUrl),
     select: (data) => {
-      return data.data
-    }
+      return data.data;
+    },
   });
   const vendors = vendorsData?.data
     .filter((account) => account.isRetail)
@@ -229,15 +234,22 @@ const VendorsCatalogue = () => {
               </div>
               <p className="catalogue-label">ყველა პროდუქტი</p>
             </div>
-            <Select
-              onChange={handleVendorChange}
-              className="react-select-container"
-              classNamePrefix="react-select"
-              options={vendors}
-              value={selectedVendor}
-              defaultValue={selectedVendor}
-              defaultMenuIsOpen={false}
-            />
+
+            {
+                isMyProducts ? null : (
+
+                  <Select
+                  onChange={handleVendorChange}
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                  options={vendors}
+                  value={selectedVendor}
+                  defaultValue={selectedVendor}
+                  defaultMenuIsOpen={false}
+                />
+                )
+            }
+        
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
@@ -277,13 +289,18 @@ const VendorsCatalogue = () => {
       <div className="flex gap-2">
         {/* Categories */}
         {isSmallDevice ? null : (
-          <div className="catalogue-menu-container">
-            <CatalogueMenu
-              user={user}
-              isMyProducts={isMyProducts}
-              setSubCatId={setSubCatId}
-            />
-          </div>
+          // <div className="catalogue-menu-container">
+          //   <CatalogueMenu
+          //     user={user}
+          //     isMyProducts={isMyProducts}
+          //     setSubCatId={setSubCatId}
+          //   />
+          // </div>
+          <NewCatMenu
+            setSubCatId={setSubCatId}
+            isMyProducts={isMyProducts}
+            selectedVendor={selectedVendor}
+          />
         )}
 
         {isSmallDevice ? (
