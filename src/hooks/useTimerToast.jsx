@@ -10,7 +10,7 @@ import { useStopwatch } from 'react-timer-hook';
 const useTimerToast = (tableDataIsLoading, toast) => {
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
 
-    
+        
   const {
     totalSeconds,
     seconds,

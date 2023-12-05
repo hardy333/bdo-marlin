@@ -18,7 +18,7 @@ const ExcelExportBtn = ({ data, name = "data" }) => {
     <Tippy
       className="tooltip-1"
       arrow={false}
-      placement="top"
+      placement="top" 
       content="ექსელში ექსპორტი"
     >
       <button

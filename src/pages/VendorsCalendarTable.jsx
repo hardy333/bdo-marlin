@@ -152,7 +152,7 @@ const VendorsCalendarTable = () => {
               className="react-select-container"
               classNamePrefix="react-select"
               options={vendorsArr}
-              defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+              defaultValue={{ value: "GDM", label: "GDM" }}
               onChange={() => {
                 changeRowData();
               }}

@@ -8,6 +8,13 @@
 
 }
 
+.szh-menu{
+  animation: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+
+}
+
 .pending-status-menu .szh-menu__item{
   border-bottom: 1px solid #D0C7E8;
   padding-inline: 5px;

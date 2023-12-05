@@ -9,8 +9,6 @@ import { useMemo } from "react";
 import { fetchData } from "../utils/fetchData";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-
-
 const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
   // Selected category, sub category
   const [selectedCategory, setSelectedCategory] = useState("სასუსნავები");
@@ -55,27 +53,38 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
   // ------------------------ //
 
-  
   const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${user.decodedToken.AccountID}`;
 
   const { isLoading, error, data } = useQuery({
     queryKey: "catalogueMenuData",
     queryFn: () => fetchData(url),
-    select: (data) =>{
-      // console.log("ss", data)
+    onSuccess: (data) => {
+      console.log("succ", data)
+      localStorage.setItem("cat-data", JSON.stringify(data.data))
       
-      return data
 
-    }
+    },
+    select: (data) => {
+
+      return data;
+    },
   });
 
-  // console.log({data})
+
+  // useEffect(() => {
+
+  //   if(!data) return
+  //   localStorage.setItem("cat-data", JSON.stringify(data.data))
+    
+  // }, [data])
+
 
   const hasParent = (parentFolder, categoriesArr) => {
-    const x=  categoriesArr.some(categoryObj => categoryObj.categoryID === parentFolder)
-    // console.log({x})
-    return x
-  }
+    const x = categoriesArr.some(
+      (categoryObj) => categoryObj.categoryID === parentFolder
+    );
+    return x;
+  };
 
   const resArr = useMemo(() => {
     if (!data) return;
@@ -85,27 +94,19 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
     // console.log({catData})
 
-    const doritos = catData.find(obj => obj.name === "DORITOS")
-    const hustam = catData.find(obj => obj.name === "HRUSTEAM")
+    const doritos = catData.find((obj) => obj.name === "DORITOS");
+    const hustam = catData.find((obj) => obj.name === "HRUSTEAM");
 
     // console.log({doritos, hustam, x: doritos.parentFolder === hustam.categoryID})
 
     catData.forEach((obj) => {
-      
-      
       if (obj.parentFolder === "" || !hasParent(obj.parentFolder, catData)) {
         // console.log(obj)
-        if(!resObj[obj.categoryID]){
+        if (!resObj[obj.categoryID]) {
           resObj[obj.categoryID] = obj;
           resObj[obj.categoryID].children = [];
-
         }
-        
-        
-   
-       
       } else {
-
         if (!resObj[obj.parentFolder]) {
           // if(obj.name === "DORITOS"){
           //   console.log(obj)
@@ -119,26 +120,12 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
 
           if (parentObj) {
             resObj[obj.parentFolder] = parentObj;
-            
-           
-          }
-          // "HRUSTEAM"
-
-          if (resObj[obj.parentFolder]) {
-            if(parentObj.name === "HRUSTEAM"){
-              console.log(resObj)
-            }
-            console.log("Helooooooooooooooooooooooooooo")
             resObj[obj.parentFolder].children = [obj];
-            console.log(resObj[obj.parentFolder].children)
           }
-
+         
         } else {
-          
           resObj[obj.parentFolder].children.push(obj);
         }
-
-
       }
     });
 
@@ -146,20 +133,10 @@ const CatalogueMenu = ({ changeAllData, setSubCatId, isMyProducts, user }) => {
       resArr.push(value);
     }
 
-    console.log(resArr)
     return resArr;
   }, [data]);
 
-  // const [rowData, setRowData] = useState(() => {
-  //   if (data || data?.data) {
-  //     return data.data;
-  //   }
-  //   return null;
-  // });
-
-  // ------------------------ //
-
-  // console.log({resArr})
+  // console.log(resArr)
 
   let arrLeft = [];
   let arrRight = [];

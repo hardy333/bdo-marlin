@@ -23,7 +23,6 @@ const VendorsCard = ({
 }) => {
   const navigate = useNavigate();
   const {user} = useAuthContext()
-  console.log({user})
 
   const footerActive = (
     <div className="vendor-card-footer">
@@ -38,14 +37,17 @@ const VendorsCard = ({
           onClick={() => {
           const urlParams = new URLSearchParams();
             urlParams.append("vendor", vendorName);
-            if(user.decodedToken.IsRetail === "1"){
+            // if(user.decodedToken.IsRetail === "1"){
               
-              navigate(`/all-orders-parent?` + urlParams.toString());
-            }else{
-              navigate(`/vendor-all-orders?` + urlParams.toString());
+            //   navigate(`/all-orders-parent?` + urlParams.toString());
+            // }else{
+            //   navigate(`/vendor-all-orders?` + urlParams.toString());
               
 
-            }
+            // }
+
+              navigate(`/vendor-all-orders?` + urlParams.toString());
+
 
           }}
         >

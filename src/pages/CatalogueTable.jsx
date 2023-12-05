@@ -48,6 +48,7 @@ import TableSettings from "../components/TableSettings";
 import vendorsArr from "../data/vendors-data";
 import useCopyTable from "../hooks/useCopyTable";
 import { useAuthContext } from "../hooks/useAuthContext";
+import NewCatMenu from "../components/NewCatMenu";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -192,7 +193,6 @@ const CatalogueTable = () => {
     setSelectedVendor(vendors[0]);
   }, [vendorsData]);
 
-  console.log({vendors})
 
   return (
     <>
@@ -283,13 +283,18 @@ const CatalogueTable = () => {
       <div className="flex gap-2">
         {/* Categories */}
         {isSmallDevice ? null : (
-          <div className="catalogue-menu-container">
-            <CatalogueMenu
-              user={user}
-              isMyProducts={isMyProducts}
+          // <div className="catalogue-menu-container">
+          //   <CatalogueMenu
+          //     user={user}
+          //     isMyProducts={isMyProducts}
+          //     setSubCatId={setSubCatId}
+          //   />
+          // </div>
+          <NewCatMenu 
               setSubCatId={setSubCatId}
-            />
-          </div>
+
+          
+          />
         )}
 
         {isSmallDevice ? (

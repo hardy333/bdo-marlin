@@ -73,7 +73,6 @@ const VendorAllOrdersTable = () => {
       showingName: "გეგმიური მიწოდება",
       isShowing: true,
     },
-
     {
       name: "status",
       showingName: "სტატუსი",
@@ -85,43 +84,37 @@ const VendorAllOrdersTable = () => {
       isShowing: true,
     },
   ]);
+  
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
   const gridRef = useRef(null);
-  const {user} = useAuthContext()
+  const { user } = useAuthContext();
   const [searchParams] = useSearchParams();
 
-  
-  
   let vendor = searchParams.get("vendor") || "";
 
-  let vendorID  = "D00002"
-  if(vendor === "GDM"){
-    vendorID = "D00002"
-  }else if(vendor === "ნიცა"){
-    vendorID = "D00003"
+  let vendorID = "D00002";
+  if (vendor === "GDM") {
+    vendorID = "D00002";
+  } else if (vendor === "ნიცა") {
+    vendorID = "D00003";
   }
 
+  const url = `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
 
-  const url =
-    `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
-
-  const { isLoading, error, data } = useQuery("r-repoData", () => fetchData(url));
-
-  const [rowData, setRowData] = useState(() => {
-    if (data || data?.data) {
+  const { isLoading, error, data } = useQuery({
+    queryKey: "r-repoData",
+    queryFn: () => fetchData(url),
+    onSuccess: (data) =>{
+      console.log({data})
+      
+    },
+    select: (data) => {
       return data.data;
-    }
-    return null;
+    },
   });
 
-  useEffect(() => {
-    if (!data) return;
-    if (isLoading) return;
-    if (error) return;
-    setRowData(data.data);
-  }, [data, isLoading, error]);
 
   const [columnDefs] = useState([
     {
@@ -332,7 +325,6 @@ const VendorAllOrdersTable = () => {
   useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
   // useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
 
-
   useEffect(() => {
     if (!gridRef.current) return;
     if (!gridApi) return;
@@ -354,9 +346,6 @@ const VendorAllOrdersTable = () => {
   const [gridReady, setGridReady] = useState(false);
 
   useCopyTable(gridReady);
-
-
-
 
   return (
     <>
