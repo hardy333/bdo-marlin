@@ -19,33 +19,47 @@ import { fetchData } from "../utils/fetchData.js";
 
 const resArr = createTree(gdmData);
 
-function NewCatMenu({setSubCatId}) {
+function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
   const { user } = useAuthContext();
 
-  const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${user.decodedToken.AccountID}`;
+  const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${isMyProducts ? user.decodedToken.AccountID : selectedVendor.accountID}`;
 
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, refetch } = useQuery({
     queryKey: "new-cat-menu-data",
     queryFn: () => fetchData(url),
     onSuccess: (data) => {
       console.log("succ", data);
       localStorage.setItem("cat-data", JSON.stringify(data.data));
+
+      const resArr = createTree(data);
+    setArr1(resArr)
     },
     select: (data) => {
       return data.data;
     },
   });
 
+  console.log({isMyProducts, selectedVendor})
+
+
+//   useEffect(() => {
+//     if(!data) return;
+//     if(arr1.length > 0) return 
+
+//     const resArr = createTree(data);
+//     setArr1(resArr)
+
+
+//   }, [data])
+
 
   useEffect(() => {
-    if(!data) return;
-    if(arr1.length > 0) return 
+      console.log("Heloooooooooooooooooooooo")
 
-    const resArr = createTree(data);
-    setArr1(resArr)
+      refetch()
 
 
-  }, [data])
+  }, [isMyProducts, selectedVendor])
 
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);

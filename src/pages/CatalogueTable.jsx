@@ -61,8 +61,11 @@ const CatalogueTable = () => {
     const dailyId = "f079fc40-9a59-11e5-80bc-000c295e18a3";
     return user.decodedToken.AccountID === "R00001" ? dailyId : foodmrtID;
   });
+  const [isMyProducts, setIsMyProducts] = useState(true);
 
-  const url = `https://api.marlin.ge/api/CatalogueFront/${user.decodedToken.AccountID}/${subCatId}`;
+  const [selectedVendor, setSelectedVendor] = useState(null);
+
+  const url = `https://api.marlin.ge/api/CatalogueFront/${isMyProducts ? user.decodedToken.AccountID : selectedVendor.accountID}/${subCatId}`;
   const url1 =
     "https://api.marlin.ge/api/CatalogueFront/R00002/30f31189-8851-11e4-8f6e-b083fec0b293";
 
@@ -74,6 +77,11 @@ const CatalogueTable = () => {
     },
     retry: 0
   });
+
+  useEffect(() => {
+    refetch()
+
+  }, [selectedVendor, isMyProducts])
 
   useEffect(() => {
     refetch();
@@ -144,7 +152,6 @@ const CatalogueTable = () => {
   // --------//
   const [isHover, setIsHover] = useState(false);
 
-  const [isMyProducts, setIsMyProducts] = useState(true);
 
   const [gridReady, setGridReady] = useState(false);
 
@@ -166,7 +173,6 @@ const CatalogueTable = () => {
 
   useCopyTable(gridReady);
 
-  const [selectedVendor, setSelectedVendor] = useState(null);
 
   const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
   const {
@@ -292,6 +298,8 @@ const CatalogueTable = () => {
           // </div>
           <NewCatMenu 
               setSubCatId={setSubCatId}
+              isMyProducts={isMyProducts}
+              selectedVendor={selectedVendor}
 
           
           />
