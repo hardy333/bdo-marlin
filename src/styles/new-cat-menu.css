@@ -199,3 +199,36 @@
 
 
   }
+
+  /* Input Wrappers ----------------------------------  Input Wrappers */
+  /* Input Wrappers ----------------------------------  Input Wrappers */
+
+  
+.catalogue-menu-main-container .input-wrapper{
+    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 180px;
+  
+  }
+  
+  .catalogue-menu-main-container .input-wrapper .input{
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2.5rem !important;
+  
+  }
+  
+  .catalogue-menu-main-container .input-wrapper .input{
+    border:1px solid #211543a1;
+    font-size: 14px;
+    height: 25px;
+  }
+  
+  .catalogue-menu-main-container .input-wrapper .input:focus{
+    /* border:1px solid #6E0FF5; */
+    outline: none;
+  }
+  
+  .catalogue-menu-main-container .input-wrapper  svg{
+    left: 0.5rem !important;
+  }

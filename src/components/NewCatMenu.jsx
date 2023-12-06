@@ -17,6 +17,7 @@ import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData.js";
 import Tippy from "@tippyjs/react";
+import SearchSvg from "./svgs/SearchSvg.jsx";
 
 // const resArr = createTree(gdmData);
 
@@ -87,7 +88,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
   const [hoverdLvl4Name, setHoveredLvl4Name] = useState("");
   const [hoverdLvl5Name, setHoveredLvl5Name] = useState("");
 
-  console.log(selectedLevelNames);
 
   // const setArr2Ul = (obj) => {
   //   copy(obj.categoryID);
@@ -266,6 +266,15 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
   //     console.log(selectedCatId);
   //   }, [selectedLevelNames]);
 
+  const [columnSearchValues, setColumnSearchValues] = useState({
+    level1: "",
+    level2: "",
+    level3: "",
+    level4: "",
+    level5: "",
+  })
+
+
   return (
     <div className="App">
       <section className="catalogue-menu-main-container">
@@ -309,12 +318,21 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
           {/* 111 */}
           {/* 111 */}
           <section className="catalogue-menu-column">
+            <div className="input-wrapper">
+              <input
+                type="text"
+                className="input"
+                value={columnSearchValues.level1}
+                onChange={(e) => setColumnSearchValues({...columnSearchValues, level1: e.target.value})}
+              />
+              <SearchSvg />
+            </div>
             <ul
               className="arr1-ul catalogue-menu-column-list"
               onMouseMove={handleMouseMoveOnMenuPanel}
             >
               {/* <li>რაოდენობა: {arr1.length}</li> */}
-              {arr1.map((obj) => {
+              {arr1.filter(obj => obj.name.toLowerCase().includes(columnSearchValues.level1.toLowerCase())).map((obj) => {
                 return (
                   <Tippy
                     className="tooltip-1"
@@ -325,14 +343,16 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
-
                   >
                     <li
                       // onClick={() => setArr2Ul(obj)}
-                      
+
                       onClick={(e) => {
-                        console.log(obj.name, obj.name.length < 19 ? true : false)
-                        handleCatClick(e, obj, 1)
+                        console.log(
+                          obj.name,
+                          obj.name.length < 19 ? true : false
+                        );
+                        handleCatClick(e, obj, 1);
                       }}
                       key={obj.id}
                       className={`catalogue-menu-li ${
@@ -365,10 +385,22 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
             className="catalogue-menu-column "
             style={{ display: column2IsOpen ? "flex" : "none" }}
           >
+            <div className="input-wrapper">
+              <input
+                type="text"
+                className="input"
+                // value={categorySearchValue}
+                // onChange={(e) => setCategorySearchValue(e.target.value)}
+
+                value={columnSearchValues.level2}
+                onChange={(e) => setColumnSearchValues({...columnSearchValues, level2: e.target.value})}
+              />
+              <SearchSvg />
+            </div>
             <ul className="arr2-ul  catalogue-menu-column-list">
               {/* <li>რაოდენობა: {arr2.length}</li> */}
 
-              {arr2.map((obj) => {
+              {arr2.filter(obj => obj.name.toLowerCase().includes(columnSearchValues.level2.toLowerCase())).map((obj) => {
                 return (
                   <Tippy
                     className="tooltip-1"
@@ -379,7 +411,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     delay={[500, 0]}
                     // duration={0}
                     key={obj.id}
-
                   >
                     <li
                       onClick={(e) => handleCatClick(e, obj, 2)}
@@ -414,10 +445,22 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
             className="catalogue-menu-column "
             style={{ display: column3IsOpen ? "flex" : "none" }}
           >
+            <div className="input-wrapper">
+              <input
+                type="text"
+                className="input"
+                // value={categorySearchValue}
+                // onChange={(e) => setCategorySearchValue(e.target.value)}
+
+                value={columnSearchValues.level3}
+                onChange={(e) => setColumnSearchValues({...columnSearchValues, level3: e.target.value})}
+              />
+              <SearchSvg />
+            </div>
             <ul className="arr3-ul catalogue-menu-column-list">
               {/* <li>რაოდენობა: {arr3.length}</li> */}
 
-              {arr3.map((obj) => {
+              {arr3.filter(obj => obj.name.toLowerCase().includes(columnSearchValues.level3.toLowerCase())).map((obj) => {
                 return (
                   <Tippy
                     className="tooltip-1"
@@ -428,7 +471,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
-
                   >
                     <li
                       onClick={(e) => handleCatClick(e, obj, 3)}
@@ -463,9 +505,21 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
             className="catalogue-menu-column "
             style={{ display: column4IsOpen ? "flex" : "none" }}
           >
+            <div className="input-wrapper">
+              <input
+                type="text"
+                className="input"
+                // value={categorySearchValue}
+                // onChange={(e) => setCategorySearchValue(e.target.value)}
+
+                value={columnSearchValues.level4}
+                onChange={(e) => setColumnSearchValues({...columnSearchValues, level4: e.target.value})}
+              />
+              <SearchSvg />
+            </div>
             <ul className="arr4-ul catalogue-menu-column-list">
               {/* <li>რაოდენობა: {arr4.length}</li> */}
-              {arr4.map((obj) => {
+              {arr4.filter(obj => obj.name.toLowerCase().includes(columnSearchValues.level4.toLowerCase())).map((obj) => {
                 return (
                   <Tippy
                     className="tooltip-1"
@@ -476,7 +530,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
-
                   >
                     <li
                       onClick={(e) => handleCatClick(e, obj, 4)}
@@ -509,9 +562,21 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
             className="catalogue-menu-column "
             style={{ display: column5IsOpen ? "flex" : "none" }}
           >
+            <div className="input-wrapper">
+              <input
+                type="text"
+                className="input"
+                // value={categorySearchValue}
+                // onChange={(e) => setCategorySearchValue(e.target.value)}
+
+                value={columnSearchValues.level5}
+                onChange={(e) => setColumnSearchValues({...columnSearchValues, level5: e.target.value})}
+              />
+              <SearchSvg />
+            </div>
             <ul className="arr5-ul catalogue-menu-column-list">
               {/* <li>რაოდენობა: {arr5.length}</li> */}
-              {arr5.map((obj) => {
+              {arr5.filter(obj => obj.name.toLowerCase().includes(columnSearchValues.level5.toLowerCase())).map((obj) => {
                 return (
                   <Tippy
                     className="tooltip-1"
@@ -522,7 +587,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
-
                   >
                     <li
                       onClick={(e) => handleCatClick(e, obj, 5)}
