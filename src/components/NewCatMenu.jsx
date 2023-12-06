@@ -5,7 +5,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 // Datas
 // import { data } from "./data.js";
 // import foodmartData from "./foodmart.json";
-import gdmData from "./gdm.json";
+// import gdmData from "./gdm.json";
 // import pepsiData from "./pepsi.json";
 // import deilyData from "./deily.json";
 
@@ -17,7 +17,7 @@ import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData.js";
 
-const resArr = createTree(gdmData);
+// const resArr = createTree(gdmData);
 
 function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
   const { user } = useAuthContext();
@@ -28,7 +28,6 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
     queryKey: "new-cat-menu-data",
     queryFn: () => fetchData(url),
     onSuccess: (data) => {
-      console.log("succ", data);
       localStorage.setItem("cat-data", JSON.stringify(data.data));
 
       const resArr = createTree(data);
@@ -39,7 +38,6 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
     },
   });
 
-  console.log({isMyProducts, selectedVendor})
 
 
 //   useEffect(() => {
@@ -54,7 +52,6 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
 
 
   useEffect(() => {
-      console.log("Heloooooooooooooooooooooo")
 
       refetch()
 
@@ -265,10 +262,10 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
     setSubCatId(cat.categoryID)
   };
 
-  useEffect(() => {
-    console.log(selectedLevelNames);
-    console.log(selectedCatId);
-  }, [selectedLevelNames]);
+//   useEffect(() => {
+//     console.log(selectedLevelNames);
+//     console.log(selectedCatId);
+//   }, [selectedLevelNames]);
 
   return (
     <div className="App">

@@ -76,17 +76,11 @@ const VendorsCatalogue = () => {
     },
   });
 
+
   useEffect(() => {
     refetch();
   }, [selectedVendor, isMyProducts]);
 
-  useEffect(() => {
-    refetch();
-  }, [subCatId]);
-
-  useEffect(() => {
-    refetch();
-  }, [subCatId]);
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -186,6 +180,8 @@ const VendorsCatalogue = () => {
       return data.data;
     },
   });
+
+
   const vendors = vendorsData?.data
     .filter((account) => account.isRetail)
     .map((acc) => ({
@@ -193,6 +189,8 @@ const VendorsCatalogue = () => {
       label: acc.name,
       accountID: acc.accountID,
     }));
+
+
   useEffect(() => {
     if (!vendors || !vendorsData) return;
     if (selectedVendor) return;
@@ -205,7 +203,7 @@ const VendorsCatalogue = () => {
         className="all-orders__header catalogue-header"
         style={{ position: "relative" }}
       >
-        <ProgressBar show={isFetching} />
+        <ProgressBar show={isLoading} />
         <div className="all-orders__settings">
           {/* Left */}
           <div
@@ -221,7 +219,7 @@ const VendorsCatalogue = () => {
               </div>
             </h4>
             <div className="vendors-switch-container">
-              <p className="catalogue-label">ჩემი პროდუქტები</p>
+              <p className="catalogue-label">ჩემი კატეგორიები</p>
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
@@ -232,7 +230,7 @@ const VendorsCatalogue = () => {
                 />
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
-              <p className="catalogue-label">ყველა პროდუქტი</p>
+              <p className="catalogue-label">რითეილერების კატეგორიები</p>
             </div>
 
             {

@@ -83,9 +83,6 @@ const CatalogueTable = () => {
 
   }, [selectedVendor, isMyProducts])
 
-  useEffect(() => {
-    refetch();
-  }, [subCatId]);
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -206,7 +203,7 @@ const CatalogueTable = () => {
         className="all-orders__header catalogue-header"
         style={{ position: "relative" }}
       >
-        <ProgressBar show={isFetching} />
+        <ProgressBar show={isLoading} />
         <div className="all-orders__settings">
           {/* Left */}
           <div
