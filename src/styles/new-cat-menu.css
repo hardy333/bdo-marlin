@@ -148,3 +148,54 @@
   .catalogue-menu-li.active .category-arrow{
     display: flex;
   }
+
+  /* Selected Categories  ------------------------------------------- Selected Categories */
+  /* Selected Categories  ------------------------------------------- Selected Categories */
+
+  .catalogue-selected-categories{
+    position: absolute;
+    z-index: 99999999999999999999999;
+
+    /* background-color: red; */
+    top: -2px;
+    left: 10px;
+    transform: translate(0, -100%);
+
+    display: flex;
+    align-items: center;
+    width: 400px;
+    overflow: visible;
+    /* height: 20px; */
+    /* border: 1px solid red; */
+  }
+
+  .catalogue-selected-categories  span{
+    font-size: 14px;
+    /* color: #f9f8fc !important; */
+    color: #b9b0d4;
+    /* font-weight: 400; */
+
+    display: flex;
+    align-items: center;
+
+    /* background-color: green; */
+
+  }
+
+  .catalogue-selected-categories  > span{
+    /* border: 1px solid yellow; */
+  }
+
+
+  .catalogue-selected-categories__text-span{
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    /* font-family: sans-serif; */
+  font-family: 'Whisper-Regular';
+  font-weight: normal;
+  
+
+
+
+  }

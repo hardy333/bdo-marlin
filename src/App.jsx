@@ -20,6 +20,7 @@ import "./styles/switch.css";
 import "./styles/info-badge.css";
 import "./styles/copy-paste-table.css";
 
+
 import Employees from "./pages/Employees";
 import Dash from "./pages/Dash";
 // const Dash = React.lazy(() => import("./pages/Dash"));

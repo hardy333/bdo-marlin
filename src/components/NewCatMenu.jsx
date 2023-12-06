@@ -19,10 +19,12 @@ import { fetchData } from "../utils/fetchData.js";
 
 // const resArr = createTree(gdmData);
 
-function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
+function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
   const { user } = useAuthContext();
 
-  const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${isMyProducts ? user.decodedToken.AccountID : selectedVendor.accountID}`;
+  const url = `https://api.marlin.ge/api/ProductCategories?AccountID=${
+    isMyProducts ? user.decodedToken.AccountID : selectedVendor.accountID
+  }`;
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: "new-cat-menu-data",
@@ -31,32 +33,25 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
       localStorage.setItem("cat-data", JSON.stringify(data.data));
 
       const resArr = createTree(data);
-    setArr1(resArr)
+      setArr1(resArr);
     },
     select: (data) => {
       return data.data;
     },
   });
 
+  //   useEffect(() => {
+  //     if(!data) return;
+  //     if(arr1.length > 0) return
 
+  //     const resArr = createTree(data);
+  //     setArr1(resArr)
 
-//   useEffect(() => {
-//     if(!data) return;
-//     if(arr1.length > 0) return 
-
-//     const resArr = createTree(data);
-//     setArr1(resArr)
-
-
-//   }, [data])
-
+  //   }, [data])
 
   useEffect(() => {
-
-      refetch()
-
-
-  }, [isMyProducts, selectedVendor])
+    refetch();
+  }, [isMyProducts, selectedVendor]);
 
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
@@ -90,6 +85,8 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
   const [hoverdLvl3Name, setHoveredLvl3Name] = useState("");
   const [hoverdLvl4Name, setHoveredLvl4Name] = useState("");
   const [hoverdLvl5Name, setHoveredLvl5Name] = useState("");
+
+  console.log(selectedLevelNames);
 
   // const setArr2Ul = (obj) => {
   //   copy(obj.categoryID);
@@ -137,6 +134,7 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
 
   const handleMouseLeave = (e) => {
     closeAllColumns();
+    setHoveredLvl1Name("");
   };
 
   // const handleMouseEnter = (e) => {
@@ -255,21 +253,45 @@ function NewCatMenu({setSubCatId, isMyProducts, selectedVendor}) {
       level2: hoverdLvl2Name,
       level3: hoverdLvl3Name,
       level4: hoverdLvl4Name,
-      level5: cat.name,
+      level5: level === 5 ? cat.name : "",
     });
     closeAllColumns();
     setSelectedCatId(cat.categoryID);
-    setSubCatId(cat.categoryID)
+    setSubCatId(cat.categoryID);
   };
 
-//   useEffect(() => {
-//     console.log(selectedLevelNames);
-//     console.log(selectedCatId);
-//   }, [selectedLevelNames]);
+  //   useEffect(() => {
+  //     console.log(selectedLevelNames);
+  //     console.log(selectedCatId);
+  //   }, [selectedLevelNames]);
 
   return (
     <div className="App">
       <section className="catalogue-menu-main-container">
+        <div className="catalogue-selected-categories">
+          {(() => {
+            const catNameArr = [];
+            for (let [key, value] of Object.entries(selectedLevelNames)) {
+              if (value !== "") {
+                catNameArr.push(value);
+              }
+            }
+
+            console.log({ catNameArr });
+
+            return catNameArr.map((catName, index) => {
+              if (index === 0) {
+                return <span className="catalogue-selected-categories__text-span">{catName}</span>;
+              }
+              return (
+                <span>
+            
+                  <span style={{padding: "0px 10px"}}><BsArrowRightShort /></span> <span className="catalogue-selected-categories__text-span">{catName}</span>
+                </span>
+              );
+            });
+          })()}
+        </div>
         <section
           className="catalogue-menu-columns-container"
           onMouseLeave={handleMouseLeave}
