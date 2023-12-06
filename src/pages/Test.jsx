@@ -70,6 +70,11 @@ const Test = () => {
     <div>
       <button style={{border: "1px solid red", padding: "10px", margin: "10px"}} onClick={() => handleAxios()}>axios get</button>
       <button style={{border: "1px solid red", padding: "10px", margin: "10px"}} onClick={() => handleFetch()}>fetch get</button>
+      <p id="text-test">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sequi laboriosam soluta, explicabo neque maiores quia, atque dolorum consequatur suscipit quidem reiciendis eius assumenda repellendus laudantium? Excepturi veritatis est deleniti?
+        
+      </p>
+      
       
     </div>
   );

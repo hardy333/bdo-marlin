@@ -163,7 +163,7 @@
 
     display: flex;
     align-items: center;
-    width: 400px;
+    width: 500px;
     overflow: visible;
     /* height: 20px; */
     /* border: 1px solid red; */
@@ -192,8 +192,15 @@
     display: flex;
     align-items: center;
     /* font-family: sans-serif; */
-  font-family: 'Whisper-Regular';
-  font-weight: normal;
+  /* font-family: xxx; */
+  /* font-family: yyy; */
+  font-family:  "geo-catalogue";
+  font-weight: 400;
+  font-size: 13px !important;
+  letter-spacing: 0.5px;
+  
+
+
 
 
 
