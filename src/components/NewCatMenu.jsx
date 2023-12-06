@@ -16,6 +16,7 @@ import createTree from "../utils/createTree.js";
 import { useAuthContext } from "../hooks/useAuthContext.jsx";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData.js";
+import Tippy from "@tippyjs/react";
 
 // const resArr = createTree(gdmData);
 
@@ -281,12 +282,20 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
 
             return catNameArr.map((catName, index) => {
               if (index === 0) {
-                return <span className="catalogue-selected-categories__text-span">{catName}</span>;
+                return (
+                  <span className="catalogue-selected-categories__text-span">
+                    {catName}
+                  </span>
+                );
               }
               return (
                 <span>
-            
-                  <span style={{padding: "0px 10px"}}><BsArrowRightShort /></span> <span className="catalogue-selected-categories__text-span">{catName}</span>
+                  <span style={{ padding: "0px 10px" }}>
+                    <BsArrowRightShort />
+                  </span>{" "}
+                  <span className="catalogue-selected-categories__text-span">
+                    {catName}
+                  </span>
                 </span>
               );
             });
@@ -307,28 +316,44 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
               {/* <li>რაოდენობა: {arr1.length}</li> */}
               {arr1.map((obj) => {
                 return (
-                  <li
-                    // onClick={() => setArr2Ul(obj)}
-                    onClick={(e) => handleCatClick(e, obj, 1)}
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={`${obj.name}`}
+                    disabled={obj.name.length < 19 ? true : false}
+                    delay={[500, 0]}
+                    duration={0}
                     key={obj.id}
-                    className={`catalogue-menu-li ${
-                      hoverdLvl1Name === obj.name ? "active" : ""
-                    } ${
-                      selectedLevelNames.level1 === obj.name ? "selected" : ""
-                    }`}
-                    data-has-sub-categories={obj.children ? true : false}
-                    onMouseEnter={(e) => handleLiMouseOverCol1(e, obj)}
+
                   >
-                    <span className="category-name" data-value={obj.name}>
-                      {obj.name}
-                    </span>
-                    <span
-                      className="category-arrow"
-                      style={{ display: obj.children ? "flex" : "none" }}
+                    <li
+                      // onClick={() => setArr2Ul(obj)}
+                      
+                      onClick={(e) => {
+                        console.log(obj.name, obj.name.length < 19 ? true : false)
+                        handleCatClick(e, obj, 1)
+                      }}
+                      key={obj.id}
+                      className={`catalogue-menu-li ${
+                        hoverdLvl1Name === obj.name ? "active" : ""
+                      } ${
+                        selectedLevelNames.level1 === obj.name ? "selected" : ""
+                      }`}
+                      data-has-sub-categories={obj.children ? true : false}
+                      onMouseEnter={(e) => handleLiMouseOverCol1(e, obj)}
                     >
-                      <BsArrowRightShort />
-                    </span>
-                  </li>
+                      <span className="category-name" data-value={obj.name}>
+                        {obj.name}
+                      </span>
+                      <span
+                        className="category-arrow"
+                        style={{ display: obj.children ? "flex" : "none" }}
+                      >
+                        <BsArrowRightShort />
+                      </span>
+                    </li>
+                  </Tippy>
                 );
               })}
             </ul>
@@ -345,27 +370,39 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
 
               {arr2.map((obj) => {
                 return (
-                  <li
-                    onClick={(e) => handleCatClick(e, obj, 2)}
-                    // onClick={() => setArr3Ul(obj)}
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={`${obj.name}`}
+                    disabled={obj.name.length < 18 ? true : false}
+                    delay={[500, 0]}
+                    // duration={0}
                     key={obj.id}
-                    className={`catalogue-menu-li ${
-                      hoverdLvl2Name === obj.name ? "active" : ""
-                    }  ${
-                      selectedLevelNames.level2 === obj.name ? "selected" : ""
-                    }`}
-                    onMouseEnter={(e) => handleLiMouseOverCol2(e, obj)}
+
                   >
-                    <span className="category-name" data-value={obj.name}>
-                      {obj.name}
-                    </span>
-                    <span
-                      className="category-arrow"
-                      style={{ display: obj.children ? "flex" : "none" }}
+                    <li
+                      onClick={(e) => handleCatClick(e, obj, 2)}
+                      // onClick={() => setArr3Ul(obj)}
+                      key={obj.id}
+                      className={`catalogue-menu-li ${
+                        hoverdLvl2Name === obj.name ? "active" : ""
+                      }  ${
+                        selectedLevelNames.level2 === obj.name ? "selected" : ""
+                      }`}
+                      onMouseEnter={(e) => handleLiMouseOverCol2(e, obj)}
                     >
-                      <BsArrowRightShort />
-                    </span>
-                  </li>
+                      <span className="category-name" data-value={obj.name}>
+                        {obj.name}
+                      </span>
+                      <span
+                        className="category-arrow"
+                        style={{ display: obj.children ? "flex" : "none" }}
+                      >
+                        <BsArrowRightShort />
+                      </span>
+                    </li>
+                  </Tippy>
                 );
               })}
             </ul>
@@ -382,27 +419,39 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
 
               {arr3.map((obj) => {
                 return (
-                  <li
-                    onClick={(e) => handleCatClick(e, obj, 3)}
-                    // onClick={() => setArr4Ul(obj)}
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={`${obj.name}`}
+                    disabled={obj.name.length < 19 ? true : false}
+                    delay={[500, 0]}
+                    duration={0}
                     key={obj.id}
-                    onMouseEnter={(e) => handleLiMouseOverCol3(e, obj)}
-                    className={`catalogue-menu-li ${
-                      hoverdLvl3Name === obj.name ? "active" : ""
-                    } ${
-                      selectedLevelNames.level3 === obj.name ? "selected" : ""
-                    }`}
+
                   >
-                    <span className="category-name" data-value={obj.name}>
-                      {obj.name}
-                    </span>
-                    <span
-                      className="category-arrow"
-                      style={{ display: obj.children ? "flex" : "none" }}
+                    <li
+                      onClick={(e) => handleCatClick(e, obj, 3)}
+                      // onClick={() => setArr4Ul(obj)}
+                      key={obj.id}
+                      onMouseEnter={(e) => handleLiMouseOverCol3(e, obj)}
+                      className={`catalogue-menu-li ${
+                        hoverdLvl3Name === obj.name ? "active" : ""
+                      } ${
+                        selectedLevelNames.level3 === obj.name ? "selected" : ""
+                      }`}
                     >
-                      <BsArrowRightShort />
-                    </span>
-                  </li>
+                      <span className="category-name" data-value={obj.name}>
+                        {obj.name}
+                      </span>
+                      <span
+                        className="category-arrow"
+                        style={{ display: obj.children ? "flex" : "none" }}
+                      >
+                        <BsArrowRightShort />
+                      </span>
+                    </li>
+                  </Tippy>
                 );
               })}
             </ul>
@@ -418,26 +467,38 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
               {/* <li>რაოდენობა: {arr4.length}</li> */}
               {arr4.map((obj) => {
                 return (
-                  <li
-                    onClick={(e) => handleCatClick(e, obj, 4)}
-                    className={`catalogue-menu-li ${
-                      hoverdLvl4Name === obj.name ? "active" : ""
-                    } ${
-                      selectedLevelNames.level4 === obj.name ? "selected" : ""
-                    }`}
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={`${obj.name}`}
+                    disabled={obj.name.length < 19 ? true : false}
+                    delay={[500, 0]}
+                    duration={0}
                     key={obj.id}
-                    onMouseEnter={(e) => handleLiMouseOverCol4(e, obj)}
+
                   >
-                    <span className="category-name" data-value={obj.name}>
-                      {obj.name}
-                    </span>
-                    <span
-                      className="category-arrow"
-                      style={{ display: obj.children ? "flex" : "none" }}
+                    <li
+                      onClick={(e) => handleCatClick(e, obj, 4)}
+                      className={`catalogue-menu-li ${
+                        hoverdLvl4Name === obj.name ? "active" : ""
+                      } ${
+                        selectedLevelNames.level4 === obj.name ? "selected" : ""
+                      }`}
+                      key={obj.id}
+                      onMouseEnter={(e) => handleLiMouseOverCol4(e, obj)}
                     >
-                      <BsArrowRightShort />
-                    </span>
-                  </li>
+                      <span className="category-name" data-value={obj.name}>
+                        {obj.name}
+                      </span>
+                      <span
+                        className="category-arrow"
+                        style={{ display: obj.children ? "flex" : "none" }}
+                      >
+                        <BsArrowRightShort />
+                      </span>
+                    </li>
+                  </Tippy>
                 );
               })}
             </ul>
@@ -452,23 +513,35 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
               {/* <li>რაოდენობა: {arr5.length}</li> */}
               {arr5.map((obj) => {
                 return (
-                  <li
-                    onClick={(e) => handleCatClick(e, obj, 5)}
+                  <Tippy
+                    className="tooltip-1"
+                    arrow={false}
+                    placement="top"
+                    content={`${obj.name}`}
+                    disabled={obj.name.length < 19 ? true : false}
+                    delay={[500, 0]}
+                    duration={0}
                     key={obj.id}
-                    className={`catalogue-menu-li  ${
-                      selectedLevelNames.level5 === obj.name ? "selected" : ""
-                    }`}
+
                   >
-                    <span className="category-name" data-value={obj.name}>
-                      {obj.name}
-                    </span>
-                    <span
-                      className="category-arrow"
-                      style={{ display: obj.children ? "flex" : "none" }}
+                    <li
+                      onClick={(e) => handleCatClick(e, obj, 5)}
+                      key={obj.id}
+                      className={`catalogue-menu-li  ${
+                        selectedLevelNames.level5 === obj.name ? "selected" : ""
+                      }`}
                     >
-                      <BsArrowRightShort />
-                    </span>
-                  </li>
+                      <span className="category-name" data-value={obj.name}>
+                        {obj.name}
+                      </span>
+                      <span
+                        className="category-arrow"
+                        style={{ display: obj.children ? "flex" : "none" }}
+                      >
+                        <BsArrowRightShort />
+                      </span>
+                    </li>
+                  </Tippy>
                 );
               })}
             </ul>
