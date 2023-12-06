@@ -22,12 +22,12 @@ export const authReducer = (state, action) => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  if (!user || !user.decodedToken || !user.token) {
-    localStorage.removeItem("user");
-
-    handleLogout();
-    navigate("/login");
-    user = null;
+  if (!user?.decodedToken || !user?.token) {
+    if (user) {
+      localStorage.removeItem("user");
+      window.location.href = "/login";
+      user = null;
+    }
   }
 
   const [state, dispatch] = useReducer(authReducer, { user });
