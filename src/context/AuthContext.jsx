@@ -1,4 +1,4 @@
-import { createContext, useReducer, } from "react";
+import { createContext, useReducer } from "react";
 
 export const AuthContext = createContext();
 
@@ -9,10 +9,6 @@ let user = null;
 if (x) {
   user = JSON.parse(x);
 }
-
-
-
-
 
 export const authReducer = (state, action) => {
   switch (action.type) {
@@ -26,15 +22,18 @@ export const authReducer = (state, action) => {
 };
 
 const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, {user});
+  if (!user || !user.decodedToken || !user.token) {
+    localStorage.removeItem("user");
 
+    handleLogout();
+    navigate("/login");
+    user = null;
+  }
 
-  
-  
-
+  const [state, dispatch] = useReducer(authReducer, { user });
 
   return (
-    <AuthContext.Provider value={{  ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

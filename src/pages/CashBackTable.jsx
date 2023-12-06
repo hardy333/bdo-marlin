@@ -138,7 +138,6 @@ const CashBackTable = () => {
   });
 
 
-  console.log({tableData})
 
   const handleShopChange = (shopObj) => {
   
@@ -191,9 +190,6 @@ const CashBackTable = () => {
 
   useTimerToast( tableDataIsLoading, toast)
 
-  console.log({selectedShop})
-
-  console.log({tableData})
 
 
   return (
