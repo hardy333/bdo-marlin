@@ -11,6 +11,7 @@ import { AgGridReact } from "ag-grid-react";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+
 // css
 import "../styles/all-orders.css";
 import "../styles/global-filter-input.css";
@@ -95,6 +96,8 @@ const CashBackTable = () => {
     queryKey: "retro-bonus-table-shops",
     queryFn: () => fetchData(shopsUrl),
     onSuccess: (data) => {
+
+      console.log("sucesssssssssss")
       handleShopChange({
         value: data[0].name,
         label: data[0].name,

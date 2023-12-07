@@ -339,7 +339,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     arrow={false}
                     placement="top"
                     content={`${obj.name}`}
-                    disabled={obj.name.length < 19 ? true : false}
+                    disabled={obj.name.length < 16 ? true : false}
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
@@ -350,7 +350,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                       onClick={(e) => {
                         console.log(
                           obj.name,
-                          obj.name.length < 19 ? true : false
+                          obj.name.length < 16 ? true : false
                         );
                         handleCatClick(e, obj, 1);
                       }}
@@ -467,7 +467,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     arrow={false}
                     placement="top"
                     content={`${obj.name}`}
-                    disabled={obj.name.length < 19 ? true : false}
+                    disabled={obj.name.length < 16 ? true : false}
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
@@ -526,7 +526,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     arrow={false}
                     placement="top"
                     content={`${obj.name}`}
-                    disabled={obj.name.length < 19 ? true : false}
+                    disabled={obj.name.length < 16 ? true : false}
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
@@ -583,7 +583,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                     arrow={false}
                     placement="top"
                     content={`${obj.name}`}
-                    disabled={obj.name.length < 19 ? true : false}
+                    disabled={obj.name.length < 16 ? true : false}
                     delay={[500, 0]}
                     duration={0}
                     key={obj.id}
