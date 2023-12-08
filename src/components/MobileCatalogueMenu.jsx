@@ -28,7 +28,7 @@ const MobileCatalogueMenu = ({
   // const url =
   //   "https://10.0.0.202:5001/api/ProductCategories?page=1&pageSize=182";
   const {user} = useAuthContext()
-  
+
   
 
 
@@ -47,7 +47,6 @@ const MobileCatalogueMenu = ({
       catData = data.data;
     }
 
-    console.log(catData);
     const resObj = {};
     const resArr = [];
 

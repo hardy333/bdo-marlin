@@ -89,14 +89,12 @@ import { Toaster } from "react-hot-toast";
 
 
 const queryClient = new QueryClient();
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
   const { user } = useAuthContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
 
       <Toaster />
       <Routes>

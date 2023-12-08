@@ -8,6 +8,8 @@ const CatalogueCards = ({ data }) => {
     return <h1>Loading ...</h1>;
   }
 
+  console.log("cat cards", data)
+
   return (
     <>
       <section className="table-cards-container  w-full">

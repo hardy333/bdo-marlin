@@ -90,6 +90,7 @@ const CatalogueTable = () => {
     }
     return null;
   });
+  console.log({subCatId})
 
 
   useEffect(() => {
