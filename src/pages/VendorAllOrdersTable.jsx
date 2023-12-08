@@ -111,10 +111,12 @@ const VendorAllOrdersTable = () => {
       
     },
     select: (data) => {
-      return data.data;
+      return data.data.data
     },
   });
 
+
+  console.log("hello", data)
 
   const [columnDefs] = useState([
     {
@@ -468,7 +470,7 @@ const VendorAllOrdersTable = () => {
             {/* Row height */}
             <button
               onClick={() => {
-                gridRef.current.api.resetRowHeights();
+                gridRef.current?.api.resetRowHeights();
                 changeRowHeight();
               }}
               ref={rowHeightBtnRef}
@@ -491,7 +493,7 @@ const VendorAllOrdersTable = () => {
         </div>
       </header>
       {isSmallDevice ? (
-        <VendorAllOrdersCards data={rowData} />
+        <VendorAllOrdersCards data={data} />
       ) : (
         <div
           className="ag-theme-alpine ag-grid-example  vendors-all-orders-table copy-paste-table"
@@ -501,7 +503,7 @@ const VendorAllOrdersTable = () => {
             ref={gridRef}
             getRowHeight={getRowHeight}
             onGridReady={onGridReady}
-            rowData={rowData}
+            rowData={data}
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             pagination={true}
@@ -538,7 +540,7 @@ const VendorAllOrdersTable = () => {
           {gridReady === true && (
             <AgTablePag
               gridRef={gridRef}
-              pageCount={Math.ceil(rowData?.length / pageSize)}
+              pageCount={Math.ceil(data?.length / pageSize)}
             />
           )}
         </div>
