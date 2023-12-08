@@ -97,7 +97,7 @@ const DiscountsCards = () => {
   useEffect(() => {
     if (!vendors || !vendorsData) return;
     if (selectedVendor) return;
-    setSelectedVendor(vendors[0]);
+    setSelectedVendor(vendors[1] || vendors[0]);
   }, [vendorsData]);
 
   const handleVendorChange = (x) => {

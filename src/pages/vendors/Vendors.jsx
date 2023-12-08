@@ -39,16 +39,16 @@ const Vendors = () => {
 
     },
     onError: (err) => {
-      console.log({err})
 
     },
     select: (data) => {
+      console.log("in Select !!!!!!!")
+
       return data.data
     },
     retry: 1
   });
 
-  console.log({vendorsError});
 
   return (
     <>

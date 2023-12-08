@@ -187,7 +187,7 @@ const AllOrdersParent = () => {
         </div>
       </header>
       {isSmallDevice ? (
-        <AllOrdersCards data={rowData} />
+        <AllOrdersCards data={rowData?.data} />
       ) : (
         <div
           id="marlin-table"
