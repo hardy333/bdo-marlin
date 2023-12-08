@@ -87,13 +87,17 @@ import CalendarTableForVendor from "./vendorPages/calendarTable/CalendarTableFor
 import { Toaster } from "react-hot-toast";
 // Table Pages END
 
+
 const queryClient = new QueryClient();
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
   const { user } = useAuthContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+
       <Toaster />
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -181,6 +185,7 @@ function App() {
         </Route>
         {/* Auth Element End */}
       </Routes>
+
     </QueryClientProvider>
   );
 }

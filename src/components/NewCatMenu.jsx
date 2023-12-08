@@ -29,14 +29,13 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
   }`;
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["new-cat-menu-data", isMyProducts],
+    queryKey: ["new-cat-menu-data", isMyProducts, selectedVendor?.accountID],
     queryFn: () => fetchData(url),
     onSuccess: (data) => {
-      localStorage.setItem("cat-data", JSON.stringify(data.data));
-
       const resArr = createTree(data);
+      console.log("succcesssssss")
       setArr1(resArr);
-    },
+    },  
     select: (data) => {
       return data.data;
     },
@@ -51,9 +50,9 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
 
   //   }, [data])
 
-  useEffect(() => {
-    refetch();
-  }, [isMyProducts, selectedVendor]);
+//   useEffect(() => {
+//     refetch();
+//   }, [isMyProducts, selectedVendor]);
 
   const [arr1, setArr1] = useState([]);
   const [arr2, setArr2] = useState([]);
@@ -287,7 +286,6 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
               }
             }
 
-            console.log({ catNameArr });
 
             return catNameArr.map((catName, index) => {
               if (index === 0) {
@@ -348,10 +346,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
                       // onClick={() => setArr2Ul(obj)}
 
                       onClick={(e) => {
-                        console.log(
-                          obj.name,
-                          obj.name.length < 16 ? true : false
-                        );
+                      
                         handleCatClick(e, obj, 1);
                       }}
                       key={obj.id}
