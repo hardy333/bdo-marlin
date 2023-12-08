@@ -29,7 +29,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
   }`;
 
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: "new-cat-menu-data",
+    queryKey: ["new-cat-menu-data", isMyProducts],
     queryFn: () => fetchData(url),
     onSuccess: (data) => {
       localStorage.setItem("cat-data", JSON.stringify(data.data));
@@ -292,13 +292,13 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
             return catNameArr.map((catName, index) => {
               if (index === 0) {
                 return (
-                  <span className="catalogue-selected-categories__text-span">
+                  <span className="catalogue-selected-categories__text-span catalogue-selected-categories__main-span">
                     {catName}
                   </span>
                 );
               }
               return (
-                <span>
+                <span className="catalogue-selected-categories__main-span">
                   <span style={{ padding: "0px 10px" }}>
                     <BsArrowRightShort />
                   </span>{" "}
