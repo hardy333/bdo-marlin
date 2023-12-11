@@ -1,0 +1,69 @@
+.mobileSwitch{
+    --inactive-text: #858f96;
+    --active-text: #172733; 
+    --divide-line: #C7CFDD5;
+    --container: #DDE3E7;
+    --height: 30px;
+
+    font-size: 14px;
+
+    color: var(--inactive-text);
+    padding: 2px;
+    border-radius: 5px;
+    position: relative;
+    height: var(--height);
+
+    background-color: var(--container);
+    width: 350px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 0;
+    cursor: pointer;
+    border-radius: 30px;
+
+    /* margin-top: 50px; */
+    padding: 4px;
+    align-self: stretch;
+    margin-top: 10px;
+
+  font-family:  "geo-catalogue" !important;
+
+
+}
+
+.mobileSwitchText{
+    /* border: 1px solid red; */
+    border-radius: 30px;
+    padding: 0 4px;
+  font-family:  "geo-catalogue" !important;
+
+  font-size: 12px;
+    
+
+}
+
+.mobileSwitchText:first-child{
+    color: var(--active-text);
+    width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+.mobileSwitchThumb{
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    height: calc(var(--height) - 6px);
+    top: 50%;
+    left: 3px;
+    width: 150px;
+    transform: translate(0, -50%);
+
+    z-index: -1;
+    border-radius: 30px;
+
+
+}

@@ -49,6 +49,7 @@ import vendorsArr from "../data/vendors-data";
 import useCopyTable from "../hooks/useCopyTable";
 import { useAuthContext } from "../hooks/useAuthContext";
 import NewCatMenu from "../components/NewCatMenu";
+import MobileSwitch from "../components/mobileSwitch/MobileSwitch";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -232,6 +233,7 @@ const CatalogueTable = () => {
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
               <p className="catalogue-label">მომწოდებლების კატეგორიები</p>
+              {/* <MobileSwitch /> */}
             </div>
             {
               isMyProducts ? null : (
