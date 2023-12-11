@@ -97,7 +97,7 @@ const VendorAllOrdersTable = () => {
   let vendorID = "D00002";
   if (vendor === "GDM") {
     vendorID = "D00002";
-  } else if (vendor === "ნიცა") {
+  } else if (vendor === "Pepsi") {
     vendorID = "D00003";
   }
 
