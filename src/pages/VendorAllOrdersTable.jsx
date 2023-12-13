@@ -53,6 +53,8 @@ import useVendorOrdersNavigate from "../hooks/useVendorOrdersNavigate";
 import AgTablePag from "../components/AgTablePag";
 import { useAuthContext } from "../hooks/useAuthContext";
 import useOrdersNavigate from "../hooks/useOrdersNavigate";
+import allOrdersParentDefs from "../column-definitions/AllOrdersParentDefs";
+import TableSettings from "../components/TableSettings";
 
 const VendorAllOrdersTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -107,7 +109,6 @@ const VendorAllOrdersTable = () => {
     queryKey: "r-repoData",
     queryFn: () => fetchData(url),
     onSuccess: (data) =>{
-      console.log({data})
       
     },
     select: (data) => {
@@ -116,110 +117,9 @@ const VendorAllOrdersTable = () => {
   });
 
 
-  console.log("hello", data)
 
-  const [columnDefs] = useState([
-    {
-      field: "shop",
-      headerName: "მაღაზია",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return (
-          <span
-            // data-invoice-number={data.invoiceNumber}
-            data-invoice-amount={params.data.invoiceAmount}
-            data-date={params.data.date}
-            // data-invoice-id={data.invoiceID}
-            data-order-id={params.data.orderID}
-          >
-            {value}
-          </span>
-        );
-      },
-    },
-    {
-      field: "amount",
-      headerName: "თანხა",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value + " GEL";
-      },
-    },
-    {
-      field: "scheduled",
-      headerName: "გეგმიური მიწოდება",
-      cellRenderer: (params) => {
-        const { value } = params;
-        if (!value) return "";
-        return value.split(" ")[0].split("-").reverse().join("/");
-      },
-    },
+  const [columnDefs] = useState(allOrdersParentDefs)
 
-    {
-      field: "status",
-      headerName: "სტატუსი",
-
-      minWidth: 190,
-      maxWidth: 200,
-      cellRenderer: (params) => {
-        const { value } = params;
-        let color = "";
-
-        if (value === "გაგზავნილია") {
-          color = "#FFC23C";
-        } else if (value === "მიწოდებულია") {
-          color = "#01C6B5";
-        } else if (value === "პროცესშია") {
-          color = "#6E0FF5";
-        } else if (value === "დადასტურებულია") {
-          color = "#FF7BA7";
-        }
-
-        return (
-          <>
-            <span
-              className="ag-cell-status-value"
-              style={{ pointerEvents: "none", color }}
-            >
-              {value}
-            </span>
-            <div className="status-container" style={{ pointerEvents: "none" }}>
-              <ul>
-                <li style={{ color }}>{value}</li>
-                <li>პროცესშია 11:06, 2/10/2023</li>
-                <li>მიღებულია 11:06, 2/10/2023</li>
-                <li>მიწოდებულია 11:06, 2/10/2023</li>
-              </ul>
-            </div>
-          </>
-        );
-      },
-
-      cellStyle: (params) => {
-        if (params.value % 3 === 0) {
-          return {
-            color: "#FFC23C",
-          };
-        } else if (params.value % 3 === 1) {
-          return {
-            color: "#6E0FF5",
-          };
-        } else {
-          return {
-            color: "#01C6B5",
-          };
-        }
-      },
-    },
-    {
-      field: "serviceLevel",
-      headerName: "სერვისის დონე",
-      cellRenderer: (params) => {
-        const { value } = params;
-        return value;
-      },
-    },
-  ]);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -324,8 +224,12 @@ const VendorAllOrdersTable = () => {
   // Status Click
   const [openedRowId, setOpenedRowId] = useState(null);
 
-  useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
+  console.log({showFilters})
+
+  // useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
   // useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
+  useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
+
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -333,12 +237,27 @@ const VendorAllOrdersTable = () => {
     gridRef.current.api.resetRowHeights();
   }, [openedRowId, gridRef, gridApi]);
 
+  // function getRowHeight(params) {
+  //   const { id } = params.node;
+  //   if (id == openedRowId) {
+  //     return 140;
+  //   }
+  //   return 32;
+  // }
+
   function getRowHeight(params) {
     const { id } = params.node;
     if (id == openedRowId) {
       return 140;
     }
-    return 32;
+
+    if (rowHeightIndex === 0) {
+      return 25;
+    } else if (rowHeightIndex === 1) {
+      return 32;
+    } else if (rowHeightIndex === 2) {
+      return 37;
+    }
   }
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -369,126 +288,24 @@ const VendorAllOrdersTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-            <ExpandingInput
+          <TableSettings
+              isSmallDevice={isSmallDevice}
               setIsSearchOpen={setIsSearchOpen}
-              onFilterTextChange={onFilterTextChange}
+              defHeaderList={headerList}
+              rowData={data}
+              gridApi={gridApi}
+              gridRef={gridRef}
+              gridColumnApi={gridColumnApi}
+              rowHeightIndex={rowHeightIndex}
+              setRowHeightIndex={setRowHeightIndex}
+              pageName="all-orders"
+              // paginationGoToPage={2}
+              // paginationGoTo={2}
             />
-            {/* input filter */}
-            <button
-              onClick={() => {
-                setShowFilters(!showFilters);
-              }}
-              className={classNames({
-                "all-orders__btn-filter": true,
-                "all-orders__btn": true,
-                active: showFilters,
-              })}
-            >
-              <FilterSvg />
-            </button>
-            {/* popup */}
 
-            <Menu
-              align="center"
-              direction="top"
-              menuButton={
-                <MenuButton className="all-orders__btn ">
-                  <svg
-                    id="Layer_3"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 33.58 47.28"
-                  >
-                    <defs></defs>
-                    <path
-                      className="cls-1"
-                      d="m27.9,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m13.95,44.44V2.84c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                    <path
-                      className="cls-1"
-                      d="m0,44.44V2.84C0,1.27,1.27,0,2.84,0s2.84,1.27,2.84,2.84v41.61c0,1.57-1.27,2.84-2.84,2.84s-2.84-1.27-2.84-2.84Z"
-                    />
-                  </svg>
-                </MenuButton>
-              }
-              transition
-            >
-              <div className="column-toggle-popup">
-                <header className="column-toggle-popup__header">
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: !headerList.every((header) => !header.isShowing),
-                    })}
-                    onClick={hideAllColumns}
-                  >
-                    Hide All
-                  </button>
-                  <button
-                    className={classNames({
-                      btn: true,
-                      active: headerList.some((header) => !header.isShowing),
-                    })}
-                    onClick={showAllColumns}
-                  >
-                    Show All
-                  </button>
-                </header>
-                {headerList.map((header) => (
-                  <MenuItem
-                    key={header.name}
-                    value={header.name}
-                    onClick={(e) => {
-                      // Stop the `onItemClick` of root menu component from firing
-                      // e.stopPropagation = true;
-                      // Keep the menu open after this menu item is clicked
-                      e.keepOpen = true;
-                    }}
-                  >
-                    <div className="switch">
-                      <input
-                        checked={header.isShowing}
-                        type="checkbox"
-                        id={header.name}
-                        className="switch__input"
-                        onChange={() => {
-                          toggleColumn(header.name);
-                        }}
-                      />
-                      <label htmlFor={header.name} className="switch__label">
-                        {header.showingName}
-                      </label>
-                    </div>
-                  </MenuItem>
-                ))}
-              </div>
-            </Menu>
-
-            {/* Row height */}
-            <button
-              onClick={() => {
-                gridRef.current?.api.resetRowHeights();
-                changeRowHeight();
-              }}
-              ref={rowHeightBtnRef}
-              className="all-orders__btn"
-            >
-              {rowHeightIndex === 1 ? <RowHeightSmallSvg /> : null}
-              {rowHeightIndex === 2 ? <RowHeightMediumSvg /> : null}
-              {rowHeightIndex === 0 ? <RowHeightBigSvg /> : null}
-            </button>
-            {/* expand */}
-            <button
-              onClick={() => setIsFullScreen(!isFullScreen)}
-              className={classNames({
-                "all-orders__btn": true,
-              })}
-            >
-              {isFullScreen ? <ReverseExpandSvg /> : <ExpandSvg />}
-            </button>
+            {/* END */}
+            {/* END */}
+            {/* END */}
           </div>
         </div>
       </header>
@@ -496,7 +313,9 @@ const VendorAllOrdersTable = () => {
         <VendorAllOrdersCards data={data} />
       ) : (
         <div
-          className="ag-theme-alpine ag-grid-example  vendors-all-orders-table copy-paste-table"
+        id="marlin-table"
+
+          className="ag-theme-alpine ag-grid-example  all-orders-parent  vendors-all-orders-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact
@@ -510,6 +329,18 @@ const VendorAllOrdersTable = () => {
             components={components}
             paginationPageSize={pageSize}
           ></AgGridReact>
+
+{/* <AgGridReact
+            ref={gridRef}
+            getRowHeight={getRowHeight}
+            onGridReady={onGridReady}
+            rowData={rowData?.data}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            pagination={true}
+            components={components}
+            paginationPageSize={pageSize}
+          ></AgGridReact> */}
 
           <Menu
             className="page-size-menu"
