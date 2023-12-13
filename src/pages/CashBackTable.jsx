@@ -151,6 +151,9 @@ const CashBackTable = () => {
     getCashBackTableDefs(tableData?.data && tableData?.data[0]?.retroPercent)
   );
 
+  console.log("xxx", tableData?.data && tableData?.data[1]?.retroPercent)
+
+
   useEffect(() => {
     if (isFullScreen) {
       document.body.classList.add("dashboard-main-fullscreen");
