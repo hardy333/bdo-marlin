@@ -86,7 +86,7 @@ const VendorAllOrdersTable = () => {
       isShowing: true,
     },
   ]);
-  
+
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
@@ -97,29 +97,36 @@ const VendorAllOrdersTable = () => {
   let vendor = searchParams.get("vendor") || "";
 
   let vendorID = "D00002";
+  let url;
+
   if (vendor === "GDM") {
     vendorID = "D00002";
   } else if (vendor === "Pepsi") {
     vendorID = "D00003";
+  } else if (vendor === "Foodmart") {
+    vendorID = "R00002";
+  } else if (vendor === "Daily") {
+    vendorID = "R00001";
   }
 
-  const url = `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
+
+  if (vendorID.slice(0, 1) === "R") {
+    console.log("Helllo");
+    url = `https://api.marlin.ge/api/SupplierOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
+  } else {
+    url = `https://api.marlin.ge/api/RetailOrdersByAccountAndVendorFront/${user.decodedToken.AccountID}/${vendorID}`;
+  }
 
   const { isLoading, error, data } = useQuery({
     queryKey: "r-repoData",
     queryFn: () => fetchData(url),
-    onSuccess: (data) =>{
-      
-    },
+    onSuccess: (data) => {},
     select: (data) => {
-      return data.data.data
+      return data.data.data;
     },
   });
 
-
-
-  const [columnDefs] = useState(allOrdersParentDefs)
-
+  const [columnDefs] = useState(allOrdersParentDefs);
 
   const [isGlobalFilterEmpty, setIsGlobalFilterEmpty] = useState(true);
 
@@ -224,12 +231,9 @@ const VendorAllOrdersTable = () => {
   // Status Click
   const [openedRowId, setOpenedRowId] = useState(null);
 
-  console.log({showFilters})
-
   // useVendorOrdersNavigate(gridApi, gridRef, setOpenedRowId);
   // useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
   useOrdersNavigate(gridApi, gridRef, setOpenedRowId);
-
 
   useEffect(() => {
     if (!gridRef.current) return;
@@ -288,7 +292,7 @@ const VendorAllOrdersTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-          <TableSettings
+            <TableSettings
               isSmallDevice={isSmallDevice}
               setIsSearchOpen={setIsSearchOpen}
               defHeaderList={headerList}
@@ -313,8 +317,7 @@ const VendorAllOrdersTable = () => {
         <VendorAllOrdersCards data={data} />
       ) : (
         <div
-        id="marlin-table"
-
+          id="marlin-table"
           className="ag-theme-alpine ag-grid-example  all-orders-parent  vendors-all-orders-table copy-paste-table"
           style={{ minHeight: 595, width: "100%" }}
         >
@@ -330,7 +333,7 @@ const VendorAllOrdersTable = () => {
             paginationPageSize={pageSize}
           ></AgGridReact>
 
-{/* <AgGridReact
+          {/* <AgGridReact
             ref={gridRef}
             getRowHeight={getRowHeight}
             onGridReady={onGridReady}

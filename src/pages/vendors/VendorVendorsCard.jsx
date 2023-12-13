@@ -37,7 +37,9 @@ const VendorVendorsCard = ({
             urlParams.append("vendor", vendorName);
 
 
-            navigate(`/vendor-all-orders-vendor?` + urlParams.toString());
+            // navigate(`/vendor-all-orders-vendor?` + urlParams.toString());
+            navigate(`/vendor-all-orders?` + urlParams.toString());
+
           }}
         >
           {/* <img src={shoppingBag} alt="" /> */}

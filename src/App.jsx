@@ -126,6 +126,10 @@ function App() {
               />
               <Route path="/employees" element={<Employees />} />
               <Route path="/order-details" element={<OrderDetails />} />
+              <Route
+                path="/vendor-all-orders"
+                element={<VendorAllOrdersTable />}
+              />
 
             {/* Non Protected Routes End */}
 
@@ -145,10 +149,7 @@ function App() {
               <Route path="/discounts-table" element={<DiscountsTable2 />} />
               <Route path="/catalogue" element={<CatalogueTable />} />
             
-              <Route
-                path="/vendor-all-orders"
-                element={<VendorAllOrdersTable />}
-              />
+              
               {/* Table Pages End */}
               <Route path="/colors-page" element={<ColorsPage />} />
               <Route path="/password-page" element={<PasswordPage />} />

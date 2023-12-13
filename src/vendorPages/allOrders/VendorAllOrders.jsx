@@ -35,6 +35,17 @@ import useCopyTable from "../../hooks/useCopyTable";
 import AgTablePag from "../../components/AgTablePag";
 import useUrlStorageState from "../../hooks/useUrlStorageState";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useSearchParams } from "react-router-dom";
+
+
+
+// This one is for vendors view 
+// This one is for vendors view 
+// This one is for vendors view 
+// This one is for vendors view 
+// This one is for vendors view 
+
+// retailer view's same page is vendorAllOrdersTable 
 
 const VendorAllOrders = () => {
   const [pageSize, setPageSize] = useUrlStorageState("page-size", 15);
@@ -48,6 +59,17 @@ const VendorAllOrders = () => {
   const gridRef = useRef(null);
 
   const { user } = useAuthContext();
+
+  const [searchParams] = useSearchParams();
+
+  let vendor = searchParams.get("vendor") || "";
+
+  // let retailerId = "R00001";
+  // if (vendor === "Foodmart") {
+  //   retailerId = "R00002";
+  // } else  {
+  //   retailerId = "R00001";
+  // }
 
   const url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
 
