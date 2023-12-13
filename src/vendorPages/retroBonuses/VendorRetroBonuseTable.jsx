@@ -76,10 +76,15 @@ const VendorRetroBonusTable = () => {
 
   const { user } = useAuthContext();
   
+    let retailerId = ""
+    if(vendor === "Foodmart"){
+      retailerId = "R00002"
+    }else {
+      retailerId = "R00001"
+    }
 
 
-
-  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${user.decodedToken.AccountID}`;
+  const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${retailerId}`;
 
   const {
     isLoading: shopsIsLoading,
@@ -301,11 +306,16 @@ const VendorRetroBonusTable = () => {
                 placement="top"
                 content={`ქეშბექი: ${retroPercent}%`}
               >
-                <p className="info-badge info-badge-mobile">
+                <p className="info-badge info-badge-mobile"
+                style={{
+                  display: isNaN(Number(retroPercent)) ? "none" : "" 
+                }}
+                
+                >
                   <img
                     src="cash-back/cashback.svg"
                     alt=""
-                    style={{ height: "22px" }}
+                    style={{ height: "22px", }}
                   />
 
                   <span className="info-badge-text"> {retroPercent} %</span>
