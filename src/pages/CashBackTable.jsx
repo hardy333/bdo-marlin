@@ -86,6 +86,17 @@ const CashBackTable = () => {
   const oldShopsUrl = `https://10.0.0.202:5001/api/Shops?page=1&pageSize=262`
 
   // Shops Fetch
+
+
+
+  
+  let isGlobalRetroPersent = false
+
+  if(typeof Number(retroPercent) === "number" && !Number.isNaN(Number(retroPercent))){
+    isGlobalRetroPersent = true
+  }
+  console.log({retroPercent, isGlobalRetroPersent})
+
   
   // Shops Fetch
   const {
@@ -97,7 +108,6 @@ const CashBackTable = () => {
     queryFn: () => fetchData(shopsUrl),
     onSuccess: (data) => {
 
-      console.log("sucesssssssssss")
       handleShopChange({
         value: data[0].name,
         label: data[0].name,
@@ -148,7 +158,7 @@ const CashBackTable = () => {
   };
 
   const [columnDefs] = useState(
-    getCashBackTableDefs(tableData?.data && tableData?.data[0]?.retroPercent)
+    getCashBackTableDefs(!isGlobalRetroPersent)
   );
 
   console.log("xxx", tableData?.data && tableData?.data[1]?.retroPercent)
@@ -312,7 +322,10 @@ const CashBackTable = () => {
                 placement="top"
                 content={`ქეშბექი: ${retroPercent}%`}
               >
-                <p className="info-badge info-badge-mobile">
+                <p className="info-badge info-badge-mobile"
+                style={{display: isGlobalRetroPersent ? "inline-flex": "none"}}
+                
+                >
                   <img
                     src="cash-back/cashback.svg"
                     alt=""

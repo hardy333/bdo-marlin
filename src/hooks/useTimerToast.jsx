@@ -34,6 +34,7 @@ const useTimerToast = (tableDataIsLoading, toast) => {
     console.log("show is loading")
   }, [tableDataIsLoading]);
 
+
   useEffect(() => {
     if (seconds === 3) {
       const x = toast.loading("Data is loading, please wait...", {
@@ -46,7 +47,6 @@ const useTimerToast = (tableDataIsLoading, toast) => {
       setToastId(x);
     }
   }, [seconds]);
-//   console.log({isRunning, seconds})
 
 
   useEffect(() => {

@@ -33,7 +33,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
     queryFn: () => fetchData(url),
     onSuccess: (data) => {
       const resArr = createTree(data);
-      console.log("succcesssssss")
+      console.log("succcesssssss", data)
       setArr1(resArr);
     },  
     select: (data) => {
@@ -273,6 +273,7 @@ function NewCatMenu({ setSubCatId, isMyProducts, selectedVendor }) {
     level5: "",
   })
 
+  console.log({arr1})
 
   return (
     <div className="App">
