@@ -64,7 +64,7 @@ const PasswordForm = () => {
           name="confirmNewPassword"
           valie={inputs.confirmNewPassword}
           onChange={inputchange}
-          placeholder="გაიმეორეთ ძველი პაროლი"
+          placeholder="გაიმეორეთ ახალი პაროლი"
         />
       </div>
       <button className="btn btn-success">განახლება</button>
