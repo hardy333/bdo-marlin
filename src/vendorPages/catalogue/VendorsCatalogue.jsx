@@ -165,7 +165,6 @@ const VendorsCatalogue = () => {
     setSelectedVendor(vendor);
   };
 
-  // console.log({ isMyProducts });
 
   useCopyTable(gridReady);
 
@@ -195,7 +194,6 @@ const VendorsCatalogue = () => {
 
 
     const urlSelectedVendor = searchParams.get("vendor")
-    console.log({urlSelectedVendor})
 
 
   useEffect(() => {
