@@ -49,6 +49,7 @@ import vendorsArr from "../../data/vendors-data";
 import useCopyTable from "../../hooks/useCopyTable";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import NewCatMenu from "../../components/NewCatMenu";
+import { useSearchParams } from "react-router-dom";
 
 const VendorsCatalogue = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -190,11 +191,26 @@ const VendorsCatalogue = () => {
       accountID: acc.accountID,
     }));
 
+    const [searchParams,setSearchParams] = useSearchParams();
+
+
+    const urlSelectedVendor = searchParams.get("vendor")
+    console.log({urlSelectedVendor})
+
 
   useEffect(() => {
     if (!vendors || !vendorsData) return;
     if (selectedVendor) return;
-    setSelectedVendor(vendors[0]);
+
+    const vendor = vendors.find(ven => ven.value === urlSelectedVendor)
+
+    if(!vendor){
+      setSelectedVendor(vendors[0]);
+    }else{
+      setSelectedVendor(vendor);
+      setIsMyProducts(false)
+
+    }
   }, [vendorsData]);
 
   return (

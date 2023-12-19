@@ -50,6 +50,7 @@ import useCopyTable from "../hooks/useCopyTable";
 import { useAuthContext } from "../hooks/useAuthContext";
 import NewCatMenu from "../components/NewCatMenu";
 import MobileSwitch from "../components/mobileSwitch/MobileSwitch";
+import { useSearchParams } from "react-router-dom";
 
 const CatalogueTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -91,7 +92,6 @@ const CatalogueTable = () => {
     }
     return null;
   });
-  console.log({subCatId})
 
 
   useEffect(() => {
@@ -185,6 +185,7 @@ const CatalogueTable = () => {
       return data.data;
     },
   });
+
   const vendors = vendorsData?.data
     .filter((account) => account.isVendor)
     .map((acc) => ({
@@ -192,10 +193,26 @@ const CatalogueTable = () => {
       label: acc.name,
       accountID: acc.accountID,
     }));
+    const [searchParams,setSearchParams] = useSearchParams();
+
+
+    const urlSelectedVendor = searchParams.get("vendor")
+    console.log({urlSelectedVendor})
+    
+
   useEffect(() => {
     if (!vendors || !vendorsData) return;
     if (selectedVendor) return;
-    setSelectedVendor(vendors[0]);
+
+    const vendor = vendors.find(ven => ven.value === urlSelectedVendor)
+
+    if(!vendor){
+      setSelectedVendor(vendors[0]);
+    }else{
+      setSelectedVendor(vendor);
+      setIsMyProducts(false)
+
+    }
   }, [vendorsData]);
 
 
