@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "react-day-picker/dist/style.css";
 import { useStopwatch } from "react-timer-hook";
+import OrderStatusMenu from "../components/orderStatusMenu/OrderStatusMenu";
 
 export const getDataFetch = (url) => {
 
@@ -74,6 +75,8 @@ const Test = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, sequi laboriosam soluta, explicabo neque maiores quia, atque dolorum consequatur suscipit quidem reiciendis eius assumenda repellendus laudantium? Excepturi veritatis est deleniti?
         
       </p>
+
+      <OrderStatusMenu statusName={"გაგზავნილია"}  orderID={"jhdkjdhkj"}/>
       
       
     </div>

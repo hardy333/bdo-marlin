@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -46,11 +41,16 @@ import {
 } from "../column-definitions/OrderDetailsDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import useUrlStorageState from "../hooks/useUrlStorageState";
-import { AmountSvg, DocumentSvg, OrderDateSvg, OrderNumberSvg,  ScheduleDateSvg, ShopSvg, VendorSvg } from "../components/svgs/InfoBadgeSvgs";
-
-
-
-
+import {
+  AmountSvg,
+  DocumentSvg,
+  OrderDateSvg,
+  OrderNumberSvg,
+  ScheduleDateSvg,
+  ShopSvg,
+  VendorSvg,
+} from "../components/svgs/InfoBadgeSvgs";
+import OrderStatusMenu from "../components/orderStatusMenu/OrderStatusMenu";
 
 const OrderDetails = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -58,12 +58,8 @@ const OrderDetails = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
+  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0);
 
-  const [tablePage, setTablePage] = useUrlStorageState("table-page", 0)
-
-  
-  
-  
   const [searchParams] = useSearchParams();
   const orderID =
     searchParams.get("orderID") || "f0ce0829-044b-11ee-8123-005056b5a0aa";
@@ -74,8 +70,8 @@ const OrderDetails = () => {
     queryKey: ["r-order-details-data", orderID],
     queryFn: () => fetchData(url),
     select: (data) => {
-      return data.data
-    }
+      return data.data;
+    },
   });
 
   const [rowData, setRowData] = useState(() => {
@@ -84,7 +80,6 @@ const OrderDetails = () => {
     }
     return null;
   });
-
 
   useEffect(() => {
     if (!data) return;
@@ -102,7 +97,6 @@ const OrderDetails = () => {
   let amount = searchParams.get("amount") || 308.4;
   let invoiceAmount = searchParams.get("invoiceAmount") || "";
   let orderNumber = searchParams.get("orderNumber") || "";
-
 
   let statusBg;
 
@@ -301,24 +295,9 @@ const OrderDetails = () => {
                 </p>
               </Tippy>
             </section>
-            <Menu
-              className="pending-status-menu"
-              menuButton={
-                <button
-                  style={{ backgroundColor: statusBg + "36", color: statusBg }}
-                  className="btn btn-status-2 mt-[-2px] mb-auto"
-                >
-                  {status}
-                </button>
-              }
-              direction="bottom"
-              align="center"
-              transition
-            >
-              <MenuItem>Approved 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Recieved 11:45, 2/10/2023</MenuItem>
-              <MenuItem>Sent 11:45, 2/10/2023</MenuItem>
-            </Menu>
+            <div style={{marginBottom: "auto"}}>
+              <OrderStatusMenu statusName={status} orderID={orderID} />
+            </div>
           </div>
 
           {isSmallDevice ? null : (

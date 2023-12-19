@@ -1,0 +1,47 @@
+.btn{
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+    padding: 6px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.7px;
+    gap: 10px;
+    font-weight: 700;
+    border-radius: 5px;
+    
+
+    border: 1px solid transparent;
+
+    transition: 0.2s ease-in-out;
+
+}
+
+.btn:hover{
+    border-color: var(--status-color);
+}
+
+.btn svg {
+    height: 14px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.btnOpen svg{
+    transform: rotate(180deg);
+}
+
+.menuUl{
+    min-width: 220px !important;
+    padding: 15px 30px !important;
+    /* min-height: 70px; */
+    margin-top: 5px!important;
+    border-radius: 10px!important;
+    box-shadow: 0 2px 3px 1px #0000001a;
+    background-color: #fff;
+    display: flex;
+    font-display: column;
+    align-items: center;
+    justify-content: center;
+
+}

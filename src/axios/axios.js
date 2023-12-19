@@ -1,0 +1,14 @@
+import axios from "axios";
+const BASE_URL = `https://api.marlin.ge/api`;
+
+
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoicGVwc2lAZ21haWwuY29tIiwiVXNlcklEIjoiMTAwNCIsIkFjY291bnROYW1lIjoiUGVwc2kiLCJGaXJzdE5hbWUiOiLhg5zhg5jhg5zhg50iLCJMYXN0TmFtZSI6IuGDm-GDkOGDm-GDmOGDoeGDkOGDqOGDleGDmOGDmuGDmCIsIkNvbnRhY3ROdW1iZXIiOiI1OTExMTExMTExIiwiRW1haWwiOiJwZXBzaUBnbWFpbC5jb20iLCJEZXNjcmlwdGlvbiI6InBlcHNpIiwiUG9zaXRpb25JbkNvbXBhbnkiOiJNYW5hZ2VyIiwiSXNSZXRhaWwiOiIwIiwiQWNjb3VudElEIjoiRDAwMDAzIiwiZXhwIjoxNzAzNTE1MjAwLCJpc3MiOiJodHRwczovLzEwLjAuMC4yMDI6NTAwMSIsImF1ZCI6Imh0dHBzOi8vbWFybGluLXByb2oubmV0bGlmeS5hcHAifQ.CCMBLKpvpPZ4F_JixBivqMdh-91tT6o90xDWs8SVNJI"
+  
+  
+
+export const axiosPrivate = axios.create({
+    baseURL: BASE_URL,
+    headers: { Authorization: `bearer ${token}` },
+
+})

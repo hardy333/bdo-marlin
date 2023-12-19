@@ -20,7 +20,7 @@
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "copy-to-clipboard": "^3.3.3",
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "file-saver": "^2.0.5",
     "FileSaver": "^0.10.0",
     "framer-motion": "^10.12.12",
