@@ -54,6 +54,7 @@ import {
 } from "../../components/svgs/InfoBadgeSvgs";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import ProgressBar from "../../components/ProgressBar";
+import RetroBonusConditionsMenu from "../../components/retroBonusConditionsMenu/RetroBonusConditionsMenu";
 
 const VendorRetroBonusTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -75,14 +76,13 @@ const VendorRetroBonusTable = () => {
   const retroPercent = searchParams.get("retroPercent");
 
   const { user } = useAuthContext();
-  
-    let retailerId = ""
-    if(vendor === "Foodmart"){
-      retailerId = "R00002"
-    }else {
-      retailerId = "R00001"
-    }
 
+  let retailerId = "";
+  if (vendor === "Foodmart") {
+    retailerId = "R00002";
+  } else {
+    retailerId = "R00001";
+  }
 
   const shopsUrl = `https://api.marlin.ge/api/Shops?AccountID=${retailerId}`;
 
@@ -94,8 +94,8 @@ const VendorRetroBonusTable = () => {
     queryKey: "vendor-retro-bonus-table-shops",
     queryFn: () => fetchData(shopsUrl),
     select: (data) => {
-      return data.data
-    }
+      return data.data;
+    },
   });
   const [selectedShop, setSelectedShop] = useState(null);
 
@@ -129,15 +129,12 @@ const VendorRetroBonusTable = () => {
     },
   });
 
-
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
       return data.data;
     }
     return null;
   });
-
- 
 
   const [columnDefs] = useState(
     getCashBackTableDefs(data?.data && data?.data[0]?.retroPercent)
@@ -197,9 +194,7 @@ const VendorRetroBonusTable = () => {
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
-
-  console.log({isFetching})
-
+  console.log({ isFetching });
 
   return (
     <>
@@ -306,23 +301,23 @@ const VendorRetroBonusTable = () => {
                 placement="top"
                 content={`ქეშბექი: ${retroPercent}%`}
               >
-                <p className="info-badge info-badge-mobile"
-                style={{
-                  display: isNaN(Number(retroPercent)) ? "none" : "" 
-                }}
-                
+                <p
+                  className="info-badge info-badge-mobile"
+                  style={{
+                    display: isNaN(Number(retroPercent)) ? "none" : "",
+                  }}
                 >
                   <img
                     src="cash-back/cashback.svg"
                     alt=""
-                    style={{ height: "22px", }}
+                    style={{ height: "22px" }}
                   />
 
                   <span className="info-badge-text"> {retroPercent} %</span>
                 </p>
               </Tippy>
             </section>
-            <Menu
+            {/* <Menu
               className="pending-status-menu"
               menuButton={
                 <button className="btn btn-status-2 mt-[-2px] discount-conditions">
@@ -336,7 +331,9 @@ const VendorRetroBonusTable = () => {
               <MenuItem>10-დან 1000-მდე, 5%</MenuItem>
               <MenuItem>1001-დან 5000-მდე, 6%</MenuItem>
               <MenuItem>5001-დან 10000-მდე, 7%</MenuItem>
-            </Menu>
+            </Menu> */}
+
+            <RetroBonusConditionsMenu retroBonusId={retroBonusID} />
           </div>
 
           {/* Right */}
