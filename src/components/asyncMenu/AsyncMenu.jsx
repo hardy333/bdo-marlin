@@ -61,6 +61,8 @@ let menuStateName = WAITING;
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           key={menuStateName}
+          style={{width: "100%"}}
+
         >
           {renderMenuContent(menuStateName, menuColor, menuContent)}
         </motion.div>
@@ -72,8 +74,9 @@ let menuStateName = WAITING;
 const renderMenuContent = (menuStateName, menuColor, menuContent) => {
   if (menuStateName === WAITING) {
 
-    console.log("In Waitingggggg")
-    return <LoadingSpinner color={menuColor} />;
+    return <div style={{marginInline: "auto", display:"grid", alignItems: "center", justifyItems: "center"}}>
+    <LoadingSpinner color={menuColor} />
+</div>;
   }
 
   if (menuStateName === SUCCESS) {
