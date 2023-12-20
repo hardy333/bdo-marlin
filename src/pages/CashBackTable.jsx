@@ -58,6 +58,7 @@ import { useStopwatch } from "react-timer-hook";
 import useTimerToast from "../hooks/useTimerToast";
 
 import toast, { Toaster } from "react-hot-toast";
+import RetroBonusConditionsMenu from "../components/retroBonusConditionsMenu/RetroBonusConditionsMenu";
 
 
 const CashBackTable = () => {
@@ -336,7 +337,7 @@ const CashBackTable = () => {
                 </p>
               </Tippy>
             </section>
-            <Menu
+            {/* <Menu
               className="pending-status-menu"
               menuButton={
                 <button className="btn btn-status-2 mt-[-2px] discount-conditions">
@@ -350,7 +351,9 @@ const CashBackTable = () => {
               <MenuItem>10-დან 1000-მდე, 5%</MenuItem>
               <MenuItem>1001-დან 5000-მდე, 6%</MenuItem>
               <MenuItem>5001-დან 10000-მდე, 7%</MenuItem>
-            </Menu>
+            </Menu> */}
+
+            <RetroBonusConditionsMenu retroBonusId={retroBonusID}/>
           </div>
 
           {/* Right */}

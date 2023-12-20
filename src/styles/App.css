@@ -1,22 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-
 @font-face {
-  font-family: "xxx";
-  src: url(./NovaSquare-Regular.ttf);
+  font-family: "dejavu-sans";
+  src: url(./fonts/dejavu-sans-webfont.ttf);
 }
 
-@font-face {
-  font-family: yyy;
-  src: url(./Whisper-Regular.ttf);
-
-}
-
-@font-face {
-  font-family: "geo-catalogue";
-  src: url(./bpg_arial_2009.ttf);
-  
-}
 
 #text-test{
   font-family: xxx;
@@ -64,7 +52,8 @@ body {
   /* font-family: "BPG Nateli", sans-serif !important; */
 
   /* font-family: 'Inter'; */
-  font-family: "DejaVu Sans", sans-serif ;
+  font-family: "dejavu-sans", sans-serif;
+
 
   position: relative;
 
@@ -73,7 +62,8 @@ body {
 
 .parag {
   color: red;
-  font-family: "DejaVu Sans", sans-serif ;
+  font-family: "dejavu-sans", sans-serif;
+
   font-size: 26px;
 }
 
@@ -105,7 +95,8 @@ span,
 label,
 input,
 input::placeholder {
-  font-family: "DejaVu Sans", sans-serif ;
+  font-family: "dejavu-sans", sans-serif;
+
 }
 
 body.body-sidebar-open {
