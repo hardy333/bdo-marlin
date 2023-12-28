@@ -1,25 +1,28 @@
 // import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useQuery } from "react-query";
 
-import { axiosPrivate } from "../../axios/axios";
-
-const defaultOrderId = "37480a56-df52-4688-ae45-5af19d98d322";
-
-const queryFn = async ({queryKey}) => {
-    const res = await axiosPrivate.get(`StatusResultFront/${queryKey[1]}`)
-    
-
-    if(!Array.isArray(res?.data?.data)){
-      throw new Error("Something went wrong.")
-
-    } 
-    // throw "Hello"
-    return res.data.data
-}
 
 
+const queryFn = async ({ queryKey }) => {
+  const user = JSON.parse(window.localStorage.getItem("user"));
+  const url = `https://api.marlin.ge/api/StatusResultFront/${queryKey[1]}`;
 
-const useOrderStatuses = (orderID = defaultOrderId) => {
+
+  const res = await axios.get(url, {
+    headers: { Authorization: `bearer ${user.token}` },
+  });
+
+  if (!Array.isArray(res?.data?.data)) {
+    throw new Error("Something went wrong.");
+  }
+  
+  // throw "Hello"
+  return res.data.data;
+};
+
+
+const useOrderStatuses = (orderID) => {
   return useQuery({
     queryKey: ["order-statuses", orderID],
     queryFn: queryFn,
@@ -27,8 +30,7 @@ const useOrderStatuses = (orderID = defaultOrderId) => {
       return data;
     },
     enabled: false,
-    retry: 1
- 
+    retry: 1,
   });
 };
 
