@@ -54,9 +54,16 @@ const AllOrdersParent = () => {
 
   const oldUrl = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
-  const url =
+  let url =
     "https://api.marlin.ge/api/RetailOrdersByAccountFront/" +
     user.decodedToken.AccountID;
+
+    if(user.decodedToken.AccountID.slice(0,1) === "D"){
+
+      url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
+    }
+
+
 
   const { isLoading, error, data } = useQuery({
     queryKey: "r-all-orders-data",
@@ -192,6 +199,7 @@ const AllOrdersParent = () => {
         <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example all-orders-parent copy-paste-table"
+          
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact

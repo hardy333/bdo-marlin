@@ -130,6 +130,8 @@ function App() {
                 path="/vendor-all-orders"
                 element={<VendorAllOrdersTable />}
               />
+              <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+
 
             {/* Non Protected Routes End */}
 
@@ -142,7 +144,6 @@ function App() {
                 element={<InvoiceDetailsTable />}
               />
               <Route path="/invoices2" element={<Invoices2 />} />
-              <Route path="/all-orders-parent" element={<AllOrdersParent />} />
               <Route path="/categories" element={<CategoriesTable />} />
               <Route path="/cash-back-table" element={<CashBackTable />} />
 
@@ -168,10 +169,10 @@ function App() {
 
             <Route element={<SupplierRoutesProtection />}>
               <Route path="/retailers" element={<Retailers />} />
-              <Route
-                path="/vendor-all-orders-vendor"
-                element={<VendorAllOrders />}
-              />
+              {/* <Route
+                path="/all-orders-parent"
+                element={<AllOrdersParent />}
+              /> */}
               <Route path="vendor-order-details" element={<VendorOrderDetails />}/>
               <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
               <Route path="/vendor-invoices" element={<VendorInvoices />} />
