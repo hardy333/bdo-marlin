@@ -128,5 +128,18 @@
   
   .catalogue-header .vendors-switch-container {
     margin-right: 0px !important;
+
+
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .catalogue-header .vendors-switch-container > p{
+    text-align: center;
+  }
+
+  .catalogue-header .react-select-container{
+    width: 100%;
   }
 }

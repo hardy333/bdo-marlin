@@ -238,7 +238,7 @@ const CatalogueTable = () => {
               </div>
             </h4>
             <div className="vendors-switch-container">
-              <p className="catalogue-label">ჩემი კატეგორიები</p>
+              <p className="catalogue-label">ჩემი კატალოგი</p>
               <div className="toggle-switch">
                 <input
                   className="toggle-input"
@@ -249,7 +249,7 @@ const CatalogueTable = () => {
                 />
                 <label className="toggle-label" htmlFor="toggle"></label>
               </div>
-              <p className="catalogue-label">მომწოდებლების კატეგორიები</p>
+              <p className="catalogue-label">მომწოდებლების კატალოგი</p>
               {/* <MobileSwitch /> */}
             </div>
             {
