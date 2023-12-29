@@ -52,18 +52,11 @@ const AllOrdersParent = () => {
 
   const { user } = useAuthContext();
 
-  const oldUrl = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
+  let url = "https://api.marlin.ge/api/RetailOrdersByAccountFront/" + user.decodedToken.AccountID;
 
-  let url =
-    " /RetailOrdersByAccountFront/" +
-    user.decodedToken.AccountID;
-
-    if(user.decodedToken.AccountID.slice(0,1) === "D"){
-
-      url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
-    }
-
-
+  if (user.decodedToken.AccountID.slice(0, 1) === "D") {
+    url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
+  }
 
   const { isLoading, error, data } = useQuery({
     queryKey: "r-all-orders-data",
@@ -151,18 +144,16 @@ const AllOrdersParent = () => {
 
   useCopyTable(gridReady, toast);
 
-
-
   // console.log({ isLoading });
 
-  console.log({rowData})
-  console.log("page count", Math.ceil(rowData?.length / pageSize))
+  console.log({ rowData });
+  console.log("page count", Math.ceil(rowData?.length / pageSize));
 
   return (
     <>
       <header className="all-orders__header" style={{ position: "relative" }}>
         <ProgressBar show={isLoading} />
-        
+
         <div className="all-orders__arrow-container"></div>
 
         <div className="all-orders__settings settings-container-responsive">
@@ -199,7 +190,6 @@ const AllOrdersParent = () => {
         <div
           id="marlin-table"
           className="ag-theme-alpine ag-grid-example all-orders-parent copy-paste-table"
-          
           style={{ minHeight: 595, width: "100%" }}
         >
           <AgGridReact
@@ -245,7 +235,9 @@ const AllOrdersParent = () => {
               gridRef={gridRef}
               tablePage={tablePage}
               setTablePage={setTablePage}
-              pageCount={rowData ? Math.ceil(rowData?.data?.length / pageSize) : 1}
+              pageCount={
+                rowData ? Math.ceil(rowData?.data?.length / pageSize) : 1
+              }
             />
           ) : null}
         </div>
