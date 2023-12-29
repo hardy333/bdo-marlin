@@ -55,7 +55,7 @@ const AllOrdersParent = () => {
   const oldUrl = "https://10.0.0.202:5001/api/OrdersByAccountFront/M00001";
 
   let url =
-    "https://api.marlin.ge/api/RetailOrdersByAccountFront/" +
+    " /RetailOrdersByAccountFront/" +
     user.decodedToken.AccountID;
 
     if(user.decodedToken.AccountID.slice(0,1) === "D"){
@@ -180,7 +180,7 @@ const AllOrdersParent = () => {
               isSmallDevice={isSmallDevice}
               setIsSearchOpen={setIsSearchOpen}
               defHeaderList={allOrdersParentHeaderList}
-              rowData={rowData}
+              rowData={rowData?.data}
               gridApi={gridApi}
               gridRef={gridRef}
               gridColumnApi={gridColumnApi}

@@ -142,12 +142,10 @@ const VendorsCalendarTable = () => {
             className="all-orders__gdm-container  order-details-left "
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
-            <span className="me-8 heading">მომწოდებლების კალენდარი</span>
+            <span className="me-10 heading">მომწოდებლების კალენდარი</span>
 
-            <DatePickerInput />
-          </div>
-          {/* Right */}
-          <div className="all-orders__settings__options">
+            {/* <DatePickerInput /> */}
+
             <Select
               className="react-select-container"
               classNamePrefix="react-select"
@@ -157,6 +155,10 @@ const VendorsCalendarTable = () => {
                 changeRowData();
               }}
             />
+          </div>
+          {/* Right */}
+          <div className="all-orders__settings__options">
+          
             <TableSettings
               isSmallDevice={isSmallDevice}
               defHeaderList={calendarTableHeaderList}
@@ -166,7 +168,7 @@ const VendorsCalendarTable = () => {
               gridColumnApi={gridColumnApi}
               rowHeightIndex={rowHeightIndex}
               setRowHeightIndex={setRowHeightIndex}
-              pageName="all-orders"
+              pageName="calendar-table-data"
             />
           </div>
         </div>

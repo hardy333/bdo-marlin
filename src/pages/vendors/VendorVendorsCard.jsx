@@ -78,7 +78,7 @@ const VendorVendorsCard = ({
             const urlParams = new URLSearchParams();
             urlParams.append("vendor", vendorName);
 
-            navigate("/calendar-table-for-vendor?"+ urlParams.toString());
+            navigate("/vendors-calendar?"+ urlParams.toString());
           }}
         >
           {/* <img src={calendar} alt="" /> */}

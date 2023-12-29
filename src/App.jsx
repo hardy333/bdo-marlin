@@ -177,7 +177,6 @@ function App() {
               <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
               <Route path="/vendor-invoices" element={<VendorInvoices />} />
               <Route path="/vendor-catalogue" element={<VendorsCatalogue />} />
-              <Route path="/calendar-table-for-vendor" element={<CalendarTableForVendor />} />
               <Route path="/vendor-retro-bonuse-table" element={<VendorRetroBonusTable />} />
             </Route>
           </Route>
