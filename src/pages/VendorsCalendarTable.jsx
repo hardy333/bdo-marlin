@@ -10,7 +10,6 @@ import "ag-grid-community/styles/ag-theme-material.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "../styles/ag-table-scrollbar.css";
 
-
 // import "ag-grid-community/styles/ag-theme-alpine-dark.css";
 // import "ag-grid-community/styles/ag-theme-balham.css";
 import { AgGridReact } from "ag-grid-react";
@@ -24,8 +23,7 @@ import "../styles/global-filter-input.css";
 
 import "../styles/all-orders-parent.css";
 import "../styles/vendors-calendar.css";
-import "../styles/vendors-calendar-table.css"
-
+import "../styles/vendors-calendar-table.css";
 
 const pageSizes = [5, 10, 15, 20, 25, 30];
 
@@ -35,15 +33,12 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-
 import d1 from "../assets/vendors-calendar-1.json";
 import d2 from "../assets/vendors-calendar-2.json";
 
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
-
-
 
 import vendorsArr from "../data/vendors-data";
 import {
@@ -55,6 +50,10 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import DatePickerInput from "../components/DatePickerInput";
 import CalendartableCards from "../components/CalendarTableCards";
 import useCopyTable from "../hooks/useCopyTable";
+import { useSearchParams } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useQuery } from "react-query";
+import { fetchData } from "../utils/fetchData";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -110,7 +109,7 @@ const VendorsCalendarTable = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const components = useMemo(() => {
@@ -119,20 +118,79 @@ const VendorsCalendarTable = () => {
     };
   }, []);
 
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);
 
-
   const isSmallDevice = useMediaQuery("only screen and (max-width : 510px)");
-
 
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const urlSelectedVendor = searchParams.get("vendor");
+  let isRetailer = false;
+  const { user } = useAuthContext();
+
+  if (user.decodedToken.IsRetail === "1") {
+    isRetailer = true;
+  }
+
+  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
+
+  const {
+    isLoading: vendorsIsLoading,
+    error: vendorsError,
+    data: vendorsData,
+  } = useQuery({
+    queryKey: ["calendar-select-data"],
+    queryFn: () => fetchData(vendorsUrl),
+    select: (data) => {
+      return data.data.data
+    },
+  });
+
+
+  const [selectedVendor, setSelectedVendor] = useState(null);
+
+  let customers = null;
+
+  if (isRetailer) {
+    customers = vendorsData
+      ?.filter((account) => !account.isRetail)
+      .map((acc) => ({
+        value: acc.name,
+        label: acc.name,
+        accountID: acc.accountID,
+      }));
+  } else {
+    customers = vendorsData
+      ?.filter((account) => account.isRetail)
+      .map((acc) => ({
+        value: acc.name,
+        label: acc.name,
+        accountID: acc.accountID,
+      }));
+  }
+
+
+  useEffect(() => {
+    if (!customers || !vendorsData) return;
+    if (selectedVendor) return;
+
+    const vendor = customers?.find((ven) => ven.value === urlSelectedVendor);
+
+    if (!vendor) {
+      setSelectedVendor(customers[0]);
+    } else {
+      setSelectedVendor(vendor);
+    }
+  }, [vendorsData, selectedVendor, setSelectedVendor]);
+
   return (
     <>
       <header className="all-orders__header calendar-table-header vendors-calendar-header ">
@@ -147,10 +205,12 @@ const VendorsCalendarTable = () => {
             {/* <DatePickerInput /> */}
 
             <Select
+            placeholder=""
               className="react-select-container"
               classNamePrefix="react-select"
-              options={vendorsArr}
-              defaultValue={{ value: "GDM", label: "GDM" }}
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
               onChange={() => {
                 changeRowData();
               }}
@@ -158,7 +218,6 @@ const VendorsCalendarTable = () => {
           </div>
           {/* Right */}
           <div className="all-orders__settings__options">
-          
             <TableSettings
               isSmallDevice={isSmallDevice}
               defHeaderList={calendarTableHeaderList}
