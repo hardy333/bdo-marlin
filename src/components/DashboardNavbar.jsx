@@ -22,9 +22,21 @@ const DashboardNavbar = () => {
 
   const isStartingPage = startingPages.includes(pathname);
 
+
+  const handleBackArrowClick = () => {
+    console.log(pathname)
+    if(pathname.includes("sla")){
+      navigate("reports")
+    }else{
+
+      navigate(-1)
+    }
+    
+  }
+
   const backArrow = (
     <img
-      onClick={() => navigate(-1)}
+      onClick={handleBackArrowClick}
       src={arrowBack}
       alt=""
       style={{
