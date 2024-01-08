@@ -42,10 +42,14 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaOrdersCards from "../components/SlaOrdersCards";
 import DatePickerInput from "../components/DatePickerInput";
-import { SlaByOrdersTableDefs, slaByOrdersTableHeaderList } from "../column-definitions/SlaByOrdersTableDefs";
+import {
+  SlaByOrdersTableDefs,
+  slaByOrdersTableHeaderList,
+} from "../column-definitions/SlaByOrdersTableDefs";
 import TableSettings from "../components/TableSettings";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const SlaByOrders = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -53,17 +57,16 @@ const SlaByOrders = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const url1 = window.location.origin + "/SLAByOrders.json"
+  const url1 = window.location.origin + "/SLAByOrders.json";
   const url = "https://10.0.0.202:5001/api/SLAByOrders";
 
   const { isLoading, error, data } = useQuery({
-     queryKey: "sla-by-items",
+    queryKey: "sla-by-items",
     queryFn: () => fetchData(url1),
     select: (data) => {
       return data.data;
     },
-  }
-  );
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -108,7 +111,7 @@ const SlaByOrders = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
 
   const components = useMemo(() => {
@@ -120,23 +123,19 @@ const SlaByOrders = () => {
   // Row Height logic
   // Row Height logic
 
-
-
-
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
   const gridRef = useRef(null);
-
 
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
 
-
   const [gridReady, setGridReady] = useState(false);
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
 
-
+  const [customers, selectedVendor, setSelectedVendor] =
+    useCustomerSelectMenu();
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header sla-header">
@@ -149,18 +148,28 @@ const SlaByOrders = () => {
             <h4 className="sla-heading">სერვისის დონე</h4>
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
-                <span
-                  className="calendar-span"
-                >
+                <span className="calendar-span">
                   <DatePickerInput />
                 </span>
               </div>
             </div>
-            <Select
+            {/* <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            /> */}
+
+            <Select
+              placeholder=""
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
+              onChange={(customer) => {
+                setSelectedVendor(customer);
+              }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu" />

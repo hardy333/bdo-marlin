@@ -48,6 +48,7 @@ import {
 } from "../column-definitions/SlaByItemsTableDefs";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const SlaByItem = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -134,6 +135,9 @@ const SlaByItem = () => {
   const [gridReady, setGridReady] = useState(false);
   useCopyTable(gridReady);
 
+  const [customers, selectedVendor, setSelectedVendor] =
+  useCustomerSelectMenu();
+  
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header sla-header">
@@ -151,12 +155,26 @@ const SlaByItem = () => {
                 </span>
               </div>
             </div>
-            <Select
+            {/* <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            /> */}
+            
+            <Select
+              placeholder=""
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
+              onChange={(customer) => {
+                setSelectedVendor(customer);
+              }}
             />
+            
+            
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu" />
             <p className="avarage-sla sla-avg sla-avg-desktop">

@@ -57,6 +57,7 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaCategoryCards from "../components/SlaCategoryCards";
 import DatePickerInput from "../components/DatePickerInput";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const SlaByCategory = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -276,6 +277,9 @@ const SlaByCategory = () => {
   const [dateChanged, setDateChanged] = useState(false);
   const datePicekerRef = useRef(null);
 
+  const [customers, selectedVendor, setSelectedVendor] =
+    useCustomerSelectMenu();
+
   return (
     <>
       <header className="all-orders__header sla-by-vendors__header sla-header">
@@ -296,12 +300,25 @@ const SlaByCategory = () => {
                 </span>
               </div>
             </div>
-            <Select
+            {/* <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            /> */}
+
+            <Select
+              placeholder=""
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
+              onChange={(customer) => {
+                setSelectedVendor(customer);
+              }}
             />
+
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu" />
             <p className="avarage-sla sla-avg sla-avg-desktop">

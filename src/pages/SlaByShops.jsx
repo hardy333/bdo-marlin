@@ -34,7 +34,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import vendorsArr from "../data/vendors-data";
+// import vendorsArr from "../data/vendors-data";
 import useRemoveId from "../components/useRemoveId";
 import { useQuery } from "react-query";
 import SlaMenu from "../components/SlaMenu";
@@ -42,10 +42,14 @@ import { fetchData } from "../utils/fetchData";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import SlaShopsCards from "../components/SlaShopsCards";
 import DatePickerInput from "../components/DatePickerInput";
-import { SlaByShopsTableDefs, slaShopsTableHeaderList } from "../column-definitions/SlaByShopsTableDefs";
+import {
+  SlaByShopsTableDefs,
+  slaShopsTableHeaderList,
+} from "../column-definitions/SlaByShopsTableDefs";
 import TableSettings from "../components/TableSettings";
 import useCopyTable from "../hooks/useCopyTable";
 import AgTablePag from "../components/AgTablePag";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const SlaByShops = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -53,21 +57,16 @@ const SlaByShops = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const url1 = window.location.origin + "/SLAByShops.json"
+  const url1 = window.location.origin + "/SLAByShops.json";
   const url = "https://10.0.0.202:5001/api/SLAByShops";
 
-  const { isLoading, error, data } = useQuery(
-    {
-      queryKey: "sla-by-shop",
-      queryFn: () => fetchData(url1),
-      select: (data) => {
-        return data.data;
-      },
-      
-      
-    }
-    
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: "sla-by-shop",
+    queryFn: () => fetchData(url1),
+    select: (data) => {
+      return data.data;
+    },
+  });
 
   const [rowData, setRowData] = useState(() => {
     if (data || data?.data) {
@@ -84,7 +83,6 @@ const SlaByShops = () => {
   }, [data, isLoading, error]);
 
   const [columnDefs] = useState(SlaByShopsTableDefs);
-
 
   useEffect(() => {
     if (isFullScreen) {
@@ -113,9 +111,8 @@ const SlaByShops = () => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
     gridRef.current.api.resetRowHeights();
-    setGridReady(true)
+    setGridReady(true);
   };
-
 
   const components = useMemo(() => {
     return {
@@ -128,17 +125,17 @@ const SlaByShops = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-
   const gridRef = useRef(null);
-
-
 
   useRemoveId(gridApi, gridRef);
 
   const isSmallDevice = useMediaQuery("only screen and (max-width : 530px)");
   const [gridReady, setGridReady] = useState(false);
 
-  useCopyTable(gridReady)
+  useCopyTable(gridReady);
+
+  const [customers, selectedVendor, setSelectedVendor] =
+    useCustomerSelectMenu();
 
   return (
     <>
@@ -152,19 +149,28 @@ const SlaByShops = () => {
             <h4 className="sla-heading">სერვისის დონე</h4>
             <div className="sla-date">
               <div className={`flex items-center sla-date `}>
-                <span
-                 
-                  className="calendar-span"
-                >
+                <span className="calendar-span">
                   <DatePickerInput />
                 </span>
               </div>
             </div>
-            <Select
+            {/* <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            /> */}
+
+            <Select
+              placeholder=""
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
+              onChange={(customer) => {
+                setSelectedVendor(customer);
+              }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu" />

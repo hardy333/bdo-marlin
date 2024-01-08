@@ -41,6 +41,7 @@ import ReverseExpandSvg from "../components/ReverseExpandSvg";
 import ExpandSvg from "../components/ExpandSvg";
 import LazyExcelExportBtn from "../components/LazyExcelExportBtn";
 import SlaCategoryCards from "../components/SlaCategoryCards";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const subD = [
   d.data[12],
@@ -54,13 +55,7 @@ const subD = [
   d.data[19],
 ];
 
-
-
-
-
-
-localStorage.setItem("x", JSON.stringify(subD))
-
+localStorage.setItem("x", JSON.stringify(subD));
 
 const CategoriesTable = () => {
   const [headerList, setHeaderList] = useState(categoriesHeaders);
@@ -346,12 +341,14 @@ const CategoriesTable = () => {
       setRowHeightIndex((c) => c + 1);
     }
   };
-  const [pageLink, setPageLink] = useState(null)
+  const [pageLink, setPageLink] = useState(null);
 
-  const [mobileSelectedCategory, setMobileSelectedCategory] = useState(null)
-  const [mobileSelectedSubCategory, setMobileSelectedSubCategory] = useState(null)
+  const [mobileSelectedCategory, setMobileSelectedCategory] = useState(null);
+  const [mobileSelectedSubCategory, setMobileSelectedSubCategory] =
+    useState(null);
 
-  
+  const [customers, selectedVendor, setSelectedVendor] =
+    useCustomerSelectMenu();
 
   return (
     <>
@@ -373,11 +370,23 @@ const CategoriesTable = () => {
                 </span>
               </div>
             </div>
-            <Select
+            {/* <Select
               className="react-select-container sla-select"
               classNamePrefix="react-select"
               options={vendorsArr}
               defaultValue={{ value: "მომწოდებელი 1", label: "მომწოდებელი 1" }}
+            /> */}
+
+            <Select
+              placeholder=""
+              className="react-select-container"
+              classNamePrefix="react-select"
+              options={customers}
+              value={selectedVendor}
+              defaultValue={selectedVendor}
+              onChange={(customer) => {
+                setSelectedVendor(customer);
+              }}
             />
             {/* <ItemsMenu isSlaVendors={true} /> */}
             <SlaMenu className="sla-menu" />
@@ -532,7 +541,13 @@ const CategoriesTable = () => {
       </header>
 
       {isSmallDevice ? (
-        <SlaCategoryCards setMobileSelectedCategory={setMobileSelectedCategory} setMobileSelectedSubCategory={setMobileSelectedSubCategory} pageLink={pageLink} setPageLink={setPageLink} data={rowData} />
+        <SlaCategoryCards
+          setMobileSelectedCategory={setMobileSelectedCategory}
+          setMobileSelectedSubCategory={setMobileSelectedSubCategory}
+          pageLink={pageLink}
+          setPageLink={setPageLink}
+          data={rowData}
+        />
       ) : (
         <div
           className="ag-theme-alpine stable-table expandable-table"
