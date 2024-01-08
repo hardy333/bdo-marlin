@@ -1,10 +1,19 @@
 // import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { axiosPrivate } from "../../axios/axios";
 import { useQuery } from "react-query";
 
 
 const queryFn = async ({queryKey}) => {
-    const res = await axiosPrivate.get(`RetroBonusCondition/${queryKey[1]}`)
+
+
+  const user = JSON.parse(window.localStorage.getItem("user"));
+  const url = `https://api.marlin.ge/api/RetroBonusCondition/${queryKey[1]}`;
+
+  const res = await axios.get(url, {
+    headers: { Authorization: `bearer ${user?.token}` },
+  });
+
     
 
     if(!Array.isArray(res?.data?.data)){

@@ -34,7 +34,7 @@ const RetroBonusConditionsMenu = ({ retroBonusId }) => {
 
   if (data?.length === 0) {
     menuContent = (
-      <p style={{ textAlign: "center" }}>ბონუსების პირობები არ მოიძებნა.</p>
+      <p style={{ textAlign: "center" }}>ფასდაკლების პირობები არ მოიძებნა.</p>
     );
   }
 
