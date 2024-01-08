@@ -54,6 +54,7 @@ import { useSearchParams } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -129,67 +130,11 @@ const VendorsCalendarTable = () => {
 
   useCopyTable(gridReady);
 
+
+  const [customers, selectedVendor, setSelectedVendor] = useCustomerSelectMenu()
+
+
   
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const urlSelectedVendor = searchParams.get("vendor");
-  let isRetailer = false;
-  const { user } = useAuthContext();
-
-
-  if (user.decodedToken.IsRetail === "1") {
-    isRetailer = true;
-  }
-
-  const vendorsUrl = "https://api.marlin.ge/api/AccountDataFront";
-
-  const {
-    isLoading: vendorsIsLoading,
-    error: vendorsError,
-    data: vendorsData,
-  } = useQuery({
-    queryKey: ["calendar-select-data"],
-    queryFn: () => fetchData(vendorsUrl),
-    select: (data) => {
-      return data.data.data;
-    },
-  });
-
-  const [selectedVendor, setSelectedVendor] = useState(null);
-
-  let customers = null;
-
-  if (isRetailer) {
-    customers = vendorsData
-      ?.filter((account) => !account.isRetail)
-      .map((acc) => ({
-        value: acc.name,
-        label: acc.name,
-        accountID: acc.accountID,
-      }));
-  } else {
-    customers = vendorsData
-      ?.filter((account) => account.isRetail)
-      .map((acc) => ({
-        value: acc.name,
-        label: acc.name,
-        accountID: acc.accountID,
-      }));
-  }
-
-  useEffect(() => {
-    if (!customers || !vendorsData) return;
-    if (selectedVendor) return;
-
-    const vendor = customers?.find((ven) => ven.value === urlSelectedVendor);
-
-    if (!vendor) {
-      setSelectedVendor(customers[0]);
-    } else {
-      setSelectedVendor(vendor);
-    }
-  }, [vendorsData, selectedVendor, setSelectedVendor]);
 
   return (
     <>
@@ -211,7 +156,9 @@ const VendorsCalendarTable = () => {
               options={customers}
               value={selectedVendor}
               defaultValue={selectedVendor}
-              onChange={() => {
+              onChange={(customer) => {
+                setSelectedVendor(customer)
+
                 changeRowData();
               }}
             />
