@@ -141,7 +141,7 @@ const DiscountsCards = () => {
           <p style={{ paddingTop: "100px", textAlign: "center"}}>
              ბონუსების ჩატვირთვა ვერ მოხდა, გთხოვ სცადეთ მოგვიანებით.
           </p>
-        ) : null}
+        ) : null} 
 
         <div className="discount-cards-container" style={{opacity: isPreviousData ? 0.6: 1}}>
           {data?.map((obj, index) => {

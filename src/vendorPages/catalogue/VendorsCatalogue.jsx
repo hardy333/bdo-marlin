@@ -207,7 +207,6 @@ const VendorsCatalogue = () => {
     }else{
       setSelectedVendor(vendor);
       setIsMyProducts(false)
-
     }
   }, [vendorsData]);
 

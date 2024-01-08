@@ -32,11 +32,11 @@ const itemsList = [
     label: "შეკვეთებით",
     pathname: "/sla-by-orders"
   },
-  {
-    svg: <CarSvg />,
-    label: "მომწოდებლებით",
-    pathname: "/Reports"
-  },
+  // {
+  //   svg: <CarSvg />,
+  //   label: "მომწოდებლებით",
+  //   pathname: "/Reports"
+  // },
 ];
 
 const SlaMenu = ({ }) => {

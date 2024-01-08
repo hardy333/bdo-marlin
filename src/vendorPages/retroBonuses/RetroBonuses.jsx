@@ -41,9 +41,9 @@ const RetroBonuses = () => {
   } = useQuery({
     queryKey: ["retailers"],
     queryFn: () => fetchData(vendorsUrl),
-    select: (data) => {
-      return data.data
-    }
+      select: (data) => {
+        return data.data
+      }
   });
 
   const vendors = vendorsData?.data

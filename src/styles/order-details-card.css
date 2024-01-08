@@ -59,6 +59,7 @@
   flex-direction: column;
   font-size: 14px;
   font-weight: 600;
+  
 }
 
 .order-details-card small{
@@ -67,12 +68,15 @@
   font-weight: 400;
 
 }
+
 .order-details-card .status{
   font-weight: 500;
+  
 }
 
 .order-details-card .danger{
   color:  #FF3360;
+  
 }
 
 .order-details-card .table-card-row span:nth-child(2){
@@ -81,13 +85,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: end;
+  
 }
 
 
 /* All Orders Card */
 /* All Orders Card */
-
-
 .all-orders-card header{
   display: flex;
 

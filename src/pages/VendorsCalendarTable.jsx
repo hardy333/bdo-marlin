@@ -66,7 +66,6 @@ const VendorsCalendarTable = () => {
 
   const gridRef = useRef(null);
 
-  const days = ["M", "T", "W", "T", "F", "S", "S"];
 
   const [columnDefs] = useState(CalendarTableDefs);
 
@@ -130,11 +129,14 @@ const VendorsCalendarTable = () => {
 
   useCopyTable(gridReady);
 
+  
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlSelectedVendor = searchParams.get("vendor");
   let isRetailer = false;
   const { user } = useAuthContext();
+
 
   if (user.decodedToken.IsRetail === "1") {
     isRetailer = true;
@@ -150,10 +152,9 @@ const VendorsCalendarTable = () => {
     queryKey: ["calendar-select-data"],
     queryFn: () => fetchData(vendorsUrl),
     select: (data) => {
-      return data.data.data
+      return data.data.data;
     },
   });
-
 
   const [selectedVendor, setSelectedVendor] = useState(null);
 
@@ -176,7 +177,6 @@ const VendorsCalendarTable = () => {
         accountID: acc.accountID,
       }));
   }
-
 
   useEffect(() => {
     if (!customers || !vendorsData) return;
@@ -205,7 +205,7 @@ const VendorsCalendarTable = () => {
             {/* <DatePickerInput /> */}
 
             <Select
-            placeholder=""
+              placeholder=""
               className="react-select-container"
               classNamePrefix="react-select"
               options={customers}
