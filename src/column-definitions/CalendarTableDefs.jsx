@@ -1,19 +1,11 @@
 import Tippy from "@tippyjs/react";
 
+// Shoud Start from monday and end to sunday (same as daysMap !!)
 const days = ["M", "T", "W", "T", "F", "S", "S"];
-
-const daysMap = {
-  "S": "sunday",
-  "M": "monday",
-  "T": "tuesday",
-  "W": "wednesday",
-  "T": "thursday",
-  "F": "friday",
-  "S": "saturday"
-}
 
 const getDayFullname = (index) => {
 
+  // Shoud Start from monday and end to sunday (same as days !!)
   const daysMap = {
     "1": "monday",
     "2": "tuesday",
@@ -84,7 +76,6 @@ const CalendarTableDefs = [
         tooltipText = "2 კვირაში ერთხელ";
       }
 
-      console.log("Interval", params.data.weekInterval)
 
       return (
         <div className="dis-date-container">

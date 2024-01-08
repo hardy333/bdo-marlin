@@ -50,26 +50,37 @@ import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
+import { format } from "date-fns";
+import ProgressBar from "../components/ProgressBar";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [headerList, setHeaderList] = useState(calendarTableHeaderList);
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
+  const [selected, setSelected] = useState(new Date());
   const [customers, selectedVendor, setSelectedVendor] = useCustomerSelectMenu()
   
   const { user } = useAuthContext();
 
-  let url = `https://api.marlin.ge/api/Calendarfront?retailerId=R00002&vendorId=D00003&date=1/8/2024`
+  const formatedSelectedDay = format(new Date(selected), "MM/dd/yyyy")
 
-  // if (user.decodedToken.AccountID.slice(0, 1) === "D") {
-  //   url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
-  // }
+
+  // Url for Retailer View 
+  let url = `https://api.marlin.ge/api/Calendarfront?retailerId=${user.decodedToken.AccountID}&vendorId=${selectedVendor?.accountID}&date=${formatedSelectedDay}`
+
+
+  // Url for Distributor View
+  if (user.decodedToken.AccountID.slice(0, 1) === "D") {
+   url = `https://api.marlin.ge/api/Calendarfront?retailerId=${selectedVendor?.accountID}&vendorId=${user.decodedToken.AccountID}&date=${formatedSelectedDay}`
+
+  }
+
+  
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["calendar-table-data"],
+    queryKey: ["calendar-table-data", selected, selectedVendor?.accountID],
     queryFn: () => fetchData(url),
   });
   
@@ -122,7 +133,6 @@ const VendorsCalendarTable = () => {
 
   const [rowHeightIndex, setRowHeightIndex] = useState(1);
 
-  const [selected, setSelected] = useState(new Date());
 
   useRemoveId(gridApi, gridRef);
 
@@ -139,16 +149,19 @@ const VendorsCalendarTable = () => {
 
   return (
     <>
-      <header className="all-orders__header calendar-table-header vendors-calendar-header ">
+      <header className="all-orders__header calendar-table-header vendors-calendar-header "
+        style={{ position: "relative" }}
+
+      >
+        <ProgressBar show={isLoading} />
         <div className="all-orders__settings">
+
           {/* Left */}
           <div
             className="all-orders__gdm-container  order-details-left "
             style={{ paddingLeft: "0", marginLeft: 10 }}
           >
             <span className="me-10 heading">მომწოდებლების კალენდარი</span>
-
-            {/* <DatePickerInput /> */}
 
             <Select
               placeholder=""
