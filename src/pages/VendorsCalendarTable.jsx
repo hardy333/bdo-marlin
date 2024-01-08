@@ -1,5 +1,4 @@
 import React, {
-  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -33,28 +32,24 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 import CustomHeaderCell from "../components/CustomHeaderCell";
 import CustomInput from "../components/CustomInput";
 
-import d1 from "../assets/vendors-calendar-1.json";
-import d2 from "../assets/vendors-calendar-2.json";
 
 import Select from "react-select";
 import { DayPicker } from "react-day-picker";
 import useRemoveId from "../components/useRemoveId";
 
-import vendorsArr from "../data/vendors-data";
 import {
   CalendarTableDefs,
   calendarTableHeaderList,
 } from "../column-definitions/CalendarTableDefs";
 import TableSettings from "../components/TableSettings";
 import { useMediaQuery } from "@uidotdev/usehooks";
-import DatePickerInput from "../components/DatePickerInput";
 import CalendartableCards from "../components/CalendarTableCards";
 import useCopyTable from "../hooks/useCopyTable";
-import { useSearchParams } from "react-router-dom";
+
+import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuery } from "react-query";
 import { fetchData } from "../utils/fetchData";
-import useCustomerSelectMenu from "../hooks/useCustomerSelectMenu";
 
 const VendorsCalendarTable = () => {
   const [pageSize, setPageSize] = useState(15);
@@ -63,24 +58,31 @@ const VendorsCalendarTable = () => {
   const [gridApi, setGridApi] = useState(null);
   const [gridColumnApi, setGridColumnApi] = useState(null);
 
-  const [rowData, setRowData] = useState(d1);
+  const [customers, selectedVendor, setSelectedVendor] = useCustomerSelectMenu()
+  
+  const { user } = useAuthContext();
+
+  let url = `https://api.marlin.ge/api/Calendarfront?retailerId=R00002&vendorId=D00003&date=1/8/2024`
+
+  // if (user.decodedToken.AccountID.slice(0, 1) === "D") {
+  //   url = `https://api.marlin.ge/api/SupplierOrdersByAccount/${user.decodedToken.AccountID}`;
+  // }
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["calendar-table-data"],
+    queryFn: () => fetchData(url),
+  });
+  
+
+  
 
   const gridRef = useRef(null);
-
 
   const [columnDefs] = useState(CalendarTableDefs);
 
   const [rowDataLabel, setRowDataLabel] = useState("d1");
 
-  const changeRowData = () => {
-    if (rowDataLabel === "d1") {
-      setRowData(d2);
-      setRowDataLabel("d2");
-    } else {
-      setRowData(d1);
-      setRowDataLabel("d1");
-    }
-  };
+
 
   useEffect(() => {
     if (isFullScreen) {
@@ -131,7 +133,6 @@ const VendorsCalendarTable = () => {
   useCopyTable(gridReady);
 
 
-  const [customers, selectedVendor, setSelectedVendor] = useCustomerSelectMenu()
 
 
   
@@ -159,7 +160,6 @@ const VendorsCalendarTable = () => {
               onChange={(customer) => {
                 setSelectedVendor(customer)
 
-                changeRowData();
               }}
             />
           </div>
@@ -168,7 +168,7 @@ const VendorsCalendarTable = () => {
             <TableSettings
               isSmallDevice={isSmallDevice}
               defHeaderList={calendarTableHeaderList}
-              rowData={rowData}
+              rowData={data?.data}
               gridApi={gridApi}
               gridRef={gridRef}
               gridColumnApi={gridColumnApi}
@@ -182,18 +182,12 @@ const VendorsCalendarTable = () => {
       {/* ..... */}
       <div className="flex gap-2">
         <div className="vendors-calendar__left">
-          {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima eum,
-          praesentium natus repellat nulla illo inventore, nisi suscipit,
-          aliquam aspernatur ducimus quia tempore sunt voluptates recusandae
-          veniam eius illum reprehenderit! */}
-          {/* <VendorsDateRange changeRowData={changeRowData} /> */}
           <div className=" date-picker-wrapper">
             <DayPicker
               mode="single"
               selected={selected}
               onSelect={(x) => {
                 setSelected(x);
-                changeRowData();
               }}
               showOutsideDays={true}
               enableOutsideDaysClick={false}
@@ -221,7 +215,7 @@ const VendorsCalendarTable = () => {
                 }
               }}
               onGridReady={onGridReady}
-              rowData={rowData}
+              rowData={data?.data}
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
               pagination={true}

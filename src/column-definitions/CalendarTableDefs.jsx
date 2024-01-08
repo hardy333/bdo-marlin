@@ -2,25 +2,45 @@ import Tippy from "@tippyjs/react";
 
 const days = ["M", "T", "W", "T", "F", "S", "S"];
 
+const daysMap = {
+  "S": "sunday",
+  "M": "monday",
+  "T": "tuesday",
+  "W": "wednesday",
+  "T": "thursday",
+  "F": "friday",
+  "S": "saturday"
+}
+
+const getDayFullname = (index) => {
+
+  const daysMap = {
+    "1": "monday",
+    "2": "tuesday",
+    "3": "wednesday",
+    "4": "thursday",
+    "5": "friday",
+    "6": "saturday",
+    "7": "sunday",
+
+  }
+
+  return daysMap[String(index)]
+}
 
 const calendarTableHeaderList = [
   {
-    name: "Shop",
+    name: "shopName",
     showingName: "მაღაზია",
     isShowing: true,
   },
   {
-    name: "Shop Address",
+    name: "shopAddress",
     showingName: "მისამართი",
     isShowing: true,
   },
   {
-    name: "Vendor",
-    showingName: "მომწოდებელი",
-    isShowing: true,
-  },
-  {
-    name: "Brand",
+    name: "brand",
     showingName: "ბრენდი",
     isShowing: true,
   },
@@ -33,56 +53,50 @@ const calendarTableHeaderList = [
 
 const CalendarTableDefs = [
   {
-    field: "Shop",
+    field: "shopName",
     headerName: "მაღაზია",
-    width: 120,
-    minWidth: 120,
-    maxWidth: 150,
+    width: 250,
+    minWidth: 250,
+    maxWidth: 250,
     cellRendererFramework: (params) => {
       return <div>Shop{String(params.value).padStart(3, "0")}</div>;
     },
   },
   {
-    field: "Shop Address",
+    field: "shopAddress",
     headerName: "მისამართი",
-    maxWidth: 200,
+    width: 220,
+    maxWidth:220
   },
   {
-    field: "Vendor",
-    headerName: "მომწოდებელი",
-    maxWidth: 180,
-  },
-  {
-    field: "Brand",
+    field: "brand",
     headerName: "ბრენდი",
-    maxWidth: 180,
+    maxWidth: 250,
   },
   {
     field: "Distributor's Date",
     headerName: "მოწოდების თარიღი",
     cellRendererFramework: (params) => {
-      const d1 = Math.floor(Math.random() * 6);
-      const d2 = Math.floor(Math.random() * 6);
 
-      let isTwo = false;
       let tooltipText = "ყოველ კვირა";
 
-      if (Math.random() - 0.5 > 0) {
-        isTwo = true;
+      if (params.data.weekInterval === 2) {
         tooltipText = "2 კვირაში ერთხელ";
       }
+
+      console.log("Interval", params.data.weekInterval)
 
       return (
         <div className="dis-date-container">
           <div className="days-container">
-            {days.map((d, index) => (
+            {days.map((dayFirstLetter, index) => (
               <span
-                key={d + index}
+                key={dayFirstLetter + index}
                 style={{
-                  color: d1 === index || d2 == index ? "#211543" : "#AE9EDC",
+                  color: params.data[getDayFullname(index + 1)] ? "#211543" : "#AE9EDC",
                 }}
               >
-                {d}
+                {dayFirstLetter}
               </span>
             ))}
           </div>
@@ -95,7 +109,7 @@ const CalendarTableDefs = [
             <div className="circle-container">
               <span className={`circle active`}></span>
               <span
-                className={`circle active ${isTwo ? " stroked" : ""}`}
+                className={`circle active ${params.data.weekInterval === 2 ? "stroked" : ""}`}
           
               ></span>
             </div>
