@@ -4,7 +4,19 @@ export const AuthContext = createContext();
 
 const x = window.localStorage.getItem("user");
 
-let user = null;
+let user = {
+  decodedToken: {
+    IsRetail: "1",
+    IsRetail: 1,
+    isVendor: "0",
+    isVendor: 0,
+    IsRetail: true,
+    isVendor: false,
+    AccountID: "R00002",
+    FirstName: "Daily",
+  },
+  token: "skjhdkjdhk",
+};
 
 if (x) {
   user = JSON.parse(x);

@@ -23,16 +23,28 @@ const DashboardLayout = ({ light = false }) => {
   if (pathname === "/") {
     classN = "dashboard--dash";
   }
-  const pageName = pathname.slice(1)
+  const pageName = pathname.slice(1);
 
-  const {user} = useAuthContext()
+  const { user } = useAuthContext();
 
   return (
-    <div className={`dashboard ${classN} ${pageName}-page ${pageName === "vendor-all-orders-vendor" ? "all-orders-parent-page" : ""} ${pageName === "vendor-all-orders" ? "all-orders-parent-page" : "vendor-all-orders"}`}>
+    <div
+      className={`dashboard ${classN} ${pageName}-page ${
+        pageName === "vendor-all-orders-vendor" ? "all-orders-parent-page" : ""
+      } ${
+        pageName === "vendor-all-orders"
+          ? "all-orders-parent-page"
+          : "vendor-all-orders"
+      }`}
+    >
       <button className="btn-messenger">
         <img src={messengerImg} alt="" />
       </button>
-      {user.decodedToken.IsRetail === "1" ?  <DashboardAside /> : <DashboardAsideVendors />}
+      {user?.decodedToken.IsRetail === "1" ? (
+        <DashboardAside />
+      ) : (
+        <DashboardAsideVendors />
+      )}
       <DashboardNavbar />
       <main className={`dashboard-main ${staticMain ? "static" : ""}`}>
         <Outlet />

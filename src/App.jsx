@@ -20,7 +20,6 @@ import "./styles/switch.css";
 import "./styles/info-badge.css";
 import "./styles/copy-paste-table.css";
 
-
 import Employees from "./pages/Employees";
 import Dash from "./pages/Dash";
 // const Dash = React.lazy(() => import("./pages/Dash"));
@@ -87,7 +86,6 @@ import CalendarTableForVendor from "./vendorPages/calendarTable/CalendarTableFor
 import { Toaster } from "react-hot-toast";
 // Table Pages END
 
-
 const queryClient = new QueryClient();
 
 function App() {
@@ -95,96 +93,88 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-
       <Toaster />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/set-password" element={<SetPassword />} />
         <Route path="landing" element={<Landing />} />
+        {/* <Route element={<AuthElement />}> */}
+        <Route element={<DashboardLayout />}>
+          {/* Non Protected Routes Start */}
+          <Route path="test" element={<Test />} />
+          <Route path="/" element={<Dash />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route index element={<ProfileForm />} />
+            <Route path="change-password" element={<PasswordForm />} />
+          </Route>
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contract" element={<Contract />} />
+          <Route path="/sla-by-shops" element={<SlaByShops />} />
+          <Route path="/sla-by-item" element={<SlaByItem />} />
+          <Route path="/sla-by-category" element={<CategoriesTable />} />
+          <Route path="/sla-by-orders" element={<SlaByOrders />} />
+          <Route path="/reports" element={<ReportsTable />} />
+          <Route path="/logs" element={<LogsTable />} />
+          <Route path="/vendors-calendar" element={<VendorsCalendarTable />} />
+          <Route path="/employees" element={<Employees />} />
+          <Route path="/order-details" element={<OrderDetails />} />
+          <Route path="/vendor-all-orders" element={<VendorAllOrdersTable />} />
+          <Route path="/all-orders-parent" element={<AllOrdersParent />} />
 
-        <Route element={<AuthElement />}>
-          <Route element={<DashboardLayout />}>
-            {/* Non Protected Routes Start */}
-            <Route path="test" element={<Test/ >}/>
-            <Route path="/" element={<Dash />} />
-            <Route path="/profile" element={<Profile />}>
-              <Route index element={<ProfileForm />} />
-              <Route path="change-password" element={<PasswordForm />} />
-            </Route>
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/contract" element={<Contract />} />
-            <Route path="/sla-by-shops" element={<SlaByShops />} />
-            <Route path="/sla-by-item" element={<SlaByItem />} />
-            <Route path="/sla-by-category" element={<CategoriesTable />} />
-            <Route path="/sla-by-orders" element={<SlaByOrders />} />
-            <Route path="/reports" element={<ReportsTable />} />
-            <Route path="/logs" element={<LogsTable />} />
-            <Route
-                path="/vendors-calendar"
-                element={<VendorsCalendarTable />}
-              />
-              <Route path="/employees" element={<Employees />} />
-              <Route path="/order-details" element={<OrderDetails />} />
-              <Route
-                path="/vendor-all-orders"
-                element={<VendorAllOrdersTable />}
-              />
-              <Route path="/all-orders-parent" element={<AllOrdersParent />} />
+          {/* Non Protected Routes End */}
 
+          <Route element={<RetailerRoutesProtection />}>
+            {/* Table Pages   */}
+            <Route path="/invoices-table" element={<InvoicesTable />} />
+            <Route path="/stable-table" element={<StableTable />} />
+            <Route path="/invoice-details" element={<InvoiceDetailsTable />} />
+            <Route path="/invoices2" element={<Invoices2 />} />
+            <Route path="/categories" element={<CategoriesTable />} />
+            <Route path="/cash-back-table" element={<CashBackTable />} />
 
-            {/* Non Protected Routes End */}
+            <Route path="/discounts-table" element={<DiscountsTable2 />} />
+            <Route path="/catalogue" element={<CatalogueTable />} />
 
-            <Route element={<RetailerRoutesProtection />}>
-              {/* Table Pages   */}
-              <Route path="/invoices-table" element={<InvoicesTable />} />
-              <Route path="/stable-table" element={<StableTable />} />
-              <Route
-                path="/invoice-details"
-                element={<InvoiceDetailsTable />}
-              />
-              <Route path="/invoices2" element={<Invoices2 />} />
-              <Route path="/categories" element={<CategoriesTable />} />
-              <Route path="/cash-back-table" element={<CashBackTable />} />
+            {/* Table Pages End */}
+            <Route path="/colors-page" element={<ColorsPage />} />
+            <Route path="/password-page" element={<PasswordPage />} />
+            <Route path="/discounts-cards" element={<DiscountsCards />} />
 
-              <Route path="/discounts-table" element={<DiscountsTable2 />} />
-              <Route path="/catalogue" element={<CatalogueTable />} />
-            
-              
-              {/* Table Pages End */}
-              <Route path="/colors-page" element={<ColorsPage />} />
-              <Route path="/password-page" element={<PasswordPage />} />
-              <Route path="/discounts-cards" element={<DiscountsCards />} />
+            <Route path="/prices" element={<Prices />} />
 
-              <Route path="/prices" element={<Prices />} />
+            <Route path="/vendors" element={<Vendors />} />
+          </Route>
+          {/* Retailer protected route end  */}
 
-              <Route path="/vendors" element={<Vendors />} />
-            </Route>
-            {/* Retailer protected route end  */}
+          <Route path="/*" element={<Error />} />
+          {/* Vendors */}
+          {/* Vendors */}
+          {/* Vendors */}
 
-            <Route path="/*" element={<Error />} />
-            {/* Vendors */}
-            {/* Vendors */}
-            {/* Vendors */}
-
-            <Route element={<SupplierRoutesProtection />}>
-              <Route path="/retailers" element={<Retailers />} />
-              {/* <Route
+          <Route element={<SupplierRoutesProtection />}>
+            <Route path="/retailers" element={<Retailers />} />
+            {/* <Route
                 path="/all-orders-parent"
                 element={<AllOrdersParent />}
               /> */}
-              <Route path="vendor-order-details" element={<VendorOrderDetails />}/>
-              <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
-              <Route path="/vendor-invoices" element={<VendorInvoices />} />
-              <Route path="/vendor-catalogue" element={<VendorsCatalogue />} />
-              <Route path="/vendor-retro-bonuse-table" element={<VendorRetroBonusTable />} />
-            </Route>
+            <Route
+              path="vendor-order-details"
+              element={<VendorOrderDetails />}
+            />
+            <Route path="/vendor-retro-bonuses" element={<RetroBonuses />} />
+            <Route path="/vendor-invoices" element={<VendorInvoices />} />
+            <Route path="/vendor-catalogue" element={<VendorsCatalogue />} />
+            <Route
+              path="/vendor-retro-bonuse-table"
+              element={<VendorRetroBonusTable />}
+            />
           </Route>
-          {/* Dashboard Layout End */}
         </Route>
+        {/* Dashboard Layout End */}
+        {/* </Route> */}
         {/* Auth Element End */}
       </Routes>
-
     </QueryClientProvider>
   );
 }
